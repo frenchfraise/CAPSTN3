@@ -26,6 +26,8 @@ public class Skills : MonoBehaviour
     bool isCooldown3 = false;
     public KeyCode skill3;
 
+    public GameObject skills;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,6 +45,14 @@ public class Skills : MonoBehaviour
         Skill1();
         Skill2();
         Skill3();
+        if(Pause.GameIsPaused == true)
+        {
+            skills.SetActive(false);
+        }
+        if(Pause.GameIsPaused == false)
+        {
+            skills.SetActive(true);
+        }
     }
 
     void Skill1()

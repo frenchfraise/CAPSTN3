@@ -25,6 +25,8 @@ public class Gem : MonoBehaviour
     Vector3 temp2;
     Vector3 temp3;
 
+    public GameObject gems;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -59,6 +61,14 @@ public class Gem : MonoBehaviour
             YellowGemEquip();
         }
 
+        if (Pause.GameIsPaused == true)
+        {
+            gems.SetActive(false);
+        }
+        if (Pause.GameIsPaused == false)
+        {
+            gems.SetActive(true);
+        }
     }
 
     public void BlueGemEquip()
