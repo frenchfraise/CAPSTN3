@@ -1486,16 +1486,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blueGemisActive: 0
   redGemisActive: 0
-  gem3isActive: 0
+  yellowGemisActive: 0
   blueGem: {fileID: 2018418177}
   redGem: {fileID: 1251217752}
-  gem3: {fileID: 1119629997}
+  yellowGem: {fileID: 1119629997}
   blueGemImage: {fileID: 1302123752}
   redGemImage: {fileID: 1046590422}
-  gem3Image: {fileID: 627487548}
+  yellowGemImage: {fileID: 627487548}
   blueGemLetter: {fileID: 1461201146}
   redGemLetter: {fileID: 1345270027}
-  gem3Letter: {fileID: 380841879}
+  yellowGemLetter: {fileID: 380841879}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
