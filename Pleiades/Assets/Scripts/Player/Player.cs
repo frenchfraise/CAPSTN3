@@ -10,13 +10,17 @@ public class Player : Unit
 
     void Start()
     {
-        maxHp = 100;
-        curHp = maxHp;
-        atkDmg = 10;
-        healthBar.SetMaxHealth(maxHp);
+        Init();
     }
 
-    // Update is called once per frame
+    void Init()
+    {
+        this.maxHp = 100;
+        this.curHp = 100;
+        this.atkDmg = 50;
+        healthBar.SetMaxHealth(maxHp);
+    }
+    
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Space))

@@ -8,6 +8,5 @@ public class Exit : MonoBehaviour
     {
         Application.Quit();
         Time.timeScale = 1f;
-        Pause.GameIsPaused = false;
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    private static GameManager _instance;
+    public static GameManager _instance;
 
     public static GameManager Instance
     {
@@ -22,7 +22,10 @@ public class GameManager : MonoBehaviour
     }
 
     public Player player;
+    public PlayerController playerController;
     public Slider healthBar;
+    public Gem gem;
+    public Skills skills;
 
     void Awake()
     {

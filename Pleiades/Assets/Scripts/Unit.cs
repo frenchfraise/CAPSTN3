@@ -6,8 +6,8 @@ public class Unit : MonoBehaviour
 {
     public float curHp;
     public float maxHp;
-    public float atkDmg;
-    public float damage;
+    public int atkDmg;
+    public int damage;
 
 
     public float Attack()

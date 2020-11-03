@@ -10,6 +10,5 @@ public class Restart : MonoBehaviour
     {
         SceneManager.LoadScene("Main");
         Time.timeScale = 1f;
-        Pause.GameIsPaused = false;
     }
 }

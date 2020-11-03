@@ -9,7 +9,8 @@ public class Pause : MonoBehaviour
 {
     public GameObject pausePanel;
     public GameObject pauseButton;
-    public static bool GameIsPaused = false;
+    public GameObject skills;
+    public GameObject gems;
 
     void Start()
     {
@@ -21,7 +22,8 @@ public class Pause : MonoBehaviour
         pausePanel.SetActive(true);
         pauseButton.SetActive(false);
         Time.timeScale = 0f;
-        GameIsPaused = true;
+        skills.SetActive(false);
+        gems.SetActive(false);
     }
 
 }

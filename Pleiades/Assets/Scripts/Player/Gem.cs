@@ -41,7 +41,6 @@ public class Gem : MonoBehaviour
         temp1.x = 2;
         temp1.y = 2;
         blueGem.localScale = temp1;
-
     }
 
     // Update is called once per frame
@@ -61,14 +60,6 @@ public class Gem : MonoBehaviour
             YellowGemEquip();
         }
 
-        if (Pause.GameIsPaused == true)
-        {
-            gems.SetActive(false);
-        }
-        if (Pause.GameIsPaused == false)
-        {
-            gems.SetActive(true);
-        }
     }
 
     public void BlueGemEquip()
