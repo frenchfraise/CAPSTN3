@@ -73,6 +73,7 @@ public class PlayerController : MonoBehaviour
     public void Attack()
     {
         StartCoroutine(AttackCo());
+        Debug.Log("Coroutine Attack start");
     }
 
     public IEnumerator AttackCo()
