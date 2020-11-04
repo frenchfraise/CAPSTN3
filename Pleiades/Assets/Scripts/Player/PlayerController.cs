@@ -109,6 +109,6 @@ public class PlayerController : MonoBehaviour
         GameObject thunder = Instantiate(lightningPrefabs[Random.Range(0, lightningPrefabs.Length)],
                                          lightning);
         thunder.transform.Rotate(0, 0, Mathf.Atan2(shootingDirection.y, shootingDirection.x) * Mathf.Rad2Deg);
-        Destroy(thunder, .3f);
+        Destroy(thunder, .35f);
     }
 }
