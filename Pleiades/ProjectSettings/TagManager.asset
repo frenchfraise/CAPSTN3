@@ -54,9 +54,9 @@ TagManager:
   - name: Midgroud
     uniqueID: 3083948251
     locked: 0
-  - name: Foreground
-    uniqueID: 99317883
-    locked: 0
   - name: Player
     uniqueID: 3003294027
+    locked: 0
+  - name: Foreground
+    uniqueID: 99317883
     locked: 0
