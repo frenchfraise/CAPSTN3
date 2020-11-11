@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class Enemy : Unit
 {
+    private EnemyInteract enemyInteract;
+
     public HealthBar healthBar;
     void Start()
     {
         Init();
+        enemyInteract = this.GetComponent<EnemyInteract>();
     }
 
     void Update()
@@ -15,6 +18,7 @@ public class Enemy : Unit
         if(curHp <= 0)
         {
             Death();
+            
         }
     }
 
@@ -36,6 +40,7 @@ public class Enemy : Unit
 
     public void Death()
     {
+        enemyInteract.OnEnemyDeath(this.enemyInteract.indexNo);
         this.gameObject.SetActive(false);
     }
 }
