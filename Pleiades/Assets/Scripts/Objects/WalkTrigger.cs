@@ -18,7 +18,7 @@ public class WalkTrigger : Interactables
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Player")
+        if(collision.tag == "Player" && interactedWith == false)
         {
             interactedWith = true;
             PuzzleManager.instance.OnNewRoomEnter(doorToLock);

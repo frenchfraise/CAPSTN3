@@ -21,8 +21,16 @@ public class Bullet : MonoBehaviour
     {
         if (col.CompareTag("RedEnemy"))
         {
-            col.GetComponent<RedEnemy>().TakeDamage();
-            Destroy(this.gameObject);
+            col.GetComponent<RedEnemy>().TakeDamage();   
         }
+        else if (col.CompareTag("Torch"))
+        {
+            if (col.GetComponent<Torch>().interactedWith == false)
+            {
+                col.GetComponent<Torch>().LightThis();
+            }
+        }
+
+        Destroy(this.gameObject);
     }
 }
