@@ -18,7 +18,7 @@ public class PlayerHit : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if(col.CompareTag("Enemy"))
+        if(col.CompareTag("RedEnemy"))
         {
             col.GetComponent<Enemy>().TakeDamage();
         }

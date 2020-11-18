@@ -7,9 +7,9 @@ public class Enemy : Unit
     private EnemyInteract enemyInteract;
 
     public HealthBar healthBar;
+
     void Start()
     {
-        Init();
         enemyInteract = this.GetComponent<EnemyInteract>();
     }
 
@@ -18,16 +18,15 @@ public class Enemy : Unit
         if(curHp <= 0)
         {
             Death();
-            
         }
     }
 
-    void Init()
+    public void Init(float n_CurHp, float n_MaxHp, int n_Damage)
     {
-        this.curHp = 100;
-        this.maxHp = 100;
-        this.damage = 5;
-        healthBar.SetMaxHealth(maxHp);
+        this.curHp = n_CurHp;
+        this.maxHp = n_MaxHp;
+        this.damage = n_Damage;
+        healthBar.SetMaxHealth(n_MaxHp);
     }
 
     public void TakeDamage()

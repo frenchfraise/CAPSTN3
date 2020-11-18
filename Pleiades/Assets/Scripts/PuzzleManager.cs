@@ -25,7 +25,7 @@ public class PuzzleManager : MonoBehaviour
 
     public static PuzzleManager instance;
 
-    public Action<int>  OnItemInteracted;
+    public Action<int> OnItemInteracted;
     public Action<int> OnAllInteracted;
     public Action<int> OnNewRoomEnter;
 

@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class Gem : MonoBehaviour
 {
-    public bool blueGemisActive;
-    public bool redGemisActive;
-    public bool yellowGemisActive;
+    public bool blueGemIsActive;
+    public bool redGemIsActive;
+    public bool yellowGemIsActive;
 
     public Transform blueGem;
     public Transform redGem;
@@ -30,9 +30,9 @@ public class Gem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        blueGemisActive = true;
-        redGemisActive = false;
-        yellowGemisActive = false;
+        blueGemIsActive = true;
+        redGemIsActive = false;
+        yellowGemIsActive = false;
 
         blueGemImage.fillAmount = 0;
         blueGemLetter.fillAmount = 0;
@@ -47,15 +47,15 @@ public class Gem : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown("q"))
+        if (Input.GetKeyDown("a"))
         {
             BlueGemEquip();
         }
-        if (Input.GetKeyDown("w"))
+        if (Input.GetKeyDown("s"))
         {
             RedGemEquip();
         }
-        if (Input.GetKeyDown("e"))
+        if (Input.GetKeyDown("d"))
         {
             YellowGemEquip();
         }
@@ -64,7 +64,7 @@ public class Gem : MonoBehaviour
 
     public void BlueGemEquip()
     {
-        blueGemisActive = true;
+        blueGemIsActive = true;
         blueGemImage.fillAmount = 0;
         blueGemLetter.fillAmount = 0;
         temp1 = blueGem.localScale;
@@ -78,7 +78,7 @@ public class Gem : MonoBehaviour
 
     public void BlueGemUnequip()
     {
-        blueGemisActive = false;
+        blueGemIsActive = false;
         blueGemImage.fillAmount = 1;
         blueGemLetter.fillAmount = 1;
         temp1 = blueGem.localScale;
@@ -90,7 +90,7 @@ public class Gem : MonoBehaviour
 
     public void RedGemEquip()
     {
-        redGemisActive = true;
+        redGemIsActive = true;
         redGemImage.fillAmount = 0;
         redGemLetter.fillAmount = 0;
         temp2 = redGem.localScale;
@@ -104,7 +104,7 @@ public class Gem : MonoBehaviour
 
     public void RedGemUnequip()
     {
-        redGemisActive = false;
+        redGemIsActive = false;
         redGemImage.fillAmount = 1;
         redGemLetter.fillAmount = 1;
         temp2 = redGem.localScale;
@@ -116,7 +116,7 @@ public class Gem : MonoBehaviour
 
     public void YellowGemEquip()
     {
-        yellowGemisActive = true;
+        yellowGemIsActive = true;
         yellowGemImage.fillAmount = 0;
         yellowGemLetter.fillAmount = 0;
         temp3 = yellowGem.localScale;
@@ -130,7 +130,7 @@ public class Gem : MonoBehaviour
 
     public void YellowGemUnequip()
     {
-        yellowGemisActive = false;
+        yellowGemIsActive = false;
         yellowGemImage.fillAmount = 1;
         yellowGemLetter.fillAmount = 1;
         temp3 = yellowGem.localScale;

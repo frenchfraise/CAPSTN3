@@ -26,13 +26,12 @@ public class Player : Unit
         if(Input.GetKeyDown(KeyCode.Space))
         {
             Debug.Log("Player got Attacked!");
-            TakeDamage();
+            TakeDamage(10);
         }
     }
 
-    public void TakeDamage()
+    public void TakeDamage(float damage)
     {
-        damage = atkDmg;
         curHp -= damage;
 
         healthBar.SetHealth(curHp);

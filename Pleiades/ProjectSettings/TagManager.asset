@@ -8,7 +8,7 @@ TagManager:
   - RedEnemy
   - YellowEnemy
   - Crate
-  - Torch
+  - BlueEnemy
   layers:
   - Default
   - TransparentFX
