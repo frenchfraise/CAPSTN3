@@ -21,6 +21,16 @@ public class Gem : MonoBehaviour
     public Image redGemLetter;
     public Image yellowGemLetter;
 
+    public GameObject blueGemUI;
+    public GameObject redGemUI;
+    public GameObject yellowGemUI;
+
+    bool blueGemGet;
+    bool redGemGet;
+    bool yellowGemGet;
+
+    int gem;
+
     Vector3 temp1;
     Vector3 temp2;
     Vector3 temp3;
@@ -30,17 +40,13 @@ public class Gem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        blueGemIsActive = true;
+        blueGemIsActive = false;
         redGemIsActive = false;
         yellowGemIsActive = false;
 
-        blueGemImage.fillAmount = 0;
-        blueGemLetter.fillAmount = 0;
-
-        temp1 = blueGem.localScale;
-        temp1.x = 2;
-        temp1.y = 2;
-        blueGem.localScale = temp1;
+        blueGemGet = false;
+        redGemGet = false;
+        yellowGemGet = false;
     }
 
     // Update is called once per frame
@@ -62,14 +68,48 @@ public class Gem : MonoBehaviour
 
     }
 
+    public void GemGet(int gem)
+    {
+        if(gem == 1)
+        {
+            BlueGemGet();
+            blueGemGet = true;
+        }
+        else if (gem == 2)
+        {
+            RedGemGet();
+            redGemGet = true;
+        }
+        else if (gem == 3)
+        {
+            YellowGemGet();
+            yellowGemGet = true;
+        }
+    }
+
+    public void BlueGemGet()
+    {
+        blueGemUI.SetActive(true);
+    }
+
+    public void RedGemGet()
+    {
+        redGemUI.SetActive(true);
+    }
+
+    public void YellowGemGet()
+    {
+        yellowGemUI.SetActive(true);
+    }
+
     public void BlueGemEquip()
     {
         blueGemIsActive = true;
         blueGemImage.fillAmount = 0;
         blueGemLetter.fillAmount = 0;
         temp1 = blueGem.localScale;
-        temp1.x = 2;
-        temp1.y = 2;
+        temp1.x = 1.6f;
+        temp1.y = 1.6f;
 
         blueGem.localScale = temp1;
         RedGemUnequip();
@@ -82,8 +122,8 @@ public class Gem : MonoBehaviour
         blueGemImage.fillAmount = 1;
         blueGemLetter.fillAmount = 1;
         temp1 = blueGem.localScale;
-        temp1.x = 1;
-        temp1.y = 1;
+        temp1.x = .85f;
+        temp1.y = .85f;
 
         blueGem.localScale = temp1;
     }
@@ -94,8 +134,8 @@ public class Gem : MonoBehaviour
         redGemImage.fillAmount = 0;
         redGemLetter.fillAmount = 0;
         temp2 = redGem.localScale;
-        temp2.x = 2;
-        temp2.y = 2;
+        temp2.x = 1.6f;
+        temp2.y = 1.6f;
 
         redGem.localScale = temp2;
         BlueGemUnequip();
@@ -108,8 +148,8 @@ public class Gem : MonoBehaviour
         redGemImage.fillAmount = 1;
         redGemLetter.fillAmount = 1;
         temp2 = redGem.localScale;
-        temp2.x = 1;
-        temp2.y = 1;
+        temp2.x = .85f;
+        temp2.y = .85f;
 
         redGem.localScale = temp2;
     }
@@ -120,8 +160,8 @@ public class Gem : MonoBehaviour
         yellowGemImage.fillAmount = 0;
         yellowGemLetter.fillAmount = 0;
         temp3 = yellowGem.localScale;
-        temp3.x = 2;
-        temp3.y = 2;
+        temp3.x = 1.6f;
+        temp3.y = 1.6f;
 
         yellowGem.localScale = temp3;
         BlueGemUnequip();
@@ -134,8 +174,8 @@ public class Gem : MonoBehaviour
         yellowGemImage.fillAmount = 1;
         yellowGemLetter.fillAmount = 1;
         temp3 = yellowGem.localScale;
-        temp3.x = 1;
-        temp3.y = 1;
+        temp3.x = .85f;
+        temp3.y = .85f;
 
         yellowGem.localScale = temp3;
     }
