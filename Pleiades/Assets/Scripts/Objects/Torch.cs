@@ -14,7 +14,7 @@ public class Torch : Interactables
         rend = this.GetComponent<SpriteRenderer>();
         //interactedWith = true;
 
-        StartCoroutine(Alternate());
+        //StartCoroutine(Alternate());
     }
 
 
@@ -27,7 +27,9 @@ public class Torch : Interactables
     {
         interactedWith = true;
 
-        ChangeSprite();
+        StartCoroutine(Alternate());
+
+        //ChangeSprite();
     }
 
     void ChangeSprite()

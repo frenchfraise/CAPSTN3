@@ -18,9 +18,9 @@ public class Lightning : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.CompareTag("YellowEnemy"))
+        if (col.CompareTag("BlueEnemy"))
         {
-            col.GetComponent<YellowEnemy>().TakeDamage();
+            col.GetComponent<BlueEnemy>().TakeDamage();
         }
     }
 }

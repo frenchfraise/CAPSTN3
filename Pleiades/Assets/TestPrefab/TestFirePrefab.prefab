@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5554271180849197784}
   - component: {fileID: -4282081258709278408}
   - component: {fileID: -454833466569918141}
-  - component: {fileID: -5243419573629142320}
+  - component: {fileID: 7156741374408406253}
   - component: {fileID: -6354704882115081490}
   m_Layer: 0
   m_Name: TestFirePrefab
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1291673269
   m_SortingLayer: 4
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 057384ccdb7dc7945bf805f2a9ec66c9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -133,7 +133,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &-5243419573629142320
+--- !u!114 &7156741374408406253
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -142,7 +142,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5554271180849197790}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf094c0c5d1a797488952dccc19307a6, type: 3}
+  m_Script: {fileID: 11500000, guid: 8b8ccbbeabf54a84f9d4b129f85f940a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: -6354704882115081490}
