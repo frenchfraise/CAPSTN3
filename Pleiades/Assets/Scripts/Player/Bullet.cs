@@ -19,9 +19,9 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.CompareTag("RedEnemy"))
+        if (col.CompareTag("YellowEnemy"))
         {
-            col.GetComponent<RedEnemy>().TakeDamage();
+            col.GetComponent<YellowEnemy>().TakeDamage();
             Destroy(this.gameObject);
         }
     }
