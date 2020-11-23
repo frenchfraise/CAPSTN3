@@ -68,11 +68,11 @@ public class PuzzleManager : MonoBehaviour
     {
         switch (index)
         {
-            case (1):
+            case (2):
 
-                for (int i = 0; i < room1UnlockSet.Length; i++)
+                for (int i = 0; i < room2UnlockSet.Length; i++)
                 {
-                    if (checkedNo == (room1UnlockSet.Length + 1))
+                    if (checkedNo == (room2UnlockSet.Length + 1))
                     {
                         Debug.Log("Unlocking! All interacted with in Room "+ index);
                         checkedNo = 0;
@@ -81,13 +81,14 @@ public class PuzzleManager : MonoBehaviour
                         OnAllInteracted(doorToOpen);
 
                         doorToOpen = 2;
+                        doorToOpen = 2;
                         OnAllInteracted(doorToOpen);
 
                         break;
                     }
-                    else if (room1UnlockSet[i].interactedWith == true)
+                    else if (room2UnlockSet[i].interactedWith == true)
                     {
-                        Debug.Log("RUS1: Checked element " + i + ". CheckNo is " + (checkedNo+1));
+                        Debug.Log("RUS2: Checked element " + i + ". CheckNo is " + (checkedNo+1));
                         checkedNo++;
                         //checkedNo++;
                         continue;
@@ -96,18 +97,19 @@ public class PuzzleManager : MonoBehaviour
 
                 break;
 
-            case (2):
+            case (3):
 
-                for (int i = 0; i < room2UnlockSet.Length; i++)
+                for (int i = 0; i < room3UnlockSet.Length; i++)
                 {
-                    if (room2UnlockSet[i].interactedWith == true)
+                    if (room3UnlockSet[i].interactedWith == true)
                     {
-                        Debug.Log("RUS2: Checked element " + i + ". CheckNo is " + (checkedNo + 1));
-                        checkedNo++;
-                        //checkedNo++;
-                        //continue;
-
-                        if (checkedNo == (room2UnlockSet.Length))
+                        Debug.Log("RUS3: Checked element " + i + ". CheckNo is " + (checkedNo + 1));
+                        if (room3UnlockSet[i].beenChecked == false)
+                        {
+                            checkedNo++;
+                            room3UnlockSet[i].beenChecked = true;
+                        }
+                        if (checkedNo == (room3UnlockSet.Length))
                         {
                             Debug.Log("Unlocking! All interacted with in Room " + index);
                             checkedNo = 0;
@@ -116,189 +118,202 @@ public class PuzzleManager : MonoBehaviour
 
                             //open door3
                             OnAllInteracted(doorToOpen);
-                           
+
+                            doorToOpen = 4;
+
+                            //open door3
+                            OnAllInteracted(doorToOpen);
+
                             break;
                         }
                     }
-
-                    //if (checkedNo == (room2UnlockSet.Length))
-                    //{
-                    //    Debug.Log("Unlocking! All interacted with in Room " + index);
-                    //    checkedNo = 0;
-
-                    //    OnAllInteracted(index);
-                    //    break;
-                    //}
-
-                    //if (room2UnlockSet[i].interactedWith == true)
-                    //{
-                    //    Debug.Log("RUS2: Checked element " + i + ". CheckNo is " + (checkedNo + 1));
-                    //    checkedNo++;
-                    //    //checkedNo++;
-                    //    continue;
-                    //}
                 }
-                break;
-
-            case (3):
-
-                for (int i = 0; i < room3UnlockSet.Length; i++)
-                {
-                    if (checkedNo == (room3UnlockSet.Length + 1))
-                    {
-                        Debug.Log("Unlocking! All interacted with in Room " + index);
-                        checkedNo = 0;
-
-                        OnAllInteracted(index);
-                        break;
-                    }
-                    else if (room3UnlockSet[i].interactedWith == true)
-                    {
-                        Debug.Log("RUS3: Checked element " + i + ". CheckNo is " + (checkedNo + 1));
-                        checkedNo++;
-                        //checkedNo++;
-                        continue;
-                    }
-                }
-
                 break;
 
             case (4):
 
                 for (int i = 0; i < room4UnlockSet.Length; i++)
                 {
-                    if (checkedNo == (room4UnlockSet.Length + 1))
-                    {
-                        Debug.Log("Unlocking! All interacted with in Room " + index);
-                        checkedNo = 0;
-
-                        OnAllInteracted(index);
-                        break;
-                    }
-                    else if (room4UnlockSet[i].interactedWith == true)
+                    if (room4UnlockSet[i].interactedWith == true)
                     {
                         Debug.Log("RUS4: Checked element " + i + ". CheckNo is " + (checkedNo + 1));
-                        checkedNo++;
-                        //checkedNo++;
-                        continue;
+                        if (room4UnlockSet[i].beenChecked == false)
+                        {
+                            checkedNo++;
+                            room4UnlockSet[i].beenChecked = true;
+                        }
+
+                        if (checkedNo == (room4UnlockSet.Length))
+                        {
+                            Debug.Log("Unlocking! All interacted with in Room " + index);
+                            checkedNo = 0;
+
+                            doorToOpen = 5;
+                            OnAllInteracted(doorToOpen);
+
+
+                            break;
+                        }
                     }
                 }
+                    break;
+                
 
-                break;
 
             case (5):
 
                 for (int i = 0; i < room5UnlockSet.Length; i++)
                 {
-                    if (checkedNo == (room5UnlockSet.Length + 1))
-                    {
-                        Debug.Log("Unlocking! All interacted with in Room " + index);
-                        checkedNo = 0;
-
-                        OnAllInteracted(index);
-                        break;
-                    }
-                    else if (room5UnlockSet[i].interactedWith == true)
+                    if (room5UnlockSet[i].interactedWith == true)
                     {
                         Debug.Log("RUS5: Checked element " + i + ". CheckNo is " + (checkedNo + 1));
-                        checkedNo++;
+
+                        if (room5UnlockSet[i].beenChecked == false)
+                        {
+                            checkedNo++;
+                            room5UnlockSet[i].beenChecked = true;
+                        }
+                        
                         //checkedNo++;
-                        continue;
+                        //continue;
+
+                        if (checkedNo == (room5UnlockSet.Length))
+                        {
+                            Debug.Log("Unlocking! All interacted with in Room " + index);
+                            checkedNo = 0;
+
+                            doorToOpen = 6;
+                            OnAllInteracted(doorToOpen);
+
+
+
+                            break;
+                        }
                     }
                 }
-
                 break;
+
+      
 
             case (6):
-
                 for (int i = 0; i < room6UnlockSet.Length; i++)
                 {
-                    if (checkedNo == (room6UnlockSet.Length + 1))
-                    {
-                        Debug.Log("Unlocking! All interacted with in Room " + index);
-                        checkedNo = 0;
-
-                        OnAllInteracted(index);
-                        break;
-                    }
-                    else if (room6UnlockSet[i].interactedWith == true)
+                    if (room6UnlockSet[i].interactedWith == true)
                     {
                         Debug.Log("RUS6: Checked element " + i + ". CheckNo is " + (checkedNo + 1));
-                        checkedNo++;
-                        //checkedNo++;
-                        continue;
+                        if (room6UnlockSet[i].beenChecked == false)
+                        {
+                            checkedNo++;
+                            room6UnlockSet[i].beenChecked = true;
+                        }
+
+                        if (checkedNo == (room6UnlockSet.Length))
+                        {
+                            Debug.Log("Unlocking! All interacted with in Room " + index);
+                            checkedNo = 0;
+
+
+                            doorToOpen = 7;
+                            OnAllInteracted(doorToOpen);
+
+                            doorToOpen = 8;
+                            OnAllInteracted(doorToOpen);
+
+
+                            break;
+                        }
                     }
                 }
-
                 break;
+
 
             case (7):
 
                 for (int i = 0; i < room7UnlockSet.Length; i++)
                 {
-                    if (checkedNo == (room7UnlockSet.Length + 1))
-                    {
-                        Debug.Log("Unlocking! All interacted with in Room " + index);
-                        checkedNo = 0;
-
-                        OnAllInteracted(index);
-                        break;
-                    }
-                    else if (room7UnlockSet[i].interactedWith == true)
+                    if (room7UnlockSet[i].interactedWith == true)
                     {
                         Debug.Log("RUS7: Checked element " + i + ". CheckNo is " + (checkedNo + 1));
-                        checkedNo++;
-                        //checkedNo++;
-                        continue;
+                        if (room7UnlockSet[i].beenChecked == false)
+                        {
+                            checkedNo++;
+                            room7UnlockSet[i].beenChecked = true;
+                        }
+
+                        if (checkedNo == (room7UnlockSet.Length))
+                        {
+                            Debug.Log("Unlocking! All interacted with in Room " + index);
+                            checkedNo = 0;
+
+                            doorToOpen = 9;
+                            OnAllInteracted(doorToOpen);
+
+
+                            break;
+                        }
                     }
                 }
-
                 break;
 
             case (8):
 
                 for (int i = 0; i < room8UnlockSet.Length; i++)
                 {
-                    if (checkedNo == (room8UnlockSet.Length + 1))
-                    {
-                        Debug.Log("Unlocking! All interacted with in Room " + index);
-                        checkedNo = 0;
-
-                        OnAllInteracted(index);
-                        break;
-                    }
-                    else if (room8UnlockSet[i].interactedWith == true)
+                    if (room8UnlockSet[i].interactedWith == true)
                     {
                         Debug.Log("RUS8: Checked element " + i + ". CheckNo is " + (checkedNo + 1));
-                        checkedNo++;
+
+                        if (room8UnlockSet[i].beenChecked == false)
+                        {
+                            checkedNo++;
+                            room8UnlockSet[i].beenChecked = true;
+                        }
+
                         //checkedNo++;
-                        continue;
+                        //continue;
+
+                        if (checkedNo == (room8UnlockSet.Length))
+                        {
+                            Debug.Log("Unlocking! All interacted with in Room " + index);
+                            checkedNo = 0;
+
+                            //!!add more doors to array
+                            doorToOpen = 10;
+                            OnAllInteracted(doorToOpen);
+
+
+                            break;
+                        }
                     }
                 }
-
                 break;
 
             case (9):
 
                 for (int i = 0; i < room9UnlockSet.Length; i++)
                 {
-                    if (checkedNo == (room9UnlockSet.Length + 1))
-                    {
-                        Debug.Log("Unlocking! All interacted with in Room " + index);
-                        checkedNo = 0;
-
-                        OnAllInteracted(index);
-                        break;
-                    }
-                    else if (room9UnlockSet[i].interactedWith == true)
+                    if (room9UnlockSet[i].interactedWith == true)
                     {
                         Debug.Log("RUS9: Checked element " + i + ". CheckNo is " + (checkedNo + 1));
-                        checkedNo++;
-                        //checkedNo++;
-                        continue;
+                        if (room9UnlockSet[i].beenChecked == false)
+                        {
+                            checkedNo++;
+                            room9UnlockSet[i].beenChecked = true;
+                        }
+
+                        if (checkedNo == (room9UnlockSet.Length))
+                        {
+                            Debug.Log("Unlocking! All interacted with in Room " + index);
+                            checkedNo = 0;
+
+                            doorToOpen = 11;
+                            OnAllInteracted(doorToOpen);
+
+
+                            break;
+                        }
                     }
                 }
-
                 break;
         }
     }
@@ -307,6 +322,7 @@ public class PuzzleManager : MonoBehaviour
     {
         // -1 coz index started at 1 (as in Room 1)
         doors[doorToOpen-1].gameObject.SetActive(false);
+        Debug.Log("Unlocked door #" + doorToOpen);
     }
 
 }

@@ -8,6 +8,7 @@ public class Torch : Interactables
     public Sprite secondSpr;
     public Sprite unlit;
     private SpriteRenderer rend;
+    public int indexNo;
 
     void Start()
     {
@@ -28,7 +29,7 @@ public class Torch : Interactables
         interactedWith = true;
 
         StartCoroutine(Alternate());
-
+        PuzzleManager.instance.OnItemInteracted(indexNo);
         //ChangeSprite();
     }
 

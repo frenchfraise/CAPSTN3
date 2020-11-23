@@ -5,6 +5,7 @@ using UnityEngine;
 public class Interactables : MonoBehaviour
 {
     public bool interactedWith;
+    public bool beenChecked;
 
     void Start()
     {

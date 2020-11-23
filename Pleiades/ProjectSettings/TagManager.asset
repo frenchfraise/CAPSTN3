@@ -24,7 +24,7 @@ TagManager:
   - Midground
   - Background
   - Player
-  - 
+  - UI_Panel
   - 
   - 
   - 
@@ -46,6 +46,9 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: UI_Panel
+    uniqueID: 2876397297
     locked: 0
   - name: Backdrop
     uniqueID: 3369082371
