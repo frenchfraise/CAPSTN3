@@ -22,5 +22,10 @@ public class Lightning : MonoBehaviour
         {
             col.GetComponent<BlueEnemy>().TakeDamage();
         }
+
+        if(col.CompareTag("MetalCrate"))
+        {
+            col.GetComponent<Crate>().Wreck();
+        }
     }
 }

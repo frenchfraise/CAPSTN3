@@ -36,4 +36,15 @@ public class Player : Unit
 
         healthBar.SetHealth(curHp);
     }
+
+    public void AddHealth(int value)
+    {
+        curHp += value;
+        healthBar.SetHealth(curHp);
+        if (curHp >= 100)
+        {
+            curHp = 100;
+        }
+
+    }
 }

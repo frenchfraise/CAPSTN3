@@ -7,6 +7,7 @@ public class GemPedestal : MonoBehaviour
     public Sprite noGemVar;
     private SpriteRenderer rend;
     public int number;
+    public Animator animator;
 
     void Start()
     {
@@ -23,11 +24,27 @@ public class GemPedestal : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            rend.sprite = noGemVar;
+            StartCoroutine("Gem");
+            //rend.sprite = noGemVar;
             GameManager.Instance.gem.GemGet(number);
             GameManager.Instance.skills.SkillEnable(number);
             //unlock appropriate skill
             Debug.Log("Skill unlock!");
         }
+    }
+
+    private void OnTriggetExit2D(Collider2D col)
+    {
+        if(col.CompareTag("Player"))
+        {
+            animator.SetBool("GemGet", false);
+        }
+    }
+
+    public IEnumerator Gem()
+    {
+        animator.SetBool("GemGet", true);
+        yield return null;
+        animator.SetBool("GemGet", false);
     }
 }

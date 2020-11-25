@@ -7,21 +7,21 @@ public class Skills : MonoBehaviour
 {
     [Header("Skill 1")]
     public Image skillImage1;
-    public float cooldown1 = 2;
+    public float cooldown1;
     public bool isCooldown1 = false;
     public GameObject swordSkill;
     bool swordSkillGet;
 
     [Header("Skill 2")]
     public Image skillImage2;
-    public float cooldown2 = 3;
+    public float cooldown2;
     public bool isCooldown2 = false;
     public GameObject fireSkill;
     bool fireSkillGet;
 
     [Header("Skill 3")]
     public Image skillImage3;
-    public float cooldown3 = 5;
+    public float cooldown3;
     public bool isCooldown3 = false;
     public GameObject sparkSkill;
     bool sparkSkillGet;
@@ -35,9 +35,9 @@ public class Skills : MonoBehaviour
         skillImage1.fillAmount = 0;
         skillImage2.fillAmount = 0;
         skillImage3.fillAmount = 0;
-        cooldown1 = 2;
-        cooldown2 = 3;
-        cooldown3 = 5;
+        cooldown1 = .5f;
+        cooldown2 = 1;
+        cooldown3 = 1.5f;
         swordSkillGet = false;
         fireSkillGet = false;
         sparkSkillGet = false;
@@ -76,7 +76,6 @@ public class Skills : MonoBehaviour
         {
             isCooldown1 = true;
             skillImage1.fillAmount = 1;
-            GameManager.Instance.playerController.Slash();
             GameManager.Instance.playerController.Attack();
         }
 

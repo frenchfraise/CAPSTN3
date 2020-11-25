@@ -10,6 +10,8 @@ TagManager:
   - Crate
   - BlueEnemy
   - Torch
+  - MetalCrate
+  - Midground
   layers:
   - Default
   - TransparentFX

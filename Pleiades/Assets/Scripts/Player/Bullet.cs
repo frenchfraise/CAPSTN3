@@ -32,5 +32,10 @@ public class Bullet : MonoBehaviour
                 Destroy(this.gameObject);
             }
         }
+
+        else if (col.CompareTag("Midground"))
+        {
+            Destroy(this.gameObject);
+        }
     }
 }
