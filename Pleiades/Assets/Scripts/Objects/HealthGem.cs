@@ -10,7 +10,7 @@ public class HealthGem : MonoBehaviour
     {
         if(col.CompareTag("Player"))
         {
-            col.GetComponent<Player>().AddHealth(20);
+            col.GetComponent<Player>().AddHealth(value);
             Destroy(this.gameObject);
         }
     }

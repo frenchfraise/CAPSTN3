@@ -4,30 +4,71 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public float MOVEMENT_BASE_SPEED = 1.0f;
+    public float CROSSHAIR_DISTANCE = 1.0f;
+    public float LIGHTNING_DISTANCE = 5f;
+    public Vector2 movementDirection;
+    public float movementSpeed;
+    public bool isMoving;
 
-    public float moveSpeed = 5;
     public Rigidbody2D rb;
+
     public Animator animator;
-    Vector2 movement;
+    public GameObject crosshair;
+    public GameObject lightningAim;
 
     void Update()
     {
-        // Input
-
-        // Gives a value between -1 and 1; returns 0 if nothing is pressed.
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
-
-        animator.SetFloat("Horizontal", movement.x);
-        animator.SetFloat("Vertical", movement.y);
-        animator.SetFloat("Speed", moveSpeed);
+        ProcessInputs();
+        Move();
+        Animate();
+        Aim();
+        LightningAim();
     }
 
     void FixedUpdate()
     {
-        // Movement
-        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+
     }
 
-    //movescript = unit.GetComponent<PlayerMovement>();
+    void ProcessInputs()
+    {
+        movementDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        movementSpeed = Mathf.Clamp(movementDirection.magnitude, 0.0f, 1.0f);
+        movementDirection.Normalize();
+    }
+
+    void Move()
+    {
+        //rb.velocity = movementDirection * movementSpeed * MOVEMENT_BASE_SPEED;
+        //rb.velocity = movementDirection * MOVEMENT_BASE_SPEED;
+        rb.MovePosition(rb.position + movementDirection * MOVEMENT_BASE_SPEED * Time.fixedDeltaTime);
+    }
+
+    void Animate()
+    {
+        if (movementDirection != Vector2.zero)
+        {
+            animator.SetFloat("Horizontal", movementDirection.x);
+            animator.SetFloat("Vertical", movementDirection.y);
+        }
+
+        animator.SetFloat("Speed", movementSpeed);
+    }
+
+    void Aim()
+    {
+        if (movementDirection != Vector2.zero)
+        {
+            crosshair.transform.localPosition = movementDirection * CROSSHAIR_DISTANCE;
+        }
+    }
+
+    void LightningAim()
+    {
+        if (movementDirection != Vector2.zero)
+        {
+            lightningAim.transform.localPosition = movementDirection * LIGHTNING_DISTANCE;
+        }
+    }
 }

@@ -4,15 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 { 
-    public float MOVEMENT_BASE_SPEED = 1.0f;
     public float FIRE_BASE_SPEED = 1.0f;
-    public float CROSSHAIR_DISTANCE = 1.0f;
-    public float LIGHTNING_DISTANCE = 5f;
-    public Vector2 movementDirection;
-    public float movementSpeed;
-    public bool isMoving;
-
-    public Rigidbody2D rb;
 
     public Animator animator;
     public GameObject crosshair;
@@ -22,56 +14,16 @@ public class PlayerController : MonoBehaviour
     public GameObject[] lightningPrefabs = new GameObject[4];
     public Transform lightning;
 
-    void Update()
-    {
-        ProcessInputs();
-        Move();
-        Animate();
-        Aim();
-        LightningAim();
-    }
+    public GameObject movement;
 
-    void ProcessInputs()
+    void Awake()
     {
-        movementDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        movementSpeed = Mathf.Clamp(movementDirection.magnitude, 0.0f, 1.0f);
-        movementDirection.Normalize();
-    }
-
-    void Move()
-    {
-        rb.velocity = movementDirection * movementSpeed * MOVEMENT_BASE_SPEED;
-    }
-
-    void Animate()
-    {
-        if(movementDirection != Vector2.zero)
-        { 
-            animator.SetFloat("Horizontal", movementDirection.x);
-            animator.SetFloat("Vertical", movementDirection.y);
-        }
-
-        animator.SetFloat("Speed", movementSpeed);
-    }
-
-    void Aim()
-    {
-        if (movementDirection != Vector2.zero)
-        {
-            crosshair.transform.localPosition = movementDirection * CROSSHAIR_DISTANCE;
-        }
-    }
-
-    void LightningAim()
-    {
-        if (movementDirection != Vector2.zero)
-        {
-            lightningAim.transform.localPosition = movementDirection * LIGHTNING_DISTANCE;
-        }
+        movement = GameObject.FindWithTag("Player");
     }
 
     public void Attack()
     {
+        StartCoroutine(StopMoving(.5f));
         StartCoroutine(AttackCo());
         Slash();
         Debug.Log("Coroutine Attack start");
@@ -90,6 +42,13 @@ public class PlayerController : MonoBehaviour
         Debug.Log("player slash!");
     }
 
+    IEnumerator StopMoving(float value)
+    {
+        movement.GetComponent<PlayerMovement>().enabled = false;
+        yield return new WaitForSeconds(value);
+        movement.GetComponent<PlayerMovement>().enabled = true;
+    }
+
     public void Shoot()
     {
         Debug.Log("player fire!");
@@ -104,6 +63,7 @@ public class PlayerController : MonoBehaviour
 
     public void Lightning()
     {
+        StartCoroutine(StopMoving(.3f));
         Debug.Log("player lightning!");
         Vector2 shootingDirection = lightningAim.transform.localPosition;
         shootingDirection.Normalize();
