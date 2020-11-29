@@ -27,6 +27,7 @@ public class Skills : MonoBehaviour
     bool sparkSkillGet;
 
     public GameObject skills;
+    public GameObject panel;
     int skillEnable;
 
     // Start is called before the first frame update
@@ -35,9 +36,9 @@ public class Skills : MonoBehaviour
         skillImage1.fillAmount = 0;
         skillImage2.fillAmount = 0;
         skillImage3.fillAmount = 0;
-        cooldown1 = .5f;
-        cooldown2 = 1;
-        cooldown3 = 1.5f;
+        cooldown1 = 1.5f;
+        cooldown2 = 2;
+        cooldown3 = 2.5f;
         swordSkillGet = false;
         fireSkillGet = false;
         sparkSkillGet = false;
@@ -56,6 +57,7 @@ public class Skills : MonoBehaviour
         if(skillEnable == 1)
         {
             swordSkillGet = true;
+            panel.SetActive(true);
             swordSkill.SetActive(true);
         }
         else if (skillEnable == 2)

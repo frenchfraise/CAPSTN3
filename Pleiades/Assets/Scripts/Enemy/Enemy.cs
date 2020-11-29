@@ -8,6 +8,8 @@ public class Enemy : Unit
 
     public HealthBar healthBar;
 
+    public GameObject healthGem;
+
     void Start()
     {
         enemyInteract = this.GetComponent<EnemyInteract>();
@@ -41,5 +43,15 @@ public class Enemy : Unit
     {
         enemyInteract.OnEnemyDeath(this.enemyInteract.indexNo);
         this.gameObject.SetActive(false);
+    }
+
+    public void HealthChance()
+    {
+        int chance = Random.Range(0, 100);
+        Debug.Log("chance: " + chance);
+        if (chance <= 50)
+        {
+            Instantiate(healthGem, transform.position, Quaternion.identity);
+        }
     }
 }

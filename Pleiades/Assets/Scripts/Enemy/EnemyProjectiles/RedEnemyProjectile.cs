@@ -20,5 +20,10 @@ public class RedEnemyProjectile : EnemyProjectile
             col.GetComponent<Player>().TakeDamage(5);
             Destroy(this.gameObject);
         }
+        else if (col.CompareTag("Player"))
+        {
+            col.GetComponent<Player>().TakeDamage(5);
+            Destroy(this.gameObject);
+        }
     }
 }

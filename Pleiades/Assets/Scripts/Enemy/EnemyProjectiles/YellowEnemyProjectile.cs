@@ -20,5 +20,10 @@ public class YellowEnemyProjectile : EnemyProjectile
         {
             Destroy(this.gameObject);
         }
+        else if (col.CompareTag("Player"))
+        {
+            col.GetComponent<Player>().TakeDamage(5);
+            Destroy(this.gameObject);
+        }
     }
 }

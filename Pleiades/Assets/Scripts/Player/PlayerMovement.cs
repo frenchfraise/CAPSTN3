@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float MOVEMENT_BASE_SPEED = 1.0f;
-    public float CROSSHAIR_DISTANCE = 1.0f;
-    public float LIGHTNING_DISTANCE = 5f;
+    public float MOVEMENT_BASE_SPEED;
+    public float CROSSHAIR_DISTANCE;
+    public float LIGHTNING_DISTANCE;
     public Vector2 movementDirection;
     public float movementSpeed;
     public bool isMoving;
@@ -16,6 +16,13 @@ public class PlayerMovement : MonoBehaviour
     public Animator animator;
     public GameObject crosshair;
     public GameObject lightningAim;
+
+    void Awake()
+    {
+        MOVEMENT_BASE_SPEED = 8.0f;
+        CROSSHAIR_DISTANCE = 1.0f;
+        LIGHTNING_DISTANCE = 7.5f;
+    }
 
     void Update()
     {
