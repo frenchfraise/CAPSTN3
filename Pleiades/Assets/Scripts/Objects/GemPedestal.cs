@@ -8,9 +8,11 @@ public class GemPedestal : MonoBehaviour
     private SpriteRenderer rend;
     public int number;
     public Animator animator;
+    public bool gemGotten;
 
     void Start()
     {
+        gemGotten = false;
         rend = GetComponent<SpriteRenderer>();
     }
 
@@ -28,6 +30,12 @@ public class GemPedestal : MonoBehaviour
             //rend.sprite = noGemVar;
             GameManager.Instance.gem.GemGet(number);
             GameManager.Instance.skills.SkillEnable(number);
+
+            if(!gemGotten)
+            { 
+                AudioManager.Instance.gemGet.Play();
+                gemGotten = true;
+            }
             //unlock appropriate skill
             Debug.Log("Skill unlock!");
         }

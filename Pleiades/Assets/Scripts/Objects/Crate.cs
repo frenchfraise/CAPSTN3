@@ -23,6 +23,7 @@ public class Crate : Interactables
         crate.GetComponent<SpriteRenderer>().sprite = destroyed;
         interactedWith = true;
         HealthChance();
+        AudioManager.Instance.boxBreak.Play();
 
         //instance.CheckSet(indexNo);
 

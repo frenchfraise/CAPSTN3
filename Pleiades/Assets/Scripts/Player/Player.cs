@@ -32,9 +32,15 @@ public class Player : Unit
 
     public void TakeDamage(float damage)
     {
+        AudioManager.Instance.playerHit.Play();
         curHp -= damage;
 
         healthBar.SetHealth(curHp);
+
+        if(curHp <= 0)
+        {
+            OnDeath();
+        }
     }
 
     public void AddHealth(int value)
@@ -46,5 +52,12 @@ public class Player : Unit
             curHp = 100;
         }
 
+    }
+
+    public void OnDeath()
+    {
+        RespawnWaypoint.Instance.Respawn(RespawnWaypoint.Instance.currentWaypoint);
+
+        //show Retry, Exit panel
     }
 }

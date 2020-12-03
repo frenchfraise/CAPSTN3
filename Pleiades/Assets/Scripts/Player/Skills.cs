@@ -9,6 +9,7 @@ public class Skills : MonoBehaviour
     public Image skillImage1;
     public float cooldown1;
     public bool isCooldown1 = false;
+    public bool hasPlayedAudio = false;
     public GameObject swordSkill;
     bool swordSkillGet;
 
@@ -74,11 +75,17 @@ public class Skills : MonoBehaviour
 
     void Skill1()
     {
-        if(Input.GetKeyDown(KeyCode.Z) && isCooldown1 == false && swordSkillGet == true)
+        if (Input.GetKeyDown(KeyCode.Z) && isCooldown1 == false && swordSkillGet == true)
         {
             isCooldown1 = true;
             skillImage1.fillAmount = 1;
             GameManager.Instance.playerController.Attack();
+
+            if (!hasPlayedAudio)
+            { 
+                AudioManager.Instance.slash.Play();
+                hasPlayedAudio = true;
+            }
         }
 
         if(isCooldown1)
@@ -89,6 +96,7 @@ public class Skills : MonoBehaviour
             {
                 skillImage1.fillAmount = 0;
                 isCooldown1 = false;
+                hasPlayedAudio = false;
             }
 
         }
@@ -101,6 +109,7 @@ public class Skills : MonoBehaviour
             isCooldown2 = true;
             skillImage2.fillAmount = 1;
             GameManager.Instance.playerController.Shoot();
+            AudioManager.Instance.fireBall.Play();
         }
 
         if (isCooldown2)
@@ -122,6 +131,7 @@ public class Skills : MonoBehaviour
             isCooldown3 = true;
             skillImage3.fillAmount = 1;
             GameManager.Instance.playerController.Lightning();
+            AudioManager.Instance.lightning.Play();
         }
 
         if (isCooldown3)

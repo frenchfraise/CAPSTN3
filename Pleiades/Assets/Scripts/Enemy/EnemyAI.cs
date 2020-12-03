@@ -53,6 +53,7 @@ public class EnemyAI : MonoBehaviour
         {
             Instantiate(projectile, transform.position, Quaternion.identity);
             timeBtwShots = startTimeBtwShots;
+            AudioManager.Instance.enemyProj.Play();
         }
 
         else

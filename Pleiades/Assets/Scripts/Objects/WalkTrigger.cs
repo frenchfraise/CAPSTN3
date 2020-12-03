@@ -5,6 +5,7 @@ using UnityEngine;
 public class WalkTrigger : Interactables
 {
     public int doorToLock;
+    public int currentWaypointIndex;
 
     void Start()
     {
@@ -25,6 +26,7 @@ public class WalkTrigger : Interactables
             doorToLock++;
 
             PuzzleManager.instance.OnNewRoomEnter(doorToLock);
+            RespawnWaypoint.Instance.currentWaypoint = currentWaypointIndex;
         }
     }
 }

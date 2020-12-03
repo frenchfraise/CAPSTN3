@@ -323,6 +323,7 @@ public class PuzzleManager : MonoBehaviour
         // -1 coz index started at 1 (as in Room 1)
         doors[doorToOpen-1].gameObject.SetActive(false);
         Debug.Log("Unlocked door #" + doorToOpen);
+        AudioManager.Instance.doorUnlock.Play();
     }
 
 }

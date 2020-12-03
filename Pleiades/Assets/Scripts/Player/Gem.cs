@@ -29,6 +29,8 @@ public class Gem : MonoBehaviour
     public GameObject redPointer;
     public GameObject yellowPointer;
 
+    private GameObject spriteHolder;
+
     bool blueGemGet;
     bool redGemGet;
     bool yellowGemGet;
@@ -56,6 +58,8 @@ public class Gem : MonoBehaviour
         blueGemGet = false;
         redGemGet = false;
         yellowGemGet = false;
+
+        spriteHolder = GameObject.FindGameObjectWithTag("GemDisplay");
     }
 
     // Update is called once per frame
@@ -118,6 +122,7 @@ public class Gem : MonoBehaviour
         bluePointer.SetActive(true);
         blueGemIsActive = true;
         blueGemImage.fillAmount = 0;
+        AudioManager.Instance.gemSwap.Play();
         //blueGemLetter.fillAmount = 0;
         //temp1 = blueGem.localScale;
         //temp1.x = 1.6f;
@@ -146,6 +151,7 @@ public class Gem : MonoBehaviour
         redPointer.SetActive(true);
         redGemIsActive = true;
         redGemImage.fillAmount = 0;
+        AudioManager.Instance.gemSwap.Play();
         //redGemLetter.fillAmount = 0;
         //temp2 = redGem.localScale;
         //temp2.x = 1.6f;
@@ -174,6 +180,7 @@ public class Gem : MonoBehaviour
         yellowPointer.SetActive(true);
         yellowGemIsActive = true;
         yellowGemImage.fillAmount = 0;
+        AudioManager.Instance.gemSwap.Play();
         //yellowGemLetter.fillAmount = 0;
         //temp3 = yellowGem.localScale;
         //temp3.x = 1.6f;

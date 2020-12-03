@@ -12,6 +12,7 @@ TagManager:
   - Torch
   - MetalCrate
   - Midground
+  - GemDisplay
   layers:
   - Default
   - TransparentFX
