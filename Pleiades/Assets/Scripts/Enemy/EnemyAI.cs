@@ -29,6 +29,8 @@ public class EnemyAI : MonoBehaviour
             PlayerInSight();
             CanShoot();
         }
+
+
     }
 
     public void PlayerInSight()

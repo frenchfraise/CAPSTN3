@@ -5,9 +5,9 @@ using UnityEngine;
 public class GemPedestal : MonoBehaviour
 {
     public Sprite noGemVar;
-    private SpriteRenderer rend;
-    public int number;
+    private SpriteRenderer rend; 
     public Animator animator;
+    public int number;
     public bool gemGotten;
 
     void Start()

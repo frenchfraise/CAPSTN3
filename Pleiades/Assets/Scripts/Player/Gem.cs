@@ -30,10 +30,14 @@ public class Gem : MonoBehaviour
     public GameObject yellowPointer;
 
     private GameObject spriteHolder;
+    public GameObject switcher;
 
     bool blueGemGet;
     bool redGemGet;
     bool yellowGemGet;
+    bool tablet;
+
+    bool enableSwitch;
 
     int gem;
 
@@ -58,6 +62,7 @@ public class Gem : MonoBehaviour
         blueGemGet = false;
         redGemGet = false;
         yellowGemGet = false;
+        tablet = false;
 
         spriteHolder = GameObject.FindGameObjectWithTag("GemDisplay");
     }
@@ -65,20 +70,21 @@ public class Gem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (Input.GetKeyDown("a"))
+        if (blueGemGet == true && redGemGet == true && yellowGemGet == true && tablet == true)
         {
-            BlueGemEquip();
+            if (Input.GetKeyDown("i"))
+            {
+                BlueGemEquip();
+            }
+            if (Input.GetKeyDown("o"))
+            {
+                RedGemEquip();
+            }
+            if (Input.GetKeyDown("p"))
+            {
+                YellowGemEquip();
+            }
         }
-        if (Input.GetKeyDown("s"))
-        {
-            RedGemEquip();
-        }
-        if (Input.GetKeyDown("d"))
-        {
-            YellowGemEquip();
-        }
-
     }
 
     public void GemGet(int gem)
@@ -97,6 +103,10 @@ public class Gem : MonoBehaviour
         {
             YellowGemGet();
             yellowGemGet = true;
+        }
+        else if (gem == 4)
+        {
+            tablet = true;
             gems.SetActive(true);
             panel.SetActive(true);
         }

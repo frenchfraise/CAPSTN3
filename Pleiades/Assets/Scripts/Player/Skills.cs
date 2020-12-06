@@ -75,7 +75,7 @@ public class Skills : MonoBehaviour
 
     void Skill1()
     {
-        if (Input.GetKeyDown(KeyCode.Z) && isCooldown1 == false && swordSkillGet == true)
+        if (Input.GetKeyDown(KeyCode.J) && isCooldown1 == false && swordSkillGet == true)
         {
             isCooldown1 = true;
             skillImage1.fillAmount = 1;
@@ -104,7 +104,7 @@ public class Skills : MonoBehaviour
 
     void Skill2()
     {
-        if (Input.GetKeyDown(KeyCode.X) && isCooldown2 == false && fireSkillGet == true)
+        if (Input.GetKeyDown(KeyCode.K) && isCooldown2 == false && fireSkillGet == true)
         {
             isCooldown2 = true;
             skillImage2.fillAmount = 1;
@@ -126,7 +126,7 @@ public class Skills : MonoBehaviour
 
     void Skill3()
     {
-        if (Input.GetKeyDown(KeyCode.C) && isCooldown3 == false && sparkSkillGet == true)
+        if (Input.GetKeyDown(KeyCode.L) && isCooldown3 == false && sparkSkillGet == true)
         {
             isCooldown3 = true;
             skillImage3.fillAmount = 1;
