@@ -2,15 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class Player : Unit
 {
 
     public HealthBar healthBar;
+    public Transform startingPos;
+    public GameObject moveTipPanel;
 
     void Start()
     {
         Init();
+        StartCoroutine(CheckIfMoved());
     }
 
     void Init()
@@ -20,14 +24,35 @@ public class Player : Unit
         this.atkDmg = 50;
         healthBar.SetMaxHealth(maxHp);
     }
-    
+
+    IEnumerator CheckIfMoved()
+    {
+        Debug.Log("Started CIM");
+        yield return new WaitForSeconds(15f);
+
+        Debug.Log("Wait over");
+        //if(transform.position == startingPos.transform.position)
+        //{
+        if (!Gem.instance.blueGemGet) {
+            moveTipPanel.SetActive(true);
+            //d}
+        }
+
+        yield return new WaitForSeconds(6f);
+
+        if (transform.position != startingPos.transform.position)
+        {
+            moveTipPanel.SetActive(false);
+        }
+    }
+
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            Debug.Log("Player got Attacked!");
-            TakeDamage(10);
-        }
+        //if(Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    Debug.Log("Player got Attacked!");
+        //    TakeDamage(10);
+        //}
     }
 
     public void TakeDamage(float damage)
@@ -47,6 +72,7 @@ public class Player : Unit
     {
         curHp += value;
         healthBar.SetHealth(curHp);
+        AudioManager.Instance.hpItemGet.Play();
         if (curHp >= 100)
         {
             curHp = 100;

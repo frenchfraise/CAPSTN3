@@ -9,6 +9,8 @@ public class Gem : MonoBehaviour
     public bool redGemIsActive;
     public bool yellowGemIsActive;
 
+    public static Gem instance;
+
     public Transform blueGem;
     public Transform redGem;
     public Transform yellowGem;
@@ -32,7 +34,7 @@ public class Gem : MonoBehaviour
     private GameObject spriteHolder;
     public GameObject switcher;
 
-    bool blueGemGet;
+    public bool blueGemGet;
     bool redGemGet;
     bool yellowGemGet;
     bool tablet;
@@ -47,6 +49,21 @@ public class Gem : MonoBehaviour
 
     public GameObject gems;
     public GameObject panel;
+
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
+
+        //DontDestroyOnLoad(this);
+    }
+
 
     // Start is called before the first frame update
     void Start()

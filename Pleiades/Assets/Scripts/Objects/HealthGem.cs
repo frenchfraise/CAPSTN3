@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HealthGem : MonoBehaviour
 {
-    int value = 20;
+    int value = 10;
 
     private void OnTriggerEnter2D(Collider2D col)
     {

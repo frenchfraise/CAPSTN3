@@ -35,7 +35,7 @@ public class Crate : Interactables
     {
         int chance = Random.Range(0, 100);
         Debug.Log("chance: " + chance);
-        if (chance <= 50)
+        if (chance <= 30)
         {
             Instantiate(healthGem, spawnPoint.position, Quaternion.identity);
         }
