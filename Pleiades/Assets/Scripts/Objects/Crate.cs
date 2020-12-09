@@ -8,6 +8,7 @@ public class Crate : Interactables
     public Sprite destroyed;
     public BoxCollider2D boxCol;
     public int indexNo;
+    public int crateType;
 
     Transform spawnPoint;
     public GameObject healthGem;
@@ -22,7 +23,17 @@ public class Crate : Interactables
     {
         crate.GetComponent<SpriteRenderer>().sprite = destroyed;
         interactedWith = true;
-        HealthChance();
+
+        if(crateType == 0)
+        {
+
+        }
+
+        else if (crateType == 1)
+        {
+            HealthChance();
+        }
+
         AudioManager.Instance.boxBreak.Play();
 
         //instance.CheckSet(indexNo);

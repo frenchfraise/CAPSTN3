@@ -25,7 +25,7 @@ public class Pointer : MonoBehaviour
     public void Bob()
     {
         transform.position = new Vector3(transform.position.x,
-            originalY + ((float)Mathf.Sin(Time.time * 5f) * floatStrength),
-            transform.position.z);
+                                        originalY + ((float)Mathf.Sin(Time.time * 5f) * floatStrength),
+                                        transform.position.z);
     }
 }

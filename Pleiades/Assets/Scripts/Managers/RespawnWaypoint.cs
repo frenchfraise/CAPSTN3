@@ -10,7 +10,7 @@ public class RespawnWaypoint : MonoBehaviour
 
     public static RespawnWaypoint Instance;
 
-       private void Awake()
+       private void Start()
     {
 
         if (Instance == null)
@@ -22,7 +22,7 @@ public class RespawnWaypoint : MonoBehaviour
             Destroy(gameObject);
         }
 
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
     }
 
 

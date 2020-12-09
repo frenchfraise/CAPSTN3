@@ -46,15 +46,6 @@ public class Player : Unit
         }
     }
 
-    void Update()
-    {
-        //if(Input.GetKeyDown(KeyCode.Space))
-        //{
-        //    Debug.Log("Player got Attacked!");
-        //    TakeDamage(10);
-        //}
-    }
-
     public void TakeDamage(float damage)
     {
         AudioManager.Instance.playerHit.Play();

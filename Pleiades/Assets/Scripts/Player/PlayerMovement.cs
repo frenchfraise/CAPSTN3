@@ -10,6 +10,8 @@ public class PlayerMovement : MonoBehaviour
     public Vector2 movementDirection;
     public float movementSpeed;
     public bool isMoving;
+    bool lockHorizontal;
+    bool lockVertical;
 
     public Rigidbody2D rb;
 
@@ -19,6 +21,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Awake()
     {
+        lockHorizontal = false;
+        lockVertical = false;
         MOVEMENT_BASE_SPEED = 8.0f;
         CROSSHAIR_DISTANCE = 1.0f;
         LIGHTNING_DISTANCE = 7.5f;
@@ -41,6 +45,17 @@ public class PlayerMovement : MonoBehaviour
     void ProcessInputs()
     {
         movementDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+
+        if(movementDirection.x > 0 || movementDirection.x < 0)
+        {
+            movementDirection.y = 0;
+        }
+
+        if(movementDirection.y > 0 || movementDirection.y < 0)
+        {
+            movementDirection.x = 0;
+        }
+
         movementSpeed = Mathf.Clamp(movementDirection.magnitude, 0.0f, 1.0f);
         movementDirection.Normalize();
     }
