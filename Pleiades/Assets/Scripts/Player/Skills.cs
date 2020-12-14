@@ -37,9 +37,9 @@ public class Skills : MonoBehaviour
         skillImage1.fillAmount = 0;
         skillImage2.fillAmount = 0;
         skillImage3.fillAmount = 0;
-        cooldown1 = 2f;
-        cooldown2 = 2.25f;
-        cooldown3 = 2.5f;
+        cooldown1 = 1.2f;
+        cooldown2 = 1.5f;
+        cooldown3 = 1.7f;
         swordSkillGet = false;
         fireSkillGet = false;
         sparkSkillGet = false;

@@ -46,12 +46,22 @@ public class PlayerMovement : MonoBehaviour
     {
         movementDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
-        if(movementDirection.x > 0 || movementDirection.x < 0)
+        if(movementDirection.x > 0)
         {
             movementDirection.y = 0;
         }
 
-        if(movementDirection.y > 0 || movementDirection.y < 0)
+        if(movementDirection.x < 0)
+        {
+            movementDirection.y = 0;
+        }
+
+        if(movementDirection.y > 0)
+        {
+            movementDirection.x = 0;
+        }
+
+        if (movementDirection.y < 0)
         {
             movementDirection.x = 0;
         }

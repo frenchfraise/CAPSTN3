@@ -13,6 +13,7 @@ TagManager:
   - MetalCrate
   - Midground
   - GemDisplay
+  - Door
   layers:
   - Default
   - TransparentFX

@@ -37,5 +37,10 @@ public class Bullet : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
+        else if (col.CompareTag("Door"))
+        {
+            Destroy(this.gameObject);
+        }
     }
 }

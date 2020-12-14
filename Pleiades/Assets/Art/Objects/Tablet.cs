@@ -33,10 +33,13 @@ public class Tablet : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D col)
     {
-        StopCoroutine("DoneReadingCo");
-        animator.SetBool("ReadingDone", true);
-        isReading = false;
-        panel.SetActive(false);
+        if (col.CompareTag("Player"))
+        {
+            StopCoroutine("DoneReadingCo");
+            animator.SetBool("ReadingDone", true);
+            isReading = false;
+            panel.SetActive(false);
+        }
     }
 
     public IEnumerator ReadingCo()

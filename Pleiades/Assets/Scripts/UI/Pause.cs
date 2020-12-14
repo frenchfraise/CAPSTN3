@@ -11,10 +11,20 @@ public class Pause : MonoBehaviour
     public GameObject pauseButton;
     public GameObject skills;
     public GameObject gems;
+    public GameObject confirmPanel;
+    public KeyCode esc;
 
     void Start()
     {
         pausePanel.SetActive(false);
+    }
+
+    void Update()
+    {
+        if(Input.GetKeyDown(esc))
+        {
+            PauseMenu();
+        }
     }
 
     public void PauseMenu()
