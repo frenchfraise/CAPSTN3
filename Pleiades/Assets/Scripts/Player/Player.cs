@@ -40,10 +40,10 @@ public class Player : Unit
 
         yield return new WaitForSeconds(6f);
 
-        if (transform.position != startingPos.transform.position)
-        {
+        //if (transform.position != startingPos.transform.position)
+        //{
             moveTipPanel.SetActive(false);
-        }
+        //}
     }
 
     public void TakeDamage(float damage)
