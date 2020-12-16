@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("Attacking", true);
         yield return null;
         animator.SetBool("Attacking", false);
-        yield return new WaitForSeconds(.25f);
+        yield return new WaitForSeconds(.1f);
     }
 
     public void Slash()
