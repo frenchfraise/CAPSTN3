@@ -12,6 +12,7 @@ public class AudioManager : MonoBehaviour
     public AudioSource hpItemGet;
     public AudioSource playerHit;
     public AudioSource enemyProj;
+    public AudioSource enemyGotHit;
 
     public AudioSource lightning;
     public AudioSource fireBall;

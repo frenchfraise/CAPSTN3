@@ -33,6 +33,7 @@ public class Enemy : Unit
 
     public void TakeDamage()
     {
+        AudioManager.Instance.enemyGotHit.Play();
         Debug.Log("took damage");
         int damage = GameManager.Instance.player.atkDmg;
         this.curHp -= damage;
