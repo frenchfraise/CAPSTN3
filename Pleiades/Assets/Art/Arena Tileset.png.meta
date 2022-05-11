@@ -1755,6 +1755,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -1764,11 +1765,11 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
-    wrapW: -1
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -1786,6 +1787,8 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
@@ -4982,6 +4985,156 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Arena Tileset_9: 8349590425563979991
+      Arena Tileset_61: -9066350667033625566
+      Arena Tileset_15: 4674703064176061830
+      Arena Tileset_119: -2036270262730592033
+      Arena Tileset_6: -3701350624854756606
+      Arena Tileset_86: -2644607055210082364
+      Arena Tileset_10: 4780791684158450616
+      Arena Tileset_30: -4688322680247595785
+      Arena Tileset_58: -3926209209575630552
+      Arena Tileset_44: -1128425166325604765
+      Arena Tileset_82: 3887570064072674487
+      Arena Tileset_0: 7198364919179847058
+      Arena Tileset_13: 3705796495848498532
+      Arena Tileset_72: -689743598191022105
+      Arena Tileset_103: 2793476153539581095
+      Arena Tileset_77: 1190831102104285082
+      Arena Tileset_43: -354131245795507967
+      Arena Tileset_7: -2144794600211453306
+      Arena Tileset_115: 5747209093122574872
+      Arena Tileset_87: 1021309344465142226
+      Arena Tileset_106: -7824335402659160220
+      Arena Tileset_31: -6356267991067114798
+      Arena Tileset_40: 4114732986901761786
+      Arena Tileset_55: -1216784546808775607
+      Arena Tileset_79: 2646727642348432773
+      Arena Tileset_93: -5854869718871532573
+      Arena Tileset_100: -2012132789286028660
+      Arena Tileset_12: 5096920659082120349
+      Arena Tileset_96: 8678908900950418181
+      Arena Tileset_148: 6527280453527645717
+      Arena Tileset_125: -3961745848024042853
+      Arena Tileset_130: -3160837463356316169
+      Arena Tileset_131: 5692916724487251614
+      Arena Tileset_78: -2134033768309743732
+      Arena Tileset_23: 6137629395744400272
+      Arena Tileset_81: -4874268602269753095
+      Arena Tileset_136: 3842567501711919831
+      Arena Tileset_63: -6103345257482135113
+      Arena Tileset_88: 3782127628986320574
+      Arena Tileset_99: 6023172541864441345
+      Arena Tileset_141: -26524056545221124
+      Arena Tileset_98: 3612822962278276045
+      Arena Tileset_36: -8084475100789189348
+      Arena Tileset_60: -5667097306029232476
+      Arena Tileset_145: 5743767419166744668
+      Arena Tileset_24: -984238871076766098
+      Arena Tileset_135: -3097868295981470144
+      Arena Tileset_105: -6378617355915734586
+      Arena Tileset_27: -6641771571632205723
+      Arena Tileset_121: 7706493329847939190
+      Arena Tileset_146: 553620018668086209
+      Arena Tileset_139: 7467012616953190676
+      Arena Tileset_144: 2171883459837743967
+      Arena Tileset_2: -2306703612697210840
+      Arena Tileset_80: 2942342633447677170
+      Arena Tileset_128: -6881086233442249036
+      Arena Tileset_110: 2041757073714599295
+      Arena Tileset_19: 5941219698942477242
+      Arena Tileset_69: -8701235523587347350
+      Arena Tileset_26: 111083288858846278
+      Arena Tileset_53: -6233350347137593856
+      Arena Tileset_126: -186024039446326265
+      Arena Tileset_85: 6343988613662982530
+      Arena Tileset_74: -5395383343113432170
+      Arena Tileset_28: 459810265413636803
+      Arena Tileset_124: 4156180512443816430
+      Arena Tileset_51: 4265875816799769111
+      Arena Tileset_66: -3713740623909666749
+      Arena Tileset_117: 6387171822050995089
+      Arena Tileset_102: 8834548800720727247
+      Arena Tileset_137: -5092494778459291090
+      Arena Tileset_20: 6637851432121209221
+      Arena Tileset_1: -6078294682630917499
+      Arena Tileset_83: 4366738846367160359
+      Arena Tileset_11: -8179318447753592475
+      Arena Tileset_92: -3373423777336283731
+      Arena Tileset_108: -266922017226516306
+      Arena Tileset_113: -7652616843206033469
+      Arena Tileset_34: 1678306351602225066
+      Arena Tileset_140: -4280298176070247315
+      Arena Tileset_18: -2027130098355520163
+      Arena Tileset_129: -3748858547115826838
+      Arena Tileset_49: -5748729536234910151
+      Arena Tileset_116: -470429806650878423
+      Arena Tileset_133: 731905874848776605
+      Arena Tileset_32: -8116530512183172319
+      Arena Tileset_45: 7379423940369617671
+      Arena Tileset_138: 402610357092962509
+      Arena Tileset_50: 8017310337342371969
+      Arena Tileset_90: 4779505214251066746
+      Arena Tileset_56: -3684358772324346234
+      Arena Tileset_64: -5426549963407093899
+      Arena Tileset_3: 2008704327926763290
+      Arena Tileset_14: -6429728022266865118
+      Arena Tileset_22: 3536000450114202715
+      Arena Tileset_5: -5987414859847058958
+      Arena Tileset_46: 6645043057437710170
+      Arena Tileset_120: -5716400719896636299
+      Arena Tileset_59: 832925939639733699
+      Arena Tileset_8: 389255296196572497
+      Arena Tileset_42: -5082737856038439550
+      Arena Tileset_47: -3659969837000779608
+      Arena Tileset_54: -3482466945612040970
+      Arena Tileset_75: 2580797144324353961
+      Arena Tileset_41: -5192814539493552959
+      Arena Tileset_122: 27636136506906903
+      Arena Tileset_37: 2615602569534166593
+      Arena Tileset_134: 228378748797696267
+      Arena Tileset_107: 9126968367421355186
+      Arena Tileset_109: -6018590631625682361
+      Arena Tileset_39: 8408674357502175836
+      Arena Tileset_84: -8685884285633287537
+      Arena Tileset_147: -7884121458897925937
+      Arena Tileset_142: 1327626438779547341
+      Arena Tileset_62: 7456848431478356826
+      Arena Tileset_70: -7107697128215371375
+      Arena Tileset_123: -2097690458877950165
+      Arena Tileset_65: 8749715068449953471
+      Arena Tileset_57: 6133852596181742040
+      Arena Tileset_48: -5716846350127180389
+      Arena Tileset_35: -3312898701262753437
+      Arena Tileset_71: -3674947276960422847
+      Arena Tileset_73: 4181879245097498284
+      Arena Tileset_118: -4494338085847142362
+      Arena Tileset_29: 6264211315091606828
+      Arena Tileset_16: 9074009055217770201
+      Arena Tileset_127: -1686932468863978642
+      Arena Tileset_21: 1143228430992072622
+      Arena Tileset_68: 7428637760425299615
+      Arena Tileset_95: 7233439051200164324
+      Arena Tileset_101: -786575702211848878
+      Arena Tileset_143: -6323190710155497193
+      Arena Tileset_52: 3927873282421498540
+      Arena Tileset_111: 1108477850368331184
+      Arena Tileset_33: -7173020358821561126
+      Arena Tileset_97: -7811666106041303194
+      Arena Tileset_104: 751618532372266196
+      Arena Tileset_94: -6984053272813163833
+      Arena Tileset_112: 6680237556202952702
+      Arena Tileset_114: 449722256097112979
+      Arena Tileset_4: 924059462203938558
+      Arena Tileset_17: 8730924887719686459
+      Arena Tileset_25: 4994131554772303658
+      Arena Tileset_91: 5009933964320424827
+      Arena Tileset_132: -8148340616028674367
+      Arena Tileset_89: -2442195193481166685
+      Arena Tileset_67: 9190408969009279549
+      Arena Tileset_38: 3384519586758060114
+      Arena Tileset_76: 7014222978730547458
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

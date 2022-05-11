@@ -21,25 +21,25 @@ public class Crate : Interactables
 
     public virtual void Wreck()
     {
-        crate.GetComponent<SpriteRenderer>().sprite = destroyed;
-        interactedWith = true;
+        //crate.GetComponent<SpriteRenderer>().sprite = destroyed;
+        //interactedWith = true;
 
-        if(crateType == 0)
-        {
+        //if(crateType == 0)
+        //{
 
-        }
+        //}
 
-        else if (crateType == 1)
-        {
-            HealthChance();
-        }
+        //else if (crateType == 1)
+        //{
+        //    HealthChance();
+        //}
 
-        AudioManager.Instance.boxBreak.Play();
+        //AudioManager.Instance.boxBreak.Play();
 
-        //instance.CheckSet(indexNo);
+        ////instance.CheckSet(indexNo);
 
-        boxCol.enabled = false;
-        PuzzleManager.instance.OnItemInteracted(indexNo);
+        //boxCol.enabled = false;
+        //PuzzleManager.instance.OnItemInteracted(indexNo);
     }
 
     public void HealthChance()

@@ -28,8 +28,8 @@ public class GemPedestal : MonoBehaviour
         {
             StartCoroutine("Gem");
             //rend.sprite = noGemVar;
-            GameManager.Instance.gem.GemGet(number);
-            GameManager.Instance.skills.SkillEnable(number);
+            //GameManager.Instance.gem.GemGet(number);
+            //GameManager.Instance.skills.SkillEnable(number);
 
             if(!gemGotten)
             { 

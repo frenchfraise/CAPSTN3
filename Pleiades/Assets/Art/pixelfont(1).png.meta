@@ -768,6 +768,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -776,12 +777,12 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
-    aniso: -1
-    mipBias: -100
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
-    wrapW: -1
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -799,6 +800,8 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
@@ -1610,6 +1613,43 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      pixelfont(1)_34: 2253602706926223827
+      pixelfont(1)_14: 6102689125758700685
+      pixelfont(1)_2: 1145376611151834448
+      pixelfont(1)_27: 9213921526057989054
+      pixelfont(1)_5: -9113858303434995643
+      pixelfont(1)_12: 3467760453018850919
+      pixelfont(1)_7: 3946750565056669015
+      pixelfont(1)_29: 7668196817594501478
+      pixelfont(1)_9: -7833764709714917554
+      pixelfont(1)_33: -4265982493713179389
+      pixelfont(1)_4: -5960225280806416169
+      pixelfont(1)_26: -1630744686056293352
+      pixelfont(1)_10: 8013410066206791328
+      pixelfont(1)_1: 2224879721745053137
+      pixelfont(1)_31: 3185148053603156842
+      pixelfont(1)_28: -1142200638987495408
+      pixelfont(1)_21: -1322672223964202702
+      pixelfont(1)_6: 8046011853501845337
+      pixelfont(1)_23: -462710493079891300
+      pixelfont(1)_19: 220832749093975732
+      pixelfont(1)_18: -551018863977768515
+      pixelfont(1)_16: 4198186507017513555
+      pixelfont(1)_35: 780839616266408902
+      pixelfont(1)_15: -3602784996333911139
+      pixelfont(1)_30: -3865922230597774488
+      pixelfont(1)_0: -7426487709299117649
+      pixelfont(1)_3: -5494674954753970073
+      pixelfont(1)_20: -2851681855974712540
+      pixelfont(1)_8: -8985778423100148643
+      pixelfont(1)_25: 3259529731501712384
+      pixelfont(1)_17: -5324941403614763786
+      pixelfont(1)_22: 6115070322582079854
+      pixelfont(1)_11: -283349083274543670
+      pixelfont(1)_13: 1814309418524989062
+      pixelfont(1)_24: -5132071978015210025
+      pixelfont(1)_32: 3316839359348670223
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

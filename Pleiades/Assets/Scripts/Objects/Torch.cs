@@ -2,55 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Torch : Interactables
+public class Torch : ElementalMonument
 {
-    public Sprite firstSpr;
-    public Sprite secondSpr;
-    public Sprite unlit;
-    private SpriteRenderer rend;
+    public Animator anim;
+   
+    private SpriteRenderer spriteRenderer;
     public int indexNo;
 
     void Start()
     {
-        rend = this.GetComponent<SpriteRenderer>();
-        //interactedWith = true;
-
-        //StartCoroutine(Alternate());
-    }
-
-
-    void Update()
-    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        //anim = GetComponent<Animator>();
         
     }
 
-    public void LightThis()
+    private void OnTriggerEnter2D(Collider2D collision) //delete
     {
-        interactedWith = true;
-
-        StartCoroutine(Alternate());
-        PuzzleManager.instance.OnItemInteracted(indexNo);
-        //ChangeSprite();
-    }
-
-    void ChangeSprite()
-    {
-        if (rend.sprite != firstSpr)
-        {
-            rend.sprite = firstSpr;
-        }
-        else
-        {
-            rend.sprite = secondSpr;
-        }
-    }
-
-    IEnumerator Alternate()
-    {
-       while (interactedWith == true)
-        {
-            ChangeSprite();
-            yield return new WaitForSeconds(0.5f);
-        }
+        OnMonumentActivated.Invoke();
+        //anim.SetTrigger("");
     }
 }
