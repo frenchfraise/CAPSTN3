@@ -318,6 +318,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -326,12 +327,12 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
+    filterMode: 1
     aniso: 1
-    mipBias: -100
+    mipBias: 0
     wrapU: 1
     wrapV: 1
-    wrapW: -1
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -349,6 +350,8 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
@@ -2462,6 +2465,105 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      pixelfont_20: -1351524699859524186
+      pixelfont_0: -3635234613633859457
+      pixelfont_41: 5954775827060140990
+      pixelfont_30: 2354021126326915077
+      pixelfont_79: -1807782876790068909
+      pixelfont_8: 5004208026943781315
+      pixelfont_22: 1988319969003293500
+      pixelfont_47: -5959473500404726589
+      pixelfont_71: -4429193465083151558
+      pixelfont_91: -2931565149070126770
+      pixelfont_51: -1889609894995301106
+      pixelfont_7: -5983034364214574120
+      pixelfont_56: -2297922404334524259
+      pixelfont_77: -6570357573999686754
+      pixelfont_35: 374911181258145585
+      pixelfont_10: 5196589941675556210
+      pixelfont_86: 2009005827488025989
+      pixelfont_39: 8631313076966512725
+      pixelfont_64: -8912814171748037006
+      pixelfont_27: 3941179638947885544
+      pixelfont_73: 7527228623896487908
+      pixelfont_70: -3868876046302546300
+      pixelfont_26: -5608886020789200821
+      pixelfont_24: -769095802596978571
+      pixelfont_29: -2198062223818993124
+      pixelfont_81: 6885843219627190881
+      pixelfont_38: 2979100167007432486
+      pixelfont_48: 9090259253235659286
+      pixelfont_52: 7342042065118646716
+      pixelfont_36: 3114416382907520635
+      pixelfont_55: 2956761670350982851
+      pixelfont_49: -2443303134300635610
+      pixelfont_5: 1367911690052364586
+      pixelfont_72: -5740829980367583939
+      pixelfont_13: -3129212828920568602
+      pixelfont_23: -3182678620182902630
+      pixelfont_65: 2362397597151889674
+      pixelfont_43: -7564634778855522118
+      pixelfont_89: -7358565345731513863
+      pixelfont_85: 4682559958660797013
+      pixelfont_78: 185879314868098024
+      pixelfont_84: -2498443145846245471
+      pixelfont_67: 572507379257106532
+      pixelfont_18: 6904778746544412367
+      pixelfont_90: -3821548827490474250
+      pixelfont_2: 7470893803547455186
+      pixelfont_54: -5480974078759680215
+      pixelfont_95: -4452021999953850443
+      pixelfont_96: -6951227037024593584
+      pixelfont_92: 8429707762830794404
+      pixelfont_87: -2626922585570817331
+      pixelfont_63: -3753050967946538230
+      pixelfont_94: -1008388403504961707
+      pixelfont_44: 6867818668517457107
+      pixelfont_57: -1495464800759020934
+      pixelfont_66: -5258700385187313953
+      pixelfont_31: -4762754362962649213
+      pixelfont_75: 3520198618017437764
+      pixelfont_58: -6133113766431563101
+      pixelfont_69: 7283288171690244600
+      pixelfont_50: 5180531573420739196
+      pixelfont_9: 6100419500769552173
+      pixelfont_88: 6255138232746644084
+      pixelfont_83: 5256074058543705176
+      pixelfont_6: 7395778541692869947
+      pixelfont_17: -4437070498664449561
+      pixelfont_74: 8598638677998738644
+      pixelfont_15: -4805491359417948858
+      pixelfont_21: -8314166518581135519
+      pixelfont_45: 5561489068578156029
+      pixelfont_46: 5409903196005875606
+      pixelfont_32: 7102052847674360990
+      pixelfont_3: -2423569349281545346
+      pixelfont_61: -3110140076503018209
+      pixelfont_80: 3899093125118154908
+      pixelfont_42: 787919149587924695
+      pixelfont_12: 3174702028110464474
+      pixelfont_11: -2864985954421753693
+      pixelfont_25: 1163274492426159911
+      pixelfont_59: 7559952746218078076
+      pixelfont_28: -2804001639754546171
+      pixelfont_19: -28957426539098609
+      pixelfont_14: 299645423784735464
+      pixelfont_53: 5017811726071630331
+      pixelfont_40: -3425449256674408043
+      pixelfont_37: -4755619332345743537
+      pixelfont_93: 3324668936344399832
+      pixelfont_1: 1750072896160457254
+      pixelfont_16: 3302856024967698525
+      pixelfont_68: 6813675013747914098
+      pixelfont_82: -6000234573955316009
+      pixelfont_60: -8247361334328287401
+      pixelfont_76: 2511380050640851016
+      pixelfont_97: -3107127129724503771
+      pixelfont_33: 6522314178633727184
+      pixelfont_4: 7740343632319264123
+      pixelfont_34: -1659000961160010225
+      pixelfont_62: 519482762010481016
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

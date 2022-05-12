@@ -165,6 +165,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -175,10 +176,10 @@ TextureImporter:
     serializedVersion: 2
     filterMode: 0
     aniso: 1
-    mipBias: -100
+    mipBias: 0
     wrapU: 1
     wrapV: 1
-    wrapW: -1
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -196,6 +197,8 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
@@ -935,6 +938,39 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      D4: -1182821291677670348
+      AtkR1: 7365574002475698461
+      U3: -7446026091647042388
+      L1: -3287367053296241113
+      AtkR2: -2472340072831945791
+      AtkU3: -482043112589295754
+      AtkL3: 585951966842662488
+      AtkD2: 840494989937961389
+      U1: -4709456396536258026
+      AtkR5: -661973496601677656
+      AtkL5: 2425571995158539275
+      AtkU1: -5582666879068068913
+      AtkU5: -1287317561693210830
+      AtkD1: -2236138401977818221
+      AtkR3: 4681514556078180949
+      D3: -6287787046888575383
+      U4: 5938012242645255967
+      AtkU2: 7504173757061796091
+      AtkU4: -8673286262977101647
+      AtkD3: 4058882637061436657
+      AtkR4: -7338765713033929952
+      AtkL4: 802321206317977270
+      AtkL2: -620360788158790383
+      AtkL1: -5989208844104669019
+      AtkD5: -1644491751466927929
+      L2: -5319882733741912588
+      R1: -4245738604243887485
+      R2: 2473453845335418800
+      D1: -2311659948842064771
+      D2: 7364682651488144517
+      AtkD4: -6654760982662145220
+      U2: -4529042392078601758
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
