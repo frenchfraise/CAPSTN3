@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30e2304297f900545b4671bf650c9e26, type: 3}
+  m_Name: WaterSlash
+  m_EditorClassIdentifier: 
+  name: Water Slash
+  description: 
+  type: 0
+  uiSprite: {fileID: 0}
+  anim: {fileID: 0}
+  elementalType: {fileID: 11400000, guid: ba895a815d8bb8f4fb1fc8d7b2aa20c9, type: 2}
+  damage: 1
+  fireRate: 0
+  cooldownRate: 1

@@ -8,6 +8,6 @@ public class EnableGemSwitch : MonoBehaviour
     
     private void OnTriggerEnter2D (Collider2D col)
     {
-        GameManager.Instance.gem.GemGet(number);
+       // GameManager.Instance.gem.GemGet(number);
     }
 }
