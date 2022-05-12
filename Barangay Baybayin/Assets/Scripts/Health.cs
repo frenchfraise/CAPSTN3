@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+[System.Serializable]
 public class Damaged : UnityEvent<Health> { }
+
+[System.Serializable]
 public class Died : UnityEvent { }
 public class Health : MonoBehaviour
 {
@@ -17,8 +20,13 @@ public class Health : MonoBehaviour
     private void OnEnable()
     {
         InitializeValues();
-        //OnDamaged.AddListener(CheckHealth);
+        OnDamaged.AddListener(Damaged);
         //OnDeath.AddListener(Death);
+    }
+
+    public void SetValues(float p_maxHealth)
+    {
+        maxHealth = p_maxHealth;
     }
     public void InitializeValues()
     {
@@ -26,9 +34,9 @@ public class Health : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    public void Damaged()
+    public void Damaged(Health p_health)
     {
-        OnDamaged.Invoke(this);
+        currentHealth--;
         CheckHealth();
     }
 
@@ -37,6 +45,7 @@ public class Health : MonoBehaviour
         if (currentHealth <= 0)
         {
             Death();
+            
             OnDeath.Invoke();
         }
     }
