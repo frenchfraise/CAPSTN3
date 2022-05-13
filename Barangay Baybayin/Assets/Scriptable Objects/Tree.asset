@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cbaa1619dddf22408cfd2dcb197a581, type: 3}
   m_Name: Tree
   m_EditorClassIdentifier: 
-  nodeName: Tree
-  toolRequired: Axe
+  resource: {fileID: 11400000, guid: f662595db97075f47b3b225b693ecc61, type: 2}
   maxHealth: 5
   regenerationTime: 0

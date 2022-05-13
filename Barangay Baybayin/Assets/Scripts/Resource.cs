@@ -1,10 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 [System.Serializable]
 public class Resource
 {
-    public string name;
+    public SO_Resource so_Resource;
     public int amount;
+    public TMP_Text text;
+
+    public void UpdateText() //temporary
+    {
+        text.text = amount.ToString();
+    }
 }
+

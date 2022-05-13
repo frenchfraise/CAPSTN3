@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class ResourceNodeSpawner : MonoBehaviour
 {
+    public List<ResourceNode> resourceNodes = new List<ResourceNode>();
     private void Start()
     {
+
         ResourceManager.instance.OnRespawn.AddListener(Spawn);
     }
 
@@ -17,7 +19,8 @@ public class ResourceNodeSpawner : MonoBehaviour
 
     void Spawn()
     {
-     
+        int chosenResourceNode = Random.Range(0,resourceNodes.Count);
+        //resourceNodes[chosenResourceNode]
         ResourceNode newResource =  ObjectPoolManager.instance.pool.Get(); //temporary, will make this generic so any class can use next time
         newResource.transform.position = transform.position;
     }

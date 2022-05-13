@@ -19,7 +19,7 @@ public class ResourceManager : MonoBehaviour
 
     IEnumerator Co_Test()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
 
         OnRespawn.Invoke();
     }

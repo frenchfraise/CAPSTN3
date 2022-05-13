@@ -4,17 +4,19 @@ using UnityEngine;
 using UnityEngine.Events;
 
 
-public class ResourceNodeHit : UnityEvent<string> { }
+public class ResourceNodeHit : UnityEvent<Tool> { }
 public class ResourceNode : MonoBehaviour
 {
     public SO_ResourceNode so_ResourceNode;
     public GameObject healthOverheadUIPrefab;
-    public Resource resource;
+    public int levelRequirement;
+
+    public int rewardAmount;
 
 
     public ResourceNodeHit OnHit = new ResourceNodeHit();
 
-    private void Awake()
+    private void Start()
     {
         Health health = GetComponent<Health>();
         health.SetValues(so_ResourceNode.maxHealth);
@@ -33,7 +35,7 @@ public class ResourceNode : MonoBehaviour
 
     }
 
- 
+   
 
     private void OnEnable()
     {
@@ -41,27 +43,18 @@ public class ResourceNode : MonoBehaviour
 
     }
 
-
-
-    private void Update()
+    public void Hit(Tool p_tool) // replace string class to tool class when crates
     {
-        //FOR TESTING PURPOSES WHILE THERE IS NO TOOL
-        if (Input.GetMouseButtonDown(0))
-        {
-            OnHit.Invoke("Axe");
-            Stamina.instance.StaminaDecreased(5); //temporary, the tool will be calling the stamina decrease
-        }
-    }
 
-    public void Hit(string p_tool) // replace string class to tool class when crates
-    {
-        if (p_tool == so_ResourceNode.toolRequired)
+        if (p_tool.so_Tool.useForResourceNode == so_ResourceNode)
         {
-            //if (p_tool.level >= so_ResourceNode.levelRequirement)
-            //{
+          
+            if (p_tool.so_Tool.level >= levelRequirement)
+            {
                 Health health = GetComponent<Health>(); //temp
                 health.OnDamaged.Invoke(health);
-            //}
+
+            }
   
 
         }
@@ -69,7 +62,7 @@ public class ResourceNode : MonoBehaviour
 
     public void RewardResource()
     {
-        InventoryManager.AddResource(resource);
+        InventoryManager.AddResource(so_ResourceNode.resource, rewardAmount);
     }
 
     public void Died()
