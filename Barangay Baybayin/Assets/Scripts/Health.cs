@@ -24,6 +24,15 @@ public class Health : MonoBehaviour
         //OnDeath.AddListener(Death);
     }
 
+
+    private void OnDisable()
+    {
+        
+
+        OnDamaged.RemoveListener(Damaged);
+        //OnDeath.AddListener(Death);
+        
+    }
     public void SetValues(float p_maxHealth)
     {
         maxHealth = p_maxHealth;

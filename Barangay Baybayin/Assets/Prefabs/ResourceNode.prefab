@@ -99,10 +99,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1316a75237a95f649ad14cfb9fa35549, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthOverheadUIPrefab: {fileID: 6343993756075633143, guid: 31bae4ae65cd77d47b8492b2382b463f, type: 3}
   so_ResourceNode: {fileID: 11400000, guid: 3f913e9b960e0334aa758fe91eececfb, type: 2}
-  healthOverheadUIPrefab: {fileID: 714985609241600444, guid: 31bae4ae65cd77d47b8492b2382b463f, type: 3}
   levelRequirement: 1
+  so_Resource: {fileID: 11400000, guid: f662595db97075f47b3b225b693ecc61, type: 2}
   rewardAmount: 5
+  maxHealth: 5
+  regenerationTime: 1
 --- !u!114 &8653533781470353938
 MonoBehaviour:
   m_ObjectHideFlags: 0

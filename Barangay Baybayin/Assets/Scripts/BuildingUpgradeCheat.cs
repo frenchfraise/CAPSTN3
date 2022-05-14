@@ -6,12 +6,12 @@ public class BuildingUpgradeCheat : MonoBehaviour
 {
     public void Cheat()
     {
-        if (BuildingManager.instance.buildings[0].currentLevel < BuildingManager.instance.buildings[0].sprites.Count)
+        if (InfrastructureManager.instance.buildings[0].infrastructure.currentLevel < InfrastructureManager.instance.buildings[0].infrastructure.sprites.Count)
         {
-            BuildingManager.instance.buildings[0].currentLevel++;
-            int toAdd = BuildingManager.instance.buildings[0].currentLevel - 1;
-            Sprite ns = BuildingManager.instance.buildings[0].sprites[toAdd];
-            BuildingManager.instance.buildings[0].GetComponent<SpriteRenderer>().sprite = ns;
+            InfrastructureManager.instance.buildings[0].infrastructure.currentLevel++;
+            int toAdd = InfrastructureManager.instance.buildings[0].infrastructure.currentLevel - 1;
+            Sprite ns = InfrastructureManager.instance.buildings[0].infrastructure.sprites[toAdd];
+            InfrastructureManager.instance.buildings[0].GetComponent<SpriteRenderer>().sprite = ns;
 
         }
 

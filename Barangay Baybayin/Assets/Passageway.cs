@@ -9,12 +9,20 @@ public class Passageway : MonoBehaviour
     public Passageway connectedTo;
     private void OnTriggerExit2D(Collider2D collision)
     {
-    
-        Camera.main.transform.position = new Vector3(connectedTo.startingCameraPos.x, connectedTo.startingCameraPos.y, Camera.main.transform.position.z);
+
         collision.gameObject.transform.position = connectedTo.playerSpawnTransform.position;
+        StartCoroutine(Co_Test());
 
     }
 
+    IEnumerator Co_Test()
+    {
+        UIManager.TransitionFade(1);
+        yield return new WaitForSeconds(0.5f);
+        Camera.main.transform.position = new Vector3(connectedTo.startingCameraPos.x, connectedTo.startingCameraPos.y, Camera.main.transform.position.z);
+       
+        UIManager.TransitionFade(0);
+    }
 
 
 }

@@ -22,6 +22,8 @@ public class ResourceManager : MonoBehaviour
         yield return new WaitForSeconds(1);
 
         OnRespawn.Invoke();
+        yield return new WaitForSeconds(30f);
+        OnRespawn.Invoke();
     }
-  
+   
 }

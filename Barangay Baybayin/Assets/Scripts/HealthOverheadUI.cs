@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class HealthOverheadUI : MonoBehaviour
+public class HealthOverheadUI : PoolableObject
 {
     private bool isRevealed;
     [SerializeField] private float unrevealTimeOut;
@@ -22,6 +22,8 @@ public class HealthOverheadUI : MonoBehaviour
         
         isRevealed = false;
         healthBar.gameObject.SetActive(false);
+        genericObjectPool.pool.Release(this);
+        
        
     }
 
@@ -38,6 +40,8 @@ public class HealthOverheadUI : MonoBehaviour
         healthBar = transform.GetChild(0).GetComponent<RectTransform>();
         objectToFollow = p_targetTransform;
         healthBar.gameObject.SetActive(false);
+        transform.SetParent(p_healthBarPanel, false);
+
     }
     public void OnHealthChanged(Health p_healthFill)
     {
@@ -56,7 +60,7 @@ public class HealthOverheadUI : MonoBehaviour
             {
                 StopCoroutine(currentTimeOut);
             }
-            currentTimeOut = StartCoroutine(Co_RevealTimeOut());
+            currentTimeOut = StartCoroutine(Co_RevealTimeOut()); 
         }
        
 

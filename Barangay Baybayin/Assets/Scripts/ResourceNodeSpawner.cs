@@ -19,9 +19,11 @@ public class ResourceNodeSpawner : MonoBehaviour
 
     void Spawn()
     {
-        int chosenResourceNode = Random.Range(0,resourceNodes.Count);
-        //resourceNodes[chosenResourceNode]
-        ResourceNode newResource =  ObjectPoolManager.instance.pool.Get(); //temporary, will make this generic so any class can use next time
-        newResource.transform.position = transform.position;
+        int chosenIndex = Random.Range(0,resourceNodes.Count);
+        PoolableObject chosenResourceNode = resourceNodes[chosenIndex];
+        PoolableObject newResourceNode = ObjectPoolManager.GetPool(chosenResourceNode).pool.Get(); 
+        newResourceNode.transform.position = transform.position;
     }
+
+
 }

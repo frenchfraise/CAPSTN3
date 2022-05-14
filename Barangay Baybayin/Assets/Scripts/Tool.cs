@@ -5,6 +5,8 @@ using UnityEngine;
 public class Tool : MonoBehaviour
 {
     public SO_Tool so_Tool;
+    public SO_Tool so_ToolT;
+    public SO_Tool currentso_Tool;
     public bool canUse;
 
     //Feel free to change anything but the SO_Tool reference
@@ -26,6 +28,15 @@ public class Tool : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             Use();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            currentso_Tool = so_Tool;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            currentso_Tool = so_ToolT;
         }
     }
     public void DetectResourceNode() //TEMPORARY DETECTION, CHANGE AS YOU SEE FIT
@@ -55,7 +66,7 @@ public class Tool : MonoBehaviour
     {
         canUse = false;
         DetectResourceNode();
-        Stamina.instance.StaminaDecreased(5); //temporary, will imrpove in future
+        Stamina.instance.StaminaDecreased(currentso_Tool.staminaCost); //temporary, will imrpove in future
         yield return new WaitForSeconds(so_Tool.useRate);
         canUse = true;
     }
