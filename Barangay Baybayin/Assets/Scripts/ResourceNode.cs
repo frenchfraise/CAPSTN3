@@ -87,9 +87,9 @@ public class ResourceNode : PoolableObject
                 Health health = GetComponent<Health>(); //temp
                 health.OnDamaged.Invoke(health);
 
+                StatManager.instance.AddXP(p_tool.currentso_Tool.xpUseReward);
+                Debug.Log("[Hit] " + p_tool.currentso_Tool.xpUseReward + " XP granted...");
             }
-  
-
         }
     }
 
