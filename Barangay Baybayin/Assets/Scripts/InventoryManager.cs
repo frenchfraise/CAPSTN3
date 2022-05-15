@@ -12,14 +12,16 @@ public class InventoryManager : MonoBehaviour
         instance = this;
     }
 
-    public static void AddResource(Resource p_resource)
+    public static void AddResource(SO_Resource p_resource, int p_amount)
     {
-      
+        
         for (int i =0; i < InventoryManager.instance.resources.Count;)
         {
-            if (InventoryManager.instance.resources[i].name == p_resource.name)
+            if (InventoryManager.instance.resources[i].so_Resource == p_resource)
             {
-                InventoryManager.instance.resources[i].amount += p_resource.amount;
+               
+                InventoryManager.instance.resources[i].amount += p_amount;
+                InventoryManager.instance.resources[i].UpdateText(); //temporary
                 break;
             }
             i++;

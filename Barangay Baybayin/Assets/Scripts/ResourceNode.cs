@@ -2,66 +2,92 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Pool;
 
-
-public class ResourceNodeHit : UnityEvent<string> { }
-public class ResourceNode : MonoBehaviour
+public class ResourceNodeHit : UnityEvent<Tool> { }
+public class ResourceNode : PoolableObject
 {
+   
+    [SerializeField] private HealthOverheadUI healthOverheadUIPrefab;
+    private HealthOverheadUI healthOverheadUI;
     public SO_ResourceNode so_ResourceNode;
-    public GameObject healthOverheadUIPrefab;
-    public Resource resource;
+
+    public int levelRequirement;
+
+    public SO_Resource so_Resource;
+    public int rewardAmount;
+
+    public float maxHealth;
+    public float regenerationTime;
 
 
     public ResourceNodeHit OnHit = new ResourceNodeHit();
 
-    private void Awake()
+
+
+    private void Start()
     {
+   
         Health health = GetComponent<Health>();
-        health.SetValues(so_ResourceNode.maxHealth);
+        health.SetValues(maxHealth);
         //OnHit.AddListener(health.OnDamaged);
-        health.OnDeath.AddListener(RewardResource);
-        health.OnDeath.AddListener(Died);
+  
         
         health.enabled = true;
 
-        GameObject healthOverheadUIGO = Instantiate(healthOverheadUIPrefab) as GameObject;
-        HealthOverheadUI healthOverheadUI = healthOverheadUIGO.GetComponent<HealthOverheadUI>();
-        healthOverheadUI.SetHealthBarData(transform, UIManager.instance.overheadUI);
-        health.OnDamaged.AddListener(healthOverheadUI.OnHealthChanged);
-        health.OnDeath.AddListener(healthOverheadUI.OnHealthDied);
-        healthOverheadUI.transform.SetParent(UIManager.instance.overheadUI, false);
+    
+      
 
     }
 
- 
+   
 
     private void OnEnable()
     {
+        Health health = GetComponent<Health>();
+        health.OnDeath.AddListener(RewardResource);
+        health.OnDeath.AddListener(Died);
+
+        PoolableObject healthOverheadUIObject = ObjectPoolManager.GetPool(healthOverheadUIPrefab).pool.Get();
+        healthOverheadUI = healthOverheadUIObject.GetComponent<HealthOverheadUI>();
+        //GameObject healthOverheadUIGO = Instantiate(healthOverheadUIPrefab) as GameObject;
+        //HealthOverheadUI healthOverheadUI = healthOverheadUIGO.GetComponent<HealthOverheadUI>();
+        healthOverheadUI.SetHealthBarData(transform, UIManager.instance.overheadUI);
+        health.OnDamaged.AddListener(healthOverheadUI.OnHealthChanged);
+        health.OnDeath.AddListener(healthOverheadUI.OnHealthDied);
+
         OnHit.AddListener(Hit);
 
     }
 
-
-
-    private void Update()
+    private void OnDisable()
     {
-        //FOR TESTING PURPOSES WHILE THERE IS NO TOOL
-        if (Input.GetMouseButtonDown(0))
-        {
-            OnHit.Invoke("Axe");
-            Stamina.instance.StaminaDecreased(5); //temporary, the tool will be calling the stamina decrease
-        }
+        Health health = GetComponent<Health>();
+        health.OnDeath.RemoveListener(RewardResource);
+        health.OnDeath.RemoveListener(Died);
+
+        //GameObject healthOverheadUIGO = Instantiate(healthOverheadUIPrefab) as GameObject;
+        //HealthOverheadUI healthOverheadUI = healthOverheadUIGO.GetComponent<HealthOverheadUI>();
+      
+        health.OnDamaged.RemoveListener(healthOverheadUI.OnHealthChanged);
+        health.OnDeath.RemoveListener(healthOverheadUI.OnHealthDied);
+
+        OnHit.RemoveListener(Hit);
+
     }
 
-    public void Hit(string p_tool) // replace string class to tool class when crates
+    public void Hit(Tool p_tool) // replace string class to tool class when crates
     {
-        if (p_tool == so_ResourceNode.toolRequired)
+
+        if (p_tool.currentso_Tool.useForResourceNode == so_ResourceNode)
         {
-            //if (p_tool.level >= so_ResourceNode.levelRequirement)
-            //{
+          
+            if (p_tool.currentso_Tool.level >= levelRequirement)
+            {
                 Health health = GetComponent<Health>(); //temp
                 health.OnDamaged.Invoke(health);
-            //}
+
+            }
   
 
         }
@@ -69,12 +95,12 @@ public class ResourceNode : MonoBehaviour
 
     public void RewardResource()
     {
-        InventoryManager.AddResource(resource);
+        InventoryManager.AddResource(so_Resource, rewardAmount);
     }
 
     public void Died()
     {
-        
-        ObjectPoolManager.instance.pool.Release(this);
+  
+        genericObjectPool.pool.Release(this);
     }
 }

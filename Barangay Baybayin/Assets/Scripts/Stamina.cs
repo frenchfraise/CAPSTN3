@@ -17,10 +17,7 @@ public class Stamina : MonoBehaviour
     {
         instance = this;
     }
-    private void Start()
-    {
-        
-    }
+
     public void StaminaDecreased(float p_amount)
     {
         if (currentStamina > 0)
