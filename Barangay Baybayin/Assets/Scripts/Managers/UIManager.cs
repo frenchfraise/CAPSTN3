@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
 
     public RectTransform overheadUI;
     public Image transitionUI;
+    public RoomInfoUI roomInfoUI;
     private void Awake()
     {
         instance = this;

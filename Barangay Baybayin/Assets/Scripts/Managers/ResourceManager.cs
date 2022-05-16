@@ -11,19 +11,19 @@ public class ResourceManager : MonoBehaviour
     {
         instance = this;
     }
-    // Start is called before the first frame update
-    void Start()
+
+    private void Start()
     {
+
         StartCoroutine(Co_Test());
+
     }
 
     IEnumerator Co_Test()
     {
-        yield return new WaitForSeconds(1);
 
-        OnRespawn.Invoke();
-        yield return new WaitForSeconds(30f);
-        OnRespawn.Invoke();
+        yield return new WaitForSeconds(1);
+    
+        ResourceManager.instance.OnRespawn.Invoke();
     }
-   
 }

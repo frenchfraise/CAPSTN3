@@ -75,9 +75,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 99
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.4528302, g: 0.33505383, b: 0.20291919, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -102,7 +102,11 @@ MonoBehaviour:
   healthOverheadUIPrefab: {fileID: 6343993756075633143, guid: 31bae4ae65cd77d47b8492b2382b463f, type: 3}
   so_ResourceNode: {fileID: 11400000, guid: 3f913e9b960e0334aa758fe91eececfb, type: 2}
   levelRequirement: 1
-  so_Resource: {fileID: 11400000, guid: f662595db97075f47b3b225b693ecc61, type: 2}
+  resourceDrop:
+    so_Resource: {fileID: 11400000, guid: f662595db97075f47b3b225b693ecc61, type: 2}
+    chance: 100
+    minAmount: 1
+    maxAmount: 5
   rewardAmount: 5
   maxHealth: 5
   regenerationTime: 1
@@ -121,6 +125,9 @@ MonoBehaviour:
   isAlive: 0
   currentHealth: 0
   maxHealth: 0
+  test:
+    m_PersistentCalls:
+      m_Calls: []
   OnDamaged:
     m_PersistentCalls:
       m_Calls: []

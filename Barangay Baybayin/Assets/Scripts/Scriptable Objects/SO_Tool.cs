@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SO_Tool : ScriptableObject
 {
-    public int level;
+    public int upgradeLevel;
     public SO_ResourceNode useForResourceNode;
     public float useRate;
 
@@ -14,4 +14,5 @@ public class SO_Tool : ScriptableObject
     public float maxSpecialPoints;
 
     public float xpUseReward;
+
 }

@@ -7,6 +7,9 @@ using UnityEngine.Events;
 public class Damaged : UnityEvent<Health> { }
 
 [System.Serializable]
+public class Test : UnityEvent<Health> { }
+
+[System.Serializable]
 public class Died : UnityEvent { }
 public class Health : MonoBehaviour
 {
@@ -14,7 +17,7 @@ public class Health : MonoBehaviour
     public float currentHealth;
     public float maxHealth;
 
-
+    public Test test = new Test();
     public Damaged OnDamaged = new Damaged();
     public Died OnDeath = new Died();
     private void OnEnable()
@@ -46,6 +49,7 @@ public class Health : MonoBehaviour
     public void Damaged(Health p_health)
     {
         currentHealth--;
+        test.Invoke(this);
         CheckHealth();
     }
 

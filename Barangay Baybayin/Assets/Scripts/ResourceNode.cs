@@ -4,6 +4,16 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Pool;
 
+[System.Serializable]
+public class ResourceDrop
+{
+    public SO_Resource so_Resource;
+    public float chance;
+    public int minAmount;
+    public int maxAmount;
+
+}
+
 public class ResourceNodeHit : UnityEvent<Tool> { }
 public class ResourceNode : PoolableObject
 {
@@ -14,7 +24,10 @@ public class ResourceNode : PoolableObject
 
     public int levelRequirement;
 
-    public SO_Resource so_Resource;
+    //public List<ResourceDrop> so_Resources = new List<ResourceDrop>(); //chance
+
+
+    public ResourceDrop resourceDrop;
     public int rewardAmount;
 
     public float maxHealth;
@@ -30,13 +43,15 @@ public class ResourceNode : PoolableObject
    
         Health health = GetComponent<Health>();
         health.SetValues(maxHealth);
+
         //OnHit.AddListener(health.OnDamaged);
   
         
         health.enabled = true;
+        
 
-    
-      
+
+
 
     }
 
@@ -53,10 +68,12 @@ public class ResourceNode : PoolableObject
         //GameObject healthOverheadUIGO = Instantiate(healthOverheadUIPrefab) as GameObject;
         //HealthOverheadUI healthOverheadUI = healthOverheadUIGO.GetComponent<HealthOverheadUI>();
         healthOverheadUI.SetHealthBarData(transform, UIManager.instance.overheadUI);
-        health.OnDamaged.AddListener(healthOverheadUI.OnHealthChanged);
+        health.test.AddListener(healthOverheadUI.OnHealthChanged);
         health.OnDeath.AddListener(healthOverheadUI.OnHealthDied);
 
         OnHit.AddListener(Hit);
+
+        rewardAmount = Random.Range(resourceDrop.minAmount, resourceDrop.maxAmount);
 
     }
 
@@ -69,7 +86,7 @@ public class ResourceNode : PoolableObject
         //GameObject healthOverheadUIGO = Instantiate(healthOverheadUIPrefab) as GameObject;
         //HealthOverheadUI healthOverheadUI = healthOverheadUIGO.GetComponent<HealthOverheadUI>();
       
-        health.OnDamaged.RemoveListener(healthOverheadUI.OnHealthChanged);
+        health.test.RemoveListener(healthOverheadUI.OnHealthChanged);
         health.OnDeath.RemoveListener(healthOverheadUI.OnHealthDied);
 
         OnHit.RemoveListener(Hit);
@@ -79,11 +96,12 @@ public class ResourceNode : PoolableObject
     public void Hit(Tool p_tool) // replace string class to tool class when crates
     {
 
-        if (p_tool.currentso_Tool.useForResourceNode == so_ResourceNode)
+        if (p_tool.so_Tool.useForResourceNode == so_ResourceNode)
         {
-          
-            if (p_tool.currentso_Tool.level >= levelRequirement)
+            
+            if (p_tool.so_Tool.upgradeLevel >= levelRequirement)
             {
+                
                 Health health = GetComponent<Health>(); //temp
                 health.OnDamaged.Invoke(health);
 
@@ -95,7 +113,7 @@ public class ResourceNode : PoolableObject
 
     public void RewardResource()
     {
-        InventoryManager.AddResource(so_Resource, rewardAmount);
+        InventoryManager.AddResource(resourceDrop.so_Resource, rewardAmount);
     }
 
     public void Died()

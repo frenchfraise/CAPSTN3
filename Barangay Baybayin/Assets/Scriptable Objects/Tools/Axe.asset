@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a9f196df8fd10f47b6561e9de01c155, type: 3}
   m_Name: Axe
   m_EditorClassIdentifier: 
-  level: 1
+  upgradeLevel: 1
   useForResourceNode: {fileID: 11400000, guid: 3f913e9b960e0334aa758fe91eececfb, type: 2}
   useRate: 0.5
   staminaCost: 1
