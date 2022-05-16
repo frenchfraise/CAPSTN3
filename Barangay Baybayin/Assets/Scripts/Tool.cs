@@ -1,9 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Tool : MonoBehaviour
 {
+    private Color axeColorCache;
+    private Color pickaxeColorCache;
+    private int id;
+    
+    public Button axeButton;
+    public Button pickaxeButton;
     public SO_Tool so_Tool;
     public SO_Tool so_ToolT;
     public SO_Tool currentso_Tool;
@@ -29,7 +36,7 @@ public class Tool : MonoBehaviour
             Use();
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        /*if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             currentso_Tool = so_Tool;
             canUse = true; // Quick fix
@@ -38,7 +45,7 @@ public class Tool : MonoBehaviour
         {
             currentso_Tool = so_ToolT;
             canUse = true; // Quick fix
-        }
+        }*/
     }
     public void DetectResourceNode() //TEMPORARY DETECTION, CHANGE AS YOU SEE FIT
     {
@@ -68,5 +75,31 @@ public class Tool : MonoBehaviour
         Stamina.instance.StaminaDecreased(currentso_Tool.staminaCost); //temporary, will imrpove in future
         yield return new WaitForSeconds(so_Tool.useRate);
         canUse = true;
+    }
+
+    public void OnButtonCallAxe()
+    {
+        id = 0;
+        currentso_Tool = so_Tool;
+        canUse = true; // Quick fix
+        // Get Axe Color
+        axeColorCache = axeButton.GetComponent<Image>().color;
+        axeButton.GetComponent<Image>().color = Color.white;
+        if (pickaxeColorCache.a > 0)
+            pickaxeButton.GetComponent<Image>().color = pickaxeColorCache;
+        // PickTool(id);
+    }
+
+    public void OnButtonCallPickaxe()
+    {
+        id = 1;
+        currentso_Tool = so_ToolT;
+        canUse = true; // Quick fix
+        // Get Pickaxe Color
+        pickaxeColorCache = pickaxeButton.GetComponent<Image>().color;
+        pickaxeButton.GetComponent<Image>().color = Color.white;
+        if (axeColorCache.a > 0)
+            axeButton.GetComponent<Image>().color = axeColorCache;
+        //PickTool(id);
     }
 }

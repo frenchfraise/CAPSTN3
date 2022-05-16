@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,5 +20,4 @@ public class UIManager : MonoBehaviour
     {
         UIManager.instance.transitionUI.DOFade(p_opacity, 0.5f);
     }
-    
 }
