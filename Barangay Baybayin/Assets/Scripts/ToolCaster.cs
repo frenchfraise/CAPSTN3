@@ -31,10 +31,12 @@ public class ToolCaster : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             current_Tool = ToolManager.instance.tools[0];
+            ToolManager.OnToolChanged.Invoke(current_Tool);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             current_Tool = ToolManager.instance.tools[1];
+            ToolManager.OnToolChanged.Invoke(current_Tool);
         }
     }
     public void DetectResourceNode() //TEMPORARY DETECTION, CHANGE AS YOU SEE FIT
@@ -53,9 +55,9 @@ public class ToolCaster : MonoBehaviour
 
                     if (targetResourceNode)
                     {
-
+                        
                         targetResourceNode.OnHit.Invoke(current_Tool); //THIS IS IMPORTANT
-
+                        
                     }
                 }
             }

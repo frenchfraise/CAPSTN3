@@ -9,11 +9,17 @@ public class Passageway : MonoBehaviour
     public Room room;
     public Transform playerSpawnTransform;
     public Passageway connectedTo;
+    PlayerJoystick plrJoystick;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
-        collision.gameObject.transform.position = connectedTo.playerSpawnTransform.position;
-        StartCoroutine(Co_Test());
+        if (collision.gameObject.GetComponent<PlayerJoystick>())
+        {
+            plrJoystick = collision.gameObject.GetComponent<PlayerJoystick>();
+            plrJoystick.enabled = false;
+            collision.gameObject.transform.position = connectedTo.playerSpawnTransform.position;
+            StartCoroutine(Co_Test());
+        }
+       
 
     }
 
@@ -39,7 +45,7 @@ public class Passageway : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         test.gameObject.SetActive(false);
         UIManager.instance.transitionUI.gameObject.SetActive(false);
-
+        plrJoystick.enabled = true;
     }
 
 
