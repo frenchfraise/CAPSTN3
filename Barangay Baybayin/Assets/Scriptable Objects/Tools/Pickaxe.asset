@@ -12,9 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a9f196df8fd10f47b6561e9de01c155, type: 3}
   m_Name: Pickaxe
   m_EditorClassIdentifier: 
-  upgradeLevel: 1
   useForResourceNode: {fileID: 11400000, guid: 83a912f522dc56e4d8b07ef7a54c0a9e, type: 2}
   useRate: 1
   staminaCost: 1
+  maxCraftLevel: 0
   maxSpecialPoints: 0
-  xpUseReward: 5
+  maxExpAmount:
+  - 10
+  - 50
+  - 100
+  - 250
+  expUseReward: 15

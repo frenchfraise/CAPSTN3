@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class XPIncrease : UnityEvent<StatManager> { }
+//public class XPIncrease : UnityEvent<StatManager> { }
 public class StatManager : MonoBehaviour
 {
     public static StatManager instance;
 
-    public XPIncrease OnXPIncrease = new XPIncrease();
+    //public XPIncrease OnXPIncrease = new XPIncrease();
 
     [Header("Level Values")]    
     public int currentLevel;
@@ -41,6 +41,6 @@ public class StatManager : MonoBehaviour
         // level up
         currentLevel++;
         Debug.Log("Player is now Level " + currentLevel + "!");
-        OnXPIncrease.Invoke(this);
+        //OnXPIncrease.Invoke(this);
     }
 }

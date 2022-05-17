@@ -5,14 +5,19 @@ using UnityEngine;
 
 public class SO_Tool : ScriptableObject
 {
-    public int upgradeLevel;
     public SO_ResourceNode useForResourceNode;
     public float useRate;
 
     public float staminaCost;
 
-    public float maxSpecialPoints;
+    public int maxCraftLevel;
 
-    public float xpUseReward;
+    public float maxSpecialPoints;
+    public List<float> maxExpAmount;
+    public float expUseReward;
+
+
+
+ 
 
 }

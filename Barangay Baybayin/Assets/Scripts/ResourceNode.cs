@@ -99,14 +99,14 @@ public class ResourceNode : PoolableObject
         if (p_tool.so_Tool.useForResourceNode == so_ResourceNode)
         {
             
-            if (p_tool.so_Tool.upgradeLevel >= levelRequirement)
+            if (p_tool.craftLevel >= levelRequirement)
             {
                 
                 Health health = GetComponent<Health>(); //temp
                 health.OnDamaged.Invoke(health);
-
-                StatManager.instance.AddXP(p_tool.so_Tool.xpUseReward);
-                Debug.Log("[Hit] " + p_tool.so_Tool.xpUseReward + " XP granted...");
+                p_tool.AddXP(p_tool.so_Tool.expUseReward);
+                //StatManager.instance.AddXP(p_tool.so_Tool.xpUseReward);
+                //Debug.Log("[Hit] " + p_tool.so_Tool.xpUseReward + " XP granted...");
             }
         }
     }

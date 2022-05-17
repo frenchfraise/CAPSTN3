@@ -27,8 +27,8 @@ public class StaminaUI : MonoBehaviour
         Tween WhiteToBlack = staminaBarUI.DOColor(new Color(0, 0, 0), 0.05f);
         yield return WhiteToBlack.WaitForCompletion();
 
-        Tween BlackToRed = staminaBarUI.DOColor(new Color(255, 0, 0), 0.05f);
-        yield return BlackToRed.WaitForCompletion();
+        //Tween BlackToRed = staminaBarUI.DOColor(new Color(255, 0, 0), 0.05f);
+        //yield return BlackToRed.WaitForCompletion();
 
         staminaBarUI.color = new Color32(250, 186, 20,255);//reset
         staminaBarUI.fillAmount = fill;
