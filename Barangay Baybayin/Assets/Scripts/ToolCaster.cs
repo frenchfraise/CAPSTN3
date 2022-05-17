@@ -23,11 +23,17 @@ public class ToolCaster : MonoBehaviour
 
     private void Update()
     {
-        //FOR TESTING PURPOSES
-        if (Input.GetMouseButtonDown(0))
+        // Uses too much Stamina
+        /*if (Input.touchCount > 0)
         {
             Use();
-        }
+        }*/
+
+        //FOR TESTING PURPOSES
+        /*if (Input.GetMouseButtonDown(0))
+        {
+            Use();
+        }*/
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             current_Tool = ToolManager.instance.tools[0];
@@ -74,6 +80,11 @@ public class ToolCaster : MonoBehaviour
     }
 
     #region Buttons UI
+    public void OnUseButtonPressed()
+    {
+        Use();
+    }
+
     public void OnHammerButtonPressed()
     {
         // Switch to Current Tool to Hammer 

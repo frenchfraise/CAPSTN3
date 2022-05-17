@@ -6,15 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/MainScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
-    path: Assets/Scenes/Jerry/JerryScene.unity
-    guid: a5a9ce8dc16b2e7478c5abcbe7998890
-  - enabled: 1
-    path: Assets/Scenes/Jerry/Persistent.unity
-    guid: a8da5ad6b3959ea4d96230a65fad2eb4
+    path: Assets/Scenes/Emman/EmmanScene.unity
+    guid: 6d84a3ac0d260b4468cd52dc4a8d7cf6
   - enabled: 1
     path: Assets/Scenes/Jerry/UI.unity
     guid: e47784773231ad9458a7aca73b85c139
+  - enabled: 1
+    path: Assets/Scenes/Jerry/Persistent.unity
+    guid: a8da5ad6b3959ea4d96230a65fad2eb4
   m_configObjects: {}
