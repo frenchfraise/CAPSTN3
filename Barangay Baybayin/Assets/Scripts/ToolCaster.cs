@@ -107,6 +107,7 @@ public class ToolCaster : MonoBehaviour
 
     public void OnSwitchPress(int id)
     {
+        
         GameObject child;
         for (int i = 0; i < UIManager.instance.toolButtons.Count; i++)
         {
@@ -120,7 +121,8 @@ public class ToolCaster : MonoBehaviour
                 child = UIManager.instance.toolButtons[i].transform.GetChild(0).gameObject;
                 child.SetActive(false);
             }
-        }        
+        }
+        ToolManager.OnToolChanged.Invoke(current_Tool);
     }
     #endregion
 }
