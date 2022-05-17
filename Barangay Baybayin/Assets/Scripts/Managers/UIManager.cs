@@ -11,6 +11,10 @@ public class UIManager : MonoBehaviour
     public RectTransform overheadUI;
     public Image transitionUI;
     public RoomInfoUI roomInfoUI;
+
+    [Header("UI Button References")]
+    public List<Button> toolButtons = new List<Button>();
+
     private void Awake()
     {
         instance = this;

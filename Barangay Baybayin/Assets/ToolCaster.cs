@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ToolCaster : MonoBehaviour
 {
@@ -29,12 +30,12 @@ public class ToolCaster : MonoBehaviour
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            current_Tool = ToolManager.instance.tools[0];
+        {            
+            current_Tool = ToolManager.instance.tools[0]; // Pickaxe
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            current_Tool = ToolManager.instance.tools[1];
+            current_Tool = ToolManager.instance.tools[1]; // Axe
         }
     }
     public void DetectResourceNode() //TEMPORARY DETECTION, CHANGE AS YOU SEE FIT
@@ -70,4 +71,55 @@ public class ToolCaster : MonoBehaviour
         yield return new WaitForSeconds(current_Tool.so_Tool.useRate);
         canUse = true;
     }
+
+    #region Buttons UI
+    public void OnHammerButtonPressed()
+    {
+        // Switch to Current Tool to Hammer 
+    }
+
+    public void OnBareHandsButtonPressed()
+    {
+        // Switch to Current Tool to Bare Hands
+    }
+
+    public void OnPickaxeButtonPressed()
+    {
+        current_Tool = ToolManager.instance.tools[0]; // Pickaxe
+        //GameObject child = UIManager.instance.pickaxeButton.transform.GetChild(0).gameObject;
+        // Debug.Log("This is child: " + child);
+        OnSwitchPress(0); // temporary
+    }
+
+    public void OnBoloButtonPressed()
+    {
+        // Switch Current Tool to Bolo
+    }
+
+    public void OnAxeButtonPressed()
+    {
+        current_Tool = ToolManager.instance.tools[1]; // Axe
+        // GameObject child = UIManager.instance.axeButton.transform.GetChild(0).gameObject;
+        // child.SetActive(true);
+        OnSwitchPress(1); // temporary
+    }
+
+    public void OnSwitchPress(int id)
+    {
+        GameObject child;
+        for (int i = 0; i < UIManager.instance.toolButtons.Count; i++)
+        {
+            if (id == i)
+            {
+                child = UIManager.instance.toolButtons[id].transform.GetChild(0).gameObject;
+                child.SetActive(true);
+            }
+            else
+            {
+                child = UIManager.instance.toolButtons[i].transform.GetChild(0).gameObject;
+                child.SetActive(false);
+            }
+        }        
+    }
+    #endregion
 }
