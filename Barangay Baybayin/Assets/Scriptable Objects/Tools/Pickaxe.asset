@@ -17,4 +17,4 @@ MonoBehaviour:
   useRate: 1
   staminaCost: 1
   maxSpecialPoints: 0
-  xpUseReward: 0
+  xpUseReward: 5

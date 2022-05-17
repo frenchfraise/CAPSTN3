@@ -9,7 +9,7 @@ public class Passageway : MonoBehaviour
     public Room room;
     public Transform playerSpawnTransform;
     public Passageway connectedTo;
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
 
         collision.gameObject.transform.position = connectedTo.playerSpawnTransform.position;
