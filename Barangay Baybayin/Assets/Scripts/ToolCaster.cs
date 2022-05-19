@@ -85,35 +85,10 @@ public class ToolCaster : MonoBehaviour
         Use();
     }
 
-    public void OnHammerButtonPressed()
+    public void OnToolButtonPressed(int index)
     {
-        // Switch to Current Tool to Hammer 
-    }
-
-    public void OnBareHandsButtonPressed()
-    {
-        // Switch to Current Tool to Bare Hands
-    }
-
-    public void OnPickaxeButtonPressed()
-    {
-        current_Tool = ToolManager.instance.tools[0]; // Pickaxe
-        //GameObject child = UIManager.instance.pickaxeButton.transform.GetChild(0).gameObject;
-        // Debug.Log("This is child: " + child);
-        OnSwitchPress(0); // temporary
-    }
-
-    public void OnBoloButtonPressed()
-    {
-        // Switch Current Tool to Bolo
-    }
-
-    public void OnAxeButtonPressed()
-    {
-        current_Tool = ToolManager.instance.tools[1]; // Axe
-        // GameObject child = UIManager.instance.axeButton.transform.GetChild(0).gameObject;
-        // child.SetActive(true);
-        OnSwitchPress(1); // temporary
+        current_Tool = ToolManager.instance.tools[index];
+        OnSwitchPress(index);
     }
 
     public void OnSwitchPress(int id)
