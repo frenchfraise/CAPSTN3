@@ -5,6 +5,10 @@ using UnityEngine;
 public class TimeManager : MonoBehaviour
 {
     public static TimeManager instance;
+    public float realSecondsPerHour;
+    public int startDayHour;
+    public int endDayHour;
+
     public float realSecondsPerDay;
     public int dayCount;
     private void Awake()
@@ -16,16 +20,15 @@ public class TimeManager : MonoBehaviour
     void Start()
     {
         
-        StartCoroutine(Co_Test());
+        StartCoroutine(Co_NewDay());
 
     }
 
-    IEnumerator Co_Test()
+    IEnumerator Co_NewDay()
     {
-        Debug.Log("START DAY");
         yield return new WaitForSeconds(realSecondsPerDay);
         dayCount++;
         ResourceManager.instance.OnRespawn.Invoke();
-        StartCoroutine(Co_Test());
+        StartCoroutine(Co_NewDay());
     }
 }

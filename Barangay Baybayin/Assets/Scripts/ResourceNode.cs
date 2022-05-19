@@ -4,15 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Pool;
 
-[System.Serializable]
-public class ResourceDrop
-{
-    public SO_Resource so_Resource;
-    public float chance;
-    public int minAmount;
-    public int maxAmount;
 
-}
 
 public class ResourceNodeHit : UnityEvent<Tool> { }
 public class ResourceNode : PoolableObject
@@ -24,10 +16,10 @@ public class ResourceNode : PoolableObject
 
     public int levelRequirement;
 
-    //public List<ResourceDrop> so_Resources = new List<ResourceDrop>(); //chance
+    public List<ResourceDrop> resourceDrops = new List<ResourceDrop>(); //chance
 
 
-    public ResourceDrop resourceDrop;
+    //public ResourceDrop resourceDrop;
     public int rewardAmount;
 
     public float maxHealth;
@@ -73,7 +65,7 @@ public class ResourceNode : PoolableObject
 
         OnHit.AddListener(Hit);
 
-        rewardAmount = Random.Range(resourceDrop.minAmount, resourceDrop.maxAmount);
+        
 
     }
 
@@ -113,7 +105,11 @@ public class ResourceNode : PoolableObject
 
     public void RewardResource()
     {
-        InventoryManager.AddResource(resourceDrop.so_Resource, rewardAmount);
+        int chosenIndex = Random.Range(0, resourceDrops.Count);
+        
+        ResourceDrop chosenResourceDrop = resourceDrops[chosenIndex];
+        rewardAmount = Random.Range(chosenResourceDrop.minAmount, chosenResourceDrop.maxAmount);
+        InventoryManager.AddResource(chosenResourceDrop.so_Resource, rewardAmount);
     }
 
     public void Died()

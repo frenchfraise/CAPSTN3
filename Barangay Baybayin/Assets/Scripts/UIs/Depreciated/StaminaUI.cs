@@ -21,7 +21,7 @@ public class StaminaUI : MonoBehaviour
     IEnumerator Co_Test()
     {
         //white
-        staminaBarUI.color = new Color32(255, 255, 255,255);
+        staminaBarUI.color = new Color32(255, 255, 255, 255);
 
         //black
         Tween WhiteToBlack = staminaBarUI.DOColor(new Color(0, 0, 0), 0.05f);
@@ -30,7 +30,7 @@ public class StaminaUI : MonoBehaviour
         //Tween BlackToRed = staminaBarUI.DOColor(new Color(255, 0, 0), 0.05f);
         //yield return BlackToRed.WaitForCompletion();
 
-        staminaBarUI.color = new Color32(250, 186, 20,255);//reset
+        staminaBarUI.color = new Color32(250, 186, 20, 255);//reset
         staminaBarUI.fillAmount = fill;
         yield return new WaitForSeconds(1f);
 
@@ -43,4 +43,6 @@ public class StaminaUI : MonoBehaviour
         delayedBar.color = new Color32(250, 255, 255, 255);//reset
 
     }
+
+
 }
