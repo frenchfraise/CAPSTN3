@@ -2,19 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
+
+[System.Serializable]
+public class ToolUsed : UnityEvent<float> { }
 public class ToolCaster : MonoBehaviour
 {
     public Tool current_Tool;
     public bool canUse = true;
-
+    public ToolUsed onToolUsed = new ToolUsed();
     //Feel free to change anything but the SO_Tool reference
     //To make use of the resoucenode, make sure that the OnHit Unity Event of the resource node will be invoked
-    //To temporarily decrease stamina, do Stamina.instance.StaminaDecreased(5)
+    public void OnEnable()
+    {
+        if (GetComponent<Stamina>())
+        {
+            onToolUsed.AddListener(GetComponent<Stamina>().StaminaDecreased);
+        }
+    }
+
+    public void OnDisable()
+    {
+        if (GetComponent<Stamina>())
+        {
+            onToolUsed.RemoveListener(GetComponent<Stamina>().StaminaDecreased);
+        }
+    }
     public void Use()
     {
         if (canUse)
         {
+            canUse = false;
+            DetectResourceNode();
+            onToolUsed.Invoke(current_Tool.so_Tool.staminaCost);
             StartCoroutine(Co_Cooldown());
         }
 
@@ -72,9 +93,7 @@ public class ToolCaster : MonoBehaviour
     }
     IEnumerator Co_Cooldown()
     {
-        canUse = false;
-        DetectResourceNode();
-        Stamina.instance.StaminaDecreased(current_Tool.so_Tool.staminaCost); //temporary, will imrpove in future
+  
         yield return new WaitForSeconds(current_Tool.so_Tool.useRate);
         canUse = true;
     }

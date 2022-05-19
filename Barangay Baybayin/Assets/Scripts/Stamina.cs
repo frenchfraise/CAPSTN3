@@ -4,18 +4,23 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [System.Serializable]
-public class StaminaDecrease : UnityEvent<Stamina> { }
+public class StaminaDecrease : UnityEvent<float,float> { }
 public class Stamina : MonoBehaviour
 {
-    public static Stamina instance; // WHILE THERE IS NO TOOL
+    [SerializeField] private GenericBarUI genericBarUI;
     public float currentStamina;
     public float maxStamina;
 
     public StaminaDecrease OnStaminaDecrease = new StaminaDecrease();
 
-    private void Awake()
+    private void OnEnable()
     {
-        instance = this;
+        OnStaminaDecrease.AddListener(genericBarUI.UpdateBar);
+    }
+
+    private void OnDisable()
+    {
+        OnStaminaDecrease.AddListener(genericBarUI.UpdateBar);
     }
 
     public void StaminaDecreased(float p_amount)
@@ -25,6 +30,6 @@ public class Stamina : MonoBehaviour
             currentStamina -= p_amount;
         }
   
-        OnStaminaDecrease.Invoke(this);
+        OnStaminaDecrease.Invoke(currentStamina,maxStamina);
     }
 }

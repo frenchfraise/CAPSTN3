@@ -5,21 +5,21 @@ using TMPro;
 public class ToolInfoUI : MonoBehaviour
 {
     [SerializeField] private TMP_Text levelText;
-    [SerializeField] private ExpUI expUI;
+    [SerializeField] private GenericBarUI genericBarUI;
 
     private void OnEnable()
     {
         ToolManager.OnToolChanged.AddListener(ToolChanged);
-        ToolManager.OnExpIncrease.AddListener(expUI.UpdateUI);
+        ToolManager.OnExpIncrease.AddListener(genericBarUI.UpdateBar);
         ToolManager.OnExpLevelIncrease.AddListener(UpdateLevel);
-        ToolManager.OnExpLevelExpIncrease.AddListener(expUI.LevelUpdateUI);
+        ToolManager.OnExpLevelExpIncrease.AddListener(genericBarUI.ResetBar);
     }
     private void OnDisable()
     {
         ToolManager.OnToolChanged.RemoveListener(ToolChanged);
-        ToolManager.OnExpIncrease.RemoveListener(expUI.UpdateUI);
+        ToolManager.OnExpIncrease.RemoveListener(genericBarUI.UpdateBar);
         ToolManager.OnExpLevelIncrease.RemoveListener(UpdateLevel);
-        ToolManager.OnExpLevelExpIncrease.RemoveListener(expUI.LevelUpdateUI);
+        ToolManager.OnExpLevelExpIncrease.RemoveListener(genericBarUI.ResetBar);
     }
 
     public void UpdateLevel(int p_level)
@@ -31,6 +31,6 @@ public class ToolInfoUI : MonoBehaviour
     public void ToolChanged(Tool p_tool)
     {
         levelText.text = p_tool.expLevel.ToString();
-        expUI.InstantUpdateUI(p_tool.expAmount,p_tool.so_Tool.maxExpAmount[p_tool.expLevel-1]);
+        genericBarUI.InstantUpdateBar(p_tool.expAmount,p_tool.so_Tool.maxExpAmount[p_tool.expLevel-1]);
     }
 }

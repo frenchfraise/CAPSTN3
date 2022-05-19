@@ -102,8 +102,8 @@ MonoBehaviour:
   healthOverheadUIPrefab: {fileID: 6343993756075633143, guid: 31bae4ae65cd77d47b8492b2382b463f, type: 3}
   so_ResourceNode: {fileID: 11400000, guid: 83a912f522dc56e4d8b07ef7a54c0a9e, type: 2}
   levelRequirement: 1
-  resourceDrop:
-    so_Resource: {fileID: 11400000, guid: 8b19b1f278d0053458875a2ad2c979ca, type: 2}
+  resourceDrops:
+  - so_Resource: {fileID: 11400000, guid: 8b19b1f278d0053458875a2ad2c979ca, type: 2}
     chance: 100
     minAmount: 1
     maxAmount: 5
