@@ -5,49 +5,62 @@ using UnityEngine;
 
 public class ResourceNodeSpawner : MonoBehaviour
 {
-    public Room room;
-    public int savedIndex = 0;
-    //public List<ResourceNode> resourceNodes = new List<ResourceNode>();
-
+    private Room room;
+    public void AssignRoom(Room p_room)
+    {
+        room = p_room;
+    }
     private void Start()
     {
+        if (TimeManager.instance)
+        {
+            TimeManager.instance.onDayChanged.AddListener(Spawn);
+        }
 
-        ResourceManager.instance.OnRespawn.AddListener(Spawn);
+ 
     }
 
     private void OnDestroy()
     {
 
-        ResourceManager.instance.OnRespawn.RemoveListener(Spawn);
+        if (TimeManager.instance)
+        {
+            TimeManager.instance.onDayChanged.RemoveListener(Spawn);
+        }
+
     }
     bool CheckSpawnAvailability()
     {
         Collider2D[] collider = Physics2D.OverlapCircleAll((Vector2)transform.position, 3f);
         foreach (Collider2D hit in collider)
         {
-
+         
             if (hit.gameObject != gameObject)
             {
-                if (hit != null)
+                if (!hit.gameObject.CompareTag("Player"))
                 {
-                   
-                    return false;
+                    if (hit != null)
+                    {
+
+                        return false;
+                    }
                 }
+                
             }
 
         }
         return true;
     }
-    void Spawn()
+    void Spawn(int p_day)
     {
-  
-        bool test = CheckSpawnAvailability();
-      
-        if (test)
+       
+        bool isSpawnAvailable = CheckSpawnAvailability();
+   
+        if (isSpawnAvailable)
         {
-          
+            
             float chanceRolled = Random.Range(0, 100);
-            savedIndex = 0;
+            int savedIndex = 0;
             float currentCount = 0;
             for (int i = 0; i < room.availableResourceNodeDrops.Count; i++)
             {

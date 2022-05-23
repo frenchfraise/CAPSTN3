@@ -9,35 +9,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9773184139bccd545b367a3b9a4b7969, type: 3}
+  m_Script: {fileID: 11500000, guid: 846db7b038354e245b3974364be2d363, type: 3}
   m_Name: Panday 1
   m_EditorClassIdentifier: 
-  speeches:
-  - character: {fileID: 11400000, guid: 6b42c85a890cd4a498705d8521418c4b, type: 2}
-    emotion: 0
-    bodyIndex: 0
-    faceIndex: 0
-    avatarTransitionType: 0
-    speech: '"Hello"'
-    speechTransitionType: 0
+  dialogues:
   - character: {fileID: 11400000, guid: d07ffa9457a5d704b91096369ccebe08, type: 2}
     emotion: 0
-    bodyIndex: 0
-    faceIndex: 0
-    avatarTransitionType: 0
-    speech: '"Hello Player"'
+    words: Hello Player I am typwriting
     speechTransitionType: 0
   - character: {fileID: 11400000, guid: 6b42c85a890cd4a498705d8521418c4b, type: 2}
     emotion: 0
-    bodyIndex: 0
-    faceIndex: 0
-    avatarTransitionType: 0
-    speech: '"What are you doing"'
+    words: Hello sir I too am typwriting
     speechTransitionType: 0
   - character: {fileID: 11400000, guid: d07ffa9457a5d704b91096369ccebe08, type: 2}
+    emotion: 4
+    words: What are you doing
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: 6b42c85a890cd4a498705d8521418c4b, type: 2}
     emotion: 0
-    bodyIndex: 0
-    faceIndex: 0
-    avatarTransitionType: 0
-    speech: '"Nothing much"'
-    speechTransitionType: 0
+    words: Nothing sir
+    speechTransitionType: 1

@@ -14,7 +14,7 @@ public class StaminaUI : MonoBehaviour
     }
     public void UpdateUI(Stamina p_staminaComponent)
     {
-        fill = p_staminaComponent.currentStamina / p_staminaComponent.maxStamina;
+       // fill = p_staminaComponent.currentStamina / p_staminaComponent.maxStamina;
         StartCoroutine(Co_Test());
     }
 

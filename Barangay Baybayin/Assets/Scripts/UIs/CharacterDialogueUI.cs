@@ -1,0 +1,137 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+using System;
+
+
+
+public class CharacterDialogueUI : MonoBehaviour
+{
+
+    //[HideInInspector] 
+    public SO_Dialogues currentSO_Dialogues;
+    [SerializeField] private int currentDialogueIndex;
+    [SerializeField] private TMP_Text characterNameText;
+    [SerializeField] private TMP_Text dialogueText;
+    [SerializeField] private Image avatarImage;
+
+    public void OnCharacterSpokenTo(SO_Dialogues p_SO_Dialogues)
+    {
+        currentSO_Dialogues = p_SO_Dialogues;
+        UIManager.TransitionPreFadeAndPostFade(1,0.5f,1, 0, 0.5f, OnOpenCharacterDialogueUI);
+        
+     
+
+    }
+
+  
+
+    public void OnOpenCharacterDialogueUI()
+    {
+        
+        UIManager.instance.gameplayHUD.SetActive(false);
+        UIManager.instance.overlayCanvas.SetActive(false);
+        
+        ResetCharacterDialogueUI(); 
+        
+    }
+    public void OnCloseCharacterDialogueUI()
+    {
+
+        UIManager.instance.gameplayHUD.SetActive(true);
+        UIManager.instance.overlayCanvas.SetActive(true);
+        gameObject.SetActive(false);
+
+
+    }
+
+    public IEnumerator Co_TypeWriterEffect(TMP_Text p_textUI,string p_fullText)
+    {
+        string p_currentText;
+        for (int i=0; i <= p_fullText.Length; i++)
+        {
+            p_currentText = p_fullText.Substring(0, i);
+            p_textUI.text = p_currentText;
+            yield return new WaitForSeconds(0.25f);
+        }
+    }
+    public void ResetCharacterDialogueUI()
+    {
+        currentDialogueIndex=0;
+        if (currentDialogueIndex+1 < currentSO_Dialogues.dialogues.Count)
+        {
+            
+            Dialogue currentDialogue = currentSO_Dialogues.dialogues[currentDialogueIndex];
+
+            characterNameText.text = currentDialogue.character.name;
+            //temporary
+            if (currentDialogue.speechTransitionType == SpeechTransitionType.Typewriter)
+            {
+                UIManager.instance.StartCoroutine(Co_TypeWriterEffect(dialogueText,currentDialogue.words));
+            }
+            else
+            {
+                dialogueText.text = currentDialogue.words;
+            }
+         
+            if (currentDialogue.character.name != "Player")//TEMPORARY
+            {
+                avatarImage.gameObject.SetActive(true);
+
+                avatarImage.sprite = currentDialogue.character.avatars[(int)currentDialogue.emotion];
+
+            }
+            else
+            {
+                avatarImage.gameObject.SetActive(false);
+
+            }
+            gameObject.SetActive(true);
+
+        }
+        else //TEMPORARY END CONVO, BUT EVENTUALLY SHOW AND GIVE QUEST
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
+    public void OnNextButtonUIPressed()
+    {
+        if (currentDialogueIndex + 1 < currentSO_Dialogues.dialogues.Count)
+        {
+            currentDialogueIndex++;
+            Dialogue currentDialogue = currentSO_Dialogues.dialogues[currentDialogueIndex];
+
+            characterNameText.text = currentDialogue.character.name;
+            //temporary
+            if (currentDialogue.speechTransitionType == SpeechTransitionType.Typewriter)
+            {
+                UIManager.instance.StartCoroutine(Co_TypeWriterEffect(dialogueText, currentDialogue.words));
+            }
+            else
+            {
+                dialogueText.text = currentDialogue.words;
+            }
+            if (currentDialogue.character.name != "Player")//TEMPORARY
+            {
+                avatarImage.gameObject.SetActive(true);
+
+                avatarImage.sprite = currentDialogue.character.avatars[(int)currentDialogue.emotion];
+
+            }
+            else
+            {
+                avatarImage.gameObject.SetActive(false);
+
+            }
+
+        }
+        else //TEMPORARY END CONVO, BUT EVENTUALLY SHOW AND GIVE QUEST
+        {
+
+            UIManager.TransitionPreFadeAndPostFade(1, 0.5f, 1, 0, 0.5f, OnCloseCharacterDialogueUI);
+        }
+    }
+}

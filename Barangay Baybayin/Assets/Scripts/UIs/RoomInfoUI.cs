@@ -8,20 +8,25 @@ using DG.Tweening;
 public class RoomInfoUI : MonoBehaviour
 {
     public GameObject roomNameGO;
+    public TMP_Text roomDescriptionText;
     public TMP_Text roomNameText;
     public GameObject availableResourcesGO;
     public RectTransform availableResourcesContainer;
 
     public ResourceDropUI resourceDropUIPrefab;
 
-    public void RoomEntered(Passageway p_passageway)
+    public void RoomEntered(string p_roomName, 
+        string p_roomDescription, 
+        List<ResourceNodeDrop> p_availableResourceNodeDrops, 
+        Vector3 p_cameraPos)
     {
         gameObject.SetActive(true);
-        StartCoroutine(Co_Test(p_passageway));
+        StartCoroutine(Co_Test(p_roomName, p_roomDescription, p_availableResourceNodeDrops, p_cameraPos));
     }
-    IEnumerator Co_Test(Passageway p_passageway)
+    IEnumerator Co_Test(string p_roomName, string p_roomDescription, List<ResourceNodeDrop> p_availableResourceNodeDrops, Vector3 p_cameraPos)
     {
         //Clear resources // object pool this
+        PlayerManager.instance.joystick.enabled = false;
         for (int si = 0; si < availableResourcesContainer.childCount; si++)
         {
             Destroy(availableResourcesContainer.GetChild(si).gameObject);
@@ -30,19 +35,23 @@ public class RoomInfoUI : MonoBehaviour
         availableResourcesGO.SetActive(false);
 
 
-        UIManager.instance.transitionUI.gameObject.SetActive(true);
         UIManager.TransitionFade(1);
         yield return new WaitForSeconds(0.5f);
 
-        //gameObject.SetActive(true);
 
-        roomNameText.text = p_passageway.room.roomName;
-        roomNameText.DOFade(1f, 0.75f);
+
+        roomNameText.text = p_roomName;
+        roomDescriptionText.text = p_roomDescription;
+
+        Sequence te = DOTween.Sequence();
+        te.Join(roomNameText.DOFade(1f, 0.75f));
+        te.Join(roomDescriptionText.DOFade(1f, 0.75f));
+        
         
 
-        for (int i = 0; i < p_passageway.room.availableResourceNodeDrops.Count; i++)
+        for (int i = 0; i < p_availableResourceNodeDrops.Count; i++)
         {
-            ResourceNodeDrop resourceNodeDrop = p_passageway.room.availableResourceNodeDrops[i];
+            ResourceNodeDrop resourceNodeDrop = p_availableResourceNodeDrops[i];
             if (resourceNodeDrop.resourceNode.resourceDrops.Count > 0)
             {
                 availableResourcesGO.SetActive(true);
@@ -59,15 +68,17 @@ public class RoomInfoUI : MonoBehaviour
 
 
         }
-        CameraManager.instance.onCameraMoved.Invoke(new Vector3(p_passageway.startingCameraPos.x, p_passageway.startingCameraPos.y, Camera.main.transform.position.z));
+        CameraManager.instance.onCameraMoved.Invoke(p_cameraPos);
         yield return new WaitForSeconds(3.75f);
         Sequence t = DOTween.Sequence();
         t.Join(roomNameText.DOFade(0f, 0.5f));
-        t.Join(UIManager.instance.transitionUI.DOFade(0, 0.5f));
+        t.Join(roomDescriptionText.DOFade(0f, 0.5f));
+
         availableResourcesGO.SetActive(false);
-        yield return new WaitForSeconds(0.5f);
+        yield return t.WaitForCompletion();
         gameObject.SetActive(false);
-        UIManager.instance.transitionUI.gameObject.SetActive(false);
+        UIManager.TransitionFade(0, false);
+
         PlayerManager.instance.joystick.enabled = true;
     }
 }

@@ -28,7 +28,6 @@ public class CameraManager : MonoBehaviour
 
     public void CameraMoved(Vector3 p_newPosition)
     {
-        
         worldCamera.transform.position = p_newPosition;
     }
 }

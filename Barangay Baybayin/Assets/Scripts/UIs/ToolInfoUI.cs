@@ -31,6 +31,6 @@ public class ToolInfoUI : MonoBehaviour
     public void ToolChanged(Tool p_tool)
     {
         levelText.text = p_tool.expLevel.ToString();
-        genericBarUI.InstantUpdateBar(p_tool.expAmount,p_tool.so_Tool.maxExpAmount[p_tool.expLevel-1]);
+        genericBarUI.InstantUpdateBar(p_tool.expAmount,p_tool.so_Tool.maxExpAmount[p_tool.expLevel-1], p_tool.so_Tool.maxExpAmount[p_tool.expLevel - 1]);
     }
 }

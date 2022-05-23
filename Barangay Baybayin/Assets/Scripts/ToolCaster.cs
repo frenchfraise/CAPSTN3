@@ -18,7 +18,7 @@ public class ToolCaster : MonoBehaviour
     {
         if (GetComponent<Stamina>())
         {
-            onToolUsed.AddListener(GetComponent<Stamina>().StaminaDecreased);
+            onToolUsed.AddListener(GetComponent<Stamina>().ModifyStamina);
         }
     }
 
@@ -26,7 +26,7 @@ public class ToolCaster : MonoBehaviour
     {
         if (GetComponent<Stamina>())
         {
-            onToolUsed.RemoveListener(GetComponent<Stamina>().StaminaDecreased);
+            onToolUsed.RemoveListener(GetComponent<Stamina>().ModifyStamina);
         }
     }
     public void Use()
@@ -91,6 +91,31 @@ public class ToolCaster : MonoBehaviour
 
         }
     }
+
+    public void DetectInteractibles() //TEMPORARY DETECTION, CHANGE AS YOU SEE FIT
+    {
+        Collider2D[] collider = Physics2D.OverlapCircleAll((Vector2)transform.position, 3f);
+
+
+        if (collider[0].gameObject != gameObject)
+        {
+            if (collider[0] != null)
+            {
+               
+                //Debug.Log("HIT " + hit.gameObject.name);
+                InteractibleObject targetResourceNode = collider[0].gameObject.GetComponent<InteractibleObject>(); //THIS IS IMPORTANT
+
+                if (targetResourceNode)
+                {
+              
+                    targetResourceNode.onInteract.Invoke(); //THIS IS IMPORTANT
+
+                }
+            }
+        }
+
+        
+    }
     IEnumerator Co_Cooldown()
     {
   
@@ -104,6 +129,18 @@ public class ToolCaster : MonoBehaviour
         Use();
     }
 
+    //temporary move to own scripts
+    public void OnInteractButtonPressed()
+    {
+        DetectInteractibles();
+    }
+
+    public void OnInventoryButtonPressed()
+    {
+        //if ()
+        UIManager.instance.inventoryUI.gameObject.SetActive(true);
+    }
+    //temporary move to own scripts
     public void OnToolButtonPressed(int index)
     {
         current_Tool = ToolManager.instance.tools[index];

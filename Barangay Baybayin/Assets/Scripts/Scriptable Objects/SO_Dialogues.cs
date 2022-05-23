@@ -2,14 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum AvatarTransitionType
-{ 
-    None,
-}
 
 
 public enum SpeechTransitionType
 {
+    Typewriter,
     None,
 }
 
@@ -25,21 +22,20 @@ public enum CharacterEmotionType
 }
 
 [System.Serializable]
-public class Speech
+public class Dialogue
 {
     public SO_Character character;
     public CharacterEmotionType emotion;
-    public int bodyIndex;
-    public int faceIndex;
-    public AvatarTransitionType avatarTransitionType;
 
-    public string speech;
+    [TextArea]
+    public string words;
     public SpeechTransitionType speechTransitionType;
 }
 
-[CreateAssetMenu(fileName = "New Dialogue Scriptable Object", menuName = "Scriptable Objects/Dialogue")]
-public class SO_Dialogue : ScriptableObject
+[CreateAssetMenu(fileName = "New Dialogues Scriptable Object", menuName = "Scriptable Objects/Dialogues")]
+public class SO_Dialogues : ScriptableObject
 {
-    public List<Speech> speeches = new List<Speech>();
+    public List<Dialogue> dialogues = new List<Dialogue>();
 
+    
 }
