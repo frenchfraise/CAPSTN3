@@ -8,6 +8,8 @@ public class SO_Tool : ScriptableObject
     public SO_ResourceNode useForResourceNode;
     public float useRate;
 
+    public int damage;
+
     public float staminaCost;
 
     public int maxCraftLevel;
@@ -15,9 +17,4 @@ public class SO_Tool : ScriptableObject
     public float maxSpecialPoints;
     public List<float> maxExpAmount;
     public float expUseReward;
-
-
-
- 
-
 }

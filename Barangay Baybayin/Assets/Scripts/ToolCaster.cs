@@ -5,13 +5,17 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 
 
-[System.Serializable]
+public class CriticalMeterIncrease : UnityEvent<float> { }
 public class ToolUsed : UnityEvent<float> { }
+public class ToolCritUse : UnityEvent { }
 public class ToolCaster : MonoBehaviour
 {
     public Tool current_Tool;
     public bool canUse = true;
+    private bool isCritFull = false;
     public ToolUsed onToolUsed = new ToolUsed();
+    public CriticalMeterIncrease onCriticalMeterIncrease = new CriticalMeterIncrease();
+    public ToolCritUse onToolCritUse = new ToolCritUse();
     //Feel free to change anything but the SO_Tool reference
     //To make use of the resoucenode, make sure that the OnHit Unity Event of the resource node will be invoked
     public void OnEnable()
@@ -20,6 +24,11 @@ public class ToolCaster : MonoBehaviour
         {
             onToolUsed.AddListener(GetComponent<Stamina>().StaminaDecreased);
         }
+        if (GetComponent<ToolCrit>())
+        {
+            onCriticalMeterIncrease.AddListener(GetComponent<ToolCrit>().CritMeterIncreased);
+            onToolCritUse.AddListener(GetComponent<ToolCrit>().CritMeterEmpty);
+        }
     }
 
     public void OnDisable()
@@ -27,6 +36,11 @@ public class ToolCaster : MonoBehaviour
         if (GetComponent<Stamina>())
         {
             onToolUsed.RemoveListener(GetComponent<Stamina>().StaminaDecreased);
+        }
+        if (GetComponent<ToolCrit>())
+        {
+            onCriticalMeterIncrease.RemoveListener(GetComponent<ToolCrit>().CritMeterIncreased);
+            onToolCritUse.RemoveListener(GetComponent<ToolCrit>().CritMeterEmpty);
         }
     }
     public void Use()
@@ -43,18 +57,18 @@ public class ToolCaster : MonoBehaviour
 
 
     private void Update()
-    {
+    {        
         // Uses too much Stamina
         /*if (Input.touchCount > 0)
         {
             Use();
-        }*/
+        }
 
         //FOR TESTING PURPOSES
-        /*if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
             Use();
-        }*/
+        }
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             current_Tool = ToolManager.instance.tools[0];
@@ -64,7 +78,7 @@ public class ToolCaster : MonoBehaviour
         {
             current_Tool = ToolManager.instance.tools[1];
             ToolManager.OnToolChanged.Invoke(current_Tool);
-        }
+        }*/
     }
     public void DetectResourceNode() //TEMPORARY DETECTION, CHANGE AS YOU SEE FIT
     {
@@ -82,9 +96,15 @@ public class ToolCaster : MonoBehaviour
 
                     if (targetResourceNode)
                     {
-                        
                         targetResourceNode.OnHit.Invoke(current_Tool); //THIS IS IMPORTANT
-                        
+                        if (isCritFull) onToolCritUse.Invoke();
+                        if (current_Tool.so_Tool.useForResourceNode == targetResourceNode.so_ResourceNode)
+                        {
+                            if (current_Tool.craftLevel >= targetResourceNode.levelRequirement)
+                            {
+                                onCriticalMeterIncrease.Invoke(current_Tool.so_Tool.maxSpecialPoints);
+                            }
+                        }
                     }
                 }
             }
@@ -98,6 +118,20 @@ public class ToolCaster : MonoBehaviour
         canUse = true;
     }
 
+    public void OnCriticalMeterFilled()
+    {
+        // Debug.Log("OnCritMF");
+        isCritFull = true;
+        current_Tool.currentDamage = current_Tool.so_Tool.damage * 2;
+    }
+
+    public void OnCriticalMeterEmpty()
+    {
+        // Debug.Log("OnCritME");
+        isCritFull = false;
+        current_Tool.currentDamage = current_Tool.so_Tool.damage;
+    }
+
     #region Buttons UI
     public void OnUseButtonPressed()
     {
@@ -108,11 +142,11 @@ public class ToolCaster : MonoBehaviour
     {
         current_Tool = ToolManager.instance.tools[index];
         OnSwitchPress(index);
+        current_Tool.currentDamage = current_Tool.so_Tool.damage;
     }
 
     public void OnSwitchPress(int id)
     {
-        
         GameObject child;
         for (int i = 0; i < UIManager.instance.toolButtons.Count; i++)
         {
@@ -127,7 +161,7 @@ public class ToolCaster : MonoBehaviour
                 child.SetActive(false);
             }
         }
-        ToolManager.OnToolChanged.Invoke(current_Tool);
+        ToolManager.OnToolChanged.Invoke(current_Tool);        
     }
     #endregion
 }

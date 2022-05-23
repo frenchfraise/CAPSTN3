@@ -128,7 +128,7 @@ public class GenericBarUI : MonoBehaviour
                 if (secondaryBarFillTransition.amount < 0)
                 {
                     secondaryBarFillAmount = p_fill;
-                    Debug.Log("FILL " + secondaryBarFillTransition.transitionTime);
+                    // Debug.Log("FILL " + secondaryBarFillTransition.transitionTime);
 
                 }
                 else if(secondaryBarFillTransition.amount > 0)

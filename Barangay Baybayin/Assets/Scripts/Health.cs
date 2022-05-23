@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [System.Serializable]
-public class Damaged : UnityEvent<Health> { }
+public class Damaged : UnityEvent<Health, int> { }
 
 [System.Serializable]
 public class Test : UnityEvent<Health> { }
@@ -46,9 +46,9 @@ public class Health : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    public void Damaged(Health p_health)
+    public void Damaged(Health p_health, int value)
     {
-        currentHealth--;
+        currentHealth -= value;
         test.Invoke(this);
         CheckHealth();
     }
