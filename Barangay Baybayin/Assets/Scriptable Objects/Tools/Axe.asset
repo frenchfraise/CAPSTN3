@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   useForResourceNode: {fileID: 11400000, guid: 3f913e9b960e0334aa758fe91eececfb, type: 2}
   useRate: 0.5
-  damage: 1
-  staminaCost: 1
+  damage: 20
+  staminaCost: 10
   maxCraftLevel: 0
   maxSpecialPoints: 1
   maxExpAmount:

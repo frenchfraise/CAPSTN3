@@ -60,7 +60,7 @@ public class TimeManager : MonoBehaviour
         realSecondsPerDay = minutesPerDay * secondsInMinutes;
         
         // This is for the day to start at 8 AM
-        totalTime = realSecondsPerDay / 3;
+        totalTime = realSecondsPerDay /3;
 
         StartCoroutine(delay());
         //Test
@@ -115,6 +115,7 @@ public class TimeManager : MonoBehaviour
             StopCoroutine(runningCoroutine);
         }
         UIManager.instance.dayInfoUI.test(dayCount);
+        onDayChanged.Invoke(dayCount);
 
     }
     public void NewDay()

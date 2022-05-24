@@ -8,17 +8,28 @@ public class DayInfoUI : MonoBehaviour
 {
     public TMP_Text dayCountTitle;
     public TMP_Text dayCountText;
+    public bool fainted;
   
     public void test(int p_dayCount)
     {
-    
+        
         gameObject.SetActive(true);
-        StartCoroutine(Co_test(p_dayCount));
+        if (!fainted)
+        {
+            StartCoroutine(Co_test(p_dayCount));
+
+        }
+        else
+        {
+            StartCoroutine(Co_teste(p_dayCount));
+            fainted = false;
+        }
+        
     }
 
     IEnumerator Co_test(int p_dayCount)
     {
-        
+        Debug.Log("DAY END");
         dayCountTitle.text = "DAY";
         dayCountText.text = (p_dayCount).ToString() + " ENDED";
         
@@ -62,11 +73,12 @@ public class DayInfoUI : MonoBehaviour
     {
         gameObject.SetActive(true);
         StartCoroutine(Co_teste(p_dayCount));
+        fainted = true;
     }
 
     IEnumerator Co_teste(int p_dayCount)
     {
-
+        Debug.Log("FAINTED");
         dayCountTitle.text = "YOU";
         dayCountText.text = "FAINTED";
 

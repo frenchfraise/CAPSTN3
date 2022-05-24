@@ -5,38 +5,31 @@ using UnityEngine.UI;
 using TMPro;
 public class InventoryUI : MonoBehaviour
 {
-    public Transform container;
-    public ResourceTabUI prefab;
+    [SerializeField] Transform container;
+    [SerializeField] ResourceTabUI prefab;
 
-    private void Start()
-    {
-
-        
-      
-    }
-    
-    public void BuildInventory()
+    public void GenerateResourceTabUIs()
     {
         for (int i = 0; i < InventoryManager.instance.resourceCategory.Count;)
         {
-            ResourceCategory rc = InventoryManager.instance.resourceCategory[i];
-            ResourceTabUI newTab = Instantiate(prefab);
-            newTab.transform.SetParent(container, false);
-            newTab.text.text = rc.name;
-            newTab.Test(rc);
+            ResourceCategory currentResourceCategory = InventoryManager.instance.resourceCategory[i];
+            ResourceTabUI newTabUI = Instantiate(prefab);
+            newTabUI.transform.SetParent(container, false);
+            newTabUI.InitializeValues(currentResourceCategory.name);
+            newTabUI.GenerateResourceUIs(currentResourceCategory);
             i++;
             if (i >= InventoryManager.instance.resourceCategory.Count)
             {
                 
                 LayoutRebuilder.ForceRebuildLayoutImmediate(container.GetComponent<RectTransform>());
                 Canvas.ForceUpdateCanvases();
-                UIManager.instance.StartCoroutine(test());
+                UIManager.instance.StartCoroutine(Co_HotReload());
             }
 
         }
     }
 
-    IEnumerator test()
+    IEnumerator Co_HotReload()
     {
         gameObject.SetActive(true);
         yield return new WaitForSeconds(0.01f);

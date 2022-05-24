@@ -174,7 +174,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 560, y: 100}
+  m_SizeDelta: {x: 160, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7827939515199133553
 CanvasRenderer:
@@ -347,8 +347,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 084f07e98553b2a4592ff0c4ba5e9fde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 7827939514409822520}
-  resourceUIPrefab: {fileID: 7324205310571498518, guid: 85eaf6c1a4e2a11438d5b32979e8e18e, type: 3}
+  resourceTabUIText: {fileID: 7827939514409822520}
+  prefab: {fileID: 7324205310571498518, guid: 85eaf6c1a4e2a11438d5b32979e8e18e, type: 3}
   container: {fileID: 7827939515831226862}
 --- !u!1 &7827939515831226861
 GameObject:
@@ -386,7 +386,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 280, y: 0}
+  m_AnchoredPosition: {x: 80, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7827939515831226857
@@ -420,7 +420,7 @@ MonoBehaviour:
   m_CellSize: {x: 100, y: 100}
   m_Spacing: {x: 5, y: 5}
   m_Constraint: 1
-  m_ConstraintCount: 5
+  m_ConstraintCount: 1
 --- !u!114 &8421244114436350666
 MonoBehaviour:
   m_ObjectHideFlags: 0

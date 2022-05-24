@@ -5,30 +5,27 @@ using TMPro;
 using UnityEngine.UI;
 public class ResourceTabUI : MonoBehaviour
 {
-    public TMP_Text text;
-    public ResourceUI resourceUIPrefab;
-    public RectTransform container;
+    [SerializeField] TMP_Text resourceTabUIText;
+    [SerializeField] ResourceUI prefab;
+    [SerializeField] RectTransform container;
 
-    public void Test(ResourceCategory rc)
+    public void InitializeValues(string p_resourceTabUIName)
     {
-        foreach (Resource r in rc.resources)
+        resourceTabUIText.text = p_resourceTabUIName;
+    }
+
+    public void GenerateResourceUIs(ResourceCategory p_resourceCategory)
+    {
+        for (int i = 0; i < p_resourceCategory.resources.Count;)
         {
-            ResourceUI newR = Instantiate(resourceUIPrefab);
-            newR.transform.SetParent(container,false);
-            newR.resourceNameText.text = r.so_Resource.name.ToString();
-            newR.resourceAmountText.text = r.amount.ToString();
-            r.text = newR.resourceAmountText;
-        }
-        for (int i = 0; i < rc.resources.Count;)
-        {
-            Resource r = rc.resources[i];
-            ResourceUI newR = Instantiate(resourceUIPrefab);
-            newR.transform.SetParent(container, false);
-            newR.resourceNameText.text = r.so_Resource.name.ToString();
-            newR.resourceAmountText.text = r.amount.ToString();
-            r.text = newR.resourceAmountText;
+            Resource currentResource = p_resourceCategory.resources[i];
+            ResourceUI newResourceUI = Instantiate(prefab);
+            newResourceUI.transform.SetParent(container, false);
+            newResourceUI.resourceNameText.text = currentResource.so_Resource.name.ToString();
+            newResourceUI.resourceAmountText.text = currentResource.amount.ToString();
+            currentResource.text = newResourceUI.resourceAmountText;
             i++;
-            if (i >= rc.resources.Count)
+            if (i >= p_resourceCategory.resources.Count)
             {
                 LayoutRebuilder.ForceRebuildLayoutImmediate(container.GetComponent<RectTransform>());
                 Canvas.ForceUpdateCanvases();
@@ -37,8 +34,4 @@ public class ResourceTabUI : MonoBehaviour
         }
     }
 
-    private void OnDisable()
-    {
-
-    }
 }

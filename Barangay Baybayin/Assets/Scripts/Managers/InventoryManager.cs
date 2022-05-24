@@ -25,7 +25,7 @@ public class InventoryManager : MonoBehaviour
     }
     public void OnEnable()
     {
-        UIManager.instance.inventoryUI.BuildInventory();
+        UIManager.instance.inventoryUI.GenerateResourceTabUIs();
     }
     public static Resource GetResource(SO_Resource p_resource)
     {
