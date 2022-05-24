@@ -7,7 +7,7 @@ public class Resource
 {
     public SO_Resource so_Resource;
     public int amount;
-    public TMP_Text text;
+    [HideInInspector] public TMP_Text text;
 
     public void UpdateText() //temporary
     {

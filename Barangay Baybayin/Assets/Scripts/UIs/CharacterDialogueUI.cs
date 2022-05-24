@@ -26,8 +26,6 @@ public class CharacterDialogueUI : MonoBehaviour
 
     }
 
-  
-
     public void OnOpenCharacterDialogueUI()
     {
         
@@ -57,6 +55,7 @@ public class CharacterDialogueUI : MonoBehaviour
             yield return new WaitForSeconds(0.25f);
         }
     }
+
     public void ResetCharacterDialogueUI()
     {
         currentDialogueIndex=0;

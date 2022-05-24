@@ -24,15 +24,15 @@ public class PlayerManager : MonoBehaviour
 
     private void Awake()
     {
-        if (_instance != null)
-        {
-            Destroy(_instance);
-        }
-        else
-        {
+        //if (_instance != null)
+        //{
+        //    Destroy(_instance);
+        //}
+        //else
+        //{
             _instance = this;
-            DontDestroyOnLoad(_instance);
-        }
+            //DontDestroyOnLoad(_instance);
+        //}
         
     }
 

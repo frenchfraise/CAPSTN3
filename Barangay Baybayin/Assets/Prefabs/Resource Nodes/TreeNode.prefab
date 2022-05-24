@@ -108,7 +108,7 @@ MonoBehaviour:
     minAmount: 1
     maxAmount: 5
   rewardAmount: 5
-  maxHealth: 5
+  maxHealth: 50
   regenerationTime: 1
 --- !u!114 &8653533781470353938
 MonoBehaviour:

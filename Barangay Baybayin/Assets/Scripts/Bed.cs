@@ -27,7 +27,7 @@ public class Bed : InteractibleObject
     protected override void OnInteract()
     {
         onBedInteracted.Invoke();
-        Debug.Log("TEST");
+       
 
     }
 }

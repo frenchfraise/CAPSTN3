@@ -36,10 +36,14 @@ public class TimeManager : MonoBehaviour
     private float currentTime = 0;
 
     public float minutesPerDay;
-    protected float realSecondsPerDay;
+    
     [HideInInspector] public float realSecondsPerNight;
 
     private int dayCount;
+    
+    protected float realSecondsPerDay;
+    [SerializeField] private float startTime; //not yet used
+    [SerializeField] private float endTime; //not yet used
 
     private Coroutine runningCoroutine;
 
@@ -68,6 +72,7 @@ public class TimeManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         onDayChanged.Invoke(dayCount);
+        runningCoroutine = StartCoroutine(Co_NewDay());
     }
     private void OnEnable()
     {
@@ -75,8 +80,9 @@ public class TimeManager : MonoBehaviour
         {
             PlayerManager.instance.stamina.onStaminaDepleted.AddListener(FaintedEndDay);
         }
+        TimeManager.instance.onDayChanged.AddListener(UIManager.instance.dayInfoUI.test);
     }
-
+  
     private void OnDisable()
     {
         if (PlayerManager.instance)
@@ -84,6 +90,7 @@ public class TimeManager : MonoBehaviour
             PlayerManager.instance.stamina.onStaminaDepleted.RemoveListener(FaintedEndDay);
 
         }
+        TimeManager.instance.onDayChanged.RemoveListener(UIManager.instance.dayInfoUI.test);
     }
     private void Update()
     {
@@ -162,7 +169,8 @@ public class TimeManager : MonoBehaviour
     {
         yield return new WaitForSeconds(realSecondsPerDay);
         Debug.Log("NEW DAY co");
-        
+        totalTime = realSecondsPerDay / 3;
+        currentTime = 0;
         onDayChanged.Invoke(dayCount);
         //TimeManager.instance.OnRespawn.Invoke();
         runningCoroutine=StartCoroutine(Co_NewDay());

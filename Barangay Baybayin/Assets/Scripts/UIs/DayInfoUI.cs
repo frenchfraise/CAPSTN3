@@ -8,9 +8,10 @@ public class DayInfoUI : MonoBehaviour
 {
     public TMP_Text dayCountTitle;
     public TMP_Text dayCountText;
-   
+  
     public void test(int p_dayCount)
     {
+    
         gameObject.SetActive(true);
         StartCoroutine(Co_test(p_dayCount));
     }
@@ -29,6 +30,9 @@ public class DayInfoUI : MonoBehaviour
         yield return tr.WaitForCompletion();
         yield return new WaitForSeconds(1f);
 
+
+        PlayerManager.instance.stamina.transform.position = PlayerManager.instance.bed.transform.position;
+        CameraManager.instance.onCameraMoved.Invoke(new Vector3(0, 0, -10));
         Sequence trt = DOTween.Sequence();
         trt.Join(dayCountTitle.DOFade(0f, 0.75f));
         trt.Join(dayCountText.DOFade(0f, 0.75f));

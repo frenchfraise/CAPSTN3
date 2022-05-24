@@ -4,8 +4,6 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Pool;
 
-
-
 public class ResourceNodeHit : UnityEvent<Tool> { }
 public class ResourceNode : PoolableObject
 {
@@ -25,10 +23,7 @@ public class ResourceNode : PoolableObject
     public float maxHealth;
     public float regenerationTime;
 
-
     public ResourceNodeHit OnHit = new ResourceNodeHit();
-
-
 
     private void Start()
     {
@@ -64,9 +59,6 @@ public class ResourceNode : PoolableObject
         health.OnDeath.AddListener(healthOverheadUI.OnHealthDied);
 
         OnHit.AddListener(Hit);
-
-        
-
     }
 
     private void OnDisable()
@@ -82,20 +74,18 @@ public class ResourceNode : PoolableObject
         health.OnDeath.RemoveListener(healthOverheadUI.OnHealthDied);
 
         OnHit.RemoveListener(Hit);
-
     }
 
     public void Hit(Tool p_tool) // replace string class to tool class when crates
     {
 
         if (p_tool.so_Tool.useForResourceNode == so_ResourceNode)
-        {
-            
+        {            
             if (p_tool.craftLevel >= levelRequirement)
-            {
-                
-                Health health = GetComponent<Health>(); //temp
-                health.OnDamaged.Invoke(health);
+            {                
+                Health health = GetComponent<Health>(); //temp               
+                Debug.Log("Damage: " + p_tool.currentDamage);
+                health.OnDamaged.Invoke(health, p_tool.currentDamage);                
                 p_tool.AddXP(p_tool.so_Tool.expUseReward);
                 //StatManager.instance.AddXP(p_tool.so_Tool.xpUseReward);
                 //Debug.Log("[Hit] " + p_tool.so_Tool.xpUseReward + " XP granted...");
