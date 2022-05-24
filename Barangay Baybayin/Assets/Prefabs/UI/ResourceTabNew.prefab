@@ -348,7 +348,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resourceTabUIText: {fileID: 7827939514409822520}
-  prefab: {fileID: 7324205310571498518, guid: 85eaf6c1a4e2a11438d5b32979e8e18e, type: 3}
+  prefab: {fileID: 7324205310571498518, guid: 1fd9df83af925b544be3bf5bac524f4d, type: 3}
   container: {fileID: 7827939515831226862}
 --- !u!1 &7827939515831226861
 GameObject:

@@ -31,6 +31,7 @@ public class UIManager : MonoBehaviour
     public GameObject overlayCanvas;
     public GameObject gameplayHUD;
 
+    public Coroutine runningCoroutine;
 
     [Header("UI Button References")]
     public List<Button> toolButtons = new List<Button>();
