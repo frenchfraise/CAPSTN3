@@ -28,6 +28,7 @@ public class UIManager : MonoBehaviour
 
     public DayInfoUI dayInfoUI;
     public InventoryUI inventoryUI;
+    public Image toolUseImage;
     public GameObject overlayCanvas;
     public GameObject gameplayHUD;
 

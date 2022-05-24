@@ -36,6 +36,7 @@ public class TimeManager : MonoBehaviour
     private float currentTime = 0;
 
     public float minutesPerDay;
+    public int intervalNum;
     
     [HideInInspector] public float realSecondsPerNight;
 
@@ -143,6 +144,7 @@ public class TimeManager : MonoBehaviour
     {
         // Debug.Log(GetHour());
         int hour = Mathf.FloorToInt(GetHour());
+        int mins = Mathf.FloorToInt(GetMinutes());
         string abbreviation = "AM";
         
         if (hour >= 12)
@@ -153,7 +155,15 @@ public class TimeManager : MonoBehaviour
 
         if (hour == 0) hour = 12;
 
-        return hour.ToString("00") + ":" + Mathf.FloorToInt(GetMinutes()).ToString("00") + " " + abbreviation;
+        mins = mins / intervalNum % intervalNum;
+
+        if (mins == 1)
+        {
+            mins = intervalNum;
+            //Debug.Log(mins);
+            return hour.ToString("00") + ":" + mins.ToString() + " " + abbreviation;
+        }
+        return hour.ToString("00") + ":" + mins.ToString() + "0" + " " + abbreviation;
     }
 
     public void OnHourChanged()

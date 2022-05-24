@@ -183,6 +183,7 @@ public class ToolCaster : MonoBehaviour
     public void OnToolButtonPressed(int index)
     {
         current_Tool = ToolManager.instance.tools[index];
+        UIManager.instance.toolUseImage.sprite = ToolManager.instance.tools[index].so_Tool.toolImage;
         OnSwitchPress(index);
         current_Tool.currentDamage = current_Tool.so_Tool.damage;
     }
