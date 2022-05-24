@@ -15,8 +15,8 @@ MonoBehaviour:
   useForResourceNode: {fileID: 11400000, guid: 83a912f522dc56e4d8b07ef7a54c0a9e, type: 2}
   toolImage: {fileID: 21300000, guid: fd38205ba9d15c54c9f666b98762ee77, type: 3}
   useRate: 1
-  damage: 1
-  staminaCost: 1
+  damage: 20
+  staminaCost: 10
   maxCraftLevel: 0
   maxSpecialPoints: 1
   maxExpAmount:

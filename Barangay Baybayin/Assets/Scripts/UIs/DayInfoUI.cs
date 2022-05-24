@@ -6,37 +6,45 @@ using TMPro;
 using DG.Tweening;
 public class DayInfoUI : MonoBehaviour
 {
-    public TMP_Text dayCountTitle;
     public TMP_Text dayCountText;
+    public TMP_Text conditionsText;
     public bool fainted;
-  
-    public void test(int p_dayCount)
+    public bool isFirstTime = true;
+    public void DayEnd(int p_dayCount)
     {
         
-        gameObject.SetActive(true);
-        if (!fainted)
+        if (!isFirstTime)
         {
-            StartCoroutine(Co_test(p_dayCount));
+            gameObject.SetActive(true);
+            if (!fainted)
+            {
+                StartCoroutine(Co_DayEndTransition(p_dayCount));
 
+            }
+            else
+            {
+                StartCoroutine(Co_DayFaintedTransition(p_dayCount));
+                fainted = false;
+            }
         }
-        else
+        if (isFirstTime)
         {
-            StartCoroutine(Co_teste(p_dayCount));
-            fainted = false;
+            isFirstTime = false;
         }
-        
+
+
     }
 
-    IEnumerator Co_test(int p_dayCount)
+    IEnumerator Co_DayEndTransition(int p_dayCount)
     {
         Debug.Log("DAY END");
-        dayCountTitle.text = "DAY";
-        dayCountText.text = (p_dayCount).ToString() + " ENDED";
+        conditionsText.text = "ENDED";
+        dayCountText.text = "DAY " + (p_dayCount).ToString();
         
         UIManager.TransitionFade(1);
         yield return new WaitForSeconds(0.5f);
         Sequence tr = DOTween.Sequence();
-        tr.Join(dayCountTitle.DOFade(1f, 0.75f));
+        tr.Join(conditionsText.DOFade(1f, 0.75f));
         tr.Join(dayCountText.DOFade(1f, 0.75f));
         yield return tr.WaitForCompletion();
         yield return new WaitForSeconds(1f);
@@ -45,15 +53,16 @@ public class DayInfoUI : MonoBehaviour
         PlayerManager.instance.stamina.transform.position = PlayerManager.instance.bed.transform.position;
         CameraManager.instance.onCameraMoved.Invoke(new Vector3(0, 0, -10));
         Sequence trt = DOTween.Sequence();
-        trt.Join(dayCountTitle.DOFade(0f, 0.75f));
+        trt.Join(conditionsText.DOFade(0f, 0.75f));
         trt.Join(dayCountText.DOFade(0f, 0.75f));
         yield return trt.WaitForCompletion();
         yield return new WaitForSeconds(1f);
 
-        dayCountTitle.text = "DAY";
-        dayCountText.text = (p_dayCount + 1).ToString().ToString();
+        conditionsText.text = "STARTS";
+        dayCountText.text = "DAY " + (p_dayCount + 1).ToString();
+        UIManager.instance.dayText.text = "DAY " + (p_dayCount + 1).ToString();
         Sequence t = DOTween.Sequence();
-        t.Join(dayCountTitle.DOFade(1f, 0.75f));
+        t.Join(conditionsText.DOFade(1f, 0.75f));
         t.Join(dayCountText.DOFade(1f, 0.75f));
         
        
@@ -61,7 +70,7 @@ public class DayInfoUI : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         Sequence te = DOTween.Sequence();
-        te.Join(dayCountTitle.DOFade(0f, 0.5f));
+        te.Join(conditionsText.DOFade(0f, 0.5f));
         te.Join(dayCountText.DOFade(0f, 0.5f));
         yield return te.WaitForCompletion();
         UIManager.TransitionFade(0, false) ;
@@ -72,20 +81,21 @@ public class DayInfoUI : MonoBehaviour
     public void Faint(int p_dayCount)
     {
         gameObject.SetActive(true);
-        StartCoroutine(Co_teste(p_dayCount));
+        StartCoroutine(Co_DayFaintedTransition(p_dayCount));
         fainted = true;
     }
 
-    IEnumerator Co_teste(int p_dayCount)
+    IEnumerator Co_DayFaintedTransition(int p_dayCount)
     {
         Debug.Log("FAINTED");
-        dayCountTitle.text = "YOU";
-        dayCountText.text = "FAINTED";
+        conditionsText.text = "YOU FAINTED";
+        dayCountText.text = "DAY " + (p_dayCount).ToString();
+        UIManager.instance.dayText.text = "DAY " + (p_dayCount + 1).ToString();
 
         UIManager.TransitionFade(1);
         yield return new WaitForSeconds(0.5f);
         Sequence tr = DOTween.Sequence();
-        tr.Join(dayCountTitle.DOFade(1f, 0.75f));
+        tr.Join(conditionsText.DOFade(1f, 0.75f));
         tr.Join(dayCountText.DOFade(1f, 0.75f));
         yield return tr.WaitForCompletion();
         yield return new WaitForSeconds(1f);
@@ -93,15 +103,14 @@ public class DayInfoUI : MonoBehaviour
         PlayerManager.instance.stamina.transform.position = PlayerManager.instance.bed.transform.position;
         CameraManager.instance.onCameraMoved.Invoke(new Vector3(0,0,-10));
         Sequence trt = DOTween.Sequence();
-        trt.Join(dayCountTitle.DOFade(0f, 0.75f));
+        trt.Join(conditionsText.DOFade(0f, 0.75f));
         trt.Join(dayCountText.DOFade(0f, 0.75f));
         yield return trt.WaitForCompletion();
         yield return new WaitForSeconds(1f);
 
-        dayCountTitle.text = "DAY";
-        dayCountText.text = (p_dayCount + 1).ToString().ToString();
+  
         Sequence t = DOTween.Sequence();
-        t.Join(dayCountTitle.DOFade(1f, 0.75f));
+        t.Join(conditionsText.DOFade(1f, 0.75f));
         t.Join(dayCountText.DOFade(1f, 0.75f));
 
 
@@ -109,7 +118,7 @@ public class DayInfoUI : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         Sequence te = DOTween.Sequence();
-        te.Join(dayCountTitle.DOFade(0f, 0.5f));
+        te.Join(conditionsText.DOFade(0f, 0.5f));
         te.Join(dayCountText.DOFade(0f, 0.5f));
         yield return te.WaitForCompletion();
         UIManager.TransitionFade(0, false);

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using TMPro;
 public class UIManager : MonoBehaviour
 {
     private static UIManager _instance;
@@ -32,6 +33,9 @@ public class UIManager : MonoBehaviour
     public GameObject overlayCanvas;
     public GameObject gameplayHUD;
 
+    public TMP_Text dayText;
+
+    public Coroutine runningCoroutine;
 
     [Header("UI Button References")]
     public List<Button> toolButtons = new List<Button>();

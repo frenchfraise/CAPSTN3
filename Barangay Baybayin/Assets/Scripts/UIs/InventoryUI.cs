@@ -34,6 +34,7 @@ public class InventoryUI : MonoBehaviour
         gameObject.SetActive(true);
         yield return new WaitForSeconds(0.01f);
         gameObject.SetActive(false);
+        gameObject.SetActive(true);//temp
     }
     
     public void CloseUI()

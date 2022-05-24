@@ -16,7 +16,7 @@ public class CharacterDialogueUI : MonoBehaviour
     [SerializeField] private TMP_Text characterNameText;
     [SerializeField] private TMP_Text dialogueText;
     [SerializeField] private Image avatarImage;
-
+   
     public void OnCharacterSpokenTo(SO_Dialogues p_SO_Dialogues)
     {
         currentSO_Dialogues = p_SO_Dialogues;
@@ -65,10 +65,15 @@ public class CharacterDialogueUI : MonoBehaviour
             Dialogue currentDialogue = currentSO_Dialogues.dialogues[currentDialogueIndex];
 
             characterNameText.text = currentDialogue.character.name;
+            if (UIManager.instance.runningCoroutine != null)
+            {
+                UIManager.instance.StopCoroutine(UIManager.instance.runningCoroutine);
+            }
             //temporary
             if (currentDialogue.speechTransitionType == SpeechTransitionType.Typewriter)
             {
-                UIManager.instance.StartCoroutine(Co_TypeWriterEffect(dialogueText,currentDialogue.words));
+
+                UIManager.instance.runningCoroutine = UIManager.instance.StartCoroutine(Co_TypeWriterEffect(dialogueText,currentDialogue.words));
             }
             else
             {
@@ -105,9 +110,13 @@ public class CharacterDialogueUI : MonoBehaviour
 
             characterNameText.text = currentDialogue.character.name;
             //temporary
+            if (UIManager.instance.runningCoroutine != null)
+            {
+                UIManager.instance.StopCoroutine(UIManager.instance.runningCoroutine);
+            }
             if (currentDialogue.speechTransitionType == SpeechTransitionType.Typewriter)
             {
-                UIManager.instance.StartCoroutine(Co_TypeWriterEffect(dialogueText, currentDialogue.words));
+                UIManager.instance.runningCoroutine = UIManager.instance.StartCoroutine(Co_TypeWriterEffect(dialogueText, currentDialogue.words));
             }
             else
             {

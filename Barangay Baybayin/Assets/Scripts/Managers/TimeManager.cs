@@ -81,7 +81,7 @@ public class TimeManager : MonoBehaviour
         {
             PlayerManager.instance.stamina.onStaminaDepleted.AddListener(FaintedEndDay);
         }
-        TimeManager.instance.onDayChanged.AddListener(UIManager.instance.dayInfoUI.test);
+        TimeManager.instance.onDayChanged.AddListener(UIManager.instance.dayInfoUI.DayEnd);
     }
   
     private void OnDisable()
@@ -91,7 +91,7 @@ public class TimeManager : MonoBehaviour
             PlayerManager.instance.stamina.onStaminaDepleted.RemoveListener(FaintedEndDay);
 
         }
-        TimeManager.instance.onDayChanged.RemoveListener(UIManager.instance.dayInfoUI.test);
+        TimeManager.instance.onDayChanged.RemoveListener(UIManager.instance.dayInfoUI.DayEnd);
     }
     private void Update()
     {
@@ -115,7 +115,7 @@ public class TimeManager : MonoBehaviour
         {
             StopCoroutine(runningCoroutine);
         }
-        UIManager.instance.dayInfoUI.test(dayCount);
+        UIManager.instance.dayInfoUI.DayEnd(dayCount);
         onDayChanged.Invoke(dayCount);
 
     }
