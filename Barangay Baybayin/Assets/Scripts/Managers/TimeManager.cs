@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class HourChanged : UnityEvent<int, int> { };
+public class HourChanged : UnityEvent { };
+public class MinuteChanged : UnityEvent { };
 public class DayChanged : UnityEvent<int> { };
 
 public class TimeManager : MonoBehaviour
@@ -24,27 +25,30 @@ public class TimeManager : MonoBehaviour
         }
     }
     public HourChanged onHourChanged = new HourChanged();
+    public MinuteChanged onMinuteChanged = new MinuteChanged();
     public DayChanged onDayChanged = new DayChanged();
 
-    //make all these private (i just made them public so just in case events cant be used, you can use these)
-    // public float realSecondsPerHour;
-    // public float startDayHour;
-    // public float endDayHour;
     [HideInInspector] public float sunriseHour = 6;
 
     private float totalTime = 0;
-    private float currentTime = 0;
 
-    public float minutesPerDay;
-    public int intervalNum;
+    // public int intervalNum;
     
     [HideInInspector] public float realSecondsPerNight;
 
     private int dayCount;
     
     protected float realSecondsPerDay;
-    [SerializeField] private float startTime; //not yet used
-    [SerializeField] private float endTime; //not yet used
+    [SerializeField] private int startHour;
+    [SerializeField] private int endTime; //not yet used
+
+    public static int minute;
+    public static int hour;
+    private int numOfHoursAwake = 16;
+    public static string abbreviation;
+
+    [SerializeField] private float oneMinToRealSeconds;
+    private float timer;
 
     private Coroutine runningCoroutine;
 
@@ -52,18 +56,17 @@ public class TimeManager : MonoBehaviour
     {
         _instance = this;
     }
+
     // Start is called before the first frame update
     void Start()
     {
-       
-        
-        // Convert Minutes to Seconds
-        realSecondsPerDay = minutesPerDay * secondsInMinutes;
-        
-        // This is for the day to start at 8 AM
-        totalTime = realSecondsPerDay /3;
+        minute = 0;
+        hour = startHour;
+
+        Formula();
 
         StartCoroutine(delay());
+        StartCoroutine(DoTimer());
         //Test
         //onHourChanged.Invoke(startDayHour, endDayHour);
         //onDayChanged.Invoke(dayCount);
@@ -89,15 +92,34 @@ public class TimeManager : MonoBehaviour
         if (PlayerManager.instance)
         {
             PlayerManager.instance.stamina.onStaminaDepleted.RemoveListener(FaintedEndDay);
-
         }
         TimeManager.instance.onDayChanged.RemoveListener(UIManager.instance.dayInfoUI.DayEnd);
     }
     private void Update()
     {
-        totalTime += Time.deltaTime;
-        currentTime = totalTime % realSecondsPerDay;
+        totalTime = Time.realtimeSinceStartup;
     }
+
+    IEnumerator DoTimer()
+    {
+        while(true)
+        {
+            yield return new WaitForSeconds(oneMinToRealSeconds);
+            minute++;
+            onMinuteChanged?.Invoke();
+            if (minute >= 60)
+            {
+                hour++;
+                minute = 0;
+                onHourChanged?.Invoke();
+                if (hour > hoursInDay)
+                {
+                    hour = 0;
+                }
+            }
+        }
+    }
+
     public void FaintedEndDay()
     {
         if (runningCoroutine != null)
@@ -107,7 +129,6 @@ public class TimeManager : MonoBehaviour
         UIManager.instance.dayInfoUI.Faint(dayCount);
         
         onDayChanged.Invoke(dayCount);
-
     }
     public void EndDay()
     {
@@ -117,7 +138,6 @@ public class TimeManager : MonoBehaviour
         }
         UIManager.instance.dayInfoUI.DayEnd(dayCount);
         onDayChanged.Invoke(dayCount);
-
     }
     public void NewDay()
     {
@@ -126,64 +146,24 @@ public class TimeManager : MonoBehaviour
             StopCoroutine(runningCoroutine);
         }
         Debug.Log("NEW DAY");
+        hour = startHour;
         dayCount++;
         runningCoroutine = StartCoroutine(Co_NewDay());
-    }
-
-    public float GetHour()
-    {
-        return currentTime * hoursInDay / realSecondsPerDay;
-    }
-
-    public float GetMinutes()
-    {
-        return (currentTime * hoursInDay * minutesInHour / realSecondsPerDay) % minutesInHour;
-    }
-
-    public string Clock12Hour()
-    {
-        // Debug.Log(GetHour());
-        int hour = Mathf.FloorToInt(GetHour());
-        int mins = Mathf.FloorToInt(GetMinutes());
-        string abbreviation = "AM";
-        
-        if (hour >= 12)
-        {
-            abbreviation = "PM";
-            hour -= 12;
-        }
-
-        if (hour == 0) hour = 12;
-
-        mins = mins / intervalNum % intervalNum;
-
-        if (mins == 1)
-        {
-            mins = intervalNum;
-            //Debug.Log(mins);
-            return hour.ToString("00") + ":" + mins.ToString() + " " + abbreviation;
-        }
-        return hour.ToString("00") + ":" + mins.ToString() + "0" + " " + abbreviation;
-    }
-
-    public void OnHourChanged()
-    {
-        
-    }
-
-    public void OnDayChanged()
-    {
-
     }
 
     IEnumerator Co_NewDay()
     {
         yield return new WaitForSeconds(realSecondsPerDay);
         Debug.Log("NEW DAY co");
-        totalTime = realSecondsPerDay / 3;
-        currentTime = 0;
+        hour = startHour;
+        Formula();
         onDayChanged.Invoke(dayCount);
         //TimeManager.instance.OnRespawn.Invoke();
         runningCoroutine=StartCoroutine(Co_NewDay());
+    }
+
+    public void Formula()
+    {
+        realSecondsPerDay = (numOfHoursAwake * minutesInHour) * oneMinToRealSeconds;
     }
 }

@@ -4,15 +4,24 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 
-
 public class CriticalMeterIncrease : UnityEvent<float> { }
 public class ToolUsed : UnityEvent<float> { }
 public class ToolCritUse : UnityEvent { }
+public class OnLongClick : UnityEvent { } 
 public class ToolCaster : MonoBehaviour
 {
     public Tool current_Tool;
     public bool canUse = true;
     private bool isCritFull = false;
+
+    private bool isPointerDown;
+    private float pointerDownTimer; // this can be changed
+    // public float requiredHoldTime;
+    private int chargeCounter;
+    
+
+    public OnLongClick onLongClick;
+
     public ToolUsed onToolUsed = new ToolUsed();
     public CriticalMeterIncrease onCriticalMeterIncrease = new CriticalMeterIncrease();
     public ToolCritUse onToolCritUse = new ToolCritUse();
@@ -52,34 +61,28 @@ public class ToolCaster : MonoBehaviour
             onToolUsed.Invoke(current_Tool.so_Tool.staminaCost);
             StartCoroutine(Co_Cooldown());
         }
-
     }
 
 
     private void Update()
-    {        
-        // Uses too much Stamina
-        /*if (Input.touchCount > 0)
+    {     
+        if (isPointerDown)
         {
-            Use();
+            pointerDownTimer += Time.deltaTime;            
+            if (pointerDownTimer >= current_Tool.so_Tool.chargeSpeedRate)
+            {
+                // Debug.Log("pointerDownTimer reached.");
+                if (onLongClick != null) onLongClick.Invoke();
+                Debug.Log("Charge: " + chargeCounter + "/" + current_Tool.so_Tool.maxToolCharge);
+                if (chargeCounter != current_Tool.so_Tool.maxToolCharge)
+                {
+                    chargeCounter++;
+                }
+                Reset();
+            }
         }
+    }   
 
-        //FOR TESTING PURPOSES
-        if (Input.GetMouseButtonDown(0))
-        {
-            Use();
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            current_Tool = ToolManager.instance.tools[0];
-            ToolManager.OnToolChanged.Invoke(current_Tool);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            current_Tool = ToolManager.instance.tools[1];
-            ToolManager.OnToolChanged.Invoke(current_Tool);
-        }*/
-    }
     public void DetectResourceNode() //TEMPORARY DETECTION, CHANGE AS YOU SEE FIT
     {
         Collider2D[] collider = Physics2D.OverlapCircleAll((Vector2)transform.position, 3f);
@@ -104,7 +107,6 @@ public class ToolCaster : MonoBehaviour
                             
                             if (current_Tool.craftLevel >= targetResourceNode.levelRequirement)
                             {
-                                
                                 onCriticalMeterIncrease.Invoke(current_Tool.so_Tool.maxSpecialPoints);
                             }
                         }
@@ -130,11 +132,7 @@ public class ToolCaster : MonoBehaviour
 
                 if (targetResourceNode)
                 {
-              
                     targetResourceNode.onInteract.Invoke(); //THIS IS IMPORTANT
-
-       
-
                 }
             }
         }
@@ -163,6 +161,25 @@ public class ToolCaster : MonoBehaviour
     }
 
     #region Buttons UI
+    public void OnPointerDown()
+    {
+        isPointerDown = true;
+        Debug.Log("[OnPointerDown] Charging...");
+    }
+
+    public void OnPointerUp()
+    {
+        Reset();
+        Debug.Log("[OnPointerUp] Charging done.");
+    }
+
+    private void Reset()
+    {
+        isPointerDown = false;
+        pointerDownTimer = 0;
+        // Invoke Tool Charge Use()
+    }
+
     public void OnUseButtonPressed()
     {
         Use();

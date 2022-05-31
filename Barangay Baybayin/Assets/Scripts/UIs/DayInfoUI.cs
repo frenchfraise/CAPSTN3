@@ -11,8 +11,7 @@ public class DayInfoUI : MonoBehaviour
     public bool fainted;
     public bool isFirstTime = true;
     public void DayEnd(int p_dayCount)
-    {
-        
+    {        
         if (!isFirstTime)
         {
             gameObject.SetActive(true);
