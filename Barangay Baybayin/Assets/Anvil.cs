@@ -14,4 +14,9 @@ public class Anvil : InteractibleObject
     {
         ToolManager.instance.tools[p_].CheckUpgradeCraftLevel(p_item);
     }
+
+    public void Temporary(GameObject p_)
+    {
+        p_.SetActive(false);
+    }
 }
