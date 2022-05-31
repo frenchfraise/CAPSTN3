@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f415a380d3dbc124e99577a74b26ca5d, type: 3}
   m_Name: Wood 1
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: f885705b5e45d334d90689c7c4551a48, type: 3}
+  icon: {fileID: 21300000, guid: b636995b69c06d9438d92b9fbe54cfa8, type: 3}

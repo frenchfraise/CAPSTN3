@@ -12,8 +12,18 @@ public class ToolHitSucceeded : UnityEvent { }
 
 public class SpecialUsed : UnityEvent { }
 
+public class OnLongClick : UnityEvent { }
 public class ToolCaster : MonoBehaviour
 {
+ 
+    private bool isPointerDown;
+    private float pointerDownTimer; // this can be changed
+    // public float requiredHoldTime;
+    private int chargeCounter;
+    
+
+    public OnLongClick onLongClick;
+
     [HideInInspector] public Tool current_Tool;
     private bool canUse = true;
     private bool canSwitch = true;
@@ -42,7 +52,8 @@ public class ToolCaster : MonoBehaviour
         ToolManager.onToolChanged.AddListener(OnToolChanged);
         onSpecialUsed.AddListener(OnSpecialUsed);
         OnToolChanged(ToolManager.instance.tools[0]);
-
+        canUse = true;
+        canSwitch = true;
     }
 
     public void OnDisable()
@@ -55,9 +66,6 @@ public class ToolCaster : MonoBehaviour
         ToolManager.onToolChanged.RemoveListener(OnToolChanged);
         onSpecialUsed.RemoveListener(OnSpecialUsed);
     }
-
-
-    #region SPECIAL
 
     public void OnSpecialUsed()
     {
@@ -90,15 +98,39 @@ public class ToolCaster : MonoBehaviour
         
     }
    
-    #endregion
+   
 
     public void OnToolChanged(Tool p_newTool)
     {
         current_Tool = p_newTool;
         StartCoroutine(Co_ToolSwitchCooldown());
-
     }
+    private void Update()
+    {     
+        if (isPointerDown)
+        {
+            pointerDownTimer += Time.deltaTime;            
+            if (pointerDownTimer >= current_Tool.so_Tool.chargeSpeedRate)
+            {
+                // Debug.Log("pointerDownTimer reached.");
+                if (onLongClick != null) onLongClick.Invoke();
+               
+                if (chargeCounter != current_Tool.so_Tool.maxToolCharge)
+                {
+                    chargeCounter++;
+                    Debug.Log("Charge: " + chargeCounter + "/" + current_Tool.so_Tool.maxToolCharge);
+                }
+                Reset();
+            }
+        }
+    }   
 
+    IEnumerator Co_Cooldown()
+    {
+
+        yield return new WaitForSeconds(current_Tool.so_Tool.useRate[current_Tool.craftLevel]);
+        canUse = true;
+    }
     public void UseTool()
     {
         if (canUse)
@@ -107,11 +139,10 @@ public class ToolCaster : MonoBehaviour
             if (targetResourceNode)
             {
                 targetResourceNode.OnHit.Invoke(current_Tool.so_Tool.useForResourceNode,
-                    current_Tool.craftLevel,
-                    current_Tool.so_Tool.damage[current_Tool.craftLevel],
-                    onToolHitSucceeded);
-                
-
+                   current_Tool.craftLevel,
+                   current_Tool.so_Tool.damage[current_Tool.craftLevel],
+                   onToolHitSucceeded);
+    
             }
             StartCoroutine(Co_ToolUseCooldown());
         }
@@ -134,15 +165,15 @@ public class ToolCaster : MonoBehaviour
 
         }
         return null;
+
     }
 
     public void ToolHitSuccess()
     {
-
         current_Tool.ModifyProficiencyAmount(current_Tool.so_Tool.proficiencyAmountReward[current_Tool.craftLevel]);
         current_Tool.ModifySpecialAmount(current_Tool.so_Tool.specialPointReward[current_Tool.craftLevel]); 
     }
-   
+
     IEnumerator Co_ToolUseCooldown()
     {
         canUse = false;
@@ -152,7 +183,6 @@ public class ToolCaster : MonoBehaviour
         canUse = true;
         onToolCanUseUpdated.Invoke(canUse);
     }
-
     IEnumerator Co_ToolSwitchCooldown()
     {
         canSwitch = false;
@@ -162,6 +192,28 @@ public class ToolCaster : MonoBehaviour
         canSwitch = true;
         onToolCanSwitchUpdated.Invoke(canSwitch);
     }
+
+
+    public void OnPointerDown()
+    {
+        isPointerDown = true;
+        Debug.Log("[OnPointerDown] Charging...");
+    }
+
+    public void OnPointerUp()
+    {
+        Reset();
+        Debug.Log("[OnPointerUp] Charging done.");
+    }
+
+    private void Reset()
+    {
+        isPointerDown = false;
+        pointerDownTimer = 0;
+        // Invoke Tool Charge Use()
+    }
+
+
 
 
 

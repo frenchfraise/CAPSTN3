@@ -15,7 +15,8 @@ public class ToolsUI : MonoBehaviour
         toolCaster.onToolCanUseUpdated.AddListener(CanUseUpdate);
         toolCaster.onToolCanSwitchUpdated.AddListener(CanSwitchUpdate);
         OnToolButtonPressed(0);
-
+        canUse = true;
+        canSwitch = true;
 
     }
 

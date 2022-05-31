@@ -16,8 +16,7 @@ public class DayInfoUI : MonoBehaviour
 
    
     public void DayEnd(int p_dayCount)
-    {
-        
+    {        
         if (!isFirstTime)
         {
             gameObject.SetActive(true);

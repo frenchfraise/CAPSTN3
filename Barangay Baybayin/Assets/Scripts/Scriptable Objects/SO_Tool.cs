@@ -22,6 +22,8 @@ public class SO_Tool : ScriptableObject
 
     public List<float> staminaCost;
 
+    public float chargeSpeedRate;
+    public float maxToolCharge;
     public int maxCraftLevel;
 
     public List<float> maxSpecialPoints;
