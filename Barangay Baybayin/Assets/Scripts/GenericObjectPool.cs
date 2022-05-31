@@ -31,8 +31,9 @@ public class GenericObjectPool : MonoBehaviour
             ,
             flexibleMaxAmount
             );
-    }
 
+    }
+  
     PoolableObject CreateObject()
     {
         var newObject = Instantiate(prefab);

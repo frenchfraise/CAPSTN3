@@ -9,28 +9,36 @@ public class ToolInfoUI : MonoBehaviour
 
     private void OnEnable()
     {
-        ToolManager.OnToolChanged.AddListener(ToolChanged);
-        ToolManager.OnExpIncrease.AddListener(genericBarUI.UpdateBar);
-        ToolManager.OnExpLevelIncrease.AddListener(UpdateLevel);
-        ToolManager.OnExpLevelExpIncrease.AddListener(genericBarUI.ResetBar);
+        ToolManager.onToolChanged.AddListener(ToolChanged);
+        ToolManager.onProficiencyAmountModified.AddListener(genericBarUI.UpdateBar);
+        ToolManager.onProficiencyLevelModified.AddListener(UpdateLevel);
+     
     }
     private void OnDisable()
     {
-        ToolManager.OnToolChanged.RemoveListener(ToolChanged);
-        ToolManager.OnExpIncrease.RemoveListener(genericBarUI.UpdateBar);
-        ToolManager.OnExpLevelIncrease.RemoveListener(UpdateLevel);
-        ToolManager.OnExpLevelExpIncrease.RemoveListener(genericBarUI.ResetBar);
+        ToolManager.onToolChanged.RemoveListener(ToolChanged);
+        ToolManager.onProficiencyAmountModified.RemoveListener(genericBarUI.UpdateBar);
+        ToolManager.onProficiencyLevelModified.RemoveListener(UpdateLevel);
+        
     }
 
     public void UpdateLevel(int p_level)
     {
         levelText.text = p_level.ToString();
-
+        genericBarUI.ResetBar(1,1);
     }
 
     public void ToolChanged(Tool p_tool)
     {
-        levelText.text = p_tool.expLevel.ToString();
-        genericBarUI.InstantUpdateBar(p_tool.expAmount,p_tool.so_Tool.maxExpAmount[p_tool.expLevel-1], p_tool.so_Tool.maxExpAmount[p_tool.expLevel - 1]);
+        levelText.text = p_tool.proficiencyLevel.ToString();
+        if (p_tool.so_Tool.maxProficiencyAmount.Count > 0)
+        {
+            genericBarUI.InstantUpdateBar(p_tool.proficiencyAmount, p_tool.so_Tool.maxProficiencyAmount[p_tool.proficiencyLevel - 1], p_tool.so_Tool.maxProficiencyAmount[p_tool.proficiencyLevel - 1]);
+
+        }
+        else
+        {
+            Debug.Log(p_tool.so_Tool.name + " IS MISSING maxProficiencyAmount OR proficiencyLevel");
+        }
     }
 }

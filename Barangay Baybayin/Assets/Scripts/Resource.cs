@@ -5,13 +5,13 @@ using TMPro;
 [System.Serializable]
 public class Resource
 {
-    public SO_Resource so_Resource;
+    public SO_Item so_Resource;
     public int amount;
-    [HideInInspector] public TMP_Text text;
+    [HideInInspector] public TMP_Text amountText;
 
-    public void UpdateText() //temporary
+    public void UpdateText()
     {
-        text.text = amount.ToString();
+        amountText.text = amount.ToString();
     }
 }
 

@@ -18,6 +18,6 @@ public class DigitalClock : MonoBehaviour
     void Update()
     {        
         //display.SetText(TimeManager.instance.Clock12Hour());
-        display.text = timeManager.Clock12Hour();
+        display.text = TimeManager.instance.Clock12Hour();
     }
 }

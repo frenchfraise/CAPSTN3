@@ -4,35 +4,38 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [System.Serializable]
-public class Damaged : UnityEvent<Health, int> { }
+public class HealthModify : UnityEvent<float> { }
 
 [System.Serializable]
-public class Test : UnityEvent<Health> { }
+public class HealthModified : UnityEvent<bool, float, float> { }
 
 [System.Serializable]
 public class Died : UnityEvent { }
 public class Health : MonoBehaviour
 {
-    public bool isAlive;
-    public float currentHealth;
-    public float maxHealth;
+    [HideInInspector] public HealthOverheadUI healthOverheadUI;
+    private bool isAlive;
+    private float currentHealth;
+    private float maxHealth;
 
-    public Test test = new Test();
-    public Damaged OnDamaged = new Damaged();
+    
+    public HealthModify onHealthModify = new HealthModify();
+    public HealthModified onHealthModified = new HealthModified();
+
     public Died OnDeath = new Died();
     private void OnEnable()
     {
         InitializeValues();
-        OnDamaged.AddListener(Damaged);
+        onHealthModify.AddListener(ModifyHealth);
         //OnDeath.AddListener(Death);
     }
 
 
     private void OnDisable()
     {
-        
 
-        OnDamaged.RemoveListener(Damaged);
+
+        onHealthModify.RemoveListener(ModifyHealth);
         //OnDeath.AddListener(Death);
         
     }
@@ -46,12 +49,13 @@ public class Health : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    public void Damaged(Health p_health, int value)
+    public void ModifyHealth(float p_modifier)
     {
-        currentHealth -= value;
-        test.Invoke(this);
+        currentHealth += p_modifier;
+        onHealthModified.Invoke(isAlive,currentHealth,maxHealth);
         CheckHealth();
     }
+   
 
     public void CheckHealth()
     {

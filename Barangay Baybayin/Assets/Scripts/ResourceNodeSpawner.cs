@@ -14,7 +14,7 @@ public class ResourceNodeSpawner : MonoBehaviour
     {
         if (TimeManager.instance)
         {
-            TimeManager.instance.onDayChanged.AddListener(Spawn);
+            TimeManager.onDayChanged.AddListener(Spawn);
         }
 
  
@@ -25,7 +25,7 @@ public class ResourceNodeSpawner : MonoBehaviour
 
         if (TimeManager.instance)
         {
-            TimeManager.instance.onDayChanged.RemoveListener(Spawn);
+            TimeManager.onDayChanged.RemoveListener(Spawn);
         }
 
     }

@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class Clock : MonoBehaviour
 {
-    public TimeManager timeManager;
     public Image nightBackground;
     public RectTransform hand;
 
@@ -15,12 +14,12 @@ public class Clock : MonoBehaviour
     void Start()
     {
         hand.localRotation = Quaternion.Euler(0, 0, 90);
-        nightBackground.fillAmount = timeManager.realSecondsPerNight / 2;
+        nightBackground.fillAmount = TimeManager.instance.realSecondsPerNight / 2;
     }
 
     // Update is called once per frame
     void Update()
     {
-        hand.localRotation = Quaternion.Euler(0, 0, 90 + hoursToDegrees * ((timeManager.GetHour() + TimeManager.hoursInDay - timeManager.sunriseHour) % TimeManager.hoursInDay));
+        hand.localRotation = Quaternion.Euler(0, 0, 90 + hoursToDegrees * ((TimeManager.instance.GetHour() + TimeManager.hoursInDay - TimeManager.instance.sunriseHour) % TimeManager.hoursInDay));
     }
 }

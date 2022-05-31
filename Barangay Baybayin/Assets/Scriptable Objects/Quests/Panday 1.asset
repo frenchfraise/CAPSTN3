@@ -12,14 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4c2f0828a94db54886d05067e7f6838, type: 3}
   m_Name: Panday 1
   m_EditorClassIdentifier: 
-  isActive: 0
+  questImage: {fileID: 21300004, guid: 90dd48d359e7f6c48a8e4ef1563869f4, type: 3}
   title: 
   description: 
-  reward: 0
+  reward: {fileID: 0}
   requirements:
-  - so_resource: {fileID: 11400000, guid: f662595db97075f47b3b225b693ecc61, type: 2}
-    amount: 1
-  questGoal:
-    goalType: 0
-    requirementAmount: 0
-    currentAmount: 0
+  - so_requirement: {fileID: 11400000, guid: 9ead17dd85ede874a926f4f276111f6d, type: 2}
+    isCompleted: 0

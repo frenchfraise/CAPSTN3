@@ -6,13 +6,31 @@ using UnityEngine.Events;
 public class LevelManager : MonoBehaviour
 {
 
-    public static LevelManager instance;
+    private static LevelManager _instance;
+    public static LevelManager instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = GameObject.FindObjectOfType<LevelManager>();
+            }
+
+            return _instance;
+
+        }
+    }
 
     private void Awake()
     {
-        if (instance == null)
+        if (_instance != null)
         {
-            instance = this;
+            Destroy(gameObject);
+        }
+        else
+        {
+            _instance = this;
+            DontDestroyOnLoad(gameObject);
         }
     }
     // Start is called before the first frame update

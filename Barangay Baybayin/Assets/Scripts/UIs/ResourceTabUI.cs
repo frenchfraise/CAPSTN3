@@ -23,7 +23,7 @@ public class ResourceTabUI : MonoBehaviour
             newResourceUI.transform.SetParent(container, false);
             newResourceUI.resourceNameText.text = currentResource.so_Resource.name.ToString();
             newResourceUI.resourceAmountText.text = currentResource.amount.ToString();
-            currentResource.text = newResourceUI.resourceAmountText;
+            currentResource.amountText = newResourceUI.resourceAmountText;
             i++;
             if (i >= p_resourceCategory.resources.Count)
             {

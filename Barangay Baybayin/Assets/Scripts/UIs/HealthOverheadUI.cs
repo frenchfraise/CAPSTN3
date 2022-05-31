@@ -49,9 +49,9 @@ public class HealthOverheadUI : PoolableObject
         transform.SetParent(p_healthBarPanel, false);
 
     }
-    public void OnHealthChanged(Health p_healthFill)
+    public void OnHealthChanged(bool p_isAlive, float p_currentHealth, float p_maxHealth)
     {
-        if (p_healthFill.isAlive)
+        if (p_isAlive)
         {
 
             if (!isRevealed)
@@ -63,7 +63,7 @@ public class HealthOverheadUI : PoolableObject
 
             }
 
-            fill = p_healthFill.currentHealth / p_healthFill.maxHealth;
+            fill = p_currentHealth / p_maxHealth;
             
           
             StartCoroutine(Co_Test());

@@ -18,22 +18,23 @@ public class PlayerManager : MonoBehaviour
 
         }
     }
-    public PlayerJoystick joystick;
+
     public Stamina stamina;
     public Bed bed;
-
+    public PlayerJoystick joystick;
     private void Awake()
     {
-        //if (_instance != null)
-        //{
-        //    Destroy(_instance);
-        //}
-        //else
-        //{
+        if (_instance != null)
+        {
+            //Destroy(gameObject);
+        }
+        else
+        {
             _instance = this;
-            //DontDestroyOnLoad(_instance);
-        //}
-        
+            DontDestroyOnLoad(gameObject);
+        }
     }
+
+  
 
 }

@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using TMPro;
+using UnityEngine.Events;
+
 public class UIManager : MonoBehaviour
 {
     private static UIManager _instance;
@@ -20,7 +22,6 @@ public class UIManager : MonoBehaviour
             return _instance;
         }
     }
-   
 
     public RectTransform overheadUI;
     public Image transitionUI;
@@ -32,8 +33,7 @@ public class UIManager : MonoBehaviour
     public Image toolUseImage;
     public GameObject overlayCanvas;
     public GameObject gameplayHUD;
-
-    public TMP_Text dayText;
+    public GameObject recipeUpgrade;
 
     public Coroutine runningCoroutine;
 
@@ -42,8 +42,23 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
-        _instance = this;
+        if (_instance != null)
+        {
+            //Destroy(gameObject);
+            
+        }
+        else
+        {
+            _instance = this;
+
+            DontDestroyOnLoad(gameObject);
+            
+        }
+
+      
     }
+
+  
 
     //TEMPORARY
     public static void TransitionFade(float p_opacity, bool p_isActiveOnEnd = true)
@@ -56,10 +71,10 @@ public class UIManager : MonoBehaviour
         UIManager.instance.transitionUI.gameObject.SetActive(true);
         Sequence fadeSequence = DOTween.Sequence();
         fadeSequence.Join(UIManager.instance.transitionUI.DOFade(p_opacity, 0.5f));
-        
+
         yield return fadeSequence.WaitForCompletion();
         UIManager.instance.transitionUI.gameObject.SetActive(p_isActiveOnEnd);
-           
+
     }
     public static void TransitionPreFadeAndPostFade(float p_preOpacity,
                                             float p_preTransitionTime,
@@ -89,7 +104,7 @@ public class UIManager : MonoBehaviour
         Sequence preSequence = DOTween.Sequence();
         UIManager.instance.transitionUI.gameObject.SetActive(true);
         preSequence.Join(UIManager.instance.transitionUI.DOFade(p_preOpacity, p_preTransitionTime));
-        
+
         yield return preSequence.WaitForCompletion();
 
         p_preAction?.Invoke();
@@ -97,7 +112,7 @@ public class UIManager : MonoBehaviour
         Sequence postSequence = DOTween.Sequence();
         postSequence.Join(UIManager.instance.transitionUI.DOFade(p_postOpacity, p_postTransitionTime));
         yield return postSequence.WaitForCompletion();
-        
+
         UIManager.instance.transitionUI.gameObject.SetActive(false);
         p_postAction?.Invoke();
     }

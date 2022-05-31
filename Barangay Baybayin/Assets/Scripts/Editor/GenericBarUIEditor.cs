@@ -1,162 +1,277 @@
 using UnityEditor;
 using UnityEngine;
 using System;
-
-
-[Flags]
-public enum EditorListOption
+using System.Collections;
+using System.Collections.Generic;
+using Unity.EditorCoroutines.Editor;
+public class TransitionsDataFoldout
 {
-    None = 0,
-    ListSize = 1,
-    ListLabel = 2,
-    ElementLabels = 4,
-    Buttons = 8,
-    Default = ListSize | ListLabel | ElementLabels,
-    NoElementLabels = ListSize | ListLabel,
-    All = Default | Buttons
+    public int transitionDatasSize;
+    // store which dialogue is foldout
+    public List<bool> transitionDatasFoldout = new List<bool>();
+    public List<TransitionType> transitionDatasTypes = new List<TransitionType>();
 }
-
-[CustomEditor(typeof(GenericBarUI))]
+//[CustomEditor(typeof(GenericBarUI))]
 public class GenericBarUIEditor : Editor
 {
 
+    //private SerializedProperty transitionsDataHolders;
+    //int transitionsDataHoldersSize;
+    //// store which dialogue is foldout
+    //private List<bool> transitionsDataHoldersFoldout = new List<bool>();
 
-    //public override void OnInspectorGUI()
+
+    //List<TransitionsDataFoldout> transitionDatasFoldouts = new List<TransitionsDataFoldout>();
+    //private void OnEnable()
     //{
-    //    base.OnInspectorGUI();
-    //    serializedObject.Update();
- 
-    //    GenericBarUIEditor.Show(serializedObject.FindProperty("transitionsDataHolders"), EditorListOption.Buttons);
-    //    GenericBarUIEditor.Show(serializedObject.FindProperty("transitionsDataHolders").FindPropertyRelative("transitionDatas")
-    //    , EditorListOption.Buttons) ;
-    //    serializedObject.ApplyModifiedProperties();
+    //    transitionsDataHolders = serializedObject.FindProperty("transitionsDataHolders");
+    //    for (var i = 0; i < transitionsDataHolders.arraySize; i++)
+    //    {
+    //        transitionsDataHoldersFoldout.Add(false);
+    //        transitionDatasFoldouts.Add(new TransitionsDataFoldout());
+    //    }
+    //    for (var i = 0; i < transitionsDataHolders.arraySize; i++)
+    //    {
+    //        var dialogue = transitionsDataHolders.GetArrayElementAtIndex(i);
+    //        var sentences = dialogue.FindPropertyRelative("transitionDatas");
+         
+    //        transitionDatasFoldouts[i].transitionDatasSize = sentences.arraySize;
+    //        for (var si = 0; si < transitionDatasFoldouts[i].transitionDatasSize; si++)
+    //        {
+    //            transitionDatasFoldouts[i].transitionDatasFoldout.Add(false);
+    //            transitionDatasFoldouts[i].transitionDatasTypes.Add(TransitionType.None);
+    //        }
+    //    }
 
-    //    GenericBarUI genericBarUI = (GenericBarUI)target;
- 
+
+        
+        
+
       
     //}
-
-    public static void Show(SerializedProperty list, EditorListOption options = EditorListOption.Default)
-    {
-        if (!list.isArray)
-        {
-            EditorGUILayout.HelpBox(list.name + " is neither an array nor a list!", MessageType.Error);
-            return;
-        }
-
-        bool
-            showListLabel = (options & EditorListOption.ListLabel) != 0,
-            showListSize = (options & EditorListOption.ListSize) != 0;
-
-        if (showListLabel)
-        {
-            EditorGUILayout.PropertyField(list);
-            EditorGUI.indentLevel += 1;
-        }
-        if (!showListLabel || list.isExpanded)
-        {
-            SerializedProperty size = list.FindPropertyRelative("Array.size");
-            if (showListSize)
-            {
-                EditorGUILayout.PropertyField(size);
-            }
-            if (size.hasMultipleDifferentValues)
-            {
-                EditorGUILayout.HelpBox("Not showing lists with different sizes.", MessageType.Info);
-            }
-            else
-            {
-                ShowElements(list, options);
-            }
-        }
-        if (showListLabel)
-        {
-            EditorGUI.indentLevel -= 1;
-        }
-    }
-
-    private static GUIContent
-    moveButtonContent = new GUIContent("\u21b4", "move down"),
-    duplicateButtonContent = new GUIContent("+", "duplicate"),
-    deleteButtonContent = new GUIContent("-", "delete"),
-    addButtonContent = new GUIContent("+", "add element");
-    private static void ShowElements(SerializedProperty list, EditorListOption options)
-    {
-        bool
-            showElementLabels = (options & EditorListOption.ElementLabels) != 0,
-            showButtons = (options & EditorListOption.Buttons) != 0;
-
-        for (int i = 0; i < list.arraySize; i++)
-        {
-            if (showButtons)
-            {
-                EditorGUILayout.BeginHorizontal();
-            }
-            if (showElementLabels)
-            {
-                EditorGUILayout.PropertyField(list.GetArrayElementAtIndex(i));
-            }
-            else
-            {
-                EditorGUILayout.PropertyField(list.GetArrayElementAtIndex(i), GUIContent.none);
-            }
-            if (showButtons)
-            {
-                ShowButtons(list, i);
-                EditorGUILayout.EndHorizontal();
-            }
-        }
-        if (showButtons && list.arraySize == 0 && GUILayout.Button(addButtonContent, EditorStyles.miniButton))
-        {
-            list.arraySize += 1;
-        }
-    }
-
-    private static GUILayoutOption miniButtonWidth = GUILayout.Width(20f);
-
-    private static void ShowButtons(SerializedProperty list, int index)
-    {
-        if (GUILayout.Button(moveButtonContent, EditorStyles.miniButtonLeft, miniButtonWidth))
-        {
-            list.MoveArrayElement(index, index + 1);
-        }
-        if (GUILayout.Button(duplicateButtonContent, EditorStyles.miniButtonMid, miniButtonWidth))
-        {
-            list.InsertArrayElementAtIndex(index);
-        }
-        if (GUILayout.Button(deleteButtonContent, EditorStyles.miniButtonRight, miniButtonWidth))
-        {
-            int oldSize = list.arraySize;
-            list.DeleteArrayElementAtIndex(index);
-            if (list.arraySize == oldSize)
-            {
-                list.DeleteArrayElementAtIndex(index);
-            }
-        }
-    }
-
-
-
-    //public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
+    //// The function that makes the custom editor work
+    //public override void OnInspectorGUI()
     //{
-    //    int oldIndentLevel = EditorGUI.indentLevel;
-    //    label = EditorGUI.BeginProperty(position, label, property);
-    //    Rect contentPosition = EditorGUI.PrefixLabel(position, label);
-    //    if (position.height > 16f)
+    //    serializedObject.Update(); // Update list
+    //    var color = GUI.color;
+
+    //    var realBarUI = serializedObject.FindProperty("realBarUI");
+    //    EditorGUILayout.PropertyField(realBarUI, new GUIContent("realBarUI"));
+
+    //    var ghostBarUI = serializedObject.FindProperty("ghostBarUI");
+    //    EditorGUILayout.PropertyField(ghostBarUI, new GUIContent("ghostBarUI"));
+
+    //    var restrictedBarUI = serializedObject.FindProperty("restrictedBarUI");
+    //    EditorGUILayout.PropertyField(restrictedBarUI, new GUIContent("restrictedBarUI"));
+
+    //    EditorGUI.BeginChangeCheck();
+       
+    //    transitionsDataHoldersSize = EditorGUILayout.IntField("Transitions Data Holders Size", transitionsDataHolders.arraySize);
+    //    transitionsDataHolders.arraySize = transitionsDataHoldersSize;
+
+    //    if (EditorGUI.EndChangeCheck())
     //    {
-    //        position.height = 16f;
-    //        EditorGUI.indentLevel += 1;
-    //        contentPosition = EditorGUI.IndentedRect(position);
-    //        contentPosition.y += 18f;
+    //        transitionsDataHoldersFoldout.Clear();
+     
+
+    //        for (var i = 0; i < transitionsDataHolders.arraySize; i++)
+    //        {
+    //            transitionsDataHoldersFoldout.Add(false);
+
+    //        }
+
+    //        serializedObject.ApplyModifiedProperties();
+    //        return;
     //    }
-    //    contentPosition.width *= 0.75f;
-    //    EditorGUI.indentLevel = 0;
-    //    EditorGUI.PropertyField(contentPosition, property.FindPropertyRelative("position"), GUIContent.none);
-    //    contentPosition.x += contentPosition.width;
-    //    contentPosition.width /= 3f;
-    //    EditorGUIUtility.labelWidth = 14f;
-    //    EditorGUI.PropertyField(contentPosition, property.FindPropertyRelative("color"), new GUIContent("C"));
-    //    EditorGUI.EndProperty();
-    //    EditorGUI.indentLevel = oldIndentLevel;
+
+    //    for (var i = 0; i < transitionsDataHolders.arraySize; i++)
+    //    {
+    //        var transitionsDataHolders = this.transitionsDataHolders.GetArrayElementAtIndex(i);
+
+    //        transitionsDataHoldersFoldout[i] = EditorGUILayout.Foldout(transitionsDataHoldersFoldout[i], "Transitions Data Holder " + i);
+
+    //        // make the next fields look nested below the before one
+    //        EditorGUI.indentLevel++;
+
+    //        if (transitionsDataHoldersFoldout[i])
+    //        {
+    //            //var name = dialogue.FindPropertyRelative("TEST");
+    //            var transitionsDataHoldersValues = transitionsDataHolders.FindPropertyRelative("transitionDatas");
+
+
+    //            //if (string.IsNullOrWhiteSpace(name.stringValue)) GUI.color = Color.yellow;
+    //            GUI.color = color;
+                
+              
+
+    //            //TEMMP
+    //            EditorGUI.BeginChangeCheck();
+
+
+    //            transitionDatasFoldouts[i].transitionDatasSize = EditorGUILayout.IntField("Transition Datas Size", transitionsDataHoldersValues.arraySize);
+    //            transitionsDataHoldersValues.arraySize = transitionDatasFoldouts[i].transitionDatasSize;
+
+    //            if (EditorGUI.EndChangeCheck())
+    //            {
+    //                transitionDatasFoldouts[i].transitionDatasFoldout.Clear();
+    //                transitionDatasFoldouts[i].transitionDatasTypes.Clear();
+
+    //                for (var xi = 0; xi < transitionsDataHoldersValues.arraySize; xi++)
+    //                {
+
+    //                    transitionDatasFoldouts[i].transitionDatasFoldout.Add(false);
+    //                    transitionDatasFoldouts[i].transitionDatasTypes.Add(TransitionType.None);
+    //                }
+
+    //                transitionsDataHoldersValues.serializedObject.ApplyModifiedProperties();// serializedObject.ApplyModifiedProperties();
+    //                return;
+    //            }
+               
+
+    //            //TEMP
+
+    //            // make the next fields look nested below the before one
+    //            EditorGUI.indentLevel++;
+
+    //            SerializedObject ss = transitionsDataHoldersValues.serializedObject;
+    //            ss.Update(); // Update list
+               
+
+    //            for (var s = 0; s < transitionsDataHoldersValues.arraySize; s++)
+    //            {
+
+    //                transitionDatasFoldouts[i].transitionDatasFoldout[s] = EditorGUILayout.Foldout(transitionDatasFoldouts[i].transitionDatasFoldout[s], "Transitions Data " + s);
+    //                if (transitionDatasFoldouts[i].transitionDatasFoldout[s])
+    //                {
+    //                    SerializedProperty transitionDatasValues = transitionsDataHoldersValues.GetArrayElementAtIndex(s);
+    //                    //if (string.IsNullOrWhiteSpace(sentence.stringValue)) GUI.color = Color.yellow;
+                       
+             
+    //                    var bar = transitionDatasValues.FindPropertyRelative("bar");
+
+    //                    EditorGUILayout.PropertyField(bar, new GUIContent("bar"));
+    //                    SerializedProperty transitionType = transitionDatasValues.FindPropertyRelative("transitionType");
+    //                    // Switch statement to handle what happens for each category
+    //                    // transitionType.enumValueIndex = (int)(TransitionType)EditorGUILayout.EnumPopup("Transition Type",
+    //                    //     (TransitionType)Enum.GetValues(typeof(TransitionType)).GetValue(transitionType.enumValueIndex));
+    //                    transitionDatasFoldouts[i].transitionDatasTypes[s] = (TransitionType)EditorGUILayout.EnumPopup("Transition Type", transitionDatasFoldouts[i].transitionDatasTypes[s]);
+
+    //                    Debug.Log(transitionDatasFoldouts[i].transitionDatasTypes[s]);
+    //                    GenericBarUI g = (GenericBarUI)target;
+    //                    serializedObject.ApplyModifiedProperties();
+    //                  //  bool proceed = false;
+                   
+    //                    //proceed = g.test(i,s, (int)transitionDatasFoldouts[i].transitionDatasTypes[s]);
+    //                    serializedObject.ApplyModifiedProperties();
+    //                    EditorCoroutineUtility.StartCoroutine(DPopUp(true, (int)transitionDatasFoldouts[i].transitionDatasTypes[s], transitionsDataHoldersValues.GetArrayElementAtIndex(s)), this);
+                        
+    //                    GUI.color = color;
+    //                }
+    //            }
+    //            EditorGUI.indentLevel--;
+    //        }
+
+    //        EditorGUI.indentLevel--;
+    //    }
+
+    //    serializedObject.ApplyModifiedProperties();
     //}
+    //IEnumerator DPopUp(bool p_proceed,int p_t, SerializedProperty p_r)
+    //{
+    //    yield return new WaitUntil(() => p_proceed == true);
+    //    //Debug.Log(p_proceed);
+    //    switch (p_t)
+    //    {
+    //        case 0:
+
+    //            break;
+    //        case 1:
+    //           // Debug.Log("RAAA");
+    //            InstantColorData(p_r);
+    //            break;
+
+    //        case 2:
+
+    //            ColorTransitionData(p_r);
+    //            break;
+
+    //        case 3:
+    //            FadeTransitionData(p_r);
+    //            break;
+
+    //        case 4:
+    //            FillTransitionData(p_r);
+    //            break;
+    //    }
+    //}
+    //void DoTweenTransitionData(SerializedProperty p_serializedObject)
+    //{
+    //    var bar = p_serializedObject.FindPropertyRelative("joinToNextTransition");
+
+    //    EditorGUILayout.PropertyField(bar, new GUIContent("joinToNextTransition"));
+
+    //    var bard = p_serializedObject.FindPropertyRelative("waitToFinish");
+
+    //    EditorGUILayout.PropertyField(bard, new GUIContent("waitToFinish"));
+
+    //    var barr = p_serializedObject.FindPropertyRelative("delayTimeToNextTransition");
+
+    //    EditorGUILayout.PropertyField(bar, new GUIContent("delayTimeToNextTransition"));
+
+
+    //}
+    //void InstantColorData(SerializedProperty p_serializedObject)
+    //{
+    //    EditorGUILayout.ColorField("Amount", p_serializedObject.FindPropertyRelative("color").colorValue);
+    //    EditorGUILayout.PropertyField(p_serializedObject.FindPropertyRelative("transitionTime"));
+
+    //    //EditorGUILayout.ColorField("Amount", p_serializedObject.FindPropertyRelative("color").colorValue);
+
+    //}
+
+    //void ColorTransitionData(SerializedProperty p_serializedObject)
+    //{
+   
+    //    DoTweenTransitionData(p_serializedObject);
+
+    //    EditorGUILayout.ColorField("Amount", p_serializedObject.FindPropertyRelative("color").colorValue);
+    //    EditorGUILayout.PropertyField(p_serializedObject.FindPropertyRelative("transitionTime"));
+    //    //// Store the hasMagic bool as a serializedProperty so we can access it
+    //    //SerializedProperty hasMagicProperty = serializedObject.FindProperty("hasMagic");
+
+    //    //// Draw a property for the hasMagic bool
+    //    //EditorGUILayout.PropertyField(hasMagicProperty);
+
+    //    //// Check if hasMagic is true
+    //    //if (hasMagicProperty.boolValue)
+    //    //{
+    //    //    EditorGUILayout.PropertyField(serializedObject.FindProperty("mana"));
+    //    //    EditorGUILayout.PropertyField(serializedObject.FindProperty("magicType"));
+    //    //    EditorGUILayout.PropertyField(serializedObject.FindProperty("magicDamage"));
+    //    //}
+
+
+    //}
+
+    //void FadeTransitionData(SerializedProperty p_serializedObject)
+    //{
+
+    //    DoTweenTransitionData(p_serializedObject);
+
+    //    EditorGUILayout.PropertyField(p_serializedObject.FindPropertyRelative("amount"));
+    //    EditorGUILayout.PropertyField(p_serializedObject.FindPropertyRelative("transitionTime"));
+
+    //}
+
+    //void FillTransitionData(SerializedProperty p_serializedObject)
+    //{
+
+    //    DoTweenTransitionData(p_serializedObject);
+
+    //    EditorGUILayout.ColorField("Amount", p_serializedObject.FindPropertyRelative("color").colorValue);
+    //    EditorGUILayout.PropertyField(p_serializedObject.FindPropertyRelative("transitionTime"));
+
+    //}
+
+   
 }

@@ -7,6 +7,7 @@ using DG.Tweening;
 
 public class RoomInfoUI : MonoBehaviour
 {
+
     public GameObject roomNameGO;
     public TMP_Text roomDescriptionText;
     public TMP_Text roomNameText;
@@ -15,15 +16,16 @@ public class RoomInfoUI : MonoBehaviour
 
     public ResourceDropUI resourceDropUIPrefab;
 
+  
     public void RoomEntered(string p_roomName, 
         string p_roomDescription, 
         List<ResourceNodeDrop> p_availableResourceNodeDrops, 
         Vector3 p_cameraPos)
     {
         gameObject.SetActive(true);
-        StartCoroutine(Co_Test(p_roomName, p_roomDescription, p_availableResourceNodeDrops, p_cameraPos));
+        StartCoroutine(Co_RoomInfoUITransition(p_roomName, p_roomDescription, p_availableResourceNodeDrops, p_cameraPos));
     }
-    IEnumerator Co_Test(string p_roomName, string p_roomDescription, List<ResourceNodeDrop> p_availableResourceNodeDrops, Vector3 p_cameraPos)
+    IEnumerator Co_RoomInfoUITransition(string p_roomName, string p_roomDescription, List<ResourceNodeDrop> p_availableResourceNodeDrops, Vector3 p_cameraPos)
     {
         //Clear resources // object pool this
         PlayerManager.instance.joystick.enabled = false;
@@ -59,8 +61,8 @@ public class RoomInfoUI : MonoBehaviour
                 {
                     ResourceDrop resourceDrop = resourceNodeDrop.resourceNode.resourceDrops[si];
                     ResourceDropUI newResourceDropUI = Instantiate(resourceDropUIPrefab);
-                    newResourceDropUI.resourceNameText.text = resourceDrop.so_Resource.name;
-                    newResourceDropUI.resourceIcon.sprite = resourceDrop.so_Resource.icon;
+                    newResourceDropUI.resourceNameText.text = resourceDrop.so_Item.name;
+                    newResourceDropUI.resourceIcon.sprite = resourceDrop.so_Item.icon;
                     newResourceDropUI.GetComponent<RectTransform>().SetParent(availableResourcesContainer);
                 }
             }

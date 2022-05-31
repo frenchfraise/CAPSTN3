@@ -6,10 +6,15 @@ using TMPro;
 using DG.Tweening;
 public class DayInfoUI : MonoBehaviour
 {
+
+    public TMP_Text dayText; //make this action
+
     public TMP_Text dayCountText;
     public TMP_Text conditionsText;
-    public bool fainted;
-    public bool isFirstTime = true;
+    private bool fainted;
+    private bool isFirstTime = true;
+
+   
     public void DayEnd(int p_dayCount)
     {
         
@@ -51,6 +56,7 @@ public class DayInfoUI : MonoBehaviour
 
 
         PlayerManager.instance.stamina.transform.position = PlayerManager.instance.bed.transform.position;
+        UIManager.instance.recipeUpgrade.SetActive(false);
         CameraManager.instance.onCameraMoved.Invoke(new Vector3(0, 0, -10));
         Sequence trt = DOTween.Sequence();
         trt.Join(conditionsText.DOFade(0f, 0.75f));
@@ -60,7 +66,7 @@ public class DayInfoUI : MonoBehaviour
 
         conditionsText.text = "STARTS";
         dayCountText.text = "DAY " + (p_dayCount + 1).ToString();
-        UIManager.instance.dayText.text = "DAY " + (p_dayCount + 1).ToString();
+        dayText.text = "DAY " + (p_dayCount + 1).ToString();
         Sequence t = DOTween.Sequence();
         t.Join(conditionsText.DOFade(1f, 0.75f));
         t.Join(dayCountText.DOFade(1f, 0.75f));
@@ -90,7 +96,7 @@ public class DayInfoUI : MonoBehaviour
         Debug.Log("FAINTED");
         conditionsText.text = "YOU FAINTED";
         dayCountText.text = "DAY " + (p_dayCount).ToString();
-        UIManager.instance.dayText.text = "DAY " + (p_dayCount + 1).ToString();
+        dayText.text = "DAY " + (p_dayCount + 1).ToString();
 
         UIManager.TransitionFade(1);
         yield return new WaitForSeconds(0.5f);
@@ -99,7 +105,7 @@ public class DayInfoUI : MonoBehaviour
         tr.Join(dayCountText.DOFade(1f, 0.75f));
         yield return tr.WaitForCompletion();
         yield return new WaitForSeconds(1f);
-
+        UIManager.instance.recipeUpgrade.SetActive(false);
         PlayerManager.instance.stamina.transform.position = PlayerManager.instance.bed.transform.position;
         CameraManager.instance.onCameraMoved.Invoke(new Vector3(0,0,-10));
         Sequence trt = DOTween.Sequence();

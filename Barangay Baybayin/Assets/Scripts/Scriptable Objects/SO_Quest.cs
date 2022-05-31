@@ -4,20 +4,18 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Quest Scriptable Object", menuName = "Scriptable Objects/Quest")]
 public class SO_Quest : ScriptableObject
 {
-    public bool isActive;
 
+    public Sprite questImage;
     public string title;
     public string description;
-    public int reward;
+    public SO_Item reward; // turn this to item
     public List<QuestRequirement> requirements = new List<QuestRequirement>();
-
-    public QuestGoal questGoal;
 }
 
 
 [System.Serializable]
 public class QuestRequirement
 {
-    public SO_Resource so_resource;
-    public int amount;
+    public SO_QuestRequirement so_requirement;
+    public bool isCompleted;
 }

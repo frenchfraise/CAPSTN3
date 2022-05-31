@@ -8,16 +8,26 @@ using UnityEngine.UI;
 public class SO_Tool : ScriptableObject
 {
     public SO_ResourceNode useForResourceNode;
-    public Sprite toolImage;
-    public float useRate;
 
-    public int damage;
+    public Sprite lockedFrame;
+    public Sprite lockedIcon;
+    public Sprite unlockedFrame;
+    public Sprite unlockedIcon;
+    public Sprite equippedFrame;
+    public Sprite equippedIcon;
 
-    public float staminaCost;
+    public List<float> useRate;
+
+    public List<int> damage;
+
+    public List<float> staminaCost;
 
     public int maxCraftLevel;
 
-    public float maxSpecialPoints;
-    public List<float> maxExpAmount;
-    public float expUseReward;
+    public List<float> maxSpecialPoints;
+    public List<float> specialPointReward;
+
+    public List<float> maxProficiencyAmount;
+    public List<float> proficiencyAmountReward;
+
 }

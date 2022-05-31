@@ -2,26 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-[System.Serializable]
+
 public class StaminaDecrease : UnityEvent<float,float> { }
-[System.Serializable]
 public class StaminaDepleted : UnityEvent{ }
 public class Stamina : MonoBehaviour
 {
     [SerializeField] private GenericBarUI genericBarUI;
-    [SerializeField] private float currentStamina;
-    [SerializeField] private float staminaPenalty;
+
+    private float currentStamina;
     private float currentMaxStamina;
     [SerializeField] private float maxStamina;
+
+    [SerializeField] private float staminaFatiguePenalty;
+    [SerializeField] private float staminaFatigueRecovery; // not implemented
+
     private bool isPenalized = false;
 
     public StaminaDecrease OnStaminaModified = new StaminaDecrease();
     public StaminaDepleted onStaminaDepleted = new StaminaDepleted();
+
+   
+   
     private void OnEnable()
     {
         OnStaminaModified.AddListener(genericBarUI.UpdateBar);
         onStaminaDepleted.AddListener(PenalizeStamina);
-        TimeManager.instance.onDayChanged.AddListener(RegenerateStamina);
+        TimeManager.onDayChanged.AddListener(RegenerateStamina);
         currentMaxStamina = maxStamina;
         genericBarUI.InstantUpdateBar(currentStamina, currentMaxStamina, maxStamina);
     }
@@ -32,14 +38,14 @@ public class Stamina : MonoBehaviour
         onStaminaDepleted.RemoveListener(PenalizeStamina);
         if (TimeManager.instance)
         {
-            TimeManager.instance.onDayChanged.RemoveListener(RegenerateStamina);
+            TimeManager.onDayChanged.RemoveListener(RegenerateStamina);
         }
         
     }
 
     public void PenalizeStamina()
     {
-        currentMaxStamina = currentMaxStamina - staminaPenalty;
+        currentMaxStamina = currentMaxStamina - staminaFatiguePenalty;
         isPenalized = true;
         RegenerateStamina(1);
     }
@@ -53,7 +59,7 @@ public class Stamina : MonoBehaviour
         {
             if (currentMaxStamina < maxStamina)
             {
-                currentMaxStamina = currentMaxStamina + staminaPenalty;
+                currentMaxStamina = currentMaxStamina + staminaFatiguePenalty;
             }
             if (currentMaxStamina > maxStamina)
             {

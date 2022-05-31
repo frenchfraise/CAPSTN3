@@ -6,11 +6,32 @@ using UnityEngine.Pool;
 
 public class ObjectPoolManager : MonoBehaviour
 {
-    public static ObjectPoolManager instance;
-    public List<GenericObjectPool> pools = new List<GenericObjectPool>();
+    private static ObjectPoolManager _instance;
+    public static ObjectPoolManager instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = GameObject.FindObjectOfType<ObjectPoolManager>();
+            }
+
+            return _instance;
+
+        }
+    }
+    [HideInInspector] public List<GenericObjectPool> pools = new List<GenericObjectPool>();
     private void Awake()
     {
-        instance = this;
+        if (_instance != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            _instance = this;
+           
+        }
         foreach (GenericObjectPool pool in transform.GetComponentsInChildren(typeof(GenericObjectPool)))
         {
             pools.Add(pool);

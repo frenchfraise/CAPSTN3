@@ -4,13 +4,18 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Pool;
 
-public class ResourceNodeHit : UnityEvent<Tool> { }
+public class ResourceNodeHit : UnityEvent<SO_ResourceNode , int , int, UnityEvent > { }
 public class ResourceNode : PoolableObject
 {
    
     [SerializeField] private HealthOverheadUI healthOverheadUIPrefab;
     private HealthOverheadUI healthOverheadUI;
     public SO_ResourceNode so_ResourceNode;
+
+    [Header("Item")]
+    public Item itemPrefab;
+
+
 
     public int levelRequirement;
 
@@ -27,19 +32,10 @@ public class ResourceNode : PoolableObject
 
     private void Start()
     {
-   
         Health health = GetComponent<Health>();
         health.SetValues(maxHealth);
-
-        //OnHit.AddListener(health.OnDamaged);
-  
-        
         health.enabled = true;
         
-
-
-
-
     }
 
    
@@ -52,10 +48,9 @@ public class ResourceNode : PoolableObject
 
         PoolableObject healthOverheadUIObject = ObjectPoolManager.GetPool(healthOverheadUIPrefab).pool.Get();
         healthOverheadUI = healthOverheadUIObject.GetComponent<HealthOverheadUI>();
-        //GameObject healthOverheadUIGO = Instantiate(healthOverheadUIPrefab) as GameObject;
-        //HealthOverheadUI healthOverheadUI = healthOverheadUIGO.GetComponent<HealthOverheadUI>();
+  
         healthOverheadUI.SetHealthBarData(transform, UIManager.instance.overheadUI);
-        health.test.AddListener(healthOverheadUI.OnHealthChanged);
+        health.onHealthModified.AddListener(healthOverheadUI.OnHealthChanged);
         health.OnDeath.AddListener(healthOverheadUI.OnHealthDied);
 
         OnHit.AddListener(Hit);
@@ -67,28 +62,27 @@ public class ResourceNode : PoolableObject
         health.OnDeath.RemoveListener(RewardResource);
         health.OnDeath.RemoveListener(Died);
 
-        //GameObject healthOverheadUIGO = Instantiate(healthOverheadUIPrefab) as GameObject;
-        //HealthOverheadUI healthOverheadUI = healthOverheadUIGO.GetComponent<HealthOverheadUI>();
-      
-        health.test.RemoveListener(healthOverheadUI.OnHealthChanged);
+        health.onHealthModified.RemoveListener(healthOverheadUI.OnHealthChanged);
         health.OnDeath.RemoveListener(healthOverheadUI.OnHealthDied);
 
         OnHit.RemoveListener(Hit);
     }
 
-    public void Hit(Tool p_tool) // replace string class to tool class when crates
+    public void Hit( SO_ResourceNode p_useForResourceNode,int p_craftLevel, int p_currentDamage, UnityEvent p_functionCallback) 
     {
-
-        if (p_tool.so_Tool.useForResourceNode == so_ResourceNode)
-        {            
-            if (p_tool.craftLevel >= levelRequirement)
-            {                
-                Health health = GetComponent<Health>(); //temp               
-                Debug.Log("Damage: " + p_tool.currentDamage);
-                health.OnDamaged.Invoke(health, p_tool.currentDamage);                
-                p_tool.AddXP(p_tool.so_Tool.expUseReward);
-                //StatManager.instance.AddXP(p_tool.so_Tool.xpUseReward);
-                //Debug.Log("[Hit] " + p_tool.so_Tool.xpUseReward + " XP granted...");
+        //Debug.Log("1 " + p_useForResourceNode + " - " + p_craftLevel + " - " + p_currentDamage + " - ");
+        if (p_useForResourceNode == so_ResourceNode)
+        {
+            
+            if (p_craftLevel >= levelRequirement)
+            {
+                
+                Health health = GetComponent<Health>();         
+     
+                health.onHealthModify.Invoke(-p_currentDamage);                
+          
+                p_functionCallback.Invoke();
+        
             }
         }
     }
@@ -99,12 +93,20 @@ public class ResourceNode : PoolableObject
         
         ResourceDrop chosenResourceDrop = resourceDrops[chosenIndex];
         rewardAmount = Random.Range(chosenResourceDrop.minAmount, chosenResourceDrop.maxAmount);
-        InventoryManager.AddResource(chosenResourceDrop.so_Resource, rewardAmount);
+        for (int i=0; i<rewardAmount; i++)
+        {
+            Item newItem = Instantiate(itemPrefab);
+            
+            newItem.transform.position = (Vector2) transform.position;
+            newItem.startPosition = (Vector2) transform.position;
+            newItem.so_Item = chosenResourceDrop.so_Item;
+            newItem.GetComponent<SpriteRenderer>().sprite = chosenResourceDrop.so_Item.icon;
+        }
+        
     }
 
     public void Died()
     {
-  
         genericObjectPool.pool.Release(this);
     }
 }

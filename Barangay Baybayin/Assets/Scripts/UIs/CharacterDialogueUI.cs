@@ -10,19 +10,18 @@ using System;
 public class CharacterDialogueUI : MonoBehaviour
 {
 
-    //[HideInInspector] 
+    [HideInInspector] 
     public SO_Dialogues currentSO_Dialogues;
     [SerializeField] private int currentDialogueIndex;
     [SerializeField] private TMP_Text characterNameText;
     [SerializeField] private TMP_Text dialogueText;
     [SerializeField] private Image avatarImage;
+ 
    
     public void OnCharacterSpokenTo(SO_Dialogues p_SO_Dialogues)
     {
         currentSO_Dialogues = p_SO_Dialogues;
         UIManager.TransitionPreFadeAndPostFade(1,0.5f,1, 0, 0.5f, OnOpenCharacterDialogueUI);
-        
-     
 
     }
 
@@ -103,6 +102,7 @@ public class CharacterDialogueUI : MonoBehaviour
 
     public void OnNextButtonUIPressed()
     {
+    
         if (currentDialogueIndex + 1 < currentSO_Dialogues.dialogues.Count)
         {
             currentDialogueIndex++;

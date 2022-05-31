@@ -101,9 +101,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthOverheadUIPrefab: {fileID: 6343993756075633143, guid: 31bae4ae65cd77d47b8492b2382b463f, type: 3}
   so_ResourceNode: {fileID: 11400000, guid: 3f913e9b960e0334aa758fe91eececfb, type: 2}
+  itemPrefab: {fileID: 8436199365745860972, guid: 2bf34b5e8f26c294d8ba4e3060dded9a, type: 3}
   levelRequirement: 1
   resourceDrops:
-  - so_Resource: {fileID: 11400000, guid: f662595db97075f47b3b225b693ecc61, type: 2}
+  - so_Item: {fileID: 11400000, guid: a23150ace6c99194986348f059adf4b5, type: 2}
     chance: 100
     minAmount: 1
     maxAmount: 5
@@ -122,13 +123,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ed164d357bbfa14ab67b45131726ce0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isAlive: 0
-  currentHealth: 0
-  maxHealth: 0
-  test:
+  healthOverheadUI: {fileID: 0}
+  onHealthModify:
     m_PersistentCalls:
       m_Calls: []
-  OnDamaged:
+  onHealthModified:
     m_PersistentCalls:
       m_Calls: []
   OnDeath:

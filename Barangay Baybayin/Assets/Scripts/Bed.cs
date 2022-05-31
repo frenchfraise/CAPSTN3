@@ -8,6 +8,7 @@ public class Bed : InteractibleObject
 {
     public OnBedInteract onBedInteracted = new OnBedInteract();
 
+   
     protected override void OnEnable()
     {
         base.OnEnable();

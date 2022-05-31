@@ -6,14 +6,34 @@ using UnityEngine.Events;
 public class OnCameraMoved : UnityEvent<Vector3> { }
 public class CameraManager : MonoBehaviour
 {
-    public static CameraManager instance;
+    private static CameraManager _instance;
+    public static CameraManager instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = GameObject.FindObjectOfType<CameraManager>();
+            }
+
+            return _instance;
+        }
+    }
     public Camera worldCamera;
     public Camera uiCamera;
     public OnCameraMoved onCameraMoved = new OnCameraMoved();
 
     private void Awake()
     {
-        instance = this;
+        if (_instance != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            _instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
     }
 
     private void OnEnable()

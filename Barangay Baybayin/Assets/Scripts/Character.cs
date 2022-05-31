@@ -2,36 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-[System.Serializable]
-public class CharacterData
-{
-    public SO_Dialogues initialSO_Dialogues; //first time talk
-    public SO_Dialogues questInProgressSO_Dialogues; //first time talk//add variable for lines if quest isnt compelted yet
-    public SO_Dialogues questCompleteSO_Dialogues; //first time talk
-    public SO_Quest quest;
-    
-}
+
 public class OnBedInteracted : UnityEvent<SO_Dialogues> { }
 public class Character : InteractibleObject
 {
-    public List<CharacterData> characterDatas = new List<CharacterData>();
+    private CharacterDialogueUI characterDialogueUI;
+    [SerializeField] private SO_StoryLine so_StoryLine;
     private bool isFirstTime = true;
-    public int currentCharacterDataIndex;
+    private int currentCharacterDataIndex;
     public OnBedInteracted onCharacterSpokenTo = new OnBedInteracted();
-
+    
     protected override void OnEnable()
     {
         base.OnEnable();
-        onCharacterSpokenTo.AddListener(UIManager.instance.characterDialogueUI.OnCharacterSpokenTo);
+        characterDialogueUI = UIManager.instance.characterDialogueUI ? UIManager.instance.characterDialogueUI
+          : FindObjectOfType<CharacterDialogueUI>();
+        onCharacterSpokenTo.AddListener(characterDialogueUI.OnCharacterSpokenTo); 
+        
+        
 
     }
     protected override void OnDisable()
     {
         base.OnDisable();
-        if (UIManager.instance)
-        {
-            onCharacterSpokenTo.RemoveListener(UIManager.instance.characterDialogueUI.OnCharacterSpokenTo);
-        }
+        
+        onCharacterSpokenTo.RemoveListener(characterDialogueUI.OnCharacterSpokenTo);
+        
         
 
     }
@@ -41,8 +37,9 @@ public class Character : InteractibleObject
         isQuestCompleted = CheckIfQuestComplete();
         if (isQuestCompleted)
         {
+            
+            onCharacterSpokenTo.Invoke(so_StoryLine.questLines[currentCharacterDataIndex].questCompleteSO_Dialogues);
             currentCharacterDataIndex++;
-            onCharacterSpokenTo.Invoke(characterDatas[currentCharacterDataIndex].questCompleteSO_Dialogues);
             isFirstTime = true;
         }
         else
@@ -50,12 +47,12 @@ public class Character : InteractibleObject
             if (isFirstTime)
             {
                 isFirstTime = false;
-                onCharacterSpokenTo.Invoke(characterDatas[currentCharacterDataIndex].initialSO_Dialogues);
+                onCharacterSpokenTo.Invoke(so_StoryLine.questLines[currentCharacterDataIndex].initialSO_Dialogues);
 
             }
             else
             {
-                onCharacterSpokenTo.Invoke(characterDatas[currentCharacterDataIndex].questInProgressSO_Dialogues);
+                onCharacterSpokenTo.Invoke(so_StoryLine.questLines[currentCharacterDataIndex].questInProgressSO_Dialogues);
             }
         }
         
@@ -64,39 +61,39 @@ public class Character : InteractibleObject
 
     public bool CheckIfQuestComplete()
     {
-        SO_Quest currentQuest = characterDatas[currentCharacterDataIndex].quest;
+        SO_Quest currentQuest = so_StoryLine.questLines[currentCharacterDataIndex].quest;
         int questResourcesFound = 0;
+        //if (currentQuestRequirement.so_requirement.GetType() == typeof(SO_ItemRequirement))
+        //{
+        //    SO_ItemRequirement specificQuestRequirement = currentQuestRequirement.so_requirement as SO_ItemRequirement;
+        //    SO_Item currentSOItemQuestRequirement = specificQuestRequirement.so_Item;
+        //    //look for item in inventory
+        //    ItemData itemData = InventoryManager.GetItem(currentSOItemQuestRequirement);
+
+
+        //    itemDatas.Add(itemData);
+        //    amounts.Add(specificQuestRequirement.requiredAmount);
+        //    questResourcesFound++;
+
+
+        //}
         foreach (QuestRequirement currentQuestRequirement in currentQuest.requirements)
         {
-            SO_Resource currentQuestRequirementSOResource = currentQuestRequirement.so_resource;
-            //look for resouce in inventory
-            Resource resource = InventoryManager.GetResource(currentQuestRequirementSOResource);
-            if (resource != null)
-            {
-                if (resource.amount >= currentQuestRequirement.amount)
-                {
-                    questResourcesFound++;
-    
-                }
-                else
-                {
-
-                }
-            }
-        }
-        if (questResourcesFound == currentQuest.requirements.Count) //this means it has everything
-        {
             
-            foreach (QuestRequirement currentQuestRequirement in currentQuest.requirements)
+            //Check quest requirement type
+            
+            if (currentQuestRequirement.so_requirement.GetType() == typeof(SO_ItemRequirement))
             {
-                SO_Resource currentQuestRequirementSOResource = currentQuestRequirement.so_resource;
-                //look for resouce in inventory
-                Resource resource = InventoryManager.GetResource(currentQuestRequirementSOResource);
-                if (resource != null)
+                SO_ItemRequirement specificQuestRequirement = currentQuestRequirement.so_requirement as SO_ItemRequirement;
+                SO_Item currentSOItemQuestRequirement = specificQuestRequirement.so_Item;
+                //look for item in inventory
+                ItemData itemData = InventoryManager.GetItem(currentSOItemQuestRequirement);
+                if (itemData != null)
                 {
-                    if (resource.amount >= currentQuestRequirement.amount)
+                    if (itemData.amount >= specificQuestRequirement.requiredAmount)
                     {
-                        resource.amount -= currentQuestRequirement.amount;
+
+                        questResourcesFound++;
 
                     }
                     else
@@ -105,7 +102,76 @@ public class Character : InteractibleObject
                     }
                 }
             }
-    
+            else if (currentQuestRequirement.so_requirement.GetType() == typeof(SO_InfrastructureRequirement))
+            {
+                SO_InfrastructureRequirement specificQuestRequirement = currentQuestRequirement.so_requirement as SO_InfrastructureRequirement;
+                SO_Infrastructure currentSOInrastructureQuestRequirement = specificQuestRequirement.so_infrastructure;
+                //look for item in inventory
+                Infrastructure itemData = InfrastructureManager.GetInfrastructure(currentSOInrastructureQuestRequirement);
+                if (itemData != null)
+                {
+                    if (itemData.currentLevel >= specificQuestRequirement.requiredLevel)
+                    {
+                        questResourcesFound++;
+
+                    }
+                    else
+                    {
+
+                    }
+                }
+            }
+
+        }
+        if (questResourcesFound == currentQuest.requirements.Count) //this means it has everything
+        {
+
+            foreach (QuestRequirement currentQuestRequirement in currentQuest.requirements)
+            {
+
+                //Check quest requirement type
+
+                if (currentQuestRequirement.so_requirement.GetType() == typeof(SO_ItemRequirement))
+                {
+                    SO_ItemRequirement specificQuestRequirement = currentQuestRequirement.so_requirement as SO_ItemRequirement;
+                    SO_Item currentSOItemQuestRequirement = specificQuestRequirement.so_Item;
+                    //look for item in inventory
+                    ItemData itemData = InventoryManager.GetItem(currentSOItemQuestRequirement);
+                    if (itemData != null)
+                    {
+                        if (itemData.amount >= specificQuestRequirement.requiredAmount)
+                        {
+                            itemData.amount -= specificQuestRequirement.requiredAmount;
+
+                        }
+                        else
+                        {
+
+                        }
+                    }
+                }
+                else if (currentQuestRequirement.so_requirement.GetType() == typeof(SO_InfrastructureRequirement))
+                {
+                    SO_InfrastructureRequirement specificQuestRequirement = currentQuestRequirement.so_requirement as SO_InfrastructureRequirement;
+                    SO_Infrastructure currentSOInrastructureQuestRequirement = specificQuestRequirement.so_infrastructure;
+                    //look for item in inventory
+                    Infrastructure itemData = InfrastructureManager.GetInfrastructure(currentSOInrastructureQuestRequirement);
+                    if (itemData != null)
+                    {
+                        if (itemData.currentLevel >= specificQuestRequirement.requiredLevel)
+                        {
+                            
+
+                        }
+                        else
+                        {
+
+                        }
+                    }
+                }
+
+            }
+
             return true;
         }
         

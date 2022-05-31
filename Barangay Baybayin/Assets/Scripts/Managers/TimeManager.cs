@@ -11,6 +11,7 @@ public class TimeManager : MonoBehaviour
     public const int hoursInDay = 24, minutesInHour = 60, secondsInMinutes = 60;
 
     private static TimeManager _instance;
+    private DayInfoUI dayInfoUI;
     public static TimeManager instance
     {
         get
@@ -23,8 +24,8 @@ public class TimeManager : MonoBehaviour
             return _instance;
         }
     }
-    public HourChanged onHourChanged = new HourChanged();
-    public DayChanged onDayChanged = new DayChanged();
+    public static HourChanged onHourChanged = new HourChanged();
+    public static DayChanged onDayChanged = new DayChanged();
 
     //make all these private (i just made them public so just in case events cant be used, you can use these)
     // public float realSecondsPerHour;
@@ -77,11 +78,12 @@ public class TimeManager : MonoBehaviour
     }
     private void OnEnable()
     {
-        if (PlayerManager.instance)
+        if (PlayerManager.instance.stamina)
         {
             PlayerManager.instance.stamina.onStaminaDepleted.AddListener(FaintedEndDay);
         }
-        TimeManager.instance.onDayChanged.AddListener(UIManager.instance.dayInfoUI.DayEnd);
+        dayInfoUI = UIManager.instance.dayInfoUI;
+        TimeManager.onDayChanged.AddListener(dayInfoUI.DayEnd);
     }
   
     private void OnDisable()
@@ -91,7 +93,7 @@ public class TimeManager : MonoBehaviour
             PlayerManager.instance.stamina.onStaminaDepleted.RemoveListener(FaintedEndDay);
 
         }
-        TimeManager.instance.onDayChanged.RemoveListener(UIManager.instance.dayInfoUI.DayEnd);
+        TimeManager.onDayChanged.RemoveListener(dayInfoUI.DayEnd);
     }
     private void Update()
     {

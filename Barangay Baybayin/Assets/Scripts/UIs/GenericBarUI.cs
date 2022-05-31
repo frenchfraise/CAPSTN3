@@ -7,10 +7,12 @@ using DG.Tweening;
 [System.Serializable]
 public class InstantColorData : UnityTransitionData
 {
+    
     [SerializeField] public Color32 color;
     public override void PerformTransition()
     {
-        image.color = color;
+        bar.color = color;
+        
     }
 
 }
@@ -22,7 +24,7 @@ public class ColorTransitionData: DoTweenTransitionData
     [SerializeField] public float transitionTime;
     public override Tween GetAndPerformTween()
     {
-        Tween colorTransition = image.DOColor(amount, transitionTime);
+        Tween colorTransition = bar.DOColor(amount, transitionTime);
         return colorTransition;
     }
 
@@ -34,7 +36,7 @@ public class FadeTransitionData: DoTweenTransitionData
     [SerializeField] public float transitionTime;
     public override Tween GetAndPerformTween()
     {
-        Tween colorTransition = image.DOFade(amount, transitionTime);
+        Tween colorTransition = bar.DOFade(amount, transitionTime);
         return colorTransition;
     }
 }
@@ -46,7 +48,7 @@ public class FillTransitionData: DoTweenTransitionData
     [SerializeField] public float transitionTime;
     public override Tween GetAndPerformTween()
     {
-        Tween colorTransition = image.DOFillAmount(amount, transitionTime);
+        Tween colorTransition = bar.DOFillAmount(amount, transitionTime);
         return colorTransition;
     }
 }
@@ -72,12 +74,24 @@ public class UnityTransitionData : TransitionData
 
     }
 }
-
+[System.Serializable]
+public enum TransitionType
+{
+    None,
+    InstantColorData,
+    FadeTransitionData,
+    FillTransitionData,
+    DoTweenTransitionData,
+}
 [System.Serializable]
 public class TransitionData
 {
-    [SerializeField] public Image image;
+    
+    [SerializeField]
+    public TransitionType transitionType;
+    [SerializeField] public Image bar;
 
+ 
     public virtual void PerformTransition()
     {
 
@@ -87,10 +101,8 @@ public class TransitionData
 [System.Serializable]
 public class TransitionsDataHolder
 {
-    //[System.Serializable]
-    [SerializeField]
-    //public string name;
-    public List<TransitionData> transitionDatas = new List<TransitionData>();
+ 
+    [SerializeField] public List<TransitionData> transitionDatas = new List<TransitionData>();
     public void PerformTransitionsData()
     {
         UIManager.instance.StartCoroutine(Co_PerformingTransitionsData()); //change this
@@ -159,14 +171,10 @@ public class TransitionsDataHolder
         }
     }
 }
-[System.Serializable]
-public enum BarFillUpType
-{
-    Increasing,
-    Decreasing,
-}
+
 public class GenericBarUI : MonoBehaviour
 {
+
     [SerializeField] private Image realBarUI; //colored
     [SerializeField] private Image ghostBarUI; //white
     [SerializeField] private Image restrictedBarUI; //red
@@ -175,7 +183,7 @@ public class GenericBarUI : MonoBehaviour
     [SerializeField] private float resetTransitionTime;
 
 
-    //public List<TransitionsDataHolder> transitionsDataHolders;// = new List<TransitionsDataHolder>();
+    [SerializeField] public List<TransitionsDataHolder> transitionsDataHolders;// = new List<TransitionsDataHolder>();
 
     [SerializeField] private Color32 defaultRealBarColor;
     [SerializeField] private InstantColorData realBarColorFlash;
@@ -186,7 +194,62 @@ public class GenericBarUI : MonoBehaviour
     [SerializeField] private FillTransitionData ghostBarFillTransition;
 
     [SerializeField] private float delayTime;
+    public bool test(int p_tdhi, int p_int, int p_enumType)
+    {
 
+ 
+        switch (p_enumType)
+        {
+            case 0:
+
+                break;
+            case 1:
+                InstantColorData instantColorData = new InstantColorData();
+                transitionsDataHolders[p_tdhi].transitionDatas[p_int] = instantColorData;
+                Debug.Log("InstantColorData");
+
+                break;
+
+            case 2:
+                ColorTransitionData colorTransitionData = new ColorTransitionData();
+                transitionsDataHolders[p_tdhi].transitionDatas[p_int] = colorTransitionData;
+                break;
+
+            case 3:
+                FadeTransitionData fadeTransitionData = new FadeTransitionData();
+                transitionsDataHolders[p_tdhi].transitionDatas[p_int] = fadeTransitionData;
+                break;
+
+            case 4:
+                FillTransitionData fillTransitionData = new FillTransitionData();
+                transitionsDataHolders[p_tdhi].transitionDatas[p_int] = fillTransitionData;
+                break;
+        }
+        int count = 0;
+        foreach (TransitionData td in transitionsDataHolders[p_tdhi].transitionDatas)
+        {
+            
+            if (td is InstantColorData )
+            {
+                InstantColorData tes = (InstantColorData)td;
+                Debug.Log(count + " - InstantColorData" + tes.color.ToString());
+            }
+            else if(td is ColorTransitionData)
+            {
+                Debug.Log(count + " - ColorTransitionData");
+            }
+            else if (td is FadeTransitionData)
+            {
+                Debug.Log(count + " - FadeTransitionData");
+            }
+            else if (td is FillTransitionData)
+            {
+                Debug.Log(count + " - FillTransitionData");
+            }
+            count++;
+        }
+        return true;
+    }
     public void InstantUpdateBar(float p_current, float p_currentMax, float p_max)
     {
         StopAllCoroutines();
@@ -228,7 +291,7 @@ public class GenericBarUI : MonoBehaviour
         float fill = p_current / p_currentMax;
         StartCoroutine(Co_UpdateBar(fill));
     }
-
+   
     public void UpdateBar(float p_current, float p_currentMax )
     {
         float fill = p_current / p_currentMax;

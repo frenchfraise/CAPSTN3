@@ -6,6 +6,7 @@ using UnityEngine;
 public class SO_Infrastructure : ScriptableObject
 {
     public new string name;
-    public int currentLevel;
+    public int maxHealth;
+    
     public List<Sprite> sprites = new List<Sprite>();
 }

@@ -2,66 +2,104 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 [System.Serializable]
 public class Tool
 {
+
     public SO_Tool so_Tool;
-    public int craftLevel = 1;
+    [HideInInspector]public int craftLevel = 1;
 
-    public int currentDamage;
-
-    public int expLevel = 1;
-    public float expAmount = 0;
+    public int proficiencyLevel = 1;
+    public float proficiencyAmount = 0;
     public float specialPoints = 0;
 
-    public void AddXP(float p_exp)
+    public void ModifySpecialAmount(float p_modifierAmount)
     {
+
+        //Debug.Log("SPECIAL POINTS MODIFIED");
         
-        if (expLevel < so_Tool.maxExpAmount.Count)
+        specialPoints += p_modifierAmount;
+       
+        
+
+        if (specialPoints >= so_Tool.maxSpecialPoints[craftLevel])
         {
-            if (expAmount < so_Tool.maxExpAmount[expLevel - 1])
+            specialPoints = so_Tool.maxSpecialPoints[craftLevel];
+            ToolManager.onSpecialPointsFilled.Invoke();
+        }
+        else
+        {
+            ToolManager.onSpecialPointsModified.Invoke(specialPoints, so_Tool.maxSpecialPoints[craftLevel]);
+        }
+
+
+        
+    }
+
+    public void ModifyProficiencyAmount(float p_modifierAmount)
+    {
+        //Debug.Log("PROFICIENCY MODIFIED");
+        if (proficiencyLevel < so_Tool.maxProficiencyAmount.Count)
+        {
+            if (proficiencyAmount < so_Tool.maxProficiencyAmount[proficiencyLevel - 1])
             {
-                expAmount += p_exp;
                 
+                proficiencyAmount += p_modifierAmount;
+                //Debug.Log("EXP: " + proficiencyAmount);
+
             }
-            if (expAmount >= so_Tool.maxExpAmount[expLevel - 1])
+            if (proficiencyAmount >= so_Tool.maxProficiencyAmount[proficiencyLevel - 1])
             {
                 LevelUp();
             }
             else
             {
-                ToolManager.OnExpIncrease.Invoke(expAmount, so_Tool.maxExpAmount[expLevel - 1]);
+                ToolManager.onProficiencyAmountModified.Invoke(proficiencyAmount, so_Tool.maxProficiencyAmount[proficiencyLevel - 1]);
             }
             
             
-        }
-      
-        
+        } 
     }
 
     public void LevelUp()
     {
         // reset XP
-        expAmount = expAmount - so_Tool.maxExpAmount[expLevel-1];
+        proficiencyAmount = proficiencyAmount - so_Tool.maxProficiencyAmount[proficiencyLevel-1];
        
-        // Debug.Log("[Reset XP] " + expAmount);
-       
-
         //If max level, dont level up
-        if (expLevel >=  so_Tool.maxExpAmount.Count)
+        if (proficiencyLevel >=  so_Tool.maxProficiencyAmount.Count)
         {
             Debug.Log("HIT MAX LEVEL");
         }
         else  //Else level up
         {
-            expLevel++;
-            ToolManager.OnExpLevelIncrease.Invoke(expLevel);
+            proficiencyLevel++;
+            ToolManager.onProficiencyLevelModified.Invoke(proficiencyLevel);
         }
-        ToolManager.OnExpLevelExpIncrease.Invoke(expAmount, so_Tool.maxExpAmount[expLevel - 1]);
-        Debug.Log("Player is now Level " + expLevel + "!");
-
-
-
-
+ 
     }
+    
+    public void CheckUpgradeCraftLevel(SO_Item p_)
+    {
+        if (proficiencyLevel >= craftLevel)
+        {
+            List<ItemData> p_itemDatas = new List<ItemData>();
+            List<int> p_amount = new List<int>();
+            p_itemDatas.Add(InventoryManager.GetItem(p_));
+            p_amount.Add(1);
+            InventoryManager.ReduceItems(p_itemDatas, p_amount,ToolManager.onToolUpgraded);
+            
+            
+        }
+    }
+
+    public void UpgradeCraftLevel()
+    {
+        
+        craftLevel++;
+        
+    }
+   
+
 }
