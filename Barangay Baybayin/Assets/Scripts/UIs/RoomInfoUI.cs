@@ -17,15 +17,24 @@ public class RoomInfoUI : MonoBehaviour
     public ResourceDropUI resourceDropUIPrefab;
 
   
-    public void RoomEntered(string p_roomName, 
-        string p_roomDescription, 
-        List<ResourceNodeDrop> p_availableResourceNodeDrops, 
-        Vector3 p_cameraPos)
+    public void RoomEntered(Passageway p_passageway)
     {
+
+        string roomName;
+        string roomDescription;
+        List<ResourceNodeDrop> availableResourceNodeDrops;
+        p_passageway.room.GetRoomInfos(out roomName, out roomDescription, out availableResourceNodeDrops);
+        Vector2 cameraPosition = new Vector2(p_passageway.cameraDestinationPosition.x,
+                                            p_passageway.cameraDestinationPosition.y);
+        Vector2 cameraPanLimit = new Vector2(p_passageway.cameraPanLimit.x,
+                                            p_passageway.cameraPanLimit.y
+                                            );
+     
+
         gameObject.SetActive(true);
-        StartCoroutine(Co_RoomInfoUITransition(p_roomName, p_roomDescription, p_availableResourceNodeDrops, p_cameraPos));
+        StartCoroutine(Co_RoomInfoUITransition(roomName, roomDescription, availableResourceNodeDrops, cameraPosition, cameraPanLimit));
     }
-    IEnumerator Co_RoomInfoUITransition(string p_roomName, string p_roomDescription, List<ResourceNodeDrop> p_availableResourceNodeDrops, Vector3 p_cameraPos)
+    IEnumerator Co_RoomInfoUITransition(string p_roomName, string p_roomDescription, List<ResourceNodeDrop> p_availableResourceNodeDrops, Vector2 p_cameraPos, Vector2 p_cameraPanLimit)
     {
         //Clear resources // object pool this
         PlayerManager.instance.joystick.enabled = false;
@@ -70,7 +79,7 @@ public class RoomInfoUI : MonoBehaviour
 
 
         }
-        CameraManager.instance.onCameraMoved.Invoke(p_cameraPos);
+        CameraManager.instance.onCameraMovedEvent.Invoke(p_cameraPos, p_cameraPanLimit);
         yield return new WaitForSeconds(3.75f);
         Sequence t = DOTween.Sequence();
         t.Join(roomNameText.DOFade(0f, 0.5f));

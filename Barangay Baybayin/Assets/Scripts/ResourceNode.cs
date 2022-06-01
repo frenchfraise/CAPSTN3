@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Pool;
 
-public class ResourceNodeHit : UnityEvent<SO_ResourceNode , int , int, UnityEvent > { }
+public class ResourceNodeHitEvent : UnityEvent<SO_ResourceNode , int , int, UnityEvent > { }
 public class ResourceNode : PoolableObject
 {
    
@@ -28,7 +28,7 @@ public class ResourceNode : PoolableObject
     public float maxHealth;
     public float regenerationTime;
 
-    public ResourceNodeHit OnHit = new ResourceNodeHit();
+    public ResourceNodeHitEvent OnResourceNodeHitEvent = new ResourceNodeHitEvent();
 
     private void Start()
     {
@@ -43,32 +43,32 @@ public class ResourceNode : PoolableObject
     private void OnEnable()
     {
         Health health = GetComponent<Health>();
-        health.OnDeath.AddListener(RewardResource);
-        health.OnDeath.AddListener(Died);
+        health.OnDeathEvent.AddListener(RewardResource);
+        health.OnDeathEvent.AddListener(Died);
 
         PoolableObject healthOverheadUIObject = ObjectPoolManager.GetPool(healthOverheadUIPrefab).pool.Get();
         healthOverheadUI = healthOverheadUIObject.GetComponent<HealthOverheadUI>();
   
         healthOverheadUI.SetHealthBarData(transform, UIManager.instance.overheadUI);
-        health.onHealthModified.AddListener(healthOverheadUI.OnHealthChanged);
-        health.OnDeath.AddListener(healthOverheadUI.OnHealthDied);
+        health.onHealthModifiedEvent.AddListener(healthOverheadUI.OnHealthChanged);
+        health.OnDeathEvent.AddListener(healthOverheadUI.OnHealthDied);
 
-        OnHit.AddListener(Hit);
+        OnResourceNodeHitEvent.AddListener(Hit);
     }
 
     private void OnDisable()
     {
         Health health = GetComponent<Health>();
-        health.OnDeath.RemoveListener(RewardResource);
-        health.OnDeath.RemoveListener(Died);
+        health.OnDeathEvent.RemoveListener(RewardResource);
+        health.OnDeathEvent.RemoveListener(Died);
 
-        health.onHealthModified.RemoveListener(healthOverheadUI.OnHealthChanged);
-        health.OnDeath.RemoveListener(healthOverheadUI.OnHealthDied);
+        health.onHealthModifiedEvent.RemoveListener(healthOverheadUI.OnHealthChanged);
+        health.OnDeathEvent.RemoveListener(healthOverheadUI.OnHealthDied);
 
-        OnHit.RemoveListener(Hit);
+        OnResourceNodeHitEvent.RemoveListener(Hit);
     }
 
-    public void Hit( SO_ResourceNode p_useForResourceNode,int p_craftLevel, int p_currentDamage, UnityEvent p_functionCallback) 
+    public void Hit( SO_ResourceNode p_useForResourceNode,int p_craftLevel, int p_currentDamage, UnityEvent p_eventCallback) 
     {
         //Debug.Log("1 " + p_useForResourceNode + " - " + p_craftLevel + " - " + p_currentDamage + " - ");
         if (p_useForResourceNode == so_ResourceNode)
@@ -79,9 +79,9 @@ public class ResourceNode : PoolableObject
                 
                 Health health = GetComponent<Health>();         
      
-                health.onHealthModify.Invoke(-p_currentDamage);                
+                health.onHealthModifyEvent.Invoke(-p_currentDamage);                
           
-                p_functionCallback.Invoke();
+                p_eventCallback.Invoke();
         
             }
         }

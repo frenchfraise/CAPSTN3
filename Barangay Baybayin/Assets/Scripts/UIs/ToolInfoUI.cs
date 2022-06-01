@@ -9,16 +9,16 @@ public class ToolInfoUI : MonoBehaviour
 
     private void OnEnable()
     {
-        ToolManager.onToolChanged.AddListener(ToolChanged);
-        ToolManager.onProficiencyAmountModified.AddListener(genericBarUI.UpdateBar);
-        ToolManager.onProficiencyLevelModified.AddListener(UpdateLevel);
+        ToolManager.onToolChangedEvent.AddListener(ToolChanged);
+        ToolManager.onProficiencyAmountModifiedEvent.AddListener(genericBarUI.UpdateBar);
+        ToolManager.onProficiencyLevelModifiedEvent.AddListener(UpdateLevel);
      
     }
     private void OnDisable()
     {
-        ToolManager.onToolChanged.RemoveListener(ToolChanged);
-        ToolManager.onProficiencyAmountModified.RemoveListener(genericBarUI.UpdateBar);
-        ToolManager.onProficiencyLevelModified.RemoveListener(UpdateLevel);
+        ToolManager.onToolChangedEvent.RemoveListener(ToolChanged);
+        ToolManager.onProficiencyAmountModifiedEvent.RemoveListener(genericBarUI.UpdateBar);
+        ToolManager.onProficiencyLevelModifiedEvent.RemoveListener(UpdateLevel);
         
     }
 

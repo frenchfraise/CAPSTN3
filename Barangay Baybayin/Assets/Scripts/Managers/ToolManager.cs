@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-public class SpecialPointsModified : UnityEvent<float, float> { }
+public class SpecialPointsModifiedEvent : UnityEvent<float, float> { }
 
-public class SpecialPointsFilled : UnityEvent { }
+public class SpecialPointsFilledEvent : UnityEvent { }
 
-public class ProficiencyAmountModified : UnityEvent<float,float> { }
-public class ProficiencyLevelModified : UnityEvent<int> { }
+public class ProficiencyAmountModifiedEvent : UnityEvent<float,float> { }
+public class ProficiencyLevelModifiedEvent : UnityEvent<int> { }
 
-public class ToolUpgraded : UnityEvent { }
+public class ToolUpgradedEvent : UnityEvent { }
 
-public class ToolChanged : UnityEvent <Tool>{ }
+public class ToolChangedEvent : UnityEvent <Tool>{ }
 public class ToolManager : MonoBehaviour
 {
     private static ToolManager _instance;
@@ -29,16 +29,16 @@ public class ToolManager : MonoBehaviour
     }
     public List<Tool> tools = new List<Tool>();
     //Proficiency
-    public static ProficiencyAmountModified onProficiencyAmountModified = new ProficiencyAmountModified();
-    public static ProficiencyLevelModified onProficiencyLevelModified = new ProficiencyLevelModified();
+    public static ProficiencyAmountModifiedEvent onProficiencyAmountModifiedEvent = new ProficiencyAmountModifiedEvent();
+    public static ProficiencyLevelModifiedEvent onProficiencyLevelModifiedEvent = new ProficiencyLevelModifiedEvent();
 
     //Special Points
-    public static SpecialPointsModified onSpecialPointsModified = new SpecialPointsModified();
-    public static SpecialPointsFilled onSpecialPointsFilled = new SpecialPointsFilled();
+    public static SpecialPointsModifiedEvent onSpecialPointsModifiedEvent = new SpecialPointsModifiedEvent();
+    public static SpecialPointsFilledEvent onSpecialPointsFilledEvent = new SpecialPointsFilledEvent();
 
 
-    public static ToolChanged onToolChanged = new ToolChanged();
-    public static ToolUpgraded onToolUpgraded  = new ToolUpgraded();
+    public static ToolChangedEvent onToolChangedEvent = new ToolChangedEvent();
+    public static ToolUpgradedEvent onToolUpgradedEvent  = new ToolUpgradedEvent();
 
     private void Awake()
     {

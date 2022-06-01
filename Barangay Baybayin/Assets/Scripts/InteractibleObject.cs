@@ -3,21 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class OnInteract : UnityEvent { }
+public class InteractEvent : UnityEvent { }
 public class InteractibleObject : MonoBehaviour
 {
-    public OnInteract onInteract = new OnInteract();
+    public InteractEvent onInteractEvent = new InteractEvent();
 
     protected bool canInteract;
     protected virtual void OnEnable()
     {
-        onInteract.AddListener(OnInteract);
+        onInteractEvent.AddListener(OnInteract);
         canInteract = true;
     }
 
     protected virtual void OnDisable()
     {
-        onInteract.RemoveListener(OnInteract);
+        onInteractEvent.RemoveListener(OnInteract);
     }
     protected virtual void OnInteract()
     {

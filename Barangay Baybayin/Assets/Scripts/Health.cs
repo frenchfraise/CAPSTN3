@@ -4,13 +4,13 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [System.Serializable]
-public class HealthModify : UnityEvent<float> { }
+public class HealthModifyEvent : UnityEvent<float> { }
 
 [System.Serializable]
-public class HealthModified : UnityEvent<bool, float, float> { }
+public class HealthModifiedEvent : UnityEvent<bool, float, float> { }
 
 [System.Serializable]
-public class Died : UnityEvent { }
+public class DeathEvent : UnityEvent { }
 public class Health : MonoBehaviour
 {
     [HideInInspector] public HealthOverheadUI healthOverheadUI;
@@ -19,14 +19,14 @@ public class Health : MonoBehaviour
     private float maxHealth;
 
     
-    public HealthModify onHealthModify = new HealthModify();
-    public HealthModified onHealthModified = new HealthModified();
+    public HealthModifyEvent onHealthModifyEvent = new HealthModifyEvent();
+    public HealthModifiedEvent onHealthModifiedEvent = new HealthModifiedEvent();
 
-    public Died OnDeath = new Died();
+    public DeathEvent OnDeathEvent = new DeathEvent();
     private void OnEnable()
     {
         InitializeValues();
-        onHealthModify.AddListener(ModifyHealth);
+        onHealthModifyEvent.AddListener(ModifyHealth);
         //OnDeath.AddListener(Death);
     }
 
@@ -35,7 +35,7 @@ public class Health : MonoBehaviour
     {
 
 
-        onHealthModify.RemoveListener(ModifyHealth);
+        onHealthModifyEvent.RemoveListener(ModifyHealth);
         //OnDeath.AddListener(Death);
         
     }
@@ -52,7 +52,7 @@ public class Health : MonoBehaviour
     public void ModifyHealth(float p_modifier)
     {
         currentHealth += p_modifier;
-        onHealthModified.Invoke(isAlive,currentHealth,maxHealth);
+        onHealthModifiedEvent.Invoke(isAlive,currentHealth,maxHealth);
         CheckHealth();
     }
    
@@ -63,7 +63,7 @@ public class Health : MonoBehaviour
         {
             Death();
             
-            OnDeath.Invoke();
+            OnDeathEvent.Invoke();
         }
     }
 

@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   useForResourceNode: {fileID: 11400000, guid: 3f913e9b960e0334aa758fe91eececfb, type: 2}
   lockedFrame: {fileID: 21300000, guid: abf11a33121b8ba45a1c05396028d06e, type: 3}
-  lockedIcon: {fileID: 21300000, guid: 9694be8e3b5dc664c8cc57f0e0b4bad8, type: 3}
+  lockedIcon: {fileID: 21300000, guid: 04a93674c8053e64596c765e95fd027d, type: 3}
   unlockedFrame: {fileID: 21300000, guid: 09e576a857212ed42a31596e00f0da5f, type: 3}
-  unlockedIcon: {fileID: 21300000, guid: 5a3bd11a8bf55224d97533b81e740be9, type: 3}
-  equippedFrame: {fileID: 21300000, guid: 5b56d9fa0e8bd6e409ed188db38a692c, type: 3}
-  equippedIcon: {fileID: 1045049241, guid: 27179ea81a23b63428ce3c716addc111, type: 3}
+  unlockedIcon: {fileID: 21300000, guid: b06da398c1c4c934385c554ac7cf81e3, type: 3}
+  equippedFrame: {fileID: 21300000, guid: 002c49027a0c6354e8bb67df9a21f5ac, type: 3}
+  equippedIcon: {fileID: 21300000, guid: b06da398c1c4c934385c554ac7cf81e3, type: 3}
   useRate:
   - 3
   - 1

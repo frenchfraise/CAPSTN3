@@ -17,8 +17,8 @@ MonoBehaviour:
   lockedIcon: {fileID: 21300000, guid: b7c043ab3efd83c4c9b8c64c2b8db5f7, type: 3}
   unlockedFrame: {fileID: 21300000, guid: 09e576a857212ed42a31596e00f0da5f, type: 3}
   unlockedIcon: {fileID: 21300000, guid: 6bfaa5e25173e2d4ca01412a20136140, type: 3}
-  equippedFrame: {fileID: 0}
-  equippedIcon: {fileID: 0}
+  equippedFrame: {fileID: 21300000, guid: 002c49027a0c6354e8bb67df9a21f5ac, type: 3}
+  equippedIcon: {fileID: 21300000, guid: 6bfaa5e25173e2d4ca01412a20136140, type: 3}
   useRate:
   - 3
   - 1
@@ -42,7 +42,9 @@ MonoBehaviour:
   - 5
   - 5
   - 5
-  maxCraftLevel: 0
+  chargeSpeedRate: 1.5
+  maxToolCharge: 1
+  maxCraftLevel: 10
   maxSpecialPoints:
   - 100
   - 90

@@ -99,7 +99,7 @@ public class InventoryManager : MonoBehaviour
      
     }
 
-    public static void ReduceItems(List<ItemData> p_itemDatas, List<int> p_amount, UnityEvent p_postFunction = null)
+    public static void ReduceItems(List<ItemData> p_itemDatas, List<int> p_amount, UnityEvent p_eventCallback = null)
     {
         int itemsFound = 0;
         for (int i = 0; i < p_itemDatas.Count; i++)
@@ -141,7 +141,7 @@ public class InventoryManager : MonoBehaviour
                 }
 
             }
-            p_postFunction.Invoke();
+            p_eventCallback.Invoke();
         }
     }
 }

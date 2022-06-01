@@ -4,15 +4,15 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 
-public class ToolUsed : UnityEvent<float> { }
+public class ToolUsedEvent : UnityEvent<float> { }
 
-public class ToolCanUseUpdated : UnityEvent<bool> { }
-public class ToolCanSwitchUpdated : UnityEvent<bool> { }
-public class ToolHitSucceeded : UnityEvent { }
+public class ToolCanUseUpdatedEvent : UnityEvent<bool> { }
+public class ToolCanSwitchUpdatedEvent : UnityEvent<bool> { }
+public class ToolHitSucceededEvent : UnityEvent { }
 
-public class SpecialUsed : UnityEvent { }
+public class ToolSpecialUseEvent : UnityEvent { }
 
-public class OnLongClick : UnityEvent { }
+public class LongClickEvent : UnityEvent { }
 public class ToolCaster : MonoBehaviour
 {
  
@@ -22,7 +22,7 @@ public class ToolCaster : MonoBehaviour
     private int chargeCounter;
     
 
-    public OnLongClick onLongClick;
+    public LongClickEvent onLongClickEvent;
 
     [HideInInspector] public Tool current_Tool;
     private bool canUse = true;
@@ -30,11 +30,11 @@ public class ToolCaster : MonoBehaviour
     [SerializeField] private float switchRate;
     private Transform aim;
 
-    public ToolUsed onToolUsed = new ToolUsed();
-    public ToolHitSucceeded onToolHitSucceeded = new ToolHitSucceeded();
-    public ToolCanUseUpdated onToolCanUseUpdated = new ToolCanUseUpdated();
-    public ToolCanSwitchUpdated onToolCanSwitchUpdated = new ToolCanSwitchUpdated();
-    public SpecialUsed onSpecialUsed = new SpecialUsed();
+    public ToolUsedEvent onToolUsedEvent = new ToolUsedEvent();
+    public ToolHitSucceededEvent onToolHitSucceededEvent = new ToolHitSucceededEvent();
+    public ToolCanUseUpdatedEvent onToolCanUseUpdatedEvent = new ToolCanUseUpdatedEvent();
+    public ToolCanSwitchUpdatedEvent onToolCanSwitchUpdatedEvent = new ToolCanSwitchUpdatedEvent();
+    public ToolSpecialUseEvent onToolSpecialUsedEven = new ToolSpecialUseEvent();
 
     private void Awake()
     {
@@ -44,13 +44,13 @@ public class ToolCaster : MonoBehaviour
     {
         if (GetComponent<Stamina>())
         {
-            onToolUsed.AddListener(GetComponent<Stamina>().ModifyStamina);
+            onToolUsedEvent.AddListener(GetComponent<Stamina>().ModifyStamina);
         }
 
-        onToolHitSucceeded.AddListener(ToolHitSuccess);
+        onToolHitSucceededEvent.AddListener(ToolHitSuccess);
 
-        ToolManager.onToolChanged.AddListener(OnToolChanged);
-        onSpecialUsed.AddListener(OnSpecialUsed);
+        ToolManager.onToolChangedEvent.AddListener(OnToolChanged);
+        onToolSpecialUsedEven.AddListener(OnSpecialUsed);
         OnToolChanged(ToolManager.instance.tools[0]);
         canUse = true;
         canSwitch = true;
@@ -60,11 +60,11 @@ public class ToolCaster : MonoBehaviour
     {
         if (GetComponent<Stamina>())
         {
-            onToolUsed.RemoveListener(GetComponent<Stamina>().ModifyStamina);
+            onToolUsedEvent.RemoveListener(GetComponent<Stamina>().ModifyStamina);
         }
-        onToolHitSucceeded.RemoveListener(ToolHitSuccess);
-        ToolManager.onToolChanged.RemoveListener(OnToolChanged);
-        onSpecialUsed.RemoveListener(OnSpecialUsed);
+        onToolHitSucceededEvent.RemoveListener(ToolHitSuccess);
+        ToolManager.onToolChangedEvent.RemoveListener(OnToolChanged);
+        onToolSpecialUsedEven.RemoveListener(OnSpecialUsed);
     }
 
     public void OnSpecialUsed()
@@ -84,10 +84,10 @@ public class ToolCaster : MonoBehaviour
                 if (targetResourceNode)
                 {
                     Debug.Log("SPECIAL USED");
-                    targetResourceNode.OnHit.Invoke(current_Tool.so_Tool.useForResourceNode,
+                    targetResourceNode.OnResourceNodeHitEvent.Invoke(current_Tool.so_Tool.useForResourceNode,
                         current_Tool.craftLevel,
                         current_Tool.so_Tool.damage[current_Tool.craftLevel] * 2,
-                        onSpecialUsed);
+                        onToolSpecialUsedEven);
                     
 
                 }
@@ -113,7 +113,7 @@ public class ToolCaster : MonoBehaviour
             if (pointerDownTimer >= current_Tool.so_Tool.chargeSpeedRate)
             {
                 // Debug.Log("pointerDownTimer reached.");
-                if (onLongClick != null) onLongClick.Invoke();
+                if (onLongClickEvent != null) onLongClickEvent.Invoke();
                
                 if (chargeCounter != current_Tool.so_Tool.maxToolCharge)
                 {
@@ -138,10 +138,10 @@ public class ToolCaster : MonoBehaviour
             ResourceNode targetResourceNode = GetResourceNode();
             if (targetResourceNode)
             {
-                targetResourceNode.OnHit.Invoke(current_Tool.so_Tool.useForResourceNode,
+                targetResourceNode.OnResourceNodeHitEvent.Invoke(current_Tool.so_Tool.useForResourceNode,
                    current_Tool.craftLevel,
                    current_Tool.so_Tool.damage[current_Tool.craftLevel],
-                   onToolHitSucceeded);
+                   onToolHitSucceededEvent);
     
             }
             StartCoroutine(Co_ToolUseCooldown());
@@ -177,20 +177,20 @@ public class ToolCaster : MonoBehaviour
     IEnumerator Co_ToolUseCooldown()
     {
         canUse = false;
-        onToolCanUseUpdated.Invoke(canUse);
-        onToolUsed.Invoke(current_Tool.so_Tool.staminaCost[current_Tool.craftLevel]);
+        onToolCanUseUpdatedEvent.Invoke(canUse);
+        onToolUsedEvent.Invoke(current_Tool.so_Tool.staminaCost[current_Tool.craftLevel]);
         yield return new WaitForSeconds(current_Tool.so_Tool.useRate[current_Tool.craftLevel]);
         canUse = true;
-        onToolCanUseUpdated.Invoke(canUse);
+        onToolCanUseUpdatedEvent.Invoke(canUse);
     }
     IEnumerator Co_ToolSwitchCooldown()
     {
         canSwitch = false;
-        onToolCanSwitchUpdated.Invoke(canSwitch);
+        onToolCanSwitchUpdatedEvent.Invoke(canSwitch);
 
         yield return new WaitForSeconds(switchRate);
         canSwitch = true;
-        onToolCanSwitchUpdated.Invoke(canSwitch);
+        onToolCanSwitchUpdatedEvent.Invoke(canSwitch);
     }
 
 

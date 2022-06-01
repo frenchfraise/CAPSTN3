@@ -26,11 +26,11 @@ public class Tool
         if (specialPoints >= so_Tool.maxSpecialPoints[craftLevel])
         {
             specialPoints = so_Tool.maxSpecialPoints[craftLevel];
-            ToolManager.onSpecialPointsFilled.Invoke();
+            ToolManager.onSpecialPointsFilledEvent.Invoke();
         }
         else
         {
-            ToolManager.onSpecialPointsModified.Invoke(specialPoints, so_Tool.maxSpecialPoints[craftLevel]);
+            ToolManager.onSpecialPointsModifiedEvent.Invoke(specialPoints, so_Tool.maxSpecialPoints[craftLevel]);
         }
 
 
@@ -55,7 +55,7 @@ public class Tool
             }
             else
             {
-                ToolManager.onProficiencyAmountModified.Invoke(proficiencyAmount, so_Tool.maxProficiencyAmount[proficiencyLevel - 1]);
+                ToolManager.onProficiencyAmountModifiedEvent.Invoke(proficiencyAmount, so_Tool.maxProficiencyAmount[proficiencyLevel - 1]);
             }
             
             
@@ -75,7 +75,7 @@ public class Tool
         else  //Else level up
         {
             proficiencyLevel++;
-            ToolManager.onProficiencyLevelModified.Invoke(proficiencyLevel);
+            ToolManager.onProficiencyLevelModifiedEvent.Invoke(proficiencyLevel);
         }
  
     }
@@ -88,7 +88,7 @@ public class Tool
             List<int> p_amount = new List<int>();
             p_itemDatas.Add(InventoryManager.GetItem(p_));
             p_amount.Add(1);
-            InventoryManager.ReduceItems(p_itemDatas, p_amount,ToolManager.onToolUpgraded);
+            InventoryManager.ReduceItems(p_itemDatas, p_amount,ToolManager.onToolUpgradedEvent);
             
             
         }

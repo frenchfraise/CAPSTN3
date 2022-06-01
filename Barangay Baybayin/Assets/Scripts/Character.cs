@@ -3,21 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class OnBedInteracted : UnityEvent<SO_Dialogues> { }
+public class OnBedInteractedEvent : UnityEvent<SO_Dialogues> { }
 public class Character : InteractibleObject
 {
     private CharacterDialogueUI characterDialogueUI;
     [SerializeField] private SO_StoryLine so_StoryLine;
     private bool isFirstTime = true;
     private int currentCharacterDataIndex;
-    public OnBedInteracted onCharacterSpokenTo = new OnBedInteracted();
+    public OnBedInteractedEvent onCharacterSpokenToEvent = new OnBedInteractedEvent();
     
     protected override void OnEnable()
     {
         base.OnEnable();
         characterDialogueUI = UIManager.instance.characterDialogueUI ? UIManager.instance.characterDialogueUI
           : FindObjectOfType<CharacterDialogueUI>();
-        onCharacterSpokenTo.AddListener(characterDialogueUI.OnCharacterSpokenTo); 
+        onCharacterSpokenToEvent.AddListener(characterDialogueUI.OnCharacterSpokenTo); 
         
         
 
@@ -26,7 +26,7 @@ public class Character : InteractibleObject
     {
         base.OnDisable();
         
-        onCharacterSpokenTo.RemoveListener(characterDialogueUI.OnCharacterSpokenTo);
+        onCharacterSpokenToEvent.RemoveListener(characterDialogueUI.OnCharacterSpokenTo);
         
         
 
@@ -38,7 +38,7 @@ public class Character : InteractibleObject
         if (isQuestCompleted)
         {
             
-            onCharacterSpokenTo.Invoke(so_StoryLine.questLines[currentCharacterDataIndex].questCompleteSO_Dialogues);
+            onCharacterSpokenToEvent.Invoke(so_StoryLine.questLines[currentCharacterDataIndex].questCompleteSO_Dialogues);
             currentCharacterDataIndex++;
             isFirstTime = true;
         }
@@ -47,12 +47,12 @@ public class Character : InteractibleObject
             if (isFirstTime)
             {
                 isFirstTime = false;
-                onCharacterSpokenTo.Invoke(so_StoryLine.questLines[currentCharacterDataIndex].initialSO_Dialogues);
+                onCharacterSpokenToEvent.Invoke(so_StoryLine.questLines[currentCharacterDataIndex].initialSO_Dialogues);
 
             }
             else
             {
-                onCharacterSpokenTo.Invoke(so_StoryLine.questLines[currentCharacterDataIndex].questInProgressSO_Dialogues);
+                onCharacterSpokenToEvent.Invoke(so_StoryLine.questLines[currentCharacterDataIndex].questInProgressSO_Dialogues);
             }
         }
         

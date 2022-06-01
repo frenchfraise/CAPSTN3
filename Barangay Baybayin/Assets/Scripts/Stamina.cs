@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class StaminaDecrease : UnityEvent<float,float> { }
-public class StaminaDepleted : UnityEvent{ }
+public class StaminaDecreaseEvent : UnityEvent<float,float> { }
+public class StaminaDepletedEvent : UnityEvent{ }
 public class Stamina : MonoBehaviour
 {
     [SerializeField] private GenericBarUI genericBarUI;
@@ -18,27 +18,27 @@ public class Stamina : MonoBehaviour
 
     private bool isPenalized = false;
 
-    public StaminaDecrease OnStaminaModified = new StaminaDecrease();
-    public StaminaDepleted onStaminaDepleted = new StaminaDepleted();
+    public StaminaDecreaseEvent OnStaminaModifiedEvent = new StaminaDecreaseEvent();
+    public StaminaDepletedEvent onStaminaDepletedEvent = new StaminaDepletedEvent();
 
    
    
     private void OnEnable()
     {
-        OnStaminaModified.AddListener(genericBarUI.UpdateBar);
-        onStaminaDepleted.AddListener(PenalizeStamina);
-        TimeManager.onDayChanged.AddListener(RegenerateStamina);
+        OnStaminaModifiedEvent.AddListener(genericBarUI.UpdateBar);
+        onStaminaDepletedEvent.AddListener(PenalizeStamina);
+        TimeManager.onDayChangedEvent.AddListener(RegenerateStamina);
         currentMaxStamina = maxStamina;
         genericBarUI.InstantUpdateBar(currentStamina, currentMaxStamina, maxStamina);
     }
 
     private void OnDisable()
     {
-        OnStaminaModified.RemoveListener(genericBarUI.UpdateBar);
-        onStaminaDepleted.RemoveListener(PenalizeStamina);
+        OnStaminaModifiedEvent.RemoveListener(genericBarUI.UpdateBar);
+        onStaminaDepletedEvent.RemoveListener(PenalizeStamina);
         if (TimeManager.instance)
         {
-            TimeManager.onDayChanged.RemoveListener(RegenerateStamina);
+            TimeManager.onDayChangedEvent.RemoveListener(RegenerateStamina);
         }
         
     }
@@ -79,12 +79,12 @@ public class Stamina : MonoBehaviour
         }
         if (currentStamina <= 0)
         {
-            onStaminaDepleted.Invoke();
+            onStaminaDepletedEvent.Invoke();
          
         }
         else
         {
-            OnStaminaModified.Invoke(currentStamina, maxStamina);
+            OnStaminaModifiedEvent.Invoke(currentStamina, maxStamina);
         }
         
     }

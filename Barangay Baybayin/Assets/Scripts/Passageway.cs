@@ -6,19 +6,22 @@ using DG.Tweening;
 public class Passageway : MonoBehaviour
 {
 
-    private Room room;
+    [HideInInspector] public Room room;
     private Transform playerDestinationPosition;
     [HideInInspector] public Vector2 cameraDestinationPosition;
+    [HideInInspector] public Vector2 cameraPanLimit;
     private Passageway connectedToPassageway;
 
     public void AssignPassageway(Room p_room,
                                  Transform p_playerDestinationPosition,
                                  Vector2 p_cameraDestinationPosition,
+                                 Vector2 p_cameraPanLimit,
                                  Passageway p_connectedToPassageway)
     {
         room = p_room;
         playerDestinationPosition = p_playerDestinationPosition;
         cameraDestinationPosition = p_cameraDestinationPosition;
+        cameraPanLimit = p_cameraPanLimit;
         connectedToPassageway = p_connectedToPassageway;
     }
 
@@ -29,19 +32,8 @@ public class Passageway : MonoBehaviour
         {
   
             collision.gameObject.transform.position = connectedToPassageway.playerDestinationPosition.position;
-            string roomName;
-            string roomDescription;
-            List<ResourceNodeDrop> availableResourceNodeDrops;
-            connectedToPassageway.room.GetRoomInfos(out roomName, out roomDescription, out availableResourceNodeDrops);
-            Vector3 cameraPosition = new Vector3(connectedToPassageway.cameraDestinationPosition.x,
-                                                connectedToPassageway.cameraDestinationPosition.y, 
-                                                CameraManager.instance.worldCamera.transform.position.z);
             
-            connectedToPassageway.room.onRoomEntered.Invoke(
-                roomName, 
-                roomDescription, 
-                availableResourceNodeDrops, 
-                cameraPosition);
+            connectedToPassageway.room.onRoomEnteredEvent.Invoke(connectedToPassageway);
 
         }
        

@@ -3,9 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class HourChanged : UnityEvent { };
-public class MinuteChanged : UnityEvent { };
-public class DayChanged : UnityEvent<int> { };
+public class HourChangedEvent : UnityEvent { };
+public class MinuteChangedEvent : UnityEvent { };
+public class DayChangedEvent : UnityEvent<int> { };
+
+public class TimeData
+{
+    int hoursInDay;
+    int minutesInHour;
+    int secondsInMinutes;
+
+    
+}
 
 public class TimeManager : MonoBehaviour
 {
@@ -25,9 +34,9 @@ public class TimeManager : MonoBehaviour
             return _instance;
         }
     }
-    public static HourChanged onHourChanged = new HourChanged();
-    public static MinuteChanged onMinuteChanged = new MinuteChanged();
-    public static DayChanged onDayChanged = new DayChanged();
+    public static HourChangedEvent onHourChangedEvent = new HourChangedEvent();
+    public static MinuteChangedEvent onMinuteChangedEvent = new MinuteChangedEvent();
+    public static DayChangedEvent onDayChangedEvent = new DayChangedEvent();
 
     [HideInInspector] public static float sunriseHour = 6;
 
@@ -66,54 +75,52 @@ public class TimeManager : MonoBehaviour
 
         Formula();
 
-        StartCoroutine(delay());
-        StartCoroutine(DoTimer());
-        //Test
-        //onHourChanged.Invoke(startDayHour, endDayHour);
-        //onDayChanged.Invoke(dayCount);
+        StartCoroutine(Co_Delay());
+        StartCoroutine(Co_DoTimer());
+   
     }
 
-    IEnumerator delay()
+    IEnumerator Co_Delay()
     {
         yield return new WaitForSeconds(1f);
-        onDayChanged.Invoke(dayCount);
+        onDayChangedEvent.Invoke(dayCount);
         runningCoroutine = StartCoroutine(Co_NewDay());
     }
     private void OnEnable()
     {
         if (PlayerManager.instance.stamina)
         {
-            PlayerManager.instance.stamina.onStaminaDepleted.AddListener(FaintedEndDay);
+            PlayerManager.instance.stamina.onStaminaDepletedEvent.AddListener(FaintedEndDay);
         }
         dayInfoUI = UIManager.instance.dayInfoUI;
-        TimeManager.onDayChanged.AddListener(dayInfoUI.DayEnd);
+        TimeManager.onDayChangedEvent.AddListener(dayInfoUI.DayEnd);
     }
   
     private void OnDisable()
     {
         if (PlayerManager.instance)
         {
-            PlayerManager.instance.stamina.onStaminaDepleted.RemoveListener(FaintedEndDay);
+            PlayerManager.instance.stamina.onStaminaDepletedEvent.RemoveListener(FaintedEndDay);
         }
-        TimeManager.onDayChanged.RemoveListener(dayInfoUI.DayEnd);
+        TimeManager.onDayChangedEvent.RemoveListener(dayInfoUI.DayEnd);
     }
     private void Update()
     {
         totalTime = Time.realtimeSinceStartup;
     }
 
-    IEnumerator DoTimer()
+    IEnumerator Co_DoTimer()
     {
         while(true)
         {
             yield return new WaitForSeconds(oneMinToRealSeconds);
             minute++;
-            onMinuteChanged?.Invoke();
+            onMinuteChangedEvent?.Invoke();
             if (minute >= 60)
             {
                 hour++;
                 minute = 0;
-                onHourChanged?.Invoke();
+                onHourChangedEvent?.Invoke();
                 if (hour > hoursInDay)
                 {
                     hour = 0;
@@ -130,7 +137,7 @@ public class TimeManager : MonoBehaviour
         }
         UIManager.instance.dayInfoUI.Faint(dayCount);
         
-        onDayChanged.Invoke(dayCount);
+        onDayChangedEvent.Invoke(dayCount);
     }
     public void EndDay()
     {
@@ -139,7 +146,7 @@ public class TimeManager : MonoBehaviour
             StopCoroutine(runningCoroutine);
         }
         UIManager.instance.dayInfoUI.DayEnd(dayCount);
-        onDayChanged.Invoke(dayCount);
+        onDayChangedEvent.Invoke(dayCount);
     }
     public void NewDay()
     {
@@ -159,7 +166,7 @@ public class TimeManager : MonoBehaviour
         Debug.Log("NEW DAY co");
         hour = startHour;
         Formula();
-        onDayChanged.Invoke(dayCount);
+        onDayChangedEvent.Invoke(dayCount);
         //TimeManager.instance.OnRespawn.Invoke();
         runningCoroutine=StartCoroutine(Co_NewDay());
     }

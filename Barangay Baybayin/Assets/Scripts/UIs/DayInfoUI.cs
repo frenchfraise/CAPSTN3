@@ -56,7 +56,7 @@ public class DayInfoUI : MonoBehaviour
 
         PlayerManager.instance.stamina.transform.position = PlayerManager.instance.bed.transform.position;
         UIManager.instance.recipeUpgrade.SetActive(false);
-        CameraManager.instance.onCameraMoved.Invoke(new Vector3(0, 0, -10));
+        CameraManager.instance.onCameraMovedEvent.Invoke(new Vector3(0, 0, -10), new Vector3(20, 9, -10));
         Sequence trt = DOTween.Sequence();
         trt.Join(conditionsText.DOFade(0f, 0.75f));
         trt.Join(dayCountText.DOFade(0f, 0.75f));
@@ -106,7 +106,7 @@ public class DayInfoUI : MonoBehaviour
         yield return new WaitForSeconds(1f);
         UIManager.instance.recipeUpgrade.SetActive(false);
         PlayerManager.instance.stamina.transform.position = PlayerManager.instance.bed.transform.position;
-        CameraManager.instance.onCameraMoved.Invoke(new Vector3(0,0,-10));
+        CameraManager.instance.onCameraMovedEvent.Invoke(new Vector3(0,0,-10), new Vector3(20, 9, 0));
         Sequence trt = DOTween.Sequence();
         trt.Join(conditionsText.DOFade(0f, 0.75f));
         trt.Join(dayCountText.DOFade(0f, 0.75f));

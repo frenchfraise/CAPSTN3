@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class OnBedInteract : UnityEvent { }
+public class BedInteractedEvent : UnityEvent { }
 public class Bed : InteractibleObject
 {
-    public OnBedInteract onBedInteracted = new OnBedInteract();
+    public BedInteractedEvent onBedInteractedEvent = new BedInteractedEvent();
 
    
     protected override void OnEnable()
     {
         base.OnEnable();
-        onBedInteracted.AddListener(TimeManager.instance.EndDay);
+        onBedInteractedEvent.AddListener(TimeManager.instance.EndDay);
  
     }
     protected override void OnDisable()
@@ -20,14 +20,14 @@ public class Bed : InteractibleObject
         base.OnDisable();
         if (TimeManager.instance)
         {
-            onBedInteracted.RemoveListener(TimeManager.instance.EndDay);
+            onBedInteractedEvent.RemoveListener(TimeManager.instance.EndDay);
         }
         
         
     }
     protected override void OnInteract()
     {
-        onBedInteracted.Invoke();
+        onBedInteractedEvent.Invoke();
    
 
     }
