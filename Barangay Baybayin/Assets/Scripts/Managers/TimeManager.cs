@@ -18,7 +18,7 @@ public class TimeData
 
 public class TimeManager : MonoBehaviour
 {
-    public const int hoursInDay = 24, minutesInHour = 60, secondsInMinutes = 60;
+    public const int hoursInDay = 24, minutesInHour = 30, secondsInMinutes = 60;
 
     private static TimeManager _instance;
     private DayInfoUI dayInfoUI;
@@ -34,6 +34,7 @@ public class TimeManager : MonoBehaviour
             return _instance;
         }
     }
+
     public static HourChangedEvent onHourChangedEvent = new HourChangedEvent();
     public static MinuteChangedEvent onMinuteChangedEvent = new MinuteChangedEvent();
     public static DayChangedEvent onDayChangedEvent = new DayChangedEvent();
@@ -41,8 +42,6 @@ public class TimeManager : MonoBehaviour
     [HideInInspector] public static float sunriseHour = 6;
 
     private float totalTime = 0;
-
-    // public int intervalNum;
     
     [HideInInspector] public float realSecondsPerNight;
 
@@ -53,12 +52,13 @@ public class TimeManager : MonoBehaviour
     [SerializeField] private int endTime; //not yet used
 
     public static int minute;
+    private int minuteByTwos;
+    public static int minuteByTens;
     public static int hour;
-    private int numOfHoursAwake = 16;
+    private int numOfHoursAwake = 8;
     public static string abbreviation;
 
     [SerializeField] private float oneMinToRealSeconds;
-    private float timer;
 
     private Coroutine runningCoroutine;
 
@@ -76,8 +76,7 @@ public class TimeManager : MonoBehaviour
         Formula();
 
         StartCoroutine(Co_Delay());
-        StartCoroutine(Co_DoTimer());
-   
+        StartCoroutine(Co_DoTimer());   
     }
 
     IEnumerator Co_Delay()
@@ -106,7 +105,8 @@ public class TimeManager : MonoBehaviour
     }
     private void Update()
     {
-        totalTime = Time.realtimeSinceStartup;
+        // Real Time played
+        //totalTime += Time.realtimeSinceStartup;
     }
 
     IEnumerator Co_DoTimer()
@@ -116,10 +116,17 @@ public class TimeManager : MonoBehaviour
             yield return new WaitForSeconds(oneMinToRealSeconds);
             minute++;
             onMinuteChangedEvent?.Invoke();
-            if (minute >= 60)
+            minuteByTwos = minute;
+            minuteByTwos *= 2;
+            if (minuteByTwos % 10 == 0)
+            {
+                minuteByTens = minuteByTwos;
+            }
+            if (minute >= minutesInHour)
             {
                 hour++;
                 minute = 0;
+                minuteByTens = 0;
                 onHourChangedEvent?.Invoke();
                 if (hour > hoursInDay)
                 {

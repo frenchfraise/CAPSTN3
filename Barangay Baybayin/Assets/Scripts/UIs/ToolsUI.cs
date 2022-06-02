@@ -14,7 +14,7 @@ public class ToolsUI : MonoBehaviour
         toolCaster = FindObjectOfType<ToolCaster>();
         toolCaster.onToolCanUseUpdatedEvent.AddListener(CanUseUpdate);
         toolCaster.onToolCanSwitchUpdatedEvent.AddListener(CanSwitchUpdate);
-        OnToolButtonPressed(0);
+        OnToolButtonPressed(0); // temporary (?)
         canUse = true;
         canSwitch = true;
 

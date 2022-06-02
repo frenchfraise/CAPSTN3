@@ -28,7 +28,7 @@ public class Stamina : MonoBehaviour
         OnStaminaModifiedEvent.AddListener(genericBarUI.UpdateBar);
         onStaminaDepletedEvent.AddListener(PenalizeStamina);
         TimeManager.onDayChangedEvent.AddListener(RegenerateStamina);
-        currentMaxStamina = maxStamina;
+        currentMaxStamina = maxStamina; // some delay around here, when one starts the game and does Use(), THE PLAYER COULD FAINT
         genericBarUI.InstantUpdateBar(currentStamina, currentMaxStamina, maxStamina);
     }
 

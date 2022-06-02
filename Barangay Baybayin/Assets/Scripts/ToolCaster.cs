@@ -34,7 +34,7 @@ public class ToolCaster : MonoBehaviour
     public ToolHitSucceededEvent onToolHitSucceededEvent = new ToolHitSucceededEvent();
     public ToolCanUseUpdatedEvent onToolCanUseUpdatedEvent = new ToolCanUseUpdatedEvent();
     public ToolCanSwitchUpdatedEvent onToolCanSwitchUpdatedEvent = new ToolCanSwitchUpdatedEvent();
-    public ToolSpecialUseEvent onToolSpecialUsedEven = new ToolSpecialUseEvent();
+    public ToolSpecialUseEvent onToolSpecialUsedEvent = new ToolSpecialUseEvent();
 
     private void Awake()
     {
@@ -50,8 +50,8 @@ public class ToolCaster : MonoBehaviour
         onToolHitSucceededEvent.AddListener(ToolHitSuccess);
 
         ToolManager.onToolChangedEvent.AddListener(OnToolChanged);
-        onToolSpecialUsedEven.AddListener(OnSpecialUsed);
-        OnToolChanged(ToolManager.instance.tools[0]);
+        onToolSpecialUsedEvent.AddListener(OnSpecialUsed);
+        OnToolChanged(ToolManager.instance.tools[0]); // temporary (?)
         canUse = true;
         canSwitch = true;
     }
@@ -64,20 +64,20 @@ public class ToolCaster : MonoBehaviour
         }
         onToolHitSucceededEvent.RemoveListener(ToolHitSuccess);
         ToolManager.onToolChangedEvent.RemoveListener(OnToolChanged);
-        onToolSpecialUsedEven.RemoveListener(OnSpecialUsed);
+        onToolSpecialUsedEvent.RemoveListener(OnSpecialUsed);
     }
 
     public void OnSpecialUsed()
     {
-        
-        current_Tool.ModifySpecialAmount(-current_Tool.so_Tool.maxSpecialPoints[current_Tool.craftLevel]);
+        // I'm guessing this is where it decrements when it is "full"
+        current_Tool.ModifySpecialAmount(-current_Tool.so_Tool.specialPointUse[current_Tool.craftLevel]);
     }
   
     public void UseSpecial()
     {
         if (canUse)
         {
-            if (current_Tool.specialPoints >= current_Tool.so_Tool.maxSpecialPoints[current_Tool.craftLevel])
+            if (current_Tool.specialPoints >= current_Tool.so_Tool.specialPointUse[current_Tool.craftLevel])
             {
 
                 ResourceNode targetResourceNode = GetResourceNode();
@@ -87,9 +87,7 @@ public class ToolCaster : MonoBehaviour
                     targetResourceNode.OnResourceNodeHitEvent.Invoke(current_Tool.so_Tool.useForResourceNode,
                         current_Tool.craftLevel,
                         current_Tool.so_Tool.damage[current_Tool.craftLevel] * 2,
-                        onToolSpecialUsedEven);
-                    
-
+                        onToolSpecialUsedEvent);
                 }
                 StartCoroutine(Co_ToolUseCooldown());
             }
@@ -212,9 +210,4 @@ public class ToolCaster : MonoBehaviour
         pointerDownTimer = 0;
         // Invoke Tool Charge Use()
     }
-
-
-
-
-
 }

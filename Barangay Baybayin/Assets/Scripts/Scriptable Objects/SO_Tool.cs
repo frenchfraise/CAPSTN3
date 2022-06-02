@@ -28,6 +28,7 @@ public class SO_Tool : ScriptableObject
 
     public List<float> maxSpecialPoints;
     public List<float> specialPointReward;
+    public List<float> specialPointUse;
 
     public List<float> maxProficiencyAmount;
     public List<float> proficiencyAmountReward;

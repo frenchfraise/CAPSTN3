@@ -53,7 +53,7 @@ public class ToolManager : MonoBehaviour
         }
     }
 
-    public static void ResetAllSpeicals()
+    public static void ResetAllSpecials()
     {
         foreach (Tool to in ToolManager.instance.tools)
         {

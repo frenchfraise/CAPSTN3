@@ -124,13 +124,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthOverheadUI: {fileID: 0}
-  onHealthModify:
+  onHealthModifyEvent:
     m_PersistentCalls:
       m_Calls: []
-  onHealthModified:
+  onHealthModifiedEvent:
     m_PersistentCalls:
       m_Calls: []
-  OnDeath:
+  OnDeathEvent:
     m_PersistentCalls:
       m_Calls: []
 --- !u!61 &8653533781470353940

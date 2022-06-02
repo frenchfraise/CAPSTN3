@@ -8,7 +8,7 @@ public class Tool
 {
 
     public SO_Tool so_Tool;
-    [HideInInspector]public int craftLevel = 1;
+    public int craftLevel = 1;
 
     public int proficiencyLevel = 1;
     public float proficiencyAmount = 0;

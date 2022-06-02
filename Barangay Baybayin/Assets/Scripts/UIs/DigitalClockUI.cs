@@ -13,7 +13,6 @@ public class DigitalClockUI : MonoBehaviour
 
     private void OnEnable()
     {
-
         TimeManager.onHourChangedEvent.AddListener(UpdateTime);
         TimeManager.onMinuteChangedEvent.AddListener(UpdateTime);
     }
@@ -27,6 +26,6 @@ public class DigitalClockUI : MonoBehaviour
     // Update is called once per frame
     private void UpdateTime()
     {
-        textDisplay.text = $"{TimeManager.hour:00}:{TimeManager.minute:00}";
+        textDisplay.text = $"{TimeManager.hour:00}:{TimeManager.minuteByTens:00}";
     }
 }
