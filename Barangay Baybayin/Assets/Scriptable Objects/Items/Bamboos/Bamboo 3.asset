@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f415a380d3dbc124e99577a74b26ca5d, type: 3}
   m_Name: Bamboo 3
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: c905b06f401ef57439e8d35bc0bcefcd, type: 3}
+  icon: {fileID: 21300000, guid: fd355f17791d42642bcc092f597ca47c, type: 3}
