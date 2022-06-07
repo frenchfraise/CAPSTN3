@@ -74,8 +74,8 @@ public class ResourceNode : PoolableObject
         if (p_useForResourceNode == so_ResourceNode)
         {
             
-            if (p_craftLevel >= levelRequirement)
-            {
+            //if (p_craftLevel >= levelRequirement)
+            //{
                 
                 Health health = GetComponent<Health>();         
      
@@ -83,7 +83,7 @@ public class ResourceNode : PoolableObject
           
                 p_eventCallback.Invoke();
         
-            }
+            //}
         }
     }
 
