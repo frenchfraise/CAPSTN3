@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 public class ClockUI : MonoBehaviour
 {
-    [SerializeField] private Image nightBackground;
     [SerializeField] private RectTransform hand;
 
     const float hoursToDegrees = 180 / 24;
@@ -12,8 +11,7 @@ public class ClockUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        hand.localRotation = Quaternion.Euler(0, 0, 90);
-        nightBackground.fillAmount = TimeManager.instance.realSecondsPerNight / 2;        
+        hand.localRotation = Quaternion.Euler(0, 0, 90); 
     }
 
     private void OnEnable()

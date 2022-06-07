@@ -27,8 +27,8 @@ MonoBehaviour:
   damage: 000000000a0000000f00000014000000
   staminaCost:
   - 0
-  - 5
-  - 5
+  - 2
+  - 3
   - 5
   chargeSpeedRate: 1.5
   maxToolCharge: 1

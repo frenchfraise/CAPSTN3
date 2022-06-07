@@ -9,12 +9,14 @@ public class PlayerJoystick : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 movement;
 
+    public Animator animator;
+
     [SerializeField] public Transform aim;
     [SerializeField] private float aimOffset;
     private void Start()
     {
         rb = rb ? rb : GetComponent<Rigidbody2D>();
-        aim.position = (Vector2)transform.position + (aimOffset * movement);
+        aim.position = (Vector2)transform.position + (aimOffset * movement);        
     }
 
     // Update is called once per frame
@@ -22,6 +24,10 @@ public class PlayerJoystick : MonoBehaviour
     {
         movement.x = joystick.Horizontal;
         movement.y = joystick.Vertical;
+
+        animator.SetFloat("Horizontal", movement.x);
+        animator.SetFloat("Vertical", movement.y);
+        animator.SetFloat("Speed", movement.sqrMagnitude);
     }
 
     private void FixedUpdate()
