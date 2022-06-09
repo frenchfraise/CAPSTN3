@@ -34,6 +34,7 @@ public class Character : InteractibleObject
     protected override void OnInteract()
     {
         bool isQuestCompleted = false;
+        Debug.Log("TEST");
         isQuestCompleted = CheckIfQuestComplete();
         if (isQuestCompleted)
         {

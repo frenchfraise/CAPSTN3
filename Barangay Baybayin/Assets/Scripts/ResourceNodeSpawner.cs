@@ -6,6 +6,7 @@ using UnityEngine;
 public class ResourceNodeSpawner : MonoBehaviour
 {
     private Room room;
+ 
     public void AssignRoom(Room p_room)
     {
         room = p_room;

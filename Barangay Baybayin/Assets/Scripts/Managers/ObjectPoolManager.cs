@@ -51,5 +51,16 @@ public class ObjectPoolManager : MonoBehaviour
         return null; 
     }
 
+    public static GenericObjectPool GetPool(System.Type p_type)
+    {
 
+        foreach (GenericObjectPool pool in ObjectPoolManager.instance.pools)
+        {
+            if (pool.prefab.GetType() == p_type)
+            {
+                return pool;
+            }
+        }
+        return null;
+    }
 }

@@ -13,6 +13,7 @@ public class PlayerJoystick : MonoBehaviour
 
     [SerializeField] public Transform aim;
     [SerializeField] private float aimOffset;
+    [SerializeField] private SpriteRenderer sort;
     private void Start()
     {
         rb = rb ? rb : GetComponent<Rigidbody2D>();
@@ -24,6 +25,9 @@ public class PlayerJoystick : MonoBehaviour
     {
         movement.x = joystick.Horizontal;
         movement.y = joystick.Vertical;
+
+        //Vector3 t = transform.position;
+        //sort.sortingOrder = t.y;
 
         animator.SetFloat("Horizontal", movement.x);
         animator.SetFloat("Vertical", movement.y);
