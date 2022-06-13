@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 739ccaa9e830d964caaae04afa4833d9, type: 3}
-  m_Name: Panday 2
+  m_Name: Lola Patola 2
   m_EditorClassIdentifier: 
   initialSO_Dialogues: {fileID: 11400000, guid: 5a2a797af6aec3544a79ece7c34a8a7c, type: 2}
   questInProgressSO_Dialogues: {fileID: 11400000, guid: a1ac6e9da96378240af3f7207c6f50e4, type: 2}

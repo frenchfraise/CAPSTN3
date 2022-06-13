@@ -41,7 +41,8 @@ public class UIManager : MonoBehaviour
     public Sprite cloudySprite;
     public Sprite rainSprite;
     public Sprite stormySprite;
-
+    public StorylinesUI storylines;
+    public UpgradeToolsUI upgradeUI;
     public Coroutine runningCoroutine;
 
     private void Awake()

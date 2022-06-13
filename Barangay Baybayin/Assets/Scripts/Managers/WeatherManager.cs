@@ -22,7 +22,10 @@ public class WeatherManager : MonoBehaviour
     }
 
     public static WeatherChangedEvent onWeatherChangedEvent = new WeatherChangedEvent();
-
+    public List<SO_Dialogues> sunnyDialogues;
+    public List<SO_Dialogues> cloudyDialogues;
+    public List<SO_Dialogues> rainyDialogues;
+    public List<SO_Dialogues> stormyDialogues;
     [SerializeField] private Weather currentWeather = Weather.Stormy;
     public Weather CurrentWeather => currentWeather;
 

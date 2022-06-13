@@ -9,8 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95fba4159f7222e43a232886d4fe6a6e, type: 3}
-  m_Name: Panday 2
+  m_Script: {fileID: 11500000, guid: 846db7b038354e245b3974364be2d363, type: 3}
+  m_Name: Cloudy 1
   m_EditorClassIdentifier: 
-  so_infrastructure: {fileID: 11400000, guid: 43f8eec148360e34c98e5e7a3f8df290, type: 2}
-  requiredLevel: 2
+  dialogues:
+  - character: {fileID: 11400000, guid: 88aa14d00365c39438cbfaa3e215ba70, type: 2}
+    emotion: 0
+    words: Its cloudy today
+    speechTransitionType: 0

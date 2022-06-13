@@ -2,17 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Panday : MonoBehaviour
+public class Panday : InteractibleObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    private int index;
 
-    // Update is called once per frame
-    void Update()
+    protected override void OnInteract()
     {
-        
+        UIManager.instance.upgradeUI.OpenButtonUIClicked();
     }
 }

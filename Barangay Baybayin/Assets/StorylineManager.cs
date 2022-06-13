@@ -9,7 +9,8 @@ public class WorldEvent : UnityEvent { };
 public class StorylineData
 {
     [SerializeField] public SO_StoryLine so_StoryLine;
-    public int currentCharacterDataIndex;
+    public int currentQuestlinePartIndex;
+    public int currentStorylineIndex;
 }
 public class StorylineManager : MonoBehaviour
 {
@@ -36,7 +37,5 @@ public class StorylineManager : MonoBehaviour
        
         _instance = this;
         DontDestroyOnLoad(gameObject);
-
-        
     }
 }

@@ -10,7 +10,7 @@ using System;
 public class CharacterDialogueUI : MonoBehaviour
 {
 
-    [HideInInspector] 
+    //[HideInInspector] 
     public SO_Dialogues currentSO_Dialogues;
     [SerializeField] private int currentDialogueIndex;
     [SerializeField] private TMP_Text characterNameText;
@@ -58,7 +58,7 @@ public class CharacterDialogueUI : MonoBehaviour
     public void ResetCharacterDialogueUI()
     {
         currentDialogueIndex=0;
-        if (currentDialogueIndex+1 < currentSO_Dialogues.dialogues.Count)
+        if (currentDialogueIndex < currentSO_Dialogues.dialogues.Count)
         {
             
             Dialogue currentDialogue = currentSO_Dialogues.dialogues[currentDialogueIndex];
@@ -94,10 +94,10 @@ public class CharacterDialogueUI : MonoBehaviour
             gameObject.SetActive(true);
 
         }
-        else //TEMPORARY END CONVO, BUT EVENTUALLY SHOW AND GIVE QUEST
-        {
-            gameObject.SetActive(false);
-        }
+        //else //TEMPORARY END CONVO, BUT EVENTUALLY SHOW AND GIVE QUEST
+        //{
+        //    gameObject.SetActive(false);
+        //}
     }
 
     public void OnNextButtonUIPressed()
