@@ -45,16 +45,17 @@ public class InventoryManager : MonoBehaviour
         {
             for (int ii = 0; ii < InventoryManager.instance.inventoryPages[iii].itemCategories.Count; ii++)
             {
-
+                Debug.Log(InventoryManager.instance.inventoryPages[iii].itemCategories[ii].name.ToString());
                 for (int i = 0; i < InventoryManager.instance.inventoryPages[iii].itemCategories[ii].items.Count;)
                 {
                     if (InventoryManager.instance.inventoryPages[iii].itemCategories[ii].items[i].so_Item == p_item)
                     {
 
 
-
+                        Debug.Log(p_item + " - GOT IT - " + InventoryManager.instance.inventoryPages[iii].itemCategories[ii].items[i].so_Item.ToString());
                         return InventoryManager.instance.inventoryPages[iii].itemCategories[ii].items[i];
                     }
+                    Debug.Log(p_item + " - - " + InventoryManager.instance.inventoryPages[iii].itemCategories[ii].items[i].so_Item.ToString());
                     i++;
                     if (i >= InventoryManager.instance.inventoryPages.Count)
                     {

@@ -8,7 +8,6 @@ public class ResourceNodeHitEvent : UnityEvent<SO_ResourceNode , int , int, Unit
 public class ResourceNode : PoolableObject
 {
    
-    [SerializeField] private HealthOverheadUI healthOverheadUIPrefab;
     private HealthOverheadUI healthOverheadUI;
     public SO_ResourceNode so_ResourceNode;
 
@@ -45,8 +44,8 @@ public class ResourceNode : PoolableObject
         Health health = GetComponent<Health>();
         health.OnDeathEvent.AddListener(RewardResource);
         health.OnDeathEvent.AddListener(Died);
-
-        PoolableObject healthOverheadUIObject = ObjectPoolManager.GetPool(healthOverheadUIPrefab).pool.Get();
+        GenericObjectPool objectPool = ObjectPoolManager.GetPool(typeof(HealthOverheadUI));
+        PoolableObject healthOverheadUIObject = objectPool.pool.Get();
         healthOverheadUI = healthOverheadUIObject.GetComponent<HealthOverheadUI>();
   
         healthOverheadUI.SetHealthBarData(transform, UIManager.instance.overheadUI);

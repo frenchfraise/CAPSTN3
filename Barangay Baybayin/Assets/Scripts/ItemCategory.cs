@@ -5,6 +5,6 @@ using UnityEngine;
 [System.Serializable]
 public class ItemCategory
 {
-    [SerializeField] private string name;
+    [SerializeField] public string name;
     public List<ItemData> items = new List<ItemData>();
 }

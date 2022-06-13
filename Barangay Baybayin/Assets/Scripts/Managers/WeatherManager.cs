@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class WeatherChangedEvent : UnityEvent<Weather, int> { };
+public class WeatherChangedEvent : UnityEvent<Weather> { };
 public class WeatherManager : MonoBehaviour
 {
     private static WeatherManager _instance;
@@ -21,7 +21,7 @@ public class WeatherManager : MonoBehaviour
         }
     }
 
-    public WeatherChangedEvent onWeatherChangedEvent = new WeatherChangedEvent();
+    public static WeatherChangedEvent onWeatherChangedEvent = new WeatherChangedEvent();
 
     [SerializeField] private Weather currentWeather = Weather.Stormy;
     public Weather CurrentWeather => currentWeather;
@@ -48,7 +48,7 @@ public class WeatherManager : MonoBehaviour
     {
         while (true)
         {
-            onWeatherChangedEvent?.Invoke(currentWeather, (int)currentWeather);
+            onWeatherChangedEvent?.Invoke(currentWeather);
             yield return new WaitForSeconds(10f);
 
             switch (currentWeather)

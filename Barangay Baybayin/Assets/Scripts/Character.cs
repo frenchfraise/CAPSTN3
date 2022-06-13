@@ -7,9 +7,11 @@ public class OnBedInteractedEvent : UnityEvent<SO_Dialogues> { }
 public class Character : InteractibleObject
 {
     private CharacterDialogueUI characterDialogueUI;
-    [SerializeField] private SO_StoryLine so_StoryLine;
+    //[SerializeField] private SO_StoryLine so_StoryLine;
+    [SerializeField]
+    private int index;
     private bool isFirstTime = true;
-    private int currentCharacterDataIndex;
+    
     public OnBedInteractedEvent onCharacterSpokenToEvent = new OnBedInteractedEvent();
     
     protected override void OnEnable()
@@ -35,7 +37,11 @@ public class Character : InteractibleObject
     {
         // Debug.Log("wee");
         bool isQuestCompleted = false;
+        Debug.Log("TEST");
         isQuestCompleted = CheckIfQuestComplete();
+        StorylineData storylineData = StorylineManager.instance.storyLines[index];
+        SO_StoryLine so_StoryLine = storylineData.so_StoryLine;
+        int currentCharacterDataIndex = storylineData.currentCharacterDataIndex;
         if (isQuestCompleted)
         {
             
@@ -62,6 +68,10 @@ public class Character : InteractibleObject
 
     public bool CheckIfQuestComplete()
     {
+
+        StorylineData storylineData = StorylineManager.instance.storyLines[index];
+        SO_StoryLine so_StoryLine = storylineData.so_StoryLine;
+        int currentCharacterDataIndex = storylineData.currentCharacterDataIndex;
         SO_Quest currentQuest = so_StoryLine.questLines[currentCharacterDataIndex].quest;
         int questResourcesFound = 0;
         //if (currentQuestRequirement.so_requirement.GetType() == typeof(SO_ItemRequirement))
@@ -181,7 +191,9 @@ public class Character : InteractibleObject
 
     public void QuestCompleted()
     {
-        currentCharacterDataIndex++;
+        StorylineData storylineData = StorylineManager.instance.storyLines[index];
+        SO_StoryLine so_StoryLine = storylineData.so_StoryLine;
+        storylineData.currentCharacterDataIndex++;
     }
 
 

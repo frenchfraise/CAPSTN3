@@ -33,6 +33,15 @@ MonoBehaviour:
   chargeSpeedRate: 1.5
   maxToolCharge: 1
   maxCraftLevel: 10
+  craftUpgradeItemRequirementsDatas:
+  - itemRequirements: []
+    requiredProficiencyLevel: 0
+  - itemRequirements: []
+    requiredProficiencyLevel: 0
+  - itemRequirements: []
+    requiredProficiencyLevel: 0
+  - itemRequirements: []
+    requiredProficiencyLevel: 0
   maxSpecialPoints:
   - 0
   - 100

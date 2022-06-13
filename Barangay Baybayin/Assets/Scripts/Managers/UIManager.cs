@@ -64,29 +64,29 @@ public class UIManager : MonoBehaviour
 
     private void OnEnable()
     {
-        WeatherManager.instance.onWeatherChangedEvent.AddListener(OnWeatherUIChanged);
+        WeatherManager.onWeatherChangedEvent.AddListener(OnWeatherUIChanged);
     }
 
     private void OnDisable()
     {
-        WeatherManager.instance.onWeatherChangedEvent.RemoveListener(OnWeatherUIChanged);
+        WeatherManager.onWeatherChangedEvent.RemoveListener(OnWeatherUIChanged);
     }
 
     //TEMPORARY
-    private void OnWeatherUIChanged(Weather p_weather, int num)
+    private void OnWeatherUIChanged(Weather p_weather)
     {
-        switch (num)
+        switch (p_weather)
         {
-            case 0:
+            case Weather.Sunny:                
                 weatherSpriteUI.sprite = sunnySprite;
                 break;
-            case 1:
+            case Weather.Cloudy:
                 weatherSpriteUI.sprite = cloudySprite;
                 break;
-            case 2:
+            case Weather.Rainy:
                 weatherSpriteUI.sprite = rainSprite;
                 break;
-            case 3:
+            case Weather.Stormy:
                 weatherSpriteUI.sprite = stormySprite;
                 break;
         }
