@@ -42,15 +42,15 @@ public class ToolManager : MonoBehaviour
 
     private void Awake()
     {
-        if (_instance != null)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
+        //if (_instance != null)
+        //{
+        //    Destroy(gameObject);
+        //}
+        //else
+        //{
             _instance = this;
             DontDestroyOnLoad(gameObject);
-        }
+        //}
     }
 
     public static void ResetAllSpecials()

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dabccd67f58b89349ba4cab56a870d02, type: 3}
-  m_Name: Panday
+  m_Name: Kuya Sagwan QuestChain
   m_EditorClassIdentifier: 
   questLines:
   - {fileID: 11400000, guid: 598a7acd5078f4949aeaa3447ebb9157, type: 2}
