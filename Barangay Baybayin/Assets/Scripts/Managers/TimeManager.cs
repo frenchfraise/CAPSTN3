@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class HourChangedEvent : UnityEvent { };
-public class MinuteChangedEvent : UnityEvent { };
+public class TimeChangedEvent : UnityEvent<int, int, int> { };
 public class DayChangedEvent : UnityEvent<int> { };
 
 public class TimeData
@@ -12,8 +11,6 @@ public class TimeData
     int hoursInDay;
     int minutesInHour;
     int secondsInMinutes;
-
-    
 }
 
 public class TimeManager : MonoBehaviour
@@ -35,8 +32,7 @@ public class TimeManager : MonoBehaviour
         }
     }
 
-    public static HourChangedEvent onHourChangedEvent = new HourChangedEvent();
-    public static MinuteChangedEvent onMinuteChangedEvent = new MinuteChangedEvent();
+    public static TimeChangedEvent onTimeChangedEvent = new TimeChangedEvent();
     public static DayChangedEvent onDayChangedEvent = new DayChangedEvent();
 
     [HideInInspector] public static float sunriseHour = 6;
@@ -54,7 +50,7 @@ public class TimeManager : MonoBehaviour
     public static int minute;
     private int minuteByTwos;
     public static int minuteByTens;
-    public static int hour;
+    public int hour;
     private int numOfHoursAwake = 8;
     public static string abbreviation;
 
@@ -92,7 +88,8 @@ public class TimeManager : MonoBehaviour
             PlayerManager.instance.stamina.onStaminaDepletedEvent.AddListener(FaintedEndDay);
         }
         dayInfoUI = UIManager.instance.dayInfoUI;
-        TimeManager.onDayChangedEvent.AddListener(dayInfoUI.DayEnd);
+        //dayInfoUI = dayInfoUI?UIManager.instance.dayInfoUI:FindObjectOfType<DayInfoUI>();
+        onDayChangedEvent.AddListener(dayInfoUI.DayEnd);
     }
   
     private void OnDisable()
@@ -101,12 +98,12 @@ public class TimeManager : MonoBehaviour
         {
             PlayerManager.instance.stamina.onStaminaDepletedEvent.RemoveListener(FaintedEndDay);
         }
-        TimeManager.onDayChangedEvent.RemoveListener(dayInfoUI.DayEnd);
+        onDayChangedEvent.RemoveListener(dayInfoUI.DayEnd);
     }
     private void Update()
     {
         // Real Time played
-        //totalTime += Time.realtimeSinceStartup;
+        // totalTime += Time.realtimeSinceStartup;
     }
 
     IEnumerator Co_DoTimer()
@@ -115,9 +112,8 @@ public class TimeManager : MonoBehaviour
         {
             yield return new WaitForSeconds(oneMinToRealSeconds);
             minute++;
-            onMinuteChangedEvent?.Invoke();
             minuteByTwos = minute;
-            minuteByTwos *= 2;
+            minuteByTwos *= 2;            
             if (minuteByTwos % 10 == 0)
             {
                 minuteByTens = minuteByTwos;
@@ -127,12 +123,12 @@ public class TimeManager : MonoBehaviour
                 hour++;
                 minute = 0;
                 minuteByTens = 0;
-                onHourChangedEvent?.Invoke();
                 if (hour > hoursInDay)
                 {
                     hour = 0;
                 }
             }
+            onTimeChangedEvent?.Invoke(hour, minute, minuteByTens);
         }
     }
 
@@ -143,7 +139,6 @@ public class TimeManager : MonoBehaviour
             StopCoroutine(runningCoroutine);
         }
         UIManager.instance.dayInfoUI.Faint(dayCount);
-        
         onDayChangedEvent.Invoke(dayCount);
     }
     public void EndDay()

@@ -13,6 +13,7 @@ public class Tool
     public int proficiencyLevel = 1;
     public float proficiencyAmount = 0;
     public float specialPoints = 0;
+    public int specialChargesCounter = 0;
 
     public void ModifySpecialAmount(float p_modifierAmount)
     {
@@ -25,8 +26,10 @@ public class Tool
 
         if (specialPoints >= so_Tool.maxSpecialPoints[craftLevel])
         {
-            specialPoints = so_Tool.maxSpecialPoints[craftLevel];
+            // specialPoints = so_Tool.maxSpecialPoints[craftLevel];
             ToolManager.onSpecialPointsFilledEvent.Invoke();
+            specialChargesCounter++;
+            specialPoints = 0;
         }
         else
         {

@@ -27,6 +27,7 @@ public class SO_Tool : ScriptableObject
     public int maxCraftLevel;
 
     public List<float> maxSpecialPoints;
+    public List<int> maxSpecialCharges;
     public List<float> specialPointReward;
     public List<float> specialPointUse;
 

@@ -36,7 +36,6 @@ public class PlayerJoystick : MonoBehaviour
         if (movement != Vector2.zero)
         {
             aim.position = (Vector2)transform.position + (aimOffset * movement);
-        }
-        
+        }        
     }
 }

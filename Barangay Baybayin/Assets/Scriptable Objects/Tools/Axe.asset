@@ -38,6 +38,7 @@ MonoBehaviour:
   - 100
   - 90
   - 90
+  maxSpecialCharges: 00000000030000000400000005000000
   specialPointReward:
   - 0
   - 25

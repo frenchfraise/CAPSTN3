@@ -35,10 +35,14 @@ public class UIManager : MonoBehaviour
     public GameObject gameplayHUD;
     public GameObject recipeUpgrade;
 
-    public Coroutine runningCoroutine;
+    public Image weatherSpriteUI;
+    [Header("Weather Temporary Sprites")]
+    public Sprite sunnySprite;
+    public Sprite cloudySprite;
+    public Sprite rainSprite;
+    public Sprite stormySprite;
 
-    [Header("UI Button References")]
-    public List<Button> toolButtons = new List<Button>();
+    public Coroutine runningCoroutine;
 
     private void Awake()
     {
@@ -58,7 +62,35 @@ public class UIManager : MonoBehaviour
       
     }
 
-  
+    private void OnEnable()
+    {
+        WeatherManager.instance.onWeatherChangedEvent.AddListener(OnWeatherUIChanged);
+    }
+
+    private void OnDisable()
+    {
+        WeatherManager.instance.onWeatherChangedEvent.RemoveListener(OnWeatherUIChanged);
+    }
+
+    //TEMPORARY
+    private void OnWeatherUIChanged(Weather p_weather, int num)
+    {
+        switch (num)
+        {
+            case 0:
+                weatherSpriteUI.sprite = sunnySprite;
+                break;
+            case 1:
+                weatherSpriteUI.sprite = cloudySprite;
+                break;
+            case 2:
+                weatherSpriteUI.sprite = rainSprite;
+                break;
+            case 3:
+                weatherSpriteUI.sprite = stormySprite;
+                break;
+        }
+    }
 
     //TEMPORARY
     public static void TransitionFade(float p_opacity, bool p_isActiveOnEnd = true)

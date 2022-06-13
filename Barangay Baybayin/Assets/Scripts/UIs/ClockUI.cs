@@ -16,21 +16,19 @@ public class ClockUI : MonoBehaviour
 
     private void OnEnable()
     {
-        TimeManager.onHourChangedEvent.AddListener(UpdateTime);
-        TimeManager.onMinuteChangedEvent.AddListener(UpdateTime);
+        TimeManager.onTimeChangedEvent.AddListener(UpdateTime);
     }
 
     private void OnDisable()
     {
-        TimeManager.onHourChangedEvent.RemoveListener(UpdateTime);
-        TimeManager.onMinuteChangedEvent.RemoveListener(UpdateTime);
+        TimeManager.onTimeChangedEvent.RemoveListener(UpdateTime);
     }
 
     // Update is called once per frame
-    private void UpdateTime()
+    private void UpdateTime(int hour, int minute, int minuteByTwos)
     {
         hand.localRotation = Quaternion.Euler(0, 0, 90 + 
-            hoursToDegrees * ((TimeManager.hour + 
+            hoursToDegrees * ((hour + 
             TimeManager.hoursInDay - 
             TimeManager.sunriseHour) % 
             TimeManager.hoursInDay));

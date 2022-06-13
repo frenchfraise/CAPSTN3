@@ -33,6 +33,7 @@ public class Character : InteractibleObject
     }
     protected override void OnInteract()
     {
+        // Debug.Log("wee");
         bool isQuestCompleted = false;
         isQuestCompleted = CheckIfQuestComplete();
         if (isQuestCompleted)

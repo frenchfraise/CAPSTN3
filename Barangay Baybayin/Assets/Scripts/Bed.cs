@@ -22,13 +22,9 @@ public class Bed : InteractibleObject
         {
             onBedInteractedEvent.RemoveListener(TimeManager.instance.EndDay);
         }
-        
-        
     }
     protected override void OnInteract()
     {
         onBedInteractedEvent.Invoke();
-   
-
     }
 }

@@ -12,20 +12,18 @@ public class DigitalClockUI : MonoBehaviour
     }
 
     private void OnEnable()
-    {
-        TimeManager.onHourChangedEvent.AddListener(UpdateTime);
-        TimeManager.onMinuteChangedEvent.AddListener(UpdateTime);
+    {        
+        TimeManager.onTimeChangedEvent.AddListener(UpdateTime);
     }
 
     private void OnDisable()
     {
-        TimeManager.onHourChangedEvent.RemoveListener(UpdateTime);
-        TimeManager.onMinuteChangedEvent.RemoveListener(UpdateTime);
+        TimeManager.onTimeChangedEvent.RemoveListener(UpdateTime);
     }
 
     // Update is called once per frame
-    private void UpdateTime()
+    private void UpdateTime(int hour, int minute, int minuteByTens)
     {
-        textDisplay.text = $"{TimeManager.hour:00}:{TimeManager.minuteByTens:00}";
+        textDisplay.text = $"{hour:00}:{minuteByTens:00}";
     }
 }

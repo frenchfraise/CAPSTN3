@@ -7,7 +7,7 @@ public class ToolSpecialMeterUI : MonoBehaviour
     [SerializeField] private Image realBar;
     private void OnEnable()
     {
-        ToolManager.onSpecialPointsFilledEvent.AddListener(FillBar);
+        ToolManager.onSpecialPointsFilledEvent.AddListener(ResetBar);
         ToolManager.onSpecialPointsModifiedEvent.AddListener(UpdateBar);
         ToolManager.onToolChangedEvent.AddListener(InstantUpdateBar);
     }
@@ -34,6 +34,12 @@ public class ToolSpecialMeterUI : MonoBehaviour
     {
         //Debug.Log("UI FILLED");
         float fill = 1 / 1;
+        realBar.fillAmount = fill;
+    }
+
+    void ResetBar()
+    {
+        float fill = 0;
         realBar.fillAmount = fill;
     }
 }

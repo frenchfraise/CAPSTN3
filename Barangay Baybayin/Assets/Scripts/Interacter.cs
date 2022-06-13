@@ -15,7 +15,6 @@ public class Interacter : MonoBehaviour
         if (targetResourceNode)
         {
             targetResourceNode.onInteractEvent.Invoke();
-
         }
 
     }

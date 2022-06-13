@@ -7,8 +7,8 @@ using TMPro;
 public class ToolChargesUI : MonoBehaviour
 {
     private TMP_Text toolChargeTMP;
-    private float current;
-    private float max;
+    private Tool tool;
+    public ToolCaster toolCaster;
 
     private void Awake()
     {
@@ -17,32 +17,31 @@ public class ToolChargesUI : MonoBehaviour
 
     private void OnEnable()
     {
-        ToolManager.onSpecialPointsModifiedEvent.AddListener(UpdateCharges);
-        ToolManager.onSpecialPointsFilledEvent.AddListener(FillCharges);
+        ToolManager.onSpecialPointsModifiedEvent.AddListener(ModifiedUpdate);
+        ToolManager.onSpecialPointsFilledEvent.AddListener(ChangeUpdate);
+        toolCaster.onToolSpecialUsedEvent.AddListener(ChangeUpdate);
+        ToolManager.onToolChangedEvent.AddListener(UpdateToolOnSwitch);
     }
 
     private void OnDisable()
     {
-        ToolManager.onSpecialPointsModifiedEvent.RemoveListener(UpdateCharges);
-        ToolManager.onSpecialPointsFilledEvent.RemoveListener(FillCharges);
+        ToolManager.onSpecialPointsModifiedEvent.RemoveListener(ModifiedUpdate);
+        ToolManager.onSpecialPointsFilledEvent.RemoveListener(ChangeUpdate);
+        toolCaster.onToolSpecialUsedEvent.RemoveListener(ChangeUpdate);
+        ToolManager.onToolChangedEvent.RemoveListener(UpdateToolOnSwitch);
     }
 
-    void UpdateCharges(float p_current, float p_max)
+    void UpdateToolOnSwitch(Tool p_tool)
     {
-        /*float chargeCount;
-        if (p_current % p_max == p_current)
-        {
-            // Debug.Log("Beep. Boop.");
-            chargeCount = p_current / p_max;
-            toolChargeTMP.text = $"{chargeCount} / {p_max}";
-        }*/
-        current = p_current;
-        max = p_max;
-        toolChargeTMP.text = $"{p_current} / {p_max}";
+        tool = p_tool;
+        toolChargeTMP.text = $"Charges: {tool.specialChargesCounter}";
     }
-
-    void FillCharges()
+    void ModifiedUpdate(float p_max, float p_current)
     {
-        toolChargeTMP.text = $"100 / {max}";
+        toolChargeTMP.text = $"Charges: {tool.specialChargesCounter}";
+    }
+    void ChangeUpdate()
+    {
+        toolChargeTMP.text = $"Charges: {tool.specialChargesCounter}";
     }
 }

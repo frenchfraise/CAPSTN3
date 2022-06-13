@@ -14,7 +14,6 @@ public class DayInfoUI : MonoBehaviour
     private bool fainted;
     private bool isFirstTime = true;
 
-   
     public void DayEnd(int p_dayCount)
     {        
         if (!isFirstTime)
@@ -35,8 +34,6 @@ public class DayInfoUI : MonoBehaviour
         {
             isFirstTime = false;
         }
-
-
     }
 
     IEnumerator Co_DayEndTransition(int p_dayCount)
@@ -55,7 +52,8 @@ public class DayInfoUI : MonoBehaviour
 
 
         PlayerManager.instance.stamina.transform.position = PlayerManager.instance.bed.transform.position;
-        UIManager.instance.recipeUpgrade.SetActive(false);
+        // Uncomment this out when it is READY
+        // UIManager.instance.recipeUpgrade.SetActive(false);
         CameraManager.instance.onCameraMovedEvent.Invoke(new Vector3(0, 0, -10), new Vector3(20, 9, -10));
         Sequence trt = DOTween.Sequence();
         trt.Join(conditionsText.DOFade(0f, 0.75f));
@@ -104,7 +102,8 @@ public class DayInfoUI : MonoBehaviour
         tr.Join(dayCountText.DOFade(1f, 0.75f));
         yield return tr.WaitForCompletion();
         yield return new WaitForSeconds(1f);
-        UIManager.instance.recipeUpgrade.SetActive(false);
+        // Uncomment this out when it is READY
+        //UIManager.instance.recipeUpgrade.SetActive(false);
         PlayerManager.instance.stamina.transform.position = PlayerManager.instance.bed.transform.position;
         CameraManager.instance.onCameraMovedEvent.Invoke(new Vector3(0,0,-10), new Vector3(20, 9, 0));
         Sequence trt = DOTween.Sequence();

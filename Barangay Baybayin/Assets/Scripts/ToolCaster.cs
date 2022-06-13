@@ -30,6 +30,8 @@ public class ToolCaster : MonoBehaviour
     [SerializeField] private float switchRate;
     private Transform aim;
 
+    public Animator animator;
+
     public ToolUsedEvent onToolUsedEvent = new ToolUsedEvent();
     public ToolHitSucceededEvent onToolHitSucceededEvent = new ToolHitSucceededEvent();
     public ToolCanUseUpdatedEvent onToolCanUseUpdatedEvent = new ToolCanUseUpdatedEvent();
@@ -70,19 +72,20 @@ public class ToolCaster : MonoBehaviour
     public void OnSpecialUsed()
     {
         // I'm guessing this is where it decrements when it is "full"
-        current_Tool.ModifySpecialAmount(-current_Tool.so_Tool.specialPointUse[current_Tool.craftLevel]);
+        // current_Tool.ModifySpecialAmount(-current_Tool.so_Tool.maxSpecialPoints[current_Tool.craftLevel]);
+        current_Tool.specialChargesCounter--;
     }
   
     public void UseSpecial()
     {
         if (canUse)
         {
-            if (current_Tool.specialPoints >= current_Tool.so_Tool.specialPointUse[current_Tool.craftLevel])
+            if (current_Tool.specialChargesCounter >= 1)
             {
-
                 ResourceNode targetResourceNode = GetResourceNode();
                 if (targetResourceNode)
                 {
+                    float xPos = targetResourceNode.transform.position.x;
                     Debug.Log("SPECIAL USED");
                     targetResourceNode.OnResourceNodeHitEvent.Invoke(current_Tool.so_Tool.useForResourceNode,
                         current_Tool.craftLevel,
@@ -95,9 +98,6 @@ public class ToolCaster : MonoBehaviour
         }
         
     }
-   
-   
-
     public void OnToolChanged(Tool p_newTool)
     {
         current_Tool = p_newTool;
@@ -125,7 +125,6 @@ public class ToolCaster : MonoBehaviour
 
     IEnumerator Co_Cooldown()
     {
-
         yield return new WaitForSeconds(current_Tool.so_Tool.useRate[current_Tool.craftLevel]);
         canUse = true;
     }
@@ -133,14 +132,15 @@ public class ToolCaster : MonoBehaviour
     {
         if (canUse)
         {
+            animator.SetTrigger("UseTool");
             ResourceNode targetResourceNode = GetResourceNode();
             if (targetResourceNode)
             {
+                float xPos = targetResourceNode.transform.position.x;                
                 targetResourceNode.OnResourceNodeHitEvent.Invoke(current_Tool.so_Tool.useForResourceNode,
                    current_Tool.craftLevel,
                    current_Tool.so_Tool.damage[current_Tool.craftLevel],
-                   onToolHitSucceededEvent);
-    
+                   onToolHitSucceededEvent);    
             }
             StartCoroutine(Co_ToolUseCooldown());
         }
@@ -163,7 +163,6 @@ public class ToolCaster : MonoBehaviour
 
         }
         return null;
-
     }
 
     public void ToolHitSuccess()
@@ -175,6 +174,7 @@ public class ToolCaster : MonoBehaviour
     IEnumerator Co_ToolUseCooldown()
     {
         canUse = false;
+        // animator.SetTrigger("UseTool");
         onToolCanUseUpdatedEvent.Invoke(canUse);
         onToolUsedEvent.Invoke(current_Tool.so_Tool.staminaCost[current_Tool.craftLevel]);
         yield return new WaitForSeconds(current_Tool.so_Tool.useRate[current_Tool.craftLevel]);
@@ -184,8 +184,7 @@ public class ToolCaster : MonoBehaviour
     IEnumerator Co_ToolSwitchCooldown()
     {
         canSwitch = false;
-        onToolCanSwitchUpdatedEvent.Invoke(canSwitch);
-
+        onToolCanSwitchUpdatedEvent.Invoke(canSwitch);        
         yield return new WaitForSeconds(switchRate);
         canSwitch = true;
         onToolCanSwitchUpdatedEvent.Invoke(canSwitch);
