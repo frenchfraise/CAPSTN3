@@ -33,6 +33,8 @@ public class Room : MonoBehaviour
 {
     public string roomName;
     public string roomDescription;
+    [SerializeField] private Vector2 cameraDestinationPosition;
+    [SerializeField] private Vector2 cameraPanLimit;
     public List<ResourceNodeDrop> availableResourceNodeDrops = new List<ResourceNodeDrop>(); // populate by node
     [SerializeField] private List<ResourceNodeSpawner> resourceNodeSpawners = new List<ResourceNodeSpawner>();
 

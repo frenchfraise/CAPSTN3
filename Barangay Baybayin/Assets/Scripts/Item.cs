@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item :InteractibleObject
+public class Item : MonoBehaviour
 {
     public SO_Item so_Item;
 
@@ -24,43 +24,46 @@ public class Item :InteractibleObject
     [SerializeField] private float minBurstVelocity;
     [SerializeField] private float maxBurstVelocity;
 
-    [SerializeField] private float hoverUpPeakOffset;
-    [SerializeField] private float hoverUpSpeed;
-    [SerializeField] private float hoverUpRate;
-    [SerializeField] private float delayTime;
-    [SerializeField] private float hoverDownSpeed;
-    [SerializeField] private float hoverDownRate;
-
 
     private GameObject floaterPrefab;
 
+    private bool isSplashing = false;
+    private bool isMagnetizing = false;
     //magnetize
     private Rigidbody2D rb;
-    private GameObject player;
-    private bool isMagnetic = false;
-    private float magnetizeDelay = 2f;
-    protected override void OnInteract()
+    [SerializeField] private float magnetizeDelay = 2f;
+    [SerializeField] private float magnetizeSpeed = 40f;
+    HoverEffect hoverEffect;
+    //protected override void OnInteract()
+    //{
+    //    if (canInteract)
+    //    {
+    //        InventoryManager.AddItem(so_Item, 1);
+    //        Destroy(gameObject);
+    //    }
+
+    //}
+    protected void OnEnable()
     {
-        if (canInteract)
-        {
-            InventoryManager.AddItem(so_Item, 1);
-            Destroy(gameObject);
-        }
-        
-    }
-    protected override void OnEnable()
-    {
-        base.OnEnable();
-        canInteract = false;
+        //base.OnEnable();
+        //canInteract = false;
+        isSplashing = false;
+        isMagnetizing = false;
         rb.gravityScale = 0f;
         rb.isKinematic = true;
-       
+
         offsetY = Random.Range(minOffsetY, maxOffsetY);
+        hoverEffect = GetComponent<HoverEffect>();
+        if (hoverEffect.runningCoroutine != null)
+        {
+            hoverEffect.StopCoroutine(hoverEffect.runningCoroutine);
+        }
+    
     }
     private void Awake()
     {
         splashVelocity = Vector2.up * Random.Range(minBurstVelocity, maxBurstVelocity);
-        splashVelocity += new Vector2(Random.Range(-1f, 1f) * Random.Range(minOffsetX,maxOffsetX), 0);
+        splashVelocity += new Vector2(Random.Range(-1f, 1f) * Random.Range(minOffsetX, maxOffsetX), 0);
         currentSplashVelocity = splashVelocity;
         rb = GetComponent<Rigidbody2D>();
 
@@ -70,113 +73,103 @@ public class Item :InteractibleObject
 
     private void Start()
     {
-   
-      
-
         //Magnetize
-        //Collider2D[] collider = Physics2D.OverlapCircleAll((Vector2)transform.position, 3f);
-        //foreach (Collider2D hit in collider)
-        //{
-        //    if (hit.gameObject != gameObject)
-        //    {
-        //        if (hit != null)
-        //        {
-        //            if (hit.gameObject.GetComponent<Joystick>())
-        //            {
-        //                player = hit.gameObject;
-        //            }
 
-
-        //        }
-        //    }
-
-        //}
-
-        // StartCoroutine(Magnetize());
     }
 
     private void Update()
     {
-        Splash();
-        //if (when >= delay)
-        //{
-        //    pastTime = Time.deltaTime;
-        //    transform.position += new Vector3(currentSplashRadius, currentSplashRadius,transform.position.z) * Time.deltaTime;
-        //    delay += pastTime;
-        //}
-
-        //if (magnetize)
-        //{
-        //    Vector3 playerPoint = Vector3.MoveTowards(transform.position, 
-        //        player.transform.position + new Vector3(0, -0.3f, 0),
-        //        20 * Time.deltaTime);
-        //    rb.MovePosition(playerPoint);
-        //}
+        if (!isSplashing)
+        {
+            Splash();
+        }
+        else if (isMagnetizing == true)
+        {
+            Magnetize();
+        }
     }
 
     void ShowFloatingText()
     {
-        var go=Instantiate(floaterPrefab, transform.position, Quaternion.identity, transform);
+        var go = Instantiate(floaterPrefab, transform.position, Quaternion.identity, transform);
         go.GetComponent<TextMesh>().text = "+1";
     }
 
     void Splash()
     {
-        if (!canInteract)
+        //if (!canInteract)
+        //{
+        
+        rb.position += currentSplashVelocity * Time.deltaTime;
+        if (currentSplashVelocity.y < downwardVelocityLimit)
         {
-            rb.position += currentSplashVelocity * Time.deltaTime;
-            if (currentSplashVelocity.y < downwardVelocityLimit)
-            {
-                currentSplashVelocity.y = downwardVelocityLimit;
-            }
-            else
-            {
-                currentSplashVelocity -= Vector2.up * downwardVelocity * Time.deltaTime;
-            }
+            currentSplashVelocity.y = downwardVelocityLimit;
+        }
+        else
+        {
+            currentSplashVelocity -= Vector2.up * downwardVelocity * Time.deltaTime;
+        }
 
-            if (currentSplashVelocity.y < 0f)
+        if (currentSplashVelocity.y < 0f)
+        {
+            if (rb.position.y < startPosition.y - offsetY)
             {
-                if (rb.position.y < startPosition.y - offsetY)
-                {
-                    //Debug.Log("STOP" + rb.position.y + " - " + (startPosition.y - offsetY));
+                //Debug.Log("STOP" + rb.position.y + " - " + (startPosition.y - offsetY));
 
-                    currentSplashVelocity = Vector2.zero;
-                    rb.velocity = Vector2.zero;
-                    rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-                    canInteract = true;
+                currentSplashVelocity = Vector2.zero;
+                rb.velocity = Vector2.zero;
+                rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+                //canInteract = true;
+                isSplashing = true;
 
-                    StartCoroutine(Co_Hover());
-                }
+                hoverEffect.startYPosition = transform.position.y;
+                hoverEffect.runningCoroutine = StartCoroutine(hoverEffect.Co_Hover());
+                StartCoroutine(Co_Magnetize());
             }
         }
-       
-     
+        
+
+
+
+    }
+
+    void Magnetize()
+    {
+        Vector3 plrPosition = PlayerManager.instance.joystick.transform.position;
+        
+        if (Vector3.Distance(rb.position, plrPosition) > 1)
+        {
+            Vector3 playerPoint = Vector3.MoveTowards(transform.position,
+            plrPosition + new Vector3(0, 0, 0),
+            magnetizeSpeed * Time.deltaTime);
+            rb.MovePosition(playerPoint);
+           
+        }
+        else
+        {
+            InventoryManager.AddItem(so_Item, 1);
+            Destroy(gameObject);
+        }
+      
+        
   
     }
-    IEnumerator Co_Hover()
-    {
-        float startYPosition = transform.position.y;
     
-        while (transform.position.y < startYPosition + hoverUpPeakOffset)
-        {
-            transform.position  += new Vector3(0, hoverUpSpeed);
-            yield return new WaitForSeconds(hoverUpRate);
-        }
-       
-        
-        yield return new WaitForSeconds(delayTime);
-
-        while (transform.position.y > startYPosition)
-        {
-            transform.position -= new Vector3(0, hoverDownSpeed);
-            yield return new WaitForSeconds(hoverDownRate);
-        }
-        StartCoroutine(Co_Hover());
-    }
     IEnumerator Co_Magnetize()
     {
+
+
         yield return new WaitForSeconds(magnetizeDelay);
-        isMagnetic = true;
+        if (hoverEffect.runningCoroutine != null)
+        {
+            hoverEffect.StopCoroutine(hoverEffect.runningCoroutine);
+        }
+        isMagnetizing = true;
+
+
+
+
+
     }
 }
 

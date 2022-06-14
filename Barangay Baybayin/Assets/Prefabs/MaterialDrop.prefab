@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8653533781470353940}
   - component: {fileID: 8436199365745860972}
   - component: {fileID: 5904356609009391943}
+  - component: {fileID: 2966216899767497414}
   m_Layer: 0
   m_Name: MaterialDrop
   m_TagString: Untagged
@@ -135,12 +136,8 @@ MonoBehaviour:
   maxOffsetX: 7
   minBurstVelocity: 10
   maxBurstVelocity: 15
-  hoverUpPeakOffset: 0.5
-  hoverUpSpeed: 0.1
-  hoverUpRate: 0.1
-  delayTime: 0.75
-  hoverDownSpeed: 0.1
-  hoverDownRate: 0.1
+  magnetizeDelay: 2
+  magnetizeSpeed: 40
 --- !u!50 &5904356609009391943
 Rigidbody2D:
   serializedVersion: 4
@@ -162,3 +159,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &2966216899767497414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8653533781470353934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8cd09f31c134b04faf6baf1ec41f53e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverUpPeakOffset: 1
+  hoverUpSpeed: 0.05
+  hoverUpRate: 0.025
+  delayTime: 0.2
+  hoverDownSpeed: 0.05
+  hoverDownRate: 0.025
+  startYPosition: 0
