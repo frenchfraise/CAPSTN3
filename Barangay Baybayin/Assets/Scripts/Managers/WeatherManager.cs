@@ -38,50 +38,51 @@ public class WeatherManager : MonoBehaviour
         _instance = this;
     }
 
-    // TEMPORARILY stops everything at Start, for sureness
-    private void Start()
+    private void OnEnable()
     {
-        cloudParticles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
-        rainParticles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
-        lightningParticles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
-        StartCoroutine(WeatherCheckTimer());
+        TimeManager.onDayChangedEvent.AddListener(GetRandWeather);
+        onWeatherChangedEvent.AddListener(CheckWeather);
     }
 
-    IEnumerator WeatherCheckTimer()
+    private void OnDisable()
     {
-        while (true)
-        {
-            onWeatherChangedEvent?.Invoke(currentWeather);
-            yield return new WaitForSeconds(10f);
+        TimeManager.onDayChangedEvent.RemoveListener(GetRandWeather);
+        onWeatherChangedEvent.RemoveListener(CheckWeather);
+    }
 
-            switch (currentWeather)
-            {
-                case Weather.Sunny:
-                    cloudParticles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
-                    rainParticles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
-                    lightningParticles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
-                    FindObjectOfType<AudioManager>().Play("Sunny");
-                    break;
-                case Weather.Cloudy:
-                    cloudParticles.Play();
-                    rainParticles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
-                    lightningParticles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
-                    FindObjectOfType<AudioManager>().Play("Cloudy");
-                    break;
-                case Weather.Rainy:
-                    cloudParticles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
-                    rainParticles.Play();
-                    lightningParticles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
-                    FindObjectOfType<AudioManager>().Play("Rain");
-                    break;
-                case Weather.Stormy:
-                    cloudParticles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
-                    rainParticles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
-                    lightningParticles.Play();
-                    FindObjectOfType<AudioManager>().Play("Storm");
-                    break;
-            }
+    public void CheckWeather(Weather p_weather)
+    { 
+        switch (currentWeather)
+        {
+            case Weather.Sunny:
+                cloudParticles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+                rainParticles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+                lightningParticles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+                break;
+            case Weather.Cloudy:
+                cloudParticles.Play();
+                rainParticles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+                lightningParticles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+                break;
+            case Weather.Rainy:
+                cloudParticles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+                rainParticles.Play();
+                lightningParticles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+                break;
+            case Weather.Stormy:
+                cloudParticles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+                rainParticles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+                lightningParticles.Play();
+                break;
         }
+    }
+    public void GetRandWeather(int num)
+    {
+        float randNum = Random.Range(0f, 1f);        
+        bool bRandomProb = 0.7f >= randNum;
+        if (bRandomProb) currentWeather = Weather.Sunny;
+        else currentWeather = Weather.Rainy;
+        onWeatherChangedEvent?.Invoke(currentWeather);
     }
 }
 

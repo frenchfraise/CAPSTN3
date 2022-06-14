@@ -391,7 +391,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 101662862122452031, guid: fea5a514e58f9df44bdc47a1f3ee5647, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.000061035156
+      value: 0.000061035156
       objectReference: {fileID: 0}
     - target: {fileID: 101662862203666364, guid: fea5a514e58f9df44bdc47a1f3ee5647, type: 3}
       propertyPath: m_AnchorMax.x
@@ -959,6 +959,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomName: TF2
   roomDescription: 
+  cameraDestinationPosition: {x: 0, y: 0}
+  cameraPanLimit: {x: 0, y: 0}
   availableResourceNodeDrops:
   - resourceNode: {fileID: 8653533781470353935, guid: c55f8b1fd67983246855718811b30b41, type: 3}
     chance: 50
@@ -12671,6 +12673,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomName: TF3
   roomDescription: 
+  cameraDestinationPosition: {x: 0, y: 0}
+  cameraPanLimit: {x: 0, y: 0}
   availableResourceNodeDrops:
   - resourceNode: {fileID: 8653533781470353935, guid: c55f8b1fd67983246855718811b30b41, type: 3}
     chance: 50
@@ -13236,6 +13240,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomName: TF7
   roomDescription: 
+  cameraDestinationPosition: {x: 0, y: 0}
+  cameraPanLimit: {x: 0, y: 0}
   availableResourceNodeDrops:
   - resourceNode: {fileID: 8653533781470353935, guid: ac714f9dbf8560942a6cef024cd1d555, type: 3}
     chance: 50
@@ -16607,6 +16613,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomName: TF1
   roomDescription: 
+  cameraDestinationPosition: {x: 0, y: 0}
+  cameraPanLimit: {x: 0, y: 0}
   availableResourceNodeDrops:
   - resourceNode: {fileID: 8653533781470353935, guid: c55f8b1fd67983246855718811b30b41, type: 3}
     chance: 50
@@ -18421,6 +18429,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomName: TF5
   roomDescription: 
+  cameraDestinationPosition: {x: 0, y: 0}
+  cameraPanLimit: {x: 0, y: 0}
   availableResourceNodeDrops:
   - resourceNode: {fileID: 8653533781470353935, guid: f2e828a35384abd4eaf6ee6d935ae95b, type: 3}
     chance: 50
@@ -18718,6 +18728,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomName: TF6
   roomDescription: 
+  cameraDestinationPosition: {x: 0, y: 0}
+  cameraPanLimit: {x: 0, y: 0}
   availableResourceNodeDrops:
   - resourceNode: {fileID: 8653533781470353935, guid: ac714f9dbf8560942a6cef024cd1d555, type: 3}
     chance: 50
@@ -18910,6 +18922,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59c19bf42cd95a741b4167b9ffe11f7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sunnyDialogues: []
+  cloudyDialogues: []
+  rainyDialogues: []
+  stormyDialogues: []
   currentWeather: 0
   cloudParticles: {fileID: 1450864625}
   rainParticles: {fileID: 328484352}
@@ -25840,6 +25856,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomName: TF4
   roomDescription: 
+  cameraDestinationPosition: {x: 0, y: 0}
+  cameraPanLimit: {x: 0, y: 0}
   availableResourceNodeDrops:
   - resourceNode: {fileID: 8653533781470353935, guid: f2e828a35384abd4eaf6ee6d935ae95b, type: 3}
     chance: 50
@@ -25932,21 +25950,25 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 5ec0058d72b8a4944bb9af3e3ac11230, type: 3}
     volume: 1
     pitch: 1
+    loop: 1
     source: {fileID: 0}
   - name: Cloudy
     clip: {fileID: 8300000, guid: 5ec0058d72b8a4944bb9af3e3ac11230, type: 3}
     volume: 1
     pitch: 1
+    loop: 1
     source: {fileID: 0}
   - name: Rain
     clip: {fileID: 8300000, guid: cd153667dcdfc164ba38565a7298b53f, type: 3}
     volume: 1
     pitch: 1
+    loop: 1
     source: {fileID: 0}
   - name: Storm
     clip: {fileID: 8300000, guid: 5e559ce6b669ac041a89f7296133025c, type: 3}
     volume: 1
     pitch: 1
+    loop: 1
     source: {fileID: 0}
 --- !u!114 &1705948383 stripped
 MonoBehaviour:
@@ -27174,6 +27196,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomName: Town
   roomDescription: Town Hall
+  cameraDestinationPosition: {x: 0, y: 0}
+  cameraPanLimit: {x: 0, y: 0}
   availableResourceNodeDrops: []
   resourceNodeSpawners: []
   passagewayInfos:

@@ -33,7 +33,7 @@ public class DayInfoUI : MonoBehaviour
         if (isFirstTime)
         {
             isFirstTime = false;
-        }
+        }     
     }
 
     IEnumerator Co_DayEndTransition(int p_dayCount)

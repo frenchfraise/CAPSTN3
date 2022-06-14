@@ -149,6 +149,7 @@ public class TimeManager : MonoBehaviour
         }
         UIManager.instance.dayInfoUI.DayEnd(dayCount);
         onDayChangedEvent.Invoke(dayCount);
+
     }
     public void NewDay()
     {
@@ -170,6 +171,8 @@ public class TimeManager : MonoBehaviour
         Formula();
         onDayChangedEvent.Invoke(dayCount);
         //TimeManager.instance.OnRespawn.Invoke();
+        //Debug.Log("[TimeManager] Get Random Weather");
+        //WeatherManager.instance.GetRandWeather();
         runningCoroutine=StartCoroutine(Co_NewDay());
     }
 

@@ -80,15 +80,19 @@ public class UIManager : MonoBehaviour
         {
             case Weather.Sunny:                
                 weatherSpriteUI.sprite = sunnySprite;
+                FindObjectOfType<AudioManager>().Play("Sunny");
                 break;
             case Weather.Cloudy:
                 weatherSpriteUI.sprite = cloudySprite;
+                FindObjectOfType<AudioManager>().Play("Cloudy");
                 break;
             case Weather.Rainy:
                 weatherSpriteUI.sprite = rainSprite;
+                FindObjectOfType<AudioManager>().Play("Rain");
                 break;
             case Weather.Stormy:
                 weatherSpriteUI.sprite = stormySprite;
+                FindObjectOfType<AudioManager>().Play("Storm");
                 break;
         }
     }
