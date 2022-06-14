@@ -391,7 +391,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 101662862122452031, guid: fea5a514e58f9df44bdc47a1f3ee5647, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.000061035156
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 101662862203666364, guid: fea5a514e58f9df44bdc47a1f3ee5647, type: 3}
       propertyPath: m_AnchorMax.x
@@ -652,6 +652,22 @@ PrefabInstance:
     - target: {fileID: 101662863644927406, guid: fea5a514e58f9df44bdc47a1f3ee5647, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: UseSpecial
+      objectReference: {fileID: 0}
+    - target: {fileID: 101662863672350776, guid: fea5a514e58f9df44bdc47a1f3ee5647, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 35cd0ddb3ee841d48adf4f2489f412f9, type: 3}
+    - target: {fileID: 101662863672350776, guid: fea5a514e58f9df44bdc47a1f3ee5647, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 101662863672350776, guid: fea5a514e58f9df44bdc47a1f3ee5647, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 101662863672350776, guid: fea5a514e58f9df44bdc47a1f3ee5647, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 101662863673742663, guid: fea5a514e58f9df44bdc47a1f3ee5647, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -959,6 +975,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomName: TF2
   roomDescription: 
+  cameraDestinationPosition: {x: 150, y: 0}
+  cameraPanLimit: {x: 0, y: 0}
   availableResourceNodeDrops:
   - resourceNode: {fileID: 8653533781470353935, guid: c55f8b1fd67983246855718811b30b41, type: 3}
     chance: 50
@@ -971,14 +989,10 @@ MonoBehaviour:
   - name: TF2 to TF1
     passageway: {fileID: 380690927}
     playerDestinationPosition: {fileID: 2124120051}
-    cameraDestinationPosition: {x: 150, y: 0}
-    cameraPanLimit: {x: 20, y: 9}
     connectedToPassageway: {fileID: 704472228}
   - name: TF2 to TF5
     passageway: {fileID: 1788285552}
     playerDestinationPosition: {fileID: 287154}
-    cameraDestinationPosition: {x: 150, y: 0}
-    cameraPanLimit: {x: 20, y: 9}
     connectedToPassageway: {fileID: 1203704738}
 --- !u!4 &152721198
 Transform:
@@ -12671,6 +12685,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomName: TF3
   roomDescription: 
+  cameraDestinationPosition: {x: 150, y: -100}
+  cameraPanLimit: {x: 0, y: 0}
   availableResourceNodeDrops:
   - resourceNode: {fileID: 8653533781470353935, guid: c55f8b1fd67983246855718811b30b41, type: 3}
     chance: 50
@@ -12683,20 +12699,14 @@ MonoBehaviour:
   - name: TF3 to TF1
     passageway: {fileID: 1753673683}
     playerDestinationPosition: {fileID: 2027187391}
-    cameraDestinationPosition: {x: 150, y: -100}
-    cameraPanLimit: {x: 20, y: 9}
     connectedToPassageway: {fileID: 1888363267}
   - name: TF3 to TF5
     passageway: {fileID: 1521151560}
     playerDestinationPosition: {fileID: 831711375}
-    cameraDestinationPosition: {x: 150, y: -100}
-    cameraPanLimit: {x: 20, y: 9}
     connectedToPassageway: {fileID: 113958119}
   - name: TF3 to TF4
     passageway: {fileID: 1001486874}
     playerDestinationPosition: {fileID: 1850385900}
-    cameraDestinationPosition: {x: 150, y: -100}
-    cameraPanLimit: {x: 20, y: 9}
     connectedToPassageway: {fileID: 1923598480}
 --- !u!4 &453216089
 Transform:
@@ -13236,6 +13246,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomName: TF7
   roomDescription: 
+  cameraDestinationPosition: {x: 600, y: -100}
+  cameraPanLimit: {x: 0, y: 0}
   availableResourceNodeDrops:
   - resourceNode: {fileID: 8653533781470353935, guid: ac714f9dbf8560942a6cef024cd1d555, type: 3}
     chance: 50
@@ -13248,8 +13260,6 @@ MonoBehaviour:
   - name: TF7 to TF6
     passageway: {fileID: 769699493}
     playerDestinationPosition: {fileID: 1480767500}
-    cameraDestinationPosition: {x: 600, y: -100}
-    cameraPanLimit: {x: 20, y: 9}
     connectedToPassageway: {fileID: 439257521}
 --- !u!4 &531475515
 Transform:
@@ -16607,6 +16617,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomName: TF1
   roomDescription: 
+  cameraDestinationPosition: {x: 0, y: -100}
+  cameraPanLimit: {x: 20, y: 9}
   availableResourceNodeDrops:
   - resourceNode: {fileID: 8653533781470353935, guid: c55f8b1fd67983246855718811b30b41, type: 3}
     chance: 50
@@ -16619,20 +16631,14 @@ MonoBehaviour:
   - name: TF1_Room - Town
     passageway: {fileID: 1988221555}
     playerDestinationPosition: {fileID: 1663305872}
-    cameraDestinationPosition: {x: 0, y: -100}
-    cameraPanLimit: {x: 12, y: 9}
     connectedToPassageway: {fileID: 804576232}
   - name: TF1_Room - TF3_Room
     passageway: {fileID: 1888363267}
     playerDestinationPosition: {fileID: 1392700449}
-    cameraDestinationPosition: {x: 0, y: -100}
-    cameraPanLimit: {x: 20, y: 9}
     connectedToPassageway: {fileID: 1753673683}
   - name: TF1_Room - TF2_Room
     passageway: {fileID: 704472228}
     playerDestinationPosition: {fileID: 1289289195}
-    cameraDestinationPosition: {x: 0, y: -100}
-    cameraPanLimit: {x: 20, y: 9}
     connectedToPassageway: {fileID: 380690927}
 --- !u!1 &1019502517
 GameObject:
@@ -18421,6 +18427,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomName: TF5
   roomDescription: 
+  cameraDestinationPosition: {x: 450, y: -100}
+  cameraPanLimit: {x: 0, y: 0}
   availableResourceNodeDrops:
   - resourceNode: {fileID: 8653533781470353935, guid: f2e828a35384abd4eaf6ee6d935ae95b, type: 3}
     chance: 50
@@ -18433,20 +18441,14 @@ MonoBehaviour:
   - name: TF5 to TF3
     passageway: {fileID: 113958119}
     playerDestinationPosition: {fileID: 1057306475}
-    cameraDestinationPosition: {x: 450, y: -100}
-    cameraPanLimit: {x: 20, y: 9}
     connectedToPassageway: {fileID: 1521151560}
   - name: TF5 to TF2
     passageway: {fileID: 1203704738}
     playerDestinationPosition: {fileID: 214685631}
-    cameraDestinationPosition: {x: 450, y: -100}
-    cameraPanLimit: {x: 20, y: 9}
     connectedToPassageway: {fileID: 1788285552}
   - name: TF5 to TF6
     passageway: {fileID: 1332670904}
     playerDestinationPosition: {fileID: 862324206}
-    cameraDestinationPosition: {x: 450, y: -100}
-    cameraPanLimit: {x: 20, y: 9}
     connectedToPassageway: {fileID: 1422198309}
 --- !u!4 &1320085458
 Transform:
@@ -18718,6 +18720,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomName: TF6
   roomDescription: 
+  cameraDestinationPosition: {x: 450, y: -200}
+  cameraPanLimit: {x: 0, y: 0}
   availableResourceNodeDrops:
   - resourceNode: {fileID: 8653533781470353935, guid: ac714f9dbf8560942a6cef024cd1d555, type: 3}
     chance: 50
@@ -18730,20 +18734,14 @@ MonoBehaviour:
   - name: 'TF6 to TF4 '
     passageway: {fileID: 1656662633}
     playerDestinationPosition: {fileID: 1348565643}
-    cameraDestinationPosition: {x: 450, y: -200}
-    cameraPanLimit: {x: 20, y: 9}
     connectedToPassageway: {fileID: 955158155}
   - name: TF6 to TF7
     passageway: {fileID: 439257521}
     playerDestinationPosition: {fileID: 1060960830}
-    cameraDestinationPosition: {x: 450, y: -200}
-    cameraPanLimit: {x: 20, y: 9}
     connectedToPassageway: {fileID: 769699493}
   - name: TF6 to TF5
     passageway: {fileID: 1422198309}
     playerDestinationPosition: {fileID: 2034532407}
-    cameraDestinationPosition: {x: 450, y: -200}
-    cameraPanLimit: {x: 20, y: 9}
     connectedToPassageway: {fileID: 1332670904}
 --- !u!4 &1354016917
 Transform:
@@ -18910,6 +18908,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59c19bf42cd95a741b4167b9ffe11f7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sunnyDialogues: []
+  cloudyDialogues: []
+  rainyDialogues: []
+  stormyDialogues: []
   currentWeather: 0
   cloudParticles: {fileID: 1450864625}
   rainParticles: {fileID: 328484352}
@@ -25840,6 +25842,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomName: TF4
   roomDescription: 
+  cameraDestinationPosition: {x: 300, y: -200}
+  cameraPanLimit: {x: 0, y: 0}
   availableResourceNodeDrops:
   - resourceNode: {fileID: 8653533781470353935, guid: f2e828a35384abd4eaf6ee6d935ae95b, type: 3}
     chance: 50
@@ -25852,14 +25856,10 @@ MonoBehaviour:
   - name: TF4 to TF3
     passageway: {fileID: 1923598480}
     playerDestinationPosition: {fileID: 1455216635}
-    cameraDestinationPosition: {x: 300, y: -200}
-    cameraPanLimit: {x: 20, y: 9}
     connectedToPassageway: {fileID: 1001486874}
   - name: TF4 to TF6
     passageway: {fileID: 955158155}
     playerDestinationPosition: {fileID: 1681845523}
-    cameraDestinationPosition: {x: 300, y: -200}
-    cameraPanLimit: {x: 20, y: 9}
     connectedToPassageway: {fileID: 1656662633}
 --- !u!4 &1690042061
 Transform:
@@ -27174,14 +27174,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomName: Town
   roomDescription: Town Hall
+  cameraDestinationPosition: {x: 0, y: 0}
+  cameraPanLimit: {x: 20, y: 9}
   availableResourceNodeDrops: []
   resourceNodeSpawners: []
   passagewayInfos:
   - name: Town-Cave
     passageway: {fileID: 804576232}
     playerDestinationPosition: {fileID: 1935260710}
-    cameraDestinationPosition: {x: 0, y: 0}
-    cameraPanLimit: {x: 20, y: 9}
     connectedToPassageway: {fileID: 1988221555}
 --- !u!1 &1854711246
 GameObject:

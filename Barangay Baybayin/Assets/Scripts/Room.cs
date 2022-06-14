@@ -9,21 +9,17 @@ public class PassagewayInfo
     [SerializeField] private string name;
     [SerializeField] public Passageway passageway;
     [SerializeField] private Transform playerDestinationPosition;
-    [SerializeField] private Vector2 cameraDestinationPosition;
-    [SerializeField] private Vector2 cameraPanLimit;
     [SerializeField] private Passageway connectedToPassageway;
 
     public void GetPassagewayInfos(
                                 out Transform p_playerDestinationPosition,
-                                out Vector2 p_cameraDestinationPosition,
-                                out Vector2 p_cameraPanLimit,
+
                                 out Passageway p_connectedToPassageway
                                 )
     {
         //p_room = room;
         p_playerDestinationPosition = playerDestinationPosition;
-        p_cameraDestinationPosition = cameraDestinationPosition;
-        p_cameraPanLimit = cameraPanLimit;
+
         p_connectedToPassageway = connectedToPassageway;
     }
 }
@@ -61,12 +57,10 @@ public class Room : MonoBehaviour
         {
             Room room = this;
             Transform playerDestinationPosition;
-            Vector2 cameraDestinationPosition;
-            Vector2 cameraPanLimit;
+           
             Passageway connectedToPassageway;
             passagewayInfo.GetPassagewayInfos(out playerDestinationPosition,
-                out cameraDestinationPosition,
-                out cameraPanLimit,
+   
                 out connectedToPassageway);
             passagewayInfo.passageway.AssignPassageway(room, 
                                                         playerDestinationPosition,

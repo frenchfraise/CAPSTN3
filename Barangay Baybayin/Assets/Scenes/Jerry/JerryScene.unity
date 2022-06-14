@@ -817,6 +817,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomName: TF2
   roomDescription: 
+  cameraDestinationPosition: {x: 0, y: 0}
+  cameraPanLimit: {x: 0, y: 0}
   availableResourceNodeDrops:
   - resourceNode: {fileID: 8653533781470353935, guid: c55f8b1fd67983246855718811b30b41, type: 3}
     chance: 50
@@ -12017,6 +12019,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomName: TF3
   roomDescription: 
+  cameraDestinationPosition: {x: 0, y: 0}
+  cameraPanLimit: {x: 0, y: 0}
   availableResourceNodeDrops:
   - resourceNode: {fileID: 8653533781470353935, guid: c55f8b1fd67983246855718811b30b41, type: 3}
     chance: 50
@@ -12497,6 +12501,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomName: TF7
   roomDescription: 
+  cameraDestinationPosition: {x: 0, y: 0}
+  cameraPanLimit: {x: 0, y: 0}
   availableResourceNodeDrops:
   - resourceNode: {fileID: 8653533781470353935, guid: ac714f9dbf8560942a6cef024cd1d555, type: 3}
     chance: 50
@@ -15704,6 +15710,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomName: TF1
   roomDescription: 
+  cameraDestinationPosition: {x: 0, y: 0}
+  cameraPanLimit: {x: 0, y: 0}
   availableResourceNodeDrops:
   - resourceNode: {fileID: 8653533781470353935, guid: c55f8b1fd67983246855718811b30b41, type: 3}
     chance: 50
@@ -17458,6 +17466,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomName: TF5
   roomDescription: 
+  cameraDestinationPosition: {x: 0, y: 0}
+  cameraPanLimit: {x: 0, y: 0}
   availableResourceNodeDrops:
   - resourceNode: {fileID: 8653533781470353935, guid: f2e828a35384abd4eaf6ee6d935ae95b, type: 3}
     chance: 50
@@ -17754,6 +17764,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomName: TF6
   roomDescription: 
+  cameraDestinationPosition: {x: 0, y: 0}
+  cameraPanLimit: {x: 0, y: 0}
   availableResourceNodeDrops:
   - resourceNode: {fileID: 8653533781470353935, guid: ac714f9dbf8560942a6cef024cd1d555, type: 3}
     chance: 50
@@ -24717,6 +24729,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomName: TF4
   roomDescription: 
+  cameraDestinationPosition: {x: 0, y: 0}
+  cameraPanLimit: {x: 0, y: 0}
   availableResourceNodeDrops:
   - resourceNode: {fileID: 8653533781470353935, guid: f2e828a35384abd4eaf6ee6d935ae95b, type: 3}
     chance: 50
@@ -25912,6 +25926,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomName: Town
   roomDescription: Town Hall
+  cameraDestinationPosition: {x: 0, y: 0}
+  cameraPanLimit: {x: 0, y: 0}
   availableResourceNodeDrops: []
   resourceNodeSpawners: []
   passagewayInfos:
