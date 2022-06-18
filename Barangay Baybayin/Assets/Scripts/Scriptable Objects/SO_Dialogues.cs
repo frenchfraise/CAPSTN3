@@ -14,7 +14,11 @@ public enum CharacterEmotionType
 {
     happy,
     thinking,
-    neutral,
+    yawn,
+    exclamation,
+    lightbulb,
+    question,
+    heart,
     sad,
     mad,
     misc,

@@ -9,6 +9,7 @@ public class InteractibleObject : MonoBehaviour
     public InteractEvent onInteractEvent = new InteractEvent();
 
     protected bool canInteract;
+    public Sprite hintSprite;
     protected virtual void OnEnable()
     {
         onInteractEvent.AddListener(OnInteract);

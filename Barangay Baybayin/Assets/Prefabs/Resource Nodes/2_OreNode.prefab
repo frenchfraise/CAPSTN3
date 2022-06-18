@@ -133,6 +133,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   so_ResourceNode: {fileID: 11400000, guid: 83a912f522dc56e4d8b07ef7a54c0a9e, type: 2}
   itemPrefab: {fileID: 8436199365745860972, guid: 2bf34b5e8f26c294d8ba4e3060dded9a, type: 3}
+  hintSprite: {fileID: 21300000, guid: b7c043ab3efd83c4c9b8c64c2b8db5f7, type: 3}
   levelRequirement: 2
   resourceDrops:
   - so_Item: {fileID: 11400000, guid: f6c97304087fbc246a18a547ecdd28f8, type: 2}

@@ -7,5 +7,5 @@ using UnityEngine;
 public class SO_Character : ScriptableObject
 {
     public List<Sprite> avatars = new List<Sprite>();
-   
+    public Sprite avatar;
 }

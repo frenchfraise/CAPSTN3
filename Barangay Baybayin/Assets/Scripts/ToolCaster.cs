@@ -146,7 +146,7 @@ public class ToolCaster : MonoBehaviour
         }
 
     }
-    ResourceNode GetResourceNode() 
+    public ResourceNode GetResourceNode() 
     {
         Collider2D[] collider = Physics2D.OverlapCircleAll((Vector2)aim.position, 3f);
         foreach (Collider2D hit in collider)

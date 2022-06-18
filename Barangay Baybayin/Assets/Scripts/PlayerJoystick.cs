@@ -11,6 +11,8 @@ public class PlayerJoystick : MonoBehaviour
 
     public Animator animator;
 
+    public GameObject interactHint;
+    public SpriteRenderer interactHintImage;
     [SerializeField] public Transform aim;
     [SerializeField] private float aimOffset;
     [SerializeField] private SpriteRenderer sort;
@@ -40,6 +42,56 @@ public class PlayerJoystick : MonoBehaviour
         if (movement != Vector2.zero)
         {
             aim.position = (Vector2)transform.position + (aimOffset * movement);
+            ResourceNode re = GetComponent<ToolCaster>().GetResourceNode();
+           
+            if (re)
+            {
+                
+                interactHintImage.sprite = re.hintSprite;
+                interactHint.SetActive(true);
+            }
+            else
+            {
+                InteractibleObject test = InteractibleHint();
+                if (test)
+                {
+                    interactHintImage.sprite = test.hintSprite;
+                    interactHint.SetActive(true);
+
+                }
+                else
+                {
+                    if (interactHint.activeSelf)
+                    {
+                        interactHint.SetActive(false);
+                    }
+                }
+
+                
+                
+            }
         }        
+    }
+
+    InteractibleObject InteractibleHint()
+    {
+        Collider2D[] collider = Physics2D.OverlapCircleAll((Vector2)aim.position, 3f);
+        foreach (Collider2D hit in collider)
+        {
+            Debug.Log(collider[0].gameObject.name);
+            if (hit.gameObject != gameObject)
+            {
+                if (hit != null)
+                {
+                    InteractibleObject targetInteractibleObject = hit.gameObject.GetComponent<InteractibleObject>();
+                    if (targetInteractibleObject)
+                    {
+                        return targetInteractibleObject;
+
+                    }
+                }
+            }
+        }
+        return null;
     }
 }

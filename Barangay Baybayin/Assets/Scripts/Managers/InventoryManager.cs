@@ -19,7 +19,7 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    public List<InventoryPageData> inventoryPages = new List<InventoryPageData>();
+    [NonReorderable] public List<InventoryPageData> inventoryPages = new List<InventoryPageData>();
     private void Awake()
     {
         

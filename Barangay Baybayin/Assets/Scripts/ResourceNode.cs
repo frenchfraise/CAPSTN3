@@ -14,7 +14,7 @@ public class ResourceNode : PoolableObject
     [Header("Item")]
     public Item itemPrefab;
 
-
+    public Sprite hintSprite;
 
     public int levelRequirement;
 

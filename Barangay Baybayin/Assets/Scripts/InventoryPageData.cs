@@ -4,5 +4,5 @@ using UnityEngine;
 [System.Serializable]
 public class InventoryPageData 
 {
-    public List<ItemCategory> itemCategories;
+    [NonReorderable] public List<ItemCategory> itemCategories;
 }

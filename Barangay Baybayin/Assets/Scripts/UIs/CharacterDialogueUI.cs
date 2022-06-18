@@ -16,9 +16,12 @@ public class CharacterDialogueUI : MonoBehaviour
     [SerializeField] private TMP_Text characterNameText;
     [SerializeField] private TMP_Text dialogueText;
     [SerializeField] private Image avatarImage;
- 
-   
-    public void OnCharacterSpokenTo(SO_Dialogues p_SO_Dialogues)
+
+    [SerializeField]
+    private GameObject emoticon;
+    [SerializeField]
+    private Animator anim;
+     public void OnCharacterSpokenTo(SO_Dialogues p_SO_Dialogues)
     {
         currentSO_Dialogues = p_SO_Dialogues;
         UIManager.TransitionPreFadeAndPostFade(1,0.5f,1, 0, 0.5f, OnOpenCharacterDialogueUI);
@@ -105,7 +108,7 @@ public class CharacterDialogueUI : MonoBehaviour
     
         if (currentDialogueIndex + 1 < currentSO_Dialogues.dialogues.Count)
         {
-            currentDialogueIndex++;
+            
             Dialogue currentDialogue = currentSO_Dialogues.dialogues[currentDialogueIndex];
 
             characterNameText.text = currentDialogue.character.name;
@@ -113,26 +116,60 @@ public class CharacterDialogueUI : MonoBehaviour
             if (UIManager.instance.runningCoroutine != null)
             {
                 UIManager.instance.StopCoroutine(UIManager.instance.runningCoroutine);
+                UIManager.instance.runningCoroutine = null;
+                UIManager.instance.justFinishedCoroutine = true;
+                Debug.Log("SET TRUE");
+
+
             }
             if (currentDialogue.speechTransitionType == SpeechTransitionType.Typewriter)
             {
-                UIManager.instance.runningCoroutine = UIManager.instance.StartCoroutine(Co_TypeWriterEffect(dialogueText, currentDialogue.words));
+                if (UIManager.instance.justFinishedCoroutine == true)
+                {
+                    
+                    dialogueText.text = currentDialogue.words;
+                    UIManager.instance.justFinishedCoroutine = false;
+                    currentDialogueIndex++;
+                    Debug.Log("skip");
+                }
+                else
+                {
+                    UIManager.instance.justFinishedCoroutine = false;
+                    UIManager.instance.runningCoroutine = UIManager.instance.StartCoroutine(Co_TypeWriterEffect(dialogueText, currentDialogue.words));
+                    Debug.Log("start");
+                }
+                
             }
             else
             {
                 dialogueText.text = currentDialogue.words;
+                UIManager.instance.justFinishedCoroutine = false;
+                currentDialogueIndex++;
+
             }
+            
+            
             if (currentDialogue.character.name != "Player")//TEMPORARY
             {
                 avatarImage.gameObject.SetActive(true);
 
-                avatarImage.sprite = currentDialogue.character.avatars[(int)currentDialogue.emotion];
-
+                avatarImage.sprite = currentDialogue.character.avatar;// currentDialogue.character.avatars[(int)currentDialogue.emotion];
+                
+                if ((int) currentDialogue.emotion == 9)
+                {
+                    emoticon.SetActive(false);
+                }
+                else
+                {
+                    emoticon.SetActive(true);
+                    anim.SetInteger("enum", (int)currentDialogue.emotion);
+                }
+                
             }
             else
             {
                 avatarImage.gameObject.SetActive(false);
-
+                emoticon.SetActive(false);
             }
 
         }

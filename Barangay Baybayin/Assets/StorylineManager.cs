@@ -30,7 +30,7 @@ public class StorylineManager : MonoBehaviour
             return _instance;
         }
     }
-    [SerializeField] public List<StorylineData> storyLines;
+    [NonReorderable][SerializeField] public List<StorylineData> storyLines;
     private void Awake()
     {
 

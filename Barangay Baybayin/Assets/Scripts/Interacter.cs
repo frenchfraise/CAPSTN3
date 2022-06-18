@@ -38,28 +38,28 @@ public class Interacter : MonoBehaviour
                 }
             }
         }
-        //Means it found none in its direction
-        collider = Physics2D.OverlapCircleAll(transform.position, 10f);
-        foreach (Collider2D hit in collider)
-        {
-            Debug.Log(collider[0].gameObject.name);
-            if (hit.gameObject != gameObject)
-            {
-                if (hit != null)
-                {
-                    InteractibleObject targetInteractibleObject = hit.gameObject.GetComponent<InteractibleObject>();
-                    if (targetInteractibleObject)
-                    {
-                        if (targetInteractibleObject.GetType() == typeof(Item))
-                        {
-                            return targetInteractibleObject;
-                        }
+        ////Means it found none in its direction
+        //collider = Physics2D.OverlapCircleAll(transform.position, 10f);
+        //foreach (Collider2D hit in collider)
+        //{
+        //    Debug.Log(collider[0].gameObject.name);
+        //    if (hit.gameObject != gameObject)
+        //    {
+        //        if (hit != null)
+        //        {
+        //            InteractibleObject targetInteractibleObject = hit.gameObject.GetComponent<InteractibleObject>();
+        //            if (targetInteractibleObject)
+        //            {
+        //                if (targetInteractibleObject.GetType() == typeof(Item))
+        //                {
+        //                    return targetInteractibleObject;
+        //                }
                         
 
-                    }
-                }
-            }
-        }
+        //            }
+        //        }
+        //    }
+        //}
 
         return null;
        

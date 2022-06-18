@@ -27,7 +27,7 @@ public class ToolManager : MonoBehaviour
             return _instance;
         }
     }
-    public List<Tool> tools = new List<Tool>();
+    [NonReorderable] public List<Tool> tools = new List<Tool>();
     //Proficiency
     public static ProficiencyAmountModifiedEvent onProficiencyAmountModifiedEvent = new ProficiencyAmountModifiedEvent();
     public static ProficiencyLevelModifiedEvent onProficiencyLevelModifiedEvent = new ProficiencyLevelModifiedEvent();

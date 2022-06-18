@@ -14,6 +14,9 @@ public class UpgradeToolsUI : MonoBehaviour
     [SerializeField] private TMP_Text upgradePreviewToolNameText;
     [SerializeField] private Image upgradePreviewToolImage;
 
+    [SerializeField] private Sprite sufficient;
+    [SerializeField] private Sprite insufficient;
+
     [SerializeField] private Image materialOneImage;
     [SerializeField] private Image materialOneIsValidImage;
     [SerializeField] private TMP_Text materialOneCurrentAmountText;
@@ -27,6 +30,10 @@ public class UpgradeToolsUI : MonoBehaviour
     private bool materialOneRequirement = false;
     private bool materialTwoRequirement = false;
     private bool threeRequirement = false;
+    private int matOneAmount;
+    private SO_Item mato;
+    private SO_Item matt;
+    private int matTwoAmount;
     [SerializeField]
     private List<UpgradeToolUI> upgradeToolUIs = new List<UpgradeToolUI>();
 
@@ -64,17 +71,19 @@ public class UpgradeToolsUI : MonoBehaviour
             ItemUpgradeRequirement materialOne = craftUpgradeItemRequirementsData.itemRequirements[0];
             materialOneImage.sprite = materialOne.so_Item.icon;
             materialOneImage.gameObject.SetActive(true);
+            mato = materialOne.so_Item;
 
 
-         
+
             if (InventoryManager.GetItem(materialOne.so_Item).amount >= materialOne.requiredAmount)
             {
-                materialOneIsValidImage.color = new Color32(0, 255, 0, 225);
+                materialOneIsValidImage.sprite = sufficient;
+                matOneAmount = materialOne.requiredAmount;
                 materialOneRequirement = true;
             }
             else if (InventoryManager.GetItem(materialOne.so_Item).amount < materialOne.requiredAmount)
             {
-                materialOneIsValidImage.color = new Color32(255,0 , 0, 225);
+                materialOneIsValidImage.sprite = insufficient;
             }
             materialOneCurrentAmountText.text = InventoryManager.GetItem(materialOne.so_Item).amount.ToString();
             materialOneMaxAmountText.text = materialOne.requiredAmount.ToString();
@@ -83,15 +92,16 @@ public class UpgradeToolsUI : MonoBehaviour
                 materialTwoImage.gameObject.SetActive(true);
                 ItemUpgradeRequirement materialTwo = craftUpgradeItemRequirementsData.itemRequirements[1];
                 materialTwoImage.sprite = materialTwo.so_Item.icon;
-
+                matt = materialTwo.so_Item;
                 if (InventoryManager.GetItem(materialTwo.so_Item).amount >= materialTwo.requiredAmount)
                 {
-                    materialTwoIsValidImage.color = new Color32(0, 255, 0, 225);
+                    materialTwoIsValidImage.sprite = sufficient;
+                    matTwoAmount = materialTwo.requiredAmount;
                     materialTwoRequirement = true;
                 }
                 else if (InventoryManager.GetItem(materialTwo.so_Item).amount < materialTwo.requiredAmount)
                 {
-                    materialTwoIsValidImage.color = new Color32(255, 0, 0, 225);
+                    materialTwoIsValidImage.sprite = insufficient;
                 }
                 materialTwoCurrentAmountText.text = InventoryManager.GetItem(materialTwo.so_Item).amount.ToString();
                 materialTwoMaxAmountText.text = materialTwo.requiredAmount.ToString();
@@ -115,15 +125,20 @@ public class UpgradeToolsUI : MonoBehaviour
 
     }
 
+
     public void ToolUpgradeButtonUIClicked()
     {
         
         if (ToolManager.instance.tools[currentIndex].craftLevel < ToolManager.instance.tools[currentIndex].so_Tool.maxCraftLevel)
         {
-            Debug.Log("TEST " + materialOneRequirement + " - " + materialTwoRequirement + " - "+ threeRequirement + " - " + ToolManager.instance.tools[currentIndex].craftLevel);
+            //Debug.Log("TEST " + materialOneRequirement + " - " + materialTwoRequirement + " - "+ threeRequirement + " - " + ToolManager.instance.tools[currentIndex].craftLevel);
             if (materialOneRequirement && materialTwoRequirement && threeRequirement)
             {
-                Debug.Log("TEST 2");
+                //Debug.Log("TEST 2");
+                ItemData itemData = InventoryManager.GetItem(mato);
+                itemData.amount -= matOneAmount;
+                ItemData itemDataT = InventoryManager.GetItem(mato);
+                itemDataT.amount -= matTwoAmount;
                 ToolManager.instance.tools[currentIndex].craftLevel++;
 
                 UpgradeToolUI currentlyUpgradedToolUI = upgradeToolUIs[currentIndex];

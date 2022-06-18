@@ -6,5 +6,5 @@ using UnityEngine;
 public class ItemCategory
 {
     [SerializeField] public string name;
-    public List<ItemData> items = new List<ItemData>();
+    [NonReorderable] public List<ItemData> items = new List<ItemData>();
 }
