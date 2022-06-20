@@ -5,6 +5,9 @@ using UnityEngine.UI;
 using TMPro;
 public class StorylinesUI : MonoBehaviour
 {
+    [NonReorderable]
+    [SerializeField]
+    private List<Sprite> frameLevels;
     public ItemUI prefab;
     public List<StorylineUI> storylines = new List<StorylineUI>();
 
@@ -60,6 +63,7 @@ public class StorylinesUI : MonoBehaviour
                 {
                     QuestlineData questlineData = so_Questline.questlineData[currentQuestlinePartIndex];
                     
+
                     characterNameText.text = so_StoryLine.name;//.text = so_StoryLine.questLines[currentCharacterDataIndex].quest.title;
                     icon.sprite = questlineData.quest.questImage;
                     counterText.text = "QUEST " + (index + 1).ToString();
@@ -118,7 +122,7 @@ public class StorylinesUI : MonoBehaviour
         SO_StoryLine so_StoryLine = storylineData.so_StoryLine;
         int currentStorylineIndex = storylineData.currentStorylineIndex;
         int currentQuestlinePartIndex = storylineData.currentQuestlinePartIndex;
-
+        storylines[index].questFrame.sprite = frameLevels[currentStorylineIndex];
         storylines[index].titleText.text = so_StoryLine.name; //so_StoryLine.questLines[currentCharacterDataIndex].quest.title;
         storylines[index].questCountText.text = "QUEST " + currentStorylineIndex;//so_StoryLine.questLines[currentCharacterDataIndex].quest.description;
         storylines[index].icon.sprite = so_StoryLine.questLines[currentStorylineIndex].questlineData[currentQuestlinePartIndex].quest.questImage;

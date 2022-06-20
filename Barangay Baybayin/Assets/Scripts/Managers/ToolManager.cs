@@ -57,7 +57,7 @@ public class ToolManager : MonoBehaviour
     {
         foreach (Tool to in ToolManager.instance.tools)
         {
-            to.ModifySpecialAmount(-to.so_Tool.maxSpecialPoints[to.craftLevel]);
+            to.ModifySpecialAmount(-to.so_Tool.maxSpecialPoints[to.craftLevel-1]);
         }
     }
 }

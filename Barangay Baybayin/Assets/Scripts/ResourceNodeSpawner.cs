@@ -15,7 +15,7 @@ public class ResourceNodeSpawner : MonoBehaviour
     {
         if (TimeManager.instance)
         {
-            TimeManager.onDayChangedEvent.AddListener(Spawn);
+            TimeManager.onHourChanged.AddListener(Spawn);
         }
 
  
@@ -26,7 +26,7 @@ public class ResourceNodeSpawner : MonoBehaviour
 
         if (TimeManager.instance)
         {
-            TimeManager.onDayChangedEvent.RemoveListener(Spawn);
+            TimeManager.onHourChanged.RemoveListener(Spawn);
         }
 
     }
@@ -38,46 +38,63 @@ public class ResourceNodeSpawner : MonoBehaviour
          
             if (hit.gameObject != gameObject)
             {
+                //Debug.Log("D " + hit.gameObject.name);
                 if (!hit.gameObject.CompareTag("Player"))
                 {
                     if (hit != null)
                     {
-
-                        return false;
+                        if (hit.gameObject.CompareTag("Nodes"))
+                        {
+                            Debug.Log("RA");
+                            Destroy(hit.gameObject);
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                       
                     }
                 }
+                
                 
             }
 
         }
         return true;
     }
-    void Spawn(int p_day)
+    void Spawn()
     {
-       
-        bool isSpawnAvailable = CheckSpawnAvailability();
-   
-        if (isSpawnAvailable)
+        if (PlayerManager.instance.currentRoomID != room.currentRoomID)
         {
-            
-            float chanceRolled = Random.Range(0, 100);
-            int savedIndex = 0;
-            float currentCount = 0;
-            for (int i = 0; i < room.availableResourceNodeDrops.Count; i++)
+            bool isSpawnAvailable = CheckSpawnAvailability();
+
+            if (isSpawnAvailable)
             {
-                currentCount += room.availableResourceNodeDrops[i].chance;
-                if (chanceRolled  <= currentCount)
+
+                float chanceRolled = Random.Range(0, 100);
+                int savedIndex = 0;
+                float currentCount = 0;
+                for (int i = 0; i < room.availableResourceNodeDrops.Count; i++)
                 {
-                    //within chance range
-                    savedIndex = i;
-                    break;
+                    currentCount += room.availableResourceNodeDrops[i].chance;
+                    if (chanceRolled <= currentCount)
+                    {
+                        //within chance range
+                        savedIndex = i;
+                        break;
+                    }
+
                 }
-                
+                //Debug.Log(room.gameObject.name + " - ");
+                PoolableObject chosenResourceNode = room.availableResourceNodeDrops[savedIndex].resourceNode;
+                //Debug.Log(chosenResourceNode.gameObject.name + " - ");
+                //Debug.Log(" - " + ObjectPoolManager.GetPool(chosenResourceNode).gameObject.name);
+                PoolableObject newResourceNode = ObjectPoolManager.GetPool(chosenResourceNode).pool.Get();
+                newResourceNode.transform.position = transform.position;
             }
-            PoolableObject chosenResourceNode = room.availableResourceNodeDrops[savedIndex].resourceNode;
-            PoolableObject newResourceNode = ObjectPoolManager.GetPool(chosenResourceNode).pool.Get();
-            newResourceNode.transform.position = transform.position;
         }
+        
 
 
      

@@ -20,7 +20,8 @@ public class ObjectPoolManager : MonoBehaviour
 
         }
     }
-    [HideInInspector] public List<GenericObjectPool> pools = new List<GenericObjectPool>();
+    //[HideInInspector] 
+    public List<GenericObjectPool> pools = new List<GenericObjectPool>();
     private void Awake()
     {
         if (_instance != null)

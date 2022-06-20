@@ -89,7 +89,7 @@ public class ToolCaster : MonoBehaviour
                     Debug.Log("SPECIAL USED");
                     targetResourceNode.OnResourceNodeHitEvent.Invoke(current_Tool.so_Tool.useForResourceNode,
                         current_Tool.craftLevel,
-                        current_Tool.so_Tool.damage[current_Tool.craftLevel] * 2,
+                        current_Tool.so_Tool.damage[current_Tool.craftLevel-1] * 2,
                         onToolSpecialUsedEvent);
                 }
                 StartCoroutine(Co_ToolUseCooldown());
@@ -125,7 +125,7 @@ public class ToolCaster : MonoBehaviour
 
     IEnumerator Co_Cooldown()
     {
-        yield return new WaitForSeconds(current_Tool.so_Tool.useRate[current_Tool.craftLevel]);
+        yield return new WaitForSeconds(current_Tool.so_Tool.useRate[current_Tool.craftLevel-1]);
         canUse = true;
     }
     public void UseTool()
@@ -138,8 +138,8 @@ public class ToolCaster : MonoBehaviour
             {
                 float xPos = targetResourceNode.transform.position.x;                
                 targetResourceNode.OnResourceNodeHitEvent.Invoke(current_Tool.so_Tool.useForResourceNode,
-                   current_Tool.craftLevel,
-                   current_Tool.so_Tool.damage[current_Tool.craftLevel],
+                   current_Tool.craftLevel-1,
+                   current_Tool.so_Tool.damage[current_Tool.craftLevel-1],
                    onToolHitSucceededEvent);    
             }
             StartCoroutine(Co_ToolUseCooldown());

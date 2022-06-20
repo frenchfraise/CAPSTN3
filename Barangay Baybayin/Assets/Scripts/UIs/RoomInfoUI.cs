@@ -29,8 +29,8 @@ public class RoomInfoUI : MonoBehaviour
         Vector2 cameraPanLimit = new Vector2(p_passageway.cameraPanLimit.x,
                                             p_passageway.cameraPanLimit.y
                                             );
-     
 
+        PlayerManager.instance.currentRoomID = p_passageway.room.currentRoomID;
         gameObject.SetActive(true);
         StartCoroutine(Co_RoomInfoUITransition(roomName, roomDescription, availableResourceNodeDrops, cameraPosition, cameraPanLimit));
     }

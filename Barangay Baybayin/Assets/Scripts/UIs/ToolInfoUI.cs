@@ -7,6 +7,8 @@ public class ToolInfoUI : MonoBehaviour
     [SerializeField] private TMP_Text levelText;
     [SerializeField] private GenericBarUI genericBarUI;
 
+
+
     private void OnEnable()
     {
         ToolManager.onToolChangedEvent.AddListener(ToolChanged);
@@ -26,6 +28,7 @@ public class ToolInfoUI : MonoBehaviour
     {
         levelText.text = p_level.ToString();
         genericBarUI.ResetBar(1,1);
+       
     }
 
     public void ToolChanged(Tool p_tool)
@@ -34,7 +37,8 @@ public class ToolInfoUI : MonoBehaviour
         if (p_tool.so_Tool.maxProficiencyAmount.Count > 0)
         {
             genericBarUI.InstantUpdateBar(p_tool.proficiencyAmount, p_tool.so_Tool.maxProficiencyAmount[p_tool.proficiencyLevel - 1], p_tool.so_Tool.maxProficiencyAmount[p_tool.proficiencyLevel - 1]);
-
+            
+            
         }
         else
         {

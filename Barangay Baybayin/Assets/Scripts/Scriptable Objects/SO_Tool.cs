@@ -6,7 +6,7 @@ using UnityEngine.UI;
 [System.Serializable]
 public class CraftUpgradeItemRequirementsData
 {
-    public List<ItemUpgradeRequirement> itemRequirements;
+    [NonReorderable] public List<ItemUpgradeRequirement> itemRequirements;
     public int requiredProficiencyLevel;
 }
 [System.Serializable]
@@ -23,7 +23,7 @@ public class ItemUpgradeRequirement
 
 public class SO_Tool : ScriptableObject
 {
-    public SO_ResourceNode useForResourceNode;
+    [NonReorderable] public List<SO_ResourceNode> useForResourceNode;
 
     public Sprite lockedFrame;
     public Sprite lockedIcon;
@@ -32,25 +32,25 @@ public class SO_Tool : ScriptableObject
     public Sprite equippedFrame;
     public Sprite equippedIcon;
 
-    public List<float> useRate;
+    [NonReorderable] public List<float> useRate;
 
-    public List<int> damage;
+    [NonReorderable] public List<int> damage;
 
-    public List<float> staminaCost;
+    [NonReorderable] public List<float> staminaCost;
 
     public float chargeSpeedRate;
     public float maxToolCharge;
     public int maxCraftLevel;
 
-    public List<CraftUpgradeItemRequirementsData> craftUpgradeItemRequirementsDatas;//= new List<RequiredItem>();
+    [NonReorderable] public List<CraftUpgradeItemRequirementsData> craftUpgradeItemRequirementsDatas;//= new List<RequiredItem>();
 
-    public List<float> maxSpecialPoints;
-    public List<int> maxSpecialCharges;
-    public List<float> specialPointReward;
-    public List<float> specialPointUse;
+    [NonReorderable] public List<float> maxSpecialPoints;
+    [NonReorderable] public List<int> maxSpecialCharges;
+    [NonReorderable] public List<float> specialPointReward;
+    [NonReorderable] public List<float> specialPointUse;
 
-    public List<float> maxProficiencyAmount;
-    public List<float> proficiencyAmountReward;
+    [NonReorderable] public List<float> maxProficiencyAmount;
+    [NonReorderable] public List<float> proficiencyAmountReward;
 
 
 

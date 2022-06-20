@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5705046277721567537}
   - component: {fileID: 8343265805482284243}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
@@ -96,9 +96,9 @@ GameObject:
   - component: {fileID: 8653533781470353935}
   - component: {fileID: 8653533781470353938}
   - component: {fileID: 5236343384847010663}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: 2_OreNode
-  m_TagString: Untagged
+  m_TagString: Nodes
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

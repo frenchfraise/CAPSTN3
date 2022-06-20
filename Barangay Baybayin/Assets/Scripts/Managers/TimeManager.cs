@@ -6,6 +6,8 @@ using UnityEngine.Events;
 public class TimeChangedEvent : UnityEvent<int, int, int> { };
 public class DayChangedEvent : UnityEvent<int> { };
 
+public class HourChangedEvent : UnityEvent { };
+
 public class TimeData
 {
     int hoursInDay;
@@ -34,7 +36,7 @@ public class TimeManager : MonoBehaviour
 
     public static TimeChangedEvent onTimeChangedEvent = new TimeChangedEvent();
     public static DayChangedEvent onDayChangedEvent = new DayChangedEvent();
-
+    public static HourChangedEvent onHourChanged = new HourChangedEvent();
     [HideInInspector] public static float sunriseHour = 6;
 
     private float totalTime = 0;
@@ -80,6 +82,7 @@ public class TimeManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         onDayChangedEvent.Invoke(dayCount);
         runningCoroutine = StartCoroutine(Co_NewDay());
+        onHourChanged.Invoke(); //TEMPORARY
     }
     private void OnEnable()
     {
@@ -106,6 +109,13 @@ public class TimeManager : MonoBehaviour
         // totalTime += Time.realtimeSinceStartup;
     }
 
+    IEnumerator ForceTest()
+    {
+        yield return new WaitForSeconds(2f);
+        onHourChanged.Invoke(); //TEMPORARY
+        
+    }
+
     IEnumerator Co_DoTimer()
     {
         while(true)
@@ -121,6 +131,7 @@ public class TimeManager : MonoBehaviour
             if (minute >= minutesInHour)
             {
                 hour++;
+                onHourChanged.Invoke(); //TEMPORARY
                 minute = 0;
                 minuteByTens = 0;
                 if (hour > hoursInDay)

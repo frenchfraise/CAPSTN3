@@ -27,14 +27,15 @@ public class RoomEnteredEvent : UnityEvent<Passageway> { }
 
 public class Room : MonoBehaviour
 {
+    public int currentRoomID;
     public string roomName;
     public string roomDescription;
     [SerializeField] private Vector2 cameraDestinationPosition;
     [SerializeField] private Vector2 cameraPanLimit;
-    public List<ResourceNodeDrop> availableResourceNodeDrops = new List<ResourceNodeDrop>(); // populate by node
-    [SerializeField] private List<ResourceNodeSpawner> resourceNodeSpawners = new List<ResourceNodeSpawner>();
+    [NonReorderable] public List<ResourceNodeDrop> availableResourceNodeDrops = new List<ResourceNodeDrop>(); // populate by node
+    [NonReorderable] [SerializeField] private List<ResourceNodeSpawner> resourceNodeSpawners = new List<ResourceNodeSpawner>();
 
-    [SerializeField] private List<PassagewayInfo> passagewayInfos = new List<PassagewayInfo>();
+    [NonReorderable] [SerializeField] private List<PassagewayInfo> passagewayInfos = new List<PassagewayInfo>();
 
     public RoomEnteredEvent onRoomEnteredEvent = new RoomEnteredEvent();
     

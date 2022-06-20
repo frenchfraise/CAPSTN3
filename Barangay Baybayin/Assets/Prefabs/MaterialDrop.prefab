@@ -136,8 +136,8 @@ MonoBehaviour:
   maxOffsetX: 7
   minBurstVelocity: 10
   maxBurstVelocity: 15
-  magnetizeDelay: 2
-  magnetizeSpeed: 40
+  magnetizeDelay: 0.5
+  magnetizeSpeed: 100
 --- !u!50 &5904356609009391943
 Rigidbody2D:
   serializedVersion: 4

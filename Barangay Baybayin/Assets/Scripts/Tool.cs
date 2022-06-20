@@ -24,7 +24,7 @@ public class Tool
        
         
 
-        if (specialPoints >= so_Tool.maxSpecialPoints[craftLevel])
+        if (specialPoints >= so_Tool.maxSpecialPoints[craftLevel-1])
         {
             // specialPoints = so_Tool.maxSpecialPoints[craftLevel];
             ToolManager.onSpecialPointsFilledEvent.Invoke();
@@ -33,7 +33,7 @@ public class Tool
         }
         else
         {
-            ToolManager.onSpecialPointsModifiedEvent.Invoke(specialPoints, so_Tool.maxSpecialPoints[craftLevel]);
+            ToolManager.onSpecialPointsModifiedEvent.Invoke(specialPoints, so_Tool.maxSpecialPoints[craftLevel-1]);
         }
 
 

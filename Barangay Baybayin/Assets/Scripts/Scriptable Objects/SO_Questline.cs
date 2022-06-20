@@ -14,5 +14,5 @@ public class QuestlineData
 [CreateAssetMenu(fileName = "New Questline Scriptable Object", menuName = "Scriptable Objects/Questline")]
 public class SO_Questline : ScriptableObject
 {
-    public List<QuestlineData> questlineData = new List<QuestlineData>();
+    [NonReorderable] public List<QuestlineData> questlineData = new List<QuestlineData>();
 }

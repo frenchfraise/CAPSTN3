@@ -28,7 +28,7 @@ public class UpgradeToolUI : MonoBehaviour
         bool isUpgradableReqOne = false;
         bool isUpgradableReqTwo = false;
         Tool selectedTool = ToolManager.instance.tools[toolIndex];
-        CraftUpgradeItemRequirementsData craftUpgradeItemRequirementsData = selectedTool.so_Tool.craftUpgradeItemRequirementsDatas[selectedTool.craftLevel];
+        CraftUpgradeItemRequirementsData craftUpgradeItemRequirementsData = selectedTool.so_Tool.craftUpgradeItemRequirementsDatas[selectedTool.craftLevel-1];
 
         proficiencyText.text = craftUpgradeItemRequirementsData.requiredProficiencyLevel.ToString();
         if (selectedTool.proficiencyLevel >= craftUpgradeItemRequirementsData.requiredProficiencyLevel)

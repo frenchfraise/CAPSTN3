@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a9f196df8fd10f47b6561e9de01c155, type: 3}
   m_Name: Bolo
   m_EditorClassIdentifier: 
-  useForResourceNode: {fileID: 0}
+  useForResourceNode:
+  - {fileID: 11400000, guid: 34ff26ab5227f26438366805f1126507, type: 2}
   lockedFrame: {fileID: 21300000, guid: abf11a33121b8ba45a1c05396028d06e, type: 3}
   lockedIcon: {fileID: 21300000, guid: b7c043ab3efd83c4c9b8c64c2b8db5f7, type: 3}
   unlockedFrame: {fileID: 21300000, guid: 09e576a857212ed42a31596e00f0da5f, type: 3}

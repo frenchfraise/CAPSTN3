@@ -123,7 +123,7 @@ public class Item : MonoBehaviour
                 isSplashing = true;
 
                 hoverEffect.startYPosition = transform.position.y;
-                hoverEffect.runningCoroutine = StartCoroutine(hoverEffect.Co_Hover());
+                
                 StartCoroutine(Co_Magnetize());
             }
         }
@@ -148,6 +148,11 @@ public class Item : MonoBehaviour
         else
         {
             InventoryManager.AddItem(so_Item, 1);
+            
+            //if (hoverEffect.runningCoroutine != null)
+            //{
+            //    hoverEffect.StopCoroutine(hoverEffect.runningCoroutine);
+            //}
             Destroy(gameObject);
         }
       
@@ -157,17 +162,16 @@ public class Item : MonoBehaviour
     
     IEnumerator Co_Magnetize()
     {
-
-
+        hoverEffect.runningCoroutine = hoverEffect.Co_Hover();
+        StartCoroutine(hoverEffect.runningCoroutine);
+       // hoverEffect.runningCoroutine = StartCoroutine(hoverEffect.Co_Hover());
         yield return new WaitForSeconds(magnetizeDelay);
         if (hoverEffect.runningCoroutine != null)
         {
             hoverEffect.StopCoroutine(hoverEffect.runningCoroutine);
+            //Debug.Log("DISABLED");
         }
         isMagnetizing = true;
-
-
-
 
 
     }

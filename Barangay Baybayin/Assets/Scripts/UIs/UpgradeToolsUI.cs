@@ -51,7 +51,7 @@ public class UpgradeToolsUI : MonoBehaviour
     void UpdateCurrentToolUI(Tool p_currentTool)
     {
         SO_Tool currentSOTool = p_currentTool.so_Tool;
-        int currentToolLevel = p_currentTool.craftLevel;
+        int currentToolLevel = p_currentTool.craftLevel-1;
         int upgradeToolLevel = currentToolLevel+1;
 
 

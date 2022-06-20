@@ -2,12 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+
+[System.Serializable]
+public class ToolUIElements
+{
+    public Image background;
+    public Image icon;
+    public TMP_Text levelCount;
+    public Image fill;
+}
 public class ToolsUI : MonoBehaviour
 {
-    [SerializeField] private List<Image> toolUI = new List<Image>();
+    [NonReorderable]
+    [SerializeField]
+    private List<Sprite> frameLevels;
+    [NonReorderable] [SerializeField] private List<ToolUIElements> toolUI = new List<ToolUIElements>();
     private ToolCaster toolCaster;
     private bool canUse = true;
     private bool canSwitch = true;
+    private int currentEquip = 0;
 
     private void OnEnable()
     {
@@ -17,11 +31,13 @@ public class ToolsUI : MonoBehaviour
         OnToolButtonPressed(0); // temporary (?)
         canUse = true;
         canSwitch = true;
-
+        ToolManager.onProficiencyLevelModifiedEvent.AddListener(UpdateLevel);
+        ToolManager.onProficiencyAmountModifiedEvent.AddListener(UpdateProf);
     }
 
     private void OnDisable()
     {
+        ToolManager.onProficiencyLevelModifiedEvent.AddListener(UpdateLevel);
         toolCaster.onToolCanUseUpdatedEvent.RemoveListener(CanUseUpdate);
         toolCaster.onToolCanSwitchUpdatedEvent.RemoveListener(CanSwitchUpdate);
     }
@@ -35,12 +51,31 @@ public class ToolsUI : MonoBehaviour
     {
         canSwitch = p_canSwitch;
     }
+
+    public void UpdateLevel(int p_level)
+    {
+        Tool selected_Tool = ToolManager.instance.tools[currentEquip];
+        SO_Tool selectedSO_Tool = selected_Tool.so_Tool;
+        toolUI[currentEquip].levelCount.text = selected_Tool.proficiencyLevel.ToString();
+        toolUI[currentEquip].fill.sprite = frameLevels[selected_Tool.proficiencyLevel];
+    }
+
+    public void UpdateProf(float p_curr, float p_max)
+    {
+        Tool selected_Tool = ToolManager.instance.tools[currentEquip];
+        SO_Tool selectedSO_Tool = selected_Tool.so_Tool;
+        Debug.Log(p_curr + " - " + p_max);
+        Debug.Log(selected_Tool.proficiencyAmount + " - " +  selectedSO_Tool.maxProficiencyAmount[selected_Tool.craftLevel-1]);
+        toolUI[currentEquip].fill.fillAmount = selected_Tool.proficiencyAmount / selectedSO_Tool.maxProficiencyAmount[selected_Tool.craftLevel-1];
+
+    }
     public void OnToolButtonPressed(int index)
     {
         if (canUse)
         {
             if (canSwitch)
             {
+                currentEquip = index;
                 canSwitch = false;
                 Tool selected_Tool = ToolManager.instance.tools[index];
                 SO_Tool selectedSO_Tool = selected_Tool.so_Tool;
@@ -48,17 +83,18 @@ public class ToolsUI : MonoBehaviour
                 {
                     if (index == i)
                     {
-
-                        toolUI[index].sprite = selectedSO_Tool.equippedFrame;
-                        toolUI[index].transform.GetChild(0).gameObject.GetComponent<Image>().sprite = selectedSO_Tool.equippedIcon;
-
+                      
+                       
+                        toolUI[index].background.sprite = selectedSO_Tool.equippedFrame;
+                        toolUI[index].icon.sprite = selectedSO_Tool.equippedIcon;
+                        
                     }
                     else
                     {
                         Tool current_Tool = ToolManager.instance.tools[i];
                         SO_Tool so_Tool = current_Tool.so_Tool;
-                        toolUI[i].sprite = so_Tool.unlockedFrame;
-                        toolUI[i].transform.GetChild(0).gameObject.GetComponent<Image>().sprite = so_Tool.unlockedIcon;
+                        toolUI[i].icon.sprite = so_Tool.unlockedFrame;
+                        toolUI[i].icon.sprite = so_Tool.unlockedIcon;
 
                     }
 

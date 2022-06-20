@@ -72,7 +72,7 @@ public class InventoryManager : MonoBehaviour
     {
         for (int iii = 0; iii < InventoryManager.instance.inventoryPages.Count; iii++)
         {
-            for (int ii = 0; ii < InventoryManager.instance.inventoryPages.Count; ii++)
+            for (int ii = 0; ii < InventoryManager.instance.inventoryPages[iii].itemCategories.Count; ii++)
             {
 
                 for (int i = 0; i < InventoryManager.instance.inventoryPages[iii].itemCategories[ii].items.Count;)

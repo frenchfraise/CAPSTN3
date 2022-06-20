@@ -19,6 +19,7 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
+    public int currentRoomID;
     public Stamina stamina;
     public Bed bed;
     public PlayerJoystick joystick;

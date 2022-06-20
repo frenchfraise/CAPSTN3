@@ -11,7 +11,7 @@ public class HoverEffect : MonoBehaviour
     [SerializeField] private float hoverDownSpeed;
     [SerializeField] private float hoverDownRate;
     public float startYPosition;
-    public Coroutine runningCoroutine;
+    public IEnumerator runningCoroutine;
 
     private void OnEnable()
     {
@@ -22,10 +22,10 @@ public class HoverEffect : MonoBehaviour
 
     private void OnDisable()
     {
-        if (runningCoroutine != null)
-        {
-             StopCoroutine(runningCoroutine);
-        }
+        //if (runningCoroutine != null)
+        //{
+        //     StopCoroutine(runningCoroutine);
+        //}
     }
 
 
@@ -47,6 +47,7 @@ public class HoverEffect : MonoBehaviour
             transform.position -= new Vector3(0, hoverDownSpeed);
             yield return new WaitForSeconds(hoverDownRate);
         }
-        runningCoroutine = StartCoroutine(Co_Hover());
+        runningCoroutine = Co_Hover();
+        StartCoroutine(runningCoroutine);
     }
 }

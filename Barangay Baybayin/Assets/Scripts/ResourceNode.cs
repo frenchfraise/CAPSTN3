@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Pool;
 
-public class ResourceNodeHitEvent : UnityEvent<SO_ResourceNode , int , int, UnityEvent > { }
+public class ResourceNodeHitEvent : UnityEvent<List<SO_ResourceNode> , int , int, UnityEvent > { }
 public class ResourceNode : PoolableObject
 {
    
@@ -18,7 +18,7 @@ public class ResourceNode : PoolableObject
 
     public int levelRequirement;
 
-    public List<ResourceDrop> resourceDrops = new List<ResourceDrop>(); //chance
+    [NonReorderable] public List<ResourceDrop> resourceDrops = new List<ResourceDrop>(); //chance
 
 
     //public ResourceDrop resourceDrop;
@@ -67,23 +67,27 @@ public class ResourceNode : PoolableObject
         OnResourceNodeHitEvent.RemoveListener(Hit);
     }
 
-    public void Hit( SO_ResourceNode p_useForResourceNode,int p_craftLevel, int p_currentDamage, UnityEvent p_eventCallback) 
+    public void Hit( List<SO_ResourceNode> p_useForResourceNode,int p_craftLevel, int p_currentDamage, UnityEvent p_eventCallback) 
     {
         //Debug.Log("1 " + p_useForResourceNode + " - " + p_craftLevel + " - " + p_currentDamage + " - ");
-        if (p_useForResourceNode == so_ResourceNode)
+        foreach(SO_ResourceNode useForResourceNode in p_useForResourceNode)
         {
-            
-            //if (p_craftLevel >= levelRequirement)
-            //{
-                
-                Health health = GetComponent<Health>();         
-     
-                health.onHealthModifyEvent.Invoke(-p_currentDamage);                
-          
+            if (useForResourceNode == so_ResourceNode)
+            {
+
+                //if (p_craftLevel >= levelRequirement)
+                //{
+
+                Health health = GetComponent<Health>();
+
+                health.onHealthModifyEvent.Invoke(-p_currentDamage);
+
                 p_eventCallback.Invoke();
-        
-            //}
+
+                //}
+            }
         }
+    
     }
 
     public void RewardResource()

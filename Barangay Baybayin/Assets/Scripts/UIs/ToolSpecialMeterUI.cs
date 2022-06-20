@@ -20,7 +20,7 @@ public class ToolSpecialMeterUI : MonoBehaviour
     void InstantUpdateBar(Tool p_tool)
     {
    
-        float fill = p_tool.specialPoints / p_tool.so_Tool.maxSpecialPoints[p_tool.craftLevel];
+        float fill = p_tool.specialPoints / p_tool.so_Tool.maxSpecialPoints[p_tool.craftLevel-1];
         realBar.fillAmount = fill;
     }
     void UpdateBar(float p_current, float p_max)
