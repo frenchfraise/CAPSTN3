@@ -14,18 +14,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogues:
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 0
-    words: Oh you are back
+    emotion: 10
+    words: "What a relief! You got \u2018em all!"
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 0
-    words: What am I supposed to do?
+    emotion: 10
+    words: Now the kids would be more safe and comfortable in their studies!
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 0
-    words: GET ME MY 1 WOOD BOY
+    emotion: 10
+    words: You know, some of our students have to travel far, and on foot, just to
+      come.
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 0
-    words: Ok sorry po, will be back
+    emotion: 10
+    words: On top of that, the frequent storms affect their attendance.
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
+    emotion: 10
+    words: Not only on their traveling, but also on their families.
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
+    emotion: 10
+    words: When storms come, the kids and their education suffer too.
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
+    emotion: 10
+    words: And climate change has been making it worse.
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
+    emotion: 10
+    words: "That\u2019s it. Thanks for hearing me out. "
     speechTransitionType: 1
