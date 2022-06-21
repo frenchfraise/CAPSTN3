@@ -20,11 +20,12 @@ public class ToolCaster : MonoBehaviour
     private float pointerDownTimer; // this can be changed
     // public float requiredHoldTime;
     private int chargeCounter;
-    
+    private float staminaCost;
 
     public LongClickEvent onLongClickEvent;
 
     [HideInInspector] public Tool current_Tool;
+    private bool isTax = false;
     private bool canUse = true;
     private bool canSwitch = true;
     [SerializeField] private float switchRate;
@@ -44,6 +45,8 @@ public class ToolCaster : MonoBehaviour
     }
     public void OnEnable()
     {
+        WeatherManager.onWeatherChangedEvent.AddListener(CheckWeatherStaminaTax);
+
         if (GetComponent<Stamina>())
         {
             onToolUsedEvent.AddListener(GetComponent<Stamina>().ModifyStamina);
@@ -60,6 +63,8 @@ public class ToolCaster : MonoBehaviour
 
     public void OnDisable()
     {
+        WeatherManager.onWeatherChangedEvent.RemoveListener(CheckWeatherStaminaTax);
+
         if (GetComponent<Stamina>())
         {
             onToolUsedEvent.RemoveListener(GetComponent<Stamina>().ModifyStamina);
@@ -111,7 +116,7 @@ public class ToolCaster : MonoBehaviour
             if (pointerDownTimer >= current_Tool.so_Tool.chargeSpeedRate)
             {
                 // Debug.Log("pointerDownTimer reached.");
-                if (onLongClickEvent != null) onLongClickEvent.Invoke();
+                onLongClickEvent?.Invoke();
                
                 if (chargeCounter != current_Tool.so_Tool.maxToolCharge)
                 {
@@ -132,15 +137,25 @@ public class ToolCaster : MonoBehaviour
     {
         if (canUse)
         {
-            animator.SetTrigger("UseTool");
+            // animator.SetTrigger("UseTool");            
+            animator.SetTrigger(current_Tool.toolName.ToString());
+
             ResourceNode targetResourceNode = GetResourceNode();
             if (targetResourceNode)
             {
-                float xPos = targetResourceNode.transform.position.x;                
+                float xPos = targetResourceNode.transform.position.x;
+                if (xPos > PlayerManager.instance.player.transform.position.x) // right
+                {
+                    animator.SetBool("isFacingRight", true);
+                }
+                else // left
+                {
+                    animator.SetBool("isFacingRight", false);
+                }
                 targetResourceNode.OnResourceNodeHitEvent.Invoke(current_Tool.so_Tool.useForResourceNode,
                    current_Tool.craftLevel,
                    current_Tool.so_Tool.damage[current_Tool.craftLevel],
-                   onToolHitSucceededEvent);    
+                   onToolHitSucceededEvent);
             }
             StartCoroutine(Co_ToolUseCooldown());
         }
@@ -176,7 +191,7 @@ public class ToolCaster : MonoBehaviour
         canUse = false;
         // animator.SetTrigger("UseTool");
         onToolCanUseUpdatedEvent.Invoke(canUse);
-        onToolUsedEvent.Invoke(current_Tool.so_Tool.staminaCost[current_Tool.craftLevel]);
+        onToolUsedEvent.Invoke(staminaCost);
         yield return new WaitForSeconds(current_Tool.so_Tool.useRate[current_Tool.craftLevel]);
         canUse = true;
         onToolCanUseUpdatedEvent.Invoke(canUse);
@@ -190,6 +205,14 @@ public class ToolCaster : MonoBehaviour
         onToolCanSwitchUpdatedEvent.Invoke(canSwitch);
     }
 
+    private void CheckWeatherStaminaTax(Weather p_currentWeather, Weather p_nextWeather)
+    {
+        if (Weather.Rainy == p_currentWeather)
+        {
+            staminaCost = current_Tool.so_Tool.staminaCost[current_Tool.craftLevel] * 1.5f;
+        }
+        else staminaCost = current_Tool.so_Tool.staminaCost[current_Tool.craftLevel];
+    }
 
     public void OnPointerDown()
     {
@@ -208,5 +231,5 @@ public class ToolCaster : MonoBehaviour
         isPointerDown = false;
         pointerDownTimer = 0;
         // Invoke Tool Charge Use()
-    }
+    }    
 }

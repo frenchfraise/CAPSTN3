@@ -1,8 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
+
+public class StorylinesUIClose : UnityEvent<bool> { }
 public class StorylinesUI : MonoBehaviour
 {
     public ItemUI prefab;
@@ -23,6 +26,8 @@ public class StorylinesUI : MonoBehaviour
     public List<ItemUI> rewardsUIs;
 
     public int currentIndex = 0;
+
+    public StorylinesUIClose onStorylinesUIClose = new StorylinesUIClose();
 
     private void Start()
     {
@@ -167,17 +172,15 @@ public class StorylinesUI : MonoBehaviour
 
     public void QuitButtonUIClicked()
     {
-
         gameObject.SetActive(false);
-
+        onStorylinesUIClose.Invoke(true);
     }
 
     public void OpenButtonUIClicked()
     {
-
         selectionPanel.SetActive(true);
         selectedPanel.SetActive(false);
         gameObject.SetActive(true);
-
+        onStorylinesUIClose.Invoke(false);
     }
 }

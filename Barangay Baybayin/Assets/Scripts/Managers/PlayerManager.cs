@@ -19,9 +19,11 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
+    public GameObject player;
     public Stamina stamina;
     public Bed bed;
     public PlayerJoystick joystick;
+
     private void Awake()
     {
         if (_instance != null)

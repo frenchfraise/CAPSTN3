@@ -8,6 +8,8 @@ public class Tool
 {
 
     public SO_Tool so_Tool;
+    public string toolName;
+    public int toolNum;
     public int craftLevel = 1;
 
     public int proficiencyLevel = 1;

@@ -1,8 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
+
+public class UpgradeToolsUIClose : UnityEvent<bool> { }
 public class UpgradeToolsUI : MonoBehaviour
 {
     [SerializeField] private GameObject selectionPanelUI;
@@ -29,6 +32,8 @@ public class UpgradeToolsUI : MonoBehaviour
     private bool threeRequirement = false;
     [SerializeField]
     private List<UpgradeToolUI> upgradeToolUIs = new List<UpgradeToolUI>();
+
+    public UpgradeToolsUIClose onUpgradeToolsUIClose = new UpgradeToolsUIClose();
 
     public void ToolButtonUIClicked(int p_toolIndex)
     {
@@ -148,17 +153,15 @@ public class UpgradeToolsUI : MonoBehaviour
 
     public void QuitButtonUIClicked()
     {
-
         gameObject.SetActive(false);
-
+        onUpgradeToolsUIClose.Invoke(true);
     }
 
     public void OpenButtonUIClicked()
-    {
-
+    {        
         selectionPanelUI.SetActive(true);
         confirmPanelUI.SetActive(false);
         gameObject.SetActive(true);
-
+        onUpgradeToolsUIClose.Invoke(false);
     }
 }
