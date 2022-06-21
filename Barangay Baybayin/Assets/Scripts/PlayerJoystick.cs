@@ -6,6 +6,7 @@ public class PlayerJoystick : MonoBehaviour
 {
     [SerializeField] private float speed;
     public Joystick joystick;
+    public Transform arrow;
     private Rigidbody2D rb;
     private Vector2 movement;
 
@@ -27,22 +28,27 @@ public class PlayerJoystick : MonoBehaviour
     {
         movement.x = joystick.Horizontal;
         movement.y = joystick.Vertical;
+        
+        animator.SetFloat("Horizontal", movement.x);
+        animator.SetFloat("Vertical", movement.y);
+        animator.SetFloat("Speed", movement.sqrMagnitude);
+        
+        Vector3 moveArrow = new Vector3(joystick.Horizontal, joystick.Vertical);
+        arrow.transform.rotation = Quaternion.LookRotation(Vector3.forward, moveArrow);
 
         //Vector3 t = transform.position;
         //sort.sortingOrder = t.y;
 
-        animator.SetFloat("Horizontal", movement.x);
-        animator.SetFloat("Vertical", movement.y);
-        animator.SetFloat("Speed", movement.sqrMagnitude);
     }
 
     private void FixedUpdate()
     {
         rb.MovePosition(rb.position + movement * speed * Time.deltaTime);
         if (movement != Vector2.zero)
-        {
-           
-            aim.position = (Vector2)transform.position + (aimOffset * movement);
+        {            
+            animator.SetFloat("FaceFloat", aim.localPosition.y);            
+            aim.position = (Vector2)transform.position + (aimOffset* movement);
+
             ResourceNode re = GetComponent<ToolCaster>().GetResourceNode();
            
             if (re)
