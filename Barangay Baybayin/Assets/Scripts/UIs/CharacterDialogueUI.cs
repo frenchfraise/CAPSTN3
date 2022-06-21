@@ -22,7 +22,6 @@ public class CharacterDialogueUI : MonoBehaviour
     private GameObject emoticon;
     [SerializeField]
     private Animator anim;
-     public void OnCharacterSpokenTo(SO_Dialogues p_SO_Dialogues)
 
     public CharacterDialogueUIClose onCharacterDialogueUIClose = new CharacterDialogueUIClose();
    

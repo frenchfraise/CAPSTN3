@@ -521,6 +521,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4977587415652189629, guid: fea5a514e58f9df44bdc47a1f3ee5647, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -13.600098
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fea5a514e58f9df44bdc47a1f3ee5647, type: 3}
 --- !u!114 &68649031 stripped
@@ -1728,24 +1732,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tools:
   - so_Tool: {fileID: 11400000, guid: 8056d9e714c888c47bd30e3c42225b44, type: 2}
+    toolName: Hammer
+    toolNum: 0
     craftLevel: 1
     proficiencyLevel: 1
     proficiencyAmount: 0
     specialPoints: 0
     specialChargesCounter: 0
   - so_Tool: {fileID: 11400000, guid: 5732007b25b3aeb44856f0168e716ea8, type: 2}
+    toolName: Pickaxe
+    toolNum: 0
     craftLevel: 1
     proficiencyLevel: 1
     proficiencyAmount: 0
     specialPoints: 0
     specialChargesCounter: 0
   - so_Tool: {fileID: 11400000, guid: b5633dfee375d864eb5fe3732b6f1b55, type: 2}
+    toolName: Bolo
+    toolNum: 0
     craftLevel: 1
     proficiencyLevel: 1
     proficiencyAmount: 0
     specialPoints: 0
     specialChargesCounter: 0
   - so_Tool: {fileID: 11400000, guid: 5ffabea5c9e65a24999d261a52c52b28, type: 2}
+    toolName: Axe
+    toolNum: 0
     craftLevel: 1
     proficiencyLevel: 1
     proficiencyAmount: 0
@@ -12520,7 +12532,7 @@ Transform:
   m_GameObject: {fileID: 411067217}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.96, y: 6.19, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1378538539}
@@ -14454,6 +14466,8 @@ MonoBehaviour:
   overheadUI: {fileID: 431043807}
   transitionUI: {fileID: 53811022}
   characterDialogueUI: {fileID: 929038096}
+  storylines: {fileID: 1479468140}
+  upgradeUI: {fileID: 1047800964}
   roomInfoUI: {fileID: 374415465}
   dayInfoUI: {fileID: 924640397}
   inventoryUI: {fileID: 1705948383}
@@ -14466,8 +14480,6 @@ MonoBehaviour:
   cloudySprite: {fileID: 21300000, guid: c75bd7b258689fe428748bf1baf9e8a7, type: 3}
   rainSprite: {fileID: 21300000, guid: 04a8d57b0cb619449bf5c57d69e25040, type: 3}
   stormySprite: {fileID: 21300000, guid: 14f59e7b96d8c194ab61319da68780b4, type: 3}
-  storylines: {fileID: 1479468140}
-  upgradeUI: {fileID: 1047800964}
   isRunningCoroutine: 0
   justFinishedCoroutine: 0
 --- !u!4 &699589447
@@ -18473,7 +18485,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1255620152}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 15.6, y: -21.4, z: -0.3308323}
+  m_LocalPosition: {x: -24.4, y: 11.5, z: -0.3308323}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -18557,8 +18569,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1244431709
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b4ebe27d0ae707f429de24103e4424ef, type: 3}
   m_Color: {r: 0.3773585, g: 0.3773585, b: 0.3773585, a: 1}
@@ -19073,6 +19085,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentRoomID: 0
+  player: {fileID: 1919231791}
   stamina: {fileID: 1919231793}
   bed: {fileID: 2104671191}
   joystick: {fileID: 1919231796}
@@ -19591,7 +19604,7 @@ Transform:
   m_GameObject: {fileID: 1378538538}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 411067218}
@@ -19638,7 +19651,7 @@ SpriteRenderer:
   m_SortingLayerID: 585709473
   m_SortingLayer: 3
   m_SortingOrder: 32767
-  m_Sprite: {fileID: 21300000, guid: 1793a03f5d4b9584cbd1e3916f511ddd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: be734b9a7ee7e4c4699b472c126b0a49, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -19759,6 +19772,7 @@ MonoBehaviour:
   stormyDialogues:
   - {fileID: 11400000, guid: 10108f19ce12cda4e912f0f09d3e2a4e, type: 2}
   currentWeather: 0
+  nextWeather: 0
   cloudParticles: {fileID: 1450864625}
   rainParticles: {fileID: 328484352}
   lightningParticles: {fileID: 329790955}
@@ -20101,7 +20115,7 @@ MonoBehaviour:
   realSecondsPerNight: 0
   startHour: 10
   endTime: 0
-  hour: 0
+  numOfHoursAwake: 8
   oneMinToRealSeconds: 0.5
 --- !u!4 &1426069210
 Transform:
@@ -27039,7 +27053,7 @@ Animator:
   m_GameObject: {fileID: 1683850983}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e10c80ff540e92e40a482d3910531ae3, type: 2}
+  m_Controller: {fileID: 9100000, guid: e3f475e455693254db901f7f7b1a44cf, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -29150,6 +29164,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   current_Tool:
     so_Tool: {fileID: 11400000, guid: 1f83244fd5335334f92400ec19026fe8, type: 2}
+    toolName: 
+    toolNum: 0
     craftLevel: 1
     proficiencyLevel: 1
     proficiencyAmount: 0
@@ -30612,8 +30628,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1244431709
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b4ebe27d0ae707f429de24103e4424ef, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
@@ -30634,7 +30650,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2104671190}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 15.6, y: -10.21, z: -0.3308323}
+  m_LocalPosition: {x: -24.399998, y: 22.69, z: -0.3308323}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -30865,7 +30881,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8865648128532301072, guid: 38c28f0def4f83c4489208bd2ab184c3, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -9.387329
+      value: -9.387207
       objectReference: {fileID: 0}
     - target: {fileID: 8865648128532301072, guid: 38c28f0def4f83c4489208bd2ab184c3, type: 3}
       propertyPath: m_AnchoredPosition.y

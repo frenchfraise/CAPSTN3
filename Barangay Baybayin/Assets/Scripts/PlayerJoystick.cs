@@ -41,6 +41,7 @@ public class PlayerJoystick : MonoBehaviour
         rb.MovePosition(rb.position + movement * speed * Time.deltaTime);
         if (movement != Vector2.zero)
         {
+           
             aim.position = (Vector2)transform.position + (aimOffset * movement);
             ResourceNode re = GetComponent<ToolCaster>().GetResourceNode();
            
@@ -66,7 +67,7 @@ public class PlayerJoystick : MonoBehaviour
                         interactHint.SetActive(false);
                     }
                 }
-
+                
                 
                 
             }
