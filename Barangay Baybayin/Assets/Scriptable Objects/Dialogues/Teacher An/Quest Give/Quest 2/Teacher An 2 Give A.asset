@@ -14,51 +14,44 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogues:
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 0
-    words: 'Panday Sakoro, good day. '
-    speechTransitionType: 0
-  - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 5
-    words: 'Are you on the job? '
+    emotion: 10
+    words: Hello, Sakoro. Need your assistance again.
     speechTransitionType: 0
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
     emotion: 10
-    words: You see, the typhoon did a number on the school.
-    speechTransitionType: 0
-  - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 1
-    words: "Some of the chairs and tables got destroyed. An area of the roof did,
-      too\u2026 "
+    words: 'Kapitan Lomhik patrolled the other day and noticed the roofing patch-up. '
     speechTransitionType: 0
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
     emotion: 10
-    words: "We aren\u2019t able to hold classes yet. I feel for the children."
+    words: "He was concerned it wouldn\u2019t hold when the next storm comes."
+    speechTransitionType: 0
+  - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
+    emotion: 10
+    words: As the roof is being fixed, the kids and I could continue holding classes
+      outside.
+    speechTransitionType: 0
+  - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
+    emotion: 10
+    words: "But it\u2019s been so hot, and the kids have a hard time concentrating\u2026"
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 1
-    words: Ok po
+    emotion: 10
+    words: "I could swear it wasn\u2019t this hot when I was a student."
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 1
-    words: Ok po
+    emotion: 10
+    words: Ah! Back to the task. Could you gather these?
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 1
-    words: Ok po
+    emotion: 10
+    words: "[20 Wood\u2605\u2605] and [30 Nipa\u2605\u2605]. These ought to be sturdier."
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 1
-    words: Ok po
+    emotion: 10
+    words: "I\u2019ll be here minding the kids."
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 1
-    words: Ok po
-    speechTransitionType: 1
-  - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 1
-    words: Ok po
-    speechTransitionType: 1
-  - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 1
-    words: Ok po
+    emotion: 10
+    words: Oh! Before you go, Kap said you ought to upgrade your tools for the new
+      materials.
     speechTransitionType: 1

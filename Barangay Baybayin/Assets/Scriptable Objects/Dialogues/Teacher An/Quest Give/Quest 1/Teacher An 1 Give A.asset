@@ -35,30 +35,26 @@ MonoBehaviour:
     words: "We aren\u2019t able to hold classes yet. I feel for the children."
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 1
-    words: Ok po
+    emotion: 10
+    words: "Being in school, they\u2019re with their friends and they can play."
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 1
-    words: Ok po
+    emotion: 7
+    words: "It\u2019s time away from the destruction and loss we face\u2026"
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 1
-    words: Ok po
+    emotion: 10
+    words: "I want to bring the safe place back for them \u2013 for us."
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 1
-    words: Ok po
+    emotion: 4
+    words: Perhaps you could help us?
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 1
-    words: Ok po
+    emotion: 10
+    words: "Seems like we\u2019d need [20 Wood\u2605] and [15 Nipa\u2605]."
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 1
-    words: Ok po
-    speechTransitionType: 1
-  - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 1
-    words: Ok po
+    emotion: 10
+    words: "I\u2019ll be here waiting, so\u2026 Hope it goes well!"
     speechTransitionType: 1

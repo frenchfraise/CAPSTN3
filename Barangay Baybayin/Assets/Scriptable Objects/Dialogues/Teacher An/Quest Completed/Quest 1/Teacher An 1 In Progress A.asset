@@ -14,18 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogues:
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 0
-    words: Oh you are back
+    emotion: 10
+    words: "Ah, you\u2019re back! "
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 0
-    words: What am I supposed to do?
+    emotion: 10
+    words: "With these, we\u2019ll be able to start rebuilding."
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 0
-    words: GET ME MY 1 WOOD BOY
-    speechTransitionType: 1
-  - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 0
-    words: Ok sorry po, will be back
+    emotion: 10
+    words: Say, would you be able to help some more?
     speechTransitionType: 1
