@@ -67,7 +67,6 @@ public class StorylinesUI : MonoBehaviour
                 if (currentQuestlinePartIndex < so_Questline.questlineData.Count)
                 {
                     QuestlineData questlineData = so_Questline.questlineData[currentQuestlinePartIndex];
-                    
 
                     characterNameText.text = so_StoryLine.name;//.text = so_StoryLine.questLines[currentCharacterDataIndex].quest.title;
                     icon.sprite = questlineData.quest.questImage;
@@ -83,8 +82,13 @@ public class StorylinesUI : MonoBehaviour
                         requirementsUIs.Add(newObject);
                         if (requirements[i].so_requirement is SO_ItemRequirement)
                         {
+
                             SO_ItemRequirement so_ItemRequirement = requirements[i].so_requirement as SO_ItemRequirement;
-                            newObject.InitializeValues("", so_ItemRequirement.requiredAmount.ToString(), so_ItemRequirement.so_Item.icon);
+                            for (int ii = 0; ii < so_ItemRequirement.so_Item.Count; i++)
+                            {
+                                newObject.InitializeValues("", so_ItemRequirement.requiredAmount.ToString(), so_ItemRequirement.so_Item[ii].icon);
+                            }
+                           
 
                         }
                         else if (requirements[i].so_requirement is SO_InfrastructureRequirement)
@@ -99,7 +103,7 @@ public class StorylinesUI : MonoBehaviour
                     List<ItemReward> rewards = so_StoryLine.questLines[currentStorylineIndex].questlineData[currentQuestlinePartIndex].quest.rewards;
                     for (int i = 0; i < rewards.Count;)
                     {
-                        Debug.Log("REWAR");
+         
                         ItemUI newObject = Instantiate(prefab, rewardsContainer);
                         rewardsUIs.Add(newObject);
                         newObject.InitializeValues("", rewards[i].amount.ToString(), rewards[i].so_Item.icon);

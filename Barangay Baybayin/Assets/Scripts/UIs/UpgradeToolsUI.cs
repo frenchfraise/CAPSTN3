@@ -10,6 +10,8 @@ public class UpgradeToolsUI : MonoBehaviour
 {
     [SerializeField] private GameObject selectionPanelUI;
 
+    [NonReorderable] [SerializeField] private List<Sprite> plates = new List<Sprite>(); // test
+
     [SerializeField] private GameObject confirmPanelUI;
     [SerializeField] private TMP_Text currentToolNameText;
     [SerializeField] private Image currentToolImage;

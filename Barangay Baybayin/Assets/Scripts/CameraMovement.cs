@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    [HideInInspector] public Vector2 offset;
-    [HideInInspector] public Vector2 panLimit;
+    //[HideInInspector] 
+    public Vector2 offset;
+    //[HideInInspector] 
+    public Vector2 panLimit;
     private void Update()
     {
         Vector3 pos =  PlayerManager.instance.stamina.gameObject.transform.position;

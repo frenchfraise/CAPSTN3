@@ -104,22 +104,27 @@ public class Character : InteractibleObject
                     if (currentQuestRequirement.so_requirement.GetType() == typeof(SO_ItemRequirement))
                     {
                         SO_ItemRequirement specificQuestRequirement = currentQuestRequirement.so_requirement as SO_ItemRequirement;
-                        SO_Item currentSOItemQuestRequirement = specificQuestRequirement.so_Item;
-                        //look for item in inventory
-                        ItemData itemData = InventoryManager.GetItem(currentSOItemQuestRequirement);
-                        if (itemData != null)
+                        for (int i = 0; i < specificQuestRequirement.so_Item.Count; i++)
                         {
-                            if (itemData.amount >= specificQuestRequirement.requiredAmount)
+                            SO_Item currentSOItemQuestRequirement = specificQuestRequirement.so_Item[i];
+                            //look for item in inventory
+                            ItemData itemData = InventoryManager.GetItem(currentSOItemQuestRequirement);
+                            if (itemData != null)
                             {
+                                if (itemData.amount >= specificQuestRequirement.requiredAmount[i])
+                                {
 
-                                questResourcesFound++;
+                                    questResourcesFound++;
 
-                            }
-                            else
-                            {
+                                }
+                                else
+                                {
 
+                                }
                             }
                         }
+                     
+                       
                     }
                     else if (currentQuestRequirement.so_requirement.GetType() == typeof(SO_InfrastructureRequirement))
                     {
@@ -153,19 +158,22 @@ public class Character : InteractibleObject
                         if (currentQuestRequirement.so_requirement.GetType() == typeof(SO_ItemRequirement))
                         {
                             SO_ItemRequirement specificQuestRequirement = currentQuestRequirement.so_requirement as SO_ItemRequirement;
-                            SO_Item currentSOItemQuestRequirement = specificQuestRequirement.so_Item;
-                            //look for item in inventory
-                            ItemData itemData = InventoryManager.GetItem(currentSOItemQuestRequirement);
-                            if (itemData != null)
+                            for (int i = 0; i < specificQuestRequirement.so_Item.Count; i++)
                             {
-                                if (itemData.amount >= specificQuestRequirement.requiredAmount)
+                                SO_Item currentSOItemQuestRequirement = specificQuestRequirement.so_Item[i];
+                                //look for item in inventory
+                                ItemData itemData = InventoryManager.GetItem(currentSOItemQuestRequirement);
+                                if (itemData != null)
                                 {
-                                    itemData.amount -= specificQuestRequirement.requiredAmount;
+                                    if (itemData.amount >= specificQuestRequirement.requiredAmount[i])
+                                    {
+                                        itemData.amount -= specificQuestRequirement.requiredAmount[i];
 
-                                }
-                                else
-                                {
+                                    }
+                                    else
+                                    {
 
+                                    }
                                 }
                             }
                         }

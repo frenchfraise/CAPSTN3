@@ -39,7 +39,7 @@ public class Dialogue
 [CreateAssetMenu(fileName = "New Dialogues Scriptable Object", menuName = "Scriptable Objects/Dialogues")]
 public class SO_Dialogues : ScriptableObject
 {
-    public List<Dialogue> dialogues = new List<Dialogue>();
+    [NonReorderable] public List<Dialogue> dialogues = new List<Dialogue>();
 
     
 }

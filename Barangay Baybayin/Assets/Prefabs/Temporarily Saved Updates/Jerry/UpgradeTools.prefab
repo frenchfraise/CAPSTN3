@@ -4208,6 +4208,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectionPanelUI: {fileID: 487576985831853678}
+  plates:
+  - {fileID: 21300000, guid: ea4bd52eda084e34884631e7213f2be3, type: 3}
+  - {fileID: 21300000, guid: 910b35f136e42194e9c73f1e324d9a2c, type: 3}
+  - {fileID: 21300000, guid: 4d22b924153b09b4f8088aef53a4ca4b, type: 3}
+  - {fileID: 21300000, guid: 24987eed4b3158f4eb6b4402388630fc, type: 3}
   confirmPanelUI: {fileID: 2855859840243644730}
   currentToolNameText: {fileID: 8026819089617102023}
   currentToolImage: {fileID: 1978399599183114411}

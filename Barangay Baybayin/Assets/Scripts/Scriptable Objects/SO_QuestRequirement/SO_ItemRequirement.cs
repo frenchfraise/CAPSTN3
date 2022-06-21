@@ -5,6 +5,6 @@ using UnityEngine;
 
 public class SO_ItemRequirement : SO_QuestRequirement
 {
-    public SO_Item so_Item;
-    public int requiredAmount;
+    public List<SO_Item> so_Item;
+    public List<int> requiredAmount;
 }
