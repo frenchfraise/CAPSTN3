@@ -15,6 +15,5 @@ MonoBehaviour:
   name: Roof
   maxHealth: 5
   sprites:
-  - {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 21300000, guid: fbb4b48a4976ca747bf30725e93a8d7f, type: 3}
+  - {fileID: 21300000, guid: 34e571c27b298824a9d52be254f61058, type: 3}

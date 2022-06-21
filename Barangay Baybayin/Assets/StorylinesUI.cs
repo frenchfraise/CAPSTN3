@@ -68,9 +68,9 @@ public class StorylinesUI : MonoBehaviour
                 {
                     QuestlineData questlineData = so_Questline.questlineData[currentQuestlinePartIndex];
 
-                    characterNameText.text = so_StoryLine.name;//.text = so_StoryLine.questLines[currentCharacterDataIndex].quest.title;
+                    characterNameText.text = so_StoryLine.questLines[0].questlineData[0].questInProgressSO_Dialogues.dialogues[0].character.name.ToString();//.text = so_StoryLine.questLines[currentCharacterDataIndex].quest.title;
                     icon.sprite = questlineData.quest.questImage;
-                    counterText.text = "QUEST " + (index + 1).ToString();
+                    counterText.text = "QUEST " + (currentStorylineIndex + 1).ToString();
                     descriptionText.text = questlineData.quest.description;
 
 
@@ -78,15 +78,16 @@ public class StorylinesUI : MonoBehaviour
 
                     for (int i = 0; i < requirements.Count;)
                     {
-                        ItemUI newObject = Instantiate(prefab, requirementsContainer);
-                        requirementsUIs.Add(newObject);
+                        
                         if (requirements[i].so_requirement is SO_ItemRequirement)
                         {
 
                             SO_ItemRequirement so_ItemRequirement = requirements[i].so_requirement as SO_ItemRequirement;
-                            for (int ii = 0; ii < so_ItemRequirement.so_Item.Count; i++)
+                            for (int ii = 0; ii < so_ItemRequirement.so_Item.Count; ii++)
                             {
-                                newObject.InitializeValues("", so_ItemRequirement.requiredAmount.ToString(), so_ItemRequirement.so_Item[ii].icon);
+                                ItemUI newObject = Instantiate(prefab, requirementsContainer);
+                                requirementsUIs.Add(newObject);
+                                newObject.InitializeValues("", so_ItemRequirement.requiredAmount[ii].ToString(), so_ItemRequirement.so_Item[ii].icon);
                             }
                            
 
@@ -94,6 +95,8 @@ public class StorylinesUI : MonoBehaviour
                         else if (requirements[i].so_requirement is SO_InfrastructureRequirement)
                         {
                             SO_InfrastructureRequirement so_ItemRequirement = requirements[i].so_requirement as SO_InfrastructureRequirement;
+                            ItemUI newObject = Instantiate(prefab, requirementsContainer);
+                            requirementsUIs.Add(newObject);
                             newObject.InitializeValues("", so_ItemRequirement.requiredLevel.ToString(), so_ItemRequirement.so_infrastructure.sprites[so_ItemRequirement.requiredLevel]);
 
                         }
@@ -132,8 +135,8 @@ public class StorylinesUI : MonoBehaviour
         int currentStorylineIndex = storylineData.currentStorylineIndex;
         int currentQuestlinePartIndex = storylineData.currentQuestlinePartIndex;
         storylines[index].questFrame.sprite = frameLevels[currentStorylineIndex];
-        storylines[index].titleText.text = so_StoryLine.name; //so_StoryLine.questLines[currentCharacterDataIndex].quest.title;
-        storylines[index].questCountText.text = "QUEST " + currentStorylineIndex;//so_StoryLine.questLines[currentCharacterDataIndex].quest.description;
+        storylines[index].titleText.text = so_StoryLine.questLines[0].questlineData[0].questInProgressSO_Dialogues.dialogues[0].character.name.ToString();// so_StoryLine.name; //so_StoryLine.questLines[currentCharacterDataIndex].quest.title;
+        storylines[index].questCountText.text = "QUEST " + (currentStorylineIndex + 1).ToString();//so_StoryLine.questLines[currentCharacterDataIndex].quest.description;
         storylines[index].icon.sprite = so_StoryLine.questLines[currentStorylineIndex].questlineData[currentQuestlinePartIndex].quest.questImage;
         List<ItemReward> rewards = so_StoryLine.questLines[currentStorylineIndex].questlineData[currentQuestlinePartIndex].quest.rewards;
         for (int i = 0; i < rewards.Count;)

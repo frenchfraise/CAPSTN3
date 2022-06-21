@@ -86,14 +86,14 @@ public class ToolsUI : MonoBehaviour
                       
                        
                         toolUI[index].background.sprite = selectedSO_Tool.equippedFrame;
-                        toolUI[index].icon.sprite = selectedSO_Tool.equippedIcon;
+                        toolUI[index].icon.sprite = selectedSO_Tool.equippedIcon[selected_Tool.craftLevel-1];
                         
                     }
                     else
                     {
                         Tool current_Tool = ToolManager.instance.tools[i];
                         SO_Tool so_Tool = current_Tool.so_Tool;
-                        toolUI[i].icon.sprite = so_Tool.unlockedFrame;
+                        toolUI[i].background.sprite = so_Tool.unlockedFrame;
                         toolUI[i].icon.sprite = so_Tool.unlockedIcon;
 
                     }

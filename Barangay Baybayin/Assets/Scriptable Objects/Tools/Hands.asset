@@ -19,45 +19,66 @@ MonoBehaviour:
   unlockedFrame: {fileID: 21300000, guid: e8c3e5bef4d467b4d9ceb143afd48244, type: 3}
   unlockedIcon: {fileID: 21300000, guid: 5a3bd11a8bf55224d97533b81e740be9, type: 3}
   equippedFrame: {fileID: 21300000, guid: 002c49027a0c6354e8bb67df9a21f5ac, type: 3}
-  equippedIcon: {fileID: 21300000, guid: 5a3bd11a8bf55224d97533b81e740be9, type: 3}
+  equippedIcon:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   useRate:
-  - 0
   - 1.5
   - 1
   - 0.5
-  damage: 000000000a0000000f00000014000000
+  - 0.25
+  damage: 0a0000000f000000140000001e000000
   staminaCost:
-  - 0
   - 2
   - 3
   - 5
+  - 10
   chargeSpeedRate: 1.5
   maxToolCharge: 1
-  maxCraftLevel: 10
-  craftUpgradeItemRequirementsDatas: []
+  maxCraftLevel: 3
+  craftUpgradeItemRequirementsDatas:
+  - itemRequirements:
+    - so_Item: {fileID: 11400000, guid: 944bc5930a2da5d42bf679f056c1e397, type: 2}
+      requiredAmount: 1
+    - so_Item: {fileID: 11400000, guid: a23150ace6c99194986348f059adf4b5, type: 2}
+      requiredAmount: 10
+    requiredProficiencyLevel: 1
+  - itemRequirements:
+    - so_Item: {fileID: 11400000, guid: 944bc5930a2da5d42bf679f056c1e397, type: 2}
+      requiredAmount: 1
+    - so_Item: {fileID: 11400000, guid: a23150ace6c99194986348f059adf4b5, type: 2}
+      requiredAmount: 10
+    requiredProficiencyLevel: 2
+  - itemRequirements:
+    - so_Item: {fileID: 11400000, guid: 944bc5930a2da5d42bf679f056c1e397, type: 2}
+      requiredAmount: 1
+    - so_Item: {fileID: 11400000, guid: a23150ace6c99194986348f059adf4b5, type: 2}
+      requiredAmount: 10
+    requiredProficiencyLevel: 3
   maxSpecialPoints:
-  - 0
   - 100
   - 90
-  - 90
-  maxSpecialCharges: 00000000030000000400000005000000
+  - 80
+  - 70
+  maxSpecialCharges: 03000000040000000500000006000000
   specialPointReward:
-  - 0
   - 20
   - 25
   - 50
+  - 75
   specialPointUse:
-  - 0
   - 25
   - 25
-  - 20
+  - 25
+  - 25
   maxProficiencyAmount:
-  - 0
-  - 5
-  - 10
-  - 15
+  - 50
+  - 100
+  - 250
+  - 500
   proficiencyAmountReward:
-  - 0
   - 5
-  - 10
-  - 15
+  - 5
+  - 5
+  - 5

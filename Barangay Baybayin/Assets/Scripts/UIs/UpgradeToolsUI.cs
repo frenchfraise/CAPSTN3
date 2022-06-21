@@ -19,8 +19,8 @@ public class UpgradeToolsUI : MonoBehaviour
     [SerializeField] private TMP_Text upgradePreviewToolNameText;
     [SerializeField] private Image upgradePreviewToolImage;
 
-    [SerializeField] private Sprite sufficient;
-    [SerializeField] private Sprite insufficient;
+    [SerializeField] public Sprite sufficient;
+    [SerializeField] public Sprite insufficient;
 
     [SerializeField] private Image materialOneImage;
     [SerializeField] private Image materialOneIsValidImage;
@@ -63,10 +63,10 @@ public class UpgradeToolsUI : MonoBehaviour
 
 
         currentToolNameText.text = currentSOTool.name;
-        currentToolImage.sprite = currentSOTool.equippedIcon;
+        currentToolImage.sprite = currentSOTool.equippedIcon[p_currentTool.craftLevel-1];
 
         upgradePreviewToolNameText.text = currentSOTool.name;
-        upgradePreviewToolImage.sprite = currentSOTool.equippedIcon;
+        upgradePreviewToolImage.sprite = currentSOTool.equippedIcon[p_currentTool.craftLevel];
         CraftUpgradeItemRequirementsData craftUpgradeItemRequirementsData = currentSOTool.craftUpgradeItemRequirementsDatas[currentToolLevel];
         if (p_currentTool.proficiencyLevel >= craftUpgradeItemRequirementsData.requiredProficiencyLevel)
         {
@@ -142,10 +142,17 @@ public class UpgradeToolsUI : MonoBehaviour
             if (materialOneRequirement && materialTwoRequirement && threeRequirement)
             {
                 //Debug.Log("TEST 2");
-                ItemData itemData = InventoryManager.GetItem(mato);
-                itemData.amount -= matOneAmount;
-                ItemData itemDataT = InventoryManager.GetItem(mato);
-                itemDataT.amount -= matTwoAmount;
+                if (mato != null)
+                {
+                    ItemData itemData = InventoryManager.GetItem(mato);
+                    itemData.amount -= matOneAmount;
+                }
+                else
+                {
+                    ItemData itemDataT = InventoryManager.GetItem(matt);
+                    itemDataT.amount -= matTwoAmount;
+                }
+         
                 ToolManager.instance.tools[currentIndex].craftLevel++;
 
                 UpgradeToolUI currentlyUpgradedToolUI = upgradeToolUIs[currentIndex];
@@ -163,6 +170,10 @@ public class UpgradeToolsUI : MonoBehaviour
     public void BackButtonUIClicked()
     {
         
+        foreach(UpgradeToolUI upgradeToolUI in upgradeToolUIs)
+        {
+            upgradeToolUI.UpdateUI();
+        }    
         selectionPanelUI.SetActive(true);
         confirmPanelUI.SetActive(false);
 
@@ -175,7 +186,11 @@ public class UpgradeToolsUI : MonoBehaviour
     }
 
     public void OpenButtonUIClicked()
-    {        
+    {
+        foreach (UpgradeToolUI upgradeToolUI in upgradeToolUIs)
+        {
+            upgradeToolUI.UpdateUI();
+        }
         selectionPanelUI.SetActive(true);
         confirmPanelUI.SetActive(false);
         gameObject.SetActive(true);

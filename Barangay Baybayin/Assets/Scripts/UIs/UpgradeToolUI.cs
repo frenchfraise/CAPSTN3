@@ -40,20 +40,24 @@ public class UpgradeToolUI : MonoBehaviour
             ItemUpgradeRequirement itemUpgradeRequirement = craftUpgradeItemRequirementsData.itemRequirements[0];
             if (InventoryManager.GetItem(itemUpgradeRequirement.so_Item).amount >= itemUpgradeRequirement.requiredAmount)
             {
-                hasRecipeImage.color = new Color32(0, 255, 0, 225);
+               // hasRecipeImage.color = new Color32(0, 255, 0, 225);
+                hasRecipeImage.sprite = UIManager.instance.upgradeUI.sufficient;
                 isUpgradableReqOne = true;
             }
             else if (InventoryManager.GetItem(itemUpgradeRequirement.so_Item).amount < itemUpgradeRequirement.requiredAmount)
             {
-                hasRecipeImage.color = new Color32(255, 0, 0, 225);
-
+                //hasRecipeImage.color = new Color32(255, 0, 0, 225);
+                hasRecipeImage.sprite = UIManager.instance.upgradeUI.insufficient;
+                
             }
         }
         else
         {
             isUpgradableReqOne = true;
-            hasRecipeImage.color = new Color32(0, 255, 0, 225);
-            isUpgradableImage.color = new Color32(0, 255, 0, 225);
+           // hasRecipeImage.color = new Color32(0, 255, 0, 225);
+            hasRecipeImage.sprite = UIManager.instance.upgradeUI.sufficient;
+           // isUpgradableImage.color = new Color32(0, 255, 0, 225);
+            isUpgradableImage.sprite = UIManager.instance.upgradeUI.sufficient;
         }
             
         
@@ -71,14 +75,20 @@ public class UpgradeToolUI : MonoBehaviour
 
                 if (InventoryManager.GetItem(materialTwo.so_Item).amount >= materialTwo.requiredAmount)
                 {
-                    isUpgradableImage.color = new Color32(0, 255, 0, 225);
+                    isUpgradableImage.sprite = UIManager.instance.upgradeUI.sufficient;
+                   // isUpgradableImage.color = new Color32(0, 255, 0, 225);
                 }
                 else if (InventoryManager.GetItem(materialTwo.so_Item).amount < materialTwo.requiredAmount)
                 {
-                    isUpgradableImage.color = new Color32(255, 0, 0, 225);
+                    isUpgradableImage.sprite = UIManager.instance.upgradeUI.insufficient;
+                   // isUpgradableImage.color = new Color32(255, 0, 0, 225);
                 }
 
             }
+        }
+        else
+        {
+            isUpgradableImage.sprite = UIManager.instance.upgradeUI.insufficient;
         }
         
     }

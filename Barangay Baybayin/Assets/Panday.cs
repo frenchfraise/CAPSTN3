@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Panday : InteractibleObject
 {
-    [SerializeField]
-    private int index;
+    //[SerializeField]
+    //private int index;
 
     protected override void OnInteract()
     {

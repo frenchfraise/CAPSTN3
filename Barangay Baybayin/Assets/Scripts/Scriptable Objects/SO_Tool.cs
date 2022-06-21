@@ -30,7 +30,7 @@ public class SO_Tool : ScriptableObject
     public Sprite unlockedFrame;
     public Sprite unlockedIcon;
     public Sprite equippedFrame;
-    public Sprite equippedIcon;
+    public List<Sprite> equippedIcon;
 
     [NonReorderable] public List<float> useRate;
 

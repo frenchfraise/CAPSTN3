@@ -45,7 +45,7 @@ public class ResourceNodeSpawner : MonoBehaviour
                     {
                         if (hit.gameObject.CompareTag("Nodes"))
                         {
-                            Debug.Log("RA");
+                            //Debug.Log("RA");
                             Destroy(hit.gameObject);
                             return true;
                         }
