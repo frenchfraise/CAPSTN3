@@ -52,11 +52,13 @@ public class TimeManager : MonoBehaviour
     public static int minute;
     private int minuteByTwos;
     public static int minuteByTens;
-    public int hour;
-    private int numOfHoursAwake = 8;
+    private int hour;
+    public int numOfHoursAwake;
     public static string abbreviation;
 
     [SerializeField] private float oneMinToRealSeconds;
+
+    private bool DoTimer;
 
     private Coroutine runningCoroutine;
 
@@ -74,6 +76,8 @@ public class TimeManager : MonoBehaviour
         Formula();
 
         StartCoroutine(Co_Delay());
+        
+        DoTimer = true;
         StartCoroutine(Co_DoTimer());   
     }
 
@@ -93,6 +97,7 @@ public class TimeManager : MonoBehaviour
         dayInfoUI = UIManager.instance.dayInfoUI;
         //dayInfoUI = dayInfoUI?UIManager.instance.dayInfoUI:FindObjectOfType<DayInfoUI>();
         onDayChangedEvent.AddListener(dayInfoUI.DayEnd);
+        UIManager.instance.onPauseGameTime.AddListener(SetPauseGame);
     }
   
     private void OnDisable()
@@ -102,6 +107,7 @@ public class TimeManager : MonoBehaviour
             PlayerManager.instance.stamina.onStaminaDepletedEvent.RemoveListener(FaintedEndDay);
         }
         onDayChangedEvent.RemoveListener(dayInfoUI.DayEnd);
+        if (UIManager.instance) UIManager.instance.onPauseGameTime.RemoveListener(SetPauseGame);
     }
     private void Update()
     {
@@ -118,7 +124,7 @@ public class TimeManager : MonoBehaviour
 
     IEnumerator Co_DoTimer()
     {
-        while(true)
+        while(DoTimer)
         {
             yield return new WaitForSeconds(oneMinToRealSeconds);
             minute++;
@@ -185,6 +191,13 @@ public class TimeManager : MonoBehaviour
         //Debug.Log("[TimeManager] Get Random Weather");
         //WeatherManager.instance.GetRandWeather();
         runningCoroutine=StartCoroutine(Co_NewDay());
+    }
+
+    private void SetPauseGame(bool p_bool)
+    {
+        // Debug.Log("DoTimer set to " + DoTimer);
+        DoTimer = p_bool;
+        StartCoroutine(Co_DoTimer());
     }
 
     public void Formula()

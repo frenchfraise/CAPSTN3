@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
 using System;
 
-
+public class CharacterDialogueUIClose : UnityEvent<bool> { }
 
 public class CharacterDialogueUI : MonoBehaviour
 {
@@ -22,6 +23,10 @@ public class CharacterDialogueUI : MonoBehaviour
     [SerializeField]
     private Animator anim;
      public void OnCharacterSpokenTo(SO_Dialogues p_SO_Dialogues)
+
+    public CharacterDialogueUIClose onCharacterDialogueUIClose = new CharacterDialogueUIClose();
+   
+    public void OnCharacterSpokenTo(SO_Dialogues p_SO_Dialogues)
     {
         currentSO_Dialogues = p_SO_Dialogues;
         UIManager.TransitionPreFadeAndPostFade(1,0.5f,1, 0, 0.5f, OnOpenCharacterDialogueUI);
@@ -34,8 +39,8 @@ public class CharacterDialogueUI : MonoBehaviour
         UIManager.instance.gameplayHUD.SetActive(false);
         UIManager.instance.overlayCanvas.SetActive(false);
         
-        ResetCharacterDialogueUI(); 
-        
+        ResetCharacterDialogueUI();
+        onCharacterDialogueUIClose.Invoke(false);
     }
     public void OnCloseCharacterDialogueUI()
     {
@@ -44,7 +49,7 @@ public class CharacterDialogueUI : MonoBehaviour
         UIManager.instance.overlayCanvas.SetActive(true);
         gameObject.SetActive(false);
 
-
+        onCharacterDialogueUIClose.Invoke(true);
     }
 
     public IEnumerator Co_TypeWriterEffect(TMP_Text p_textUI,string p_fullText)

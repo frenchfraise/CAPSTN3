@@ -30,10 +30,14 @@ EditorUserSettings:
       value: 56050c575d540d5f0e0a0a264120084410161a2f792c206474281e66b2e63739
       flags: 0
     RecentlyUsedSceneGuid-8:
-      value: 5100500307070d08580b0e7111265d4410151972797f7e322b2b4b60b4b5653d
+      value: 57070c07530d590a5a5b5b7a48745a44434f1d2c2e2c7f682e7a1f61e4e1316d
       flags: 0
     RecentlyUsedSceneGuid-9:
+<<<<<<< HEAD
       value: 53070d5254015959595e5b7147220b44134f417e2d2e24647d7a4d63b1e6646c
+=======
+      value: 5100500307070d08580b0e7111265d4410151972797f7e322b2b4b60b4b5653d
+>>>>>>> origin/Emman
       flags: 0
     UnityRemoteDevice:
       value: 225f4d46245b0d4902070862342649191512

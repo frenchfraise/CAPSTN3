@@ -19,10 +19,8 @@ public class Stamina : MonoBehaviour
     private bool isPenalized = false;
 
     public StaminaDecreaseEvent OnStaminaModifiedEvent = new StaminaDecreaseEvent();
-    public StaminaDepletedEvent onStaminaDepletedEvent = new StaminaDepletedEvent();
+    public StaminaDepletedEvent onStaminaDepletedEvent = new StaminaDepletedEvent();    
 
-   
-   
     private void OnEnable()
     {
         OnStaminaModifiedEvent.AddListener(genericBarUI.UpdateBar);

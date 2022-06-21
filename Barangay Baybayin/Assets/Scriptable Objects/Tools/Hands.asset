@@ -33,6 +33,7 @@ MonoBehaviour:
   chargeSpeedRate: 1.5
   maxToolCharge: 1
   maxCraftLevel: 10
+  craftUpgradeItemRequirementsDatas: []
   maxSpecialPoints:
   - 0
   - 100
@@ -41,9 +42,9 @@ MonoBehaviour:
   maxSpecialCharges: 00000000030000000400000005000000
   specialPointReward:
   - 0
+  - 20
   - 25
-  - 10
-  - 15
+  - 50
   specialPointUse:
   - 0
   - 25

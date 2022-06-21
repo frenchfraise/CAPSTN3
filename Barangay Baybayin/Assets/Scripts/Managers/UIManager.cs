@@ -7,6 +7,7 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine.Events;
 
+public class PauseGameTimeUI : UnityEvent<bool> { }
 public class UIManager : MonoBehaviour
 {
     private static UIManager _instance;
@@ -26,6 +27,8 @@ public class UIManager : MonoBehaviour
     public RectTransform overheadUI;
     public Image transitionUI;
     public CharacterDialogueUI characterDialogueUI;
+    public StorylinesUI storylines;
+    public UpgradeToolsUI upgradeUI;
     public RoomInfoUI roomInfoUI;
 
     public DayInfoUI dayInfoUI;
@@ -41,9 +44,10 @@ public class UIManager : MonoBehaviour
     public Sprite cloudySprite;
     public Sprite rainSprite;
     public Sprite stormySprite;
-    public StorylinesUI storylines;
-    public UpgradeToolsUI upgradeUI;
     public Coroutine runningCoroutine;
+
+    public PauseGameTimeUI onPauseGameTime = new PauseGameTimeUI();
+
     public bool isRunningCoroutine = false;
     public bool justFinishedCoroutine = false;
     private void Awake()
@@ -67,17 +71,23 @@ public class UIManager : MonoBehaviour
     private void OnEnable()
     {
         WeatherManager.onWeatherChangedEvent.AddListener(OnWeatherUIChanged);
+        characterDialogueUI.onCharacterDialogueUIClose.AddListener(OnGameplayHUDSwitch);
+        storylines.onStorylinesUIClose.AddListener(OnGameplayHUDSwitch);
+        upgradeUI.onUpgradeToolsUIClose.AddListener(OnGameplayHUDSwitch);
     }
 
     private void OnDisable()
     {
         WeatherManager.onWeatherChangedEvent.RemoveListener(OnWeatherUIChanged);
+        characterDialogueUI.onCharacterDialogueUIClose.RemoveListener(OnGameplayHUDSwitch);
+        storylines.onStorylinesUIClose.RemoveListener(OnGameplayHUDSwitch);
+        upgradeUI.onUpgradeToolsUIClose.RemoveListener(OnGameplayHUDSwitch);
     }
 
     //TEMPORARY
-    private void OnWeatherUIChanged(Weather p_weather)
+    private void OnWeatherUIChanged(Weather p_currentWeather, Weather p_nextWeather)
     {
-        switch (p_weather)
+        switch (p_currentWeather)
         {
             case Weather.Sunny:                
                 weatherSpriteUI.sprite = sunnySprite;
@@ -96,6 +106,12 @@ public class UIManager : MonoBehaviour
                 FindObjectOfType<AudioManager>().Play("Storm");
                 break;
         }
+    }
+
+    private void OnGameplayHUDSwitch(bool p_bool)
+    {
+        gameplayHUD.SetActive(p_bool);
+        onPauseGameTime.Invoke(p_bool);
     }
 
     //TEMPORARY
