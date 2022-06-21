@@ -88,7 +88,7 @@ public class ToolCaster : MonoBehaviour
                     float xPos = targetResourceNode.transform.position.x;
                     Debug.Log("SPECIAL USED");
                     targetResourceNode.OnResourceNodeHitEvent.Invoke(current_Tool.so_Tool.useForResourceNode,
-                        current_Tool.craftLevel,
+                        current_Tool.craftLevel-1,
                         current_Tool.so_Tool.damage[current_Tool.craftLevel-1] * 2,
                         onToolSpecialUsedEvent);
                 }
@@ -167,8 +167,8 @@ public class ToolCaster : MonoBehaviour
 
     public void ToolHitSuccess()
     {
-        current_Tool.ModifyProficiencyAmount(current_Tool.so_Tool.proficiencyAmountReward[current_Tool.craftLevel]);
-        current_Tool.ModifySpecialAmount(current_Tool.so_Tool.specialPointReward[current_Tool.craftLevel]); 
+        current_Tool.ModifyProficiencyAmount(current_Tool.so_Tool.proficiencyAmountReward[current_Tool.craftLevel-1]);
+        current_Tool.ModifySpecialAmount(current_Tool.so_Tool.specialPointReward[current_Tool.craftLevel-1]); 
     }
 
     IEnumerator Co_ToolUseCooldown()
@@ -176,8 +176,8 @@ public class ToolCaster : MonoBehaviour
         canUse = false;
         // animator.SetTrigger("UseTool");
         onToolCanUseUpdatedEvent.Invoke(canUse);
-        onToolUsedEvent.Invoke(current_Tool.so_Tool.staminaCost[current_Tool.craftLevel]);
-        yield return new WaitForSeconds(current_Tool.so_Tool.useRate[current_Tool.craftLevel]);
+        onToolUsedEvent.Invoke(current_Tool.so_Tool.staminaCost[current_Tool.craftLevel-1]);
+        yield return new WaitForSeconds(current_Tool.so_Tool.useRate[current_Tool.craftLevel-1]);
         canUse = true;
         onToolCanUseUpdatedEvent.Invoke(canUse);
     }
