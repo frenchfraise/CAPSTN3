@@ -87,10 +87,19 @@ public class ToolCaster : MonoBehaviour
         {
             if (current_Tool.specialChargesCounter >= 1)
             {
+                animator.SetTrigger(current_Tool.toolName.ToString());
                 ResourceNode targetResourceNode = GetResourceNode();
                 if (targetResourceNode)
                 {
                     float xPos = targetResourceNode.transform.position.x;
+                    if (xPos > PlayerManager.instance.player.transform.position.x) // right
+                    {
+                        animator.SetBool("isFacingRight", true);
+                    }
+                    else // left
+                    {
+                        animator.SetBool("isFacingRight", false);
+                    }
                     Debug.Log("SPECIAL USED");
                     targetResourceNode.OnResourceNodeHitEvent.Invoke(current_Tool.so_Tool.useForResourceNode,
                         current_Tool.craftLevel-1,
@@ -191,7 +200,7 @@ public class ToolCaster : MonoBehaviour
         canUse = false;
         // animator.SetTrigger("UseTool");
         onToolCanUseUpdatedEvent.Invoke(canUse);
-        onToolUsedEvent.Invoke(current_Tool.so_Tool.staminaCost[current_Tool.craftLevel-1]);
+        onToolUsedEvent.Invoke(staminaCost);
         yield return new WaitForSeconds(current_Tool.so_Tool.useRate[current_Tool.craftLevel-1]);
         canUse = true;
         onToolCanUseUpdatedEvent.Invoke(canUse);
@@ -209,9 +218,10 @@ public class ToolCaster : MonoBehaviour
     {
         if (Weather.Rainy == p_currentWeather)
         {
-            staminaCost = current_Tool.so_Tool.staminaCost[current_Tool.craftLevel] * 1.5f;
+            staminaCost = current_Tool.so_Tool.staminaCost[current_Tool.craftLevel-1] * 1.5f;
+            Debug.Log("It is rainy! Tax is: " + staminaCost);
         }
-        else staminaCost = current_Tool.so_Tool.staminaCost[current_Tool.craftLevel];
+        else staminaCost = current_Tool.so_Tool.staminaCost[current_Tool.craftLevel-1];
     }
 
     public void OnPointerDown()

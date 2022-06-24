@@ -14,7 +14,9 @@ public class ToolSpecialMeterUI : MonoBehaviour
 
     private void OnDisable()
     {
+        ToolManager.onSpecialPointsFilledEvent.RemoveListener(ResetBar);
         ToolManager.onSpecialPointsModifiedEvent.RemoveListener(UpdateBar);
+        ToolManager.onToolChangedEvent.RemoveListener(InstantUpdateBar);
     }
 
     void InstantUpdateBar(Tool p_tool)
