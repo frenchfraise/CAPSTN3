@@ -55,7 +55,7 @@ public class ToolCaster : MonoBehaviour
         onToolHitSucceededEvent.AddListener(ToolHitSuccess);
 
         ToolManager.onToolChangedEvent.AddListener(OnToolChanged);
-        onToolSpecialUsedEvent.AddListener(OnSpecialUsed);
+        //onToolSpecialUsedEvent.AddListener(OnSpecialUsed);
         OnToolChanged(ToolManager.instance.tools[0]); // temporary (?)
         canUse = true;
         canSwitch = true;
@@ -71,14 +71,14 @@ public class ToolCaster : MonoBehaviour
         }
         onToolHitSucceededEvent.RemoveListener(ToolHitSuccess);
         ToolManager.onToolChangedEvent.RemoveListener(OnToolChanged);
-        onToolSpecialUsedEvent.RemoveListener(OnSpecialUsed);
+        //onToolSpecialUsedEvent.RemoveListener(OnSpecialUsed);
     }
 
     public void OnSpecialUsed()
     {
         // I'm guessing this is where it decrements when it is "full"
         // current_Tool.ModifySpecialAmount(-current_Tool.so_Tool.maxSpecialPoints[current_Tool.craftLevel]);
-        current_Tool.specialChargesCounter--;
+        
     }
   
     public void UseSpecial()
@@ -101,6 +101,7 @@ public class ToolCaster : MonoBehaviour
                         animator.SetBool("isFacingRight", false);
                     }
                     Debug.Log("SPECIAL USED");
+                    current_Tool.specialChargesCounter--;
                     targetResourceNode.OnResourceNodeHitEvent.Invoke(current_Tool.so_Tool.useForResourceNode,
                         current_Tool.craftLevel-1,
                         current_Tool.so_Tool.damage[current_Tool.craftLevel-1] * 2,

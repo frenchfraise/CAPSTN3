@@ -17,8 +17,8 @@ MonoBehaviour:
   lockedFrame: {fileID: 21300000, guid: abf11a33121b8ba45a1c05396028d06e, type: 3}
   lockedIcon: {fileID: 21300000, guid: 934dedbc3faa5b1478b1d393d3bb5d0f, type: 3}
   unlockedFrame: {fileID: 21300000, guid: e8c3e5bef4d467b4d9ceb143afd48244, type: 3}
-  unlockedIcon: {fileID: 21300000, guid: 1756ac16c13ff4646b34a6082a9d0635, type: 3}
-  equippedFrame: {fileID: 21300000, guid: 002c49027a0c6354e8bb67df9a21f5ac, type: 3}
+  unlockedIcon: {fileID: 21300000, guid: 996c89334f216204bbb33e483d7e74ae, type: 3}
+  equippedFrame: {fileID: 21300000, guid: 84487d73ca4b791498332d8f6858417f, type: 3}
   equippedIcon:
   - {fileID: 21300000, guid: 996c89334f216204bbb33e483d7e74ae, type: 3}
   - {fileID: 21300000, guid: 657c855fdf6af3445b0bc53c2eb7be0f, type: 3}
