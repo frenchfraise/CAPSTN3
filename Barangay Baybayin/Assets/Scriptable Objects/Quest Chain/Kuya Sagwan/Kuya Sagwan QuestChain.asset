@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dabccd67f58b89349ba4cab56a870d02, type: 3}
   m_Name: Kuya Sagwan QuestChain
   m_EditorClassIdentifier: 
+  character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
   questLines:
-  - {fileID: 11400000, guid: 598a7acd5078f4949aeaa3447ebb9157, type: 2}
-  - {fileID: 11400000, guid: 2d2d4b937de08524ca4e5080b39ba9c0, type: 2}
+  - {fileID: 11400000, guid: 51ca77c7255bcdd4399101eb5fac905b, type: 2}
+  - {fileID: 11400000, guid: 237cb94ab987b1d4c8eed929dfa8f794, type: 2}
   - {fileID: 11400000, guid: 2d2d4b937de08524ca4e5080b39ba9c0, type: 2}

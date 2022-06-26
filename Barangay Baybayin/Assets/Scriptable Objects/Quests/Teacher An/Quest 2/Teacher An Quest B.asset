@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4c2f0828a94db54886d05067e7f6838, type: 3}
   m_Name: Teacher An Quest B
   m_EditorClassIdentifier: 
-  questImage: {fileID: 21300004, guid: 90dd48d359e7f6c48a8e4ef1563869f4, type: 3}
-  title: Chapter 2
-  description: Classroom roof
+  questImage: {fileID: 21300000, guid: 9dcd2b650208685439e76e0a00695370, type: 3}
+  title: The Toll on the KIds
+  description: "The school children seem to be even more in duress, due to the storms\u2019
+    lingering effects. Perhaps you can help allay Teacher An\u2019s apprehensions."
   rewards:
   - so_Item: {fileID: 11400000, guid: c9e2f2a8dc4eeba45ae1a0550aa3f374, type: 2}
     amount: 1

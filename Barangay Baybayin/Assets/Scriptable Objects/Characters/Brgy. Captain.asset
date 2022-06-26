@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5922fc1e064d94f4daedc4c08a22a932, type: 3}
   m_Name: Brgy. Captain
   m_EditorClassIdentifier: 
+  name: Kapitan Lomhik
   avatars:
   - {fileID: 21300000, guid: feebf2c5c87b43748a8a7fdde20bc8c2, type: 3}
   - {fileID: 21300000, guid: feebf2c5c87b43748a8a7fdde20bc8c2, type: 3}
@@ -25,4 +26,4 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  avatar: {fileID: 21300000, guid: feebf2c5c87b43748a8a7fdde20bc8c2, type: 3}
+  avatar: {fileID: 21300000, guid: 5cf3fb75847d3414684eb4f69788e93d, type: 3}

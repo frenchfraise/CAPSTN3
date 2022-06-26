@@ -23,7 +23,7 @@ MonoBehaviour:
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
     emotion: 0
-    words: REBUILD THE TOWN HALL
+    words: Please rebuild the Chairs Sakoro
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
     emotion: 0

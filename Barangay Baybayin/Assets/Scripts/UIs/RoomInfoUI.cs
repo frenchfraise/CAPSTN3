@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using DG.Tweening;
-
+using UnityEngine.UI;
 
 public class RoomInfoUI : MonoBehaviour
 {
@@ -13,10 +13,10 @@ public class RoomInfoUI : MonoBehaviour
     public TMP_Text roomNameText;
     public GameObject availableResourcesGO;
     public RectTransform availableResourcesContainer;
-
+    public GridLayoutGroup gridLayout;
     public ResourceDropUI resourceDropUIPrefab;
+    public List<ResourceDrop> currentRoomsResourceDrops;
 
-  
     public void RoomEntered(Passageway p_passageway)
     {
 
@@ -40,9 +40,11 @@ public class RoomInfoUI : MonoBehaviour
         PlayerManager.instance.joystick.enabled = false;
         for (int si = 0; si < availableResourcesContainer.childCount; si++)
         {
+            Debug.Log("DELETE");
             Destroy(availableResourcesContainer.GetChild(si).gameObject);
 
         }
+        currentRoomsResourceDrops.Clear();
         availableResourcesGO.SetActive(false);
 
 
@@ -69,12 +71,90 @@ public class RoomInfoUI : MonoBehaviour
                 for (int si = 0; si < resourceNodeDrop.resourceNode.resourceDrops.Count; si++)
                 {
                     ResourceDrop resourceDrop = resourceNodeDrop.resourceNode.resourceDrops[si];
-                    ResourceDropUI newResourceDropUI = Instantiate(resourceDropUIPrefab);
-                    newResourceDropUI.resourceNameText.text = resourceDrop.so_Item.name;
-                    newResourceDropUI.resourceIcon.sprite = resourceDrop.so_Item.icon;
-                    newResourceDropUI.GetComponent<RectTransform>().SetParent(availableResourcesContainer);
+                    //Check if already in list
+                    if (currentRoomsResourceDrops.Count > 0)
+                    {
+                        for (int x = 0; x < currentRoomsResourceDrops.Count;)
+                        {
+                            if (resourceDrop.so_Item == currentRoomsResourceDrops[x].so_Item)
+                            {
+                                break;
+                            }
+                            x++;
+                            if (x >= currentRoomsResourceDrops.Count)
+                            {
+                                currentRoomsResourceDrops.Add(resourceDrop);
+                                ResourceDropUI newResourceDropUI = Instantiate(resourceDropUIPrefab);
+                                newResourceDropUI.resourceNameText.text = resourceDrop.so_Item.name;
+                                newResourceDropUI.resourceIcon.sprite = resourceDrop.so_Item.icon;
+                                RectTransform newResourceDropUITransform = newResourceDropUI.GetComponent<RectTransform>();
+                                newResourceDropUITransform.SetParent(availableResourcesContainer, true);
+                                newResourceDropUITransform.localScale = new Vector3(1, 1, 1);
+                                break;
+                            }
+
+                        }
+                    }
+                    else
+                    {
+                        currentRoomsResourceDrops.Add(resourceDrop);
+                        ResourceDropUI newResourceDropUI = Instantiate(resourceDropUIPrefab);
+                        newResourceDropUI.resourceNameText.text = resourceDrop.so_Item.name;
+                        newResourceDropUI.resourceIcon.sprite = resourceDrop.so_Item.icon;
+                        RectTransform newResourceDropUITransform = newResourceDropUI.GetComponent<RectTransform>();
+                        newResourceDropUITransform.SetParent(availableResourcesContainer,true);
+                        newResourceDropUITransform.localScale = new Vector3(1, 1, 1);
+
+                    }
+                    
                 }
             }
+            //if (currentRoomsResourceDrops.Count <= 21)
+            //{
+           
+            //    //gridLayout.padding.left = 50;
+            //    int stack = 0;
+            //    int leftOver = currentRoomsResourceDrops.Count;
+            //    int lastSavedLeftOver = -1;
+            //    while (leftOver - 3 != lastSavedLeftOver) 
+            //    {
+            //        leftOver -= 3;
+            //        if (leftOver > 0)
+            //        {
+            //            lastSavedLeftOver = leftOver;
+            //            stack++;
+            //        }
+            //        else
+            //        {
+            //            break;
+            //        }
+                   
+            //    }
+            //    if (stack > 0)
+            //    {
+            //        stack--;
+            //    }
+            //    int subtract = 100 * (stack);
+            //    gridLayout.padding.right = 650 - subtract;
+                
+              
+            //}
+            //else
+            //{
+            //    gridLayout.padding.right = 50;
+            //}
+            //else if (currentRoomsResourceDrops.Count <= 6)
+            //{
+               
+                
+            //    gridLayout.padding.left = 50;
+            //    gridLayout.padding.right = 550;6
+            //    gridLayout.padding.right = 450;9
+            //    gridLayout.padding.right = 350;12
+            //    gridLayout.padding.right = 250;15
+            //    gridLayout.padding.right = 150;18
+            //    gridLayout.padding.right = 50;21
+            //}
            
 
 

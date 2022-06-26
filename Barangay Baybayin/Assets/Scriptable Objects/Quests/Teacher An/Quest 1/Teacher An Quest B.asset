@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4c2f0828a94db54886d05067e7f6838, type: 3}
   m_Name: Teacher An Quest B
   m_EditorClassIdentifier: 
-  questImage: {fileID: 21300004, guid: 90dd48d359e7f6c48a8e4ef1563869f4, type: 3}
-  title: Chapter 1
-  description: Classroom chairs, tables
+  questImage: {fileID: 21300000, guid: 9dcd2b650208685439e76e0a00695370, type: 3}
+  title: Help on the Way
+  description: Teacher An asks Sakoro for help, as the school has been affected by
+    the typhoon.
   rewards:
   - so_Item: {fileID: 11400000, guid: b9728f2dfa98d584db38b418cea56478, type: 2}
     amount: 1

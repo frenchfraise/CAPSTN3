@@ -25,6 +25,8 @@ public class SO_Tool : ScriptableObject
 {
     [NonReorderable] public List<SO_ResourceNode> useForResourceNode;
 
+    public new List<string> name;
+
     public Sprite lockedFrame;
     public Sprite lockedIcon;
     public Sprite unlockedFrame;

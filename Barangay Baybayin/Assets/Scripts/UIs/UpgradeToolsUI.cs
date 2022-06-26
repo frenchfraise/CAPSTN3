@@ -10,17 +10,24 @@ public class UpgradeToolsUI : MonoBehaviour
 {
     [SerializeField] private GameObject selectionPanelUI;
 
-    [NonReorderable] [SerializeField] private List<Sprite> plates = new List<Sprite>(); // test
+    [NonReorderable] [SerializeField] public List<Sprite> plates = new List<Sprite>(); // test
 
     [SerializeField] private GameObject confirmPanelUI;
     [SerializeField] private TMP_Text currentToolNameText;
     [SerializeField] private Image currentToolImage;
+    [SerializeField] private Image currentToolFrame;
 
     [SerializeField] private TMP_Text upgradePreviewToolNameText;
     [SerializeField] private Image upgradePreviewToolImage;
+    [SerializeField] private Image upgradePreviewToolFrame;
 
     [SerializeField] public Sprite sufficient;
     [SerializeField] public Sprite insufficient;
+
+
+    [SerializeField] public Sprite sufficientFrame;
+    [SerializeField] public Sprite insufficientFrame;
+
 
     [SerializeField] private Image materialOneImage;
     [SerializeField] private Image materialOneIsValidImage;
@@ -62,11 +69,14 @@ public class UpgradeToolsUI : MonoBehaviour
         int upgradeToolLevel = currentToolLevel+1;
 
 
-        currentToolNameText.text = currentSOTool.name;
+        currentToolNameText.text = currentSOTool.name[p_currentTool.craftLevel - 1];
         currentToolImage.sprite = currentSOTool.equippedIcon[p_currentTool.craftLevel-1];
+        currentToolFrame.sprite = plates[p_currentTool.craftLevel - 1];
 
-        upgradePreviewToolNameText.text = currentSOTool.name;
+        upgradePreviewToolNameText.text = currentSOTool.name[p_currentTool.craftLevel];
         upgradePreviewToolImage.sprite = currentSOTool.equippedIcon[p_currentTool.craftLevel];
+        upgradePreviewToolFrame.sprite = plates[p_currentTool.craftLevel];
+
         CraftUpgradeItemRequirementsData craftUpgradeItemRequirementsData = currentSOTool.craftUpgradeItemRequirementsDatas[currentToolLevel];
         if (p_currentTool.proficiencyLevel >= craftUpgradeItemRequirementsData.requiredProficiencyLevel)
         {
@@ -84,13 +94,13 @@ public class UpgradeToolsUI : MonoBehaviour
 
             if (InventoryManager.GetItem(materialOne.so_Item).amount >= materialOne.requiredAmount)
             {
-                materialOneIsValidImage.sprite = sufficient;
+                materialOneIsValidImage.sprite = sufficientFrame;
                 matOneAmount = materialOne.requiredAmount;
                 materialOneRequirement = true;
             }
             else if (InventoryManager.GetItem(materialOne.so_Item).amount < materialOne.requiredAmount)
             {
-                materialOneIsValidImage.sprite = insufficient;
+                materialOneIsValidImage.sprite = insufficientFrame;
             }
             materialOneCurrentAmountText.text = InventoryManager.GetItem(materialOne.so_Item).amount.ToString();
             materialOneMaxAmountText.text = materialOne.requiredAmount.ToString();
@@ -102,13 +112,13 @@ public class UpgradeToolsUI : MonoBehaviour
                 matt = materialTwo.so_Item;
                 if (InventoryManager.GetItem(materialTwo.so_Item).amount >= materialTwo.requiredAmount)
                 {
-                    materialTwoIsValidImage.sprite = sufficient;
+                    materialTwoIsValidImage.sprite = sufficientFrame;
                     matTwoAmount = materialTwo.requiredAmount;
                     materialTwoRequirement = true;
                 }
                 else if (InventoryManager.GetItem(materialTwo.so_Item).amount < materialTwo.requiredAmount)
                 {
-                    materialTwoIsValidImage.sprite = insufficient;
+                    materialTwoIsValidImage.sprite = insufficientFrame;
                 }
                 materialTwoCurrentAmountText.text = InventoryManager.GetItem(materialTwo.so_Item).amount.ToString();
                 materialTwoMaxAmountText.text = materialTwo.requiredAmount.ToString();

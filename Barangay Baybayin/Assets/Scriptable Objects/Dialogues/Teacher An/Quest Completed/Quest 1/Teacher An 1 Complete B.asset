@@ -15,17 +15,9 @@ MonoBehaviour:
   dialogues:
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
     emotion: 0
-    words: Oh you are back
+    words: Thank you Sakoro for fixing the chair
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
     emotion: 0
-    words: What am I supposed to do?
-    speechTransitionType: 1
-  - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 0
-    words: REBUILD THE TOWN HALL
-    speechTransitionType: 1
-  - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 0
-    words: Ok sorry po, will be back
+    words: Matutulungan talaga ang mga bata
     speechTransitionType: 1

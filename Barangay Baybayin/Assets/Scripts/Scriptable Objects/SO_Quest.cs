@@ -15,8 +15,8 @@ public class SO_Quest : ScriptableObject
 {
 
     public Sprite questImage;
-    public string title;
-    public string description;
+    [TextArea] public string title;
+    [TextArea] public string description;
     [NonReorderable] public List<ItemReward> rewards; // turn this to item
     [NonReorderable] public List<QuestRequirement> requirements = new List<QuestRequirement>();
 }

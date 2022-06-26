@@ -141,6 +141,7 @@ public class ToolCaster : MonoBehaviour
             animator.SetTrigger(current_Tool.toolName.ToString());
 
             ResourceNode targetResourceNode = GetResourceNode();
+            Infrastructure targetInfrastructure = GetInfrastructure();
             if (targetResourceNode)
             {
                 float xPos = targetResourceNode.transform.position.x;
@@ -156,6 +157,22 @@ public class ToolCaster : MonoBehaviour
                    current_Tool.craftLevel-1,
                    current_Tool.so_Tool.damage[current_Tool.craftLevel-1],
                    onToolHitSucceededEvent);    
+            }  
+            else if (targetInfrastructure)
+            {
+                float xPos = targetInfrastructure.transform.position.x;
+                if (xPos > PlayerManager.instance.player.transform.position.x) // right
+                {
+                    animator.SetBool("isFacingRight", true);
+                }
+                else // left
+                {
+                    animator.SetBool("isFacingRight", false);
+                }
+                targetInfrastructure.OnInfrastructureHitEvent.Invoke(
+                   current_Tool.craftLevel - 1,
+                   current_Tool.so_Tool.damage[current_Tool.craftLevel - 1],
+                   onToolHitSucceededEvent);
             }
             StartCoroutine(Co_ToolUseCooldown());
         }
@@ -173,6 +190,25 @@ public class ToolCaster : MonoBehaviour
                     
                     return hit.gameObject.GetComponent<ResourceNode>(); 
                     
+                }
+            }
+
+        }
+        return null;
+    }
+
+    public Infrastructure GetInfrastructure()
+    {
+        Collider2D[] collider = Physics2D.OverlapCircleAll((Vector2)aim.position, 3f);
+        foreach (Collider2D hit in collider)
+        {
+            if (hit.gameObject != gameObject)
+            {
+                if (hit != null)
+                {
+
+                    return hit.gameObject.GetComponent<Infrastructure>();
+
                 }
             }
 

@@ -12,7 +12,9 @@ public class CharacterDialogueUI : MonoBehaviour
 {
 
     //[HideInInspector] 
+    public SO_Character character;
     public SO_Dialogues currentSO_Dialogues;
+    [SerializeField] private bool allowNext;
     [SerializeField] private int currentDialogueIndex;
     [SerializeField] private TMP_Text characterNameText;
     [SerializeField] private TMP_Text dialogueText;
@@ -23,11 +25,15 @@ public class CharacterDialogueUI : MonoBehaviour
     [SerializeField]
     private Animator anim;
 
+    [SerializeField] private string id;
+   
     public CharacterDialogueUIClose onCharacterDialogueUIClose = new CharacterDialogueUIClose();
    
-    public void OnCharacterSpokenTo(SO_Dialogues p_SO_Dialogues)
+    public void OnCharacterSpokenTo(string p_id, SO_Dialogues p_SO_Dialogue)
     {
-        currentSO_Dialogues = p_SO_Dialogues;
+        id = p_id;
+        
+        currentSO_Dialogues = p_SO_Dialogue;
         UIManager.TransitionPreFadeAndPostFade(1,0.5f,1, 0, 0.5f, OnOpenCharacterDialogueUI);
 
     }
@@ -58,71 +64,60 @@ public class CharacterDialogueUI : MonoBehaviour
         {
             p_currentText = p_fullText.Substring(0, i);
             p_textUI.text = p_currentText;
-            yield return new WaitForSeconds(0.25f);
+            yield return new WaitForSeconds(0.1f);
         }
     }
 
     public void ResetCharacterDialogueUI()
     {
         currentDialogueIndex=0;
+        allowNext = false;
+        OnNextButtonUIPressed();
+    }
+
+    public void OnNextButtonUIPressed()
+    {
+    
         if (currentDialogueIndex < currentSO_Dialogues.dialogues.Count)
         {
             
             Dialogue currentDialogue = currentSO_Dialogues.dialogues[currentDialogueIndex];
 
             characterNameText.text = currentDialogue.character.name;
-            if (UIManager.instance.runningCoroutine != null)
-            {
-                UIManager.instance.StopCoroutine(UIManager.instance.runningCoroutine);
-            }
-            //temporary
-            if (currentDialogue.speechTransitionType == SpeechTransitionType.Typewriter)
-            {
 
-                UIManager.instance.runningCoroutine = UIManager.instance.StartCoroutine(Co_TypeWriterEffect(dialogueText,currentDialogue.words));
-            }
-            else
-            {
-                dialogueText.text = currentDialogue.words;
-            }
-         
+
             if (currentDialogue.character.name != "Player")//TEMPORARY
             {
                 avatarImage.gameObject.SetActive(true);
 
-                avatarImage.sprite = currentDialogue.character.avatars[(int)currentDialogue.emotion];
+                avatarImage.sprite = currentDialogue.character.avatar;// currentDialogue.character.avatars[(int)currentDialogue.emotion];
+
+         
+                if ((int)currentDialogue.emotion == 10)
+                {
+                    emoticon.SetActive(false);
+                    anim.SetInteger("enum", (int)currentDialogue.emotion);
+                }
+                else
+                {
+                    emoticon.SetActive(true);
+                    anim.SetInteger("enum", (int)currentDialogue.emotion);
+                }
 
             }
             else
             {
                 avatarImage.gameObject.SetActive(false);
-
+                emoticon.SetActive(false);
             }
-            gameObject.SetActive(true);
 
-        }
-        //else //TEMPORARY END CONVO, BUT EVENTUALLY SHOW AND GIVE QUEST
-        //{
-        //    gameObject.SetActive(false);
-        //}
-    }
-
-    public void OnNextButtonUIPressed()
-    {
-    
-        if (currentDialogueIndex + 1 < currentSO_Dialogues.dialogues.Count)
-        {
-            
-            Dialogue currentDialogue = currentSO_Dialogues.dialogues[currentDialogueIndex];
-
-            characterNameText.text = currentDialogue.character.name;
             //temporary
             if (UIManager.instance.runningCoroutine != null)
             {
                 UIManager.instance.StopCoroutine(UIManager.instance.runningCoroutine);
                 UIManager.instance.runningCoroutine = null;
                 UIManager.instance.justFinishedCoroutine = true;
-                Debug.Log("SET TRUE");
+          
 
 
             }
@@ -133,14 +128,17 @@ public class CharacterDialogueUI : MonoBehaviour
                     
                     dialogueText.text = currentDialogue.words;
                     UIManager.instance.justFinishedCoroutine = false;
-                    currentDialogueIndex++;
-                    Debug.Log("skip");
+                    if (allowNext == true)
+                    {
+                        currentDialogueIndex++;
+                    }
+                
                 }
                 else
                 {
                     UIManager.instance.justFinishedCoroutine = false;
                     UIManager.instance.runningCoroutine = UIManager.instance.StartCoroutine(Co_TypeWriterEffect(dialogueText, currentDialogue.words));
-                    Debug.Log("start");
+    
                 }
                 
             }
@@ -148,38 +146,31 @@ public class CharacterDialogueUI : MonoBehaviour
             {
                 dialogueText.text = currentDialogue.words;
                 UIManager.instance.justFinishedCoroutine = false;
+                if (allowNext == true)
+                {
+                    currentDialogueIndex++;
+                }
+
+            }
+            
+          
+
+            if(allowNext == false)
+            {
+       
+
+                gameObject.SetActive(true);
+                allowNext = true;
                 currentDialogueIndex++;
-
-            }
-            
-            
-            if (currentDialogue.character.name != "Player")//TEMPORARY
-            {
-                avatarImage.gameObject.SetActive(true);
-
-                avatarImage.sprite = currentDialogue.character.avatar;// currentDialogue.character.avatars[(int)currentDialogue.emotion];
-                
-                if ((int) currentDialogue.emotion == 9)
-                {
-                    emoticon.SetActive(false);
-                }
-                else
-                {
-                    emoticon.SetActive(true);
-                    anim.SetInteger("enum", (int)currentDialogue.emotion);
-                }
-                
-            }
-            else
-            {
-                avatarImage.gameObject.SetActive(false);
-                emoticon.SetActive(false);
             }
 
         }
         else //TEMPORARY END CONVO, BUT EVENTUALLY SHOW AND GIVE QUEST
         {
-
+            StorylineData storylineData = StorylineManager.GetStorylineDataFromID(id);
+            int currentQuestChainIndex = storylineData.currentQuestChainIndex;
+            int currentQuestLineIndex = storylineData.currentQuestLineIndex;
+            StorylineManager.onWorldEvent.Invoke(id, currentQuestChainIndex, currentQuestLineIndex);
             UIManager.TransitionPreFadeAndPostFade(1, 0.5f, 1, 0, 0.5f, OnCloseCharacterDialogueUI);
         }
     }

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 258441215694814517}
   - component: {fileID: 258441215694814518}
   - component: {fileID: 4125261411128983554}
+  - component: {fileID: 6277081051033518876}
   m_Layer: 5
   m_Name: ResourceDropUI
   m_TagString: Untagged
@@ -93,6 +94,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resourceNameText: {fileID: 258441216607277621}
   resourceIcon: {fileID: 2261892213543433737}
+--- !u!114 &6277081051033518876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 258441215694814504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreLayout: 0
+  m_MinWidth: -1
+  m_MinHeight: -1
+  m_PreferredWidth: 50
+  m_PreferredHeight: 50
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!1 &258441216607277623
 GameObject:
   m_ObjectHideFlags: 0

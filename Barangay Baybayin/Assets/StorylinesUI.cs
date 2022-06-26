@@ -32,6 +32,7 @@ public class StorylinesUI : MonoBehaviour
 
     public StorylinesUIClose onStorylinesUIClose = new StorylinesUIClose();
 
+    public Image questFrame;
     private void Start()
     {
         for (int i = 0; i < storylines.Count; i++)
@@ -59,26 +60,26 @@ public class StorylinesUI : MonoBehaviour
         {
             StorylineData storylineData = StorylineManager.instance.storyLines[index];
             SO_StoryLine so_StoryLine = storylineData.so_StoryLine;
-            int currentStorylineIndex = storylineData.currentStorylineIndex;
-            int currentQuestlinePartIndex = storylineData.currentQuestlinePartIndex;
+            int currentStorylineIndex = storylineData.currentQuestChainIndex;
+            int currentQuestlinePartIndex = storylineData.currentQuestLineIndex;
+            SO_Questline so_QuestLine = so_StoryLine.questLines[currentStorylineIndex];
             if (currentStorylineIndex < so_StoryLine.questLines.Count)
             {
-                SO_Questline so_Questline = so_StoryLine.questLines[currentStorylineIndex];
-                if (currentQuestlinePartIndex < so_Questline.questlineData.Count)
+              
+                if (currentQuestlinePartIndex < so_QuestLine.questlineData.Count)
                 {
-                    QuestlineData questlineData = so_Questline.questlineData[currentQuestlinePartIndex];
+                    QuestlineData questlineData = so_QuestLine.questlineData[currentQuestlinePartIndex];
 
-                    characterNameText.text = so_StoryLine.questLines[0].questlineData[0].questInProgressSO_Dialogues.dialogues[0].character.name.ToString();//.text = so_StoryLine.questLines[currentCharacterDataIndex].quest.title;
+                    characterNameText.text = so_StoryLine.character.name.ToString();//.text = so_StoryLine.questLines[currentCharacterDataIndex].quest.title;
                     icon.sprite = questlineData.quest.questImage;
-                    counterText.text = "QUEST " + (currentStorylineIndex + 1).ToString();
+                    counterText.text = "QUEST " + (currentStorylineIndex + 1).ToString() + " : " + questlineData.quest.title.ToString();
+                    questFrame.sprite = frameLevels[currentStorylineIndex];
                     descriptionText.text = questlineData.quest.description;
 
-
-                    List<QuestRequirement> requirements = questlineData.quest.requirements;
-
+                    List<QuestRequirement> requirements = so_QuestLine.questlineData[0].quest.requirements;
                     for (int i = 0; i < requirements.Count;)
                     {
-                        
+
                         if (requirements[i].so_requirement is SO_ItemRequirement)
                         {
 
@@ -89,21 +90,44 @@ public class StorylinesUI : MonoBehaviour
                                 requirementsUIs.Add(newObject);
                                 newObject.InitializeValues("", so_ItemRequirement.requiredAmount[ii].ToString(), so_ItemRequirement.so_Item[ii].icon);
                             }
-                           
+
 
                         }
-                        else if (requirements[i].so_requirement is SO_InfrastructureRequirement)
-                        {
-                            SO_InfrastructureRequirement so_ItemRequirement = requirements[i].so_requirement as SO_InfrastructureRequirement;
-                            ItemUI newObject = Instantiate(prefab, requirementsContainer);
-                            requirementsUIs.Add(newObject);
-                            newObject.InitializeValues("", so_ItemRequirement.requiredLevel.ToString(), so_ItemRequirement.so_infrastructure.sprites[so_ItemRequirement.requiredLevel]);
-
-                        }
+                      
                         i++;
 
                     }
-                    List<ItemReward> rewards = so_StoryLine.questLines[currentStorylineIndex].questlineData[currentQuestlinePartIndex].quest.rewards;
+
+                    //List<QuestRequirement> requirements = questlineData.quest.requirements;
+
+                    //for (int i = 0; i < requirements.Count;)
+                    //{
+
+                    //    if (requirements[i].so_requirement is SO_ItemRequirement)
+                    //    {
+
+                    //        SO_ItemRequirement so_ItemRequirement = requirements[i].so_requirement as SO_ItemRequirement;
+                    //        for (int ii = 0; ii < so_ItemRequirement.so_Item.Count; ii++)
+                    //        {
+                    //            ItemUI newObject = Instantiate(prefab, requirementsContainer);
+                    //            requirementsUIs.Add(newObject);
+                    //            newObject.InitializeValues("", so_ItemRequirement.requiredAmount[ii].ToString(), so_ItemRequirement.so_Item[ii].icon);
+                    //        }
+
+
+                    //    }
+                    //    else if (requirements[i].so_requirement is SO_InfrastructureRequirement)
+                    //    {
+                    //        SO_InfrastructureRequirement so_ItemRequirement = requirements[i].so_requirement as SO_InfrastructureRequirement;
+                    //        ItemUI newObject = Instantiate(prefab, requirementsContainer);
+                    //        requirementsUIs.Add(newObject);
+                    //        newObject.InitializeValues("", so_ItemRequirement.requiredLevel.ToString(), so_ItemRequirement.so_infrastructure.sprites[so_ItemRequirement.requiredLevel-1]);
+
+                    //    }
+                    //    i++;
+
+                    //}
+                    List<ItemReward> rewards = so_QuestLine.questlineData[so_QuestLine.questlineData.Count - 1].quest.rewards;
                     for (int i = 0; i < rewards.Count;)
                     {
          
@@ -132,13 +156,16 @@ public class StorylinesUI : MonoBehaviour
         storylines[index].itemUIs.Clear();
         StorylineData storylineData = StorylineManager.instance.storyLines[index];
         SO_StoryLine so_StoryLine = storylineData.so_StoryLine;
-        int currentStorylineIndex = storylineData.currentStorylineIndex;
-        int currentQuestlinePartIndex = storylineData.currentQuestlinePartIndex;
+        
+        int currentStorylineIndex = storylineData.currentQuestChainIndex;
+        int currentQuestlinePartIndex = storylineData.currentQuestLineIndex;
+        SO_Questline so_QuestLine = so_StoryLine.questLines[currentStorylineIndex];
+        QuestlineData questLineData = so_QuestLine.questlineData[currentQuestlinePartIndex];
         storylines[index].questFrame.sprite = frameLevels[currentStorylineIndex];
-        storylines[index].titleText.text = so_StoryLine.questLines[0].questlineData[0].questInProgressSO_Dialogues.dialogues[0].character.name.ToString();// so_StoryLine.name; //so_StoryLine.questLines[currentCharacterDataIndex].quest.title;
-        storylines[index].questCountText.text = "QUEST " + (currentStorylineIndex + 1).ToString();//so_StoryLine.questLines[currentCharacterDataIndex].quest.description;
-        storylines[index].icon.sprite = so_StoryLine.questLines[currentStorylineIndex].questlineData[currentQuestlinePartIndex].quest.questImage;
-        List<ItemReward> rewards = so_StoryLine.questLines[currentStorylineIndex].questlineData[currentQuestlinePartIndex].quest.rewards;
+        storylines[index].titleText.text = so_StoryLine.character.name.ToString();// so_StoryLine.name; //so_StoryLine.questLines[currentCharacterDataIndex].quest.title;
+        storylines[index].questCountText.text = "QUEST " + (currentStorylineIndex + 1).ToString() + " : " + questLineData.quest.title.ToString();//so_StoryLine.questLines[currentCharacterDataIndex].quest.description;
+        storylines[index].icon.sprite = so_QuestLine.questlineData[currentQuestlinePartIndex].quest.questImage;
+        List<ItemReward> rewards = so_QuestLine.questlineData[so_QuestLine.questlineData.Count -1].quest.rewards;
         for (int i = 0; i < rewards.Count;)
         {
             ItemUI newObject = Instantiate(prefab,storylines[index].container);
@@ -189,6 +216,11 @@ public class StorylinesUI : MonoBehaviour
 
     public void OpenButtonUIClicked()
     {
+        for (int i = 0; i < storylines.Count; i++)
+        {
+
+            UpdateStoryLineUI(i);
+        }
         selectionPanel.SetActive(true);
         selectedPanel.SetActive(false);
         gameObject.SetActive(true);

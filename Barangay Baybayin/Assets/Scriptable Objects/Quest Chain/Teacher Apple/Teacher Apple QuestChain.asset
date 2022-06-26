@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dabccd67f58b89349ba4cab56a870d02, type: 3}
   m_Name: Teacher Apple QuestChain
   m_EditorClassIdentifier: 
+  ID: Q-TA
+  character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
   questLines:
   - {fileID: 11400000, guid: 9806d077fbc75e74b949fadacafb718d, type: 2}
   - {fileID: 11400000, guid: 29aaf42276096ae43aac773e453f1aa5, type: 2}

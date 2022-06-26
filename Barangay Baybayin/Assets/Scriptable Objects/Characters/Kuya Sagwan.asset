@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5922fc1e064d94f4daedc4c08a22a932, type: 3}
   m_Name: Kuya Sagwan
   m_EditorClassIdentifier: 
+  name: Kuya Ambay
   avatars:
   - {fileID: 21300000, guid: a9223794fdeffdc4a8e76f02353acdd2, type: 3}
   - {fileID: 21300000, guid: a9223794fdeffdc4a8e76f02353acdd2, type: 3}
@@ -25,4 +26,4 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  avatar: {fileID: 21300000, guid: a9223794fdeffdc4a8e76f02353acdd2, type: 3}
+  avatar: {fileID: 21300000, guid: cab601eeeef634842a8e652269a37e56, type: 3}

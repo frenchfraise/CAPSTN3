@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Radio : InteractibleObject
 {
+    [SerializeField]
+    private string id;
     private CharacterDialogueUI characterDialogueUI;
 
     public CharacterSpokenToEvent onRadioSpokenToEvent = new CharacterSpokenToEvent();
@@ -30,27 +32,27 @@ public class Radio : InteractibleObject
         SO_Dialogues chosenDialogue = null;
         switch (WeatherManager.instance.CurrentWeather)
         {
-            
+
             case Weather.Sunny:
                 Debug.Log("RA");
-                chosenIndex = Random.Range(0,WeatherManager.instance.sunnyDialogues.Count);
+                chosenIndex = Random.Range(0, WeatherManager.instance.sunnyDialogues.Count);
                 chosenDialogue = WeatherManager.instance.sunnyDialogues[chosenIndex];
-                onRadioSpokenToEvent.Invoke(chosenDialogue);
+                onRadioSpokenToEvent.Invoke(id,chosenDialogue);
                 break;
             case Weather.Cloudy:
                 chosenIndex = Random.Range(0, WeatherManager.instance.cloudyDialogues.Count);
                 chosenDialogue = WeatherManager.instance.cloudyDialogues[chosenIndex];
-                onRadioSpokenToEvent.Invoke(chosenDialogue);
+                onRadioSpokenToEvent.Invoke(id,chosenDialogue);
                 break;
             case Weather.Rainy:
                 chosenIndex = Random.Range(0, WeatherManager.instance.rainyDialogues.Count);
                 chosenDialogue = WeatherManager.instance.rainyDialogues[chosenIndex];
-                onRadioSpokenToEvent.Invoke(chosenDialogue);
+                onRadioSpokenToEvent.Invoke(id,chosenDialogue);
                 break;
             case Weather.Stormy:
                 chosenIndex = Random.Range(0, WeatherManager.instance.stormyDialogues.Count);
                 chosenDialogue = WeatherManager.instance.stormyDialogues[chosenIndex];
-                onRadioSpokenToEvent.Invoke(chosenDialogue);
+                onRadioSpokenToEvent.Invoke(id,chosenDialogue);
                 break;
         }
         

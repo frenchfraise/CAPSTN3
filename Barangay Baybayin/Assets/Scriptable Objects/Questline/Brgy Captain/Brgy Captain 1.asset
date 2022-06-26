@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Brgy Captain 1
   m_EditorClassIdentifier: 
   questlineData:
-  - initialSO_Dialogues: {fileID: 11400000, guid: e34e2824a93871a40b80256389d6bc8e, type: 2}
-    questInProgressSO_Dialogues: {fileID: 11400000, guid: 6efcddd41949d3047aea3fe1e10304ac, type: 2}
-    questCompleteSO_Dialogues: {fileID: 11400000, guid: 080746900fd444e4c9ad3c48e686dbda, type: 2}
-    quest: {fileID: 11400000, guid: 01c0334455828cd4ea020cd2eeb9c516, type: 2}
-  - initialSO_Dialogues: {fileID: 11400000, guid: 5a2a797af6aec3544a79ece7c34a8a7c, type: 2}
-    questInProgressSO_Dialogues: {fileID: 11400000, guid: a1ac6e9da96378240af3f7207c6f50e4, type: 2}
-    questCompleteSO_Dialogues: {fileID: 11400000, guid: a929aa5b1f6097b488e3d4d6aeaa5193, type: 2}
-    quest: {fileID: 11400000, guid: f1cdfb1de6f30844d9c3965ae123e5b2, type: 2}
+  - initialSO_Dialogues: {fileID: 11400000, guid: 847d77dcb4dd7d640a7ebeb58598ec26, type: 2}
+    questInProgressSO_Dialogues: {fileID: 11400000, guid: 38c7d4ae6b629e34b81a20094d461c8f, type: 2}
+    questCompleteSO_Dialogues: {fileID: 11400000, guid: 7965e326ebc5f1b4baf54e936c3274b3, type: 2}
+    quest: {fileID: 11400000, guid: f30c1938483636a40ab4be81da7f8276, type: 2}
+  - initialSO_Dialogues: {fileID: 11400000, guid: cf69704cf03f8dd4585ebacfd5eee9ca, type: 2}
+    questInProgressSO_Dialogues: {fileID: 11400000, guid: 6995df3e70518bf45bdb5e188f2daa5f, type: 2}
+    questCompleteSO_Dialogues: {fileID: 11400000, guid: e9568727f3763b748adca7482432b3ff, type: 2}
+    quest: {fileID: 11400000, guid: 887eca69f58405f4ba84e4569bab18d7, type: 2}

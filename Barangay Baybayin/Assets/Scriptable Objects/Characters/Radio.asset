@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5922fc1e064d94f4daedc4c08a22a932, type: 3}
   m_Name: Radio
   m_EditorClassIdentifier: 
+  name: Radio
   avatars:
   - {fileID: 21300000, guid: 67e66e2699b28eb4cbaf64b1fde4af67, type: 3}
   - {fileID: 21300000, guid: 67e66e2699b28eb4cbaf64b1fde4af67, type: 3}

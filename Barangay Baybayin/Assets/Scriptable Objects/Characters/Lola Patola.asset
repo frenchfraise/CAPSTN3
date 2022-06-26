@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5922fc1e064d94f4daedc4c08a22a932, type: 3}
   m_Name: Lola Patola
   m_EditorClassIdentifier: 
+  name: Lola Pamanom
   avatars:
   - {fileID: 21300000, guid: e4f3bff6378978a42af77b1cf6d7e605, type: 3}
   - {fileID: 21300000, guid: e4f3bff6378978a42af77b1cf6d7e605, type: 3}
@@ -25,4 +26,4 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  avatar: {fileID: 21300000, guid: e4f3bff6378978a42af77b1cf6d7e605, type: 3}
+  avatar: {fileID: 21300000, guid: 36faf2a5c1a509d4b89f985a8ef576a0, type: 3}

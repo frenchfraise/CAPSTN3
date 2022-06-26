@@ -8,24 +8,33 @@ public class UpgradeToolUI : MonoBehaviour
     public int toolIndex;
     [SerializeField]
     private Image iconImage;
+
     [SerializeField]
     private TMP_Text nameText;
+    [SerializeField]
+    private Image nameFrameImage;
     [SerializeField] public Image isUpgradableImage;
 
     [SerializeField] public Image hasRecipeImage;
     [SerializeField] public TMP_Text proficiencyText;
+    [SerializeField]
+    private Image proficiencyFrameImage;
 
     private void Start()
     {
-        nameText.text = ToolManager.instance.tools[toolIndex].so_Tool.name;
-        iconImage.sprite = ToolManager.instance.tools[toolIndex].so_Tool.unlockedIcon;
+     
         UpdateUI();
     }
 
     public void UpdateUI()
     {
-
+        Tool tool = ToolManager.instance.tools[toolIndex];
+        nameText.text = tool.so_Tool.name[1];
+        iconImage.sprite = tool.so_Tool.equippedIcon[tool.craftLevel - 1];
+        nameFrameImage.sprite = UIManager.instance.upgradeUI.plates[tool.craftLevel - 1];
+        proficiencyFrameImage.sprite = UIManager.instance.upgradeUI.plates[tool.craftLevel - 1];
         bool isUpgradableReqOne = false;
+
         bool isUpgradableReqTwo = false;
         Tool selectedTool = ToolManager.instance.tools[toolIndex];
         CraftUpgradeItemRequirementsData craftUpgradeItemRequirementsData = selectedTool.so_Tool.craftUpgradeItemRequirementsDatas[selectedTool.craftLevel-1];

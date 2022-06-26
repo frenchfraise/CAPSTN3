@@ -14,6 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   useForResourceNode:
   - {fileID: 0}
+  name:
+  - Rusty Hammer
+  - Hammer
+  - Master Hammer
   lockedFrame: {fileID: 21300000, guid: abf11a33121b8ba45a1c05396028d06e, type: 3}
   lockedIcon: {fileID: 21300000, guid: 934dedbc3faa5b1478b1d393d3bb5d0f, type: 3}
   unlockedFrame: {fileID: 21300000, guid: e8c3e5bef4d467b4d9ceb143afd48244, type: 3}

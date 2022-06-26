@@ -14,6 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   useForResourceNode:
   - {fileID: 0}
+  name:
+  - Rusty Hands
+  - Hands
+  - Master Hands
   lockedFrame: {fileID: 21300000, guid: abf11a33121b8ba45a1c05396028d06e, type: 3}
   lockedIcon: {fileID: 21300000, guid: 9694be8e3b5dc664c8cc57f0e0b4bad8, type: 3}
   unlockedFrame: {fileID: 21300000, guid: e8c3e5bef4d467b4d9ceb143afd48244, type: 3}
