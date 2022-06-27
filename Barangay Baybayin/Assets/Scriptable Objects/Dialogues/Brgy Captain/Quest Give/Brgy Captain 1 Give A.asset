@@ -13,19 +13,7 @@ MonoBehaviour:
   m_Name: Brgy Captain 1 Give A
   m_EditorClassIdentifier: 
   dialogues:
-  - character: {fileID: 11400000, guid: d07ffa9457a5d704b91096369ccebe08, type: 2}
-    emotion: 0
-    words: Hello Player I am typewriting
-    speechTransitionType: 0
   - character: {fileID: 11400000, guid: 6b42c85a890cd4a498705d8521418c4b, type: 2}
-    emotion: 0
-    words: Hello sir I too am typewriting
+    emotion: 10
+    words: Lolo Toman is sleeping. Let's not disturb him.
     speechTransitionType: 0
-  - character: {fileID: 11400000, guid: d07ffa9457a5d704b91096369ccebe08, type: 2}
-    emotion: 4
-    words: Get me 1 wood boy
-    speechTransitionType: 1
-  - character: {fileID: 11400000, guid: 6b42c85a890cd4a498705d8521418c4b, type: 2}
-    emotion: 0
-    words: Ok po
-    speechTransitionType: 1

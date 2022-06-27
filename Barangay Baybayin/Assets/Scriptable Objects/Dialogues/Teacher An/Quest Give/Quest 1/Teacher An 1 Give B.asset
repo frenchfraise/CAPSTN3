@@ -15,9 +15,5 @@ MonoBehaviour:
   dialogues:
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
     emotion: 4
-    words: Use the 1 wood to repair the town hall
-    speechTransitionType: 1
-  - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 0
-    words: Ok po
+    words: Your hammer would come in handy in fixing the chairs!
     speechTransitionType: 1

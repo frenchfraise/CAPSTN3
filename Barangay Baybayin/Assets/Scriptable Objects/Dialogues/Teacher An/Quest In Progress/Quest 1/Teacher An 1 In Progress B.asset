@@ -14,18 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogues:
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 0
-    words: Oh you are back
-    speechTransitionType: 1
-  - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 0
-    words: What am I supposed to do?
-    speechTransitionType: 1
-  - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 0
-    words: Please rebuild the Chairs Sakoro
-    speechTransitionType: 1
-  - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 0
-    words: Ok sorry po, will be back
-    speechTransitionType: 1
+    emotion: 10
+    words: Please build the chairs and tables.
+    speechTransitionType: 0
+  - character: {fileID: 11400000, guid: 6b42c85a890cd4a498705d8521418c4b, type: 2}
+    emotion: 10
+    words: Im on it.
+    speechTransitionType: 0

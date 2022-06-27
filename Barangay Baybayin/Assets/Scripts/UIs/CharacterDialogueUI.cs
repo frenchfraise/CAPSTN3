@@ -86,8 +86,8 @@ public class CharacterDialogueUI : MonoBehaviour
             characterNameText.text = currentDialogue.character.name;
 
 
-            if (currentDialogue.character.name != "Player")//TEMPORARY
-            {
+            //if (currentDialogue.character.name != "Player")//TEMPORARY
+            //{
                 avatarImage.gameObject.SetActive(true);
 
                 avatarImage.sprite = currentDialogue.character.avatar;// currentDialogue.character.avatars[(int)currentDialogue.emotion];
@@ -104,12 +104,12 @@ public class CharacterDialogueUI : MonoBehaviour
                     anim.SetInteger("enum", (int)currentDialogue.emotion);
                 }
 
-            }
-            else
-            {
-                avatarImage.gameObject.SetActive(false);
-                emoticon.SetActive(false);
-            }
+            //}
+            //else
+            //{
+            //    avatarImage.gameObject.SetActive(false);
+            //    emoticon.SetActive(false);
+            //}
 
             //temporary
             if (UIManager.instance.runningCoroutine != null)

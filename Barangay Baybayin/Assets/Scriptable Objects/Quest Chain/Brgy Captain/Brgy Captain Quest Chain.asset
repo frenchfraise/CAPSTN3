@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dabccd67f58b89349ba4cab56a870d02, type: 3}
   m_Name: Brgy Captain Quest Chain
   m_EditorClassIdentifier: 
+  ID: Q-BC
   character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
   questLines:
   - {fileID: 11400000, guid: 7e1f1f70b32b8ba4b9ecf85139230408, type: 2}

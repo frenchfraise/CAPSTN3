@@ -41,7 +41,7 @@ public class TimeManager : MonoBehaviour
 
     private float totalTime = 0; // This is for realtime game played (hours played and such)
 
-    private int dayCount;
+    [SerializeField] private int dayCount;
 
     protected float realSecondsPerDay;
     [SerializeField] private int startHour;

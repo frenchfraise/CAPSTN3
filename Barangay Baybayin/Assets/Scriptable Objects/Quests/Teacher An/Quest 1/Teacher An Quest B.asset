@@ -17,7 +17,7 @@ MonoBehaviour:
   description: Teacher An asks Sakoro for help, as the school has been affected by
     the typhoon.
   rewards:
-  - so_Item: {fileID: 11400000, guid: b9728f2dfa98d584db38b418cea56478, type: 2}
+  - so_Item: {fileID: 11400000, guid: 944bc5930a2da5d42bf679f056c1e397, type: 2}
     amount: 1
   - so_Item: {fileID: 11400000, guid: aaa9202b98b57234197af744ae889a10, type: 2}
     amount: 5

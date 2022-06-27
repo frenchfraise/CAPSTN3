@@ -15,9 +15,13 @@ MonoBehaviour:
   dialogues:
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
     emotion: 0
-    words: Thank you Sakoro for fixing the chair
-    speechTransitionType: 1
+    words: Thank you Sakoro for making the chairs and tables.
+    speechTransitionType: 0
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
     emotion: 0
-    words: Matutulungan talaga ang mga bata
-    speechTransitionType: 1
+    words: These would greatly help the kids.
+    speechTransitionType: 0
+  - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
+    emotion: 5
+    words: If you have time, maybe you could hear me out on another request?
+    speechTransitionType: 0

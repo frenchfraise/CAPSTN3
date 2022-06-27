@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dabccd67f58b89349ba4cab56a870d02, type: 3}
   m_Name: Lola Patola QuestChain
   m_EditorClassIdentifier: 
+  ID: Q-LP
   character: {fileID: 11400000, guid: d07ffa9457a5d704b91096369ccebe08, type: 2}
   questLines:
   - {fileID: 11400000, guid: 598a7acd5078f4949aeaa3447ebb9157, type: 2}
