@@ -39,55 +39,41 @@ public class TimeManager : MonoBehaviour
     public static HourChangedEvent onHourChanged = new HourChangedEvent();
     [HideInInspector] public static float sunriseHour = 6;
 
-    private float totalTime = 0;
-    
-    [HideInInspector] public float realSecondsPerNight;
+    private float totalTime = 0; // This is for realtime game played (hours played and such)
 
     private int dayCount;
-    
+
     protected float realSecondsPerDay;
     [SerializeField] private int startHour;
-    [SerializeField] private int endTime; //not yet used
+    [SerializeField] private int endHour;
 
     public static int minute;
     private int minuteByTwos;
     public static int minuteByTens;
     private int hour;
-    public int numOfHoursAwake;
     public static string abbreviation;
 
     [SerializeField] private float oneMinToRealSeconds;
 
     private bool DoTimer;
 
-    private Coroutine runningCoroutine;
-
     private void Awake()
     {
         _instance = this;
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         minute = 0;
         hour = startHour;
-
-        Formula();
-
-        StartCoroutine(Co_Delay());
+        
+        onDayChangedEvent.Invoke(dayCount);
+        onHourChanged.Invoke(); //TEMPORARY
         
         DoTimer = true;
-        StartCoroutine(Co_DoTimer());   
+        StartCoroutine(Co_DoTimer());
     }
 
-    IEnumerator Co_Delay()
-    {
-        yield return new WaitForSeconds(1f);
-        onDayChangedEvent.Invoke(dayCount);
-        runningCoroutine = StartCoroutine(Co_NewDay());
-        onHourChanged.Invoke(); //TEMPORARY
-    }
     private void OnEnable()
     {
         if (PlayerManager.instance.stamina)
@@ -98,8 +84,9 @@ public class TimeManager : MonoBehaviour
         //dayInfoUI = dayInfoUI?UIManager.instance.dayInfoUI:FindObjectOfType<DayInfoUI>();
         onDayChangedEvent.AddListener(dayInfoUI.DayEnd);
         UIManager.instance.onPauseGameTime.AddListener(SetPauseGame);
+        onTimeChangedEvent.AddListener(OnTimeCheck);
     }
-  
+
     private void OnDisable()
     {
         if (PlayerManager.instance)
@@ -108,28 +95,22 @@ public class TimeManager : MonoBehaviour
         }
         onDayChangedEvent.RemoveListener(dayInfoUI.DayEnd);
         if (UIManager.instance) UIManager.instance.onPauseGameTime.RemoveListener(SetPauseGame);
-    }
-    private void Update()
-    {
-        // Real Time played
-        // totalTime += Time.realtimeSinceStartup;
+        onTimeChangedEvent.AddListener(OnTimeCheck);
     }
 
     IEnumerator ForceTest()
     {
         yield return new WaitForSeconds(2f);
         onHourChanged.Invoke(); //TEMPORARY
-        
     }
 
     IEnumerator Co_DoTimer()
     {
-        while(DoTimer)
+        while (DoTimer)
         {
             yield return new WaitForSeconds(oneMinToRealSeconds);
             minute++;
-            minuteByTwos = minute;
-            minuteByTwos *= 2;            
+            minuteByTwos = minute * 2;
             if (minuteByTwos % 10 == 0)
             {
                 minuteByTens = minuteByTwos;
@@ -137,71 +118,47 @@ public class TimeManager : MonoBehaviour
             if (minute >= minutesInHour)
             {
                 hour++;
+                if (hour > hoursInDay) hour = 0;
                 onHourChanged.Invoke(); //TEMPORARY
                 minute = 0;
                 minuteByTens = 0;
-                if (hour > hoursInDay)
-                {
-                    hour = 0;
-                }
             }
             onTimeChangedEvent?.Invoke(hour, minute, minuteByTens);
         }
     }
 
+    private void OnTimeCheck(int p_hour, int p_minute, int p_minuteByTens)
+    {
+        if (p_hour >= endHour)
+        {
+            hour = startHour;
+            onDayChangedEvent.Invoke(dayCount);
+        }
+    }
+
     public void FaintedEndDay()
     {
-        if (runningCoroutine != null)
-        {
-            StopCoroutine(runningCoroutine);
-        }
         UIManager.instance.dayInfoUI.Faint(dayCount);
         onDayChangedEvent.Invoke(dayCount);
     }
     public void EndDay()
     {
-        if (runningCoroutine != null)
-        {
-            StopCoroutine(runningCoroutine);
-        }
         UIManager.instance.dayInfoUI.DayEnd(dayCount);
         onDayChangedEvent.Invoke(dayCount);
-
     }
     public void NewDay()
     {
-        if (runningCoroutine != null)
-        {
-            StopCoroutine(runningCoroutine);
-        }
         Debug.Log("NEW DAY");
         hour = startHour;
         dayCount++;
-        runningCoroutine = StartCoroutine(Co_NewDay());
-    }
-
-    IEnumerator Co_NewDay()
-    {
-        yield return new WaitForSeconds(realSecondsPerDay);
-        Debug.Log("NEW DAY co");
-        hour = startHour;
-        Formula();
-        onDayChangedEvent.Invoke(dayCount);
-        //TimeManager.instance.OnRespawn.Invoke();
-        //Debug.Log("[TimeManager] Get Random Weather");
-        //WeatherManager.instance.GetRandWeather();
-        runningCoroutine=StartCoroutine(Co_NewDay());
-    }
+    }    
 
     private void SetPauseGame(bool p_bool)
     {
-        // Debug.Log("DoTimer set to " + DoTimer);
         DoTimer = p_bool;
-        StartCoroutine(Co_DoTimer());
+        if (p_bool) StartCoroutine(Co_DoTimer());
     }
-
-    public void Formula()
-    {
-        realSecondsPerDay = (numOfHoursAwake * minutesInHour) * oneMinToRealSeconds;
-    }
+    
+    /* Krabby Patty Formuler
+     * realSecondsPerDay = (numOfHoursAwake * minutesInHour) * oneMinToRealSeconds;*/
 }

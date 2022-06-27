@@ -35,12 +35,11 @@ public class InventoryUI : MonoBehaviour
 
     public void SnapToNext()
     {
-        if (currentPage < pages.Count -1)
+        if (currentPage > 0)
         {
-            currentPage++;
+            currentPage--;
             Snap();
-        }
-        
+        }        
     }
     void Snap()
     {
@@ -52,9 +51,9 @@ public class InventoryUI : MonoBehaviour
     }
     public void SnapToPrev()
     {
-        if (currentPage > 0)
+        if (currentPage < pages.Count - 1)
         {
-            currentPage--;
+            currentPage++;
             Snap();
         }
     }

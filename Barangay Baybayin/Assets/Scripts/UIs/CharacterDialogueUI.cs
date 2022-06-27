@@ -64,7 +64,7 @@ public class CharacterDialogueUI : MonoBehaviour
         {
             p_currentText = p_fullText.Substring(0, i);
             p_textUI.text = p_currentText;
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.10f);
         }
     }
 

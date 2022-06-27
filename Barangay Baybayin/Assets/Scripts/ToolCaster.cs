@@ -55,7 +55,7 @@ public class ToolCaster : MonoBehaviour
         onToolHitSucceededEvent.AddListener(ToolHitSuccess);
 
         ToolManager.onToolChangedEvent.AddListener(OnToolChanged);
-        onToolSpecialUsedEvent.AddListener(OnSpecialUsed);
+        //onToolSpecialUsedEvent.AddListener(OnSpecialUsed);
         OnToolChanged(ToolManager.instance.tools[0]); // temporary (?)
         canUse = true;
         canSwitch = true;
@@ -71,14 +71,14 @@ public class ToolCaster : MonoBehaviour
         }
         onToolHitSucceededEvent.RemoveListener(ToolHitSuccess);
         ToolManager.onToolChangedEvent.RemoveListener(OnToolChanged);
-        onToolSpecialUsedEvent.RemoveListener(OnSpecialUsed);
+        //onToolSpecialUsedEvent.RemoveListener(OnSpecialUsed);
     }
 
     public void OnSpecialUsed()
     {
         // I'm guessing this is where it decrements when it is "full"
         // current_Tool.ModifySpecialAmount(-current_Tool.so_Tool.maxSpecialPoints[current_Tool.craftLevel]);
-        current_Tool.specialChargesCounter--;
+        
     }
   
     public void UseSpecial()
@@ -87,11 +87,21 @@ public class ToolCaster : MonoBehaviour
         {
             if (current_Tool.specialChargesCounter >= 1)
             {
+                animator.SetTrigger(current_Tool.toolName.ToString());
                 ResourceNode targetResourceNode = GetResourceNode();
                 if (targetResourceNode)
                 {
                     float xPos = targetResourceNode.transform.position.x;
+                    if (xPos > PlayerManager.instance.player.transform.position.x) // right
+                    {
+                        animator.SetBool("isFacingRight", true);
+                    }
+                    else // left
+                    {
+                        animator.SetBool("isFacingRight", false);
+                    }
                     Debug.Log("SPECIAL USED");
+                    current_Tool.specialChargesCounter--;
                     targetResourceNode.OnResourceNodeHitEvent.Invoke(current_Tool.so_Tool.useForResourceNode,
                         current_Tool.craftLevel-1,
                         current_Tool.so_Tool.damage[current_Tool.craftLevel-1] * 2,
@@ -227,7 +237,7 @@ public class ToolCaster : MonoBehaviour
         canUse = false;
         // animator.SetTrigger("UseTool");
         onToolCanUseUpdatedEvent.Invoke(canUse);
-        onToolUsedEvent.Invoke(current_Tool.so_Tool.staminaCost[current_Tool.craftLevel-1]);
+        onToolUsedEvent.Invoke(staminaCost);
         yield return new WaitForSeconds(current_Tool.so_Tool.useRate[current_Tool.craftLevel-1]);
         canUse = true;
         onToolCanUseUpdatedEvent.Invoke(canUse);
@@ -245,9 +255,10 @@ public class ToolCaster : MonoBehaviour
     {
         if (Weather.Rainy == p_currentWeather)
         {
-            staminaCost = current_Tool.so_Tool.staminaCost[current_Tool.craftLevel] * 1.5f;
+            staminaCost = current_Tool.so_Tool.staminaCost[current_Tool.craftLevel-1] * 1.5f;
+            Debug.Log("It is rainy! Tax is: " + staminaCost);
         }
-        else staminaCost = current_Tool.so_Tool.staminaCost[current_Tool.craftLevel];
+        else staminaCost = current_Tool.so_Tool.staminaCost[current_Tool.craftLevel-1];
     }
 
     public void OnPointerDown()
