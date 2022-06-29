@@ -215,7 +215,7 @@ public class ToolCaster : MonoBehaviour
         onToolCanSwitchUpdatedEvent.Invoke(canSwitch);
     }
 
-    private void CheckWeatherStaminaTax(Weather p_currentWeather, Weather p_nextWeather)
+    private void CheckWeatherStaminaTax(Weather p_currentWeather, Weather[] p_nextWeather)
     {
         if (Weather.Rainy == p_currentWeather)
         {

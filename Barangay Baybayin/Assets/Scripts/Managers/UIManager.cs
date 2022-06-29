@@ -85,7 +85,7 @@ public class UIManager : MonoBehaviour
     }
 
     //TEMPORARY
-    private void OnWeatherUIChanged(Weather p_currentWeather, Weather p_nextWeather)
+    private void OnWeatherUIChanged(Weather p_currentWeather, Weather[] p_nextWeather)
     {
         switch (p_currentWeather)
         {

@@ -13958,6 +13958,17 @@ Transform:
   m_Father: {fileID: 1354016917}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &618387562 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6532336858345068883, guid: 0400c698061b32940a1b5a60d2d29549, type: 3}
+  m_PrefabInstance: {fileID: 4767939251905925995}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &624570617
 GameObject:
   m_ObjectHideFlags: 0
@@ -14317,7 +14328,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2547773636576913252, guid: 1026c74dd53792e469b4a5529cc24c87, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2547773636576913252, guid: 1026c74dd53792e469b4a5529cc24c87, type: 3}
       propertyPath: m_AnchorMax.x
@@ -14591,12 +14602,12 @@ MonoBehaviour:
   upgradeUI: {fileID: 651986919}
   roomInfoUI: {fileID: 374415465}
   dayInfoUI: {fileID: 924640397}
-  inventoryUI: {fileID: 0}
+  inventoryUI: {fileID: 1104900529}
   toolUseImage: {fileID: 0}
   overlayCanvas: {fileID: 431043803}
-  gameplayHUD: {fileID: 0}
+  gameplayHUD: {fileID: 1779706640}
   recipeUpgrade: {fileID: 0}
-  weatherSpriteUI: {fileID: 0}
+  weatherSpriteUI: {fileID: 618387562}
   sunnySprite: {fileID: 21300000, guid: 20060e21554496f4fac5b00013476090, type: 3}
   cloudySprite: {fileID: 21300000, guid: c75bd7b258689fe428748bf1baf9e8a7, type: 3}
   rainSprite: {fileID: 21300000, guid: 04a8d57b0cb619449bf5c57d69e25040, type: 3}
@@ -16097,6 +16108,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!224 &890723549 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1424645539593607907, guid: 0400c698061b32940a1b5a60d2d29549, type: 3}
+  m_PrefabInstance: {fileID: 4767939251905925995}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &899025575
 GameObject:
   m_ObjectHideFlags: 0
@@ -16370,7 +16386,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e478c1fa0c50fd14fb2a0623ce291198, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dayText: {fileID: 0}
+  dayText: {fileID: 1730534344}
   dayCountText: {fileID: 1642543674}
   conditionsText: {fileID: 1033780667}
 --- !u!224 &929038095 stripped
@@ -17936,6 +17952,17 @@ Transform:
   m_Father: {fileID: 1850717524}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1104900529 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4514145246372106265, guid: 0400c698061b32940a1b5a60d2d29549, type: 3}
+  m_PrefabInstance: {fileID: 4767939251905925995}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f69730850cf74a1428c763e85df7e761, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1106509202
 GameObject:
   m_ObjectHideFlags: 0
@@ -18490,6 +18517,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.6156322, y: 0.77290344}
   m_EdgeRadius: 0
+--- !u!114 &1219921823 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4514145245740234034, guid: 0400c698061b32940a1b5a60d2d29549, type: 3}
+  m_PrefabInstance: {fileID: 4767939251905925995}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4be101a1758513b4a9c732d8532477fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1226238396
 GameObject:
   m_ObjectHideFlags: 0
@@ -19932,6 +19970,7 @@ MonoBehaviour:
   stormyDialogues:
   - {fileID: 11400000, guid: 10108f19ce12cda4e912f0f09d3e2a4e, type: 2}
   currentWeather: 0
+  Weathers: 000000000000000000000000
   nextWeather: 0
   cloudParticles: {fileID: 1450864625}
   rainParticles: {fileID: 328484352}
@@ -27426,6 +27465,17 @@ MonoBehaviour:
     pitch: 1
     loop: 1
     source: {fileID: 0}
+--- !u!114 &1709865679 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5748634614608316597, guid: 0400c698061b32940a1b5a60d2d29549, type: 3}
+  m_PrefabInstance: {fileID: 4767939251905925995}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a47f546fc70ec8428172694e78e4288, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1726840475
 GameObject:
   m_ObjectHideFlags: 0
@@ -27571,6 +27621,17 @@ MonoBehaviour:
   worldCamera: {fileID: 519420031}
   cameraMovement: {fileID: 0}
   uiCamera: {fileID: 0}
+--- !u!114 &1730534344 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8303207909618724941, guid: 0400c698061b32940a1b5a60d2d29549, type: 3}
+  m_PrefabInstance: {fileID: 4767939251905925995}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1739743479
 GameObject:
   m_ObjectHideFlags: 0
@@ -27999,6 +28060,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1779706640 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4514145245706696185, guid: 0400c698061b32940a1b5a60d2d29549, type: 3}
+  m_PrefabInstance: {fileID: 4767939251905925995}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1780816784
 GameObject:
   m_ObjectHideFlags: 0
@@ -29205,7 +29271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1c66012ed71c4145a253b7188a64e68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  genericBarUI: {fileID: 0}
+  genericBarUI: {fileID: 1219921823}
   maxStamina: 100
   staminaFatiguePenalty: 0
   staminaFatigueRecovery: 20
@@ -29243,8 +29309,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 30
-  joystick: {fileID: 0}
-  arrow: {fileID: 0}
+  joystick: {fileID: 1709865679}
+  arrow: {fileID: 890723549}
   animator: {fileID: 1683850985}
   interactHint: {fileID: 411067217}
   interactHintImage: {fileID: 1378538540}
