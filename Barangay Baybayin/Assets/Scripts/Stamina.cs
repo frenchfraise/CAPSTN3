@@ -19,13 +19,13 @@ public class Stamina : MonoBehaviour
     private bool isPenalized = false;
 
     public StaminaDecreaseEvent OnStaminaModifiedEvent = new StaminaDecreaseEvent();
-    public StaminaDepletedEvent onStaminaDepletedEvent = new StaminaDepletedEvent();    
+    public static StaminaDepletedEvent onStaminaDepletedEvent = new StaminaDepletedEvent();    
 
     private void OnEnable()
     {
         OnStaminaModifiedEvent.AddListener(genericBarUI.UpdateBar);
         onStaminaDepletedEvent.AddListener(PenalizeStamina);
-        TimeManager.onDayChangedEvent.AddListener(RegenerateStamina);
+        TimeManager.onDayChangingEvent.AddListener(RegenerateStamina);
         currentMaxStamina = maxStamina; // some delay around here, when one starts the game and does Use(), THE PLAYER COULD FAINT
         genericBarUI.InstantUpdateBar(currentStamina, currentMaxStamina, maxStamina);
     }
@@ -34,10 +34,9 @@ public class Stamina : MonoBehaviour
     {
         OnStaminaModifiedEvent.RemoveListener(genericBarUI.UpdateBar);
         onStaminaDepletedEvent.RemoveListener(PenalizeStamina);
-        if (TimeManager.instance)
-        {
-            TimeManager.onDayChangedEvent.RemoveListener(RegenerateStamina);
-        }
+        
+        TimeManager.onDayChangingEvent.RemoveListener(RegenerateStamina);
+        
         
     }
 
@@ -45,9 +44,9 @@ public class Stamina : MonoBehaviour
     {
         currentMaxStamina = currentMaxStamina - staminaFatiguePenalty;
         isPenalized = true;
-        RegenerateStamina(1);
+        RegenerateStamina();
     }
-    public void RegenerateStamina(int p_day)
+    public void RegenerateStamina()
     {
         if (isPenalized)
         {

@@ -93,7 +93,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8653533781470353937}
-  - component: {fileID: 8653533781470353935}
+  - component: {fileID: 7966032841435452994}
   - component: {fileID: 8653533781470353938}
   - component: {fileID: 5236343384847010663}
   m_Layer: 3
@@ -119,7 +119,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8653533781470353935
+--- !u!114 &7966032841435452994
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -128,7 +128,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8653533781470353934}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1316a75237a95f649ad14cfb9fa35549, type: 3}
+  m_Script: {fileID: 11500000, guid: 375e6e2935c681d408ac64f30104e762, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   so_ResourceNode: {fileID: 11400000, guid: 83a912f522dc56e4d8b07ef7a54c0a9e, type: 2}
@@ -148,7 +148,6 @@ MonoBehaviour:
     chance: 25
     minAmount: 1
     maxAmount: 5
-  rewardAmount: 5
   maxHealth: 50
   regenerationTime: 1
 --- !u!114 &8653533781470353938
@@ -164,15 +163,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthOverheadUI: {fileID: 0}
-  onHealthModifyEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  onHealthModifiedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  OnDeathEvent:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!61 &5236343384847010663
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -5,7 +5,7 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
 
-public class UpgradeToolsUIClose : UnityEvent<bool> { }
+
 public class UpgradeToolsUI : MonoBehaviour
 {
     [SerializeField] private GameObject selectionPanelUI;
@@ -21,13 +21,11 @@ public class UpgradeToolsUI : MonoBehaviour
     [SerializeField] private Image upgradePreviewToolImage;
     [SerializeField] private Image upgradePreviewToolFrame;
 
-    [SerializeField] public Sprite sufficient;
-    [SerializeField] public Sprite insufficient;
-
+    [SerializeField] public Sprite sufficientIcon;
+    [SerializeField] public Sprite insufficientIcon;
 
     [SerializeField] public Sprite sufficientFrame;
     [SerializeField] public Sprite insufficientFrame;
-
 
     [SerializeField] private Image materialOneImage;
     [SerializeField] private Image materialOneIsValidImage;
@@ -49,8 +47,26 @@ public class UpgradeToolsUI : MonoBehaviour
     [SerializeField]
     private List<UpgradeToolUI> upgradeToolUIs = new List<UpgradeToolUI>();
 
-    public UpgradeToolsUIClose onUpgradeToolsUIClose = new UpgradeToolsUIClose();
 
+    private void Awake()
+    {
+        foreach (UpgradeToolUI upgradeToolUI in upgradeToolUIs)
+        {
+            upgradeToolUI.upgradeUI = this;
+        }
+       
+
+    }
+
+    private void OnEnable()
+    {
+        Panday.onPandaySpokenToEvent.AddListener(OpenButtonUIClicked);
+    }
+
+    private void OnDisable()
+    {
+        Panday.onPandaySpokenToEvent.RemoveListener(OpenButtonUIClicked);
+    }
     public void ToolButtonUIClicked(int p_toolIndex)
     {
         materialOneRequirement = false;
@@ -67,7 +83,6 @@ public class UpgradeToolsUI : MonoBehaviour
         SO_Tool currentSOTool = p_currentTool.so_Tool;
         int currentToolLevel = p_currentTool.craftLevel-1;
         int upgradeToolLevel = currentToolLevel+1;
-
 
         currentToolNameText.text = currentSOTool.name[p_currentTool.craftLevel - 1];
         currentToolImage.sprite = currentSOTool.equippedIcon[p_currentTool.craftLevel-1];
@@ -89,8 +104,6 @@ public class UpgradeToolsUI : MonoBehaviour
             materialOneImage.sprite = materialOne.so_Item.icon;
             materialOneImage.gameObject.SetActive(true);
             mato = materialOne.so_Item;
-
-
 
             if (InventoryManager.GetItem(materialOne.so_Item).amount >= materialOne.requiredAmount)
             {
@@ -192,7 +205,7 @@ public class UpgradeToolsUI : MonoBehaviour
     public void QuitButtonUIClicked()
     {
         gameObject.SetActive(false);
-        onUpgradeToolsUIClose.Invoke(true);
+        UIManager.onGameplayModeChangedEvent.Invoke(false);
     }
 
     public void OpenButtonUIClicked()
@@ -204,6 +217,6 @@ public class UpgradeToolsUI : MonoBehaviour
         selectionPanelUI.SetActive(true);
         confirmPanelUI.SetActive(false);
         gameObject.SetActive(true);
-        onUpgradeToolsUIClose.Invoke(false);
+        UIManager.onGameplayModeChangedEvent.Invoke(true);
     }
 }

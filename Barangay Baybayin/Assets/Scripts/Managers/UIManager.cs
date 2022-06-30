@@ -7,7 +7,8 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine.Events;
 
-public class PauseGameTimeUI : UnityEvent<bool> { }
+
+public class GameplayModeChangedEvent : UnityEvent<bool> { }
 public class UIManager : MonoBehaviour
 {
     private static UIManager _instance;
@@ -24,30 +25,23 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public RectTransform overheadUI;
+  
     public Image transitionUI;
-    public CharacterDialogueUI characterDialogueUI;
-    public StorylinesUI storylines;
-    public UpgradeToolsUI upgradeUI;
-    public RoomInfoUI roomInfoUI;
 
-    public DayInfoUI dayInfoUI;
-    public InventoryUI inventoryUI;
     public Image toolUseImage;
+
+    public RectTransform overheadUI;
+
     public GameObject overlayCanvas;
     public GameObject gameplayHUD;
-    public GameObject recipeUpgrade;
 
-    public Image weatherSpriteUI;
-    [Header("Weather Temporary Sprites")]
-    public Sprite sunnySprite;
-    public Sprite cloudySprite;
-    public Sprite rainSprite;
-    public Sprite stormySprite;
+    public Image weatherSpriteUI; //Make a WeatherUI class and Put this in it
+
     public Coroutine runningCoroutine;
 
-    public PauseGameTimeUI onPauseGameTime = new PauseGameTimeUI();
-
+    //
+    public static GameplayModeChangedEvent onGameplayModeChangedEvent = new GameplayModeChangedEvent();
+    
     public bool isRunningCoroutine = false;
     public bool justFinishedCoroutine = false;
     private void Awake()
@@ -70,48 +64,32 @@ public class UIManager : MonoBehaviour
 
     private void OnEnable()
     {
-        WeatherManager.onWeatherChangedEvent.AddListener(OnWeatherUIChanged);
-        characterDialogueUI.onCharacterDialogueUIClose.AddListener(OnGameplayHUDSwitch);
-        storylines.onStorylinesUIClose.AddListener(OnGameplayHUDSwitch);
-        upgradeUI.onUpgradeToolsUIClose.AddListener(OnGameplayHUDSwitch);
+        WeatherManager.onWeatherChangedEvent.AddListener(OnWeatherUIChanged); //Make a WeatherUI class and Put this in it
+        onGameplayModeChangedEvent.AddListener(OnGameplayHUDSwitch);
+
     }
 
     private void OnDisable()
     {
-        WeatherManager.onWeatherChangedEvent.RemoveListener(OnWeatherUIChanged);
-        characterDialogueUI.onCharacterDialogueUIClose.RemoveListener(OnGameplayHUDSwitch);
-        storylines.onStorylinesUIClose.RemoveListener(OnGameplayHUDSwitch);
-        upgradeUI.onUpgradeToolsUIClose.RemoveListener(OnGameplayHUDSwitch);
+        WeatherManager.onWeatherChangedEvent.RemoveListener(OnWeatherUIChanged); //Make a WeatherUI class and Put this in it
+        onGameplayModeChangedEvent.RemoveListener(OnGameplayHUDSwitch);
+   
     }
 
-    //TEMPORARY
+    //TEMPORARY Make a WeatherUI class and Put this in it
     private void OnWeatherUIChanged(Weather p_currentWeather, Weather p_nextWeather)
     {
-        switch (p_currentWeather)
-        {
-            case Weather.Sunny:                
-                weatherSpriteUI.sprite = sunnySprite;
-                FindObjectOfType<AudioManager>().Play("Sunny");
-                break;
-            case Weather.Cloudy:
-                weatherSpriteUI.sprite = cloudySprite;
-                FindObjectOfType<AudioManager>().Play("Cloudy");
-                break;
-            case Weather.Rainy:
-                weatherSpriteUI.sprite = rainSprite;
-                FindObjectOfType<AudioManager>().Play("Rain");
-                break;
-            case Weather.Stormy:
-                weatherSpriteUI.sprite = stormySprite;
-                FindObjectOfType<AudioManager>().Play("Storm");
-                break;
-        }
+        weatherSpriteUI.sprite = p_currentWeather.sprite;
+        FindObjectOfType<AudioManager>().Play(p_currentWeather.audioName);
+       
     }
 
     private void OnGameplayHUDSwitch(bool p_bool)
     {
+        TimeManager.onPauseGameTime.Invoke(p_bool);
+        p_bool = !p_bool;
         gameplayHUD.SetActive(p_bool);
-        onPauseGameTime.Invoke(p_bool);
+        
     }
 
     //TEMPORARY

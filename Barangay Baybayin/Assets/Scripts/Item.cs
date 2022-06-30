@@ -135,7 +135,7 @@ public class Item : MonoBehaviour
 
     void Magnetize()
     {
-        Vector3 plrPosition = PlayerManager.instance.joystick.transform.position;
+        Vector3 plrPosition = PlayerManager.instance.playerTransform.transform.position;
         
         if (Vector3.Distance(rb.position, plrPosition) > 1)
         {
@@ -148,11 +148,6 @@ public class Item : MonoBehaviour
         else
         {
             InventoryManager.AddItem(so_Item, 1);
-            
-            //if (hoverEffect.runningCoroutine != null)
-            //{
-            //    hoverEffect.StopCoroutine(hoverEffect.runningCoroutine);
-            //}
             Destroy(gameObject);
         }
       

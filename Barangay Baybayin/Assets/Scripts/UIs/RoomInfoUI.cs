@@ -16,7 +16,16 @@ public class RoomInfoUI : MonoBehaviour
     public GridLayoutGroup gridLayout;
     public ResourceDropUI resourceDropUIPrefab;
     public List<ResourceDrop> currentRoomsResourceDrops;
+  
 
+    private void OnEnable()
+    {
+        PlayerManager.onRoomEnteredEvent.AddListener(RoomEntered);
+    }
+    private void OnDisable()
+    {
+        PlayerManager.onRoomEnteredEvent.RemoveListener(RoomEntered);
+    }
     public void RoomEntered(Passageway p_passageway)
     {
 
@@ -30,17 +39,19 @@ public class RoomInfoUI : MonoBehaviour
                                             p_passageway.cameraPanLimit.y
                                             );
 
-        PlayerManager.instance.currentRoomID = p_passageway.room.currentRoomID;
+        //PlayerManager.instance.currentRoomID = p_passageway.room.currentRoomID;
         gameObject.SetActive(true);
         StartCoroutine(Co_RoomInfoUITransition(roomName, roomDescription, availableResourceNodeDrops, cameraPosition, cameraPanLimit));
     }
     IEnumerator Co_RoomInfoUITransition(string p_roomName, string p_roomDescription, List<ResourceNodeDrop> p_availableResourceNodeDrops, Vector2 p_cameraPos, Vector2 p_cameraPanLimit)
     {
         //Clear resources // object pool this
-        PlayerManager.instance.joystick.enabled = false;
+        //PlayerManager.instance.joystick.enabled = false;
+        
+        //PlayerManager.onUpdateJoystickEnabledEvent.Invoke(false);
         for (int si = 0; si < availableResourcesContainer.childCount; si++)
         {
-            Debug.Log("DELETE");
+            //Debug.Log("DELETE");
             Destroy(availableResourcesContainer.GetChild(si).gameObject);
 
         }
@@ -109,57 +120,9 @@ public class RoomInfoUI : MonoBehaviour
                     
                 }
             }
-            //if (currentRoomsResourceDrops.Count <= 21)
-            //{
-           
-            //    //gridLayout.padding.left = 50;
-            //    int stack = 0;
-            //    int leftOver = currentRoomsResourceDrops.Count;
-            //    int lastSavedLeftOver = -1;
-            //    while (leftOver - 3 != lastSavedLeftOver) 
-            //    {
-            //        leftOver -= 3;
-            //        if (leftOver > 0)
-            //        {
-            //            lastSavedLeftOver = leftOver;
-            //            stack++;
-            //        }
-            //        else
-            //        {
-            //            break;
-            //        }
-                   
-            //    }
-            //    if (stack > 0)
-            //    {
-            //        stack--;
-            //    }
-            //    int subtract = 100 * (stack);
-            //    gridLayout.padding.right = 650 - subtract;
-                
-              
-            //}
-            //else
-            //{
-            //    gridLayout.padding.right = 50;
-            //}
-            //else if (currentRoomsResourceDrops.Count <= 6)
-            //{
-               
-                
-            //    gridLayout.padding.left = 50;
-            //    gridLayout.padding.right = 550;6
-            //    gridLayout.padding.right = 450;9
-            //    gridLayout.padding.right = 350;12
-            //    gridLayout.padding.right = 250;15
-            //    gridLayout.padding.right = 150;18
-            //    gridLayout.padding.right = 50;21
-            //}
-           
-
-
+     
         }
-        CameraManager.instance.onCameraMovedEvent.Invoke(p_cameraPos, p_cameraPanLimit);
+        CameraManager.instance.MoveCamera(p_cameraPos, p_cameraPanLimit);
         yield return new WaitForSeconds(3.75f);
         Sequence t = DOTween.Sequence();
         t.Join(roomNameText.DOFade(0f, 0.5f));
@@ -170,6 +133,6 @@ public class RoomInfoUI : MonoBehaviour
         gameObject.SetActive(false);
         UIManager.TransitionFade(0, false);
 
-        PlayerManager.instance.joystick.enabled = true;
+        //PlayerManager.onUpdateJoystickEnabledEvent.Invoke(true);
     }
 }

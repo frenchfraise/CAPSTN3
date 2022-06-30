@@ -26,9 +26,19 @@ public class CharacterDialogueUI : MonoBehaviour
     private Animator anim;
 
     [SerializeField] private string id;
-   
-    public CharacterDialogueUIClose onCharacterDialogueUIClose = new CharacterDialogueUIClose();
-   
+
+    public static CharacterSpokenToEvent onCharacterSpokenToEvent = new CharacterSpokenToEvent();
+    // public CharacterDialogueUIClose onCharacterDialogueUIClose = new CharacterDialogueUIClose();
+    private void OnEnable()
+    {
+        onCharacterSpokenToEvent.AddListener(OnCharacterSpokenTo);
+
+    }
+
+    private void OnDisable()
+    {
+        onCharacterSpokenToEvent.RemoveListener(OnCharacterSpokenTo);
+    }
     public void OnCharacterSpokenTo(string p_id, SO_Dialogues p_SO_Dialogue)
     {
         id = p_id;
@@ -45,7 +55,7 @@ public class CharacterDialogueUI : MonoBehaviour
         UIManager.instance.overlayCanvas.SetActive(false);
         
         ResetCharacterDialogueUI();
-        onCharacterDialogueUIClose.Invoke(false);
+        UIManager.onGameplayModeChangedEvent.Invoke(true);
     }
     public void OnCloseCharacterDialogueUI()
     {
@@ -53,8 +63,8 @@ public class CharacterDialogueUI : MonoBehaviour
         UIManager.instance.gameplayHUD.SetActive(true);
         UIManager.instance.overlayCanvas.SetActive(true);
         gameObject.SetActive(false);
-
-        onCharacterDialogueUIClose.Invoke(true);
+        UIManager.onGameplayModeChangedEvent.Invoke(false);
+        //onCharacterDialogueUIClose.Invoke(true);
     }
 
     public IEnumerator Co_TypeWriterEffect(TMP_Text p_textUI,string p_fullText)

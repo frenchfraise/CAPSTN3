@@ -4,13 +4,25 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
+    
     //[HideInInspector] 
-    public Vector2 offset;
+    public Vector2 offset { private get;  set; }
     //[HideInInspector] 
-    public Vector2 panLimit;
+    public Vector2 panLimit { private get;  set; }
+
+    private void OnEnable()
+    {
+        CameraManager.onCameraMovedEvent.AddListener(CameraMoved);
+        CameraManager.instance.ResetCamera();
+    }
+    public void CameraMoved(Vector2 p_newPosition, Vector2 p_panLimit)
+    {
+        offset = new Vector3(p_newPosition.x, p_newPosition.y);
+        panLimit = p_panLimit;
+    }
     private void Update()
     {
-        Vector3 pos =  PlayerManager.instance.stamina.gameObject.transform.position;
+        Vector3 pos =  PlayerManager.instance.playerTransform.position;
 
         pos.x = Mathf.Clamp(pos.x, offset.x + -panLimit.x, offset.x + panLimit.x);
         pos.y = Mathf.Clamp(pos.y, offset.y + -panLimit.y, offset.y + panLimit.y);

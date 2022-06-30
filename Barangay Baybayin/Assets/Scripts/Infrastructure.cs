@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 public class InfrastructureHitEvent : UnityEvent<int, int, UnityEvent> { }
 [RequireComponent(typeof(Health))]
-public class Infrastructure : PoolableObject
+public class Infrastructure : MonoBehaviour
 {
     bool canInteract = true;
     private HealthOverheadUI healthOverheadUI;
@@ -42,15 +42,15 @@ public class Infrastructure : PoolableObject
         yield return new WaitForSeconds(0.5f);
      
         health.OnDeathEvent.AddListener(Constructed);
-        GenericObjectPool objectPool = ObjectPoolManager.GetPool(typeof(HealthOverheadUI));
-        PoolableObject healthOverheadUIObject = objectPool.pool.Get();
-        healthOverheadUI = healthOverheadUIObject.GetComponent<HealthOverheadUI>();
+        //GenericObjectPool objectPool = ObjectPoolManager.GetPool(typeof(HealthOverheadUI)); //URGENT FIX
+        //PoolableObject healthOverheadUIObject = objectPool.pool.Get();
+        //healthOverheadUI = healthOverheadUIObject.GetComponent<HealthOverheadUI>();
 
-        healthOverheadUI.SetHealthBarData(transform, UIManager.instance.overheadUI);
-        health.onHealthModifiedEvent.AddListener(healthOverheadUI.OnHealthChanged);
-        health.OnDeathEvent.AddListener(healthOverheadUI.OnHealthDied);
+        //healthOverheadUI.SetHealthBarData(transform, UIManager.instance.overheadUI);
+        //health.onHealthModifiedEvent.AddListener(healthOverheadUI.OnHealthChanged);
+        //health.OnDeathEvent.AddListener(healthOverheadUI.OnHealthDied);
 
-        OnInfrastructureHitEvent.AddListener(Hit);
+        //OnInfrastructureHitEvent.AddListener(Hit);
     }
     protected void Hit( int p_craftLevel, int p_currentDamage, UnityEvent p_eventCallback)
     {

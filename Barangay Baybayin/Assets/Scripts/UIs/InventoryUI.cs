@@ -11,6 +11,11 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] RectTransform contentPanel;
     [SerializeField] List<RectTransform> pages = new List<RectTransform>();
     [SerializeField] int currentPage;
+    private void OnEnable()
+    {
+        GenerateInventoryPageUIs();
+    }
+
     public void GenerateInventoryPageUIs()
     {
         for (int i = 0; i < InventoryManager.instance.inventoryPages.Count;)

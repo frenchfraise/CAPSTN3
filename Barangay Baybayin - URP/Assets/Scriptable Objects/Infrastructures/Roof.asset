@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a850d17609d68eb40a07fab8e4a9e03d, type: 3}
+  m_Name: Roof
+  m_EditorClassIdentifier: 
+  name: Roof
+  maxHealth: 5
+  sprites:
+  - {fileID: 21300000, guid: fbb4b48a4976ca747bf30725e93a8d7f, type: 3}
+  - {fileID: 21300000, guid: 34e571c27b298824a9d52be254f61058, type: 3}

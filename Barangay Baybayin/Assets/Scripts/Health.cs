@@ -3,13 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-[System.Serializable]
 public class HealthModifyEvent : UnityEvent<float> { }
 
-[System.Serializable]
 public class HealthModifiedEvent : UnityEvent<bool, float, float> { }
 
-[System.Serializable]
 public class DeathEvent : UnityEvent { }
 public class Health : MonoBehaviour
 {

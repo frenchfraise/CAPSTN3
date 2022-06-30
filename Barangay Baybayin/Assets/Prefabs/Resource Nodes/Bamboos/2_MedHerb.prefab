@@ -93,7 +93,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8653533781470353937}
-  - component: {fileID: 8653533781470353935}
+  - component: {fileID: -8676587397667057265}
   - component: {fileID: 8653533781470353938}
   - component: {fileID: 5236343384847010663}
   m_Layer: 3
@@ -119,7 +119,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8653533781470353935
+--- !u!114 &-8676587397667057265
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -128,25 +128,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 8653533781470353934}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1316a75237a95f649ad14cfb9fa35549, type: 3}
+  m_Script: {fileID: 11500000, guid: 665cefa1e92a9f34981ce9bd372d60cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  so_ResourceNode: {fileID: 11400000, guid: 34ff26ab5227f26438366805f1126507, type: 2}
-  itemPrefab: {fileID: 8436199365745860972, guid: 2bf34b5e8f26c294d8ba4e3060dded9a, type: 3}
-  hintSprite: {fileID: 21300000, guid: be734b9a7ee7e4c4699b472c126b0a49, type: 3}
-  levelRequirement: 3
-  resourceDrops:
-  - so_Item: {fileID: 11400000, guid: d56a0dc8cd2621040a1a8834d0afd6c3, type: 2}
-    chance: 50
-    minAmount: 1
-    maxAmount: 3
-  - so_Item: {fileID: 11400000, guid: 26abfc8135077e8479899616e6db5cb5, type: 2}
-    chance: 50
-    minAmount: 1
-    maxAmount: 3
-  rewardAmount: 5
-  maxHealth: 50
-  regenerationTime: 1
+  so_ResourceNode: {fileID: 0}
+  itemPrefab: {fileID: 0}
+  hintSprite: {fileID: 0}
+  levelRequirement: 0
+  resourceDrops: []
+  maxHealth: 0
 --- !u!114 &8653533781470353938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,15 +150,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthOverheadUI: {fileID: 0}
-  onHealthModifyEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  onHealthModifiedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  OnDeathEvent:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!61 &5236343384847010663
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -253,7 +253,7 @@ public class ToolCaster : MonoBehaviour
 
     private void CheckWeatherStaminaTax(Weather p_currentWeather, Weather p_nextWeather)
     {
-        if (Weather.Rainy == p_currentWeather)
+        if ("Rainy" == p_currentWeather.name)
         {
             staminaCost = current_Tool.so_Tool.staminaCost[current_Tool.craftLevel-1] * 1.5f;
             Debug.Log("It is rainy! Tax is: " + staminaCost);

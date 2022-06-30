@@ -6,22 +6,19 @@ using UnityEngine.Events;
 public class BedInteractedEvent : UnityEvent { }
 public class Bed : InteractibleObject
 {
-    public BedInteractedEvent onBedInteractedEvent = new BedInteractedEvent();
-
+    public static BedInteractedEvent onBedInteractedEvent = new BedInteractedEvent();
+    public Transform spawnTransform;
    
     protected override void OnEnable()
     {
         base.OnEnable();
-        onBedInteractedEvent.AddListener(TimeManager.instance.EndDay);
+        
  
     }
     protected override void OnDisable()
     {
         base.OnDisable();
-        if (TimeManager.instance)
-        {
-            onBedInteractedEvent.RemoveListener(TimeManager.instance.EndDay);
-        }
+     
     }
     protected override void OnInteract()
     {

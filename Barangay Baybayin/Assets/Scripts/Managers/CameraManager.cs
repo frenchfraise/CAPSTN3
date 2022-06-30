@@ -22,36 +22,42 @@ public class CameraManager : MonoBehaviour
     public Camera worldCamera;
     [HideInInspector] public CameraMovement cameraMovement;
     public Camera uiCamera;
-    public CameraMovedEvent onCameraMovedEvent = new CameraMovedEvent();
+    public static CameraMovedEvent onCameraMovedEvent = new CameraMovedEvent();
+    [SerializeField] Room defaultRoom;
 
     private void Awake()
     {
-        if (_instance != null)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
+        //if (_instance != null)
+        //{
+        //    Destroy(gameObject);
+        //}
+        //else
+        //{
             _instance = this;
             DontDestroyOnLoad(gameObject);
-        }
+        //}
         cameraMovement = worldCamera.GetComponent<CameraMovement>();
     }
 
     private void OnEnable()
     {
-        onCameraMovedEvent.AddListener(CameraMoved);
+    
+        TimeManager.onDayChangingEvent.AddListener(ResetCamera);
     }
 
     private void OnDisable()
     {
-        onCameraMovedEvent.RemoveListener(CameraMoved);
+       // onCameraMovedEvent.RemoveListener(CameraMoved);
     }
 
-    public void CameraMoved(Vector2 p_newPosition,Vector2 p_panLimit)
+    public void ResetCamera()
     {
-        cameraMovement.offset = new Vector3(p_newPosition.x, p_newPosition.y);
-        //,worldCamera.transform.position.z);
-        cameraMovement.panLimit = p_panLimit;
+        onCameraMovedEvent.Invoke(defaultRoom.cameraDestinationPosition, defaultRoom.cameraPanLimit);
+    }
+
+    public void MoveCamera(Vector2 p_newPosition,Vector2 p_panLimit)
+    {
+        Debug.Log(p_newPosition + " - " + p_panLimit);
+        onCameraMovedEvent.Invoke(p_newPosition, p_panLimit);
     }
 }

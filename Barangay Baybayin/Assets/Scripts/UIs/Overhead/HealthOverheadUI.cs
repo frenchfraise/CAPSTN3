@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
-public class HealthOverheadUI : PoolableObject
+public class HealthOverheadUI : MonoBehaviour
 {
     private bool isRevealed;
     [SerializeField] private float unrevealTimeOut;
@@ -28,7 +28,7 @@ public class HealthOverheadUI : PoolableObject
         
         isRevealed = false;
         healthFrame.gameObject.SetActive(false);
-        genericObjectPool.pool.Release(this);
+        //genericObjectPool.pool.Release(this); //URGENT FIX
         
        
     }

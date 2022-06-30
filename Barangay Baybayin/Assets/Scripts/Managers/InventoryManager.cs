@@ -37,7 +37,7 @@ public class InventoryManager : MonoBehaviour
     public void OnEnable()
     {
 
-        UIManager.instance.inventoryUI.GenerateInventoryPageUIs();
+        //UIManager.instance.inventoryUI.GenerateInventoryPageUIs();
     }
     public static ItemData GetItem(SO_Item p_item)
     {

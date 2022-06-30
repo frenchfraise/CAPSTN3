@@ -4,10 +4,13 @@ using UnityEngine;
 using UnityEngine.Events;
 
 public class TimeChangedEvent : UnityEvent<int, int, int> { };
-public class DayChangedEvent : UnityEvent<int> { };
+public class DayEndedEvent : UnityEvent<bool,int> { };
 
+public class DayChangingEvent : UnityEvent { };
+
+public class DayChangeEndedEvent : UnityEvent { };
 public class HourChangedEvent : UnityEvent { };
-
+public class PauseGameTimeUI : UnityEvent<bool> { }
 public class TimeData
 {
     int hoursInDay;
@@ -20,7 +23,6 @@ public class TimeManager : MonoBehaviour
     public const int hoursInDay = 24, minutesInHour = 30, secondsInMinutes = 60;
 
     private static TimeManager _instance;
-    private DayInfoUI dayInfoUI;
     public static TimeManager instance
     {
         get
@@ -35,8 +37,11 @@ public class TimeManager : MonoBehaviour
     }
 
     public static TimeChangedEvent onTimeChangedEvent = new TimeChangedEvent();
-    public static DayChangedEvent onDayChangedEvent = new DayChangedEvent();
+    public static DayEndedEvent onDayEndedEvent = new DayEndedEvent();
+    public static DayChangingEvent onDayChangingEvent = new DayChangingEvent();
+    public static DayChangeEndedEvent onDayChangeEndedEvent = new DayChangeEndedEvent();
     public static HourChangedEvent onHourChanged = new HourChangedEvent();
+    public static PauseGameTimeUI onPauseGameTime = new PauseGameTimeUI();
     [HideInInspector] public static float sunriseHour = 6;
 
     private float totalTime = 0; // This is for realtime game played (hours played and such)
@@ -67,7 +72,7 @@ public class TimeManager : MonoBehaviour
         minute = 0;
         hour = startHour;
         
-        onDayChangedEvent.Invoke(dayCount);
+        onDayEndedEvent.Invoke(false,dayCount);
         onHourChanged.Invoke(); //TEMPORARY
         
         DoTimer = true;
@@ -76,25 +81,25 @@ public class TimeManager : MonoBehaviour
 
     private void OnEnable()
     {
-        if (PlayerManager.instance.stamina)
-        {
-            PlayerManager.instance.stamina.onStaminaDepletedEvent.AddListener(FaintedEndDay);
-        }
-        dayInfoUI = UIManager.instance.dayInfoUI;
+        
+        Stamina.onStaminaDepletedEvent.AddListener(FaintedEndDay);
+        Bed.onBedInteractedEvent.AddListener(EndDay);
+        //dayInfoUI = UIManager.instance.dayInfoUI;
         //dayInfoUI = dayInfoUI?UIManager.instance.dayInfoUI:FindObjectOfType<DayInfoUI>();
-        onDayChangedEvent.AddListener(dayInfoUI.DayEnd);
-        UIManager.instance.onPauseGameTime.AddListener(SetPauseGame);
+
+        //onDayChangeEndedEvent.AddListener(NewDay);
+        onPauseGameTime.AddListener(SetPauseGame);
         onTimeChangedEvent.AddListener(OnTimeCheck);
+        
     }
 
     private void OnDisable()
     {
-        if (PlayerManager.instance)
-        {
-            PlayerManager.instance.stamina.onStaminaDepletedEvent.RemoveListener(FaintedEndDay);
-        }
-        onDayChangedEvent.RemoveListener(dayInfoUI.DayEnd);
-        if (UIManager.instance) UIManager.instance.onPauseGameTime.RemoveListener(SetPauseGame);
+        
+        Stamina.onStaminaDepletedEvent.RemoveListener(FaintedEndDay);
+        Bed.onBedInteractedEvent.RemoveListener(EndDay);
+
+        onPauseGameTime.RemoveListener(SetPauseGame);
         onTimeChangedEvent.AddListener(OnTimeCheck);
     }
 
@@ -132,25 +137,26 @@ public class TimeManager : MonoBehaviour
         if (p_hour >= endHour)
         {
             hour = startHour;
-            onDayChangedEvent.Invoke(dayCount);
+            onDayEndedEvent.Invoke(false,dayCount);
         }
     }
 
     public void FaintedEndDay()
     {
-        UIManager.instance.dayInfoUI.Faint(dayCount);
-        onDayChangedEvent.Invoke(dayCount);
+       // UIManager.instance.dayInfoUI.Faint(dayCount);
+        onDayEndedEvent.Invoke(true,dayCount);
     }
     public void EndDay()
     {
-        UIManager.instance.dayInfoUI.DayEnd(dayCount);
-        onDayChangedEvent.Invoke(dayCount);
+       // UIManager.instance.dayInfoUI.DayEnd(dayCount);
+        onDayEndedEvent.Invoke(false,dayCount);
     }
     public void NewDay()
     {
         Debug.Log("NEW DAY");
-        hour = startHour;
-        dayCount++;
+        TimeManager.instance.hour = TimeManager.instance.startHour;
+        TimeManager.instance.dayCount++;
+        TimeManager.onDayChangeEndedEvent.Invoke();
     }    
 
     private void SetPauseGame(bool p_bool)

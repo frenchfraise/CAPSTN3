@@ -5,6 +5,8 @@ using UnityEngine.UI;
 using TMPro;
 public class UpgradeToolUI : MonoBehaviour
 {
+
+    public UpgradeToolsUI upgradeUI { private get; set; }
     public int toolIndex;
     [SerializeField]
     private Image iconImage;
@@ -31,8 +33,8 @@ public class UpgradeToolUI : MonoBehaviour
         Tool tool = ToolManager.instance.tools[toolIndex];
         nameText.text = tool.so_Tool.name[1];
         iconImage.sprite = tool.so_Tool.equippedIcon[tool.craftLevel - 1];
-        nameFrameImage.sprite = UIManager.instance.upgradeUI.plates[tool.craftLevel - 1];
-        proficiencyFrameImage.sprite = UIManager.instance.upgradeUI.plates[tool.craftLevel - 1];
+        nameFrameImage.sprite = upgradeUI.plates[tool.craftLevel - 1];
+        proficiencyFrameImage.sprite = upgradeUI.plates[tool.craftLevel - 1];
         bool isUpgradableReqOne = false;
 
         bool isUpgradableReqTwo = false;
@@ -50,13 +52,13 @@ public class UpgradeToolUI : MonoBehaviour
             if (InventoryManager.GetItem(itemUpgradeRequirement.so_Item).amount >= itemUpgradeRequirement.requiredAmount)
             {
                // hasRecipeImage.color = new Color32(0, 255, 0, 225);
-                hasRecipeImage.sprite = UIManager.instance.upgradeUI.sufficient;
+                hasRecipeImage.sprite = upgradeUI.sufficientIcon;
                 isUpgradableReqOne = true;
             }
             else if (InventoryManager.GetItem(itemUpgradeRequirement.so_Item).amount < itemUpgradeRequirement.requiredAmount)
             {
                 //hasRecipeImage.color = new Color32(255, 0, 0, 225);
-                hasRecipeImage.sprite = UIManager.instance.upgradeUI.insufficient;
+                hasRecipeImage.sprite = upgradeUI.insufficientIcon;
                 
             }
         }
@@ -64,17 +66,10 @@ public class UpgradeToolUI : MonoBehaviour
         {
             isUpgradableReqOne = true;
            // hasRecipeImage.color = new Color32(0, 255, 0, 225);
-            hasRecipeImage.sprite = UIManager.instance.upgradeUI.sufficient;
+            hasRecipeImage.sprite = upgradeUI.sufficientIcon;
            // isUpgradableImage.color = new Color32(0, 255, 0, 225);
-            isUpgradableImage.sprite = UIManager.instance.upgradeUI.sufficient;
+            isUpgradableImage.sprite = upgradeUI.sufficientIcon;
         }
-            
-        
-        
-
-      
-       
-        
 
         if (isUpgradableReqOne && isUpgradableReqTwo)
         {
@@ -84,12 +79,12 @@ public class UpgradeToolUI : MonoBehaviour
 
                 if (InventoryManager.GetItem(materialTwo.so_Item).amount >= materialTwo.requiredAmount)
                 {
-                    isUpgradableImage.sprite = UIManager.instance.upgradeUI.sufficient;
+                    isUpgradableImage.sprite = upgradeUI.sufficientIcon;
                    // isUpgradableImage.color = new Color32(0, 255, 0, 225);
                 }
                 else if (InventoryManager.GetItem(materialTwo.so_Item).amount < materialTwo.requiredAmount)
                 {
-                    isUpgradableImage.sprite = UIManager.instance.upgradeUI.insufficient;
+                    isUpgradableImage.sprite = upgradeUI.insufficientIcon;
                    // isUpgradableImage.color = new Color32(255, 0, 0, 225);
                 }
 
@@ -97,7 +92,7 @@ public class UpgradeToolUI : MonoBehaviour
         }
         else
         {
-            isUpgradableImage.sprite = UIManager.instance.upgradeUI.insufficient;
+            isUpgradableImage.sprite = upgradeUI.insufficientIcon;
         }
         
     }

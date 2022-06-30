@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class CharacterSpokenToEvent : UnityEvent<string, SO_Dialogues> { }
 public class Character : InteractibleObject
 {
-    private CharacterDialogueUI characterDialogueUI;
+
     //[SerializeField] private SO_StoryLine so_StoryLine;
     //[SerializeField]
     //private int storylineIndex;
@@ -14,26 +14,16 @@ public class Character : InteractibleObject
     private string id;
     [SerializeField] private bool isFirstTime = true;
     
-    public CharacterSpokenToEvent onCharacterSpokenToEvent = new CharacterSpokenToEvent();
+
     
     protected override void OnEnable()
     {
         base.OnEnable();
-        characterDialogueUI = UIManager.instance.characterDialogueUI ? UIManager.instance.characterDialogueUI
-          : FindObjectOfType<CharacterDialogueUI>();
-        onCharacterSpokenToEvent.AddListener(characterDialogueUI.OnCharacterSpokenTo); 
-        
-        
 
     }
     protected override void OnDisable()
     {
         base.OnDisable();
-        
-        onCharacterSpokenToEvent.RemoveListener(characterDialogueUI.OnCharacterSpokenTo);
-        
-        
-
     }
     protected override void OnInteract()
     {
@@ -57,7 +47,7 @@ public class Character : InteractibleObject
                 if (isFirstTime)
                 {
                     isFirstTime = false;
-                    onCharacterSpokenToEvent.Invoke(id,questlineData.initialSO_Dialogues);
+                    CharacterDialogueUI.onCharacterSpokenToEvent.Invoke(id,questlineData.initialSO_Dialogues);
 
                 }
                 else
@@ -65,13 +55,13 @@ public class Character : InteractibleObject
                     if (isQuestCompleted)
                     {
                         Debug.Log("PHASE 2");
-                        onCharacterSpokenToEvent.Invoke(id, questlineData.questCompleteSO_Dialogues);
+                        CharacterDialogueUI.onCharacterSpokenToEvent.Invoke(id, questlineData.questCompleteSO_Dialogues);
                         QuestCompleted();
                         isFirstTime = true;
                     }
                     else
                     {
-                        onCharacterSpokenToEvent.Invoke(id, questlineData.questInProgressSO_Dialogues);
+                        CharacterDialogueUI.onCharacterSpokenToEvent.Invoke(id, questlineData.questInProgressSO_Dialogues);
                     }
                         
                 }

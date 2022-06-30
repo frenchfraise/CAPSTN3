@@ -30,14 +30,14 @@ public class Room : MonoBehaviour
     public int currentRoomID;
     public string roomName;
     public string roomDescription;
-    [SerializeField] private Vector2 cameraDestinationPosition;
-    [SerializeField] private Vector2 cameraPanLimit;
+    [SerializeField] public Vector2 cameraDestinationPosition;
+    [SerializeField] public Vector2 cameraPanLimit;
     [NonReorderable] public List<ResourceNodeDrop> availableResourceNodeDrops = new List<ResourceNodeDrop>(); // populate by node
     [NonReorderable] [SerializeField] private List<ResourceNodeSpawner> resourceNodeSpawners = new List<ResourceNodeSpawner>();
 
     [NonReorderable] [SerializeField] private List<PassagewayInfo> passagewayInfos = new List<PassagewayInfo>();
 
-    public RoomEnteredEvent onRoomEnteredEvent = new RoomEnteredEvent();
+
     
     public void GetRoomInfos(out string p_roomName, out string p_roomDescription, out List<ResourceNodeDrop> p_availableResourceNodeDrops)
     {
@@ -48,7 +48,7 @@ public class Room : MonoBehaviour
 
     private void OnEnable()
     {
-        onRoomEnteredEvent.AddListener(UIManager.instance.roomInfoUI.RoomEntered);
+      
         foreach (ResourceNodeSpawner resourceNodeSpawner in resourceNodeSpawners)
         {
             resourceNodeSpawner.AssignRoom(this);
@@ -73,10 +73,6 @@ public class Room : MonoBehaviour
 
     private void OnDisable()
     {
-        if (UIManager.instance)
-        {
-            onRoomEnteredEvent.RemoveListener(UIManager.instance.roomInfoUI.RoomEntered);
-        }
         
         
     }

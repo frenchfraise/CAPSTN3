@@ -8,8 +8,8 @@ public class Passageway : MonoBehaviour
 
     [HideInInspector] public Room room;
     private Transform playerDestinationPosition;
-    [HideInInspector] public Vector2 cameraDestinationPosition;
-    [HideInInspector] public Vector2 cameraPanLimit;
+    public Vector2 cameraDestinationPosition { get; private set; }
+    public Vector2 cameraPanLimit { get; private set; }
     private Passageway connectedToPassageway;
 
     public void AssignPassageway(Room p_room,
@@ -33,7 +33,8 @@ public class Passageway : MonoBehaviour
   
             collision.gameObject.transform.position = connectedToPassageway.playerDestinationPosition.position;
             
-            connectedToPassageway.room.onRoomEnteredEvent.Invoke(connectedToPassageway);
+            PlayerManager.onRoomEnteredEvent.Invoke(connectedToPassageway);
+            PlayerManager.onUpdateCurrentRoomIDEvent.Invoke(connectedToPassageway.room.currentRoomID);
 
         }
        

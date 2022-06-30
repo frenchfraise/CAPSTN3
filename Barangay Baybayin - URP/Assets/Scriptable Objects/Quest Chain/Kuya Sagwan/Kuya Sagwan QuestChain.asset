@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dabccd67f58b89349ba4cab56a870d02, type: 3}
+  m_Name: Kuya Sagwan QuestChain
+  m_EditorClassIdentifier: 
+  ID: Q-KS
+  character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
+  questLines:
+  - {fileID: 11400000, guid: 51ca77c7255bcdd4399101eb5fac905b, type: 2}
+  - {fileID: 11400000, guid: 237cb94ab987b1d4c8eed929dfa8f794, type: 2}
+  - {fileID: 11400000, guid: 2d2d4b937de08524ca4e5080b39ba9c0, type: 2}
