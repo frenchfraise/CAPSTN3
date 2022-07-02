@@ -7,8 +7,7 @@ using UnityEngine.Pool;
 public class ResourceNodeHitEvent : UnityEvent<List<SO_ResourceNode> , int , int, UnityEvent > { }
 public class ResourceNode : Unit
 {
-   
-    private HealthOverheadUI healthOverheadUI;
+ 
     public SO_ResourceNode so_ResourceNode;
 
     [Header("Item")]
@@ -20,54 +19,25 @@ public class ResourceNode : Unit
 
     [NonReorderable] public List<ResourceDrop> resourceDrops = new List<ResourceDrop>(); //chance
 
-
-    //public ResourceDrop resourceDrop;
-    //public int rewardAmount;
-
-    public float maxHealth;
-    //public float regenerationTime;
-
     public ResourceNodeHitEvent OnResourceNodeHitEvent = new ResourceNodeHitEvent();
 
-    private void Start()
-    {
-        Health health = GetComponent<Health>();
-        health.SetValues(maxHealth);
-        health.enabled = true;
-        
-    }
-
-   
-
-    private void OnEnable()
+    protected override void OnEnable()
     {
         Health health = GetComponent<Health>();
         health.OnDeathEvent.AddListener(RewardResource);
-        health.OnDeathEvent.AddListener(Died);
-        //GenericObjectPool objectPool = ObjectPoolManager.GetPool(typeof(HealthOverheadUI)); //URGENT FIX
-        //PoolableObject healthOverheadUIObject = objectPool.pool.Get();
-        //healthOverheadUI = healthOverheadUIObject.GetComponent<HealthOverheadUI>();
-  
-        //healthOverheadUI.SetHealthBarData(transform, UIManager.instance.overheadUI);
-        //health.onHealthModifiedEvent.AddListener(healthOverheadUI.OnHealthChanged);
-        //health.OnDeathEvent.AddListener(healthOverheadUI.OnHealthDied);
-
-        //OnResourceNodeHitEvent.AddListener(Hit);
+ 
+        OnResourceNodeHitEvent.AddListener(Hit);
     }
 
-    private void OnDisable()
+    protected override void OnDisable()
     {
         Health health = GetComponent<Health>();
         health.OnDeathEvent.RemoveListener(RewardResource);
-        health.OnDeathEvent.RemoveListener(Died);
-
-        health.onHealthModifiedEvent.RemoveListener(healthOverheadUI.OnHealthChanged);
-        health.OnDeathEvent.RemoveListener(healthOverheadUI.OnHealthDied);
-
+   
         OnResourceNodeHitEvent.RemoveListener(Hit);
     }
 
-    public void Hit( List<SO_ResourceNode> p_useForResourceNode,int p_craftLevel, int p_currentDamage, UnityEvent p_eventCallback) 
+    public virtual void Hit( List<SO_ResourceNode> p_useForResourceNode,int p_craftLevel, int p_currentDamage, UnityEvent p_eventCallback) 
     {
         //Debug.Log("1 " + p_useForResourceNode + " - " + p_craftLevel + " - " + p_currentDamage + " - ");
         foreach(SO_ResourceNode useForResourceNode in p_useForResourceNode)
@@ -108,8 +78,10 @@ public class ResourceNode : Unit
         
     }
 
-    public void Died()
-    {
-        //genericObjectPool.pool.Release(this); // URGENT FIX
-    }
+    //public override void InitializeValues()
+    //{
+    //    base.InitializeValues();
+    //    StartCoroutine(co_test());
+
+    //}
 }

@@ -108,7 +108,7 @@ public class HealthOverheadUI : MonoBehaviour
     }
     private void Start()
     {
-        cam = cam ? cam : Camera.main;
+        cam = cam ? cam : CameraManager.instance.worldCamera;
         
     }
 

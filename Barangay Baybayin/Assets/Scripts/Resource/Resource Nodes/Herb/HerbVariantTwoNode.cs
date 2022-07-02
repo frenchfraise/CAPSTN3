@@ -4,5 +4,9 @@ using UnityEngine;
 
 public class HerbVariantTwoNode : ResourceNode
 {
-   
+    protected override void Death()
+    {
+        base.Death();
+        HerbVariantTwoNodePool.pool.Release(this);
+    }
 }

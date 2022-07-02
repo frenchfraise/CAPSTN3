@@ -22,9 +22,11 @@ public class Passageway : MonoBehaviour
         playerDestinationPosition = p_playerDestinationPosition;
         cameraDestinationPosition = p_cameraDestinationPosition;
         cameraPanLimit = p_cameraPanLimit;
+
+
         connectedToPassageway = p_connectedToPassageway;
     }
-
+  
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

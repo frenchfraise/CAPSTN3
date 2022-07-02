@@ -23,16 +23,16 @@ public class InventoryManager : MonoBehaviour
     private void Awake()
     {
         
-        if (_instance != null)
-        {
-            //Destroy(gameObject);
-        }
-        else
-        {
+        //if (_instance != null)
+        //{
+        //    //Destroy(gameObject);
+        //}
+        //else
+        //{
             _instance = this;
-            DontDestroyOnLoad(gameObject);
+        //    DontDestroyOnLoad(gameObject);
 
-        }
+        //}
     }
     public void OnEnable()
     {
@@ -98,6 +98,38 @@ public class InventoryManager : MonoBehaviour
             }
         }
      
+    }
+
+    public static void ReduceItem(SO_Item p_item, int p_amount)
+    {
+        for (int iii = 0; iii < InventoryManager.instance.inventoryPages.Count; iii++)
+        {
+            for (int ii = 0; ii < InventoryManager.instance.inventoryPages[iii].itemCategories.Count; ii++)
+            {
+
+                for (int i = 0; i < InventoryManager.instance.inventoryPages[iii].itemCategories[ii].items.Count;)
+                {
+                    if (InventoryManager.instance.inventoryPages[iii].itemCategories[ii].items[i].so_Item == p_item)
+                    {
+
+                        InventoryManager.instance.inventoryPages[iii].itemCategories[ii].items[i].amount -= p_amount;
+                        InventoryManager.instance.inventoryPages[iii].itemCategories[ii].items[i].UpdateText(); //temporary
+
+                        return;
+                    }
+                    i++;
+                    if (i >= InventoryManager.instance.inventoryPages.Count)
+                    {
+                        //Loop finished but didnt find any matching item
+                        Debug.Log("FAILED TO ADD ITEM " + p_item.name + " BECAUSE COULD NOT FIND ITEM IN INVENTORY WITH MATCHING NAME");
+                    }
+                }
+
+
+
+            }
+        }
+
     }
 
     public static void ReduceItems(List<ItemData> p_itemDatas, List<int> p_amount, UnityEvent p_eventCallback = null)

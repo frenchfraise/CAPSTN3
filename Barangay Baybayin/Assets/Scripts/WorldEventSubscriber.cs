@@ -16,7 +16,7 @@ public class WorldEventSubscriber : MonoBehaviour
     public EventDoActionFinished onEventDoActionFinished = new EventDoActionFinished();
     private void OnEnable()
     {
-        StorylineManager.onWorldEvent.AddListener(CheckIDMatches);
+        StorylineManager.onWorldEventEndedEvent.AddListener(CheckIDMatches);
     }
 
     private void CheckIDMatches(string p_eventID, int p_actionParameterAID, int p_actionParameterBID = -1)

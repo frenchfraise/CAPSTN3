@@ -18,17 +18,21 @@ public class RoomInfoUI : MonoBehaviour
     public List<ResourceDrop> currentRoomsResourceDrops;
   
 
-    private void OnEnable()
+    private void Start()
     {
         PlayerManager.onRoomEnteredEvent.AddListener(RoomEntered);
+        gameObject.SetActive(false);
     }
-    private void OnDisable()
+    private void Destroy()
     {
         PlayerManager.onRoomEnteredEvent.RemoveListener(RoomEntered);
     }
     public void RoomEntered(Passageway p_passageway)
     {
-
+        //PlayerManager.instance.joystick.enabled = false;
+        PlayerJoystick.onUpdateJoystickEnabledEvent.Invoke(false);
+        TimeManager.onPauseGameTime.Invoke(true);
+        //UIManager.onGameplayModeChangedEvent.Invoke(true);
         string roomName;
         string roomDescription;
         List<ResourceNodeDrop> availableResourceNodeDrops;
@@ -41,14 +45,16 @@ public class RoomInfoUI : MonoBehaviour
 
         //PlayerManager.instance.currentRoomID = p_passageway.room.currentRoomID;
         gameObject.SetActive(true);
+        
         StartCoroutine(Co_RoomInfoUITransition(roomName, roomDescription, availableResourceNodeDrops, cameraPosition, cameraPanLimit));
     }
     IEnumerator Co_RoomInfoUITransition(string p_roomName, string p_roomDescription, List<ResourceNodeDrop> p_availableResourceNodeDrops, Vector2 p_cameraPos, Vector2 p_cameraPanLimit)
     {
         //Clear resources // object pool this
-        //PlayerManager.instance.joystick.enabled = false;
+
+
         
-        //PlayerManager.onUpdateJoystickEnabledEvent.Invoke(false);
+
         for (int si = 0; si < availableResourcesContainer.childCount; si++)
         {
             //Debug.Log("DELETE");
@@ -57,11 +63,11 @@ public class RoomInfoUI : MonoBehaviour
         }
         currentRoomsResourceDrops.Clear();
         availableResourcesGO.SetActive(false);
-
+   
 
         UIManager.TransitionFade(1);
         yield return new WaitForSeconds(0.5f);
-
+     
 
 
         roomNameText.text = p_roomName;
@@ -71,7 +77,7 @@ public class RoomInfoUI : MonoBehaviour
         te.Join(roomNameText.DOFade(1f, 0.75f));
         te.Join(roomDescriptionText.DOFade(1f, 0.75f));
         
-        
+
 
         for (int i = 0; i < p_availableResourceNodeDrops.Count; i++)
         {
@@ -122,7 +128,7 @@ public class RoomInfoUI : MonoBehaviour
             }
      
         }
-        CameraManager.instance.MoveCamera(p_cameraPos, p_cameraPanLimit);
+        CameraManager.onCameraMovedEvent.Invoke(p_cameraPos, p_cameraPanLimit);
         yield return new WaitForSeconds(3.75f);
         Sequence t = DOTween.Sequence();
         t.Join(roomNameText.DOFade(0f, 0.5f));
@@ -132,7 +138,10 @@ public class RoomInfoUI : MonoBehaviour
         yield return t.WaitForCompletion();
         gameObject.SetActive(false);
         UIManager.TransitionFade(0, false);
-
-        //PlayerManager.onUpdateJoystickEnabledEvent.Invoke(true);
+        //UIManager.onGameplayModeChangedEvent.Invoke(false);
+        PlayerJoystick.onUpdateJoystickEnabledEvent.Invoke(true);
+        TimeManager.onPauseGameTime.Invoke(false);
+        //PlayerManager.instance.joystick.enabled = true;
+        //PlayerJoystick.onUpdateJoystickEnabledEvent.Invoke(true);
     }
 }

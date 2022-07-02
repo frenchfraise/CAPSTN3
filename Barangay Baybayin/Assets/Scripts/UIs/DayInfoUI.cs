@@ -6,7 +6,7 @@ using TMPro;
 using DG.Tweening;
 public class DayInfoUI : MonoBehaviour
 {
-
+    [SerializeField] private GameObject frame;
     public TMP_Text dayText; //make this action
 
     public TMP_Text dayCountText;
@@ -29,12 +29,13 @@ public class DayInfoUI : MonoBehaviour
 
         if (!isFirstTime)
         {
-            gameObject.SetActive(true);
+            frame.SetActive(true);
             StartCoroutine(Co_DayEndTransition(p_causedByFainting, p_dayCount));
         }
         else if (isFirstTime)
         {
             isFirstTime = false;
+            TimeManager.onDayChangingEvent.Invoke();
         }
 
     }
@@ -94,7 +95,7 @@ public class DayInfoUI : MonoBehaviour
         yield return te.WaitForCompletion();
         UIManager.TransitionFade(0, false) ;
         TimeManager.instance.NewDay();
-        gameObject.SetActive(false);
+        frame.SetActive(false);
     }
 
 

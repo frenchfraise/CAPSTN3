@@ -13,13 +13,15 @@ public class QuestHint : MonoBehaviour
         worldEventSubscriber =GetComponent<WorldEventSubscriber>();
         iconHoverEffect.runningCoroutine = iconHoverEffect.Co_Hover();
         StartCoroutine(iconHoverEffect.runningCoroutine);
-        // worldEventSubscriber.onEventDoActionFinished.AddListener();
+        TimeManager.onPauseGameTime.AddListener(OnGameplayModeChangedEvent);
     }
 
-    public void test()
+    private void OnGameplayModeChangedEvent(bool p_isActive)
     {
-        //iconHoverEffect.startYPosition;
-
+        iconHoverEffect.gameObject.SetActive(!p_isActive);
     }
+
+
+ 
 
 }

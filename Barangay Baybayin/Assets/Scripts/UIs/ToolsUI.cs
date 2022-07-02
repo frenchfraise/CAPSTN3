@@ -37,7 +37,7 @@ public class ToolsUI : MonoBehaviour
 
     private void OnDisable()
     {
-        ToolManager.onProficiencyLevelModifiedEvent.AddListener(UpdateLevel);
+        ToolManager.onProficiencyLevelModifiedEvent.RemoveListener(UpdateLevel);
         toolCaster.onToolCanUseUpdatedEvent.RemoveListener(CanUseUpdate);
         toolCaster.onToolCanSwitchUpdatedEvent.RemoveListener(CanSwitchUpdate);
     }

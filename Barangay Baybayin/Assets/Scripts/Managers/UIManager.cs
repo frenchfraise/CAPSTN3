@@ -28,8 +28,6 @@ public class UIManager : MonoBehaviour
   
     public Image transitionUI;
 
-    public Image toolUseImage;
-
     public RectTransform overheadUI;
 
     public GameObject overlayCanvas;
@@ -37,27 +35,26 @@ public class UIManager : MonoBehaviour
 
     public Image weatherSpriteUI; //Make a WeatherUI class and Put this in it
 
-    public Coroutine runningCoroutine;
+    public IEnumerator runningCoroutine;
 
     //
     public static GameplayModeChangedEvent onGameplayModeChangedEvent = new GameplayModeChangedEvent();
     
-    public bool isRunningCoroutine = false;
-    public bool justFinishedCoroutine = false;
+
     private void Awake()
     {
-        if (_instance != null)
-        {
-            //Destroy(gameObject);
+        //if (_instance != null)
+        //{
+        //    //Destroy(gameObject);
             
-        }
-        else
-        {
+        //}
+        //else
+        //{
             _instance = this;
 
-            DontDestroyOnLoad(gameObject);
+        //    DontDestroyOnLoad(gameObject);
             
-        }
+        //}
 
       
     }
@@ -76,19 +73,32 @@ public class UIManager : MonoBehaviour
    
     }
 
+    public static void ForceReload(GameObject p_gameObject)
+    {
+        UIManager.instance.StartCoroutine(UIManager.instance.Co_ForceReload(p_gameObject));
+    }
+    IEnumerator Co_ForceReload(GameObject p_gameObject)
+    {
+        p_gameObject.SetActive(false);
+        
+        yield return new WaitForSeconds(0.01f);
+        //Debug.Log("TEST");
+        p_gameObject.SetActive(true);
+    }
     //TEMPORARY Make a WeatherUI class and Put this in it
     private void OnWeatherUIChanged(Weather p_currentWeather, Weather p_nextWeather)
     {
         weatherSpriteUI.sprite = p_currentWeather.sprite;
+        //Debug.Log(p_currentWeather.audioName);
         FindObjectOfType<AudioManager>().Play(p_currentWeather.audioName);
        
     }
 
-    private void OnGameplayHUDSwitch(bool p_bool)
+    private void OnGameplayHUDSwitch(bool p_isActive)
     {
-        TimeManager.onPauseGameTime.Invoke(p_bool);
-        p_bool = !p_bool;
-        gameplayHUD.SetActive(p_bool);
+        TimeManager.onPauseGameTime.Invoke(p_isActive);
+        p_isActive = !p_isActive;
+        gameplayHUD.SetActive(p_isActive);
         
     }
 

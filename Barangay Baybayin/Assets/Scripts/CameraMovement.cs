@@ -4,17 +4,21 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    
-    //[HideInInspector] 
-    public Vector2 offset { private get;  set; }
-    //[HideInInspector] 
-    public Vector2 panLimit { private get;  set; }
+
+    [HideInInspector] 
+    public Vector2 offset;
+
+    [HideInInspector] 
+    public Vector2 panLimit;
+
 
     private void OnEnable()
     {
         CameraManager.onCameraMovedEvent.AddListener(CameraMoved);
-        CameraManager.instance.ResetCamera();
+        
     }
+
+   
     public void CameraMoved(Vector2 p_newPosition, Vector2 p_panLimit)
     {
         offset = new Vector3(p_newPosition.x, p_newPosition.y);

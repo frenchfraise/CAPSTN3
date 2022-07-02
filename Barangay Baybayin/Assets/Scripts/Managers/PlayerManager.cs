@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 public class UpdateCurrentRoomIDEvent : UnityEvent<int> { }
-public class UpdateJoystickEnabledEvent : UnityEvent<bool> { }
+
 
 public class PlayerManager : MonoBehaviour
 {
@@ -24,29 +24,28 @@ public class PlayerManager : MonoBehaviour
     }
 
 
-    public int currentRoomID;
+    [HideInInspector]public int currentRoomID;
 
     public GameObject player;
     public Transform playerTransform { get; private set; }
-    [SerializeField] private Stamina stamina;
+    //[SerializeField] private Stamina stamina;
     [SerializeField] private Bed bed;
-    [SerializeField] private PlayerJoystick joystick;
+    //[SerializeField] public PlayerJoystick joystick;
 
     public static UpdateCurrentRoomIDEvent onUpdateCurrentRoomIDEvent = new UpdateCurrentRoomIDEvent();
 
-    public static UpdateJoystickEnabledEvent onUpdateJoystickEnabledEvent = new UpdateJoystickEnabledEvent();
     public static RoomEnteredEvent onRoomEnteredEvent = new RoomEnteredEvent();
     private void Awake()
     {
-        if (_instance != null)
-        {
-            //Destroy(gameObject);
-        }
-        else
-        {
-            _instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
+        //if (_instance != null)
+        //{
+        //    //Destroy(gameObject);
+        //}
+        //else
+        //{
+        _instance = this;
+            //DontDestroyOnLoad(gameObject);
+        //}
         playerTransform = player.transform;
     }
 
@@ -54,7 +53,7 @@ public class PlayerManager : MonoBehaviour
     private void OnEnable()
     {
         onUpdateCurrentRoomIDEvent.AddListener(UpdateCurrentRoomIDEvent);
-        onUpdateJoystickEnabledEvent.AddListener(UpdateJoystickEnabled);
+        
         TimeManager.onDayChangingEvent.AddListener(DayChanging);
     }
 
@@ -67,10 +66,7 @@ public class PlayerManager : MonoBehaviour
         currentRoomID = p_index;
     }
 
-    void UpdateJoystickEnabled(bool p_bool)
-    {
-        joystick.enabled = p_bool;
-    }
+  
 
 
 }

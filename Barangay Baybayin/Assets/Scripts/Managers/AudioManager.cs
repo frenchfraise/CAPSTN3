@@ -6,7 +6,8 @@ using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
-    public Sound[] sounds;
+    [NonReorderable] public Sound[] sounds;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -41,4 +42,6 @@ public class AudioManager : MonoBehaviour
         sound.source.Play();
 
     }
+
+  
 }

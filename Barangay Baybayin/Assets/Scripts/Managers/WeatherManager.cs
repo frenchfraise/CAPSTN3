@@ -10,6 +10,7 @@ public class Weather
     public Sprite sprite;
     public string audioName;
     [NonReorderable] public List<SO_Dialogues> dialogue;
+    [SerializeField] ParticleSystem particle; //implement this
 
 }
 public class WeatherChangedEvent : UnityEvent<Weather, Weather> { };
@@ -31,7 +32,7 @@ public class WeatherManager : MonoBehaviour
     }
 
     public static WeatherChangedEvent onWeatherChangedEvent = new WeatherChangedEvent();
-    public List<Weather> weathers;
+    [NonReorderable] public List<Weather> weathers;
     public SO_Dialogues currentWeatherDialogue;
     public Weather CurrentWeather => currentWeather;
     [SerializeField] private Weather currentWeather;
@@ -89,6 +90,7 @@ public class WeatherManager : MonoBehaviour
     }
     public void RandPredictWeathers() // Predicts weathers for 2 days = Current [0] and Next [1] day
     {
+        Debug.Log("WEATHER RANDOMIZING");
         if (randNums[0] == -1) // DAY 1 initialization
         {
             //Debug.Log("Randomized!");

@@ -8,6 +8,7 @@ public class Infrastructure : MonoBehaviour
 {
     bool canInteract = true;
     private HealthOverheadUI healthOverheadUI;
+    public Sprite hintSprite;
     [SerializeField] public SO_Infrastructure so_Infrastructure;
     //private int currentHealth;
     private SpriteRenderer sr;
@@ -16,11 +17,6 @@ public class Infrastructure : MonoBehaviour
     private void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
-
-    }
-    private void Start()
-    {
-
 
     }
 

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BambooVariantThreeNode : ResourceNode
+public class BambooVariantThreeNodePool : GenericObjectPool<BambooVariantThreeNode>
 {
    
 }

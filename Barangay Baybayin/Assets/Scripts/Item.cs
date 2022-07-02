@@ -28,6 +28,10 @@ public class Item : MonoBehaviour
     private GameObject floaterPrefab;
 
     private bool isSplashing = false;
+
+    private bool firstTime = true; //test
+    private Transform plrTransform;
+
     private bool isMagnetizing = false;
     //magnetize
     private Rigidbody2D rb;
@@ -51,6 +55,7 @@ public class Item : MonoBehaviour
         isMagnetizing = false;
         rb.gravityScale = 0f;
         rb.isKinematic = true;
+        plrTransform = PlayerManager.instance.playerTransform;
 
         offsetY = Random.Range(minOffsetY, maxOffsetY);
         hoverEffect = GetComponent<HoverEffect>();
@@ -121,10 +126,14 @@ public class Item : MonoBehaviour
                 rb.constraints = RigidbodyConstraints2D.FreezeRotation;
                 //canInteract = true;
                 isSplashing = true;
-
+               
                 hoverEffect.startYPosition = transform.position.y;
-                
-                StartCoroutine(Co_Magnetize());
+                if (firstTime)
+                {
+                    firstTime = false;
+                    StartCoroutine(Co_Magnetize());
+                }
+               
             }
         }
         
@@ -135,14 +144,14 @@ public class Item : MonoBehaviour
 
     void Magnetize()
     {
-        Vector3 plrPosition = PlayerManager.instance.playerTransform.transform.position;
+        Vector3 plrPosition = plrTransform.position;
         
-        if (Vector3.Distance(rb.position, plrPosition) > 1)
+        if (Vector3.Distance(transform.position, plrPosition) > 0)
         {
             Vector3 playerPoint = Vector3.MoveTowards(transform.position,
             plrPosition + new Vector3(0, 0, 0),
             magnetizeSpeed * Time.deltaTime);
-            rb.MovePosition(playerPoint);
+            transform.position = (playerPoint);
            
         }
         else
@@ -157,6 +166,10 @@ public class Item : MonoBehaviour
     
     IEnumerator Co_Magnetize()
     {
+        if (hoverEffect.runningCoroutine != null)
+        {
+            hoverEffect.StopCoroutine(hoverEffect.runningCoroutine);
+        }
         hoverEffect.runningCoroutine = hoverEffect.Co_Hover();
         StartCoroutine(hoverEffect.runningCoroutine);
        // hoverEffect.runningCoroutine = StartCoroutine(hoverEffect.Co_Hover());

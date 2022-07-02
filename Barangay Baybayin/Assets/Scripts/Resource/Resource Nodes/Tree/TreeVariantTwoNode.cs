@@ -4,5 +4,9 @@ using UnityEngine;
 
 public class TreeVariantTwoNode : ResourceNode
 {
-  
+    protected override void Death()
+    {
+        base.Death();
+        TreeVariantTwoNodePool.pool.Release(this);
+    }
 }

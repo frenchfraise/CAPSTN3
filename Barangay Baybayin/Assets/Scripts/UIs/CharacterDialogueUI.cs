@@ -14,7 +14,9 @@ public class CharacterDialogueUI : MonoBehaviour
     //[HideInInspector] 
     public SO_Character character;
     public SO_Dialogues currentSO_Dialogues;
-    [SerializeField] private bool allowNext;
+    [SerializeField]
+    private GameObject frame;
+    private bool allowNext;
     [SerializeField] private int currentDialogueIndex;
     [SerializeField] private TMP_Text characterNameText;
     [SerializeField] private TMP_Text dialogueText;
@@ -28,7 +30,7 @@ public class CharacterDialogueUI : MonoBehaviour
     [SerializeField] private string id;
 
     public static CharacterSpokenToEvent onCharacterSpokenToEvent = new CharacterSpokenToEvent();
-    // public CharacterDialogueUIClose onCharacterDialogueUIClose = new CharacterDialogueUIClose();
+    
     private void OnEnable()
     {
         onCharacterSpokenToEvent.AddListener(OnCharacterSpokenTo);
@@ -50,19 +52,14 @@ public class CharacterDialogueUI : MonoBehaviour
 
     public void OnOpenCharacterDialogueUI()
     {
-        
-        UIManager.instance.gameplayHUD.SetActive(false);
-        UIManager.instance.overlayCanvas.SetActive(false);
-        
+
         ResetCharacterDialogueUI();
         UIManager.onGameplayModeChangedEvent.Invoke(true);
     }
     public void OnCloseCharacterDialogueUI()
     {
 
-        UIManager.instance.gameplayHUD.SetActive(true);
-        UIManager.instance.overlayCanvas.SetActive(true);
-        gameObject.SetActive(false);
+        frame.SetActive(false);
         UIManager.onGameplayModeChangedEvent.Invoke(false);
         //onCharacterDialogueUIClose.Invoke(true);
     }
@@ -126,18 +123,14 @@ public class CharacterDialogueUI : MonoBehaviour
             {
                 UIManager.instance.StopCoroutine(UIManager.instance.runningCoroutine);
                 UIManager.instance.runningCoroutine = null;
-                UIManager.instance.justFinishedCoroutine = true;
-          
-
-
             }
             if (currentDialogue.speechTransitionType == SpeechTransitionType.Typewriter)
             {
-                if (UIManager.instance.justFinishedCoroutine == true)
+                if (UIManager.instance.runningCoroutine == null)
                 {
                     
                     dialogueText.text = currentDialogue.words;
-                    UIManager.instance.justFinishedCoroutine = false;
+                   
                     if (allowNext == true)
                     {
                         currentDialogueIndex++;
@@ -146,16 +139,17 @@ public class CharacterDialogueUI : MonoBehaviour
                 }
                 else
                 {
-                    UIManager.instance.justFinishedCoroutine = false;
-                    UIManager.instance.runningCoroutine = UIManager.instance.StartCoroutine(Co_TypeWriterEffect(dialogueText, currentDialogue.words));
-    
+             
+
+                    UIManager.instance.runningCoroutine = Co_TypeWriterEffect(dialogueText, currentDialogue.words);
+                    UIManager.instance.StartCoroutine(UIManager.instance.runningCoroutine);
                 }
                 
             }
             else
             {
                 dialogueText.text = currentDialogue.words;
-                UIManager.instance.justFinishedCoroutine = false;
+       
                 if (allowNext == true)
                 {
                     currentDialogueIndex++;
@@ -167,9 +161,9 @@ public class CharacterDialogueUI : MonoBehaviour
 
             if(allowNext == false)
             {
-       
 
-                gameObject.SetActive(true);
+
+                frame.SetActive(true);
                 allowNext = true;
                 currentDialogueIndex++;
             }
@@ -180,7 +174,7 @@ public class CharacterDialogueUI : MonoBehaviour
             StorylineData storylineData = StorylineManager.GetStorylineDataFromID(id);
             int currentQuestChainIndex = storylineData.currentQuestChainIndex;
             int currentQuestLineIndex = storylineData.currentQuestLineIndex;
-            StorylineManager.onWorldEvent.Invoke(id, currentQuestChainIndex, currentQuestLineIndex);
+            StorylineManager.onWorldEventEndedEvent.Invoke(id, currentQuestChainIndex, currentQuestLineIndex);
             UIManager.TransitionPreFadeAndPostFade(1, 0.5f, 1, 0, 0.5f, OnCloseCharacterDialogueUI);
         }
     }

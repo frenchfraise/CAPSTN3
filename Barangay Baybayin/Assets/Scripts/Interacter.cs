@@ -19,20 +19,21 @@ public class Interacter : MonoBehaviour
 
     }
     
-    InteractibleObject GetInteractibleObject()
+    public InteractibleObject GetInteractibleObject()
     {
         Collider2D[] collider = Physics2D.OverlapCircleAll((Vector2)aim.position, 3f);
         foreach (Collider2D hit in collider)
         {
-            Debug.Log(collider[0].gameObject.name);
-            if (hit.gameObject != gameObject)
+            //Debug.Log(collider[0].gameObject.name);
+            if (hit != null)
             {
-                if (hit != null)
+                
+                if (hit.gameObject != gameObject)
                 {
-                    InteractibleObject targetInteractibleObject = hit.gameObject.GetComponent<InteractibleObject>();
-                    if (targetInteractibleObject)
+                
+                    if (hit.TryGetComponent<InteractibleObject>(out InteractibleObject interactibleObject))
                     {
-                        return targetInteractibleObject;
+                        return interactibleObject;
   
                     }
                 }

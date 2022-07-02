@@ -5,13 +5,14 @@ using UnityEngine.UI;
 using TMPro;
 public class InventoryUI : MonoBehaviour
 {
+
     [SerializeField] Transform container;
     [SerializeField] InventoryPageUI prefab;
     [SerializeField] ScrollRect scrollRect;
     [SerializeField] RectTransform contentPanel;
     [SerializeField] List<RectTransform> pages = new List<RectTransform>();
     [SerializeField] int currentPage;
-    private void OnEnable()
+    private void Start()
     {
         GenerateInventoryPageUIs();
     }
@@ -32,7 +33,7 @@ public class InventoryUI : MonoBehaviour
                 
                 LayoutRebuilder.ForceRebuildLayoutImmediate(container.GetComponent<RectTransform>());
                 Canvas.ForceUpdateCanvases();
-                UIManager.instance.StartCoroutine(Co_HotReload());
+                UIManager.ForceReload(gameObject);
             }
 
         }
@@ -62,11 +63,6 @@ public class InventoryUI : MonoBehaviour
             Snap();
         }
     }
-    IEnumerator Co_HotReload()
-    {
-        gameObject.SetActive(false);
-        yield return new WaitForSeconds(0.01f);
-        gameObject.SetActive(true);
-    }
+  
   
 }

@@ -17,7 +17,7 @@ public class PassagewayInfo
                                 out Passageway p_connectedToPassageway
                                 )
     {
-        //p_room = room;
+     
         p_playerDestinationPosition = playerDestinationPosition;
 
         p_connectedToPassageway = connectedToPassageway;
@@ -30,8 +30,9 @@ public class Room : MonoBehaviour
     public int currentRoomID;
     public string roomName;
     public string roomDescription;
-    [SerializeField] public Vector2 cameraDestinationPosition;
-    [SerializeField] public Vector2 cameraPanLimit;
+   // [SerializeField] public Transform cameraDestinationTransform;
+    [SerializeField] public Transform cameraPanLimitUpperRightTransform;
+    [HideInInspector] public Vector2 cameraPanLimit;
     [NonReorderable] public List<ResourceNodeDrop> availableResourceNodeDrops = new List<ResourceNodeDrop>(); // populate by node
     [NonReorderable] [SerializeField] private List<ResourceNodeSpawner> resourceNodeSpawners = new List<ResourceNodeSpawner>();
 
@@ -48,7 +49,9 @@ public class Room : MonoBehaviour
 
     private void OnEnable()
     {
-      
+        
+        cameraPanLimit = Vector2Abs(transform.position - cameraPanLimitUpperRightTransform.position);
+
         foreach (ResourceNodeSpawner resourceNodeSpawner in resourceNodeSpawners)
         {
             resourceNodeSpawner.AssignRoom(this);
@@ -60,15 +63,20 @@ public class Room : MonoBehaviour
             Transform playerDestinationPosition;
            
             Passageway connectedToPassageway;
+            
             passagewayInfo.GetPassagewayInfos(out playerDestinationPosition,
-   
                 out connectedToPassageway);
             passagewayInfo.passageway.AssignPassageway(room, 
                                                         playerDestinationPosition,
-                                                        cameraDestinationPosition,
+                                                        transform.position,
                                                         cameraPanLimit,
                                                         connectedToPassageway);
         }
+    }
+    Vector2 Vector2Abs(Vector2 p_vector2)
+    {
+        Vector2 answer = new Vector2(Mathf.Abs(p_vector2.x), Mathf.Abs(p_vector2.y));
+        return answer;
     }
 
     private void OnDisable()

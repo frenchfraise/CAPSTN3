@@ -19,23 +19,23 @@ public class CameraManager : MonoBehaviour
             return _instance;
         }
     }
-    public Camera worldCamera;
+    [SerializeField] public Camera worldCamera;
+    [SerializeField] public Camera uiCamera;
     [HideInInspector] public CameraMovement cameraMovement;
-    public Camera uiCamera;
+    [SerializeField] private Transform panLimitUpperRightTransform;
+
+    [HideInInspector]
+    public Vector2 panLimit;
     public static CameraMovedEvent onCameraMovedEvent = new CameraMovedEvent();
     [SerializeField] Room defaultRoom;
 
     private void Awake()
     {
-        //if (_instance != null)
-        //{
-        //    Destroy(gameObject);
-        //}
-        //else
-        //{
-            _instance = this;
-            DontDestroyOnLoad(gameObject);
-        //}
+       
+        _instance = this;
+        //If condition is true then do expression 1, else do expression 2
+        worldCamera = worldCamera ? worldCamera : GameObject.Find("World Camera").GetComponent<Camera>();
+        worldCamera = worldCamera ? worldCamera : GameObject.Find("UI Camera").GetComponent<Camera>();
         cameraMovement = worldCamera.GetComponent<CameraMovement>();
     }
 
@@ -43,21 +43,25 @@ public class CameraManager : MonoBehaviour
     {
     
         TimeManager.onDayChangingEvent.AddListener(ResetCamera);
+        panLimit = Vector2Abs(transform.position - panLimitUpperRightTransform.position);
+
+        ResetCamera();
+        
     }
 
     private void OnDisable()
     {
-       // onCameraMovedEvent.RemoveListener(CameraMoved);
+        TimeManager.onDayChangingEvent.RemoveListener(ResetCamera);
     }
-
+    Vector2 Vector2Abs(Vector2 p_vector2)
+    {
+        Vector2 answer = new Vector2(Mathf.Abs(p_vector2.x), Mathf.Abs(p_vector2.y));
+        return answer;
+    }
     public void ResetCamera()
     {
-        onCameraMovedEvent.Invoke(defaultRoom.cameraDestinationPosition, defaultRoom.cameraPanLimit);
+        onCameraMovedEvent.Invoke(defaultRoom.transform.position, panLimit);
     }
 
-    public void MoveCamera(Vector2 p_newPosition,Vector2 p_panLimit)
-    {
-        Debug.Log(p_newPosition + " - " + p_panLimit);
-        onCameraMovedEvent.Invoke(p_newPosition, p_panLimit);
-    }
+    
 }

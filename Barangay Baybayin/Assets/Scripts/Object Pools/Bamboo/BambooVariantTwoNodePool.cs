@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HerbVariantThreeNode : ResourceNode
+public class BambooVariantTwoNodePool : GenericObjectPool<BambooVariantTwoNode>
 {
-     
     
 }

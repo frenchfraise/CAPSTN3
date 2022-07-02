@@ -193,12 +193,18 @@ public class ToolCaster : MonoBehaviour
         Collider2D[] collider = Physics2D.OverlapCircleAll((Vector2)aim.position, 3f);
         foreach (Collider2D hit in collider)
         {
-            if (hit.gameObject != gameObject)
+            if (hit != null)
             {
-                if (hit != null)
+              //  Debug.Log(hit.gameObject.name + " node");
+                if (hit.gameObject != gameObject)
                 {
-                    
-                    return hit.gameObject.GetComponent<ResourceNode>(); 
+                   // Debug.Log(hit + " phase 1 ");
+                    if (hit.TryGetComponent<ResourceNode>(out ResourceNode resourceNode))
+                    {
+                       // Debug.Log("FOUND RESOURCE NODE");
+                        return resourceNode;
+                    }
+                        
                     
                 }
             }
@@ -212,13 +218,15 @@ public class ToolCaster : MonoBehaviour
         Collider2D[] collider = Physics2D.OverlapCircleAll((Vector2)aim.position, 3f);
         foreach (Collider2D hit in collider)
         {
-            if (hit.gameObject != gameObject)
+            if (hit != null)
             {
-                if (hit != null)
+                if (hit.gameObject != gameObject)
                 {
 
-                    return hit.gameObject.GetComponent<Infrastructure>();
-
+                    if (hit.TryGetComponent<Infrastructure>(out Infrastructure infrastructure))
+                    {
+                        return infrastructure;
+                    }
                 }
             }
 
@@ -237,6 +245,7 @@ public class ToolCaster : MonoBehaviour
         canUse = false;
         // animator.SetTrigger("UseTool");
         onToolCanUseUpdatedEvent.Invoke(canUse);
+ 
         onToolUsedEvent.Invoke(staminaCost);
         yield return new WaitForSeconds(current_Tool.so_Tool.useRate[current_Tool.craftLevel-1]);
         canUse = true;
@@ -253,12 +262,18 @@ public class ToolCaster : MonoBehaviour
 
     private void CheckWeatherStaminaTax(Weather p_currentWeather, Weather p_nextWeather)
     {
+       // Debug.Log(p_currentWeather.name + " - " + current_Tool.so_Tool.staminaCost[current_Tool.craftLevel - 1]);
         if ("Rainy" == p_currentWeather.name)
         {
-            staminaCost = current_Tool.so_Tool.staminaCost[current_Tool.craftLevel-1] * 1.5f;
+            staminaCost = current_Tool.so_Tool.staminaCost[current_Tool.craftLevel - 1] * 1.5f;
             Debug.Log("It is rainy! Tax is: " + staminaCost);
         }
-        else staminaCost = current_Tool.so_Tool.staminaCost[current_Tool.craftLevel-1];
+        else
+        {
+
+            staminaCost = current_Tool.so_Tool.staminaCost[current_Tool.craftLevel - 1];
+           
+        }
     }
 
     public void OnPointerDown()
