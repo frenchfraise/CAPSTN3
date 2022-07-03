@@ -1036,7 +1036,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 468b1abe125212a4d91e3d90d9fb28ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hintSprite: {fileID: 0}
+  healthOverheadUI: {fileID: 0}
+  hintSprite: {fileID: 21300000, guid: be734b9a7ee7e4c4699b472c126b0a49, type: 3}
   so_Infrastructure: {fileID: 11400000, guid: c465befe05115e742a4ff0d271484ac2, type: 2}
   currentLevel: 1
 --- !u!212 &69624696
@@ -2588,6 +2589,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 468b1abe125212a4d91e3d90d9fb28ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthOverheadUI: {fileID: 0}
   hintSprite: {fileID: 0}
   so_Infrastructure: {fileID: 11400000, guid: 39f71e5434c0d0c4ebc1cc930e09e2a1, type: 2}
   currentLevel: 1
@@ -15365,7 +15367,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 468b1abe125212a4d91e3d90d9fb28ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hintSprite: {fileID: 0}
+  healthOverheadUI: {fileID: 0}
+  hintSprite: {fileID: 21300000, guid: be734b9a7ee7e4c4699b472c126b0a49, type: 3}
   so_Infrastructure: {fileID: 11400000, guid: 43f8eec148360e34c98e5e7a3f8df290, type: 2}
   currentLevel: 1
 --- !u!61 &597783880
@@ -15942,6 +15945,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 845275496}
     m_Modifications:
+    - target: {fileID: 487576985831853678, guid: 1026c74dd53792e469b4a5529cc24c87, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2547773636576913252, guid: 1026c74dd53792e469b4a5529cc24c87, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -16032,7 +16039,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2547773636576913255, guid: 1026c74dd53792e469b4a5529cc24c87, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1026c74dd53792e469b4a5529cc24c87, type: 3}
@@ -31303,7 +31310,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 468b1abe125212a4d91e3d90d9fb28ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hintSprite: {fileID: 0}
+  healthOverheadUI: {fileID: 0}
+  hintSprite: {fileID: 21300000, guid: be734b9a7ee7e4c4699b472c126b0a49, type: 3}
   so_Infrastructure: {fileID: 11400000, guid: 43f8eec148360e34c98e5e7a3f8df290, type: 2}
   currentLevel: 1
 --- !u!212 &1834929393

@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class TreeVariantOneNode : ResourceNode
 {
-    protected override void Death()
+    public override void DeinitializeValues()
     {
-        base.Death();
+        base.DeinitializeValues();
         TreeVariantOneNodePool.pool.Release(this); 
     }
 }

@@ -167,13 +167,14 @@ public class UpgradeToolsUI : MonoBehaviour
                 //Debug.Log("TEST 2");
                 if (mato != null)
                 {
-                    ItemData itemData = InventoryManager.GetItem(mato);
-                    itemData.amount -= matOneAmount;
+                    
+                    InventoryManager.ReduceItem(mato, matOneAmount);
+                    
                 }
                 else
                 {
-                    ItemData itemDataT = InventoryManager.GetItem(matt);
-                    itemDataT.amount -= matTwoAmount;
+                    InventoryManager.ReduceItem(matt, matTwoAmount);
+        
                 }
          
                 ToolManager.instance.tools[currentIndex].craftLevel++;
@@ -204,7 +205,8 @@ public class UpgradeToolsUI : MonoBehaviour
 
     public void QuitButtonUIClicked()
     {
-        gameObject.SetActive(false);
+        confirmPanelUI.SetActive(false);
+        selectionPanelUI.SetActive(false);
         UIManager.onGameplayModeChangedEvent.Invoke(false);
     }
 
@@ -216,7 +218,7 @@ public class UpgradeToolsUI : MonoBehaviour
         }
         selectionPanelUI.SetActive(true);
         confirmPanelUI.SetActive(false);
-        gameObject.SetActive(true);
+        
         UIManager.onGameplayModeChangedEvent.Invoke(true);
     }
 }

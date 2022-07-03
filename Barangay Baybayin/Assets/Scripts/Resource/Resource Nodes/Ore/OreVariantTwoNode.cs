@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class OreVariantTwoNode : ResourceNode
 {
-    protected override void Death()
+    public override void DeinitializeValues()
     {
-        base.Death();
+        base.DeinitializeValues();
         OreVariantTwoNodePool.pool.Release(this);
     }
 }

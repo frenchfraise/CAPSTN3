@@ -146,7 +146,7 @@ public class Item : MonoBehaviour
     {
         Vector3 plrPosition = plrTransform.position;
         
-        if (Vector3.Distance(transform.position, plrPosition) > 0)
+        if (Vector3.Distance(transform.position, plrPosition) > 1)
         {
             Vector3 playerPoint = Vector3.MoveTowards(transform.position,
             plrPosition + new Vector3(0, 0, 0),

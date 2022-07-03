@@ -4,50 +4,44 @@ using UnityEngine;
 using UnityEngine.Events;
 public class InfrastructureHitEvent : UnityEvent<int, int, UnityEvent> { }
 [RequireComponent(typeof(Health))]
-public class Infrastructure : MonoBehaviour
+public class Infrastructure : Unit
 {
     bool canInteract = true;
-    private HealthOverheadUI healthOverheadUI;
     public Sprite hintSprite;
+
     [SerializeField] public SO_Infrastructure so_Infrastructure;
-    //private int currentHealth;
+
     private SpriteRenderer sr;
     [SerializeField] public int currentLevel = 1;
+
     public InfrastructureHitEvent OnInfrastructureHitEvent = new InfrastructureHitEvent();
-    private void Awake()
+    protected override void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
-
+        
     }
 
-    protected void OnEnable()
+    protected override void Start()
     {
-        //base.OnEnable();
-
-
-        StartCoroutine(Co_TempLoad());
-
-       // currentHealth = 0;
+        base.Start();
+        InitializeValues();
     }
 
-    IEnumerator Co_TempLoad()
+    public override void InitializeValues()
     {
+        
+        maxHealth = so_Infrastructure.maxHealth;
+        base.InitializeValues();
+
         Health health = GetComponent<Health>();
-        health.SetValues(so_Infrastructure.maxHealth);
-        health.enabled = true;
-        yield return new WaitForSeconds(0.5f);
-     
         health.OnDeathEvent.AddListener(Constructed);
-        //GenericObjectPool objectPool = ObjectPoolManager.GetPool(typeof(HealthOverheadUI)); //URGENT FIX
-        //PoolableObject healthOverheadUIObject = objectPool.pool.Get();
-        //healthOverheadUI = healthOverheadUIObject.GetComponent<HealthOverheadUI>();
-
-        //healthOverheadUI.SetHealthBarData(transform, UIManager.instance.overheadUI);
-        //health.onHealthModifiedEvent.AddListener(healthOverheadUI.OnHealthChanged);
-        //health.OnDeathEvent.AddListener(healthOverheadUI.OnHealthDied);
-
-        //OnInfrastructureHitEvent.AddListener(Hit);
+      
     }
+    public override void DeinitializeValues()
+    {
+        base.DeinitializeValues();
+    }
+   
     protected void Hit( int p_craftLevel, int p_currentDamage, UnityEvent p_eventCallback)
     {
         if (canInteract)

@@ -22,7 +22,7 @@ public class Health : MonoBehaviour
     public DeathEvent OnDeathEvent = new DeathEvent();
     private void OnEnable()
     {
-        InitializeValues();
+        //InitializeValues();
         onHealthModifyEvent.AddListener(ModifyHealth);
         //OnDeath.AddListener(Death);
     }

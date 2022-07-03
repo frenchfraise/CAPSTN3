@@ -5,7 +5,7 @@ using UnityEngine;
 public class Unit : MonoBehaviour
 {
     public HealthOverheadUI healthOverheadUI;
-    public float maxHealth;
+    protected float maxHealth;
     protected virtual void Awake()
     {
 
@@ -13,7 +13,7 @@ public class Unit : MonoBehaviour
     protected virtual void Start()
     {
         Health health = GetComponent<Health>();
-        health.SetValues(maxHealth);
+        
         health.enabled = true;
         //InitializeValues();
 
@@ -32,10 +32,22 @@ public class Unit : MonoBehaviour
        
         Health health = GetComponent<Health>();
         health.OnDeathEvent.AddListener(Death);
+        health.SetValues(maxHealth);
+        health.InitializeValues();
         healthOverheadUI = HealthOverheadUIPool.pool.Get();
-        healthOverheadUI.SetHealthBarData(transform, UIManager.instance.overheadUI);
-        health.onHealthModifiedEvent.AddListener(healthOverheadUI.OnHealthChanged);
-        health.OnDeathEvent.AddListener(healthOverheadUI.OnHealthDied);
+        if (healthOverheadUI == null)
+        {
+            Debug.Log(gameObject.name + " - INIALIZE MISSING OVERHEAD UI");
+        }
+        else
+        {
+            healthOverheadUI.SetHealthBarData(transform, UIManager.instance.overheadUI);
+            health.onHealthModifiedEvent.AddListener(healthOverheadUI.OnHealthChanged);
+            health.OnDeathEvent.AddListener(healthOverheadUI.OnHealthDied);
+        }
+
+    
+
         //Debug.Log(gameObject.name + " - " + GetInstanceID() + " INITIALIZED " + healthOverheadUI);
 
     }
@@ -47,17 +59,26 @@ public class Unit : MonoBehaviour
         //Debug.Log(gameObject.name + " DEINITIALIZED");
         Health health = GetComponent<Health>();
         health.OnDeathEvent.RemoveListener(Death);
-        
-        health.onHealthModifiedEvent.RemoveListener(healthOverheadUI.OnHealthChanged);
-        health.OnDeathEvent.RemoveListener(healthOverheadUI.OnHealthDied);
+        if (healthOverheadUI == null)
+        {
+            Debug.Log(gameObject.name + " - MISSING OVERHEAD UI");
+        }
+        else
+        {
+            //Debug.Log(gameObject.name + " - ");
+            health.onHealthModifiedEvent.RemoveListener(healthOverheadUI.OnHealthChanged);
+            health.OnDeathEvent.RemoveListener(healthOverheadUI.OnHealthDied);
+            HealthOverheadUIPool.pool.Release(healthOverheadUI);
+            healthOverheadUI = null;
+        }
+  
 
-        HealthOverheadUIPool.pool.Release(healthOverheadUI);
-        healthOverheadUI = null;
+      
     }
 
     protected virtual void Death()
     {
         DeinitializeValues();
-    
+        
     }
 }

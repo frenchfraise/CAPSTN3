@@ -78,10 +78,13 @@ public class ResourceNode : Unit
         
     }
 
-    //public override void InitializeValues()
-    //{
-    //    base.InitializeValues();
-    //    StartCoroutine(co_test());
+    public override void InitializeValues()
+    {
+          
 
-    //}
+        maxHealth = so_ResourceNode.maxHealth;
+        base.InitializeValues();
+        
+
+    }
 }

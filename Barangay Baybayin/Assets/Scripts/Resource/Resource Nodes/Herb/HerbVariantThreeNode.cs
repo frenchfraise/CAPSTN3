@@ -5,9 +5,9 @@ using UnityEngine;
 public class HerbVariantThreeNode : ResourceNode
 {
 
-    protected override void Death()
+    public override void DeinitializeValues()
     {
-        base.Death();
+        base.DeinitializeValues();
         HerbVariantThreeNodePool.pool.Release(this);
     }
 }

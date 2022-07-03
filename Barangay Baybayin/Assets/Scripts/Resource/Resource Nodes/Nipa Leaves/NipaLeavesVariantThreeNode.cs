@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class NipaLeavesVariantThreeNode : ResourceNode
 {
-    protected override void Death()
+    public override void DeinitializeValues()
     {
-        base.Death();
+        base.DeinitializeValues();
         NipaLeavesVariantThreeNodePool.pool.Release(this);
     }
 }

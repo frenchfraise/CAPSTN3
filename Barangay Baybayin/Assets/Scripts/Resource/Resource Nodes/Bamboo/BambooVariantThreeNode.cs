@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class BambooVariantThreeNode : ResourceNode
 {
-    protected override void Death()
+    public override void DeinitializeValues()
     {
-        base.Death();
+        base.DeinitializeValues();
         BambooVariantThreeNodePool.pool.Release(this);
     }
 }
