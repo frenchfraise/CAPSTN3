@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Teacher An 3 Quest Requirement B
   m_EditorClassIdentifier: 
   so_infrastructure: {fileID: 11400000, guid: 9b14431d407014845bf7ea12221cc6c6, type: 2}
-  requiredLevel: 1
+  requiredLevel: 3

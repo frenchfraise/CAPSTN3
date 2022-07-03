@@ -86,6 +86,7 @@ public class UIManager : MonoBehaviour
         p_gameObject.SetActive(true);
     }
     //TEMPORARY Make a WeatherUI class and Put this in it
+    //private void OnWeatherUIChanged(Weather p_currentWeather, Weather[] p_nextWeather) RECHECK BEFORE MERGE
     private void OnWeatherUIChanged(Weather p_currentWeather, Weather p_nextWeather)
     {
         weatherSpriteUI.sprite = p_currentWeather.sprite;

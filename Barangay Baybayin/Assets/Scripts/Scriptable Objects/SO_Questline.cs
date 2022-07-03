@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class QuestlineData
 {
-    
+    public string name;
     public SO_Dialogues initialSO_Dialogues; //first time talk
     public SO_Dialogues questInProgressSO_Dialogues; //first time talk//add variable for lines if quest isnt compelted yet
     public SO_Dialogues questCompleteSO_Dialogues; //first time talk

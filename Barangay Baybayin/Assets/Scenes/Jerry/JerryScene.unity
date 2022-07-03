@@ -3098,6 +3098,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1289921393}
+  - {fileID: 543333798}
   m_Father: {fileID: 1850717524}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -15094,6 +15095,81 @@ Transform:
   m_Father: {fileID: 1474101456}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &543333797
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 543333798}
+  - component: {fileID: 543333799}
+  m_Layer: 0
+  m_Name: TEMPCamera
+  m_TagString: MainCamera
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &543333798
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 543333797}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -18.7, y: 0.7, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 315764868}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &543333799
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 543333797}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 1
+  orthographic size: 15
+  m_Depth: -1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 31
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 0
+  m_HDR: 1
+  m_AllowMSAA: 0
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 0
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
 --- !u!1 &563785703
 GameObject:
   m_ObjectHideFlags: 0
@@ -16337,7 +16413,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 710517375}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11, y: 5, z: 0}
+  m_LocalPosition: {x: 13, y: 5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -21210,7 +21286,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1289921392}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 37.5, y: 20, z: 0}
+  m_LocalPosition: {x: 43, y: 20, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -22026,38 +22102,51 @@ MonoBehaviour:
   - name: Sunny
     sprite: {fileID: 21300000, guid: 20060e21554496f4fac5b00013476090, type: 3}
     audioName: Sunny
+    minChance: 0
+    maxChance: 0
     dialogue:
     - {fileID: 11400000, guid: 11ecbbc468fc15f4aa877ac44476325a, type: 2}
     particle: {fileID: 0}
   - name: Cloudy
     sprite: {fileID: 21300000, guid: d153e56192903db4aa06f4e44e20bf72, type: 3}
     audioName: Cloudy
+    minChance: 0
+    maxChance: 0
     dialogue:
     - {fileID: 11400000, guid: 84fba040afe6729448c5c9d1c38233e1, type: 2}
     particle: {fileID: 0}
   - name: Rainy
     sprite: {fileID: 21300000, guid: 04a8d57b0cb619449bf5c57d69e25040, type: 3}
     audioName: Rainy
+    minChance: 0
+    maxChance: 0
     dialogue:
     - {fileID: 11400000, guid: f87e8ac6cf95dd44c93da2ee57e349d8, type: 2}
     particle: {fileID: 0}
   - name: Stormy
     sprite: {fileID: 21300000, guid: 14f59e7b96d8c194ab61319da68780b4, type: 3}
     audioName: Stormy
+    minChance: 0
+    maxChance: 0
     dialogue:
     - {fileID: 11400000, guid: 10108f19ce12cda4e912f0f09d3e2a4e, type: 2}
     particle: {fileID: 0}
+  currentWeathers: []
   currentWeatherDialogue: {fileID: 0}
   currentWeather:
     name: 
     sprite: {fileID: 0}
     audioName: 
+    minChance: 0
+    maxChance: 0
     dialogue: []
     particle: {fileID: 0}
   nextWeather:
     name: 
     sprite: {fileID: 0}
     audioName: 
+    minChance: 0
+    maxChance: 0
     dialogue: []
     particle: {fileID: 0}
   cloudParticles: {fileID: 1450864625}
@@ -29715,7 +29804,7 @@ SpriteRenderer:
   m_SortingLayerID: -1244431709
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 60b8644df0f5f37408adbee3a8f79645, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4d2b8eda35df3f645a40b439c381eb63, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Teacher Apple 1
   m_EditorClassIdentifier: 
   questlineData:
-  - ID: Q-TA-1-A
+  - name: Part 1
     initialSO_Dialogues: {fileID: 11400000, guid: 0d0707e07e6e1d6499d5a90eb94f5da3, type: 2}
     questInProgressSO_Dialogues: {fileID: 11400000, guid: aa4398772d6c33c438535522de6fed86, type: 2}
     questCompleteSO_Dialogues: {fileID: 11400000, guid: 63376a0c692c62f4eb1ca734599a9b4c, type: 2}
     quest: {fileID: 11400000, guid: d28287b811dace347ae19d0a2a1c98d6, type: 2}
-  - ID: Q-TA-1-B
+  - name: Part 2
     initialSO_Dialogues: {fileID: 11400000, guid: 770dbc325ffc63a43a2629c948099d55, type: 2}
     questInProgressSO_Dialogues: {fileID: 11400000, guid: bb1d3e95f3951e941a6fdb2f2c9f9e98, type: 2}
     questCompleteSO_Dialogues: {fileID: 11400000, guid: daa240be1bce1244aa92605193f431d6, type: 2}

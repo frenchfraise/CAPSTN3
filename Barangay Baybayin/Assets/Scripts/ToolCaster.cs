@@ -260,7 +260,7 @@ public class ToolCaster : MonoBehaviour
         onToolCanSwitchUpdatedEvent.Invoke(canSwitch);
     }
 
-    private void CheckWeatherStaminaTax(Weather p_currentWeather, Weather p_nextWeather)
+    private void CheckWeatherStaminaTax(Weather p_currentWeather, Weather p_nextWeather) //CHECK THIS
     {
        // Debug.Log(p_currentWeather.name + " - " + current_Tool.so_Tool.staminaCost[current_Tool.craftLevel - 1]);
         if ("Rainy" == p_currentWeather.name)
