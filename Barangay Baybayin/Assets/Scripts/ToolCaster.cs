@@ -260,19 +260,17 @@ public class ToolCaster : MonoBehaviour
         onToolCanSwitchUpdatedEvent.Invoke(canSwitch);
     }
 
-    private void CheckWeatherStaminaTax(Weather p_currentWeather, Weather p_nextWeather) //CHECK THIS
+    private void CheckWeatherStaminaTax(List<Weather> p_weathers, List<Weather> p_currentWeathers)
     {
        // Debug.Log(p_currentWeather.name + " - " + current_Tool.so_Tool.staminaCost[current_Tool.craftLevel - 1]);
-        if ("Rainy" == p_currentWeather.name)
+        if (p_weathers[2].name == p_currentWeathers[0].name)
         {
             staminaCost = current_Tool.so_Tool.staminaCost[current_Tool.craftLevel - 1] * 1.5f;
             Debug.Log("It is rainy! Tax is: " + staminaCost);
         }
         else
         {
-
-            staminaCost = current_Tool.so_Tool.staminaCost[current_Tool.craftLevel - 1];
-           
+            staminaCost = current_Tool.so_Tool.staminaCost[current_Tool.craftLevel - 1];           
         }
     }
 
