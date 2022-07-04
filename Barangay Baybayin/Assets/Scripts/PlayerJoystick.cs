@@ -45,7 +45,7 @@ public class PlayerJoystick : MonoBehaviour
     }
     private void OnGameplayModeChangedEvent(bool p_isActive)
     {
-        Debug.Log("RARARA");
+        //Debug.Log("RARARA");
         interactHint.gameObject.SetActive(!p_isActive);
         canInteractHint = !p_isActive;
 

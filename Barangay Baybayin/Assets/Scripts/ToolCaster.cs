@@ -33,7 +33,7 @@ public class ToolCaster : MonoBehaviour
 
     public Animator animator;
 
-    public ToolUsedEvent onToolUsedEvent = new ToolUsedEvent();
+    public static ToolUsedEvent onToolUsedEvent = new ToolUsedEvent();
     public ToolHitSucceededEvent onToolHitSucceededEvent = new ToolHitSucceededEvent();
     public ToolCanUseUpdatedEvent onToolCanUseUpdatedEvent = new ToolCanUseUpdatedEvent();
     public ToolCanSwitchUpdatedEvent onToolCanSwitchUpdatedEvent = new ToolCanSwitchUpdatedEvent();
@@ -279,13 +279,13 @@ public class ToolCaster : MonoBehaviour
     public void OnPointerDown()
     {
         isPointerDown = true;
-        Debug.Log("[OnPointerDown] Charging...");
+        //Debug.Log("[OnPointerDown] Charging...");
     }
 
     public void OnPointerUp()
     {
         Reset();
-        Debug.Log("[OnPointerUp] Charging done.");
+       // Debug.Log("[OnPointerUp] Charging done.");
     }
 
     private void Reset()

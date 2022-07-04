@@ -131,6 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cc970508b5807f429f4c12a4f5421b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthOverheadUI: {fileID: 0}
   so_ResourceNode: {fileID: 11400000, guid: 34ff26ab5227f26438366805f1126507, type: 2}
   itemPrefab: {fileID: 8436199365745860972, guid: 2bf34b5e8f26c294d8ba4e3060dded9a, type: 3}
   hintSprite: {fileID: 21300000, guid: be734b9a7ee7e4c4699b472c126b0a49, type: 3}
@@ -144,7 +145,6 @@ MonoBehaviour:
     chance: 50
     minAmount: 1
     maxAmount: 3
-  maxHealth: 50
 --- !u!114 &8653533781470353938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,7 +171,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.053585887, y: 1.7166362}
+  m_Offset: {x: -0.07127643, y: 0.77790403}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -182,5 +182,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 6.3024063, y: 3.2152681}
+  m_Size: {x: 2.8350697, y: 1.3378038}
   m_EdgeRadius: 0

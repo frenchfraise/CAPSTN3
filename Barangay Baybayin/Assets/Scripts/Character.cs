@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class CharacterSpokenToEvent : UnityEvent<string, SO_Dialogues> { }
+
 public class Character : InteractibleObject
 {
 

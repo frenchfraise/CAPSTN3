@@ -19,6 +19,20 @@ public class QuestHint : MonoBehaviour
     private void OnGameplayModeChangedEvent(bool p_isActive)
     {
         iconHoverEffect.gameObject.SetActive(!p_isActive);
+        if (!p_isActive == true)
+        {
+            iconHoverEffect.runningCoroutine = iconHoverEffect.Co_Hover();
+            StartCoroutine(iconHoverEffect.runningCoroutine);
+        }
+        else if (!p_isActive == false)
+        {
+            if (iconHoverEffect.runningCoroutine != null)
+            {
+                StopCoroutine(iconHoverEffect.runningCoroutine);
+                iconHoverEffect.runningCoroutine = null;
+            }
+          
+        }
     }
 
 

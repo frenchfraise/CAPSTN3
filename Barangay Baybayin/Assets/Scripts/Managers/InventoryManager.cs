@@ -45,22 +45,22 @@ public class InventoryManager : MonoBehaviour
         {
             for (int ii = 0; ii < InventoryManager.instance.inventoryPages[iii].itemCategories.Count; ii++)
             {
-                Debug.Log(InventoryManager.instance.inventoryPages[iii].itemCategories[ii].name.ToString());
+                //Debug.Log(InventoryManager.instance.inventoryPages[iii].itemCategories[ii].name.ToString());
                 for (int i = 0; i < InventoryManager.instance.inventoryPages[iii].itemCategories[ii].items.Count;)
                 {
                     if (InventoryManager.instance.inventoryPages[iii].itemCategories[ii].items[i].so_Item == p_item)
                     {
 
 
-                        Debug.Log(p_item + " - GOT IT - " + InventoryManager.instance.inventoryPages[iii].itemCategories[ii].items[i].so_Item.ToString());
+                        //Debug.Log(p_item + " - GOT IT - " + InventoryManager.instance.inventoryPages[iii].itemCategories[ii].items[i].so_Item.ToString());
                         return InventoryManager.instance.inventoryPages[iii].itemCategories[ii].items[i];
                     }
-                    Debug.Log(p_item + " - - " + InventoryManager.instance.inventoryPages[iii].itemCategories[ii].items[i].so_Item.ToString());
+                    //Debug.Log(p_item + " - - " + InventoryManager.instance.inventoryPages[iii].itemCategories[ii].items[i].so_Item.ToString());
                     i++;
                     if (i >= InventoryManager.instance.inventoryPages.Count)
                     {
                         //Loop finished but didnt find any matching item
-                        Debug.Log("FAILED TO FIND ITEM " + p_item.name + " BECAUSE COULD NOT FIND SO_Item IN INVENTORY'S ITEM CATEGORY'S ITEM WITH MATCHING NAME");
+                        //Debug.Log("FAILED TO FIND ITEM " + p_item.name + " BECAUSE COULD NOT FIND SO_Item IN INVENTORY'S ITEM CATEGORY'S ITEM WITH MATCHING NAME");
                     }
                 }
             }
@@ -89,7 +89,7 @@ public class InventoryManager : MonoBehaviour
                     if (i >= InventoryManager.instance.inventoryPages.Count)
                     {
                         //Loop finished but didnt find any matching item
-                        Debug.Log("FAILED TO ADD ITEM " + p_item.name + " BECAUSE COULD NOT FIND ITEM IN INVENTORY WITH MATCHING NAME");
+                        //Debug.Log("FAILED TO ADD ITEM " + p_item.name + " BECAUSE COULD NOT FIND ITEM IN INVENTORY WITH MATCHING NAME");
                     }
                 }
 

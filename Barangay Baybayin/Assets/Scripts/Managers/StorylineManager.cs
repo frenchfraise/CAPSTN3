@@ -94,23 +94,23 @@ public class StorylineManager : MonoBehaviour
         {
 
             //Check quest requirement type
-            Debug.Log("PH: 1");
+            //Debug.Log("PH: 1");
             if (currentQuestRequirement.so_requirement.GetType() == typeof(SO_ItemRequirement))
             {
-                Debug.Log("PH: 2");
+               // Debug.Log("PH: 2");
                 SO_ItemRequirement specificQuestRequirement = currentQuestRequirement.so_requirement as SO_ItemRequirement;
                 for (int i = 0; i < specificQuestRequirement.so_Item.Count; i++)
                 {
-                    Debug.Log("PH: 3");
+                 //   Debug.Log("PH: 3");
                     SO_Item currentSOItemQuestRequirement = specificQuestRequirement.so_Item[i];
                     //look for item in inventory
                     ItemData itemData = InventoryManager.GetItem(currentSOItemQuestRequirement);
                     if (itemData != null)
                     {
-                        Debug.Log("PH: 4");
+                     //   Debug.Log("PH: 4");
                         if (itemData.amount >= specificQuestRequirement.requiredAmount[i])
                         {
-                            Debug.Log("PH: 5");
+                         //   Debug.Log("PH: 5");
                             questResourcesFound++;
 
                         }
@@ -144,28 +144,28 @@ public class StorylineManager : MonoBehaviour
             }
 
         }
-        Debug.Log(questResourcesFound + " " + currentQuest.requirements.Count);
+       // Debug.Log(questResourcesFound + " " + currentQuest.requirements.Count);
 
         bool isQuestCompleted = false;
-        Debug.Log("PH: 8");
+      //  Debug.Log("PH: 8");
         foreach (QuestRequirement currentQuestRequirement in currentQuest.requirements)
         {
 
             //Check quest requirement type
-            Debug.Log("PH: 9");
+           // Debug.Log("PH: 9");
             if (currentQuestRequirement.so_requirement.GetType() == typeof(SO_ItemRequirement))
             {
-                Debug.Log("PH: 10");
+              //  Debug.Log("PH: 10");
                 SO_ItemRequirement specificQuestRequirement = currentQuestRequirement.so_requirement as SO_ItemRequirement;
                 if (questResourcesFound == specificQuestRequirement.so_Item.Count)
                 {
                     for (int i = 0; i < specificQuestRequirement.so_Item.Count; i++)
                     {
-                        Debug.Log("PH: 11");
+                   //     Debug.Log("PH: 11");
                         SO_Item currentSOItemQuestRequirement = specificQuestRequirement.so_Item[i];
                         //look for item in inventory
-                       
-                        Debug.Log("PH: 12");
+                    //   
+                    //    Debug.Log("PH: 12");
 
                         InventoryManager.ReduceItem(currentSOItemQuestRequirement,
                                 questlineData.quest.rewards[i].amount);
