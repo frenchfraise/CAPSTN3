@@ -12,6 +12,8 @@ public class TutorialManager : MonoBehaviour
     public TutorialUI tutorialUI;
     [SerializeField] private Stamina stamina;
 
+    public Transform spawnPoint;
+    public ResourceNode resourceNode;
     
     [SerializeField] private TreeVariantOneNode treeVariantOneNode;
 
@@ -34,7 +36,8 @@ public class TutorialManager : MonoBehaviour
     private void Start()
     {
         StartTeachingZero();
-        CharacterDialogueUI.onSetIsAdvancedonWorldEventEndedEvent.Invoke(true);
+        Stamina.onManualSetStaminaEvent.Invoke(20);
+        //CharacterDialogueUI.onSetIsAdvancedonWorldEventEndedEvent.Invoke(true);
         //CharacterDialogueUI.onSetStartTransitionEnabledEvent.Invoke(false);
         CharacterDialogueUI.onSetEndTransitionEnabledEvent.Invoke(false);
         CharacterDialogueUI.onSetIsCloseOnEndEvent.Invoke(false);
@@ -71,7 +74,7 @@ public class TutorialManager : MonoBehaviour
         StorylineManager.onWorldEventEndedEvent.RemoveListener(StoryZero);
         tutorialUI.frame.SetActive(true);
         CharacterDialogueUI.onSetStartTransitionEnabledEvent.Invoke(false);
-        CharacterDialogueUI.onSetIsAdvancedonWorldEventEndedEvent.Invoke(false);
+        //CharacterDialogueUI.onSetIsAdvancedonWorldEventEndedEvent.Invoke(false);
         //CharacterDialogueUI.onSetButtonEnabledEvent.Invoke(false);
         StartTeachingOne();
     }
@@ -91,6 +94,7 @@ public class TutorialManager : MonoBehaviour
     
     public void StoryOne(string p_id, int p_test, int p_teste)
     {
+
         currentDialogueIndex++;
         tutorialUI.overheadText.text = dialogues[currentDialogueIndex].dialogues[0].words;
 
@@ -114,17 +118,20 @@ public class TutorialManager : MonoBehaviour
     #region 2
     public void StartTeachingTwo()
     {
-        
-        StorylineManager.onWorldEventEndedEvent.AddListener(StoryTwo);
+        ToolCaster.onToolUsedEvent.AddListener(TeachTwo);
+
     }
     public void StoryTwo(string p_id, int p_test, int p_teste)
     {
-        Debug.Log("TRY - ID " + p_id + " O-" + currentIndex);
+        Debug.Log("oooooooooooooooooooooooTRY - ID " + p_id + " O-" + currentIndex);
         if (p_id == "O-1")
         {
             Debug.Log("INSIDE - ID " + "O-" + currentIndex);
-            StorylineManager.onWorldEventEndedEvent.RemoveListener(StoryTwo);
-            ToolCaster.onToolUsedEvent.AddListener(TeachTwo);
+            tutorialUI.overheadUI.SetActive(false);
+            currentDialogueIndex++;
+            CharacterDialogueUI.onCharacterSpokenToEvent.Invoke("O-" + currentIndex, dialogues[currentDialogueIndex]);
+            
+            EndTeachingTwo();
 
         }
        
@@ -134,12 +141,11 @@ public class TutorialManager : MonoBehaviour
 
     public void TeachTwo(float p_useless) //You’re getting the hang of it, son. But what if you overdo it? Try swinging your axe until you wipe out.
     {
+        ToolCaster.onToolUsedEvent.RemoveListener(TeachTwo);
+        Debug.Log("ttttttttttttttttttool USED" + "- ID " + "O-" + currentIndex);
+        StoryTwo("O-1", 0, 0);
+        //EndTeachingTwo();
 
-        Debug.Log("tool USED" + "- ID " + "O-" + currentIndex );
-        currentDialogueIndex++;
-        CharacterDialogueUI.onCharacterSpokenToEvent.Invoke("O-" + currentIndex, dialogues[currentDialogueIndex]);
-        //StorylineManager.onWorldEventEndedEvent.Invoke("O-" + currentIndex, 0, 0);
-        EndTeachingTwo();
 
     }
 
@@ -148,40 +154,81 @@ public class TutorialManager : MonoBehaviour
     public void EndTeachingTwo()
     {
         Debug.Log("- ID " + "O-" + currentIndex + " ENDED");
+
         currentIndex++;
-        ToolCaster.onToolUsedEvent.RemoveListener(TeachTwo);
-        ToolCaster.onToolUsedEvent.RemoveListener(TeachTwo);
-        //tutorialUI.frame.SetActive(true);
-        CharacterDialogueUI.onSetStartTransitionEnabledEvent.Invoke(false);
-        CharacterDialogueUI.onSetIsAdvancedonWorldEventEndedEvent.Invoke(false);
-      
-        StartTeachingThree();
-
-
+        //CharacterDialogueUI.onSetStartTransitionEnabledEvent.Invoke(false);
+        //CharacterDialogueUI.onSetIsAdvancedonWorldEventEndedEvent.Invoke(false);
         Debug.Log(currentIndex + " ended " + (currentIndex).ToString());
-        currentIndex++;
         
+        StorylineManager.onWorldEventEndedEvent.AddListener(StoryTwoB);
+
+
+        //currentIndex++;
+
         //Stamina.onStaminaDepletedEvent.RemoveListener(TeachStamina);
 
 
     }
     #endregion
 
+    #region 2b
+    public void StartTeachingTwoB()
+    {
+        //Debug.Log("1b1b1b1b1b1b1b1b1b1b1b - ID " + currentIndex);
+        //StoryTwoB("O-1b", 0, 0);
+
+    }
+
+    public void StoryTwoB(string p_id, int p_test, int p_teste) //Use the Axe using the Tool Action button on the lower right, while minding the Stamina Bar on the upper left.
+    {
+        Debug.Log("qqqqqqqqqqqqqqqqqqqqqqqqqqqq - ID " + p_id + " O-" + currentIndex);
+        if (p_id == "O-2")
+        {
+            Debug.Log("TTTTTTTTTTTTT - ID " + p_id + " O-" + currentIndex);
+            tutorialUI.overheadUI.SetActive(true);
+            currentDialogueIndex++;
+            tutorialUI.overheadText.text = dialogues[currentDialogueIndex].dialogues[0].words;
+            EndTeachingTwoB();
+            //ENDDDDDDDDDDDDDDDDDDDDDDD
+
+        }
+    }
+
+    //public void TeachTwoB(float p_useless)
+    //{
+
+      
+
+    //}
+
+
+
+    public void EndTeachingTwoB()
+    {
+        Debug.Log("- ID " + "O-" + currentIndex + " ENDED");
+        StorylineManager.onWorldEventEndedEvent.RemoveListener(StoryTwoB);
+
+        currentIndex++;
+        StartTeachingThree();
+
+
+    }
+    #endregion
 
     #region 3
 
     public void StartTeachingThree()
     {
-        Debug.Log("THREE" + " END END");
-        StorylineManager.onWorldEventEndedEvent.AddListener(StoryThree);
+        Debug.Log("THREE" + " START START");
         
+        StoryThree("O-3",0,0);
 
 
     }
     public void StoryThree(string p_id, int p_test, int p_teste)
     {
         Debug.Log("TRY - ID " + p_id + " O-" + currentIndex);
-        if (p_id == "O-2")
+        if (p_id == "O-3")
         {
             Debug.Log("INSIDE - ID " + "O-" + currentIndex);
             Stamina.onStaminaDepletedEvent.AddListener(TeachThree);
@@ -192,15 +239,17 @@ public class TutorialManager : MonoBehaviour
     }
     public void TeachThree()
     {
+        Stamina.onStaminaDepletedEvent.RemoveListener(TeachThree);
         Debug.Log("FAINTED");
         EndTeachingThree();
+        tutorialUI.overheadUI.SetActive(false);
 
     }
     public void EndTeachingThree()
     {
         Debug.Log(currentIndex + " ended " + (currentIndex).ToString());
         StorylineManager.onWorldEventEndedEvent.RemoveListener(StoryThree);
-        Stamina.onStaminaDepletedEvent.RemoveListener(TeachThree);
+       
         StartTeachingFour();
 
 
@@ -208,6 +257,7 @@ public class TutorialManager : MonoBehaviour
 
     }
     #endregion
+
     #region 4
 
     public void StartTeachingFour()
@@ -219,30 +269,119 @@ public class TutorialManager : MonoBehaviour
 
 
     }
-    public void StoryFour
-        (string p_id, int p_test, int p_teste)
+    public void StoryFour(string p_id, int p_test, int p_teste)
     {
         Debug.Log("TRY - ID " + p_id + " O-  uni uni" + currentIndex);
-        if (p_id == "O-3")
+        if (p_id == "O-5")
         {
             Debug.Log("INSIDE - ID " + "O-" + currentIndex);
+            //SPAWN
+            resourceNode = TreeVariantOneNodePool.pool.Get();
+            resourceNode.transform.position = spawnPoint.position + new Vector3(0f, -2.35f, 0f);
+            resourceNode.InitializeValues();
+            resourceNode.GetComponent<Health>().OnDeathEvent.AddListener(TeachFour);
+            //treeVariantOneNode = resourceNode;
+            tutorialUI.overheadUI.SetActive(true);
+            currentDialogueIndex++;
+            tutorialUI.overheadText.text = dialogues[currentDialogueIndex].dialogues[0].words;
+
+            //3
         }
 
 
     }
-    public void TeachTwo()
+    public void TeachFour()
     {
-
-        EndTeachingTwo();
+        StorylineManager.onWorldEventEndedEvent.RemoveListener(StoryFour);
+        resourceNode.GetComponent<Health>().OnDeathEvent.RemoveListener(TeachFour);
+        EndTeachingFour();
 
     }
     public void EndTeachingFour()
     {
-     
+        Debug.Log("FOUR ENDED");
+        currentIndex++;
+        //CharacterDialogueUI.onSetStartTransitionEnabledEvent.Invoke(false);
+        //CharacterDialogueUI.onSetIsAdvancedonWorldEventEndedEvent.Invoke(false);
+        Debug.Log(currentIndex + " ended " + (currentIndex).ToString());
+
+        StartTeachingFive();
+
+    }
+    #endregion
+
+
+    #region 5
+
+    public void StartTeachingFive()
+    {
+        currentIndex++;
+        StorylineManager.onWorldEventEndedEvent.AddListener(StoryFive);
+        currentDialogueIndex++;
+        CharacterDialogueUI.onCharacterSpokenToEvent.Invoke("O-" + currentIndex, dialogues[currentDialogueIndex]);
+
+
+    }
+    public void StoryFive(string p_id, int p_test, int p_teste)
+    {
+        Debug.Log("TRY - ID " + p_id + " O-  uni uni" + currentIndex);
+        if (p_id == "O-7")
+        {
+            Debug.Log("INSIDE - ID " + "O-" + currentIndex);
+            //SPAWN
+            resourceNode = OreVariantOneNodePool.pool.Get();
+            resourceNode.transform.position = spawnPoint.position + new Vector3(0f, -2.35f, 0f);
+            resourceNode.InitializeValues();
+            resourceNode.GetComponent<Health>().OnDeathEvent.AddListener(TeachFour);
+            //oreVariantOneNode = resourceNode;
+
+
+            //3
+        }
+
+
+    }
+    public void TeachFive()
+    {
+        resourceNode.GetComponent<Health>().OnDeathEvent.RemoveListener(TeachFive);
+        EndTeachingFive();
+
+    }
+    public void EndTeachingFive()
+    {
+        Debug.Log("FIVE ENDED");
 
 
     }
     #endregion
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     //#region 2
 
     //public void StartTeachingTwo()

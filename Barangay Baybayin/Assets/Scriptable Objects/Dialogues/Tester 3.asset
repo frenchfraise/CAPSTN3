@@ -19,5 +19,5 @@ MonoBehaviour:
     speechTransitionType: 0
   - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
     emotion: 0
-    words: Use the Axe on the Tree to chop it.
+    words: Next, chop the tree I set up.
     speechTransitionType: 0

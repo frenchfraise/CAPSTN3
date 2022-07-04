@@ -7,7 +7,7 @@ using UnityEngine.Audio;
 public class AudioManager : MonoBehaviour
 {
     [NonReorderable] public Sound[] sounds;
-
+    public AudioMixer mixer;
     // Start is called before the first frame update
     void Awake()
     {
@@ -20,7 +20,23 @@ public class AudioManager : MonoBehaviour
             s.source.loop = s.loop;
         }        
     }
+    void Start()
+    {
+        if (PlayerPrefs.HasKey("MasterVolume"))
+        {
+            mixer.SetFloat("MasterVolume", PlayerPrefs.GetFloat("MasterVolume"));
+        }
 
+        if (PlayerPrefs.HasKey("MusicVol"))
+        {
+            mixer.SetFloat("MusicVolume", PlayerPrefs.GetFloat("MusicVolume"));
+        }
+
+        if (PlayerPrefs.HasKey("SFX"))
+        {
+            mixer.SetFloat("SFXVolume", PlayerPrefs.GetFloat("SFXVolume"));
+        }
+    }
     private void OnEnable()
     {
         //WeatherManager.instance.onWeatherChangedEvent.AddListener(Play);

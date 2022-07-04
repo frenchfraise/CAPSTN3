@@ -18,7 +18,3 @@ MonoBehaviour:
     words: "You\u2019re getting the hang of it, son. But what if you overdo it? Try
       swinging your axe until you wipe out."
     speechTransitionType: 0
-  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
-    emotion: 0
-    words: Use the Axe until your Stamina meter depletes.
-    speechTransitionType: 0

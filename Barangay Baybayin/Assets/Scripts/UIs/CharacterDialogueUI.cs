@@ -285,8 +285,10 @@ public class CharacterDialogueUI : MonoBehaviour
                 }
                 if (isCloseOnEnd)
                 {
+                    //Debug.Log("AUTO CLOSE BEING DONE");
                     if (isEndTransitionEnabled)
                     {
+                        
                         //Debug.Log("END TRANSIONING");
                         UIManager.TransitionPreFadeAndPostFade(1, 0.5f, 1, 0, 0.5f, OnCloseCharacterDialogueUI);
                     }
@@ -296,6 +298,10 @@ public class CharacterDialogueUI : MonoBehaviour
                         OnCloseCharacterDialogueUI();
                     }
                     
+                }
+                else
+                {
+                    //Debug.Log("MANUAL CLOSED NEEDED");
                 }
             }
           

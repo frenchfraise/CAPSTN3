@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+public class ManualSetStaminaEvent : UnityEvent<float> { }
 public class StaminaDecreaseEvent : UnityEvent<float,float> { }
 public class StaminaDepletedEvent : UnityEvent{ }
 public class Stamina : MonoBehaviour
@@ -19,8 +20,13 @@ public class Stamina : MonoBehaviour
     private bool isPenalized = false;
 
     public StaminaDecreaseEvent OnStaminaModifiedEvent = new StaminaDecreaseEvent();
-    public static StaminaDepletedEvent onStaminaDepletedEvent = new StaminaDepletedEvent();    
+    public static StaminaDepletedEvent onStaminaDepletedEvent = new StaminaDepletedEvent();
+    public static ManualSetStaminaEvent onManualSetStaminaEvent = new ManualSetStaminaEvent();
 
+    private void Awake()
+    {
+        onManualSetStaminaEvent.AddListener(ManualSetStaminaEvent);
+    }
     private void OnEnable()
     {
         OnStaminaModifiedEvent.AddListener(genericBarUI.UpdateBar);
@@ -28,6 +34,7 @@ public class Stamina : MonoBehaviour
         TimeManager.onDayChangingEvent.AddListener(RegenerateStamina);
         currentMaxStamina = maxStamina; // some delay around here, when one starts the game and does Use(), THE PLAYER COULD FAINT
         genericBarUI.InstantUpdateBar(currentStamina, currentMaxStamina, maxStamina);
+        
     }
 
     private void OnDisable()
@@ -39,7 +46,10 @@ public class Stamina : MonoBehaviour
         
         
     }
-
+    void ManualSetStaminaEvent(float p_currentStamina)
+    {
+        currentStamina = p_currentStamina;
+    }
     public void PenalizeStamina()
     {
         currentMaxStamina = currentMaxStamina - staminaFatiguePenalty;
@@ -81,7 +91,11 @@ public class Stamina : MonoBehaviour
         }
         else
         {
-            OnStaminaModifiedEvent.Invoke(currentStamina, maxStamina);
+            if (UIManager.instance.gameplayHUD.activeSelf == true)
+            {
+                OnStaminaModifiedEvent.Invoke(currentStamina, maxStamina);
+            }
+  
         }
         
     }
