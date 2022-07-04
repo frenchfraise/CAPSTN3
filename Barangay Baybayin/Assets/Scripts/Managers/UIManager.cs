@@ -87,12 +87,11 @@ public class UIManager : MonoBehaviour
     }
     //TEMPORARY Make a WeatherUI class and Put this in it
     //private void OnWeatherUIChanged(Weather p_currentWeather, Weather[] p_nextWeather) RECHECK BEFORE MERGE
-    private void OnWeatherUIChanged(Weather p_currentWeather, Weather p_nextWeather)
+    private void OnWeatherUIChanged(List<Weather> p_weathers, List<Weather> p_currentWeathers)
     {
-        weatherSpriteUI.sprite = p_currentWeather.sprite;
+        weatherSpriteUI.sprite = p_currentWeathers[0].sprite;
         //Debug.Log(p_currentWeather.audioName);
-        FindObjectOfType<AudioManager>().Play(p_currentWeather.audioName);
-       
+        FindObjectOfType<AudioManager>().Play(p_currentWeathers[0].audioName);       
     }
 
     private void OnGameplayHUDSwitch(bool p_isActive)
