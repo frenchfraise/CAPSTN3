@@ -15,6 +15,6 @@ MonoBehaviour:
   dialogues:
   - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
     emotion: 0
-    words: "Good! The materials dropped would come to you. Now, let\u2019s try another
-      tool."
+    words: Mine the Copper node. Change tools by tapping the Pickaxe icon on the
+      Tool bar.
     speechTransitionType: 0

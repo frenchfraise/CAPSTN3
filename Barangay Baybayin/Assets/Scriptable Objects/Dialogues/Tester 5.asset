@@ -18,3 +18,7 @@ MonoBehaviour:
     words: "Good! The materials dropped would come to you. Now, let\u2019s try another
       tool."
     speechTransitionType: 0
+  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
+    emotion: 0
+    words: Use your Pickaxe to mine the Copper node.
+    speechTransitionType: 0

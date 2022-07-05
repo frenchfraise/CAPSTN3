@@ -30374,6 +30374,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 349e98160ec9793428cfc567fb31006b, type: 2}
   - {fileID: 11400000, guid: 173986bbfecf1ba459c36560c4837243, type: 2}
   - {fileID: 11400000, guid: 54b5061c3ded3564abef1cc7fd3f7465, type: 2}
+  - {fileID: 11400000, guid: c99fc2a058987c6438b0aa3165fe2ac4, type: 2}
+  - {fileID: 11400000, guid: c99fc2a058987c6438b0aa3165fe2ac4, type: 2}
   tutorialUI: {fileID: 983469898}
   stamina: {fileID: 1919231793}
   spawnPoint: {fileID: 725174652}

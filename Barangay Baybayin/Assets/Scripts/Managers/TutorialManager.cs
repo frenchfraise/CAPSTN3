@@ -325,14 +325,15 @@ public class TutorialManager : MonoBehaviour
     public void StoryFive(string p_id, int p_test, int p_teste)
     {
         Debug.Log("TRY - ID " + p_id + " O-  uni uni" + currentIndex);
-        if (p_id == "O-7")
+        if (p_id == "O-9")
         {
             Debug.Log("INSIDE - ID " + "O-" + currentIndex);
             //SPAWN
+            StorylineManager.onWorldEventEndedEvent.RemoveListener(StoryFive);
             resourceNode = OreVariantOneNodePool.pool.Get();
             resourceNode.transform.position = spawnPoint.position + new Vector3(0f, -2.35f, 0f);
             resourceNode.InitializeValues();
-            resourceNode.GetComponent<Health>().OnDeathEvent.AddListener(TeachFour);
+            resourceNode.GetComponent<Health>().OnDeathEvent.AddListener(TeachFive);
             //oreVariantOneNode = resourceNode;
 
 
