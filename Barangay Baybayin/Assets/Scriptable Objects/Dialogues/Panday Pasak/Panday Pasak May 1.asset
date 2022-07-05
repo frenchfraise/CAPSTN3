@@ -13,36 +13,27 @@ MonoBehaviour:
   m_Name: Panday Pasak May 1
   m_EditorClassIdentifier: 
   dialogues:
-  - character: {fileID: 0}
+  - character: {fileID: 11400000, guid: 64792cf6cb6b2a642becf92ac15202ce, type: 2}
     emotion: 10
     words: Storm has us stuck for a while, eh? Time to train then, Sakoro.
     speechTransitionType: 0
-  - character: {fileID: 0}
+  - character: {fileID: 11400000, guid: 64792cf6cb6b2a642becf92ac15202ce, type: 2}
     emotion: 10
     words: "Now that you\u2019re 18, it\u2019s time to upgrade  \u2013 your skills,
       your tools, and your service to the community."
     speechTransitionType: 0
-  - character: {fileID: 0}
+  - character: {fileID: 11400000, guid: 64792cf6cb6b2a642becf92ac15202ce, type: 2}
     emotion: 10
     words: "Let\u2019s go step by step. We have a while stuck inside together, after
       all."
     speechTransitionType: 0
-  - character: {fileID: 0}
+  - character: {fileID: 11400000, guid: 64792cf6cb6b2a642becf92ac15202ce, type: 2}
     emotion: 10
     words: Mind your Stamina. Using your held tool decreases it. Go on, use your
       tool.
     speechTransitionType: 0
-  - character: {fileID: 0}
-    emotion: 10
-    words: Use the Axe using the Tool Action button on the lower right, while minding
-      the Stamina Bar on the upper left.
-    speechTransitionType: 0
-  - character: {fileID: 0}
+  - character: {fileID: 11400000, guid: 64792cf6cb6b2a642becf92ac15202ce, type: 2}
     emotion: 10
     words: "You\u2019re getting the hang of it, son. But what if you overdo it? Try
       swinging your axe until you wipe out."
-    speechTransitionType: 0
-  - character: {fileID: 0}
-    emotion: 10
-    words: Use the Axe until your Stamina meter depletes.
     speechTransitionType: 0
