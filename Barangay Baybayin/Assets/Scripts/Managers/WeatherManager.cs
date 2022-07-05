@@ -54,12 +54,14 @@ public class WeatherManager : MonoBehaviour
     {
         TimeManager.onDayChangingEvent.AddListener(RandPredictWeathers);
         onWeatherChangedEvent.AddListener(SwitchWeatherParticleSys);
+        PlayerManager.onUpdateCurrentRoomIDEvent.AddListener(CheckForRoom);        
     }
 
     private void OnDisable()
     {
         TimeManager.onDayChangingEvent.RemoveListener(RandPredictWeathers);
         onWeatherChangedEvent.RemoveListener(SwitchWeatherParticleSys);
+        PlayerManager.onUpdateCurrentRoomIDEvent.RemoveListener(CheckForRoom);
     }
 
     public Weather GetWeatherUsingName(string p_weatherName)
@@ -133,8 +135,26 @@ public class WeatherManager : MonoBehaviour
             Debug.Log("Next " + i + " weather's prediction: " + currentWeathers[i].name);
 
         onWeatherChangedEvent?.Invoke(weathers, currentWeathers);
+        PlayerManager.onUpdateCurrentRoomIDEvent.Invoke(8); // TEMPORARY room start
     }
     // NEW ENDS HERE
+
+    private void CheckForRoom(int id)
+    {
+        if (id == 8)
+        {
+            if (currentWeathers[0].particle != null)
+            {
+                currentWeathers[0].particle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+                currentWeathers[0].particle.Clear();
+            }
+        }
+        else
+        {
+            if (currentWeathers[0].particle != null)
+                currentWeathers[0].particle.Play();
+        }
+    }
     
     private int ChooseIndex(int p_maxCount)
     {

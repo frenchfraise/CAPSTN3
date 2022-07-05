@@ -243,12 +243,14 @@ public class ToolCaster : MonoBehaviour
     IEnumerator Co_ToolUseCooldown()
     {
         canUse = false;
+        PlayerManager.instance.playerMovement.isMoving = false;
         // animator.SetTrigger("UseTool");
         onToolCanUseUpdatedEvent.Invoke(canUse);
  
         onToolUsedEvent.Invoke(staminaCost);
         yield return new WaitForSeconds(current_Tool.so_Tool.useRate[current_Tool.craftLevel-1]);
         canUse = true;
+        PlayerManager.instance.playerMovement.isMoving = true;
         onToolCanUseUpdatedEvent.Invoke(canUse);
     }
     IEnumerator Co_ToolSwitchCooldown()

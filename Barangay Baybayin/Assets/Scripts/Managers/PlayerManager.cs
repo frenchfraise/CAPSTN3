@@ -24,9 +24,10 @@ public class PlayerManager : MonoBehaviour
     }
 
 
-    [HideInInspector]public int currentRoomID;
+    public int currentRoomID = 8;
 
     public GameObject player;
+    public PlayerJoystick playerMovement;
     public Transform playerTransform { get; private set; }
     //[SerializeField] private Stamina stamina;
     [SerializeField] private Bed bed;
@@ -47,13 +48,13 @@ public class PlayerManager : MonoBehaviour
             //DontDestroyOnLoad(gameObject);
         //}
         playerTransform = player.transform;
+        
     }
 
     
     private void OnEnable()
     {
-        onUpdateCurrentRoomIDEvent.AddListener(UpdateCurrentRoomIDEvent);
-        
+        onUpdateCurrentRoomIDEvent.AddListener(UpdateCurrentRoomIDEvent);        
         TimeManager.onDayChangingEvent.AddListener(DayChanging);
     }
 
