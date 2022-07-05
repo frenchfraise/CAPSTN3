@@ -52,7 +52,16 @@ public class MouseParallax : MonoBehaviour
     {
         //Null check
         if (cam == null) return;
-        Vector2 pz = Camera.main.ScreenToViewportPoint(Input.mousePosition);
+        Vector2 pz = new Vector3(0, 0, 0);
+        if (SystemInfo.deviceType == DeviceType.Handheld)
+        {
+            pz = Camera.main.ScreenToViewportPoint(Input.acceleration);
+        }
+        else if (SystemInfo.deviceType == DeviceType.Desktop)
+        {
+            pz = Camera.main.ScreenToViewportPoint(Input.mousePosition);
+        }
+        
 
         float posX = Mathf.Lerp(transform.position.x, startPos.x + (pz.x * (100*(1 - parallaxEffect))), 2f * Time.deltaTime);
         float posY = Mathf.Lerp(transform.position.y, startPos.y + (pz.y * (100*(1 - parallaxEffect))), 2f * Time.deltaTime);
