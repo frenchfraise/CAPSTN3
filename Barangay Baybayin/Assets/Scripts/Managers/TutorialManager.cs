@@ -356,11 +356,16 @@ public class TutorialManager : MonoBehaviour
     {
         Debug.Log("FIVE ENDED");
         tutorialUI.overheadUI.SetActive(false); //for now
-
+        Final();
     }
     #endregion
 
-
+    public void Final()
+    {
+        CharacterDialogueUI.onSetEndTransitionEnabledEvent.Invoke(true);
+        CharacterDialogueUI.onSetIsCloseOnEndEvent.Invoke(true);
+        CharacterDialogueUI.onSetStartTransitionEnabledEvent.Invoke(true);
+    }
 
 
 

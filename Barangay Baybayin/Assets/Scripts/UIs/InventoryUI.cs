@@ -12,6 +12,7 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] RectTransform contentPanel;
     [SerializeField] List<RectTransform> pages = new List<RectTransform>();
     [SerializeField] int currentPage;
+    public Vector2 tempoffset;
     private void Start()
     {
         GenerateInventoryPageUIs();
@@ -50,10 +51,11 @@ public class InventoryUI : MonoBehaviour
     void Snap()
     {
         Canvas.ForceUpdateCanvases();
-
+        Debug.Log(currentPage + " POSI: " + (Vector2)pages[currentPage].position + " - " +  (Vector2)pages[currentPage].anchoredPosition);
+        Vector2 newp = (Vector2)pages[currentPage].position + tempoffset;
         contentPanel.anchoredPosition =
                 (Vector2)scrollRect.transform.InverseTransformPoint(contentPanel.position)
-                - (Vector2)scrollRect.transform.InverseTransformPoint(pages[currentPage].position);
+                - (Vector2)scrollRect.transform.InverseTransformPoint(newp);
     }
     public void SnapToPrev()
     {

@@ -132,6 +132,10 @@ public class WeatherManager : MonoBehaviour
         for (int i = 1; i < currentWeathers.Count; i++)
             Debug.Log("Next " + i + " weather's prediction: " + currentWeathers[i].name);
 
+        int chosenIndex = Random.Range(0,currentWeathers[0].dialogue.Count);
+
+
+        currentWeatherDialogue = currentWeathers[0].dialogue[chosenIndex];
         onWeatherChangedEvent?.Invoke(weathers, currentWeathers);
     }
     // NEW ENDS HERE

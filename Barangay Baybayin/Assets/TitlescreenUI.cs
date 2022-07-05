@@ -6,6 +6,7 @@ public class TitlescreenUI : MonoBehaviour
 {
     public void PlayGame()
     {
+        Debug.Log("TEST");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
     }

@@ -28,8 +28,7 @@ public class Character : InteractibleObject
     protected override void OnInteract()
     {
         // Debug.Log("wee");
-        bool isQuestCompleted = StorylineManager.instance.CheckIfQuestComplete(id);
-   
+        
 
         StorylineData storylineData = StorylineManager.GetStorylineDataFromID(id);
         SO_StoryLine so_StoryLine = storylineData.so_StoryLine;
@@ -52,6 +51,8 @@ public class Character : InteractibleObject
                 }
                 else
                 {
+                    bool isQuestCompleted = StorylineManager.instance.CheckIfQuestComplete(id);
+
                     if (isQuestCompleted)
                     {
                         Debug.Log("PHASE 2");

@@ -44,7 +44,7 @@ public class StorylineManager : MonoBehaviour
 
     private void OnEnable()
     {
-        StorylineManager.onWorldEventEndedEvent.AddListener(QuestCompleted);
+    
     }
 
     private void OnDisable()
@@ -168,8 +168,8 @@ public class StorylineManager : MonoBehaviour
                     //    Debug.Log("PH: 12");
 
                         InventoryManager.ReduceItem(currentSOItemQuestRequirement,
-                                questlineData.quest.rewards[i].amount);
-                            
+                                specificQuestRequirement.requiredAmount[i]);
+                        QuestCompleted(storylineData);
                         isQuestCompleted = true;
                            
                         
@@ -191,7 +191,7 @@ public class StorylineManager : MonoBehaviour
                         if (itemData.currentLevel >= specificQuestRequirement.requiredLevel)
                         {
                             isQuestCompleted = true;
-
+                            QuestCompleted(storylineData);
                         }
                         else
                         {
@@ -212,42 +212,41 @@ public class StorylineManager : MonoBehaviour
 
     }
 
-    void QuestCompleted(string p_eventID, int p_actionParameterAID, int p_actionParameterBID = -1)
+    void QuestCompleted(StorylineData p_storylineData)
     {
-        if (CheckIfQuestComplete(p_eventID))
+        
+  
+        SO_StoryLine so_StoryLine = p_storylineData.so_StoryLine;
+        SO_Questline so_Questline = so_StoryLine.questLines[p_storylineData.currentQuestChainIndex];
+        QuestlineData questlineData = so_Questline.questlineData[p_storylineData.currentQuestLineIndex];
+
+        //give reward
+        for (int i = 0; i < questlineData.quest.rewards.Count; i++)
         {
-            StorylineData storylineData = StorylineManager.GetStorylineDataFromID(p_eventID);
-            SO_StoryLine so_StoryLine = storylineData.so_StoryLine;
-            SO_Questline so_Questline = so_StoryLine.questLines[storylineData.currentQuestChainIndex];
-            QuestlineData questlineData = so_Questline.questlineData[storylineData.currentQuestLineIndex];
+            InventoryManager.AddItem(questlineData.quest.rewards[i].so_Item,
+                questlineData.quest.rewards[i].amount);
+        }
 
-            //give reward
-            for (int i = 0; i < questlineData.quest.rewards.Count; i++)
+        if (p_storylineData.currentQuestLineIndex < so_Questline.questlineData.Count - 1)
+        {
+
+            p_storylineData.currentQuestLineIndex++;
+
+        }
+        else if (p_storylineData.currentQuestLineIndex >= so_Questline.questlineData.Count - 1) // No More Questline, move to questchain
+        {
+
+            p_storylineData.currentQuestLineIndex = 0;
+            if (p_storylineData.currentQuestChainIndex < so_StoryLine.questLines.Count - 1)
             {
-                InventoryManager.AddItem(questlineData.quest.rewards[i].so_Item,
-                    questlineData.quest.rewards[i].amount);
+                p_storylineData.currentQuestChainIndex++;
             }
-
-            if (storylineData.currentQuestLineIndex < so_Questline.questlineData.Count - 1)
+            else
             {
-
-                storylineData.currentQuestLineIndex++;
-
-            }
-            else if (storylineData.currentQuestLineIndex >= so_Questline.questlineData.Count - 1) // No More Questline, move to questchain
-            {
-
-                storylineData.currentQuestLineIndex = 0;
-                if (storylineData.currentQuestChainIndex < so_StoryLine.questLines.Count - 1)
-                {
-                    storylineData.currentQuestChainIndex++;
-                }
-                else
-                {
-                    Debug.Log("STORYLINE FINISHED");
-                }
+                Debug.Log("STORYLINE FINISHED");
             }
         }
+        
         
         
     }
