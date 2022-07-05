@@ -15,17 +15,17 @@ public class HoverEffect : MonoBehaviour
 
     private void OnEnable()
     {
-        //startYPosition = transform.position.y;
-       // runningCoroutine = StartCoroutine(Co_Hover());
-        
+        //runningCoroutine = Co_Hover();
+        //StartCoroutine(runningCoroutine);
     }
 
     private void OnDisable()
     {
         //if (runningCoroutine != null)
         //{
-        //     StopCoroutine(runningCoroutine);
+        //    StopCoroutine(runningCoroutine);
         //}
+  
     }
 
 
@@ -47,6 +47,7 @@ public class HoverEffect : MonoBehaviour
             transform.position -= new Vector3(0, hoverDownSpeed);
             yield return new WaitForSeconds(hoverDownRate);
         }
+        
         runningCoroutine = Co_Hover();
         StartCoroutine(runningCoroutine);
     }

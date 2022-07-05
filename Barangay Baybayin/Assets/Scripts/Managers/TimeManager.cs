@@ -161,6 +161,7 @@ public class TimeManager : MonoBehaviour
 
     private void SetPauseGame(bool p_bool)
     {
+        Debug.Log("time " + p_bool);
         DoTimer = p_bool;
         if (p_bool) StartCoroutine(Co_DoTimer());
     }

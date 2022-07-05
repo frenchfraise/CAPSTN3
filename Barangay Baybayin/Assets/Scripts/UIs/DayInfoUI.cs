@@ -42,6 +42,7 @@ public class DayInfoUI : MonoBehaviour
 
     IEnumerator Co_DayEndTransition(bool p_causedByFainting, int p_dayCount)
     {
+        TimeManager.onPauseGameTime.Invoke(false);
         if (!p_causedByFainting)
         {
             conditionsText.text = "ENDED";
@@ -96,6 +97,7 @@ public class DayInfoUI : MonoBehaviour
         UIManager.TransitionFade(0, false) ;
         TimeManager.instance.NewDay();
         frame.SetActive(false);
+        TimeManager.onPauseGameTime.Invoke(true);
     }
 
 

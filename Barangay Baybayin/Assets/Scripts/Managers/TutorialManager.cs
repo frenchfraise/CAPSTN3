@@ -15,28 +15,27 @@ public class TutorialManager : MonoBehaviour
     public Transform spawnPoint;
     public ResourceNode resourceNode;
     
-    [SerializeField] private TreeVariantOneNode treeVariantOneNode;
 
     [SerializeField] private int toolEquipped;
 
-    [SerializeField] private OreVariantOneNode oreVariantOneNode;
-    [SerializeField] private Infrastructure infrastructure;
-    [SerializeField] private HerbVariantOneNode herbVariantOneNode;
+ 
     private void Awake()
     {
         instance = this;
     }
 
-    public string recievedID;
+   
     public void Next()
     {
+        
         StorylineManager.onWorldEventEndedEvent.Invoke("O-" + currentIndex, 0,0);
         Debug.Log(currentIndex + " NEXT " + (currentIndex + 1).ToString());
     }
     private void Start()
     {
+       
         StartTeachingZero();
-        Stamina.onManualSetStaminaEvent.Invoke(20);
+        
         //CharacterDialogueUI.onSetIsAdvancedonWorldEventEndedEvent.Invoke(true);
         //CharacterDialogueUI.onSetStartTransitionEnabledEvent.Invoke(false);
         CharacterDialogueUI.onSetEndTransitionEnabledEvent.Invoke(false);
@@ -74,6 +73,7 @@ public class TutorialManager : MonoBehaviour
         StorylineManager.onWorldEventEndedEvent.RemoveListener(StoryZero);
         tutorialUI.frame.SetActive(true);
         CharacterDialogueUI.onSetStartTransitionEnabledEvent.Invoke(false);
+
         //CharacterDialogueUI.onSetIsAdvancedonWorldEventEndedEvent.Invoke(false);
         //CharacterDialogueUI.onSetButtonEnabledEvent.Invoke(false);
         StartTeachingOne();
@@ -118,6 +118,7 @@ public class TutorialManager : MonoBehaviour
     #region 2
     public void StartTeachingTwo()
     {
+        Stamina.onManualSetStaminaEvent.Invoke(20);
         ToolCaster.onToolUsedEvent.AddListener(TeachTwo);
 
     }
@@ -315,7 +316,7 @@ public class TutorialManager : MonoBehaviour
 
     public void StartTeachingFive()
     {
-        tutorialUI.overheadUI.SetActive(true);
+        tutorialUI.overheadUI.SetActive(false);
         StorylineManager.onWorldEventEndedEvent.AddListener(StoryFive);
         currentDialogueIndex++;
         CharacterDialogueUI.onCharacterSpokenToEvent.Invoke("O-" + currentIndex, dialogues[currentDialogueIndex]);
@@ -354,7 +355,7 @@ public class TutorialManager : MonoBehaviour
     public void EndTeachingFive()
     {
         Debug.Log("FIVE ENDED");
-
+        tutorialUI.overheadUI.SetActive(false); //for now
 
     }
     #endregion

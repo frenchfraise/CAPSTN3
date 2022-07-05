@@ -208,10 +208,12 @@ public class UpgradeToolsUI : MonoBehaviour
         confirmPanelUI.SetActive(false);
         selectionPanelUI.SetActive(false);
         UIManager.onGameplayModeChangedEvent.Invoke(false);
+        TimeManager.onPauseGameTime.Invoke(false);
     }
 
     public void OpenButtonUIClicked()
     {
+        TimeManager.onPauseGameTime.Invoke(true);
         foreach (UpgradeToolUI upgradeToolUI in upgradeToolUIs)
         {
             upgradeToolUI.UpdateUI();

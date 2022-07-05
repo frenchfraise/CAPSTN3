@@ -181,10 +181,12 @@ public class StorylinesUI : MonoBehaviour
     {
         gameObject.SetActive(false);
         UIManager.onGameplayModeChangedEvent.Invoke(false);
+        TimeManager.onPauseGameTime.Invoke(false);
     }
 
     public void OpenButtonUIClicked()
     {
+        TimeManager.onPauseGameTime.Invoke(true);
         for (int i = 0; i < storylines.Count; i++)
         {
 

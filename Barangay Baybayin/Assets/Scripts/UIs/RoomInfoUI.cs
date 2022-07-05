@@ -31,7 +31,7 @@ public class RoomInfoUI : MonoBehaviour
     {
         //PlayerManager.instance.joystick.enabled = false;
         PlayerJoystick.onUpdateJoystickEnabledEvent.Invoke(false);
-        TimeManager.onPauseGameTime.Invoke(true);
+        TimeManager.onPauseGameTime.Invoke(false);
         //UIManager.onGameplayModeChangedEvent.Invoke(true);
         string roomName;
         string roomDescription;
@@ -140,7 +140,7 @@ public class RoomInfoUI : MonoBehaviour
         UIManager.TransitionFade(0, false);
         //UIManager.onGameplayModeChangedEvent.Invoke(false);
         PlayerJoystick.onUpdateJoystickEnabledEvent.Invoke(true);
-        TimeManager.onPauseGameTime.Invoke(false);
+        TimeManager.onPauseGameTime.Invoke(true);
         //PlayerManager.instance.joystick.enabled = true;
         //PlayerJoystick.onUpdateJoystickEnabledEvent.Invoke(true);
     }
