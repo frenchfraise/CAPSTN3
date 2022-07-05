@@ -315,7 +315,7 @@ public class TutorialManager : MonoBehaviour
 
     public void StartTeachingFive()
     {
-        currentIndex++;
+        tutorialUI.overheadUI.SetActive(true);
         StorylineManager.onWorldEventEndedEvent.AddListener(StoryFive);
         currentDialogueIndex++;
         CharacterDialogueUI.onCharacterSpokenToEvent.Invoke("O-" + currentIndex, dialogues[currentDialogueIndex]);
@@ -325,7 +325,7 @@ public class TutorialManager : MonoBehaviour
     public void StoryFive(string p_id, int p_test, int p_teste)
     {
         Debug.Log("TRY - ID " + p_id + " O-  uni uni" + currentIndex);
-        if (p_id == "O-9")
+        if (p_id == "O-6")
         {
             Debug.Log("INSIDE - ID " + "O-" + currentIndex);
             //SPAWN
@@ -335,6 +335,9 @@ public class TutorialManager : MonoBehaviour
             resourceNode.InitializeValues();
             resourceNode.GetComponent<Health>().OnDeathEvent.AddListener(TeachFive);
             //oreVariantOneNode = resourceNode;
+            tutorialUI.overheadUI.SetActive(true);
+            currentDialogueIndex++;
+            tutorialUI.overheadText.text = dialogues[currentDialogueIndex].dialogues[0].words;
 
 
             //3
