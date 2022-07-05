@@ -365,6 +365,8 @@ public class TutorialManager : MonoBehaviour
         CharacterDialogueUI.onSetEndTransitionEnabledEvent.Invoke(true);
         CharacterDialogueUI.onSetIsCloseOnEndEvent.Invoke(true);
         CharacterDialogueUI.onSetStartTransitionEnabledEvent.Invoke(true);
+
+
     }
 
 

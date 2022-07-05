@@ -82,7 +82,8 @@ public class InventoryManager : MonoBehaviour
 
                         InventoryManager.instance.inventoryPages[iii].itemCategories[ii].items[i].amount += p_amount;
                         InventoryManager.instance.inventoryPages[iii].itemCategories[ii].items[i].UpdateText(); //temporary
-
+                        //MAKE THIS EVENT FOR NOW ITS PLAYERMANAGER
+                        PlayerManager.instance.SpawnNewItemFloater(p_item,p_amount.ToString());
                         return;
                     }
                     i++;

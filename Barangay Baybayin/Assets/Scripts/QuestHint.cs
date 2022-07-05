@@ -22,12 +22,14 @@ public class QuestHint : MonoBehaviour
         if (!p_isActive == true)
         {
             iconHoverEffect.runningCoroutine = iconHoverEffect.Co_Hover();
+            iconHoverEffect.gameObject.SetActive(true);
             StartCoroutine(iconHoverEffect.runningCoroutine);
         }
         else if (!p_isActive == false)
         {
             if (iconHoverEffect.runningCoroutine != null)
             {
+                iconHoverEffect.gameObject.SetActive(false);
                 StopCoroutine(iconHoverEffect.runningCoroutine);
                 iconHoverEffect.runningCoroutine = null;
             }

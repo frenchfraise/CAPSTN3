@@ -13,3 +13,6 @@ MonoBehaviour:
   m_Name: Recipe 1
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: f87850a986084944ba5bcedf63386660, type: 3}
+  color:
+    serializedVersion: 2
+    rgba: 4287810273

@@ -13,3 +13,6 @@ MonoBehaviour:
   m_Name: Wood 2
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: cdbdff4ea1edaf745b83435afbb3837e, type: 3}
+  color:
+    serializedVersion: 2
+    rgba: 4278919490

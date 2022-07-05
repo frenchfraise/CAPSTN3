@@ -17,6 +17,7 @@ public class PlayerJoystick : MonoBehaviour
 
     public Animator animator;
 
+    public bool isMoving = true;
     private bool canInteractHint = true;
     public GameObject interactHint;
     private SpriteRenderer interactHintImage;
@@ -63,7 +64,7 @@ public class PlayerJoystick : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (canJoystick)
+        if (canJoystick && isMoving)
         {
             movement.x = joystick.Horizontal;
             movement.y = joystick.Vertical;
@@ -74,11 +75,7 @@ public class PlayerJoystick : MonoBehaviour
 
             Vector3 moveArrow = new Vector3(joystick.Horizontal, joystick.Vertical);
             arrow.transform.rotation = Quaternion.LookRotation(Vector3.forward, moveArrow);
-
         }
-
-
-
     }
 
     private void FixedUpdate()

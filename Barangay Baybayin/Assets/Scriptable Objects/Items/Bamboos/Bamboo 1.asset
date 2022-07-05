@@ -13,3 +13,6 @@ MonoBehaviour:
   m_Name: Bamboo 1
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 3cd8cecf28aec964ea6472c1286769eb, type: 3}
+  color:
+    serializedVersion: 2
+    rgba: 4281180806

@@ -134,14 +134,14 @@ public class CharacterDialogueUI : MonoBehaviour
         frame.SetActive(true);
         //Debug.Log(id + " EVENT WITH NAME " + currentSO_Dialogues.name + " IS CURRENT DIALOGUE " + " OPENING");
         ResetCharacterDialogueUI();
-        TimeManager.onPauseGameTime.Invoke(false);
+        //TimeManager.onPauseGameTime.Invoke(false);
         UIManager.onGameplayModeChangedEvent.Invoke(true);
     }
     public void OnCloseCharacterDialogueUI()
     {
         //Debug.Log(id + " EVENT WITH NAME " + currentSO_Dialogues.name + " IS CURRENT DIALOGUE " + " CLOSING");
         frame.SetActive(false);
-        TimeManager.onPauseGameTime.Invoke(true);
+        //TimeManager.onPauseGameTime.Invoke(true);
         UIManager.onGameplayModeChangedEvent.Invoke(false);
         //onCharacterDialogueUIClose.Invoke(true);
     }

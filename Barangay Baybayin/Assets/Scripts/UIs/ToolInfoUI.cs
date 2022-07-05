@@ -36,7 +36,7 @@ public class ToolInfoUI : MonoBehaviour
         levelText.text = p_tool.proficiencyLevel.ToString();
         if (p_tool.so_Tool.maxProficiencyAmount.Count > 0)
         {
-            genericBarUI.InstantUpdateBar(p_tool.proficiencyAmount, p_tool.so_Tool.maxProficiencyAmount[p_tool.proficiencyLevel - 1], p_tool.so_Tool.maxProficiencyAmount[p_tool.proficiencyLevel - 1]);
+            genericBarUI.InstantUpdateBar(p_tool.proficiencyAmount, p_tool.so_Tool.maxProficiencyAmount[p_tool.proficiencyLevel], p_tool.so_Tool.maxProficiencyAmount[p_tool.proficiencyLevel]);
             
             
         }

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Interacter : MonoBehaviour
 {
+    public bool canInteract = true;
+    public float delay = 0.5f;
     private Transform aim;
     private void Awake()
     {
@@ -14,7 +16,11 @@ public class Interacter : MonoBehaviour
         InteractibleObject targetResourceNode = GetInteractibleObject();
         if (targetResourceNode)
         {
-            targetResourceNode.onInteractEvent.Invoke();
+            if (canInteract == false)
+            {
+                targetResourceNode.onInteractEvent.Invoke();
+            }
+           
         }
 
     }
@@ -68,6 +74,20 @@ public class Interacter : MonoBehaviour
     }
     public void OnInteractButtonPressed()
     {
+        if (canInteract)
+        {
+       
+            canInteract = false;
+            Debug.Log("PRESSED");
+            StartCoroutine(Cooldown());
+        }
+       
+    }
+
+    IEnumerator Cooldown()
+    {
         DetectInteractibles();
+        yield return new WaitForSeconds(delay);
+        canInteract = true;
     }
 }

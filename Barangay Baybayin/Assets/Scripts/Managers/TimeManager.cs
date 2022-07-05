@@ -60,8 +60,8 @@ public class TimeManager : MonoBehaviour
 
     [SerializeField] private float oneMinToRealSeconds;
 
-    private bool DoTimer;
-
+    public bool DoTimer;
+    public IEnumerator runningTime;
     private void Awake()
     {
         _instance = this;
@@ -76,7 +76,8 @@ public class TimeManager : MonoBehaviour
         onHourChanged.Invoke(); //TEMPORARY
         
         DoTimer = true;
-        StartCoroutine(Co_DoTimer());
+        //NewDay();
+        //StartCoroutine(Co_DoTimer());
     }
 
     private void OnEnable()
@@ -113,6 +114,7 @@ public class TimeManager : MonoBehaviour
     {
         while (DoTimer)
         {
+            //Debug.Log("test");
             yield return new WaitForSeconds(oneMinToRealSeconds);
             minute++;
             minuteByTwos = minute * 2;
@@ -129,7 +131,9 @@ public class TimeManager : MonoBehaviour
                 minuteByTens = 0;
             }
             onTimeChangedEvent?.Invoke(hour, minute, minuteByTens);
+            
         }
+        
     }
 
     private void OnTimeCheck(int p_hour, int p_minute, int p_minuteByTens)
@@ -143,25 +147,33 @@ public class TimeManager : MonoBehaviour
 
     public void FaintedEndDay()
     {
-       // UIManager.instance.dayInfoUI.Faint(dayCount);
+       
+        // UIManager.instance.dayInfoUI.Faint(dayCount);
         onDayEndedEvent.Invoke(true,dayCount);
     }
     public void EndDay()
     {
-       // UIManager.instance.dayInfoUI.DayEnd(dayCount);
+        // UIManager.instance.dayInfoUI.DayEnd(dayCount);
+        
         onDayEndedEvent.Invoke(false,dayCount);
     }
     public void NewDay()
     {
         Debug.Log("NEW DAY");
         TimeManager.instance.hour = TimeManager.instance.startHour;
+       
+        minute = 0;
+        minuteByTwos = 0;
+        minuteByTens = 0;
+        onTimeChangedEvent?.Invoke(hour, minute, minuteByTens);
         TimeManager.instance.dayCount++;
         TimeManager.onDayChangeEndedEvent.Invoke();
+      
     }    
 
     private void SetPauseGame(bool p_bool)
     {
-        Debug.Log("time " + p_bool);
+        //Debug.Log("time " + p_bool);
         DoTimer = p_bool;
         if (p_bool) StartCoroutine(Co_DoTimer());
     }

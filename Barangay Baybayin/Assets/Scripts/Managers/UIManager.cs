@@ -96,9 +96,9 @@ public class UIManager : MonoBehaviour
 
     private void OnGameplayHUDSwitch(bool p_isActive)
     {
-        TimeManager.onPauseGameTime.Invoke(p_isActive);
-        p_isActive = !p_isActive;
-        gameplayHUD.SetActive(p_isActive);
+        TimeManager.onPauseGameTime.Invoke(!p_isActive);
+        //p_isActive = !p_isActive;
+        gameplayHUD.SetActive(!p_isActive);
         
     }
 

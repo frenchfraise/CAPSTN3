@@ -13,3 +13,6 @@ MonoBehaviour:
   m_Name: Herb 1
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 950fcd04de90fda4199b1fc3ad2dd36e, type: 3}
+  color:
+    serializedVersion: 2
+    rgba: 4281824512

@@ -13,3 +13,6 @@ MonoBehaviour:
   m_Name: Nipa Leaves 2
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: f4550b8b85ee4b24fb0be8de710b1b97, type: 3}
+  color:
+    serializedVersion: 2
+    rgba: 4283063066

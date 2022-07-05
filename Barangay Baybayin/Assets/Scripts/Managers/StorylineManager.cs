@@ -169,7 +169,7 @@ public class StorylineManager : MonoBehaviour
 
                         InventoryManager.ReduceItem(currentSOItemQuestRequirement,
                                 specificQuestRequirement.requiredAmount[i]);
-                        QuestCompleted(storylineData);
+                        //QuestCompleted(storylineData);
                         isQuestCompleted = true;
                            
                         
@@ -191,7 +191,7 @@ public class StorylineManager : MonoBehaviour
                         if (itemData.currentLevel >= specificQuestRequirement.requiredLevel)
                         {
                             isQuestCompleted = true;
-                            QuestCompleted(storylineData);
+                            //QuestCompleted(storylineData);
                         }
                         else
                         {
@@ -212,7 +212,7 @@ public class StorylineManager : MonoBehaviour
 
     }
 
-    void QuestCompleted(StorylineData p_storylineData)
+    public void QuestCompleted(StorylineData p_storylineData)
     {
         
   
@@ -223,22 +223,25 @@ public class StorylineManager : MonoBehaviour
         //give reward
         for (int i = 0; i < questlineData.quest.rewards.Count; i++)
         {
+            Debug.Log("REWARDING");
             InventoryManager.AddItem(questlineData.quest.rewards[i].so_Item,
                 questlineData.quest.rewards[i].amount);
         }
-
+        Debug.Log(p_storylineData.currentQuestLineIndex + " TESTIN" + (so_Questline.questlineData.Count -1).ToString());
         if (p_storylineData.currentQuestLineIndex < so_Questline.questlineData.Count - 1)
         {
+            Debug.Log("WENT IN");
 
             p_storylineData.currentQuestLineIndex++;
 
         }
         else if (p_storylineData.currentQuestLineIndex >= so_Questline.questlineData.Count - 1) // No More Questline, move to questchain
         {
-
+            Debug.Log("WENT INCREaaase");
             p_storylineData.currentQuestLineIndex = 0;
             if (p_storylineData.currentQuestChainIndex < so_StoryLine.questLines.Count - 1)
             {
+                Debug.Log("WENT INCREaaaseAAAAAAAAAD");
                 p_storylineData.currentQuestChainIndex++;
             }
             else

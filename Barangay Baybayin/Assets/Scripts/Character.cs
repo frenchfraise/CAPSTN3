@@ -59,6 +59,7 @@ public class Character : InteractibleObject
                         
                         CharacterDialogueUI.onCharacterSpokenToEvent.Invoke(id, questlineData.questCompleteSO_Dialogues);
                         
+                        StorylineManager.instance.QuestCompleted(storylineData);
                         isFirstTime = true;
                     }
                     else

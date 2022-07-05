@@ -13,3 +13,6 @@ MonoBehaviour:
   m_Name: Metal 3
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 6617b7d7e96652943a4c34b9766ef264, type: 3}
+  color:
+    serializedVersion: 2
+    rgba: 4281257723

@@ -102,7 +102,7 @@ public class RoomInfoUI : MonoBehaviour
                             {
                                 currentRoomsResourceDrops.Add(resourceDrop);
                                 ResourceDropUI newResourceDropUI = Instantiate(resourceDropUIPrefab);
-                                newResourceDropUI.resourceNameText.text = resourceDrop.so_Item.name;
+                                // newResourceDropUI.resourceNameText.text = resourceDrop.so_Item.name;
                                 newResourceDropUI.resourceIcon.sprite = resourceDrop.so_Item.icon;
                                 RectTransform newResourceDropUITransform = newResourceDropUI.GetComponent<RectTransform>();
                                 newResourceDropUITransform.SetParent(availableResourcesContainer, true);

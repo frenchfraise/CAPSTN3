@@ -25,8 +25,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1225263188983335208}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
+  m_LocalPosition: {x: 0, y: -5.3, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8653533781470353937}
@@ -135,8 +135,16 @@ MonoBehaviour:
   so_ResourceNode: {fileID: 11400000, guid: d0e57ea43ac58924899c01307727ce94, type: 2}
   itemPrefab: {fileID: 8436199365745860972, guid: 2bf34b5e8f26c294d8ba4e3060dded9a, type: 3}
   hintSprite: {fileID: 21300000, guid: be734b9a7ee7e4c4699b472c126b0a49, type: 3}
-  levelRequirement: 0
-  resourceDrops: []
+  levelRequirement: 2
+  resourceDrops:
+  - so_Item: {fileID: 11400000, guid: 201d4d59631edc04f94390cb362a772e, type: 2}
+    chance: 50
+    minAmount: 1
+    maxAmount: 3
+  - so_Item: {fileID: 11400000, guid: cb69ecbb38eae904b92bb4127324aa56, type: 2}
+    chance: 50
+    minAmount: 1
+    maxAmount: 3
 --- !u!114 &8653533781470353938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,7 +171,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.053585887, y: 1.7166362}
+  m_Offset: {x: 0.25, y: -3.8}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -174,5 +182,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 6.3024063, y: 3.2152681}
+  m_Size: {x: 4, y: 2.5}
   m_EdgeRadius: 0
