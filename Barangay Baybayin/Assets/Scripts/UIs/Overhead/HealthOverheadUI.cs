@@ -7,7 +7,7 @@ public class HealthOverheadUI : MonoBehaviour
 {
     private bool isRevealed;
     [SerializeField] private float unrevealTimeOut;
-    Coroutine currentTimeOut;
+
     private Camera cam;
     [SerializeField] private Vector2 positionCorrection = new Vector2(0, 40);
     private RectTransform targetCanvas;
@@ -16,8 +16,9 @@ public class HealthOverheadUI : MonoBehaviour
     [SerializeField] private Image healthBar;
     [SerializeField] private Image delayedBar;
     private Transform objectToFollow;
-    private IEnumerator runningCoroutine;
-
+    IEnumerator currentTimeOut;
+    //private IEnumerator runningCoroutine;
+    private IEnumerator runningUpdateCoroutine;
     float fill;
 
     public void OnHealthDied()
@@ -26,9 +27,9 @@ public class HealthOverheadUI : MonoBehaviour
         {
             StopCoroutine(currentTimeOut);
         }
-        if (runningCoroutine != null)
+        if (runningUpdateCoroutine != null)
         {
-            StopCoroutine(runningCoroutine);
+            StopCoroutine(runningUpdateCoroutine);
         }
         isRevealed = false;
         healthFrame.gameObject.SetActive(false);
@@ -42,9 +43,14 @@ public class HealthOverheadUI : MonoBehaviour
         yield return new WaitForSeconds(unrevealTimeOut);
         healthFrame.gameObject.SetActive(false);
         isRevealed = false;
-        if (runningCoroutine != null)
+        if (currentTimeOut != null)
         {
-            StopCoroutine(runningCoroutine);
+            StopCoroutine(currentTimeOut);
+        }
+
+        if (runningUpdateCoroutine != null)
+        {
+            StopCoroutine(runningUpdateCoroutine);
         }
     }
 
@@ -60,15 +66,15 @@ public class HealthOverheadUI : MonoBehaviour
 
     public IEnumerator Co_UpdatePosition()
     {
-        if (runningCoroutine != null)
-        {
-            StopCoroutine(runningCoroutine);
-        }
+      
         RepositionHealthBar();
-        yield return new WaitForSeconds(0.25f);
-        
-        runningCoroutine = Co_UpdatePosition();
-        StartCoroutine(runningCoroutine);
+        Debug.Log("REPOSITIONING");
+        yield return new WaitForSeconds(0.05f);
+        Debug.Log("REPOSITIONING");
+        runningUpdateCoroutine = Co_UpdatePosition();
+        StartCoroutine(runningUpdateCoroutine);
+
+        Debug.Log("REPOSITIONING 2");
     }
     public void OnHealthChanged(bool p_isAlive, float p_currentHealth, float p_maxHealth)
     {
@@ -77,14 +83,14 @@ public class HealthOverheadUI : MonoBehaviour
 
             if (!isRevealed)
             {
-
-                
-                if (runningCoroutine != null)
+                if (runningUpdateCoroutine != null)
                 {
-                    StopCoroutine(runningCoroutine);
+                    StopCoroutine(runningUpdateCoroutine);
                 }
-                runningCoroutine = Co_UpdatePosition();
-                StartCoroutine(runningCoroutine);
+                runningUpdateCoroutine = Co_UpdatePosition();
+                StartCoroutine(runningUpdateCoroutine);
+
+
 
                 healthFrame.gameObject.SetActive(true);
                 isRevealed = true;
@@ -95,15 +101,16 @@ public class HealthOverheadUI : MonoBehaviour
             
           
             StartCoroutine(Co_Transition());
-            
 
 
+        
 
             if (currentTimeOut != null)
             {
                 StopCoroutine(currentTimeOut);
             }
-            currentTimeOut = StartCoroutine(Co_RevealTimeOut()); 
+            currentTimeOut = Co_RevealTimeOut();
+            StartCoroutine(currentTimeOut);
         }
        
 

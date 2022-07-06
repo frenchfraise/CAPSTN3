@@ -55,7 +55,7 @@ public class PlayerJoystick : MonoBehaviour
         //joystick.enabled = (!p_isActive);
         //joystick.gameObject.SetActive(!p_isActive);
    
-        canJoystick = !p_isActive;
+        //canJoystick = !p_isActive;
     
         movement = new Vector2(0, 0);
     }

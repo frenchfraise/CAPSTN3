@@ -7,7 +7,7 @@ public class MouseParallax : MonoBehaviour
     Vector2 startPos;
     
     private float length, xPos, yPos, offset;
-    private GameObject cam;
+    [SerializeField] private GameObject cam;
     public float parallaxEffect;
 
     //Object nearer from player faster - Object farther from player slower
@@ -41,10 +41,10 @@ public class MouseParallax : MonoBehaviour
         xPos = transform.position.x;
         yPos = transform.position.y;
         //length = GetComponent<SpriteRenderer>().bounds.size.x;
-        if (Camera.main != null)
-        {
-            cam = Camera.main.gameObject;
-        }
+        //if (Camera.main != null)
+        //{
+        //    cam = Camera.main.gameObject;
+        //}
     }
 
     // Update is called once per frame
@@ -63,7 +63,7 @@ public class MouseParallax : MonoBehaviour
         //    if (SystemInfo.supportsAccelerometer == true)
         //    {
            
-                pz = Camera.main.ScreenToViewportPoint(Input.acceleration) * 500;
+                pz = Camera.main.ScreenToViewportPoint(Input.acceleration) * 2000;
         //    }
         //}
 

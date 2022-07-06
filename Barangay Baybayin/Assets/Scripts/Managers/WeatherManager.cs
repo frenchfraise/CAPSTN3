@@ -11,7 +11,8 @@ public class Weather
     public string audioName;
     public float minChance;// Implement
     public float maxChance;// Implement
-    [NonReorderable] public List<SO_Dialogues> dialogue;
+    [SerializeField] public CharacterEmotionType emotion;
+   // [NonReorderable] public List<SO_Dialogues> dialogue;
     public ParticleSystem particle; //implement this
 }
 public class WeatherChangedEvent : UnityEvent<List<Weather>, List<Weather>> { };
@@ -35,7 +36,12 @@ public class WeatherManager : MonoBehaviour
     public static WeatherChangedEvent onWeatherChangedEvent = new WeatherChangedEvent();
     [NonReorderable] public List<Weather> weathers; //Is for data referencing
     [NonReorderable] public List<Weather> currentWeathers; //Is for actual weather Predictions (this is yours before, it was called Weather in yours)
+
     public SO_Dialogues currentWeatherDialogue;
+    public string currentText;
+    public CharacterEmotionType currentEmotion;
+    [NonReorderable] public List<string> currentWeatherFillersDialogue;
+    [NonReorderable] public List<string> predictedWeatherFillersDialogue;
     public Weather CurrentWeather => currentWeathers[0];
 
     private float[] randNums = new float[4] { -1, -1, -1, -1};
@@ -134,10 +140,31 @@ public class WeatherManager : MonoBehaviour
         for (int i = 1; i < currentWeathers.Count; i++)
             Debug.Log("Next " + i + " weather's prediction: " + currentWeathers[i].name);
 
-        int chosenIndex = Random.Range(0,currentWeathers[0].dialogue.Count);
+      
 
+        int chosenCurrentWeatherFillerDialogueIndex = Random.Range(0, currentWeatherFillersDialogue.Count);
+        int chosenFirstPredictedWeatherFillerDialogueIndex = Random.Range(0, predictedWeatherFillersDialogue.Count);
+        int chosenSecondPredictedWeatherFillerDialogueIndex = Random.Range(0, predictedWeatherFillersDialogue.Count);
+        int chosenThirdPredictedWeatherFillerDialogueIndex = Random.Range(0, predictedWeatherFillersDialogue.Count);
+        currentText = currentWeatherFillersDialogue[chosenCurrentWeatherFillerDialogueIndex] + " " +
+            currentWeathers[0].name + ". " +
+            
+            "For Day " + (TimeManager.instance.dayCount + 1).ToString() + ", " +
+            predictedWeatherFillersDialogue[chosenFirstPredictedWeatherFillerDialogueIndex] + " " +
+            currentWeathers[1].name + ". " +
+            
+            "For Day " + (TimeManager.instance.dayCount + 2).ToString() + ", " +
+            predictedWeatherFillersDialogue[chosenSecondPredictedWeatherFillerDialogueIndex] + " " +
+            currentWeathers[2].name + ". " +
 
-        currentWeatherDialogue = currentWeathers[0].dialogue[chosenIndex];
+            "For Day " + (TimeManager.instance.dayCount + 3).ToString() + ", " +
+            predictedWeatherFillersDialogue[chosenThirdPredictedWeatherFillerDialogueIndex] + " " +
+            currentWeathers[3].name + ". ";
+
+        currentEmotion = currentWeatherDialogue.dialogues[0].emotion;
+        currentWeatherDialogue.dialogues[0].words = currentText;
+        currentWeatherDialogue.dialogues[0].emotion = currentEmotion;
+
         onWeatherChangedEvent?.Invoke(weathers, currentWeathers);
         PlayerManager.onUpdateCurrentRoomIDEvent.Invoke(8); // TEMPORARY room start
     }
