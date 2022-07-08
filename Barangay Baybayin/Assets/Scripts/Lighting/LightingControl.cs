@@ -2,30 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using DG.Tweening;
 
 public class LightingControl : MonoBehaviour
 {
     [SerializeField] private SO_LightingSchedule lightingSchedule;
 
-    private Light2D light2D;    
+    private Light2D light2D;
 
     private void Awake()
     {
-        // Get 2D light
         light2D = GetComponent<Light2D>();
     }
 
     private void OnEnable()
     {
-        TimeManager.onTimeChangedEvent.AddListener(OnTimeCheck);
+        //TimeManager.onTimeChangedEvent.AddListener(OnTimeCheck);
+        //WeatherManager.onWeatherChangedEvent.AddListener(GetWeather);
+        TimeManager.onHourChanged.AddListener(OnTimeCheck);
     }
 
     private void OnDisable()
     {
-        TimeManager.onTimeChangedEvent.RemoveListener(OnTimeCheck);
+        //TimeManager.onTimeChangedEvent.RemoveListener(OnTimeCheck);
+        TimeManager.onHourChanged.RemoveListener(OnTimeCheck);
     }
 
-    private void OnTimeCheck(int p_hour, int p_minute, int p_minuteByTens)
+    private void OnTimeCheck(int p_hour)
     {
         SetLightingIntensity(p_hour);
     }
@@ -34,11 +37,33 @@ public class LightingControl : MonoBehaviour
     {
         for (int i = 0; i < lightingSchedule.lightingBrightnessArray.Length; i++)
         {
-            if (lightingSchedule.lightingBrightnessArray[i].hour == p_hour)
+            if (WeatherManager.instance.GetCurrentWeathers(0).name == lightingSchedule.lightingBrightnessArray[i].weatherName)
             {
-                light2D.intensity = lightingSchedule.lightingBrightnessArray[i].lightIntensity;
-                break;
+                if (lightingSchedule.lightingBrightnessArray[i].hour == p_hour)
+                {
+                    float targetLightingIntensity = lightingSchedule.lightingBrightnessArray[i].lightIntensity;
+                    Color targetColor = lightingSchedule.lightingBrightnessArray[i].color;
+                    StartCoroutine(FadeLightRoutine(targetLightingIntensity, targetColor));
+                    break;
+                }
             }
         }
     }
+
+    private IEnumerator FadeLightRoutine(float targetLightingIntensity, Color targetColor)
+    {
+        float fadeDuration = 5f;
+        float fadeSpeed = Mathf.Abs(light2D.intensity - targetLightingIntensity) / fadeDuration;
+        while (light2D.intensity != targetLightingIntensity || light2D.color != targetColor)
+        {
+            // Debug.Log(light2D.color + " != " + targetColor);
+            light2D.intensity = Mathf.MoveTowards(light2D.intensity, targetLightingIntensity, fadeSpeed * Time.deltaTime);           
+            light2D.color = Color.Lerp(light2D.color, targetColor, 0.01f);
+            if (light2D.intensity == targetLightingIntensity && light2D.color == targetColor) break;
+            yield return null;
+        }        
+        light2D.intensity = targetLightingIntensity;
+        light2D.color = targetColor;
+    }
+    //!Mathf.Approximately(light2D.intensity, targetLightingIntensity)
 }

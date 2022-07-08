@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 8653533781470353938}
   - component: {fileID: 5236343384847010663}
   m_Layer: 3
-  m_Name: 1_MedHerb
+  m_Name: Vetiver
   m_TagString: Nodes
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0

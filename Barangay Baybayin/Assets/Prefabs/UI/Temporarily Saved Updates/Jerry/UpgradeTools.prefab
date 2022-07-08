@@ -150,7 +150,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7565158187857755370
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3581,8 +3581,8 @@ MonoBehaviour:
   upgradePreviewToolNameText: {fileID: 4171710930490983660}
   upgradePreviewToolImage: {fileID: 7975822772010510554}
   upgradePreviewToolFrame: {fileID: 2583664190943840368}
-  sufficient: {fileID: 21300000, guid: dee9279fee828c743ad5de27def3ffb2, type: 3}
-  insufficient: {fileID: 21300000, guid: 3553bc6c194d8724c932d64e80887b26, type: 3}
+  sufficientIcon: {fileID: 0}
+  insufficientIcon: {fileID: 0}
   sufficientFrame: {fileID: 21300000, guid: 72dc9e31a8c6ab942b72c59d756075f7, type: 3}
   insufficientFrame: {fileID: 21300000, guid: eea6d004cb876044f80397e14ae7e047, type: 3}
   materialOneImage: {fileID: 2244527792919879277}

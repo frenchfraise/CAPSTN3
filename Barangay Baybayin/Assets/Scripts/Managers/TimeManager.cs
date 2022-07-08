@@ -9,7 +9,7 @@ public class DayEndedEvent : UnityEvent<bool,int> { };
 public class DayChangingEvent : UnityEvent { };
 
 public class DayChangeEndedEvent : UnityEvent { };
-public class HourChangedEvent : UnityEvent { };
+public class HourChangedEvent : UnityEvent<int> { };
 public class PauseGameTimeUI : UnityEvent<bool> { }
 public class TimeData
 {
@@ -73,7 +73,7 @@ public class TimeManager : MonoBehaviour
         hour = startHour;
         
         onDayEndedEvent.Invoke(false,dayCount);
-        onHourChanged.Invoke(); //TEMPORARY
+        onHourChanged.Invoke(hour); //TEMPORARY
         
         DoTimer = true;
         //NewDay();
@@ -107,7 +107,7 @@ public class TimeManager : MonoBehaviour
     IEnumerator ForceTest()
     {
         yield return new WaitForSeconds(2f);
-        onHourChanged.Invoke(); //TEMPORARY
+        onHourChanged.Invoke(hour); //TEMPORARY
     }
 
     IEnumerator Co_DoTimer()
@@ -126,7 +126,7 @@ public class TimeManager : MonoBehaviour
             {
                 hour++;
                 if (hour > hoursInDay) hour = 0;
-                onHourChanged.Invoke(); //TEMPORARY
+                onHourChanged.Invoke(hour); //TEMPORARY
                 minute = 0;
                 minuteByTens = 0;
             }
@@ -167,6 +167,7 @@ public class TimeManager : MonoBehaviour
         minuteByTens = 0;
         onTimeChangedEvent?.Invoke(hour, minute, minuteByTens);
         TimeManager.instance.dayCount++;
+        onHourChanged.Invoke(hour);
         TimeManager.onDayChangeEndedEvent.Invoke();
       
     }    

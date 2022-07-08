@@ -13,11 +13,51 @@ MonoBehaviour:
   m_Name: LightingSchedules
   m_EditorClassIdentifier: 
   lightingBrightnessArray:
-  - hour: 10
+  - weatherName: Sunny
+    hour: 10
+    color: {r: 1, g: 1, b: 1, a: 1}
     lightIntensity: 1
-  - hour: 17
-    lightIntensity: 0.85
-  - hour: 18
-    lightIntensity: 0.5
-  - hour: 19
-    lightIntensity: 0.25
+  - weatherName: Sunny
+    hour: 12
+    color: {r: 1, g: 1, b: 1, a: 1}
+    lightIntensity: 1.1
+  - weatherName: Sunny
+    hour: 14
+    color: {r: 1, g: 1, b: 1, a: 1}
+    lightIntensity: 1
+  - weatherName: Sunny
+    hour: 16
+    color: {r: 1, g: 0.8352941, b: 0.6, a: 1}
+    lightIntensity: 1
+  - weatherName: Sunny
+    hour: 17
+    color: {r: 1, g: 0.73333335, b: 0.6, a: 1}
+    lightIntensity: 1
+  - weatherName: Sunny
+    hour: 18
+    color: {r: 0.6, g: 0.7372549, b: 1, a: 1}
+    lightIntensity: 1
+  - weatherName: Sunny
+    hour: 19
+    color: {r: 0.39999998, g: 0.44999993, b: 1, a: 1}
+    lightIntensity: 0.8
+  - weatherName: Rainy
+    hour: 10
+    color: {r: 1, g: 1, b: 1, a: 1}
+    lightIntensity: 0.8
+  - weatherName: Rainy
+    hour: 16
+    color: {r: 1, g: 0.8352941, b: 0.6, a: 1}
+    lightIntensity: 0.8
+  - weatherName: Rainy
+    hour: 17
+    color: {r: 1, g: 0.73333335, b: 0.6, a: 1}
+    lightIntensity: 0.8
+  - weatherName: Rainy
+    hour: 18
+    color: {r: 0.6, g: 0.7372549, b: 1, a: 1}
+    lightIntensity: 0.8
+  - weatherName: Rainy
+    hour: 19
+    color: {r: 0.4, g: 0.4509804, b: 1, a: 1}
+    lightIntensity: 0.8

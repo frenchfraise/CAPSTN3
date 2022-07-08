@@ -67,7 +67,7 @@ public class ResourceNodeSpawner : MonoBehaviour
         }
         return true;
     }
-    void Spawn()
+    void Spawn(int p_hour)
     {
         if (PlayerManager.instance.currentRoomID != room.currentRoomID)
         {

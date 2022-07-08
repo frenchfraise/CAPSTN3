@@ -39,7 +39,7 @@ public class ResourceNode : Unit
 
     public virtual void Hit( List<SO_ResourceNode> p_useForResourceNode,int p_craftLevel, int p_currentDamage, UnityEvent p_eventCallback) 
     {
-        //Debug.Log("1 " + p_useForResourceNode + " - " + p_craftLevel + " - " + p_currentDamage + " - ");
+        Debug.Log("1 " + p_useForResourceNode + " - " + p_craftLevel + " - " + p_currentDamage + " - ");
         foreach(SO_ResourceNode useForResourceNode in p_useForResourceNode)
         {
             if (useForResourceNode == so_ResourceNode)
