@@ -38,7 +38,7 @@ public class WeatherManager : MonoBehaviour
     public SO_Dialogues currentWeatherDialogue;
     public Weather CurrentWeather => currentWeathers[0];
 
-    private float[] randNums = new float[4] { -1, -1, -1, -1};
+    private float[] randNums = new float[4] { -1, -1, -1, -1 };
     private bool[] bRandomProbs = new bool[4];
 
     [SerializeField] ParticleSystem cloudParticles;
@@ -64,7 +64,7 @@ public class WeatherManager : MonoBehaviour
         PlayerManager.onUpdateCurrentRoomIDEvent.RemoveListener(CheckForRoom);
     }
 
-    public Weather GetWeatherUsingName(string p_weatherName)
+    public Weather GetWeatherName(string p_weatherName)
     {
         for (int i = 0; i < weathers.Count; i++)
         {
@@ -130,9 +130,9 @@ public class WeatherManager : MonoBehaviour
             else currentWeathers[currentWeathers.Count - 1] = weathers[2]; // Rainy
         }
 
-        Debug.Log("Current weather: " + currentWeathers[0].name);
-        for (int i = 1; i < currentWeathers.Count; i++)
-            Debug.Log("Next " + i + " weather's prediction: " + currentWeathers[i].name);
+        //Debug.Log("Current weather: " + currentWeathers[0].name);
+        //for (int i = 1; i < currentWeathers.Count; i++)
+        //    Debug.Log("Next " + i + " weather's prediction: " + currentWeathers[i].name);
 
         onWeatherChangedEvent?.Invoke(weathers, currentWeathers);
         PlayerManager.onUpdateCurrentRoomIDEvent.Invoke(8); // TEMPORARY room start
@@ -161,7 +161,12 @@ public class WeatherManager : MonoBehaviour
         return Random.Range(0, p_maxCount);
     }
 
-    public Weather GetNextWeather(int p_num)
+    public Weather GetWeathers(int p_num)
+    {
+        return weathers[p_num];
+    }
+
+    public Weather GetCurrentWeathers(int p_num)
     {        
         return currentWeathers[p_num];
     }

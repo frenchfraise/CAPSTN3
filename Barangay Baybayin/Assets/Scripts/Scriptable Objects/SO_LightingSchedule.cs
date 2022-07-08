@@ -11,6 +11,8 @@ public class SO_LightingSchedule : ScriptableObject
 [System.Serializable]
 public struct LightingBrightness
 {    
+    public string weatherName;
     public int hour;
+    public Color color;
     public float lightIntensity;
 }
