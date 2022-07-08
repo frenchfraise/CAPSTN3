@@ -56,7 +56,7 @@ public class LightingControl : MonoBehaviour
         float fadeSpeed = Mathf.Abs(light2D.intensity - targetLightingIntensity) / fadeDuration;
         while (light2D.intensity != targetLightingIntensity || light2D.color != targetColor)
         {
-            Debug.Log(light2D.color + " != " + targetColor);
+            // Debug.Log(light2D.color + " != " + targetColor);
             light2D.intensity = Mathf.MoveTowards(light2D.intensity, targetLightingIntensity, fadeSpeed * Time.deltaTime);           
             light2D.color = Color.Lerp(light2D.color, targetColor, 0.01f);
             if (light2D.intensity == targetLightingIntensity && light2D.color == targetColor) break;

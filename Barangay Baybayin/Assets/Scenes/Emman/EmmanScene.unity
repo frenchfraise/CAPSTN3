@@ -5252,7 +5252,7 @@ MonoBehaviour:
   currentRoomID: 0
   roomName: Fork in the Road
   roomDescription: 
-  cameraPanLimitUpperRightTransform: {fileID: 0}
+  cameraPanLimitUpperRightTransform: {fileID: 1073248026}
   cameraPanLimit: {x: 0, y: 0}
   availableResourceNodeDrops: []
   resourceNodeSpawners: []
@@ -5262,9 +5262,9 @@ MonoBehaviour:
     playerDestinationPosition: {fileID: 563569387}
     connectedToPassageway: {fileID: 854053975}
   - name: Fork to BT1
-    passageway: {fileID: 90195684}
+    passageway: {fileID: 1554183199}
     playerDestinationPosition: {fileID: 563569387}
-    connectedToPassageway: {fileID: 854053975}
+    connectedToPassageway: {fileID: 929131774}
 --- !u!1 &309897026
 GameObject:
   m_ObjectHideFlags: 0
@@ -21705,7 +21705,7 @@ GameObject:
   - component: {fileID: 804576232}
   - component: {fileID: 804576234}
   m_Layer: 0
-  m_Name: TownPassageway
+  m_Name: MidTown to TF1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22346,7 +22346,7 @@ GameObject:
   - component: {fileID: 854053975}
   - component: {fileID: 854053977}
   m_Layer: 0
-  m_Name: TownPassageway to Fork
+  m_Name: MidTown to Fork
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23676,7 +23676,7 @@ GameObject:
   - component: {fileID: 920101519}
   - component: {fileID: 920101518}
   m_Layer: 0
-  m_Name: TownPassageway to UpperTown
+  m_Name: MidTown to UpperTown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29980,7 +29980,7 @@ GameObject:
   - component: {fileID: 1349105623}
   - component: {fileID: 1349105622}
   m_Layer: 0
-  m_Name: TownPassageway to LowerTown
+  m_Name: MidTown to LowerTown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41953,7 +41953,7 @@ MonoBehaviour:
   - name: TownPassageway-Fork
     passageway: {fileID: 854053975}
     playerDestinationPosition: {fileID: 1050450048}
-    connectedToPassageway: {fileID: 929131774}
+    connectedToPassageway: {fileID: 90195684}
   - name: TownPassageway-UpperTown
     passageway: {fileID: 920101519}
     playerDestinationPosition: {fileID: 263361625}
@@ -45926,7 +45926,7 @@ GameObject:
   - component: {fileID: 2704640440364236657}
   - component: {fileID: 3519745512537135235}
   m_Layer: 0
-  m_Name: TownPassageway to Room
+  m_Name: MidTown to Room
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
