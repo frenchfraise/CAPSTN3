@@ -42,6 +42,8 @@ public class ToolCaster : MonoBehaviour
     private void Awake()
     {
         aim = GetComponent<PlayerJoystick>().aim;
+        ToolManager.onToolChangedEvent.AddListener(OnToolChanged);
+        ToolManager.onToolChangedEvent.Invoke(ToolManager.instance.tools[0]);
     }
     public void OnEnable()
     {
@@ -54,9 +56,9 @@ public class ToolCaster : MonoBehaviour
 
         onToolHitSucceededEvent.AddListener(ToolHitSuccess);
 
-        ToolManager.onToolChangedEvent.AddListener(OnToolChanged);
+
         //onToolSpecialUsedEvent.AddListener(OnSpecialUsed);
-        ToolManager.onToolChangedEvent.Invoke(ToolManager.instance.tools[0]);
+
         canUse = true;
         canSwitch = true;
     }

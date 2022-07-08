@@ -40,10 +40,13 @@ public class MaterialFloater : MonoBehaviour
         {
         
             yield return new WaitForSeconds(0.1f);
-            Color newColor = image.material.color;
-            newColor.a = i;
-            Debug.Log("FADING: " + rate + " CURRENT " + i + " newColor " + newColor);
-            image.material.SetColor("_Color", newColor);// = newColor;
+            //Color newColor = image.material.color;
+            //newColor.a = i;
+            //Debug.Log("FADING: " + rate + " CURRENT " + i + " newColor " + newColor);
+            ////image.sprite.color = newColor;
+            //image.material.color = newColor;// = newColor;
+
+
             Color textMeshProNewColor = textMeshPro.color;
             textMeshProNewColor.a = i;
             textMeshPro.color = textMeshProNewColor;
