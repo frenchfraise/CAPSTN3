@@ -24,12 +24,13 @@ public class Infrastructure : Unit
     protected override void Start()
     {
         base.Start();
+        OnInfrastructureHitEvent.AddListener(Hit);
         InitializeValues();
     }
 
     public override void InitializeValues()
     {
-        
+     
         maxHealth = so_Infrastructure.maxHealth;
         base.InitializeValues();
 
@@ -42,33 +43,21 @@ public class Infrastructure : Unit
         base.DeinitializeValues();
     }
    
-    protected void Hit( int p_craftLevel, int p_currentDamage, UnityEvent p_eventCallback)
+    protected void Hit(int p_craftLevel, int p_currentDamage, UnityEvent p_eventCallback)
     {
         if (canInteract)
         {
-            //foreach (SO_Infrastructure useForResourceNode in p_useForResourceNode)
+            //if (p_craftLevel >= levelRequirement)
             //{
-                //if (useForResourceNode == so_Infrastructure)
-                //{
+            Debug.Log("HIT");
+            Health health = GetComponent<Health>();
 
-                    //if (p_craftLevel >= levelRequirement)
-                    //{
+            health.onHealthModifyEvent.Invoke(-p_currentDamage);
 
-                    Health health = GetComponent<Health>();
+            p_eventCallback.Invoke();
 
-                    health.onHealthModifyEvent.Invoke(-p_currentDamage);
-
-                    p_eventCallback.Invoke();
-
-                    //}
-               // }
             //}
-
-
-            
-
-
-
+  
         }
 
     }
@@ -85,8 +74,9 @@ public class Infrastructure : Unit
             currentLevel++;
             //currentHealth = 0;
 
-            healthOverheadUI.SetHealthBarData(transform, UIManager.instance.overheadUI);
+            //healthOverheadUI.SetHealthBarData(transform, UIManager.instance.overheadUI);
             sr.sprite = so_Infrastructure.sprites[currentLevel - 1];
+            InitializeValues();
         }
 
 

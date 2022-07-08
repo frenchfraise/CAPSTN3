@@ -34,10 +34,17 @@ public class StorylineManager : MonoBehaviour
         }
     }
     [NonReorderable][SerializeField] public List<StorylineData> storyLines;
+
+    [HeaderAttribute("PANDAY")]
+    
+    [NonReorderable][SerializeField] public List<SO_Dialogues> initialPandayDialogue;
+    [NonReorderable][HideInInspector] public List<SO_Dialogues> currentPandaySODialogues;
+    [NonReorderable][SerializeField] public List<SO_Dialogues> potentialPandaySODialogues;
+    [NonReorderable][SerializeField] public SO_Dialogues finishedPandayDialogue;
     private void Awake()
     {
+        currentPandaySODialogues = potentialPandaySODialogues;
 
-       
         _instance = this;
         //DontDestroyOnLoad(gameObject);
     }

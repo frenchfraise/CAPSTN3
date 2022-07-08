@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Jerry/Intro.unity
+    guid: 3617b73032120c144b375cefe9a849b0
+  - enabled: 1
     path: Assets/Scenes/Jerry/TitleScreen.unity
     guid: 20b6934c37278204aadd870ccf527c4b
   - enabled: 1

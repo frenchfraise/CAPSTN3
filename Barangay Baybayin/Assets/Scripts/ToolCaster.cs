@@ -47,16 +47,16 @@ public class ToolCaster : MonoBehaviour
     {
         WeatherManager.onWeatherChangedEvent.AddListener(CheckWeatherStaminaTax);
 
-        if (GetComponent<Stamina>())
+        if (TryGetComponent<Stamina>(out Stamina stamina))
         {
-            onToolUsedEvent.AddListener(GetComponent<Stamina>().ModifyStamina);
+            onToolUsedEvent.AddListener(stamina.ModifyStamina);
         }
 
         onToolHitSucceededEvent.AddListener(ToolHitSuccess);
 
         ToolManager.onToolChangedEvent.AddListener(OnToolChanged);
         //onToolSpecialUsedEvent.AddListener(OnSpecialUsed);
-        OnToolChanged(ToolManager.instance.tools[0]); // temporary (?)
+        ToolManager.onToolChangedEvent.Invoke(ToolManager.instance.tools[0]);
         canUse = true;
         canSwitch = true;
     }
@@ -92,7 +92,7 @@ public class ToolCaster : MonoBehaviour
                 if (targetResourceNode)
                 {
                     float xPos = targetResourceNode.transform.position.x;
-                    if (xPos > PlayerManager.instance.player.transform.position.x) // right
+                    if (xPos > transform.position.x) // right
                     {
                         animator.SetBool("isFacingRight", true);
                     }
@@ -150,40 +150,50 @@ public class ToolCaster : MonoBehaviour
             // animator.SetTrigger("UseTool");            
             animator.SetTrigger(current_Tool.toolName.ToString());
 
-            ResourceNode targetResourceNode = GetResourceNode();
-            Infrastructure targetInfrastructure = GetInfrastructure();
-            if (targetResourceNode)
+      
+            if (current_Tool.toolName == "Hammer")
             {
-                float xPos = targetResourceNode.transform.position.x;
-                if (xPos > PlayerManager.instance.player.transform.position.x) // right
+                Infrastructure targetInfrastructure = GetInfrastructure();
+                if (targetInfrastructure)
                 {
-                    animator.SetBool("isFacingRight", true);
+                    Debug.Log("RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR");
+                    float xPos = targetInfrastructure.transform.position.x;
+                    if (xPos > transform.position.x) // right
+                    {
+                        animator.SetBool("isFacingRight", true);
+                    }
+                    else // left
+                    {
+                        animator.SetBool("isFacingRight", false);
+                    }
+                    targetInfrastructure.OnInfrastructureHitEvent.Invoke(
+                       current_Tool.craftLevel - 1,
+                       current_Tool.so_Tool.damage[current_Tool.craftLevel - 1],
+                       onToolHitSucceededEvent);
                 }
-                else // left
-                {
-                    animator.SetBool("isFacingRight", false);
-                }
-                targetResourceNode.OnResourceNodeHitEvent.Invoke(current_Tool.so_Tool.useForResourceNode,
-                   current_Tool.craftLevel-1,
-                   current_Tool.so_Tool.damage[current_Tool.craftLevel-1],
-                   onToolHitSucceededEvent);    
-            }  
-            else if (targetInfrastructure)
-            {
-                float xPos = targetInfrastructure.transform.position.x;
-                if (xPos > PlayerManager.instance.player.transform.position.x) // right
-                {
-                    animator.SetBool("isFacingRight", true);
-                }
-                else // left
-                {
-                    animator.SetBool("isFacingRight", false);
-                }
-                targetInfrastructure.OnInfrastructureHitEvent.Invoke(
-                   current_Tool.craftLevel - 1,
-                   current_Tool.so_Tool.damage[current_Tool.craftLevel - 1],
-                   onToolHitSucceededEvent);
             }
+            else
+            {
+                ResourceNode targetResourceNode = GetResourceNode();
+                if (targetResourceNode)
+                {
+                    float xPos = targetResourceNode.transform.position.x;
+                    if (xPos > transform.position.x) // right
+                    {
+                        animator.SetBool("isFacingRight", true);
+                    }
+                    else // left
+                    {
+                        animator.SetBool("isFacingRight", false);
+                    }
+                    targetResourceNode.OnResourceNodeHitEvent.Invoke(current_Tool.so_Tool.useForResourceNode,
+                       current_Tool.craftLevel - 1,
+                       current_Tool.so_Tool.damage[current_Tool.craftLevel - 1],
+                       onToolHitSucceededEvent);
+                }
+            }
+    
+      
             StartCoroutine(Co_ToolUseCooldown());
         }
 

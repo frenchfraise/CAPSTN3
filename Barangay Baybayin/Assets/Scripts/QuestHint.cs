@@ -11,6 +11,7 @@ public class QuestHint : MonoBehaviour
     {
         iconHoverEffect.startYPosition = iconHoverEffect.transform.position.y;
         worldEventSubscriber =GetComponent<WorldEventSubscriber>();
+        iconHoverEffect.gameObject.SetActive(true);
         iconHoverEffect.runningCoroutine = iconHoverEffect.Co_Hover();
         StartCoroutine(iconHoverEffect.runningCoroutine);
         UIManager.onGameplayModeChangedEvent.AddListener(OnGameplayModeChangedEvent);
@@ -18,20 +19,27 @@ public class QuestHint : MonoBehaviour
 
     private void OnGameplayModeChangedEvent(bool p_isActive)
     {
-        iconHoverEffect.gameObject.SetActive(!p_isActive);
+       // iconHoverEffect.gameObject.SetActive(!p_isActive);
         if (!p_isActive == true)
         {
-            iconHoverEffect.runningCoroutine = iconHoverEffect.Co_Hover();
             iconHoverEffect.gameObject.SetActive(true);
+            if (iconHoverEffect.runningCoroutine != null)
+            {
+                StopCoroutine(iconHoverEffect.runningCoroutine);
+                iconHoverEffect.runningCoroutine = null;
+            }
+
+            iconHoverEffect.runningCoroutine = iconHoverEffect.Co_Hover();
             StartCoroutine(iconHoverEffect.runningCoroutine);
         }
         else if (!p_isActive == false)
         {
             if (iconHoverEffect.runningCoroutine != null)
             {
-                iconHoverEffect.gameObject.SetActive(false);
                 StopCoroutine(iconHoverEffect.runningCoroutine);
                 iconHoverEffect.runningCoroutine = null;
+                iconHoverEffect.gameObject.SetActive(false);
+      
             }
           
         }

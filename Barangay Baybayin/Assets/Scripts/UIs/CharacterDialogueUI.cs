@@ -7,6 +7,7 @@ using TMPro;
 using System;
 
 
+public class SetChoicesEvent : UnityEvent<bool> { }
 public class SetIsCloseOnEndEvent : UnityEvent<bool> { }
 public class SetStartTransitionEnabledEvent : UnityEvent<bool> { }
 public class SetEndTransitionEnabledEvent : UnityEvent<bool> { }
@@ -17,28 +18,34 @@ public class CharacterSpokenToEvent : UnityEvent<string, SO_Dialogues> { }
 
 public class CharacterDialogueUI : MonoBehaviour
 {
-
-    //[HideInInspector] 
-    public SO_Character character;
-    public SO_Dialogues currentSO_Dialogues;
-    [SerializeField]
-    private GameObject frame;
-    private bool isPaused = false;
-    private bool allowNext;
-    [SerializeField] private int currentDialogueIndex;
+    [HeaderAttribute("REQUIRED COMPONENTS")]
+    [SerializeField] private GameObject frame;
     [SerializeField] private TMP_Text characterNameText;
     [SerializeField] private TMP_Text dialogueText;
     [SerializeField] private Image avatarImage;
-    [SerializeField] public GameObject button;
-    [SerializeField]
-    private float typewriterSpeed = 0.1f;
 
-    [SerializeField]
-    private GameObject emoticon;
-    [SerializeField]
-    private Animator anim;
+    [SerializeField] private GameObject emoticon;
+    [SerializeField] private Animator anim;
 
-    [SerializeField] private string id;
+    [SerializeField] public GameObject nextDialogueButton;
+    [SerializeField] private GameObject choiceUIsContainer;
+    [SerializeField] private ChoiceUI choiceUIPrefab;
+
+    [HeaderAttribute("ADJUSTABLE VALUES")]
+    [SerializeField] private float typewriterSpeed = 0.1f;
+
+    [HideInInspector]
+    public SO_Character character;
+
+    [HideInInspector]
+    public SO_Dialogues currentSO_Dialogues;
+
+    private int currentDialogueIndex;
+
+    private bool isPaused = false;
+    private bool allowNext;
+
+    private string id;
 
     bool isStartTransitionEnabled = true;
     bool isEndTransitionEnabled = true;
@@ -49,6 +56,8 @@ public class CharacterDialogueUI : MonoBehaviour
     bool isAlreadyEnded = false;
 
 
+    bool hasChoices = false;
+    public IEnumerator runningCoroutine;
     public static CharacterSpokenToEvent onCharacterSpokenToEvent = new CharacterSpokenToEvent();
     public static SetButtonEnabledEvent onSetButtonEnabledEvent = new SetButtonEnabledEvent();
     public static SetIsAdvancedonWorldEventEndedEvent onSetIsAdvancedonWorldEventEndedEvent = new SetIsAdvancedonWorldEventEndedEvent();
@@ -56,30 +65,48 @@ public class CharacterDialogueUI : MonoBehaviour
     public static SetEndTransitionEnabledEvent onSetEndTransitionEnabledEvent = new SetEndTransitionEnabledEvent();
     public static SetStartTransitionEnabledEvent onSetStartTransitionEnabledEvent = new SetStartTransitionEnabledEvent();
     public static SetIsCloseOnEndEvent onSetIsCloseOnEndEvent = new SetIsCloseOnEndEvent();
+    public static SetChoicesEvent onSetChoicesEvent = new SetChoicesEvent();
+
     private void OnEnable()
     {
+
         onCharacterSpokenToEvent.AddListener(OnCharacterSpokenTo);
         onSetIsAdvancedonWorldEventEndedEvent.AddListener(SetIsAdvancedonWorldEventEndedEvent);
         onSetIsPausedEvent.AddListener(SetIsPausedEvent);
         onSetButtonEnabledEvent.AddListener(SetButtonEnabledEvent);
         onSetStartTransitionEnabledEvent.AddListener(SetStartTransitionEnabledEvent);
         onSetEndTransitionEnabledEvent.AddListener(SetEndTransitionEnabledEvent);
+        onSetChoicesEvent.AddListener(SetChoicesEvent);
+        Panday.onPandaySpokenToEvent.AddListener(GameplayModeChangedEvent);
+    }
+    private void OnDisable()
+    {
+        onCharacterSpokenToEvent.RemoveListener(OnCharacterSpokenTo);
     }
 
+    public void GameplayModeChangedEvent()
+    {
+        
+            
+        frame.SetActive(false);
+     
+        
+    
+    }
+
+    public void SetChoicesEvent(bool p_bool)
+    {
+        hasChoices = p_bool;
+    }
     public void SetIsCloseOnEndEvent(bool p_bool)
     {
         isCloseOnEnd = p_bool;
     }
     public void SetButtonEnabledEvent(bool p_bool)
     {
-        button.SetActive(p_bool);
-
-
+        nextDialogueButton.SetActive(p_bool);
     }
-    private void OnDisable()
-    {
-        onCharacterSpokenToEvent.RemoveListener(OnCharacterSpokenTo);
-    }
+
     public void SetIsAdvancedonWorldEventEndedEvent(bool p_bool)
     {
         isAdvancedonWorldEventEndedEvent = p_bool;
@@ -99,8 +126,6 @@ public class CharacterDialogueUI : MonoBehaviour
 
 
     }
-
-
     public void SetEndTransitionEnabledEvent(bool p_bool)
     {
         isEndTransitionEnabled = p_bool;
@@ -127,6 +152,11 @@ public class CharacterDialogueUI : MonoBehaviour
         }
         
 
+    }
+
+    public void SetChoices()
+    {
+        
     }
 
     public void OnOpenCharacterDialogueUI()
@@ -162,7 +192,8 @@ public class CharacterDialogueUI : MonoBehaviour
         currentDialogueIndex=0;
         allowNext = false;
         isAlreadyEnded = false;
-  
+        nextDialogueButton.SetActive(true);
+        choiceUIsContainer.SetActive(false);
         OnNextButtonUIPressed();
     }
 
@@ -215,15 +246,15 @@ public class CharacterDialogueUI : MonoBehaviour
 
          
 
-            //temporary
-            if (UIManager.instance.runningCoroutine != null)
+
+            if (runningCoroutine != null)
             {
-                UIManager.instance.StopCoroutine(UIManager.instance.runningCoroutine);
-                UIManager.instance.runningCoroutine = null;
+                StopCoroutine(runningCoroutine);
+                runningCoroutine = null;
             }
             if (currentDialogue.speechTransitionType == SpeechTransitionType.Typewriter)
             {
-                if (UIManager.instance.runningCoroutine == null)
+                if (runningCoroutine == null)
                 {
                     
                     dialogueText.text = currentDialogue.words;
@@ -240,8 +271,8 @@ public class CharacterDialogueUI : MonoBehaviour
                 {
              
 
-                    UIManager.instance.runningCoroutine = Co_TypeWriterEffect(dialogueText, currentDialogue.words);
-                    UIManager.instance.StartCoroutine(UIManager.instance.runningCoroutine);
+                    runningCoroutine = Co_TypeWriterEffect(dialogueText, currentDialogue.words);
+                    StartCoroutine(runningCoroutine);
                 }
                 
             }
@@ -285,26 +316,36 @@ public class CharacterDialogueUI : MonoBehaviour
                     int currentQuestLineIndex = storylineData.currentQuestLineIndex;
                     StorylineManager.onWorldEventEndedEvent.Invoke(id, currentQuestChainIndex, currentQuestLineIndex);
                 }
-                if (isCloseOnEnd)
+                if (hasChoices)
                 {
-                    //Debug.Log("AUTO CLOSE BEING DONE");
-                    if (isEndTransitionEnabled)
-                    {
-                        
-                        //Debug.Log("END TRANSIONING");
-                        UIManager.TransitionPreFadeAndPostFade(1, 0.5f, 1, 0, 0.5f, OnCloseCharacterDialogueUI);
-                    }
-                    else
-                    {
-                       // Debug.Log("END WITHOUT TRANSIONING");
-                        OnCloseCharacterDialogueUI();
-                    }
-                    
+                    hasChoices = false;
+                    nextDialogueButton.SetActive(false);
+                    choiceUIsContainer.SetActive(true);
                 }
                 else
                 {
-                    //Debug.Log("MANUAL CLOSED NEEDED");
+                    if (isCloseOnEnd)
+                    {
+                        //Debug.Log("AUTO CLOSE BEING DONE");
+                        if (isEndTransitionEnabled)
+                        {
+
+                            //Debug.Log("END TRANSIONING");
+                            UIManager.TransitionPreFadeAndPostFade(1, 0.5f, 1, 0, 0.5f, OnCloseCharacterDialogueUI);
+                        }
+                        else
+                        {
+                            // Debug.Log("END WITHOUT TRANSIONING");
+                            OnCloseCharacterDialogueUI();
+                        }
+
+                    }
+                    else
+                    {
+                        //Debug.Log("MANUAL CLOSED NEEDED");
+                    }
                 }
+                
             }
           
             

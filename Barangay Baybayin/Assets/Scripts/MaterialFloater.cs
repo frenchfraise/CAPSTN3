@@ -18,6 +18,7 @@ public class MaterialFloater : MonoBehaviour
     private void OnEnable()
     {
         StartCoroutine(DecayTimer(projectileDecayTime));
+        StartCoroutine(FadeTimer(projectileDecayTime));
     }
     private void OnDisable()
     {
@@ -28,16 +29,46 @@ public class MaterialFloater : MonoBehaviour
     {
         transform.Translate(new Vector2(0, 1) * 1f * Time.deltaTime);
     }
+
+    public IEnumerator FadeTimer(float decayTime)
+    {
+        float count = decayTime;
+        float rate = (decayTime * 10f) / decayTime * 0.01f; // (1.5 * 10) / 1.5 * 0.01
+        count = 1f;
+
+        for (float i = 1; i >= 0.1f; i -= 0.1f)
+        {
+        
+            yield return new WaitForSeconds(0.1f);
+            Color newColor = image.material.color;
+            newColor.a = i;
+            Debug.Log("FADING: " + rate + " CURRENT " + i + " newColor " + newColor);
+            image.material.SetColor("_Color", newColor);// = newColor;
+            Color textMeshProNewColor = textMeshPro.color;
+            textMeshProNewColor.a = i;
+            textMeshPro.color = textMeshProNewColor;
+
+
+        }
+    }
     public IEnumerator DecayTimer(float decayTime)
     {
         float count = decayTime;
+   
         while (count > 0)
         {
-            yield return new WaitForSeconds(1);
-            count--;
+            yield return new WaitForSeconds(0.1f);
+            count-=0.1f;
         }
+    
 
-
+        //for (float i = 1; i >= 0.1f; i -= 0.1f)
+        //{
+        //    Color newColor = this.gameObject.GetComponent<SpriteRenderer>().material.color;
+        //    newColor.a = i;
+        //    this.gameObject.GetComponent<SpriteRenderer>().material.color = newColor;
+        //    yield return new WaitForSeconds(0.1f);
+        //}
         // ProjectilePool.instance.ReturnToPool(this);
         //CoinPool.instance.ReturnToPool(this);
         Destroy(gameObject);

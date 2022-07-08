@@ -7,9 +7,6 @@ using UnityEngine.Events;
 public class Character : InteractibleObject
 {
 
-    //[SerializeField] private SO_StoryLine so_StoryLine;
-    //[SerializeField]
-    //private int storylineIndex;
     [SerializeField]
     private string id;
     [SerializeField] private bool isFirstTime = true;

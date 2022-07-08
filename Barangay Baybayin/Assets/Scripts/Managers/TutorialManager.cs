@@ -14,6 +14,7 @@ public class TutorialManager : MonoBehaviour
 
     public Transform spawnPoint;
     public ResourceNode resourceNode;
+    public Infrastructure infrastructure;
     
 
     [SerializeField] private int toolEquipped;
@@ -24,6 +25,7 @@ public class TutorialManager : MonoBehaviour
         instance = this;
     }
 
+    //ToolManager.onToolChangedEvent.Invoke(selected_Tool);
    
     public void Next()
     {
@@ -356,9 +358,107 @@ public class TutorialManager : MonoBehaviour
     {
         Debug.Log("FIVE ENDED");
         tutorialUI.overheadUI.SetActive(false); //for now
+        StartTeachingSix();
+    }
+    #endregion
+
+    #region 6
+
+    public void StartTeachingSix()
+    {
+        tutorialUI.overheadUI.SetActive(false);
+        StorylineManager.onWorldEventEndedEvent.AddListener(StorySix);
+        currentDialogueIndex++;
+        CharacterDialogueUI.onCharacterSpokenToEvent.Invoke("O-" + currentIndex, dialogues[currentDialogueIndex]);
+
+
+    }
+    public void StorySix(string p_id, int p_test, int p_teste)
+    {
+        Debug.Log("TRY - ID " + p_id + " O-  uni uni" + currentIndex);
+        if (p_id == "O-6")
+        {
+            Debug.Log("INSIDE - ID " + "O-" + currentIndex);
+            //SPAWN
+            StorylineManager.onWorldEventEndedEvent.RemoveListener(StorySix);
+        
+            infrastructure.transform.position = spawnPoint.position + new Vector3(0f, -2.35f, 0f);
+            infrastructure.InitializeValues();
+            infrastructure.GetComponent<Health>().OnDeathEvent.AddListener(TeachSix);
+            infrastructure.gameObject.SetActive(true);
+            //oreVariantOneNode = resourceNode;
+            tutorialUI.overheadUI.SetActive(true);
+            currentDialogueIndex++;
+            tutorialUI.overheadText.text = dialogues[currentDialogueIndex].dialogues[0].words;
+
+
+            //3
+        }
+
+
+    }
+    public void TeachSix()
+    {
+        resourceNode.GetComponent<Health>().OnDeathEvent.RemoveListener(TeachSix);
+        EndTeachingSix();
+
+    }
+    public void EndTeachingSix()
+    {
+        Debug.Log("FIVE ENDED");
+        tutorialUI.overheadUI.SetActive(false); //for now
+        StartTeachingSeven();
+    }
+    #endregion
+
+    #region 7
+
+    public void StartTeachingSeven()
+    {
+        tutorialUI.overheadUI.SetActive(false);
+        StorylineManager.onWorldEventEndedEvent.AddListener(StorySeven);
+        currentDialogueIndex++;
+        CharacterDialogueUI.onCharacterSpokenToEvent.Invoke("O-" + currentIndex, dialogues[currentDialogueIndex]);
+
+
+    }
+    public void StorySeven(string p_id, int p_test, int p_teste)
+    {
+        Debug.Log("TRY - ID " + p_id + " O-  uni uni" + currentIndex);
+        if (p_id == "O-6")
+        {
+            Debug.Log("INSIDE - ID " + "O-" + currentIndex);
+            //SPAWN
+            StorylineManager.onWorldEventEndedEvent.RemoveListener(StorySeven);
+            resourceNode = HerbVariantOneNodePool.pool.Get();
+            resourceNode.transform.position = spawnPoint.position + new Vector3(0f, -2.35f, 0f);
+            resourceNode.InitializeValues();
+            resourceNode.GetComponent<Health>().OnDeathEvent.AddListener(TeachSeven);
+            //oreVariantOneNode = resourceNode;
+            tutorialUI.overheadUI.SetActive(true);
+            currentDialogueIndex++;
+            tutorialUI.overheadText.text = dialogues[currentDialogueIndex].dialogues[0].words;
+
+
+            //3
+        }
+
+
+    }
+    public void TeachSeven()
+    {
+        resourceNode.GetComponent<Health>().OnDeathEvent.RemoveListener(TeachSeven);
+        EndTeachingSeven();
+
+    }
+    public void EndTeachingSeven()
+    {
+        Debug.Log("FIVE ENDED");
+        tutorialUI.overheadUI.SetActive(false); //for now
         Final();
     }
     #endregion
+
 
     public void Final()
     {

@@ -49,6 +49,9 @@ public class Stamina : MonoBehaviour
     void ManualSetStaminaEvent(float p_currentStamina)
     {
         currentStamina = p_currentStamina;
+        //float amount = Mathf.Abs(p_currentStamina - currentStamina);
+        //ModifyStamina(amount);
+        genericBarUI.InstantUpdateBar(currentStamina, maxStamina, maxStamina);
     }
     public void PenalizeStamina()
     {

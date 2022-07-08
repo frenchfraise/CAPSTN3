@@ -33,6 +33,13 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private Bed bed;
     [SerializeField]
     private MaterialFloater floaterPrefab;
+    [SerializeField]
+    private int floaterStackCount;
+    [SerializeField]
+    private IEnumerator runningFloaterSpawner;
+    [SerializeField] private Vector3 offset;
+    [SerializeField] private float delay;
+    private bool isLeft;
     //[SerializeField] public PlayerJoystick joystick;
 
     public static UpdateCurrentRoomIDEvent onUpdateCurrentRoomIDEvent = new UpdateCurrentRoomIDEvent();
@@ -55,9 +62,55 @@ public class PlayerManager : MonoBehaviour
 
     public void SpawnNewItemFloater(SO_Item p_SOItem, string p_name)
     {
-        MaterialFloater newFloater = Instantiate(floaterPrefab);
-        newFloater.InitializeValues(p_SOItem, p_name,playerTransform.position);
+        floaterStackCount++;
+        if (runningFloaterSpawner == null)
+        {
+            runningFloaterSpawner = SpawnQueue(p_SOItem, p_name);
+            StartCoroutine(runningFloaterSpawner);
+        }
        
+    }
+
+    IEnumerator SpawnQueue(SO_Item p_SOItem, string p_amount)
+    {
+        MaterialFloater newFloater = Instantiate(floaterPrefab);
+
+        //if (isLeft) // go right
+        //{
+
+        //    offset = offset * -1;
+        //}
+        //else // go left
+        //{
+
+        //}
+        int amt;
+        offset.x = offset.x * -1;
+        isLeft = !isLeft;
+        if (floaterStackCount > 2)
+        {
+            floaterStackCount -= 2;
+            amt = 2;
+        }
+        else
+        {
+            amt = 1;
+            floaterStackCount--;
+        }
+        newFloater.InitializeValues(p_SOItem, amt.ToString(), playerTransform.position + offset);
+
+        yield return new WaitForSeconds(delay);
+        if (floaterStackCount > 0)
+        {
+            runningFloaterSpawner = SpawnQueue(p_SOItem, p_amount);
+            StartCoroutine(runningFloaterSpawner);
+        }
+        else
+        {
+            runningFloaterSpawner = null;
+        }
+ 
+        
     }
     private void OnEnable()
     {
