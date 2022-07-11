@@ -10,7 +10,7 @@ public class ToolUI : MonoBehaviour
     private void OnEnable()
     {
         ToolManager.onToolChangedEvent.AddListener(ChangeToolIcon);
-        ChangeToolIcon(ToolManager.instance.tools[0]);
+        //ChangeToolIcon(ToolManager.instance.tools[0]);
     }
 
     private void OnDisable()

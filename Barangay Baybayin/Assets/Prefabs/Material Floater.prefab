@@ -48,7 +48,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 6340371122147353061}
   textMeshPro: {fileID: 6474410917111120479}
-  projectileDecayTime: 1.5
+  decayTime: 1.5
+  delayTime: 2
 --- !u!1 &6453108974166909978
 GameObject:
   m_ObjectHideFlags: 0

@@ -99,7 +99,6 @@ public class Stamina : MonoBehaviour
                 OnStaminaModifiedEvent.Invoke(currentStamina, maxStamina);
             }
   
-        }
-        
+        }  
     }
 }

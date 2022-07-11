@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 
+public class SetRequireCorrectToolEvent : UnityEvent<Tool> { }
+public class SetIsPreciseEvent : UnityEvent<bool> { }
 public class ToolUsedEvent : UnityEvent<float> { }
 
 public class ToolCanUseUpdatedEvent : UnityEvent<bool> { }
@@ -28,6 +30,8 @@ public class ToolCaster : MonoBehaviour
     private bool isTax = false;
     private bool canUse = true;
     private bool canSwitch = true;
+    private bool isPrecise = false;
+    private Tool requiredTool = null;
     [SerializeField] private float switchRate;
     private Transform aim;
 
@@ -38,15 +42,19 @@ public class ToolCaster : MonoBehaviour
     public ToolCanUseUpdatedEvent onToolCanUseUpdatedEvent = new ToolCanUseUpdatedEvent();
     public ToolCanSwitchUpdatedEvent onToolCanSwitchUpdatedEvent = new ToolCanSwitchUpdatedEvent();
     public ToolSpecialUseEvent onToolSpecialUsedEvent = new ToolSpecialUseEvent();
-
+    public static SetIsPreciseEvent onSetIsPreciseEvent = new SetIsPreciseEvent();
+    public static SetRequireCorrectToolEvent onSetRequireCorrectToolEvent = new SetRequireCorrectToolEvent();
     private void Awake()
     {
         aim = GetComponent<PlayerJoystick>().aim;
         ToolManager.onToolChangedEvent.AddListener(OnToolChanged);
-        ToolManager.onToolChangedEvent.Invoke(ToolManager.instance.tools[0]);
+        //ToolManager.onToolChangedEvent.Invoke(ToolManager.instance.tools[0]);
+      
     }
     public void OnEnable()
     {
+        onSetRequireCorrectToolEvent.AddListener(SetRequireCorrectTool);
+        onSetIsPreciseEvent.AddListener(SetIsPrecise);
         WeatherManager.onWeatherChangedEvent.AddListener(CheckWeatherStaminaTax);
 
         if (TryGetComponent<Stamina>(out Stamina stamina))
@@ -75,7 +83,14 @@ public class ToolCaster : MonoBehaviour
         ToolManager.onToolChangedEvent.RemoveListener(OnToolChanged);
         //onToolSpecialUsedEvent.RemoveListener(OnSpecialUsed);
     }
-
+    void SetRequireCorrectTool(Tool p_isPrecise)
+    {
+        requiredTool = p_isPrecise;
+    }
+    void SetIsPrecise(bool p_isPrecise)
+    {
+        isPrecise = p_isPrecise;
+    }
     public void OnSpecialUsed()
     {
         // I'm guessing this is where it decrements when it is "full"
@@ -149,54 +164,73 @@ public class ToolCaster : MonoBehaviour
     {
         if (canUse)
         {
-            // animator.SetTrigger("UseTool");            
-            animator.SetTrigger(current_Tool.toolName.ToString());
-
-      
-            if (current_Tool.toolName == "Hammer")
+            if (requiredTool == null || requiredTool != null && current_Tool == requiredTool)
             {
-                Infrastructure targetInfrastructure = GetInfrastructure();
-                if (targetInfrastructure)
+                // animator.SetTrigger("UseTool");            
+                animator.SetTrigger(current_Tool.toolName.ToString());
+                bool canHit = false;
+
+                if (current_Tool.toolName == "Hammer")
                 {
-                    Debug.Log("RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR");
-                    float xPos = targetInfrastructure.transform.position.x;
-                    if (xPos > transform.position.x) // right
+                    Infrastructure targetInfrastructure = GetInfrastructure();
+                    if (targetInfrastructure)
                     {
-                        animator.SetBool("isFacingRight", true);
+
+                        float xPos = targetInfrastructure.transform.position.x;
+                        if (xPos > transform.position.x) // right
+                        {
+                            animator.SetBool("isFacingRight", true);
+                        }
+                        else // left
+                        {
+                            animator.SetBool("isFacingRight", false);
+                        }
+                        canHit = true;
+                        targetInfrastructure.OnInfrastructureHitEvent.Invoke(
+                           current_Tool.craftLevel - 1,
+                           current_Tool.so_Tool.damage[current_Tool.craftLevel - 1],
+                           onToolHitSucceededEvent);
                     }
-                    else // left
+                }
+                else
+                {
+                    ResourceNode targetResourceNode = GetResourceNode();
+                    if (targetResourceNode)
                     {
-                        animator.SetBool("isFacingRight", false);
+                        float xPos = targetResourceNode.transform.position.x;
+                        if (xPos > transform.position.x) // right
+                        {
+                            animator.SetBool("isFacingRight", true);
+                        }
+                        else // left
+                        {
+                            animator.SetBool("isFacingRight", false);
+                        }
+                        canHit = true;
+                        targetResourceNode.OnResourceNodeHitEvent.Invoke(current_Tool.so_Tool.useForResourceNode,
+                           current_Tool.craftLevel - 1,
+                           current_Tool.so_Tool.damage[current_Tool.craftLevel - 1],
+                           onToolHitSucceededEvent);
                     }
-                    targetInfrastructure.OnInfrastructureHitEvent.Invoke(
-                       current_Tool.craftLevel - 1,
-                       current_Tool.so_Tool.damage[current_Tool.craftLevel - 1],
-                       onToolHitSucceededEvent);
+                }
+                if (isPrecise && canHit || !isPrecise)
+                {
+                    Debug.Log("PRESSED");
+                    StartCoroutine(Co_ToolUseCooldown());
+                }
+                else if (isPrecise && !canHit)
+                {
+                    StorylineManager.onWorldEventEndedEvent.Invoke("SWINGINGINAIR", 0, 0);
                 }
             }
             else
             {
-                ResourceNode targetResourceNode = GetResourceNode();
-                if (targetResourceNode)
-                {
-                    float xPos = targetResourceNode.transform.position.x;
-                    if (xPos > transform.position.x) // right
-                    {
-                        animator.SetBool("isFacingRight", true);
-                    }
-                    else // left
-                    {
-                        animator.SetBool("isFacingRight", false);
-                    }
-                    targetResourceNode.OnResourceNodeHitEvent.Invoke(current_Tool.so_Tool.useForResourceNode,
-                       current_Tool.craftLevel - 1,
-                       current_Tool.so_Tool.damage[current_Tool.craftLevel - 1],
-                       onToolHitSucceededEvent);
-                }
+                StorylineManager.onWorldEventEndedEvent.Invoke("SWINGINGWRONGTOOL", 0, 0);
             }
+           
     
-      
-            StartCoroutine(Co_ToolUseCooldown());
+       
+
         }
 
     }

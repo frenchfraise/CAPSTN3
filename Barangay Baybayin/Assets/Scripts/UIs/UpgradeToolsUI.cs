@@ -83,7 +83,7 @@ public class UpgradeToolsUI : MonoBehaviour
         SO_Tool currentSOTool = p_currentTool.so_Tool;
         int currentToolLevel = p_currentTool.craftLevel-1;
         int upgradeToolLevel = currentToolLevel+1;
-
+        Debug.Log(currentToolLevel + " + " + upgradeToolLevel);
         currentToolNameText.text = currentSOTool.name[p_currentTool.craftLevel - 1];
         currentToolImage.sprite = currentSOTool.equippedIcon[p_currentTool.craftLevel-1];
         currentToolFrame.sprite = plates[p_currentTool.craftLevel - 1];
@@ -92,7 +92,7 @@ public class UpgradeToolsUI : MonoBehaviour
         upgradePreviewToolImage.sprite = currentSOTool.equippedIcon[p_currentTool.craftLevel];
         upgradePreviewToolFrame.sprite = plates[p_currentTool.craftLevel];
 
-        CraftUpgradeItemRequirementsData craftUpgradeItemRequirementsData = currentSOTool.craftUpgradeItemRequirementsDatas[currentToolLevel];
+        CraftUpgradeItemRequirementsData craftUpgradeItemRequirementsData = currentSOTool.craftUpgradeItemRequirementsDatas[upgradeToolLevel];
         if (p_currentTool.proficiencyLevel >= craftUpgradeItemRequirementsData.requiredProficiencyLevel)
         {
             threeRequirement = true;
@@ -161,27 +161,31 @@ public class UpgradeToolsUI : MonoBehaviour
         
         if (ToolManager.instance.tools[currentIndex].craftLevel < ToolManager.instance.tools[currentIndex].so_Tool.maxCraftLevel)
         {
-            //Debug.Log("TEST " + materialOneRequirement + " - " + materialTwoRequirement + " - "+ threeRequirement + " - " + ToolManager.instance.tools[currentIndex].craftLevel);
+            Debug.Log("TEST " + materialOneRequirement + " - " + materialTwoRequirement + " - "+ threeRequirement + " - " + ToolManager.instance.tools[currentIndex].craftLevel);
             if (materialOneRequirement && materialTwoRequirement && threeRequirement)
             {
-                //Debug.Log("TEST 2");
+                Debug.Log("TEST 2 " + mato.name);
+                Debug.Log("TEST 3 " + matt.name);
                 if (mato != null)
                 {
                     
                     InventoryManager.ReduceItem(mato, matOneAmount);
-                    
+                  
                 }
                 else
                 {
-                    InventoryManager.ReduceItem(matt, matTwoAmount);
+                    
         
                 }
-         
+                if (matt != null)
+                {
+                    InventoryManager.ReduceItem(matt, matTwoAmount);
+                }
                 ToolManager.instance.tools[currentIndex].craftLevel++;
 
                 UpgradeToolUI currentlyUpgradedToolUI = upgradeToolUIs[currentIndex];
                 currentlyUpgradedToolUI.UpdateUI();
-
+                ToolManager.onToolUpgradedEvent.Invoke();
                 selectionPanelUI.SetActive(true);
                 confirmPanelUI.SetActive(false);
             }

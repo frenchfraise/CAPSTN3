@@ -62,6 +62,8 @@ public class TimeManager : MonoBehaviour
 
     public bool DoTimer;
     public IEnumerator runningTime;
+    public bool tutorialOn;
+
     private void Awake()
     {
         _instance = this;
@@ -71,7 +73,7 @@ public class TimeManager : MonoBehaviour
     {
         minute = 0;
         hour = startHour;
-        
+        tutorialOn = true;
         onDayEndedEvent.Invoke(false,dayCount);
         onHourChanged.Invoke(hour); //TEMPORARY
         
@@ -82,7 +84,7 @@ public class TimeManager : MonoBehaviour
 
     private void OnEnable()
     {
-        
+
         Stamina.onStaminaDepletedEvent.AddListener(FaintedEndDay);
         Bed.onBedInteractedEvent.AddListener(EndDay);
         //dayInfoUI = UIManager.instance.dayInfoUI;
@@ -103,7 +105,7 @@ public class TimeManager : MonoBehaviour
         onPauseGameTime.RemoveListener(SetPauseGame);
         onTimeChangedEvent.AddListener(OnTimeCheck);
     }
-
+ 
     IEnumerator ForceTest()
     {
         yield return new WaitForSeconds(2f);
@@ -112,27 +114,31 @@ public class TimeManager : MonoBehaviour
 
     IEnumerator Co_DoTimer()
     {
-        while (DoTimer)
+        if (!tutorialOn)
         {
-            //Debug.Log("test");
-            yield return new WaitForSeconds(oneMinToRealSeconds);
-            minute++;
-            minuteByTwos = minute * 2;
-            if (minuteByTwos % 10 == 0)
+            while (DoTimer)
             {
-                minuteByTens = minuteByTwos;
+                //Debug.Log("test");
+                yield return new WaitForSeconds(oneMinToRealSeconds);
+                minute++;
+                minuteByTwos = minute * 2;
+                if (minuteByTwos % 10 == 0)
+                {
+                    minuteByTens = minuteByTwos;
+                }
+                if (minute >= minutesInHour)
+                {
+                    hour++;
+                    if (hour > hoursInDay) hour = 0;
+                    onHourChanged.Invoke(hour); //TEMPORARY
+                    minute = 0;
+                    minuteByTens = 0;
+                }
+                onTimeChangedEvent?.Invoke(hour, minute, minuteByTens);
+
             }
-            if (minute >= minutesInHour)
-            {
-                hour++;
-                if (hour > hoursInDay) hour = 0;
-                onHourChanged.Invoke(hour); //TEMPORARY
-                minute = 0;
-                minuteByTens = 0;
-            }
-            onTimeChangedEvent?.Invoke(hour, minute, minuteByTens);
-            
         }
+        
         
     }
 
@@ -175,8 +181,12 @@ public class TimeManager : MonoBehaviour
     private void SetPauseGame(bool p_bool)
     {
         //Debug.Log("time " + p_bool);
-        DoTimer = p_bool;
-        if (p_bool) StartCoroutine(Co_DoTimer());
+        if (tutorialOn)
+        {
+            DoTimer = p_bool;
+            if (p_bool) StartCoroutine(Co_DoTimer());
+        }    
+   
     }
     
     /* Krabby Patty Formuler

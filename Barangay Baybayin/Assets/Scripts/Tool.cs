@@ -52,16 +52,17 @@ public class Tool
             {
                 
                 proficiencyAmount += p_modifierAmount;
-                //Debug.Log("EXP: " + proficiencyAmount);
+                Debug.Log("EXP: " + proficiencyAmount + " - " + so_Tool.maxProficiencyAmount[proficiencyLevel] + " _ " + proficiencyLevel);
               
             }
             if (proficiencyAmount >= so_Tool.maxProficiencyAmount[proficiencyLevel])
             {
+                Debug.Log("EXP: " + proficiencyAmount + " - " + so_Tool.maxProficiencyAmount[proficiencyLevel] + " _ " + proficiencyLevel);
                 LevelUp();
             }
             else
             {
-           
+                Debug.Log("EXP: " + proficiencyAmount + " - " + so_Tool.maxProficiencyAmount[proficiencyLevel] + " _ " + proficiencyLevel);
                 ToolManager.onProficiencyAmountModifiedEvent.Invoke(proficiencyAmount, so_Tool.maxProficiencyAmount[proficiencyLevel]);
             }
             
@@ -73,7 +74,7 @@ public class Tool
     {
         // reset XP
         proficiencyAmount = proficiencyAmount - so_Tool.maxProficiencyAmount[proficiencyLevel];
-
+        Debug.Log("EXP: " + proficiencyAmount + " - " + so_Tool.maxProficiencyAmount[proficiencyLevel] + " _ " + proficiencyLevel);
         //If max level, dont level up
         if (proficiencyLevel >=  so_Tool.maxProficiencyAmount.Count)
         {
@@ -81,8 +82,9 @@ public class Tool
         }
         else  //Else level up
         {
-          
+            Debug.Log(proficiencyLevel);
             proficiencyLevel++;
+            Debug.Log(proficiencyLevel);
             ToolManager.onProficiencyLevelModifiedEvent.Invoke(proficiencyLevel);
         }
  

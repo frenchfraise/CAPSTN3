@@ -32,8 +32,3 @@ MonoBehaviour:
     words: Mind your Stamina. Using your held tool decreases it. Go on, use your
       tool.
     speechTransitionType: 0
-  - character: {fileID: 11400000, guid: 64792cf6cb6b2a642becf92ac15202ce, type: 2}
-    emotion: 10
-    words: "You\u2019re getting the hang of it, son. But what if you overdo it? Try
-      swinging your axe until you wipe out."
-    speechTransitionType: 0

@@ -34,14 +34,16 @@ MonoBehaviour:
   - 0.25
   damage: 0a0000000f000000140000001e000000
   staminaCost:
-  - 4
-  - 6
-  - 10
-  - 10
+  - 2
+  - 3
+  - 5
+  - 5
   chargeSpeedRate: 1.5
   maxToolCharge: 1
   maxCraftLevel: 3
   craftUpgradeItemRequirementsDatas:
+  - itemRequirements: []
+    requiredProficiencyLevel: 0
   - itemRequirements:
     - so_Item: {fileID: 11400000, guid: 944bc5930a2da5d42bf679f056c1e397, type: 2}
       requiredAmount: 1

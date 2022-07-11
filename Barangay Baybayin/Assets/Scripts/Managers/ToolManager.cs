@@ -39,7 +39,7 @@ public class ToolManager : MonoBehaviour
 
     public static ToolChangedEvent onToolChangedEvent = new ToolChangedEvent();
     public static ToolUpgradedEvent onToolUpgradedEvent  = new ToolUpgradedEvent();
-
+   
     private void Awake()
     {
         //if (_instance != null)

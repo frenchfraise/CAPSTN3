@@ -68,6 +68,42 @@ public class InventoryManager : MonoBehaviour
         return null;
 
     }
+
+    public static void AddItem(string p_item, int p_amount)
+    {
+        for (int iii = 0; iii < InventoryManager.instance.inventoryPages.Count; iii++)
+        {
+            for (int ii = 0; ii < InventoryManager.instance.inventoryPages[iii].itemCategories.Count; ii++)
+            {
+
+                for (int i = 0; i < InventoryManager.instance.inventoryPages[iii].itemCategories[ii].items.Count;)
+                {
+                    Debug.Log(InventoryManager.instance.inventoryPages[iii].itemCategories[ii].items[i].so_Item.name);
+                    if (InventoryManager.instance.inventoryPages[iii].itemCategories[ii].items[i].so_Item.name == p_item)
+                    {
+
+                        InventoryManager.instance.inventoryPages[iii].itemCategories[ii].items[i].amount += p_amount;
+                        InventoryManager.instance.inventoryPages[iii].itemCategories[ii].items[i].UpdateText(); //temporary
+                        //MAKE THIS EVENT FOR NOW ITS PLAYERMANAGER
+                        PlayerManager.instance.SpawnNewItemFloater(InventoryManager.instance.inventoryPages[iii].itemCategories[ii].items[i].so_Item,
+                            p_amount.ToString());
+                        return;
+                    }
+                    i++;
+                    if (i >= InventoryManager.instance.inventoryPages.Count)
+                    {
+                        //Loop finished but didnt find any matching item
+                        //Debug.Log("FAILED TO ADD ITEM " + p_item.name + " BECAUSE COULD NOT FIND ITEM IN INVENTORY WITH MATCHING NAME");
+                    }
+                }
+
+
+
+            }
+        }
+
+    }
+
     public static void AddItem(SO_Item p_item, int p_amount)
     {
         for (int iii = 0; iii < InventoryManager.instance.inventoryPages.Count; iii++)

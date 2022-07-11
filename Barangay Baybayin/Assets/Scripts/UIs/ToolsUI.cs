@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
 
@@ -12,6 +13,8 @@ public class ToolUIElements
     public TMP_Text levelCount;
     public Image fill;
 }
+
+public class ToolQuestSwitchEvent : UnityEvent<int> { };
 public class ToolsUI : MonoBehaviour
 {
     [NonReorderable]
@@ -21,27 +24,45 @@ public class ToolsUI : MonoBehaviour
     private ToolCaster toolCaster;
     private bool canUse = true;
     private bool canSwitch = true;
-    private int currentEquip = 0;
 
+
+    private int currentEquip = 0;
+    [SerializeField] private int requiredTool = -1;
+
+    public void Awake()
+    {
+       
+    }
+
+    private void Start()
+    {
+        OnToolButtonPressed(0); // temporary (?)
+        ToolManager.onToolChangedEvent.Invoke(ToolManager.instance.tools[0]);
+    }
+    public static ToolQuestSwitchEvent onToolQuestSwitchEvent = new ToolQuestSwitchEvent();
     private void OnEnable()
     {
         toolCaster = FindObjectOfType<ToolCaster>();
         toolCaster.onToolCanUseUpdatedEvent.AddListener(CanUseUpdate);
-        toolCaster.onToolCanSwitchUpdatedEvent.AddListener(CanSwitchUpdate);
-        OnToolButtonPressed(0); // temporary (?)
+        //toolCaster.onToolCanSwitchUpdatedEvent.AddListener(CanSwitchUpdate);
+
         canUse = true;
         canSwitch = true;
         ToolManager.onProficiencyLevelModifiedEvent.AddListener(UpdateLevel);
         ToolManager.onProficiencyAmountModifiedEvent.AddListener(UpdateProf);
+        onToolQuestSwitchEvent.AddListener(RequireTool);
     }
 
     private void OnDisable()
     {
         ToolManager.onProficiencyLevelModifiedEvent.RemoveListener(UpdateLevel);
         toolCaster.onToolCanUseUpdatedEvent.RemoveListener(CanUseUpdate);
-        toolCaster.onToolCanSwitchUpdatedEvent.RemoveListener(CanSwitchUpdate);
+        //toolCaster.onToolCanSwitchUpdatedEvent.RemoveListener(CanSwitchUpdate);
     }
-
+    void RequireTool(int p_tool)
+    {
+        requiredTool = p_tool;
+    }
     void CanSwitchUpdate(bool p_canSwitch)
     {
         canSwitch = p_canSwitch;
@@ -71,42 +92,52 @@ public class ToolsUI : MonoBehaviour
     }
     public void OnToolButtonPressed(int index)
     {
-        if (canUse)
+        Debug.Log("tool button pressed");
+        if (requiredTool == -1 || requiredTool != -1 && requiredTool == index)
         {
-            if (canSwitch)
+            if (canUse)
             {
-                currentEquip = index;
-                canSwitch = false;
-                Tool selected_Tool = ToolManager.instance.tools[index];
-                SO_Tool selectedSO_Tool = selected_Tool.so_Tool;
-                for (int i = 0; i < toolUI.Count; i++)
+                if (canSwitch)
                 {
-                    if (index == i)
+                    currentEquip = index;
+                    canSwitch = false;
+                    Tool selected_Tool = ToolManager.instance.tools[index];
+                    SO_Tool selectedSO_Tool = selected_Tool.so_Tool;
+                    for (int i = 0; i < toolUI.Count; i++)
                     {
-                      
-                       
-                        toolUI[index].background.sprite = selectedSO_Tool.equippedFrame;
-                        toolUI[index].icon.sprite = selectedSO_Tool.equippedIcon[selected_Tool.craftLevel-1];
-                        
-                    }
-                    else
-                    {
-                        Tool current_Tool = ToolManager.instance.tools[i];
-                        SO_Tool so_Tool = current_Tool.so_Tool;
-                        toolUI[i].background.sprite = so_Tool.unlockedFrame;
-                        toolUI[i].icon.sprite = so_Tool.unlockedIcon;
+                        if (index == i)
+                        {
+
+
+                            toolUI[index].background.sprite = selectedSO_Tool.equippedFrame;
+                            toolUI[index].icon.sprite = selectedSO_Tool.equippedIcon[selected_Tool.craftLevel - 1];
+
+                        }
+                        else
+                        {
+                            Tool current_Tool = ToolManager.instance.tools[i];
+                            SO_Tool so_Tool = current_Tool.so_Tool;
+                            toolUI[i].background.sprite = so_Tool.unlockedFrame;
+                            toolUI[i].icon.sprite = so_Tool.unlockedIcon;
+
+                        }
+
 
                     }
 
 
+                    ToolManager.onToolChangedEvent.Invoke(selected_Tool);
+                    CanSwitchUpdate(true);
                 }
-
-
-                ToolManager.onToolChangedEvent.Invoke(selected_Tool);
             }
         }
-        
-       
+        else if (requiredTool != -1 && requiredTool != index)
+        {
+            Debug.Log("DADA");
+            StorylineManager.onWorldEventEndedEvent.Invoke("EQUIPPINGWRONGTOOL", 0, 0);
+        }
+
+
     }
 
 }

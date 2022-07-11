@@ -76,6 +76,10 @@ public class StorylineManager : MonoBehaviour
         {
             return 3;
         }
+        else if (p_ID == "Q-P") //temp
+        {
+            return 4;
+        }
         return 0;
     }
 
