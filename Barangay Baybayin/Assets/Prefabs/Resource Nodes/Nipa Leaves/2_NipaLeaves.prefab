@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthOverheadUI: {fileID: 0}
-  so_ResourceNode: {fileID: 11400000, guid: d0e57ea43ac58924899c01307727ce94, type: 2}
+  so_ResourceNode: {fileID: 11400000, guid: 600d5639dd7ca194696056f6fa0145a2, type: 2}
   itemPrefab: {fileID: 8436199365745860972, guid: 2bf34b5e8f26c294d8ba4e3060dded9a, type: 3}
   hintSprite: {fileID: 21300000, guid: be734b9a7ee7e4c4699b472c126b0a49, type: 3}
   levelRequirement: 3

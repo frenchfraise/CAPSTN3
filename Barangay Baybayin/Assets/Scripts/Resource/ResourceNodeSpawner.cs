@@ -35,27 +35,27 @@ public class ResourceNodeSpawner : MonoBehaviour
         Collider2D[] collider = Physics2D.OverlapCircleAll((Vector2)transform.position, 3f);
         foreach (Collider2D hit in collider)
         {
-            //Debug.Log(hit.gameObject.name + " - 1 " + hit.gameObject.tag);
+            //Debug.Log(gameObject.name + hit.gameObject.name + " - 1 " + hit.gameObject.tag);
             if (hit.gameObject != gameObject)
             {
-                //Debug.Log(hit.gameObject.name + " - 2 " + hit.gameObject.tag);
-                //Debug.Log("D " + hit.gameObject.name);
+                //Debug.Log(gameObject.name + hit.gameObject.name + " - 2 " + hit.gameObject.tag);
+                //Debug.Log(gameObject.name +  "D " + hit.gameObject.name);
                 if (!hit.gameObject.CompareTag("Player"))
                 {
-                    //Debug.Log(hit.gameObject.name + " - 3 " + hit.gameObject.tag);
+                    //Debug.Log(gameObject.name + hit.gameObject.name + " - 3 " + hit.gameObject.tag);
                     if (hit != null)
                     {
-                        //Debug.Log(hit.gameObject.name + " - 4 " + hit.gameObject.tag);
+                        //Debug.Log(gameObject.name + hit.gameObject.name + " - 4 " + hit.gameObject.tag);
                         if (hit.gameObject.CompareTag("Nodes"))
                         {
-                            //Debug.Log("RA");
+                            //Debug.Log(gameObject.name + "RA");
                             Despawn(hit.gameObject.GetComponent<ResourceNode>());
                             //Destroy(hit.gameObject);
                             return true;
                         }
                         else
                         {
-                            return false;
+                            return true;
                         }
                        
                     }
@@ -84,6 +84,7 @@ public class ResourceNodeSpawner : MonoBehaviour
                     currentCount += room.availableResourceNodeDrops[i].chance;
                     if (chanceRolled <= currentCount)
                     {
+                        //Debug.Log(gameObject.name + " SPAN " + isSpawnAvailable);
                         //within chance range
                         savedIndex = i;
                         break;
@@ -111,36 +112,36 @@ public class ResourceNodeSpawner : MonoBehaviour
             if (newResourceNode is TreeVariantOneNode)
             {
                 TreeVariantOneNode nResourceNode = TreeVariantOneNodePool.pool.Get();//<TreeVariantOneNode>.pool.Get();
-                nResourceNode.transform.position = transform.position + new Vector3(0f,-2.35f,0f);
+                nResourceNode.transform.position = transform.position + new Vector3(0f, 0f, 0f);
                 nResourceNode.InitializeValues();
             }
             else if (newResourceNode is TreeVariantTwoNode)
             {
                 TreeVariantTwoNode nResourceNode = TreeVariantTwoNodePool.pool.Get();
-                nResourceNode.transform.position = transform.position + new Vector3(0f, -2.35f, 0f);
+                nResourceNode.transform.position = transform.position + new Vector3(0f, 0f, 0f);
                 nResourceNode.InitializeValues();
             }
             else if (newResourceNode is TreeVariantThreeNode)
             {
                 TreeVariantTwoNode nResourceNode = TreeVariantTwoNodePool.pool.Get();
-                nResourceNode.transform.position = transform.position + new Vector3(0f, -2.35f, 0f);
+                nResourceNode.transform.position = transform.position + new Vector3(0f, 0f, 0f);
                 nResourceNode.InitializeValues();
             }
             else if (newResourceNode is OreVariantOneNode)
             {
-                TreeVariantTwoNode nResourceNode = TreeVariantTwoNodePool.pool.Get();
+                OreVariantOneNode nResourceNode = OreVariantOneNodePool.pool.Get();
                 nResourceNode.transform.position = transform.position + new Vector3(0f, -2.35f, 0f);
                 nResourceNode.InitializeValues();
             }
             else if (newResourceNode is OreVariantTwoNode)
             {
-                TreeVariantTwoNode nResourceNode = TreeVariantTwoNodePool.pool.Get();
+                OreVariantTwoNode nResourceNode = OreVariantTwoNodePool.pool.Get();
                 nResourceNode.transform.position = transform.position + new Vector3(0f, -2.35f, 0f);
                 nResourceNode.InitializeValues();
             }
             else if (newResourceNode is OreVariantThreeNode)
             {
-                TreeVariantTwoNode nResourceNode = TreeVariantTwoNodePool.pool.Get();
+                OreVariantThreeNode nResourceNode = OreVariantThreeNodePool.pool.Get();
                 nResourceNode.transform.position = transform.position + new Vector3(0f, -2.35f, 0f);
                 nResourceNode.InitializeValues();
             }
@@ -198,8 +199,12 @@ public class ResourceNodeSpawner : MonoBehaviour
                 nResourceNode.transform.position = transform.position + new Vector3(0f, -2.35f, 0f);
                 nResourceNode.InitializeValues();
             }
-        
-
+            else if (newResourceNode is VetiverLeafVariantOneNode)
+            {
+                VetiverLeafVariantOneNode nResourceNode = VetiverLeafVariantOneNodePool.pool.Get();
+                nResourceNode.transform.position = transform.position + new Vector3(0f, -2.35f, 0f);
+                nResourceNode.InitializeValues();
+            }
         }
         //void Spawn<T>(int savedIndex) where T : MonoBehaviour
         //{

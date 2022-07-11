@@ -32,12 +32,12 @@ MonoBehaviour:
   - 1
   - 0.5
   - 0.25
-  damage: 0a0000000f000000140000001e000000
+  damage: 02000000030000000500000007000000
   staminaCost:
   - 2
-  - 3
+  - 3.5
   - 5
-  - 5
+  - 4
   chargeSpeedRate: 1.5
   maxToolCharge: 1
   maxCraftLevel: 3
@@ -77,12 +77,12 @@ MonoBehaviour:
   - 25
   - 25
   maxProficiencyAmount:
-  - 50
-  - 100
-  - 250
-  - 500
+  - 16
+  - 24
+  - 30
+  - 34
   proficiencyAmountReward:
-  - 5
-  - 5
-  - 5
-  - 5
+  - 2
+  - 2
+  - 2
+  - 2

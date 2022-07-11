@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Pickaxe
   m_EditorClassIdentifier: 
   useForResourceNode:
+  - {fileID: 11400000, guid: 480d6f6d22474ec4c995eec0edc406c4, type: 2}
+  - {fileID: 11400000, guid: 1a09785284877bc43991a593cfd0cfac, type: 2}
   - {fileID: 11400000, guid: 83a912f522dc56e4d8b07ef7a54c0a9e, type: 2}
   name:
   - Rusty Pickaxe
@@ -32,12 +34,12 @@ MonoBehaviour:
   - 1
   - 0.5
   - 0.25
-  damage: 0a0000000f000000140000001e000000
+  damage: 02000000030000000500000007000000
   staminaCost:
   - 2
-  - 3
+  - 3.5
   - 5
-  - 5
+  - 4
   chargeSpeedRate: 1.5
   maxToolCharge: 1
   maxCraftLevel: 3
@@ -77,12 +79,12 @@ MonoBehaviour:
   - 25
   - 25
   maxProficiencyAmount:
-  - 50
-  - 100
-  - 250
-  - 500
+  - 16
+  - 24
+  - 30
+  - 34
   proficiencyAmountReward:
-  - 5
-  - 5
-  - 5
-  - 5
+  - 2
+  - 2
+  - 2
+  - 2

@@ -13,7 +13,13 @@ MonoBehaviour:
   m_Name: Bolo
   m_EditorClassIdentifier: 
   useForResourceNode:
+  - {fileID: 11400000, guid: ae873d3f9b3b6df4e8de349cd9b95fcb, type: 2}
+  - {fileID: 11400000, guid: 7f3cff80e58537743a63702b50bfa6cc, type: 2}
   - {fileID: 11400000, guid: 34ff26ab5227f26438366805f1126507, type: 2}
+  - {fileID: 11400000, guid: 0bf3268a62262894ca393ff2b4b86673, type: 2}
+  - {fileID: 11400000, guid: 600d5639dd7ca194696056f6fa0145a2, type: 2}
+  - {fileID: 11400000, guid: d0e57ea43ac58924899c01307727ce94, type: 2}
+  - {fileID: 11400000, guid: a7c549a61664dd746837e10fd05b9af5, type: 2}
   name:
   - Rusty Bolo
   - Bolo
@@ -32,18 +38,16 @@ MonoBehaviour:
   - 1
   - 0.5
   - 0.25
-  damage: 0a0000000f000000140000001e000000
+  damage: 02000000030000000500000007000000
   staminaCost:
   - 2
-  - 3
+  - 3.5
   - 5
-  - 5
+  - 4
   chargeSpeedRate: 1.5
   maxToolCharge: 1
   maxCraftLevel: 3
   craftUpgradeItemRequirementsDatas:
-  - itemRequirements: []
-    requiredProficiencyLevel: 0
   - itemRequirements:
     - so_Item: {fileID: 11400000, guid: 944bc5930a2da5d42bf679f056c1e397, type: 2}
       requiredAmount: 1
@@ -79,12 +83,12 @@ MonoBehaviour:
   - 25
   - 25
   maxProficiencyAmount:
-  - 50
-  - 100
-  - 250
-  - 500
+  - 16
+  - 24
+  - 30
+  - 34
   proficiencyAmountReward:
-  - 5
-  - 5
-  - 5
-  - 5
+  - 2
+  - 2
+  - 2
+  - 2
