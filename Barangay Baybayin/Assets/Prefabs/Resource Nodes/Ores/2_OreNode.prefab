@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthOverheadUI: {fileID: 0}
-  so_ResourceNode: {fileID: 11400000, guid: 83a912f522dc56e4d8b07ef7a54c0a9e, type: 2}
+  so_ResourceNode: {fileID: 11400000, guid: 1a09785284877bc43991a593cfd0cfac, type: 2}
   itemPrefab: {fileID: 8436199365745860972, guid: 2bf34b5e8f26c294d8ba4e3060dded9a, type: 3}
   hintSprite: {fileID: 21300000, guid: be734b9a7ee7e4c4699b472c126b0a49, type: 3}
   levelRequirement: 2
@@ -167,7 +167,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.004297018, y: 1.9867572}
+  m_Offset: {x: 0, y: 1.15}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}

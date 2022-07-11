@@ -167,7 +167,7 @@ public class ToolCaster : MonoBehaviour
                     else // left
                     {
                         animator.SetBool("isFacingRight", false);
-                    }
+                    }                    
                     targetInfrastructure.OnInfrastructureHitEvent.Invoke(
                        current_Tool.craftLevel - 1,
                        current_Tool.so_Tool.damage[current_Tool.craftLevel - 1],
@@ -188,6 +188,8 @@ public class ToolCaster : MonoBehaviour
                     {
                         animator.SetBool("isFacingRight", false);
                     }
+                    Debug.Log("Tool Dmg: " + current_Tool.so_Tool.damage[current_Tool.craftLevel - 1]);
+                    Debug.Log("Tool Lvl: " + current_Tool.craftLevel);
                     targetResourceNode.OnResourceNodeHitEvent.Invoke(current_Tool.so_Tool.useForResourceNode,
                        current_Tool.craftLevel - 1,
                        current_Tool.so_Tool.damage[current_Tool.craftLevel - 1],

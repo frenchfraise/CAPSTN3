@@ -13,8 +13,12 @@ MonoBehaviour:
   m_Name: Axe
   m_EditorClassIdentifier: 
   useForResourceNode:
+  - {fileID: 11400000, guid: e8a6900ed214873479efe4cd52c7aae7, type: 2}
+  - {fileID: 11400000, guid: edeed82492a2589448ec804d4922207e, type: 2}
   - {fileID: 11400000, guid: 3f913e9b960e0334aa758fe91eececfb, type: 2}
-  - {fileID: 11400000, guid: d0e57ea43ac58924899c01307727ce94, type: 2}
+  - {fileID: 11400000, guid: 5c36ff1a6426be9408752a33196048eb, type: 2}
+  - {fileID: 11400000, guid: afcbbd1a035119a49b36d243197c6270, type: 2}
+  - {fileID: 11400000, guid: 39b3d15182b01f04084aa9819ca3d27d, type: 2}
   name:
   - Rusty Axe
   - Axe
@@ -33,12 +37,12 @@ MonoBehaviour:
   - 1
   - 0.5
   - 0.25
-  damage: 0a0000000f000000140000001e000000
+  damage: 02000000030000000500000007000000
   staminaCost:
+  - 2
+  - 3.5
+  - 5
   - 4
-  - 6
-  - 10
-  - 10
   chargeSpeedRate: 1.5
   maxToolCharge: 1
   maxCraftLevel: 3
@@ -78,12 +82,12 @@ MonoBehaviour:
   - 25
   - 25
   maxProficiencyAmount:
-  - 50
-  - 100
-  - 250
-  - 500
+  - 16
+  - 24
+  - 30
+  - 34
   proficiencyAmountReward:
-  - 5
-  - 5
-  - 5
-  - 5
+  - 2
+  - 2
+  - 2
+  - 2

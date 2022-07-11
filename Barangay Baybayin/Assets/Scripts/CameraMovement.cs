@@ -27,10 +27,9 @@ public class CameraMovement : MonoBehaviour
     private void Update()
     {
         Vector3 pos =  PlayerManager.instance.playerTransform.position;
-
         pos.x = Mathf.Clamp(pos.x, offset.x + -panLimit.x, offset.x + panLimit.x);
         pos.y = Mathf.Clamp(pos.y, offset.y + -panLimit.y, offset.y + panLimit.y);
-        pos.z = transform.position.z;
+        pos.z = transform.position.z;        
         transform.position = pos;
     }
 }

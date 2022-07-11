@@ -60,6 +60,7 @@ public class CameraManager : MonoBehaviour
     }
     public void ResetCamera()
     {
+        //Debug.Log("Invoked: " + defaultRoom.transform.position + ", " + panLimit);
         onCameraMovedEvent.Invoke(defaultRoom.transform.position, panLimit);
     }
 
