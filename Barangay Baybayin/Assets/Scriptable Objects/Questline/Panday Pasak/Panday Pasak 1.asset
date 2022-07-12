@@ -14,12 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questlineData:
   - name: Part 1
-    initialSO_Dialogues: {fileID: 11400000, guid: 0d0707e07e6e1d6499d5a90eb94f5da3, type: 2}
-    questInProgressSO_Dialogues: {fileID: 11400000, guid: aa4398772d6c33c438535522de6fed86, type: 2}
-    questCompleteSO_Dialogues: {fileID: 11400000, guid: 63376a0c692c62f4eb1ca734599a9b4c, type: 2}
-    quest: {fileID: 11400000, guid: d28287b811dace347ae19d0a2a1c98d6, type: 2}
-  - name: Part 2
-    initialSO_Dialogues: {fileID: 11400000, guid: 770dbc325ffc63a43a2629c948099d55, type: 2}
-    questInProgressSO_Dialogues: {fileID: 11400000, guid: bb1d3e95f3951e941a6fdb2f2c9f9e98, type: 2}
-    questCompleteSO_Dialogues: {fileID: 11400000, guid: daa240be1bce1244aa92605193f431d6, type: 2}
-    quest: {fileID: 11400000, guid: 0c546e3871ba6ae4586d133558b0a2b7, type: 2}
+    initialSO_Dialogues: {fileID: 11400000, guid: 35381d9fafd1b4547abafe617854f80f, type: 2}
+    questInProgressSO_Dialogues: {fileID: 11400000, guid: c0e81eca3f9cc44439d7720a49b69130, type: 2}
+    questCompleteSO_Dialogues: {fileID: 11400000, guid: 7ceea415cefcb094f933d33d6e7fa747, type: 2}
+    quest: {fileID: 11400000, guid: 528000d6a3889f2448e30f533fab2003, type: 2}

@@ -33,6 +33,7 @@ public class TutorialManager : MonoBehaviour
     public SO_Dialogues swingingInAir;
 
     public Panday panday;
+    public bool firstTime = true;
     private void Awake()
     {
         instance = this;
@@ -58,19 +59,24 @@ public class TutorialManager : MonoBehaviour
         infrastructure.gameObject.SetActive(true);
         CharacterDialogueUI.onSetEndTransitionEnabledEvent.Invoke(false);
         CharacterDialogueUI.onSetIsCloseOnEndEvent.Invoke(false);
+        
        
-        //Stamina.onManualSetStaminaEvent.Invoke(20);
+        Stamina.onManualSetStaminaEvent.Invoke(200);
 
         //
         StartLecture();
     }
     void Unsetup()
     {
+        Debug.Log("UNSETTING UP");
         StorylineManager.onWorldEventEndedEvent.RemoveListener(TellStory);
         UIManager.onGameplayModeChangedEvent.RemoveListener(GameplayModeChangedEvent);
         CharacterDialogueUI.onSetEndTransitionEnabledEvent.Invoke(true);
         CharacterDialogueUI.onSetIsCloseOnEndEvent.Invoke(true);
         CharacterDialogueUI.onSetStartTransitionEnabledEvent.Invoke(true);
+        TimeManager.instance.tutorialOn = true;
+        TimeManager.onPauseGameTime.Invoke(true);
+        tutorialUI.overheadUI.SetActive(false);
         panday.isQuestMode = false;
 
 
@@ -183,37 +189,37 @@ public class TutorialManager : MonoBehaviour
             newResourceNode.transform.position = spawnPoint1.position + new Vector3(0f, -2.35f, 0f);
             newResourceNode.InitializeValues();
 
-            newResourceNode = TreeVariantOneNodePool.pool.Get();
-            newResourceNode.transform.position = spawnPoint2.position + new Vector3(0f, -2.35f, 0f);
-            newResourceNode.InitializeValues();
+            //newResourceNode = TreeVariantOneNodePool.pool.Get();
+            //newResourceNode.transform.position = spawnPoint2.position + new Vector3(0f, -2.35f, 0f);
+            //newResourceNode.InitializeValues();
 
-            newResourceNode = TreeVariantOneNodePool.pool.Get();
-            newResourceNode.transform.position = spawnPoint3.position + new Vector3(0f, -2.35f, 0f);
-            newResourceNode.InitializeValues();
+            //newResourceNode = TreeVariantOneNodePool.pool.Get();
+            //newResourceNode.transform.position = spawnPoint3.position + new Vector3(0f, -2.35f, 0f);
+            //newResourceNode.InitializeValues();
 
             newResourceNode = OreVariantOneNodePool.pool.Get();
             newResourceNode.transform.position = spawnPoint4.position + new Vector3(0f, -2.35f, 0f);
             newResourceNode.InitializeValues();
 
-            newResourceNode = OreVariantOneNodePool.pool.Get();
-            newResourceNode.transform.position = spawnPoint5.position + new Vector3(0f, -2.35f, 0f);
-            newResourceNode.InitializeValues();
+            //newResourceNode = OreVariantOneNodePool.pool.Get();
+            //newResourceNode.transform.position = spawnPoint5.position + new Vector3(0f, -2.35f, 0f);
+            //newResourceNode.InitializeValues();
 
-            newResourceNode = OreVariantOneNodePool.pool.Get();
-            newResourceNode.transform.position = spawnPoint6.position + new Vector3(0f, -2.35f, 0f);
-            newResourceNode.InitializeValues();
+            //newResourceNode = OreVariantOneNodePool.pool.Get();
+            //newResourceNode.transform.position = spawnPoint6.position + new Vector3(0f, -2.35f, 0f);
+            //newResourceNode.InitializeValues();
 
             newResourceNode = HerbVariantOneNodePool.pool.Get();
             newResourceNode.transform.position = spawnPoint7.position + new Vector3(0f, -2.35f, 0f);
             newResourceNode.InitializeValues();
 
-            newResourceNode = HerbVariantOneNodePool.pool.Get();
-            newResourceNode.transform.position = spawnPoint8.position + new Vector3(0f, -2.35f, 0f);
-            newResourceNode.InitializeValues();
+            //newResourceNode = HerbVariantOneNodePool.pool.Get();
+            //newResourceNode.transform.position = spawnPoint8.position + new Vector3(0f, -2.35f, 0f);
+            //newResourceNode.InitializeValues();
 
-            newResourceNode = HerbVariantOneNodePool.pool.Get();
-            newResourceNode.transform.position = spawnPoint9.position + new Vector3(0f, -2.35f, 0f);
-            newResourceNode.InitializeValues();
+            //newResourceNode = HerbVariantOneNodePool.pool.Get();
+            //newResourceNode.transform.position = spawnPoint9.position + new Vector3(0f, -2.35f, 0f);
+            //newResourceNode.InitializeValues();
 
             //SPECIFIC
             ToolCaster.onSetIsPreciseEvent.Invoke(true);
@@ -235,7 +241,7 @@ public class TutorialManager : MonoBehaviour
         }
         else if (p_id == "O-7")
         {
-            InventoryManager.AddItem("Recipe 1", 3);
+            InventoryManager.AddItem("Recipe 1", 3); //it happens 3 times
             InventoryManager.AddItem("Wood 1", 30);
 
             ToolManager.onToolUpgradedEvent.AddListener(RequireAllToolsCraftLevel1);
@@ -245,49 +251,41 @@ public class TutorialManager : MonoBehaviour
         }
         else if (p_id == "O-8")
         {
-
+            Debug.Log("IM INSIDE");
             panday.isQuestMode = true;
 
-            ResourceNode newResourceNode = TreeVariantOneNodePool.pool.Get();
-            newResourceNode.transform.position = spawnPoint1.position + new Vector3(0f, -2.35f, 0f);
-            newResourceNode.InitializeValues();
+            //ResourceNode newResourceNode = TreeVariantOneNodePool.pool.Get();
+            //newResourceNode.transform.position = spawnPoint1.position + new Vector3(0f, -2.35f, 0f);
+            //newResourceNode.InitializeValues();
 
-            newResourceNode = TreeVariantOneNodePool.pool.Get();
+            ResourceNode newResourceNode = TreeVariantOneNodePool.pool.Get();
             newResourceNode.transform.position = spawnPoint2.position + new Vector3(0f, -2.35f, 0f);
             newResourceNode.InitializeValues();
 
-            newResourceNode = TreeVariantOneNodePool.pool.Get();
-            newResourceNode.transform.position = spawnPoint3.position + new Vector3(0f, -2.35f, 0f);
-            newResourceNode.InitializeValues();
+            //newResourceNode = TreeVariantOneNodePool.pool.Get();
+            //newResourceNode.transform.position = spawnPoint3.position + new Vector3(0f, -2.35f, 0f);
+            //newResourceNode.InitializeValues();
 
-            newResourceNode = OreVariantOneNodePool.pool.Get();
-            newResourceNode.transform.position = spawnPoint4.position + new Vector3(0f, -2.35f, 0f);
-            newResourceNode.InitializeValues();
+            //newResourceNode = NipaLeavesVariantOneNodePool.pool.Get();
+            //newResourceNode.transform.position = spawnPoint7.position + new Vector3(0f, -2.35f, 0f);
+            //newResourceNode.InitializeValues();
 
-            newResourceNode = OreVariantOneNodePool.pool.Get();
-            newResourceNode.transform.position = spawnPoint5.position + new Vector3(0f, -2.35f, 0f);
-            newResourceNode.InitializeValues();
+            //newResourceNode = NipaLeavesVariantOneNodePool.pool.Get();
+            //newResourceNode.transform.position = spawnPoint8.position + new Vector3(0f, -2.35f, 0f);
+            //newResourceNode.InitializeValues();
 
-            newResourceNode = OreVariantOneNodePool.pool.Get();
-            newResourceNode.transform.position = spawnPoint6.position + new Vector3(0f, -2.35f, 0f);
-            newResourceNode.InitializeValues();
-
-            newResourceNode = HerbVariantOneNodePool.pool.Get();
-            newResourceNode.transform.position = spawnPoint7.position + new Vector3(0f, -2.35f, 0f);
-            newResourceNode.InitializeValues();
-
-            newResourceNode = HerbVariantOneNodePool.pool.Get();
-            newResourceNode.transform.position = spawnPoint8.position + new Vector3(0f, -2.35f, 0f);
-            newResourceNode.InitializeValues();
-
-            newResourceNode = HerbVariantOneNodePool.pool.Get();
-            newResourceNode.transform.position = spawnPoint9.position + new Vector3(0f, -2.35f, 0f);
-            newResourceNode.InitializeValues();
+            //newResourceNode = NipaLeavesVariantOneNodePool.pool.Get();
+            //newResourceNode.transform.position = spawnPoint9.position + new Vector3(0f, -2.35f, 0f);
+            //newResourceNode.InitializeValues();
             StorylineManager.onWorldEventEndedEvent.AddListener(RequirePandayQuestComplete);
 
            
             EndStory();
 
+        }
+        else if (p_id == "O-9")
+        {
+            Debug.Log("HELP");
         }
         else if (p_id == "Q-P")
         {
@@ -295,13 +293,32 @@ public class TutorialManager : MonoBehaviour
             {
                 if (panday.complete == false)
                 {
-                    EndStory();
+                    if (firstTime)
+                    {
+                        firstTime = false;
+                        EndStory();
+                    }
+                    if (currentIndex == 9)
+                    {
+                        Debug.Log("QUEST COMPLETED");
+                        Debug.Log("END");
+                        Unsetup();
+                    }
+                    //if(currentIndex == 9)
+                    //{
+                    //    Debug.Log("END");
+                    //    Unsetup();
+                    //}
+
                 }
                 
             }
-            
-
-
+            else if (p_intto == 1)
+            {
+                Debug.Log("QUEST COMPLETED 1 ");
+                Debug.Log("END 111111");
+                Unsetup();
+            }
         }
 
     }
@@ -334,7 +351,7 @@ public class TutorialManager : MonoBehaviour
         Debug.Log("END LECTURE ID: O-" + currentIndex + " CURRENT INDEX: " + currentIndex + " CURRENT DIALOGUE: " + currentDialogueIndex);
         currentIndex++;
         currentDialogueIndex++;
-        if (currentIndex == 9)
+        if (currentIndex == 10)
         {
             Debug.Log("END");
             Unsetup();
@@ -482,11 +499,11 @@ public class TutorialManager : MonoBehaviour
         {
             if (p_test == 0)
             {
-                if (p_testt == 1)
-                {
+                //if (p_testt == 1)
+                //{
                     Debug.Log("QUEST COMPLETED");
                     EndLecture();
-                }
+               // }
             }
 
         }

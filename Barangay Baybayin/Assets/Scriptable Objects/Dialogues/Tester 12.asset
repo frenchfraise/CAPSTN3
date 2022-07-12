@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Tester 12
   m_EditorClassIdentifier: 
   dialogues:
-  - character: {fileID: 0}
+  - character: {fileID: 11400000, guid: 64792cf6cb6b2a642becf92ac15202ce, type: 2}
     emotion: 10
     words: Use the Axe, Hammer, and Pickaxe on the appropriate nodes, and level them
       all up to Level 1!

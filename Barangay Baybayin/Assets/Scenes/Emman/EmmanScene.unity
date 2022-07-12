@@ -1101,10 +1101,26 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 40820753}
+    - target: {fileID: 4365995061495296854, guid: fea5a514e58f9df44bdc47a1f3ee5647, type: 3}
+      propertyPath: m_text
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7417557955240048324, guid: fea5a514e58f9df44bdc47a1f3ee5647, type: 3}
+      propertyPath: m_text
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8392125885464714965, guid: fea5a514e58f9df44bdc47a1f3ee5647, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1919231801}
+    - target: {fileID: 8538169941817232792, guid: fea5a514e58f9df44bdc47a1f3ee5647, type: 3}
+      propertyPath: m_text
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9012675122110121282, guid: fea5a514e58f9df44bdc47a1f3ee5647, type: 3}
+      propertyPath: m_text
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fea5a514e58f9df44bdc47a1f3ee5647, type: 3}
 --- !u!114 &68649031 stripped
@@ -23112,6 +23128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hintSprite: {fileID: 21300000, guid: cd34085cb50e3ca4fb32c4db08a24974, type: 3}
   id: 
+  complete: 0
   questId: Q-P
   isFirstTime: 1
   isQuestMode: 0
@@ -39735,6 +39752,7 @@ MonoBehaviour:
   swingingWrongTool: {fileID: 11400000, guid: 021b73bfd3bb72546ba2a045493f18f4, type: 2}
   swingingInAir: {fileID: 11400000, guid: 9f1135e2120f84341aa7cf852ae1548f, type: 2}
   panday: {fileID: 869936038}
+  firstTime: 1
 --- !u!1 &1630246652
 GameObject:
   m_ObjectHideFlags: 0

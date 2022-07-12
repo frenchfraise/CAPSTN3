@@ -9,10 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dabccd67f58b89349ba4cab56a870d02, type: 3}
-  m_Name: Panday
+  m_Script: {fileID: 11500000, guid: 15ebcecd76bb6fc469a3e5bdb2950051, type: 3}
+  m_Name: Panday Pasak 1 Quest Requirement
   m_EditorClassIdentifier: 
-  ID: Q-PD
-  character: {fileID: 11400000, guid: 64792cf6cb6b2a642becf92ac15202ce, type: 2}
-  questLines:
-  - {fileID: 11400000, guid: 50f30125d0f6b29499561b19e0c384f5, type: 2}
+  so_Item:
+  - {fileID: 11400000, guid: a23150ace6c99194986348f059adf4b5, type: 2}
+  requiredAmount: 01000000

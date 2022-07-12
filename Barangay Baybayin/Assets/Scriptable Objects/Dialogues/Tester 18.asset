@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Tester 18
   m_EditorClassIdentifier: 
   dialogues:
-  - character: {fileID: 0}
+  - character: {fileID: 11400000, guid: 64792cf6cb6b2a642becf92ac15202ce, type: 2}
     emotion: 10
     words: 'Approach the Panday again and Talk to him, to accept his quest.
 
