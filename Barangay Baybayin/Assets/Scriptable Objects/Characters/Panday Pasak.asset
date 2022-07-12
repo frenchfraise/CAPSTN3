@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Panday Pasak
   avatars: []
-  avatar: {fileID: 1045049241, guid: 27179ea81a23b63428ce3c716addc111, type: 3}
+  avatar: {fileID: 21300000, guid: 54d14f1c1d87e804f922a9e7104410cd, type: 3}
