@@ -19,5 +19,10 @@ MonoBehaviour:
     speechTransitionType: 0
   - character: {fileID: 11400000, guid: 64792cf6cb6b2a642becf92ac15202ce, type: 2}
     emotion: 10
+    words: Using up all your stamina will make you pass out. Resting in your bed
+      fills it up, but the day will pass.
+    speechTransitionType: 0
+  - character: {fileID: 11400000, guid: 64792cf6cb6b2a642becf92ac15202ce, type: 2}
+    emotion: 10
     words: Next, chop the tree I set up.
     speechTransitionType: 0

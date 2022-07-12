@@ -13,11 +13,16 @@ MonoBehaviour:
   m_Name: Tester 3
   m_EditorClassIdentifier: 
   dialogues:
-  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
-    emotion: 0
+  - character: {fileID: 11400000, guid: 64792cf6cb6b2a642becf92ac15202ce, type: 2}
+    emotion: 10
     words: Rise and shine, son! Head on over here.
     speechTransitionType: 0
-  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
-    emotion: 0
+  - character: {fileID: 11400000, guid: 64792cf6cb6b2a642becf92ac15202ce, type: 2}
+    emotion: 10
+    words: Using up all your stamina will make you pass out. Resting in your bed
+      fills it up, but the day will pass.
+    speechTransitionType: 0
+  - character: {fileID: 11400000, guid: 64792cf6cb6b2a642becf92ac15202ce, type: 2}
+    emotion: 10
     words: Next, chop the tree I set up.
     speechTransitionType: 0
