@@ -81,18 +81,18 @@ public class UpgradeToolsUI : MonoBehaviour
     void UpdateCurrentToolUI(Tool p_currentTool)
     {
         SO_Tool currentSOTool = p_currentTool.so_Tool;
-        int currentToolLevel = p_currentTool.craftLevel-1;
+        int currentToolLevel = p_currentTool.craftLevel;
         int upgradeToolLevel = currentToolLevel+1;
         Debug.Log(currentToolLevel + " + " + upgradeToolLevel);
-        currentToolNameText.text = currentSOTool.name[p_currentTool.craftLevel - 1];
-        currentToolImage.sprite = currentSOTool.equippedIcon[p_currentTool.craftLevel-1];
-        currentToolFrame.sprite = plates[p_currentTool.craftLevel - 1];
+        currentToolNameText.text = currentSOTool.name[p_currentTool.craftLevel];
+        currentToolImage.sprite = currentSOTool.equippedIcon[p_currentTool.craftLevel];
+        currentToolFrame.sprite = plates[p_currentTool.craftLevel];
 
         upgradePreviewToolNameText.text = currentSOTool.name[p_currentTool.craftLevel];
         upgradePreviewToolImage.sprite = currentSOTool.equippedIcon[p_currentTool.craftLevel];
         upgradePreviewToolFrame.sprite = plates[p_currentTool.craftLevel];
 
-        CraftUpgradeItemRequirementsData craftUpgradeItemRequirementsData = currentSOTool.craftUpgradeItemRequirementsDatas[upgradeToolLevel];
+        CraftUpgradeItemRequirementsData craftUpgradeItemRequirementsData = currentSOTool.craftUpgradeItemRequirementsDatas[currentToolLevel];
         if (p_currentTool.proficiencyLevel >= craftUpgradeItemRequirementsData.requiredProficiencyLevel)
         {
             threeRequirement = true;

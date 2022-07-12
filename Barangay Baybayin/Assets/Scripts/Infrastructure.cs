@@ -65,7 +65,7 @@ public class Infrastructure : Unit
     void Constructed()
     {
         
-        if (currentLevel >= so_Infrastructure.sprites.Count)
+        if (currentLevel >= so_Infrastructure.sprites.Count-1)
         {
             Debug.Log("MAX LEVEL REACHED");
         }
@@ -75,7 +75,7 @@ public class Infrastructure : Unit
             //currentHealth = 0;
 
             //healthOverheadUI.SetHealthBarData(transform, UIManager.instance.overheadUI);
-            sr.sprite = so_Infrastructure.sprites[currentLevel - 1];
+            sr.sprite = so_Infrastructure.sprites[currentLevel];
             InitializeValues();
         }
 

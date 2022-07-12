@@ -86,8 +86,8 @@ public class ToolsUI : MonoBehaviour
         Tool selected_Tool = ToolManager.instance.tools[currentEquip];
         SO_Tool selectedSO_Tool = selected_Tool.so_Tool;
         Debug.Log(p_curr + " - " + p_max);
-        Debug.Log(selected_Tool.proficiencyAmount + " - " +  selectedSO_Tool.maxProficiencyAmount[selected_Tool.craftLevel-1]);
-        toolUI[currentEquip].fill.fillAmount = selected_Tool.proficiencyAmount / selectedSO_Tool.maxProficiencyAmount[selected_Tool.craftLevel-1];
+        Debug.Log(selected_Tool.proficiencyAmount + " - " +  selectedSO_Tool.maxProficiencyAmount[selected_Tool.craftLevel]);
+        toolUI[currentEquip].fill.fillAmount = selected_Tool.proficiencyAmount / selectedSO_Tool.maxProficiencyAmount[selected_Tool.craftLevel];
 
     }
     public void OnToolButtonPressed(int index)
@@ -110,7 +110,7 @@ public class ToolsUI : MonoBehaviour
 
 
                             toolUI[index].background.sprite = selectedSO_Tool.equippedFrame;
-                            toolUI[index].icon.sprite = selectedSO_Tool.equippedIcon[selected_Tool.craftLevel - 1];
+                            toolUI[index].icon.sprite = selectedSO_Tool.equippedIcon[selected_Tool.craftLevel];
 
                         }
                         else

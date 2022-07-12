@@ -120,8 +120,8 @@ public class ToolCaster : MonoBehaviour
                     Debug.Log("SPECIAL USED");
                     current_Tool.specialChargesCounter--;
                     targetResourceNode.OnResourceNodeHitEvent.Invoke(current_Tool.so_Tool.useForResourceNode,
-                        current_Tool.craftLevel-1,
-                        current_Tool.so_Tool.damage[current_Tool.craftLevel-1] * 2,
+                        current_Tool.craftLevel,
+                        current_Tool.so_Tool.damage[current_Tool.craftLevel] * 2,
                         onToolSpecialUsedEvent);
                 }
                 StartCoroutine(Co_ToolUseCooldown());
@@ -157,7 +157,7 @@ public class ToolCaster : MonoBehaviour
 
     IEnumerator Co_Cooldown()
     {
-        yield return new WaitForSeconds(current_Tool.so_Tool.useRate[current_Tool.craftLevel-1]);
+        yield return new WaitForSeconds(current_Tool.so_Tool.useRate[current_Tool.craftLevel]);
         canUse = true;
     }
     public void UseTool()
@@ -187,8 +187,8 @@ public class ToolCaster : MonoBehaviour
                         }
                         canHit = true;
                         targetInfrastructure.OnInfrastructureHitEvent.Invoke(
-                           current_Tool.craftLevel - 1,
-                           current_Tool.so_Tool.damage[current_Tool.craftLevel - 1],
+                           current_Tool.craftLevel,
+                           current_Tool.so_Tool.damage[current_Tool.craftLevel],
                            onToolHitSucceededEvent);
                     }
                 }
@@ -208,8 +208,8 @@ public class ToolCaster : MonoBehaviour
                         }
                         canHit = true;
                         targetResourceNode.OnResourceNodeHitEvent.Invoke(current_Tool.so_Tool.useForResourceNode,
-                           current_Tool.craftLevel - 1,
-                           current_Tool.so_Tool.damage[current_Tool.craftLevel - 1],
+                           current_Tool.craftLevel,
+                           current_Tool.so_Tool.damage[current_Tool.craftLevel],
                            onToolHitSucceededEvent);
                     }
                 }
@@ -282,8 +282,8 @@ public class ToolCaster : MonoBehaviour
 
     public void ToolHitSuccess()
     {
-        current_Tool.ModifyProficiencyAmount(current_Tool.so_Tool.proficiencyAmountReward[current_Tool.craftLevel-1]);
-        current_Tool.ModifySpecialAmount(current_Tool.so_Tool.specialPointReward[current_Tool.craftLevel-1]); 
+        current_Tool.ModifyProficiencyAmount(current_Tool.so_Tool.proficiencyAmountReward[current_Tool.craftLevel]);
+        current_Tool.ModifySpecialAmount(current_Tool.so_Tool.specialPointReward[current_Tool.craftLevel]); 
     }
 
     IEnumerator Co_ToolUseCooldown()
@@ -294,7 +294,7 @@ public class ToolCaster : MonoBehaviour
         onToolCanUseUpdatedEvent.Invoke(canUse);
  
         onToolUsedEvent.Invoke(staminaCost);
-        yield return new WaitForSeconds(current_Tool.so_Tool.useRate[current_Tool.craftLevel-1]);
+        yield return new WaitForSeconds(current_Tool.so_Tool.useRate[current_Tool.craftLevel]);
         canUse = true;
         //PlayerManager.instance.playerMovement.isMoving = true;
         onToolCanUseUpdatedEvent.Invoke(canUse);
@@ -313,12 +313,12 @@ public class ToolCaster : MonoBehaviour
        // Debug.Log(p_currentWeather.name + " - " + current_Tool.so_Tool.staminaCost[current_Tool.craftLevel - 1]);
         if (p_weathers[2].name == p_currentWeathers[0].name)
         {
-            staminaCost = current_Tool.so_Tool.staminaCost[current_Tool.craftLevel - 1] * 1.5f;
+            staminaCost = current_Tool.so_Tool.staminaCost[current_Tool.craftLevel] * 1.5f;
             Debug.Log("It is rainy! Tax is: " + staminaCost);
         }
         else
         {
-            staminaCost = current_Tool.so_Tool.staminaCost[current_Tool.craftLevel - 1];           
+            staminaCost = current_Tool.so_Tool.staminaCost[current_Tool.craftLevel];           
         }
     }
 

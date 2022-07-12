@@ -87,10 +87,10 @@ public class Interacter : MonoBehaviour
 
     IEnumerator Cooldown()
     {
-        Debug.Log("IT WORKED");
+       // Debug.Log("IT WORKED");
         DetectInteractibles();
         yield return new WaitForSeconds(delay);
         canInteract = true;
-        Debug.Log("IT WORKED 2");
+       // Debug.Log("IT WORKED 2");
     }
 }

@@ -173,6 +173,7 @@ public class CharacterDialogueUI : MonoBehaviour
         frame.SetActive(false);
         //TimeManager.onPauseGameTime.Invoke(true);
         UIManager.onGameplayModeChangedEvent.Invoke(false);
+     
         //onCharacterDialogueUIClose.Invoke(true);
     }
 

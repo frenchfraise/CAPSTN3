@@ -24,15 +24,13 @@ public class Character : InteractibleObject
     }
     protected override void OnInteract()
     {
-        // Debug.Log("wee");
-        
 
         StorylineData storylineData = StorylineManager.GetStorylineDataFromID(id);
         SO_StoryLine so_StoryLine = storylineData.so_StoryLine;
 
         if (storylineData.currentQuestChainIndex < so_StoryLine.questLines.Count)
         {
-      
+           
             SO_Questline so_Questline = so_StoryLine.questLines[storylineData.currentQuestChainIndex];
             Debug.Log("PHASE " + storylineData.currentQuestLineIndex + " - " + so_Questline.questlineData.Count);
             if (storylineData.currentQuestLineIndex < so_Questline.questlineData.Count)

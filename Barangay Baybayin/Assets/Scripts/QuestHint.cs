@@ -7,6 +7,7 @@ public class QuestHint : MonoBehaviour
 {
     WorldEventSubscriber worldEventSubscriber;
     [SerializeField] private HoverEffect iconHoverEffect;
+
     private void OnEnable()
     {
         iconHoverEffect.startYPosition = iconHoverEffect.transform.position.y;
@@ -28,7 +29,8 @@ public class QuestHint : MonoBehaviour
                 StopCoroutine(iconHoverEffect.runningCoroutine);
                 iconHoverEffect.runningCoroutine = null;
             }
-
+            iconHoverEffect.sr.enabled = true;
+            iconHoverEffect.srIcon.enabled = true;
             iconHoverEffect.runningCoroutine = iconHoverEffect.Co_Hover();
             StartCoroutine(iconHoverEffect.runningCoroutine);
         }
@@ -38,7 +40,8 @@ public class QuestHint : MonoBehaviour
             {
                 StopCoroutine(iconHoverEffect.runningCoroutine);
                 iconHoverEffect.runningCoroutine = null;
-                iconHoverEffect.gameObject.SetActive(false);
+                iconHoverEffect.srIcon.enabled = false;
+                iconHoverEffect.sr.enabled = false;//gameObject.SetActive(false);
       
             }
           

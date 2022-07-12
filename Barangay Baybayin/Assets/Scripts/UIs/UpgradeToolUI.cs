@@ -32,14 +32,14 @@ public class UpgradeToolUI : MonoBehaviour
     {
         Tool tool = ToolManager.instance.tools[toolIndex];
         nameText.text = tool.so_Tool.name[1];
-        iconImage.sprite = tool.so_Tool.equippedIcon[tool.craftLevel - 1];
-        nameFrameImage.sprite = upgradeUI.plates[tool.craftLevel - 1];
-        proficiencyFrameImage.sprite = upgradeUI.plates[tool.craftLevel - 1];
+        iconImage.sprite = tool.so_Tool.equippedIcon[tool.craftLevel];
+        nameFrameImage.sprite = upgradeUI.plates[tool.craftLevel];
+        proficiencyFrameImage.sprite = upgradeUI.plates[tool.craftLevel];
         bool isUpgradableReqOne = false;
 
         bool isUpgradableReqTwo = false;
         Tool selectedTool = ToolManager.instance.tools[toolIndex];
-        CraftUpgradeItemRequirementsData craftUpgradeItemRequirementsData = selectedTool.so_Tool.craftUpgradeItemRequirementsDatas[selectedTool.craftLevel-1];
+        CraftUpgradeItemRequirementsData craftUpgradeItemRequirementsData = selectedTool.so_Tool.craftUpgradeItemRequirementsDatas[selectedTool.craftLevel];
 
         proficiencyText.text = craftUpgradeItemRequirementsData.requiredProficiencyLevel.ToString();
         if (selectedTool.proficiencyLevel >= craftUpgradeItemRequirementsData.requiredProficiencyLevel)

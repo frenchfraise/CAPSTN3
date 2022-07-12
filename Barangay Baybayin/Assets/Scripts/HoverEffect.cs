@@ -13,6 +13,12 @@ public class HoverEffect : MonoBehaviour
     public float startYPosition;
     public IEnumerator runningCoroutine;
 
+    [HideInInspector] public SpriteRenderer sr;
+     public SpriteRenderer srIcon;
+    private void Awake()
+    {
+        sr = GetComponent<SpriteRenderer>();
+    }
     private void OnEnable()
     {
         //runningCoroutine = Co_Hover();

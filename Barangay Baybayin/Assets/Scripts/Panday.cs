@@ -9,6 +9,15 @@ public class Panday : InteractibleObject
     public static PandaySpokenToEvent onPandaySpokenToEvent = new PandaySpokenToEvent();
     private bool isTalking;
     private int chosenCurrentPandaySODialoguesIndex;
+
+
+
+
+    [SerializeField]
+    private string questId;
+    [SerializeField] private bool isFirstTime = true;
+    public bool isQuestMode;
+
     protected override void OnEnable()
     {
         base.OnEnable();
@@ -24,16 +33,68 @@ public class Panday : InteractibleObject
     protected override void OnInteract()
     {
         //onPandaySpokenToEvent.Invoke();
-        int chosenInitialPandayDialogueIndex = Random.Range(0,StorylineManager.instance.initialPandayDialogue.Count);
-        SO_Dialogues chosenInitialPandayDialogue = StorylineManager.instance.initialPandayDialogue[chosenInitialPandayDialogueIndex];
-        CharacterDialogueUI.onSetEndTransitionEnabledEvent.Invoke(false);
-        CharacterDialogueUI.onSetIsCloseOnEndEvent.Invoke(false);
-        CharacterDialogueUI.onSetChoicesEvent.Invoke(true);
-        CharacterDialogueUI.onCharacterSpokenToEvent.Invoke(id, chosenInitialPandayDialogue);
-        CharacterDialogueUI.onSetStartTransitionEnabledEvent.Invoke(false);
+        if (!isQuestMode)
+        {
+            int chosenInitialPandayDialogueIndex = Random.Range(0, StorylineManager.instance.initialPandayDialogue.Count);
+            SO_Dialogues chosenInitialPandayDialogue = StorylineManager.instance.initialPandayDialogue[chosenInitialPandayDialogueIndex];
+            CharacterDialogueUI.onSetEndTransitionEnabledEvent.Invoke(false);
+            CharacterDialogueUI.onSetIsCloseOnEndEvent.Invoke(false);
+            CharacterDialogueUI.onSetChoicesEvent.Invoke(true);
+            CharacterDialogueUI.onCharacterSpokenToEvent.Invoke(id, chosenInitialPandayDialogue);
+            CharacterDialogueUI.onSetStartTransitionEnabledEvent.Invoke(false);
+        }
+        else
+        {
+            Debug.Log("wee");
+
+
+            StorylineData storylineData = StorylineManager.GetStorylineDataFromID(questId);
+            SO_StoryLine so_StoryLine = storylineData.so_StoryLine;
+
+            if (storylineData.currentQuestChainIndex < so_StoryLine.questLines.Count)
+            {
+                Debug.Log("wee");
+                SO_Questline so_Questline = so_StoryLine.questLines[storylineData.currentQuestChainIndex];
+                Debug.Log("PHASE " + storylineData.currentQuestLineIndex + " - " + so_Questline.questlineData.Count);
+                if (storylineData.currentQuestLineIndex < so_Questline.questlineData.Count)
+                {
+                    Debug.Log("PHASE 1");
+                    QuestlineData questlineData = so_Questline.questlineData[storylineData.currentQuestLineIndex];
+
+                    if (isFirstTime)
+                    {
+                        isFirstTime = false;
+                        CharacterDialogueUI.onCharacterSpokenToEvent.Invoke(questId, questlineData.initialSO_Dialogues);
+
+                    }
+                    else
+                    {
+                        bool isQuestCompleted = StorylineManager.instance.CheckIfQuestComplete(questId);
+
+                        if (isQuestCompleted)
+                        {
+                            Debug.Log("PHASE 2");
+
+                            CharacterDialogueUI.onCharacterSpokenToEvent.Invoke(questId, questlineData.questCompleteSO_Dialogues);
+
+                            StorylineManager.instance.QuestCompleted(storylineData);
+                            isFirstTime = true;
+                        }
+                        else
+                        {
+                            CharacterDialogueUI.onCharacterSpokenToEvent.Invoke(questId, questlineData.questInProgressSO_Dialogues);
+                        }
+
+                    }
+
+                }
+            }
+        }
+       
     }
     public void WorldEvent(string p_id, int p_event, int p_eventTwo)
     {
+
         if (p_id == id)
         {
             if (isTalking)

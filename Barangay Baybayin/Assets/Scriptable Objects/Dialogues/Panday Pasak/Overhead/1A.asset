@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 1A
   m_EditorClassIdentifier: 
   dialogues:
-  - character: {fileID: 0}
+  - character: {fileID: 11400000, guid: 6b42c85a890cd4a498705d8521418c4b, type: 2}
     emotion: 10
     words: Use the Axe using the Tool Action button on the lower right, while minding
       the Stamina Bar on the upper left.
