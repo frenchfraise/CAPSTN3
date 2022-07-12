@@ -8,4 +8,9 @@ public abstract class OnEventDoAction : MonoBehaviour
     {
 
     }
+
+    public virtual void DoPostAction(int p_actionParameterAID = -1, int p_actionParameterBID = -1)
+    {
+
+    }
 }

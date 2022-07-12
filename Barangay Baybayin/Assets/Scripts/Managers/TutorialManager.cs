@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+public class TutorialEventEndedEvent : UnityEvent<int> { };
 public class TutorialManager : MonoBehaviour
 {
     public static TutorialManager instance;
@@ -12,17 +13,11 @@ public class TutorialManager : MonoBehaviour
     public TutorialUI tutorialUI;
     [SerializeField] private Stamina stamina;
 
-    public Transform spawnPoint;
-
     public Transform spawnPoint1;
     public Transform spawnPoint2;
     public Transform spawnPoint3;
-    public Transform spawnPoint4;
-    public Transform spawnPoint5;
-    public Transform spawnPoint6;
-    public Transform spawnPoint7;
-    public Transform spawnPoint8;
-    public Transform spawnPoint9;
+
+
     public ResourceNode resourceNode;
 
     public Infrastructure infrastructure;
@@ -32,11 +27,14 @@ public class TutorialManager : MonoBehaviour
     public SO_Dialogues swingingWrongTool;
     public SO_Dialogues swingingInAir;
 
+    public static TutorialEventEndedEvent onTutorialEventEndedEvent = new TutorialEventEndedEvent();
+
     public Panday panday;
     public bool firstTime = true;
     private void Awake()
     {
         instance = this;
+        //onTutorialEventEndedEvent.AddListener(TutorialEventEndedEvent);
     }
 
     public void Next()
@@ -45,6 +43,11 @@ public class TutorialManager : MonoBehaviour
         StorylineManager.onWorldEventEndedEvent.Invoke("O-" + currentIndex, 0, 0);
         Debug.Log(currentIndex + " NEXT " + (currentIndex + 1).ToString());
     }
+
+    //void TutorialEventEndedEvent(int i)
+    //{
+
+    //}
     private void Start()
     {
         Setup();
@@ -85,6 +88,7 @@ public class TutorialManager : MonoBehaviour
     void StartLecture()
     {
         Debug.Log("START LECTURE ID: O-" + currentIndex + " CURRENT INDEX: " + currentIndex + " CURRENT DIALOGUE: " + currentDialogueIndex);
+        onTutorialEventEndedEvent.Invoke(currentIndex);
         CharacterDialogueUI.onCharacterSpokenToEvent.Invoke("O-" + currentIndex, dialogues[currentDialogueIndex]);
     }
     void TellStory(string p_id, int p_intone, int p_intto)
@@ -124,7 +128,7 @@ public class TutorialManager : MonoBehaviour
             Debug.Log("im intisde 1");
             //SPAWN
             resourceNode = TreeVariantOneNodePool.pool.Get();
-            resourceNode.transform.position = spawnPoint.position + new Vector3(0f, -2.35f, 0f);
+            resourceNode.transform.position = spawnPoint1.position + new Vector3(0f, -2.35f, 0f);
             resourceNode.InitializeValues();
             resourceNode.GetComponent<Health>().OnDeathEvent.AddListener(TeachAppropriateToolForNode);
 
@@ -142,7 +146,7 @@ public class TutorialManager : MonoBehaviour
             Debug.Log("im intisde 2");
             //SPAWN
             resourceNode = OreVariantOneNodePool.pool.Get();
-            resourceNode.transform.position = spawnPoint.position + new Vector3(0f, -2.35f, 0f);
+            resourceNode.transform.position = spawnPoint1.position + new Vector3(0f, -2.35f, 0f);
             resourceNode.InitializeValues();
             resourceNode.GetComponent<Health>().OnDeathEvent.AddListener(TeachAppropriateToolForNode);
         
@@ -170,7 +174,7 @@ public class TutorialManager : MonoBehaviour
         {
             //SPAWN
             resourceNode = HerbVariantOneNodePool.pool.Get();
-            resourceNode.transform.position = spawnPoint.position + new Vector3(0f, -2.35f, 0f);
+            resourceNode.transform.position = spawnPoint1.position + new Vector3(0f, -2.35f, 0f);
             resourceNode.InitializeValues();
             resourceNode.GetComponent<Health>().OnDeathEvent.AddListener(TeachAppropriateToolForNode);
 
@@ -189,37 +193,14 @@ public class TutorialManager : MonoBehaviour
             newResourceNode.transform.position = spawnPoint1.position + new Vector3(0f, -2.35f, 0f);
             newResourceNode.InitializeValues();
 
-            //newResourceNode = TreeVariantOneNodePool.pool.Get();
-            //newResourceNode.transform.position = spawnPoint2.position + new Vector3(0f, -2.35f, 0f);
-            //newResourceNode.InitializeValues();
-
-            //newResourceNode = TreeVariantOneNodePool.pool.Get();
-            //newResourceNode.transform.position = spawnPoint3.position + new Vector3(0f, -2.35f, 0f);
-            //newResourceNode.InitializeValues();
-
             newResourceNode = OreVariantOneNodePool.pool.Get();
-            newResourceNode.transform.position = spawnPoint4.position + new Vector3(0f, -2.35f, 0f);
+            newResourceNode.transform.position = spawnPoint2.position + new Vector3(0f, -2.35f, 0f);
             newResourceNode.InitializeValues();
-
-            //newResourceNode = OreVariantOneNodePool.pool.Get();
-            //newResourceNode.transform.position = spawnPoint5.position + new Vector3(0f, -2.35f, 0f);
-            //newResourceNode.InitializeValues();
-
-            //newResourceNode = OreVariantOneNodePool.pool.Get();
-            //newResourceNode.transform.position = spawnPoint6.position + new Vector3(0f, -2.35f, 0f);
-            //newResourceNode.InitializeValues();
 
             newResourceNode = HerbVariantOneNodePool.pool.Get();
-            newResourceNode.transform.position = spawnPoint7.position + new Vector3(0f, -2.35f, 0f);
+            newResourceNode.transform.position = spawnPoint3.position + new Vector3(0f, -2.35f, 0f);
             newResourceNode.InitializeValues();
 
-            //newResourceNode = HerbVariantOneNodePool.pool.Get();
-            //newResourceNode.transform.position = spawnPoint8.position + new Vector3(0f, -2.35f, 0f);
-            //newResourceNode.InitializeValues();
-
-            //newResourceNode = HerbVariantOneNodePool.pool.Get();
-            //newResourceNode.transform.position = spawnPoint9.position + new Vector3(0f, -2.35f, 0f);
-            //newResourceNode.InitializeValues();
 
             //SPECIFIC
             ToolCaster.onSetIsPreciseEvent.Invoke(true);

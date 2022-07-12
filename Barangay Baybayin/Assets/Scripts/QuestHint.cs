@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(WorldEventSubscriber))]
+[RequireComponent(typeof(EventSubscriber))]
 public class QuestHint : MonoBehaviour
 {
     WorldEventSubscriber worldEventSubscriber;

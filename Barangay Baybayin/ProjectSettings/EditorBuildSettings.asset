@@ -17,7 +17,7 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Jerry/OldJerryScene.unity
     guid: 6bd7a2596aa65ed49add553adcae6993
   - enabled: 0
