@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Tester 6
   m_EditorClassIdentifier: 
   dialogues:
-  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
-    emotion: 0
+  - character: {fileID: 0}
+    emotion: 10
     words: Mine the Copper node. Change tools by tapping the Pickaxe icon on the
       Tool bar.
     speechTransitionType: 0

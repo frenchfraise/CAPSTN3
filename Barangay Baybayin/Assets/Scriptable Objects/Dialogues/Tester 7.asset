@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Tester 7
   m_EditorClassIdentifier: 
   dialogues:
-  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
-    emotion: 0
+  - character: {fileID: 11400000, guid: 64792cf6cb6b2a642becf92ac15202ce, type: 2}
+    emotion: 10
     words: "And that\u2019s how you use your variety of tools. "
     speechTransitionType: 0
-  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
-    emotion: 0
+  - character: {fileID: 11400000, guid: 64792cf6cb6b2a642becf92ac15202ce, type: 2}
+    emotion: 10
     words: "The Hammer is used to rebuild certain objects. Use it on the wood pile
       to make something out of it.\r"
     speechTransitionType: 0

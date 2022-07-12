@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Tester 14
   m_EditorClassIdentifier: 
   dialogues:
-  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
-    emotion: 0
+  - character: {fileID: 0}
+    emotion: 10
     words: Talk to Panday Pasak and upgrade your Machete.
     speechTransitionType: 0

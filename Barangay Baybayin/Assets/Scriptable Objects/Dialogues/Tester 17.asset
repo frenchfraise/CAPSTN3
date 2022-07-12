@@ -13,20 +13,20 @@ MonoBehaviour:
   m_Name: Tester 17
   m_EditorClassIdentifier: 
   dialogues:
-  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
-    emotion: 0
+  - character: {fileID: 11400000, guid: 64792cf6cb6b2a642becf92ac15202ce, type: 2}
+    emotion: 10
     words: 'Well done! Your tools are all of the Copper rank now.
 
 
 '
     speechTransitionType: 0
-  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
-    emotion: 0
+  - character: {fileID: 11400000, guid: 64792cf6cb6b2a642becf92ac15202ce, type: 2}
+    emotion: 10
     words: 'You up for a challenge, sonny? I reckon you are.
 
 '
     speechTransitionType: 0
-  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
-    emotion: 0
+  - character: {fileID: 11400000, guid: 64792cf6cb6b2a642becf92ac15202ce, type: 2}
+    emotion: 10
     words: "Have a quest for ya. \n"
     speechTransitionType: 0

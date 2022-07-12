@@ -13,13 +13,18 @@ MonoBehaviour:
   m_Name: Tester 9
   m_EditorClassIdentifier: 
   dialogues:
-  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
-    emotion: 0
+  - character: {fileID: 11400000, guid: 64792cf6cb6b2a642becf92ac15202ce, type: 2}
+    emotion: 10
     words: "Easy, isn\u2019t it? You can rebuild many items and help around town
       this way."
     speechTransitionType: 0
-  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
-    emotion: 0
+  - character: {fileID: 11400000, guid: 64792cf6cb6b2a642becf92ac15202ce, type: 2}
+    emotion: 10
+    words: "Rounding out your toolkit is the Machete. Use this for herbs, but remember:
+      vetiver grass is harvested, not cut.\r"
+    speechTransitionType: 0
+  - character: {fileID: 11400000, guid: 64792cf6cb6b2a642becf92ac15202ce, type: 2}
+    emotion: 10
     words: Go ahead and harvest those herbs. Using a certain  tool repeatedly will
       improve your skill.
     speechTransitionType: 0
