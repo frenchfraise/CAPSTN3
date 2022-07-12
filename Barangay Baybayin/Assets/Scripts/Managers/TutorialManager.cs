@@ -85,10 +85,7 @@ public class TutorialManager : MonoBehaviour
     {
         tutorialUI.overheadUI.SetActive(false);
         Debug.Log("TELL STORY ID: " + p_id + " CURRENT INDEX: " + currentIndex + " CURRENT DIALOGUE: " + currentDialogueIndex);
-        if (p_id == "O-2")
-        {
-            Debug.Log("I FOUND IT FINALLY HUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU");
-        }
+   
         if (p_id == "EQUIPPINGWRONGTOOL")
         {
 
@@ -222,54 +219,84 @@ public class TutorialManager : MonoBehaviour
             ToolCaster.onSetIsPreciseEvent.Invoke(true);
             //SPECFICI
 
-            ToolManager.onProficiencyLevelModifiedEvent.AddListener(RequireLevel1Prof);
-
+            ToolManager.onProficiencyLevelModifiedEvent.AddListener(RequireMacheteProfLevel1);
+            EndStory();
         }
         else if (p_id == "O-6")
         {
             InventoryManager.AddItem("Recipe 1", 1);
             InventoryManager.AddItem("Wood 1", 10);
 
-            TeachNine();
+            ToolManager.onToolUpgradedEvent.AddListener(RequireMacheteCraftLevel1);
             EndStory();
 
+
+
+        }
+        else if (p_id == "O-7")
+        {
+
+           
+            InventoryManager.AddItem("Recipe 1", 3);
+            InventoryManager.AddItem("Wood 1", 30);
+            EndStory();
+
+
+        }
+        else if (p_id == "O-8")
+        {
+
+            ToolManager.onToolUpgradedEvent.AddListener(RequireAllToolsCraftLevel1);
+
+            EndStory();
         }
         else if (p_id == "O-9")
         {
 
-            //SPAWN
+            panday.isQuestMode = true;
 
+            ResourceNode newResourceNode = TreeVariantOneNodePool.pool.Get();
+            newResourceNode.transform.position = spawnPoint1.position + new Vector3(0f, -2.35f, 0f);
+            newResourceNode.InitializeValues();
 
+            newResourceNode = TreeVariantOneNodePool.pool.Get();
+            newResourceNode.transform.position = spawnPoint2.position + new Vector3(0f, -2.35f, 0f);
+            newResourceNode.InitializeValues();
 
+            newResourceNode = TreeVariantOneNodePool.pool.Get();
+            newResourceNode.transform.position = spawnPoint3.position + new Vector3(0f, -2.35f, 0f);
+            newResourceNode.InitializeValues();
 
-        }
-        else if (p_id == "O-10")
-        {
+            newResourceNode = OreVariantOneNodePool.pool.Get();
+            newResourceNode.transform.position = spawnPoint4.position + new Vector3(0f, -2.35f, 0f);
+            newResourceNode.InitializeValues();
 
-            tutorialUI.overheadText.text = dialogues[currentDialogueIndex].dialogues[0].words;
-            TeachTen();
+            newResourceNode = OreVariantOneNodePool.pool.Get();
+            newResourceNode.transform.position = spawnPoint5.position + new Vector3(0f, -2.35f, 0f);
+            newResourceNode.InitializeValues();
+
+            newResourceNode = OreVariantOneNodePool.pool.Get();
+            newResourceNode.transform.position = spawnPoint6.position + new Vector3(0f, -2.35f, 0f);
+            newResourceNode.InitializeValues();
+
+            newResourceNode = HerbVariantOneNodePool.pool.Get();
+            newResourceNode.transform.position = spawnPoint7.position + new Vector3(0f, -2.35f, 0f);
+            newResourceNode.InitializeValues();
+
+            newResourceNode = HerbVariantOneNodePool.pool.Get();
+            newResourceNode.transform.position = spawnPoint8.position + new Vector3(0f, -2.35f, 0f);
+            newResourceNode.InitializeValues();
+
+            newResourceNode = HerbVariantOneNodePool.pool.Get();
+            newResourceNode.transform.position = spawnPoint9.position + new Vector3(0f, -2.35f, 0f);
+            newResourceNode.InitializeValues();
+            StorylineManager.onWorldEventEndedEvent.AddListener(RequirePandayQuestComplete);
+
+           
             EndStory();
+
         }
-        else if (p_id == "O-11")
-        {
-
-
-            TeachEleven();
-
-            //oreVariantOneNode = resourceNode;
-    
-
-            tutorialUI.overheadText.text = dialogues[currentDialogueIndex].dialogues[0].words;
-            EndStory();
-
-            //3
-        }
-       
-        //else if (p_id == "O-4")
-        //{
-        //    //Stamina.onStaminaDepletedEvent.AddListener(TeachThree);
-
-        //}
+      
     }
 
     void EndStory()
@@ -287,19 +314,28 @@ public class TutorialManager : MonoBehaviour
             //SPECFICI
             ToolCaster.onToolUsedEvent.AddListener(TeachUseTool);
         }
-        else if (currentIndex == 1)
+        else if (currentIndex == 7)
         {
-            
+            tutorialUI.overheadUI.SetActive(false);
         }
 
 
     }
     void EndLecture()
     {
+       
         Debug.Log("END LECTURE ID: O-" + currentIndex + " CURRENT INDEX: " + currentIndex + " CURRENT DIALOGUE: " + currentDialogueIndex);
         currentIndex++;
         currentDialogueIndex++;
-        StartLecture();
+        if (currentIndex == 12)
+        {
+            Unsetup();
+        }
+        else
+        {
+            StartLecture();
+        }
+      
 
     }
 
@@ -309,11 +345,6 @@ public class TutorialManager : MonoBehaviour
         tutorialUI.overheadUI.SetActive(!p_set);
     }
 
-
-
-
-
-    #region 2
  
     public void TeachUseTool(float p_useless) //You’re getting the hang of it, son. But what if you overdo it? Try swinging your axe until you wipe out.
     {
@@ -340,9 +371,7 @@ public class TutorialManager : MonoBehaviour
         Debug.Log("AAAAAAAAAAAAAAAAAAA: " + currentIndex);
         EndLecture();
     }
-   
-
-    #endregion
+  
 
     public void TeachSix()
     {
@@ -358,7 +387,7 @@ public class TutorialManager : MonoBehaviour
 
     }
 
-    public void RequireLevel1Prof(int p_level)
+    public void RequireMacheteProfLevel1(int p_level)
     {
         bool passed = true;
         for (int i = 0; i < ToolManager.instance.tools.Count;)
@@ -383,22 +412,8 @@ public class TutorialManager : MonoBehaviour
 
 
     }
-
   
-
-    #region 9
-
-  
-   
-    public void TeachNine()
-    {
-
-
-        ToolManager.onToolUpgradedEvent.AddListener(RequireMacheteLevelCraft);
-        // EndTeachingNine();
-
-    }
-    public void RequireMacheteLevelCraft()
+    public void RequireMacheteCraftLevel1()
     {
         bool passed = true;
         Debug.Log("STARTED " + ToolManager.instance.tools[2].craftLevel);
@@ -416,7 +431,7 @@ public class TutorialManager : MonoBehaviour
         }
         if (passed)
         {
-            ToolManager.onToolUpgradedEvent.RemoveListener(RequireMacheteLevelCraft);
+            ToolManager.onToolUpgradedEvent.RemoveListener(RequireMacheteCraftLevel1);
             EndLecture();
         }
 
@@ -424,48 +439,7 @@ public class TutorialManager : MonoBehaviour
 
     }
 
-    #endregion
-    #region 10
-
-    public void StartTeachingTen()
-    {
-        tutorialUI.overheadUI.SetActive(false);
-        Debug.Log("TEEEEEEEEEEEEEEST");
-        InventoryManager.AddItem("Recipe 1", 3);
-        InventoryManager.AddItem("Wood 1", 30);
-        StorylineManager.onWorldEventEndedEvent.AddListener(StoryTen);
-        currentDialogueIndex++;
-        currentIndex++;
-        CharacterDialogueUI.onCharacterSpokenToEvent.Invoke("O-" + currentIndex, dialogues[currentDialogueIndex]);
-
-
-    }
-    public void StoryTen(string p_id, int p_test, int p_teste)
-    {
-        Debug.Log("TRY - ID " + p_id + " O-  uni uni" + currentIndex);
-        if (p_id == "O-9")
-        {
-            Debug.Log("INSIDE - ID " + "O-" + currentIndex);
-            //SPAWN
-            StorylineManager.onWorldEventEndedEvent.RemoveListener(StoryTen);
-
-
-            currentDialogueIndex++;
-            tutorialUI.overheadText.text = dialogues[currentDialogueIndex].dialogues[0].words;
-            TeachTen();
-        }
-
-
-    }
-    public void TeachTen()
-    {
-
-
-        ToolManager.onToolUpgradedEvent.AddListener(RequireLevelCraft);
-
-
-    }
-    public void RequireLevelCraft()
+    public void RequireAllToolsCraftLevel1()
     {
         bool passed = true;
         for (int i = 0; i < ToolManager.instance.tools.Count;)
@@ -481,97 +455,14 @@ public class TutorialManager : MonoBehaviour
         }
         if (passed)
         {
-            EndTeachingTen();
-            ToolManager.onToolUpgradedEvent.RemoveListener(RequireLevelCraft);
+            
+            ToolManager.onToolUpgradedEvent.RemoveListener(RequireAllToolsCraftLevel1);
+            EndLecture();
         }
 
-
-
     }
 
-    public void EndTeachingTen()
-    {
-        Debug.Log("TEN ENDED");
-
-        StartTeachingEleven();
-    }
-    #endregion
-    #region 11
-
-    public void StartTeachingEleven()
-    {
-        tutorialUI.overheadUI.SetActive(false);
-        StorylineManager.onWorldEventEndedEvent.AddListener(StoryEleven);
-        currentDialogueIndex++;
-        currentIndex++;
-        CharacterDialogueUI.onCharacterSpokenToEvent.Invoke("O-" + currentIndex, dialogues[currentDialogueIndex]);
-
-
-    }
-    public void StoryEleven(string p_id, int p_test, int p_teste)
-    {
-        Debug.Log("TRY - ID " + p_id + " O-  uni uni" + currentIndex);
-        if (p_id == "O-10")
-        {
-            Debug.Log("INSIDE - ID " + "O-" + currentIndex);
-            //SPAWN
-            StorylineManager.onWorldEventEndedEvent.RemoveListener(StoryEleven);
-            TeachEleven();
-
-            currentDialogueIndex++;
-            tutorialUI.overheadText.text = dialogues[currentDialogueIndex].dialogues[0].words;
-
-
-            //3
-        }
-
-
-    }
-    public void TeachEleven()
-    {
-        panday.isQuestMode = true;
-
-        ResourceNode newResourceNode = TreeVariantOneNodePool.pool.Get();
-        newResourceNode.transform.position = spawnPoint1.position + new Vector3(0f, -2.35f, 0f);
-        newResourceNode.InitializeValues();
-
-        newResourceNode = TreeVariantOneNodePool.pool.Get();
-        newResourceNode.transform.position = spawnPoint2.position + new Vector3(0f, -2.35f, 0f);
-        newResourceNode.InitializeValues();
-
-        newResourceNode = TreeVariantOneNodePool.pool.Get();
-        newResourceNode.transform.position = spawnPoint3.position + new Vector3(0f, -2.35f, 0f);
-        newResourceNode.InitializeValues();
-
-        newResourceNode = OreVariantOneNodePool.pool.Get();
-        newResourceNode.transform.position = spawnPoint4.position + new Vector3(0f, -2.35f, 0f);
-        newResourceNode.InitializeValues();
-
-        newResourceNode = OreVariantOneNodePool.pool.Get();
-        newResourceNode.transform.position = spawnPoint5.position + new Vector3(0f, -2.35f, 0f);
-        newResourceNode.InitializeValues();
-
-        newResourceNode = OreVariantOneNodePool.pool.Get();
-        newResourceNode.transform.position = spawnPoint6.position + new Vector3(0f, -2.35f, 0f);
-        newResourceNode.InitializeValues();
-
-        newResourceNode = HerbVariantOneNodePool.pool.Get();
-        newResourceNode.transform.position = spawnPoint7.position + new Vector3(0f, -2.35f, 0f);
-        newResourceNode.InitializeValues();
-
-        newResourceNode = HerbVariantOneNodePool.pool.Get();
-        newResourceNode.transform.position = spawnPoint8.position + new Vector3(0f, -2.35f, 0f);
-        newResourceNode.InitializeValues();
-
-        newResourceNode = HerbVariantOneNodePool.pool.Get();
-        newResourceNode.transform.position = spawnPoint9.position + new Vector3(0f, -2.35f, 0f);
-        newResourceNode.InitializeValues();
-        StorylineManager.onWorldEventEndedEvent.AddListener(PandayQuestComplete);
-
-
-    }
-
-    public void PandayQuestComplete(string p_id, int p_test, int p_testt)
+    public void RequirePandayQuestComplete(string p_id, int p_test, int p_testt)
     {
         Debug.Log(p_id + " - " + p_test + " - " + p_testt);
         if (p_id == "Q-P")
@@ -581,7 +472,7 @@ public class TutorialManager : MonoBehaviour
                 if (p_testt == 1)
                 {
                     Debug.Log("QUEST COMPLETED");
-                    EndTeachingEleven();
+                    EndLecture();
                 }
             }
 
@@ -589,13 +480,8 @@ public class TutorialManager : MonoBehaviour
 
 
     }
-    public void EndTeachingEleven()
-    {
 
-
-        Unsetup();
-    }
-    #endregion
+ 
 
    
 }

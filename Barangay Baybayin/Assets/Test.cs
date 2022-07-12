@@ -33,16 +33,12 @@ public class Test : MonoBehaviour
     public SO_Dialogues swingingInAir;
 
     public Panday panday;
-    //[SerializeField] private int toolEquipped;
-
 
 
     private void Awake()
     {
         instance = this;
     }
-
-    //ToolManager.onToolChangedEvent.Invoke(selected_Tool);
 
     public void Next()
     {
@@ -253,6 +249,7 @@ public class Test : MonoBehaviour
 
             //3
         }
+        EndStory();
         //else if (p_id == "O-4")
         //{
         //    //Stamina.onStaminaDepletedEvent.AddListener(TeachThree);
