@@ -79,10 +79,10 @@ MonoBehaviour:
   - 25
   - 25
   maxProficiencyAmount:
-  - 16
-  - 24
-  - 30
-  - 34
+  - 32
+  - 48
+  - 60
+  - 68
   proficiencyAmountReward:
   - 2
   - 2
