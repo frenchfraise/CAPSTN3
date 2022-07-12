@@ -10,11 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 846db7b038354e245b3974364be2d363, type: 3}
-  m_Name: 1B
+  m_Name: Panday Pasak 1 Give A
   m_EditorClassIdentifier: 
   dialogues:
-  - character: {fileID: 0}
-    emotion: 10
-    words: 'Use your Copper Axe to collect Wood (2 star). A tool can interact with
-      a node of its own rank or that higher by 1. '
+  - character: {fileID: 11400000, guid: 64792cf6cb6b2a642becf92ac15202ce, type: 2}
+    emotion: 0
+    words: Provide me at least 1 x Wood (2 star). Chop the Tree (2 star) below.
     speechTransitionType: 0

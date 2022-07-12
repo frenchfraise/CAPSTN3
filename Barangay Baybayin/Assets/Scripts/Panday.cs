@@ -11,7 +11,7 @@ public class Panday : InteractibleObject
     private int chosenCurrentPandaySODialoguesIndex;
 
 
-
+    public bool complete = false;
 
     [SerializeField]
     private string questId;
@@ -73,6 +73,7 @@ public class Panday : InteractibleObject
 
                         if (isQuestCompleted)
                         {
+                            complete = true;
                             Debug.Log("PHASE 2");
 
                             CharacterDialogueUI.onCharacterSpokenToEvent.Invoke(questId, questlineData.questCompleteSO_Dialogues);

@@ -235,22 +235,15 @@ public class TutorialManager : MonoBehaviour
         }
         else if (p_id == "O-7")
         {
-
-           
             InventoryManager.AddItem("Recipe 1", 3);
             InventoryManager.AddItem("Wood 1", 30);
+
+            ToolManager.onToolUpgradedEvent.AddListener(RequireAllToolsCraftLevel1);
             EndStory();
 
 
         }
         else if (p_id == "O-8")
-        {
-
-            ToolManager.onToolUpgradedEvent.AddListener(RequireAllToolsCraftLevel1);
-
-            EndStory();
-        }
-        else if (p_id == "O-9")
         {
 
             panday.isQuestMode = true;
@@ -296,7 +289,21 @@ public class TutorialManager : MonoBehaviour
             EndStory();
 
         }
-      
+        else if (p_id == "Q-P")
+        {
+            if (p_intto == 0)
+            {
+                if (panday.complete == false)
+                {
+                    EndStory();
+                }
+                
+            }
+            
+
+
+        }
+
     }
 
     void EndStory()
@@ -314,10 +321,10 @@ public class TutorialManager : MonoBehaviour
             //SPECFICI
             ToolCaster.onToolUsedEvent.AddListener(TeachUseTool);
         }
-        else if (currentIndex == 7)
-        {
-            tutorialUI.overheadUI.SetActive(false);
-        }
+        //else if (currentIndex == 7)
+        //{
+        //    tutorialUI.overheadUI.SetActive(false);
+        //}
 
 
     }
@@ -327,8 +334,9 @@ public class TutorialManager : MonoBehaviour
         Debug.Log("END LECTURE ID: O-" + currentIndex + " CURRENT INDEX: " + currentIndex + " CURRENT DIALOGUE: " + currentDialogueIndex);
         currentIndex++;
         currentDialogueIndex++;
-        if (currentIndex == 12)
+        if (currentIndex == 9)
         {
+            Debug.Log("END");
             Unsetup();
         }
         else
@@ -343,6 +351,11 @@ public class TutorialManager : MonoBehaviour
     void GameplayModeChangedEvent(bool p_set)
     {
         tutorialUI.overheadUI.SetActive(!p_set);
+       if (currentIndex == 7 || currentIndex == 8)
+       {
+           tutorialUI.overheadUI.SetActive(false);
+       }
+
     }
 
  
