@@ -67,7 +67,7 @@ public class CameraManager : MonoBehaviour
         panLimit = Vector2Abs(transform.position - panLimitUpperRightTransform.position);
 
         ResetCamera();
-        StartCoroutine(Co_ZoomCamera());
+        //StartCoroutine(Co_ZoomCamera());
     }
 
     private void OnDisable()

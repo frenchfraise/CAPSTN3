@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
-
+public class SetSpecificToMachete : UnityEvent<bool> { }
 
 public class UpgradeToolsUI : MonoBehaviour
 {
@@ -24,14 +24,15 @@ public class UpgradeToolsUI : MonoBehaviour
     [SerializeField] public Sprite insufficientFrame;
 
     [SerializeField] private List<UpgradeMaterialUI> upgradeMaterialUIs;
-
+    [SerializeField]
+    private bool isSpecificToMachete;
     private int currentIndex;
 
     private bool threeRequirement = false;
 
     [SerializeField]
     private List<UpgradeToolUI> upgradeToolUIs = new List<UpgradeToolUI>();
-
+    public static SetSpecificToMachete onSetSpecificToMachete = new SetSpecificToMachete();
 
     private void Awake()
     {
@@ -40,10 +41,14 @@ public class UpgradeToolsUI : MonoBehaviour
             upgradeToolUI.upgradeUI = this;
         }
     }
-
+    public void SetSpecificToMachete(bool p_bool)
+    {
+        isSpecificToMachete = p_bool;
+    }
     private void OnEnable()
     {
         Panday.onPandaySpokenToEvent.AddListener(OpenButtonUIClicked);
+        onSetSpecificToMachete.AddListener(SetSpecificToMachete);
     }
 
     private void OnDisable()
