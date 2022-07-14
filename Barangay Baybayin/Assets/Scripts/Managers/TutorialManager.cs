@@ -26,6 +26,16 @@ public class TutorialManager : MonoBehaviour
     public SO_Dialogues equippingWrongTool;
     public SO_Dialogues swingingWrongTool;
     public SO_Dialogues swingingInAir;
+    public SO_Dialogues upgradingWrong;
+    public SO_Dialogues needToUpgradeAllTools;
+    public SO_Dialogues cantGoThere;
+
+    public EdgeCollider2D edgeCollider;
+    public Passageway MidToPandayRoomPassageway;
+    public Passageway MidToForkRoomPassageway;
+    public Passageway PandayToMidPassageway;
+    public Passageway ForkToMidPassageway;
+
 
     public static TutorialEventEndedEvent onTutorialEventEndedEvent = new TutorialEventEndedEvent();
 
@@ -62,8 +72,8 @@ public class TutorialManager : MonoBehaviour
         infrastructure.gameObject.SetActive(true);
         CharacterDialogueUI.onSetEndTransitionEnabledEvent.Invoke(false);
         CharacterDialogueUI.onSetIsCloseOnEndEvent.Invoke(false);
-        
-       
+        TimeManager.instance.tutorialOn = true;
+        TimeManager.onPauseGameTime.Invoke(true);
         Stamina.onManualSetStaminaEvent.Invoke(200);
 
         //
@@ -77,7 +87,7 @@ public class TutorialManager : MonoBehaviour
         CharacterDialogueUI.onSetEndTransitionEnabledEvent.Invoke(true);
         CharacterDialogueUI.onSetIsCloseOnEndEvent.Invoke(true);
         CharacterDialogueUI.onSetStartTransitionEnabledEvent.Invoke(true);
-        TimeManager.instance.tutorialOn = true;
+        TimeManager.instance.tutorialOn = false;
         TimeManager.onPauseGameTime.Invoke(true);
         tutorialUI.overheadUI.SetActive(false);
         panday.isQuestMode = false;
@@ -158,7 +168,7 @@ public class TutorialManager : MonoBehaviour
             EndStory();
 
         }
-        else if (p_id == "O-3")
+        else if (p_id == "O-3") // change hint icon
         {
             //SPAWN
             infrastructure.GetComponent<Health>().OnDeathEvent.AddListener(TeachSix);

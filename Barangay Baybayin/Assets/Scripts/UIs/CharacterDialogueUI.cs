@@ -5,6 +5,7 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using DG.Tweening;
 
 
 public class SetChoicesEvent : UnityEvent<bool> { }
@@ -24,8 +25,13 @@ public class CharacterDialogueUI : MonoBehaviour
     [SerializeField] private TMP_Text dialogueText;
     [SerializeField] private Image avatarImage;
 
-    [SerializeField] private GameObject emoticon;
-    [SerializeField] private Animator anim;
+    private GameObject emoticonObject;
+    private Image emoticonImage;
+    private RectTransform emoticonRectTransform;
+    [SerializeField] private Image emoticonBubbleImage;
+    private RectTransform emoticonBubbleRectTransform;
+
+    [SerializeField] private Animator emoticonAnim;
 
     [SerializeField] public GameObject nextDialogueButton;
     [SerializeField] private GameObject choiceUIsContainer;
@@ -33,6 +39,24 @@ public class CharacterDialogueUI : MonoBehaviour
 
     [HeaderAttribute("ADJUSTABLE VALUES")]
     [SerializeField] private float typewriterSpeed = 0.1f;
+
+    [SerializeField]
+    private float avatarFadeTime;
+    [SerializeField]
+    private float avatarDelayTime;
+
+    [SerializeField]
+    private float emoticonFadeTime;
+    [SerializeField] private RectTransform defaultEmoticonSize;
+    [SerializeField] private RectTransform targetEmoticonSize;
+    [SerializeField] private float emoticonSizeTime;
+
+    [SerializeField]
+    private float emoticonBubbleFadeTime;
+    [SerializeField] private RectTransform defaultEmoticonBubbleSize;
+    [SerializeField] private RectTransform targetEmoticonBubbleSize;
+    [SerializeField] private float emoticonBubbleSizeTime;
+
 
     [HideInInspector]
     public SO_Character character;
@@ -54,10 +78,11 @@ public class CharacterDialogueUI : MonoBehaviour
     bool isAdvancedonWorldEventEndedEvent = false;
 
     bool isAlreadyEnded = false;
-
+    bool firstTime = true;
 
     bool hasChoices = false;
     public IEnumerator runningCoroutine;
+    public IEnumerator runningEmotionCoroutine;
     public static CharacterSpokenToEvent onCharacterSpokenToEvent = new CharacterSpokenToEvent();
     public static SetButtonEnabledEvent onSetButtonEnabledEvent = new SetButtonEnabledEvent();
     public static SetIsAdvancedonWorldEventEndedEvent onSetIsAdvancedonWorldEventEndedEvent = new SetIsAdvancedonWorldEventEndedEvent();
@@ -66,7 +91,15 @@ public class CharacterDialogueUI : MonoBehaviour
     public static SetStartTransitionEnabledEvent onSetStartTransitionEnabledEvent = new SetStartTransitionEnabledEvent();
     public static SetIsCloseOnEndEvent onSetIsCloseOnEndEvent = new SetIsCloseOnEndEvent();
     public static SetChoicesEvent onSetChoicesEvent = new SetChoicesEvent();
+    private void Awake()
+    {
+        emoticonRectTransform = emoticonAnim.GetComponent<RectTransform>();
+        emoticonObject = emoticonAnim.gameObject;
+        emoticonImage = emoticonAnim.GetComponent<Image>();
 
+        emoticonBubbleRectTransform = emoticonBubbleImage.GetComponent<RectTransform>();
+
+    }
     private void OnEnable()
     {
 
@@ -85,13 +118,8 @@ public class CharacterDialogueUI : MonoBehaviour
     }
 
     public void GameplayModeChangedEvent()
-    {
-        
-            
+    {   
         frame.SetActive(false);
-     
-        
-    
     }
 
     public void SetChoicesEvent(bool p_bool)
@@ -171,8 +199,13 @@ public class CharacterDialogueUI : MonoBehaviour
     {
         //Debug.Log(id + " EVENT WITH NAME " + currentSO_Dialogues.name + " IS CURRENT DIALOGUE " + " CLOSING");
         frame.SetActive(false);
-        //TimeManager.onPauseGameTime.Invoke(true);
-        UIManager.onGameplayModeChangedEvent.Invoke(false);
+
+        
+
+        //emoticonAnim.stop;
+    //TimeManager.onPauseGameTime.Invoke(true);
+
+    UIManager.onGameplayModeChangedEvent.Invoke(false);
      
         //onCharacterDialogueUIClose.Invoke(true);
     }
@@ -188,19 +221,51 @@ public class CharacterDialogueUI : MonoBehaviour
         }
     }
 
+
+    public void ResetEmotionUI()
+    {
+        Color newEmoticonColor = emoticonImage.material.color;
+        newEmoticonColor.a = 0;
+        emoticonImage.material.color = newEmoticonColor;
+
+        emoticonRectTransform.sizeDelta = defaultEmoticonSize.sizeDelta;
+
+        emoticonObject.SetActive(false);
+
+        Color newEmoticonBubbleColor = emoticonBubbleImage.material.color;
+        newEmoticonBubbleColor.a = 0;
+        emoticonBubbleImage.material.color = newEmoticonBubbleColor;
+
+        emoticonBubbleRectTransform.sizeDelta = defaultEmoticonBubbleSize.sizeDelta;
+    }
     public void ResetCharacterDialogueUI()
     {
-        currentDialogueIndex=0;
+        firstTime = true;
+        currentDialogueIndex =0;
         allowNext = false;
         isAlreadyEnded = false;
         nextDialogueButton.SetActive(true);
         choiceUIsContainer.SetActive(false);
+
+        Color newAvatarColor = avatarImage.material.color;
+        newAvatarColor.a = 0;
+        avatarImage.material.color = newAvatarColor;
+
+        ResetEmotionUI();
         OnNextButtonUIPressed();
     }
 
     void NextDialogue()
     {
         currentDialogueIndex++;
+        ResetEmotionUI();
+        runningEmotionCoroutine = Co_EmotionOut();
+        StartCoroutine(runningEmotionCoroutine);
+        if (runningEmotionCoroutine != null)
+        {
+            StopCoroutine(runningEmotionCoroutine);
+            runningEmotionCoroutine = null;
+        }
         if (currentDialogueIndex == currentSO_Dialogues.dialogues.Count)
         {
             if (isAdvancedonWorldEventEndedEvent)
@@ -218,7 +283,8 @@ public class CharacterDialogueUI : MonoBehaviour
     }
     public void OnNextButtonUIPressed()
     {
-
+  
+        
         //Debug.Log(id + " EVENT WITH NAME " + currentSO_Dialogues.name + " IS CURRENT DIALOGUE " + currentDialogueIndex +  " IS CURRENT INDEX OUT OF " + currentSO_Dialogues.dialogues.Count);
         if (currentDialogueIndex < currentSO_Dialogues.dialogues.Count)
         {
@@ -229,23 +295,35 @@ public class CharacterDialogueUI : MonoBehaviour
             characterNameText.text = currentDialogue.character.name;
 
 
-            avatarImage.gameObject.SetActive(true);
-
-            avatarImage.sprite = currentDialogue.character.avatar;// currentDialogue.character.avatars[(int)currentDialogue.emotion];
-
-         
             if ((int)currentDialogue.emotion == 10)
             {
-                emoticon.SetActive(false);
-                anim.SetInteger("enum", (int)currentDialogue.emotion);
+                emoticonObject.SetActive(false);
+                emoticonAnim.SetInteger("enum", (int)currentDialogue.emotion);
+                avatarImage.gameObject.SetActive(true);
+                if (firstTime)
+                {
+                    Color newAvatarColor = avatarImage.material.color;
+                    newAvatarColor.a = 1;
+                    avatarImage.material.color = newAvatarColor;
+                    avatarImage.sprite = currentDialogue.character.avatar;// currentDialogue.character.avatars[(int)currentDialogue.emotion];
+
+                }
+
             }
             else
             {
-                emoticon.SetActive(true);
-                anim.SetInteger("enum", (int)currentDialogue.emotion);
+                runningEmotionCoroutine = Co_EmotionIn(currentDialogue.character.avatar, currentDialogue.emotion);
+                StartCoroutine(runningEmotionCoroutine);
             }
-
+            if (firstTime)
+            {
+                firstTime = false;
+                
+            }
          
+           
+
+
 
 
             if (runningCoroutine != null)
@@ -351,5 +429,45 @@ public class CharacterDialogueUI : MonoBehaviour
           
             
         }
+    }
+
+    IEnumerator Co_EmotionIn(Sprite p_avatar, CharacterEmotionType p_emotion)
+    {
+        if (firstTime)
+        {
+            avatarImage.gameObject.SetActive(true);
+
+            avatarImage.sprite = p_avatar;// currentDialogue.character.avatars[(int)currentDialogue.emotion];
+            var sequence = DOTween.Sequence()
+            .Append(avatarImage.DOFade(1, avatarFadeTime));
+            yield return sequence.WaitForCompletion();
+        }
+        yield return new WaitForSeconds(avatarDelayTime);
+        var sequenceTwo = DOTween.Sequence()
+        .Append(emoticonBubbleImage.DOFade(1, emoticonBubbleFadeTime));
+        sequenceTwo.Join(emoticonBubbleRectTransform.DOSizeDelta(targetEmoticonBubbleSize.sizeDelta, emoticonBubbleSizeTime, false));
+        sequenceTwo.Play();
+        yield return new WaitForSeconds(emoticonSizeTime / 2);//sequence.WaitForCompletion();
+        emoticonObject.SetActive(true);
+        var sequenceThree = DOTween.Sequence()
+        .Append(emoticonImage.DOFade(1, emoticonFadeTime));
+        sequenceThree.Join(emoticonRectTransform.DOSizeDelta(targetEmoticonSize.sizeDelta, emoticonSizeTime, false));
+        emoticonAnim.SetInteger("enum", (int)p_emotion);
+    }
+
+    IEnumerator Co_EmotionOut()
+    {
+      
+        var sequenceTwo = DOTween.Sequence()
+        .Append(emoticonBubbleImage.DOFade(0, emoticonBubbleFadeTime));
+        sequenceTwo.Join(emoticonBubbleRectTransform.DOSizeDelta(defaultEmoticonBubbleSize.sizeDelta, emoticonBubbleSizeTime, false));
+        sequenceTwo.Play();
+        yield return new WaitForSeconds(emoticonSizeTime / 2);//sequence.WaitForCompletion();
+    
+        var sequenceThree = DOTween.Sequence()
+        .Append(emoticonImage.DOFade(0, emoticonFadeTime));
+        sequenceThree.Join(emoticonRectTransform.DOSizeDelta(defaultEmoticonSize.sizeDelta, emoticonSizeTime, false));
+        yield return sequenceThree.WaitForCompletion();
+        emoticonObject.SetActive(false);
     }
 }

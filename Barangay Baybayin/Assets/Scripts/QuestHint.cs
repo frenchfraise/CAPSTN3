@@ -7,7 +7,7 @@ public class QuestHint : MonoBehaviour
 {
     WorldEventSubscriber worldEventSubscriber;
     [SerializeField] private HoverEffect iconHoverEffect;
-
+    [SerializeField] private RadiateScaleEffect radiateScaleEffect;
     private void OnEnable()
     {
         iconHoverEffect.startYPosition = iconHoverEffect.transform.position.y;
@@ -15,6 +15,8 @@ public class QuestHint : MonoBehaviour
         iconHoverEffect.gameObject.SetActive(true);
         iconHoverEffect.runningCoroutine = iconHoverEffect.Co_Hover();
         StartCoroutine(iconHoverEffect.runningCoroutine);
+        radiateScaleEffect.runningCoroutine = radiateScaleEffect.Co_Scale();
+        StartCoroutine(radiateScaleEffect.runningCoroutine);
         UIManager.onGameplayModeChangedEvent.AddListener(OnGameplayModeChangedEvent);
     }
 
@@ -33,6 +35,14 @@ public class QuestHint : MonoBehaviour
             iconHoverEffect.srIcon.enabled = true;
             iconHoverEffect.runningCoroutine = iconHoverEffect.Co_Hover();
             StartCoroutine(iconHoverEffect.runningCoroutine);
+
+            if (radiateScaleEffect.runningCoroutine != null)
+            {
+                StopCoroutine(radiateScaleEffect.runningCoroutine);
+                radiateScaleEffect.runningCoroutine = null;
+            }
+            radiateScaleEffect.runningCoroutine = radiateScaleEffect.Co_Scale();
+            StartCoroutine(radiateScaleEffect.runningCoroutine);
         }
         else if (!p_isActive == false)
         {
@@ -44,7 +54,14 @@ public class QuestHint : MonoBehaviour
                 iconHoverEffect.sr.enabled = false;//gameObject.SetActive(false);
       
             }
-          
+            else if (radiateScaleEffect.runningCoroutine != null)
+            {
+                StopCoroutine(radiateScaleEffect.runningCoroutine);
+                radiateScaleEffect.runningCoroutine = null;
+        
+
+            }
+
         }
     }
 

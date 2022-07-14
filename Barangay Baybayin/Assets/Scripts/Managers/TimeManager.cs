@@ -62,7 +62,7 @@ public class TimeManager : MonoBehaviour
 
     public bool DoTimer;
     public IEnumerator runningTime;
-    public bool tutorialOn;
+    public bool tutorialOn = true;
 
     private void Awake()
     {
@@ -175,13 +175,13 @@ public class TimeManager : MonoBehaviour
         TimeManager.instance.dayCount++;
         onHourChanged.Invoke(hour);
         TimeManager.onDayChangeEndedEvent.Invoke();
-      
+        StorylineManager.onWorldEventEndedEvent.Invoke("W",0,dayCount);
     }    
 
     private void SetPauseGame(bool p_bool)
     {
         //Debug.Log("time " + p_bool);
-        if (tutorialOn)
+        if (!tutorialOn)
         {
             DoTimer = p_bool;
             if (p_bool) StartCoroutine(Co_DoTimer());
