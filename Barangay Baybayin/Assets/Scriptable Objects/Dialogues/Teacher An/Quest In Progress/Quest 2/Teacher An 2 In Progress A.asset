@@ -14,18 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogues:
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 0
-    words: Oh you are back
-    speechTransitionType: 1
-  - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 0
-    words: What am I supposed to do?
-    speechTransitionType: 1
-  - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 0
-    words: GET ME MY 1 WOOD BOY
-    speechTransitionType: 1
-  - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 0
-    words: Ok sorry po, will be back
+    emotion: 10
+    words: For the roof, we need 10 Rare Wood and 15 Rare Nipa. Counting on you!
     speechTransitionType: 1

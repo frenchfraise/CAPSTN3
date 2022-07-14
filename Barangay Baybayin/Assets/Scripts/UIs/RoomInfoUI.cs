@@ -44,8 +44,7 @@ public class RoomInfoUI : MonoBehaviour
                                             );
 
         //PlayerManager.instance.currentRoomID = p_passageway.room.currentRoomID;
-        gameObject.SetActive(true);
-        
+        gameObject.SetActive(true);        
         StartCoroutine(Co_RoomInfoUITransition(roomName, roomDescription, availableResourceNodeDrops, cameraPosition, cameraPanLimit));
     }
     IEnumerator Co_RoomInfoUITransition(string p_roomName, string p_roomDescription, List<ResourceNodeDrop> p_availableResourceNodeDrops, Vector2 p_cameraPos, Vector2 p_cameraPanLimit)

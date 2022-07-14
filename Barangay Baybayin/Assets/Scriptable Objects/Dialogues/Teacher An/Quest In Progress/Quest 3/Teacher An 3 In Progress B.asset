@@ -14,18 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogues:
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 0
-    words: Oh you are back
-    speechTransitionType: 1
-  - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 0
-    words: What am I supposed to do?
-    speechTransitionType: 1
-  - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 0
-    words: REBUILD THE TOWN HALL
-    speechTransitionType: 1
-  - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 0
-    words: Ok sorry po, will be back
+    emotion: 10
+    words: The blockage is in the northeast area of the school.
     speechTransitionType: 1

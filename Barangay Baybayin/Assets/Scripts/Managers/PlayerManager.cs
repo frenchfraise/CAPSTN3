@@ -31,12 +31,10 @@ public class PlayerManager : MonoBehaviour
     public Transform playerTransform { get; private set; }
     //[SerializeField] private Stamina stamina;
     [SerializeField] private Bed bed;
-    [SerializeField]
-    private MaterialFloater floaterPrefab;
-    [SerializeField]
-    private int floaterStackCount;
-    [SerializeField]
-    private IEnumerator runningFloaterSpawner;
+    [SerializeField] private Passageway startRoomPassageway;
+    [SerializeField] private MaterialFloater floaterPrefab;
+    [SerializeField] private int floaterStackCount;
+    [SerializeField] private IEnumerator runningFloaterSpawner;
     [SerializeField] private Vector3 offset;
     [SerializeField] private float delay;
     private bool isLeft;
@@ -117,17 +115,21 @@ public class PlayerManager : MonoBehaviour
         onUpdateCurrentRoomIDEvent.AddListener(UpdateCurrentRoomIDEvent);        
         TimeManager.onDayChangingEvent.AddListener(DayChanging);
     }
+    private void OnDisable()
+    {
+        onUpdateCurrentRoomIDEvent.RemoveListener(UpdateCurrentRoomIDEvent);
+        TimeManager.onDayChangingEvent.RemoveListener(DayChanging);
+    }
 
     void DayChanging()
     {
         playerTransform.position = bed.spawnTransform.position;
+        onRoomEnteredEvent.Invoke(startRoomPassageway);
+        //Debug.Log("ID: " + startRoomPassageway.room.currentRoomID);
+        //onUpdateCurrentRoomIDEvent.Invoke(startRoomPassageway.room.currentRoomID);
     }
     void UpdateCurrentRoomIDEvent(int p_index)
     {
         currentRoomID = p_index;
     }
-
-  
-
-
 }

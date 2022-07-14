@@ -152,15 +152,13 @@ public class TimeManager : MonoBehaviour
     }
 
     public void FaintedEndDay()
-    {
-       
+    {       
         // UIManager.instance.dayInfoUI.Faint(dayCount);
         onDayEndedEvent.Invoke(true,dayCount);
     }
     public void EndDay()
     {
-        // UIManager.instance.dayInfoUI.DayEnd(dayCount);
-        
+        // UIManager.instance.dayInfoUI.DayEnd(dayCount);        
         onDayEndedEvent.Invoke(false,dayCount);
     }
     public void NewDay()

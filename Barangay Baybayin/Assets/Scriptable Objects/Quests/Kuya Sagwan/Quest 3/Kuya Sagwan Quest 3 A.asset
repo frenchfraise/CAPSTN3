@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4c2f0828a94db54886d05067e7f6838, type: 3}
+  m_Name: Kuya Sagwan Quest 3 A
+  m_EditorClassIdentifier: 
+  questImage: {fileID: 21300004, guid: 90dd48d359e7f6c48a8e4ef1563869f4, type: 3}
+  title: 
+  description: 
+  rewards:
+  - so_Item: {fileID: 11400000, guid: a23150ace6c99194986348f059adf4b5, type: 2}
+    amount: 10
+  requirements:
+  - so_requirement: {fileID: 11400000, guid: f093712e876df6b499b548fe93941669, type: 2}
+    isCompleted: 0

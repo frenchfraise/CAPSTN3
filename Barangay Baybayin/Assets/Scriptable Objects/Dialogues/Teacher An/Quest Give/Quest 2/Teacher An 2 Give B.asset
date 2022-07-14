@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogues:
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 4
-    words: Use the 1 wood to repair the town hall
+    emotion: 10
+    words: Great! Will all of these, the roof can be fixed!
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 0
-    words: Ok po
+    emotion: 10
+    words: Head to the front of the school, and let your Hammer do the talking!
     speechTransitionType: 1

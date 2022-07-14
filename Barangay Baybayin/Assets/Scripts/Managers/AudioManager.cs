@@ -6,11 +6,29 @@ using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
+    private static AudioManager _instance;
+    public static AudioManager instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = GameObject.FindObjectOfType<AudioManager>();
+            }
+
+            return _instance;
+        }
+    }
+
+    private bool isFirstTime = true;
+    private Passageway currentAudioPassageway;
     [NonReorderable] public Sound[] sounds;
     public AudioMixer mixer;
     // Start is called before the first frame update
     void Awake()
     {
+        _instance = this;
+
         foreach (Sound s in sounds)
         {
             s.source = gameObject.AddComponent<AudioSource>();
@@ -39,15 +57,17 @@ public class AudioManager : MonoBehaviour
     }
     private void OnEnable()
     {
-        //WeatherManager.instance.onWeatherChangedEvent.AddListener(Play);
+        PlayerManager.onRoomEnteredEvent.AddListener(PlayOnRoomEnter);
+        // PlayerManager.onUpdateCurrentRoomIDEvent.AddListener(PlayOnRoomEnter);
     }
 
     private void OnDisable()
     {
-        //WeatherManager.instance.onWeatherChangedEvent.RemoveListener(Play);
+        PlayerManager.onRoomEnteredEvent.RemoveListener(PlayOnRoomEnter);
+        //PlayerManager.onUpdateCurrentRoomIDEvent.RemoveListener(PlayOnRoomEnter);
     }
-    // public void Play(Weather p_weather, int id)
-    public void Play(string name)
+
+    public void PlayByName(string name)
     {
         foreach (Sound s in sounds)
         {
@@ -56,8 +76,21 @@ public class AudioManager : MonoBehaviour
         //sounds[id].source.Play();
         Sound sound = Array.Find(sounds, sound => sound.name == name);
         sound.source.Play();
-
     }
 
+    private void PlayOnRoomEnter(Passageway p_passageway)
+    {
+        if (!isFirstTime)
+        {
+            if (p_passageway.room.roomDescription != currentAudioPassageway.room.roomDescription) 
+                isFirstTime = true;
+        }
+        if (isFirstTime)
+        {
+            isFirstTime = false;
+            PlayByName(p_passageway.room.roomDescription);
+        }
+        currentAudioPassageway = p_passageway;
+    }
   
 }

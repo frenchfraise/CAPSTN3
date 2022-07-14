@@ -37,11 +37,6 @@ public class Passageway : MonoBehaviour
             
             PlayerManager.onRoomEnteredEvent.Invoke(connectedToPassageway);
             PlayerManager.onUpdateCurrentRoomIDEvent.Invoke(connectedToPassageway.room.currentRoomID);
-
         }
-       
-
     }
-
-
 }

@@ -14,18 +14,64 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogues:
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 0
-    words: Oh you are back
+    emotion: 10
+    words: "Now that the road is fixed, the students can return.\r"
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 0
-    words: What am I supposed to do?
+    emotion: 10
+    words: "Despite the challenges that the school and the students go through...\r"
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 0
-    words: GET ME MY 1 WOOD BOY
+    emotion: 10
+    words: The town makes it possible to rebuild -- together.
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 0
-    words: Ok sorry po, will be back
+    emotion: 10
+    words: "The kids can study without roads being blocked, staying outside, or having
+      no tables and chairs.\r"
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
+    emotion: 10
+    words: "With this, we're giving them their future.\r"
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
+    emotion: 10
+    words: "Ensuring they can carve out their paths, and not stay down and out due
+      to the weather.\r"
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
+    emotion: 10
+    words: "It's true that the climate is changing, and we've been having difficulties.\r"
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
+    emotion: 10
+    words: "But I don't think that's the end of it.\r"
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
+    emotion: 10
+    words: "We can build stronger systems, help one another.\r"
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
+    emotion: 10
+    words: "The students will learn and pass on the Bayanihan spirit, too.\r"
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
+    emotion: 10
+    words: "After all, isn't the school their second home?\r"
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
+    emotion: 10
+    words: "I'd like to thank you again, for all the help.\r"
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
+    emotion: 10
+    words: "I'll pay it forward.\r"
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
+    emotion: 10
+    words: "Visit me and the kids now and then, alright?\r"
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
+    emotion: 10
+    words: "Well then... see ya! The Town needs you!\r"
     speechTransitionType: 1

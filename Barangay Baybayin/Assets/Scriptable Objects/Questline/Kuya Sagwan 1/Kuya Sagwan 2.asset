@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Kuya Sagwan 2
   m_EditorClassIdentifier: 
   questlineData:
-  - initialSO_Dialogues: {fileID: 11400000, guid: e34e2824a93871a40b80256389d6bc8e, type: 2}
-    questInProgressSO_Dialogues: {fileID: 11400000, guid: 6efcddd41949d3047aea3fe1e10304ac, type: 2}
-    questCompleteSO_Dialogues: {fileID: 11400000, guid: 080746900fd444e4c9ad3c48e686dbda, type: 2}
-    quest: {fileID: 11400000, guid: 01c0334455828cd4ea020cd2eeb9c516, type: 2}
-  - initialSO_Dialogues: {fileID: 11400000, guid: 5a2a797af6aec3544a79ece7c34a8a7c, type: 2}
-    questInProgressSO_Dialogues: {fileID: 11400000, guid: a1ac6e9da96378240af3f7207c6f50e4, type: 2}
-    questCompleteSO_Dialogues: {fileID: 11400000, guid: a929aa5b1f6097b488e3d4d6aeaa5193, type: 2}
-    quest: {fileID: 11400000, guid: f1cdfb1de6f30844d9c3965ae123e5b2, type: 2}
+  - name: Part A
+    initialSO_Dialogues: {fileID: 11400000, guid: 15ea8040b63668347a2de239068ae7ba, type: 2}
+    questInProgressSO_Dialogues: {fileID: 11400000, guid: 9968c2db6045cd14e83282dd1f64ef76, type: 2}
+    questCompleteSO_Dialogues: {fileID: 11400000, guid: b43c382ea0ff88d458501599607bed4f, type: 2}
+    quest: {fileID: 11400000, guid: 2b5e1467f110ba64284917e13360ac3e, type: 2}
+  - name: Part B
+    initialSO_Dialogues: {fileID: 11400000, guid: 86ac59cbe965d394dab83a7bf952a0cc, type: 2}
+    questInProgressSO_Dialogues: {fileID: 11400000, guid: 92694cff5d59dac458bf784bf36e32b8, type: 2}
+    questCompleteSO_Dialogues: {fileID: 11400000, guid: b43c382ea0ff88d458501599607bed4f, type: 2}
+    quest: {fileID: 11400000, guid: 61edd1a75525e28469759f9f206cde2c, type: 2}
