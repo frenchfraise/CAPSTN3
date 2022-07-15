@@ -72,6 +72,7 @@ public class TutorialManager : MonoBehaviour
         infrastructure.gameObject.SetActive(true);
         CharacterDialogueUI.onSetEndTransitionEnabledEvent.Invoke(false);
         CharacterDialogueUI.onSetIsCloseOnEndEvent.Invoke(false);
+        CharacterDialogueUI.onSetStartTransitionEnabledEvent.Invoke(false);
         TimeManager.instance.tutorialOn = true;
         TimeManager.onPauseGameTime.Invoke(true);
         Stamina.onManualSetStaminaEvent.Invoke(200);
@@ -128,14 +129,12 @@ public class TutorialManager : MonoBehaviour
         }
         else if (p_id == "O-0")
         {
-            Debug.Log("im intisde 0");
             EndStory();
 
 
         }
         else if (p_id == "O-1")
         {
-            Debug.Log("im intisde 1");
             //SPAWN
             resourceNode = TreeVariantOneNodePool.pool.Get();
             resourceNode.transform.position = spawnPoint1.position + new Vector3(0f, -2.35f, 0f);
@@ -153,7 +152,6 @@ public class TutorialManager : MonoBehaviour
         }
         else if (p_id == "O-2")
         {
-            Debug.Log("im intisde 2");
             //SPAWN
             resourceNode = OreVariantOneNodePool.pool.Get();
             resourceNode.transform.position = spawnPoint1.position + new Vector3(0f, -2.35f, 0f);
@@ -242,7 +240,6 @@ public class TutorialManager : MonoBehaviour
         }
         else if (p_id == "O-8")
         {
-            Debug.Log("IM INSIDE");
             panday.isQuestMode = true;
 
             //ResourceNode newResourceNode = TreeVariantOneNodePool.pool.Get();

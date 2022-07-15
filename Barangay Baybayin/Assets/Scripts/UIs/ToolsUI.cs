@@ -11,6 +11,7 @@ public class ToolUIElements
     public Image background;
     public Image icon;
     public TMP_Text levelCount;
+    public Image frame;
     [SerializeField] public GenericBarUI genericBarUI;
 }
 
@@ -53,6 +54,11 @@ public class ToolsUI : MonoBehaviour
         ToolManager.onProficiencyAmountModifiedEvent.AddListener(UpdateProf);
         ToolManager.onProficiencyLevelModifiedEvent.AddListener(UpdateLevel);
         onToolQuestSwitchEvent.AddListener(RequireTool);
+        foreach (ToolUIElements t in toolUI)
+        {
+            t.genericBarUI.InstantUpdateBar(0f,1f,1f);
+
+        }
     }
 
     private void OnDisable()
@@ -80,7 +86,8 @@ public class ToolsUI : MonoBehaviour
         Tool selected_Tool = ToolManager.instance.tools[currentEquip];
         SO_Tool selectedSO_Tool = selected_Tool.so_Tool;
         toolUI[currentEquip].levelCount.text = selected_Tool.proficiencyLevel.ToString();
-        toolUI[currentEquip].background.sprite = frameLevels[selected_Tool.proficiencyLevel];
+        
+        toolUI[currentEquip].frame.sprite = frameLevels[selected_Tool.proficiencyLevel];
         toolUI[currentEquip].genericBarUI.ResetBar(1, 1);
   
 

@@ -72,7 +72,7 @@ public class RoomInfoUI : MonoBehaviour
         te.Join(roomNameText.DOFade(1f, 0.75f));
         te.Join(roomDescriptionText.DOFade(1f, 0.75f));
         te.Play();
-
+        
 
         for (int i = 0; i < p_availableResourceNodeDrops.Count; i++)
         {

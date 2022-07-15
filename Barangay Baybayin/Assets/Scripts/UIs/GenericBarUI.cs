@@ -193,17 +193,26 @@ public class GenericBarUI : MonoBehaviour
     [SerializeField] private FadeTransitionData ghostBarFadeTransition;
     [SerializeField] private FillTransitionData ghostBarFillTransition;
 
-    [SerializeField] private float delayTime;
+    [SerializeField] private float delayTime = 0;
 
-    private float current;
-    private float currentMax;
-
+    private float current = 0;
+    private float currentMax = 1;
+    private float savedFill = 0;
     IEnumerator runningCoroutine;
 
     private void Awake()
     {
         UIManager.onGameplayModeChangedEvent.AddListener(GameplayModeChangedEvent);
+ 
     }
+
+    private void OnEnable()
+    {
+        realBarUI.fillAmount = 0f;
+        ghostBarUI.fillAmount = 0f;
+        restrictedBarUI.fillAmount = 0f;
+    }
+
     void GameplayModeChangedEvent(bool p_set)
     {
         if (runningCoroutine != null)
@@ -211,6 +220,9 @@ public class GenericBarUI : MonoBehaviour
             StopCoroutine(runningCoroutine);
             runningCoroutine = null;
         }
+        realBarUI.fillAmount = 0f;
+        ghostBarUI.fillAmount = 0f;
+        restrictedBarUI.fillAmount = 0f;
         InstantUpdateBar(current, currentMax, currentMax);
 
         
@@ -272,16 +284,19 @@ public class GenericBarUI : MonoBehaviour
         }
         return true;
     }
-    public void InstantUpdateBar(float p_current, float p_currentMax, float p_max)
+    public void InstantUpdateBar(float p_current =0, float p_currentMax = 1, float p_max =1)
     {
         StopAllCoroutines();
         isResetting = false;
+ 
+     
         float fill = p_current / p_max;
         
         float restrictedFill = (p_max/ p_max) - (p_currentMax / p_max);
         if (realBarUI)
         {
             realBarUI.fillAmount = fill;
+            realBarUI.color = new Color(realBarUI.color.r, realBarUI.color.g, realBarUI.color.b, 1);
         }
         else
         {
@@ -291,6 +306,7 @@ public class GenericBarUI : MonoBehaviour
         if (ghostBarUI)
         {
             ghostBarUI.fillAmount = fill;
+            ghostBarUI.color = new Color(ghostBarUI.color.r, ghostBarUI.color.g, ghostBarUI.color.b, 1);
         }
         else
         {
@@ -308,10 +324,11 @@ public class GenericBarUI : MonoBehaviour
         
     }
 
-    public void ResetBar(float p_current, float p_currentMax)
+    public void ResetBar(float p_current = 0, float p_currentMax = 1)
     {
         isResetting = true;
         float fill = p_current / p_currentMax;
+        
         if (gameObject.activeSelf)
         {
             if (runningCoroutine != null)
@@ -325,12 +342,12 @@ public class GenericBarUI : MonoBehaviour
 
     }
    
-    public void UpdateBar(float p_current, float p_currentMax )
+    public void UpdateBar(float p_current = 0, float p_currentMax =1)
     {
         current = p_current;
         currentMax = p_currentMax;
-
-        float fill = p_current / p_currentMax;
+  
+        float fill = current / currentMax;
         Debug.Log("FILL: " + fill);
         if (gameObject.activeSelf)
         {
@@ -346,7 +363,7 @@ public class GenericBarUI : MonoBehaviour
 
         }
     }
-    IEnumerator Co_UpdateBar(float p_fill)
+    IEnumerator Co_UpdateBar(float p_fill = 0)
     {
         if (!isResetting)
         {
@@ -355,8 +372,8 @@ public class GenericBarUI : MonoBehaviour
             //    currentTransitionsDataHolder.PerformTransitionsData();
             //    yield return new WaitForSeconds(delayTime);
             //}
-
-
+         
+           
             if (realBarColorFlash != null)
             {
                 realBarUI.color = realBarColorFlash.color;
@@ -383,7 +400,8 @@ public class GenericBarUI : MonoBehaviour
             }
 
             realBarUI.fillAmount = p_fill;
-
+     
+            
             yield return new WaitForSeconds(delayTime);
 
             Sequence s = DOTween.Sequence();
@@ -402,25 +420,42 @@ public class GenericBarUI : MonoBehaviour
                 if (ghostBarFadeTransition.amount < 900)
                 {
                     s.Join(ghostBarUI.DOFade(secondaryBarFadeAmount, ghostBarFadeTransition.transitionTime));
+
                 }
 
             }
             if (ghostBarFillTransition != null)
             {
                 float secondaryBarFillAmount = 0;
-                if (ghostBarFillTransition.amount < 0)
+                if (ghostBarFillTransition.amount <= 0)
                 {
-                    secondaryBarFillAmount = p_fill;
+                    savedFill = p_fill;
 
 
                 }
                 else if (ghostBarFillTransition.amount > 0)
                 {
-                    secondaryBarFillAmount = ghostBarFillTransition.amount;
+                    if (ghostBarFillTransition.amount < -1)
+                    {
+                        savedFill = 0;
+                    }
+                    else
+                    {
+                        savedFill = ghostBarFillTransition.amount;
+                    }
+                
                 }
-                s.Join(ghostBarUI.DOFillAmount(secondaryBarFillAmount, ghostBarFillTransition.transitionTime));
-            }
+                if (p_fill < -1)
+                {
 
+                    p_fill = 0;
+                    
+                }
+                s.Join(ghostBarUI.DOFillAmount(p_fill, ghostBarFillTransition.transitionTime));
+            
+                Debug.Log("ghost bar shud be " + p_fill + " - "+ secondaryBarFillAmount.ToString());
+            }
+   
             s.Play();
             yield return s.WaitForCompletion();
             ghostBarUI.color = defaultGhostBarColor;

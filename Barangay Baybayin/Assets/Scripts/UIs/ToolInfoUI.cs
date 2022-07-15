@@ -14,6 +14,7 @@ public class ToolInfoUI : MonoBehaviour
         ToolManager.onToolChangedEvent.AddListener(ToolChanged);
         ToolManager.onProficiencyAmountModifiedEvent.AddListener(genericBarUI.UpdateBar);
         ToolManager.onProficiencyLevelModifiedEvent.AddListener(UpdateLevel);
+       
      
     }
     private void OnDisable()

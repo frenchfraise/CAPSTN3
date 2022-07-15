@@ -31,7 +31,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4881088895778961301}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -107,7 +107,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7191018162531913143}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -183,7 +183,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8967950793777609054}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -299,7 +299,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 0
+  m_FillAmount: 0.53
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -335,7 +335,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4881088895778961301}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -411,7 +411,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8967950793777609054}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -487,7 +487,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 138898962820734109}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -563,7 +563,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 138898962820734109}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -774,7 +774,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 138898962820734109}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -850,7 +850,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8967950793777609054}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1138,9 +1138,9 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 175797832558520705}
   - {fileID: 640004667}
   - {fileID: 855082341}
+  - {fileID: 175797832558520705}
   m_Father: {fileID: 5663208971997678341}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1199,8 +1199,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4be101a1758513b4a9c732d8532477fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  realBarUI: {fileID: 3711158786129212453}
-  ghostBarUI: {fileID: 640004668}
+  realBarUI: {fileID: 640004668}
+  ghostBarUI: {fileID: 3711158786129212453}
   restrictedBarUI: {fileID: 855082342}
   resetTransitionTime: 1
   transitionsDataHolders:
@@ -1227,7 +1227,7 @@ MonoBehaviour:
     joinToNextTransition: 0
     waitToFinish: 0
     delayTimeToNextTransition: 0
-    amount: -1
+    amount: 999
     transitionTime: 0.5
   ghostBarFillTransition:
     transitionType: 0
@@ -1269,9 +1269,9 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7568049148779731537}
-  - {fileID: 850376319}
   - {fileID: 663499178}
+  - {fileID: 850376319}
+  - {fileID: 7568049148779731537}
   m_Father: {fileID: 5663208971818632351}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1330,15 +1330,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4be101a1758513b4a9c732d8532477fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  realBarUI: {fileID: 3703798871372326633}
-  ghostBarUI: {fileID: 850376320}
+  realBarUI: {fileID: 850376320}
+  ghostBarUI: {fileID: 3703798871372326633}
   restrictedBarUI: {fileID: 663499176}
   resetTransitionTime: 1
-  transitionsDataHolders:
-  - transitionDatas:
-    - transitionType: 0
-      bar: {fileID: 0}
-  - transitionDatas: []
+  transitionsDataHolders: []
   defaultRealBarColor:
     serializedVersion: 2
     rgba: 4294967295
@@ -1347,7 +1343,7 @@ MonoBehaviour:
     bar: {fileID: 0}
     color:
       serializedVersion: 2
-      rgba: 0
+      rgba: 4294967295
   realBarColorTransitions: []
   defaultGhostBarColor:
     serializedVersion: 2
@@ -1358,7 +1354,7 @@ MonoBehaviour:
     joinToNextTransition: 0
     waitToFinish: 0
     delayTimeToNextTransition: 0
-    amount: -1
+    amount: 999
     transitionTime: 0.5
   ghostBarFillTransition:
     transitionType: 0
@@ -1499,18 +1495,22 @@ MonoBehaviour:
   - background: {fileID: 5663208971818632349}
     icon: {fileID: 5663208972416301085}
     levelCount: {fileID: 2958472372887764855}
+    frame: {fileID: 3703798871372326633}
     genericBarUI: {fileID: 1420076330}
   - background: {fileID: 5663208972789064870}
     icon: {fileID: 5663208972583935506}
     levelCount: {fileID: 8316404942310341349}
+    frame: {fileID: 384800536085462375}
     genericBarUI: {fileID: 1310999918}
   - background: {fileID: 5663208973565220982}
     icon: {fileID: 5663208971858105305}
     levelCount: {fileID: 3669759826547920113}
+    frame: {fileID: 2404473735615942754}
     genericBarUI: {fileID: 989570442}
   - background: {fileID: 5663208971997678347}
     icon: {fileID: 5663208972635296744}
     levelCount: {fileID: 4144229787723072555}
+    frame: {fileID: 3711158786129212453}
     genericBarUI: {fileID: 180616682}
   requiredTool: -1
 --- !u!1 &5663208971818632350
@@ -2603,9 +2603,9 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1294678767066623441}
   - {fileID: 707724466}
   - {fileID: 952472351}
+  - {fileID: 1294678767066623441}
   m_Father: {fileID: 5663208972789064864}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2664,8 +2664,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4be101a1758513b4a9c732d8532477fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  realBarUI: {fileID: 384800536085462375}
-  ghostBarUI: {fileID: 707724467}
+  realBarUI: {fileID: 707724467}
+  ghostBarUI: {fileID: 384800536085462375}
   restrictedBarUI: {fileID: 952472349}
   resetTransitionTime: 1
   transitionsDataHolders:
@@ -2692,7 +2692,7 @@ MonoBehaviour:
     joinToNextTransition: 0
     waitToFinish: 0
     delayTimeToNextTransition: 0
-    amount: -1
+    amount: 999
     transitionTime: 0.5
   ghostBarFillTransition:
     transitionType: 0
@@ -2734,7 +2734,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4881088895778961301}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2945,7 +2945,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7191018162531913143}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2985,7 +2985,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 0
+  m_FillAmount: 0.18
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -3368,9 +3368,9 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7013853536141912036}
   - {fileID: 1039411981}
   - {fileID: 1917426724}
+  - {fileID: 7013853536141912036}
   m_Father: {fileID: 5663208973565220976}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3429,8 +3429,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4be101a1758513b4a9c732d8532477fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  realBarUI: {fileID: 2404473735615942754}
-  ghostBarUI: {fileID: 1039411982}
+  realBarUI: {fileID: 1039411982}
+  ghostBarUI: {fileID: 2404473735615942754}
   restrictedBarUI: {fileID: 1917426722}
   resetTransitionTime: 1
   transitionsDataHolders:
@@ -3457,7 +3457,7 @@ MonoBehaviour:
     joinToNextTransition: 0
     waitToFinish: 0
     delayTimeToNextTransition: 0
-    amount: -1
+    amount: 999
     transitionTime: 0.5
   ghostBarFillTransition:
     transitionType: 0
