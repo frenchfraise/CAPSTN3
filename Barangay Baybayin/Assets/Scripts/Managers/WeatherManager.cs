@@ -9,8 +9,6 @@ public class Weather
     public string name;
     public Sprite sprite;
     public string audioName;
-    public float minChance;// Implement
-    public float maxChance;// Implement
     [SerializeField] public CharacterEmotionType emotion;
    // [NonReorderable] public List<SO_Dialogues> dialogue;
     public ParticleSystem particle; //implement this
@@ -58,16 +56,16 @@ public class WeatherManager : MonoBehaviour
 
     private void OnEnable()
     {
+        PlayerManager.onUpdateCurrentRoomIDEvent.AddListener(CheckForRoom);        
         TimeManager.onDayChangingEvent.AddListener(RandPredictWeathers);
         onWeatherChangedEvent.AddListener(SwitchWeatherParticleSys);
-        PlayerManager.onUpdateCurrentRoomIDEvent.AddListener(CheckForRoom);        
     }
 
     private void OnDisable()
     {
+        PlayerManager.onUpdateCurrentRoomIDEvent.RemoveListener(CheckForRoom);
         TimeManager.onDayChangingEvent.RemoveListener(RandPredictWeathers);
         onWeatherChangedEvent.RemoveListener(SwitchWeatherParticleSys);
-        PlayerManager.onUpdateCurrentRoomIDEvent.RemoveListener(CheckForRoom);
     }
 
     public Weather GetWeatherName(string p_weatherName)
@@ -94,17 +92,17 @@ public class WeatherManager : MonoBehaviour
         }
         if (p_currentWeathers[0].particle != null)
         {
-            p_currentWeathers[0].particle.Play(); //STILL NEED TO CHECK THIS
+            p_currentWeathers[0].particle.Play();
         }
     }
-    // NEW STARTS HERE
     /* For reference:
      * Current Weather = 0
      * Next Weather = 1
      * Next next Weather = 2
      * and so on...*/
     public void RandPredictWeathers() // Predicts weathers for 2 days = Current [0] and Next [1] day
-    {
+    {        
+        //if (isStormy)
         if (randNums[0] == -1) // Initialization
         {
             for (int i = 0; i < currentWeathers.Count; i++)
@@ -138,9 +136,7 @@ public class WeatherManager : MonoBehaviour
 
         //Debug.Log("Current weather: " + currentWeathers[0].name);
         //for (int i = 1; i < currentWeathers.Count; i++)
-        //    Debug.Log("Next " + i + " weather's prediction: " + currentWeathers[i].name);
-
-      
+        //    Debug.Log("Next " + i + " weather's prediction: " + currentWeathers[i].name);      
 
         int chosenCurrentWeatherFillerDialogueIndex = Random.Range(0, currentWeatherFillersDialogue.Count);
         int chosenFirstPredictedWeatherFillerDialogueIndex = Random.Range(0, predictedWeatherFillersDialogue.Count);
@@ -164,19 +160,21 @@ public class WeatherManager : MonoBehaviour
         currentEmotion = currentWeatherDialogue.dialogues[0].emotion;
         currentWeatherDialogue.dialogues[0].words = currentText;
         currentWeatherDialogue.dialogues[0].emotion = currentEmotion;
-
+        
         onWeatherChangedEvent?.Invoke(weathers, currentWeathers);
-        PlayerManager.onUpdateCurrentRoomIDEvent.Invoke(8); // TEMPORARY room start
+        PlayerManager.onUpdateCurrentRoomIDEvent.Invoke(8);
     }
-    // NEW ENDS HERE
 
     private void CheckForRoom(int id)
     {
+        //Debug.Log(currentWeathers[0].name);
+        //Debug.Log("ID is " + id);
         if (id == 8)
         {
             if (currentWeathers[0].particle != null)
             {
-                currentWeathers[0].particle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+                //Debug.Log("Listening HIT! Should stop by now...");
+                currentWeathers[0].particle.Stop();
                 currentWeathers[0].particle.Clear();
             }
         }

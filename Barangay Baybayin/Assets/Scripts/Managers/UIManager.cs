@@ -91,7 +91,7 @@ public class UIManager : MonoBehaviour
     {
         weatherSpriteUI.sprite = p_currentWeathers[0].sprite;
         //Debug.Log(p_currentWeather.audioName);
-        FindObjectOfType<AudioManager>().Play(p_currentWeathers[0].audioName);       
+        //AudioManager.instance.Play(p_currentWeathers[0].audioName);       
     }
 
     private void OnGameplayHUDSwitch(bool p_isActive)

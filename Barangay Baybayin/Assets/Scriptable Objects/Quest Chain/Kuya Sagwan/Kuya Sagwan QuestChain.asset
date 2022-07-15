@@ -17,4 +17,4 @@ MonoBehaviour:
   questLines:
   - {fileID: 11400000, guid: 51ca77c7255bcdd4399101eb5fac905b, type: 2}
   - {fileID: 11400000, guid: 237cb94ab987b1d4c8eed929dfa8f794, type: 2}
-  - {fileID: 11400000, guid: 2d2d4b937de08524ca4e5080b39ba9c0, type: 2}
+  - {fileID: 11400000, guid: 803596ef5dd6a3843a9dcc0aff32f7f9, type: 2}

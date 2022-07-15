@@ -14,51 +14,44 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogues:
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 0
-    words: 'Panday Sakoro, good day. '
-    speechTransitionType: 0
-  - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 5
-    words: 'Are you on the job? '
-    speechTransitionType: 0
+    emotion: 10
+    words: Good day, Panday Sakoro.
+    speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
     emotion: 10
-    words: You see, the typhoon did a number on the school.
-    speechTransitionType: 0
-  - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 1
-    words: "Some of the chairs and tables got destroyed. An area of the roof did,
-      too\u2026 "
-    speechTransitionType: 0
+    words: Could you lend an ear? Have another dilemma on our hands.
+    speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
     emotion: 10
-    words: "We aren\u2019t able to hold classes yet. I feel for the children."
+    words: Despite the school being fixed, most of the students returned.
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 1
-    words: Ok po
+    emotion: 10
+    words: 'The roads being blocked may be the cause. '
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 1
-    words: Ok po
+    emotion: 10
+    words: The Captain agrees on that.
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 1
-    words: Ok po
+    emotion: 10
+    words: 'When storms happen, trees fall and landslides happen. '
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 1
-    words: Ok po
+    emotion: 10
+    words: 'The road on the Northeast side of the school remains blocked. '
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 1
-    words: Ok po
+    emotion: 10
+    words: Perhaps you could help with that later.
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 1
-    words: Ok po
+    emotion: 10
+    words: But first, could you forage for some [10 Rare Herbs]? They are the blue
+      kind.
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 1
-    words: Ok po
+    emotion: 10
+    words: "It\u2019s for an herbal tea I\u2019d like to give to those helping in
+      the clearing."
     speechTransitionType: 1

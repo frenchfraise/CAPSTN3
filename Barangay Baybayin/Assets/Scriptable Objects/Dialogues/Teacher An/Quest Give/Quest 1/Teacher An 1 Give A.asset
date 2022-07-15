@@ -52,7 +52,7 @@ MonoBehaviour:
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
     emotion: 10
-    words: "Seems like we\u2019d need [20 Wood\u2605] and [15 Nipa\u2605]."
+    words: "Seems like we\u2019d need [10 Common Wood] and [7 Common Nipa]."
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
     emotion: 10

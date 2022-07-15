@@ -367,7 +367,7 @@ public class TutorialManager : MonoBehaviour
     }
 
  
-    public void TeachUseTool(float p_useless) //You’re getting the hang of it, son. But what if you overdo it? Try swinging your axe until you wipe out.
+    public void TeachUseTool(float p_useless) //Youï¿½re getting the hang of it, son. But what if you overdo it? Try swinging your axe until you wipe out.
     {
 
         ToolCaster.onToolUsedEvent.RemoveListener(TeachUseTool);

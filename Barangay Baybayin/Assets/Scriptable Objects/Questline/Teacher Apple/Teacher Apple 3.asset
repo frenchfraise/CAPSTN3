@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Teacher Apple 3
   m_EditorClassIdentifier: 
   questlineData:
-  - initialSO_Dialogues: {fileID: 11400000, guid: bfd62d57d8e80274fb61f6d0e12c5b97, type: 2}
+  - name: Part A
+    initialSO_Dialogues: {fileID: 11400000, guid: bfd62d57d8e80274fb61f6d0e12c5b97, type: 2}
     questInProgressSO_Dialogues: {fileID: 11400000, guid: a07d993b49cac214c861c7ccc138c979, type: 2}
     questCompleteSO_Dialogues: {fileID: 11400000, guid: 3e70e24bc83d936429b01eb8c2905fcf, type: 2}
     quest: {fileID: 11400000, guid: 6799c26a7e421fc4cb95af83e0030f0a, type: 2}
-  - initialSO_Dialogues: {fileID: 11400000, guid: 6e7dc4cade3a1cc4bb21794cf44bb30f, type: 2}
+  - name: Part B
+    initialSO_Dialogues: {fileID: 11400000, guid: 6e7dc4cade3a1cc4bb21794cf44bb30f, type: 2}
     questInProgressSO_Dialogues: {fileID: 11400000, guid: 4a344c218626f0b46b68561984e509cf, type: 2}
-    questCompleteSO_Dialogues: {fileID: 11400000, guid: 46963ac6736470e4a92f1e535c16d1f7, type: 2}
+    questCompleteSO_Dialogues: {fileID: 11400000, guid: 6ffc13ef381b6e14d9fdc2c3119ca235, type: 2}
     quest: {fileID: 11400000, guid: 74deafb4292232641bc527009f6b3e2b, type: 2}

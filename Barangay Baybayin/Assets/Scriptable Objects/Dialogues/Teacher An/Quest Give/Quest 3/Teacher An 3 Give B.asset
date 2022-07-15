@@ -14,10 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogues:
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 4
-    words: Use the 1 wood to repair the town hall
+    emotion: 10
+    words: "You\u2019re back! Thank you, Sakoro."
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 0
-    words: Ok po
+    emotion: 10
+    words: "I\u2019m sure you\u2019ll all enjoy the tea."
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
+    emotion: 10
+    words: "Now, could you assist in the clearing? The blockage is in the northeast
+      area of the school.\r"
     speechTransitionType: 1
