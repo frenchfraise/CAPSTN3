@@ -136,7 +136,7 @@ MonoBehaviour:
   maxOffsetX: 7
   minBurstVelocity: 10
   maxBurstVelocity: 15
-  magnetizeDelay: 0.5
+  magnetizeDelay: 0.75
   magnetizeSpeed: 100
 --- !u!50 &5904356609009391943
 Rigidbody2D:
@@ -171,10 +171,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8cd09f31c134b04faf6baf1ec41f53e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hoverUpPeakOffset: 1
-  hoverUpSpeed: 0.05
-  hoverUpRate: 0.025
+  hoverDownPeakOffset: 0
+  hoverUpPeakOffset: 0.5
+  hoverUpTime: 0.25
   delayTime: 0.2
-  hoverDownSpeed: 0.05
-  hoverDownRate: 0.025
+  hoverDownTime: 0.25
   startYPosition: 0
+  sr: {fileID: 0}
+  srIcon: {fileID: 8653533781470353936}

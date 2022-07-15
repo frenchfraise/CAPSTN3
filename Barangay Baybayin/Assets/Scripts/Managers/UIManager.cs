@@ -39,7 +39,7 @@ public class UIManager : MonoBehaviour
 
     //
     public static GameplayModeChangedEvent onGameplayModeChangedEvent = new GameplayModeChangedEvent();
-    
+    public IEnumerator proficiencyRunningCoroutine;
 
     private void Awake()
     {

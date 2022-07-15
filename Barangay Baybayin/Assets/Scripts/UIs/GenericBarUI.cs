@@ -194,10 +194,32 @@ public class GenericBarUI : MonoBehaviour
     [SerializeField] private FillTransitionData ghostBarFillTransition;
 
     [SerializeField] private float delayTime;
+
+    private float current;
+    private float currentMax;
+
+    IEnumerator runningCoroutine;
+
+    private void Awake()
+    {
+        UIManager.onGameplayModeChangedEvent.AddListener(GameplayModeChangedEvent);
+    }
+    void GameplayModeChangedEvent(bool p_set)
+    {
+        if (runningCoroutine != null)
+        {
+            StopCoroutine(runningCoroutine);
+            runningCoroutine = null;
+        }
+        InstantUpdateBar(current, currentMax, currentMax);
+
+        
+
+    }
+
     public bool test(int p_tdhi, int p_int, int p_enumType)
     {
 
- 
         switch (p_enumType)
         {
             case 0:
@@ -285,18 +307,44 @@ public class GenericBarUI : MonoBehaviour
         }
         
     }
+
     public void ResetBar(float p_current, float p_currentMax)
     {
         isResetting = true;
         float fill = p_current / p_currentMax;
-        StartCoroutine(Co_UpdateBar(fill));
+        if (gameObject.activeSelf)
+        {
+            if (runningCoroutine != null)
+            {
+                StopCoroutine(runningCoroutine);
+                runningCoroutine = null;
+            }
+            runningCoroutine = Co_UpdateBar(fill);
+            StartCoroutine(runningCoroutine);
+        }
+
     }
    
     public void UpdateBar(float p_current, float p_currentMax )
     {
-        float fill = p_current / p_currentMax;
+        current = p_current;
+        currentMax = p_currentMax;
 
-        StartCoroutine(Co_UpdateBar(fill));
+        float fill = p_current / p_currentMax;
+        Debug.Log("FILL: " + fill);
+        if (gameObject.activeSelf)
+        {
+            if (enabled)
+            {
+                if (runningCoroutine != null)
+                {
+                    StopCoroutine(runningCoroutine);
+                    runningCoroutine = null;
+                }
+                StartCoroutine(Co_UpdateBar(fill));
+            }
+
+        }
     }
     IEnumerator Co_UpdateBar(float p_fill)
     {
@@ -393,7 +441,14 @@ public class GenericBarUI : MonoBehaviour
             yield return defaultFill.WaitForCompletion();
 
             isResetting = false;
-            StartCoroutine(Co_UpdateBar(p_fill));
+            if (runningCoroutine != null)
+            {
+                StopCoroutine(runningCoroutine);
+                runningCoroutine = null;
+            }
+            runningCoroutine = Co_UpdateBar(p_fill);
+            StartCoroutine(runningCoroutine);
+            //StartCoroutine(Co_UpdateBar(p_fill));
             
             
         }

@@ -136,10 +136,6 @@ public class Item : MonoBehaviour
                
             }
         }
-        
-
-
-
     }
 
     void Magnetize()

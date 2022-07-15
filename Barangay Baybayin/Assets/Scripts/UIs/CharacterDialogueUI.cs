@@ -205,7 +205,7 @@ public class CharacterDialogueUI : MonoBehaviour
         //emoticonAnim.stop;
     //TimeManager.onPauseGameTime.Invoke(true);
 
-    UIManager.onGameplayModeChangedEvent.Invoke(false);
+        UIManager.onGameplayModeChangedEvent.Invoke(false);
      
         //onCharacterDialogueUIClose.Invoke(true);
     }
@@ -224,17 +224,14 @@ public class CharacterDialogueUI : MonoBehaviour
 
     public void ResetEmotionUI()
     {
-        Color newEmoticonColor = emoticonImage.material.color;
-        newEmoticonColor.a = 0;
-        emoticonImage.material.color = newEmoticonColor;
+
+        emoticonImage.color = new Color(emoticonImage.color.r, emoticonImage.color.g, emoticonImage.color.b,0);
 
         emoticonRectTransform.sizeDelta = defaultEmoticonSize.sizeDelta;
 
         emoticonObject.SetActive(false);
 
-        Color newEmoticonBubbleColor = emoticonBubbleImage.material.color;
-        newEmoticonBubbleColor.a = 0;
-        emoticonBubbleImage.material.color = newEmoticonBubbleColor;
+        emoticonBubbleImage.color = new Color(emoticonBubbleImage.color.r, emoticonBubbleImage.color.g, emoticonBubbleImage.color.b, 0);
 
         emoticonBubbleRectTransform.sizeDelta = defaultEmoticonBubbleSize.sizeDelta;
     }
@@ -247,9 +244,10 @@ public class CharacterDialogueUI : MonoBehaviour
         nextDialogueButton.SetActive(true);
         choiceUIsContainer.SetActive(false);
 
-        Color newAvatarColor = avatarImage.material.color;
-        newAvatarColor.a = 0;
-        avatarImage.material.color = newAvatarColor;
+
+        avatarImage.color = new Color(avatarImage.color.r, avatarImage.color.g, avatarImage.color.b, 0);
+
+ 
 
         ResetEmotionUI();
         OnNextButtonUIPressed();
@@ -258,14 +256,9 @@ public class CharacterDialogueUI : MonoBehaviour
     void NextDialogue()
     {
         currentDialogueIndex++;
-        ResetEmotionUI();
-        runningEmotionCoroutine = Co_EmotionOut();
-        StartCoroutine(runningEmotionCoroutine);
-        if (runningEmotionCoroutine != null)
-        {
-            StopCoroutine(runningEmotionCoroutine);
-            runningEmotionCoroutine = null;
-        }
+        //ResetEmotionUI();
+
+  
         if (currentDialogueIndex == currentSO_Dialogues.dialogues.Count)
         {
             if (isAdvancedonWorldEventEndedEvent)
@@ -283,8 +276,15 @@ public class CharacterDialogueUI : MonoBehaviour
     }
     public void OnNextButtonUIPressed()
     {
-  
-        
+        if (runningEmotionCoroutine != null)
+        {
+            StopCoroutine(runningEmotionCoroutine);
+            runningEmotionCoroutine = null;
+            runningEmotionCoroutine = Co_EmotionOut();
+            StartCoroutine(runningEmotionCoroutine);
+        }
+
+
         //Debug.Log(id + " EVENT WITH NAME " + currentSO_Dialogues.name + " IS CURRENT DIALOGUE " + currentDialogueIndex +  " IS CURRENT INDEX OUT OF " + currentSO_Dialogues.dialogues.Count);
         if (currentDialogueIndex < currentSO_Dialogues.dialogues.Count)
         {
@@ -302,9 +302,8 @@ public class CharacterDialogueUI : MonoBehaviour
                 avatarImage.gameObject.SetActive(true);
                 if (firstTime)
                 {
-                    Color newAvatarColor = avatarImage.material.color;
-                    newAvatarColor.a = 1;
-                    avatarImage.material.color = newAvatarColor;
+                    avatarImage.DOFade(1,0.1f);
+       
                     avatarImage.sprite = currentDialogue.character.avatar;// currentDialogue.character.avatars[(int)currentDialogue.emotion];
 
                 }
@@ -430,18 +429,13 @@ public class CharacterDialogueUI : MonoBehaviour
             
         }
     }
-
     IEnumerator Co_EmotionIn(Sprite p_avatar, CharacterEmotionType p_emotion)
     {
-        if (firstTime)
-        {
-            avatarImage.gameObject.SetActive(true);
-
-            avatarImage.sprite = p_avatar;// currentDialogue.character.avatars[(int)currentDialogue.emotion];
-            var sequence = DOTween.Sequence()
-            .Append(avatarImage.DOFade(1, avatarFadeTime));
-            yield return sequence.WaitForCompletion();
-        }
+        avatarImage.sprite = p_avatar;// currentDialogue.character.avatars[(int)currentDialogue.emotion];
+        var sequence = DOTween.Sequence()
+        .Append(avatarImage.DOFade(1, avatarFadeTime));
+        sequence.Play();
+        yield return sequence.WaitForCompletion();
         yield return new WaitForSeconds(avatarDelayTime);
         var sequenceTwo = DOTween.Sequence()
         .Append(emoticonBubbleImage.DOFade(1, emoticonBubbleFadeTime));
@@ -452,22 +446,26 @@ public class CharacterDialogueUI : MonoBehaviour
         var sequenceThree = DOTween.Sequence()
         .Append(emoticonImage.DOFade(1, emoticonFadeTime));
         sequenceThree.Join(emoticonRectTransform.DOSizeDelta(targetEmoticonSize.sizeDelta, emoticonSizeTime, false));
+        sequenceThree.Play();
         emoticonAnim.SetInteger("enum", (int)p_emotion);
+    
+
     }
+
 
     IEnumerator Co_EmotionOut()
     {
-      
+        var sequenceThree = DOTween.Sequence()
+         .Append(emoticonImage.DOFade(0, emoticonFadeTime));
+        sequenceThree.Join(emoticonRectTransform.DOSizeDelta(defaultEmoticonSize.sizeDelta, emoticonSizeTime, false));
+        sequenceThree.Play();
+        yield return new WaitForSeconds(emoticonSizeTime / 2);//sequence.WaitForCompletion();
+
         var sequenceTwo = DOTween.Sequence()
-        .Append(emoticonBubbleImage.DOFade(0, emoticonBubbleFadeTime));
+         .Append(emoticonBubbleImage.DOFade(0, emoticonBubbleFadeTime));
         sequenceTwo.Join(emoticonBubbleRectTransform.DOSizeDelta(defaultEmoticonBubbleSize.sizeDelta, emoticonBubbleSizeTime, false));
         sequenceTwo.Play();
-        yield return new WaitForSeconds(emoticonSizeTime / 2);//sequence.WaitForCompletion();
-    
-        var sequenceThree = DOTween.Sequence()
-        .Append(emoticonImage.DOFade(0, emoticonFadeTime));
-        sequenceThree.Join(emoticonRectTransform.DOSizeDelta(defaultEmoticonSize.sizeDelta, emoticonSizeTime, false));
-        yield return sequenceThree.WaitForCompletion();
+        yield return sequenceTwo.WaitForCompletion();
         emoticonObject.SetActive(false);
     }
 }

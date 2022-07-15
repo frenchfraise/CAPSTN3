@@ -1,15 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using DG.Tweening;
 public class HoverEffect : MonoBehaviour
 {
+    [SerializeField] private float hoverDownPeakOffset;
     [SerializeField] private float hoverUpPeakOffset;
-    [SerializeField] private float hoverUpSpeed;
-    [SerializeField] private float hoverUpRate;
+    [SerializeField] private float hoverUpTime;
+    //[SerializeField] private float hoverUpSpeed;
+    //[SerializeField] private float hoverUpRate;
     [SerializeField] private float delayTime;
-    [SerializeField] private float hoverDownSpeed;
-    [SerializeField] private float hoverDownRate;
+    [SerializeField] private float hoverDownTime;
+    //[SerializeField] private float hoverDownSpeed;
+    //[SerializeField] private float hoverDownRate;
     public float startYPosition;
     public IEnumerator runningCoroutine;
 
@@ -39,20 +42,17 @@ public class HoverEffect : MonoBehaviour
     {
         
 
-        while (transform.position.y < startYPosition + hoverUpPeakOffset)
-        {
-            transform.position += new Vector3(0, hoverUpSpeed);
-            yield return new WaitForSeconds(hoverUpRate);
-        }
-
-
+        var sequence = DOTween.Sequence()
+        .Append(transform.DOMoveY(startYPosition+hoverUpPeakOffset, hoverUpTime));
+        sequence.Play();
+        yield return sequence.WaitForCompletion();
         yield return new WaitForSeconds(delayTime);
+        var sequenceTwo = DOTween.Sequence()
+        .Append(transform.DOMoveY(startYPosition-hoverDownPeakOffset, hoverDownTime));
+        sequenceTwo.Play();
+        yield return sequenceTwo.WaitForCompletion();
 
-        while (transform.position.y > startYPosition)
-        {
-            transform.position -= new Vector3(0, hoverDownSpeed);
-            yield return new WaitForSeconds(hoverDownRate);
-        }
+  
         
         runningCoroutine = Co_Hover();
         StartCoroutine(runningCoroutine);

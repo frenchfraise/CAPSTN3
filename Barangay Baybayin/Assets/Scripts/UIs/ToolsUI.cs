@@ -11,7 +11,7 @@ public class ToolUIElements
     public Image background;
     public Image icon;
     public TMP_Text levelCount;
-    public Image fill;
+    [SerializeField] public GenericBarUI genericBarUI;
 }
 
 public class ToolQuestSwitchEvent : UnityEvent<int> { };
@@ -48,8 +48,10 @@ public class ToolsUI : MonoBehaviour
 
         canUse = true;
         canSwitch = true;
-        ToolManager.onProficiencyLevelModifiedEvent.AddListener(UpdateLevel);
+        //ToolManager.onProficiencyLevelModifiedEvent.AddListener(UpdateLevel);
+        //ToolManager.onProficiencyAmountModifiedEvent.AddListener(UpdateProf);
         ToolManager.onProficiencyAmountModifiedEvent.AddListener(UpdateProf);
+        ToolManager.onProficiencyLevelModifiedEvent.AddListener(UpdateLevel);
         onToolQuestSwitchEvent.AddListener(RequireTool);
     }
 
@@ -78,7 +80,11 @@ public class ToolsUI : MonoBehaviour
         Tool selected_Tool = ToolManager.instance.tools[currentEquip];
         SO_Tool selectedSO_Tool = selected_Tool.so_Tool;
         toolUI[currentEquip].levelCount.text = selected_Tool.proficiencyLevel.ToString();
-        toolUI[currentEquip].fill.sprite = frameLevels[selected_Tool.proficiencyLevel];
+        toolUI[currentEquip].background.sprite = frameLevels[selected_Tool.proficiencyLevel];
+        toolUI[currentEquip].genericBarUI.ResetBar(1, 1);
+  
+
+
     }
 
     public void UpdateProf(float p_curr, float p_max)
@@ -87,8 +93,16 @@ public class ToolsUI : MonoBehaviour
         SO_Tool selectedSO_Tool = selected_Tool.so_Tool;
         Debug.Log(p_curr + " - " + p_max);
         Debug.Log(selected_Tool.proficiencyAmount + " - " +  selectedSO_Tool.maxProficiencyAmount[selected_Tool.craftLevel]);
-        toolUI[currentEquip].fill.fillAmount = selected_Tool.proficiencyAmount / selectedSO_Tool.maxProficiencyAmount[selected_Tool.craftLevel];
-
+        //toolUI[currentEquip].genericBarUI.fillAmount = selected_Tool.proficiencyAmount / selectedSO_Tool.maxProficiencyAmount[selected_Tool.craftLevel];
+        if (toolUI[currentEquip].genericBarUI.gameObject.activeSelf)
+        {
+            toolUI[currentEquip].genericBarUI.UpdateBar(selected_Tool.proficiencyAmount, selectedSO_Tool.maxProficiencyAmount[selected_Tool.craftLevel]);
+        }
+        else
+        {
+            toolUI[currentEquip].genericBarUI.InstantUpdateBar(selected_Tool.proficiencyAmount, selectedSO_Tool.maxProficiencyAmount[selected_Tool.craftLevel], selectedSO_Tool.maxProficiencyAmount[selected_Tool.craftLevel]);
+        }
+        
     }
     public void OnToolButtonPressed(int index)
     {

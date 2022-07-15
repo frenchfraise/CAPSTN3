@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Pool;
-
+using DG.Tweening;
 public class ResourceNodeHitEvent : UnityEvent<List<SO_ResourceNode> , int , int, UnityEvent > { }
 public class ResourceNode : Unit
 {
@@ -20,6 +20,12 @@ public class ResourceNode : Unit
     [NonReorderable] public List<ResourceDrop> resourceDrops = new List<ResourceDrop>(); //chance
 
     public ResourceNodeHitEvent OnResourceNodeHitEvent = new ResourceNodeHitEvent();
+
+    float shakePositionDuration = 0.15f;
+    Vector3 shakePositionPower = new Vector3(0.5f, 0.5f);
+    int shakePositionVibrato = 4;
+    float shakePositionRandomRange = 1f;
+    bool shakePositionCanFade = false;
 
     protected override void OnEnable()
     {
@@ -53,15 +59,20 @@ public class ResourceNode : Unit
                 health.onHealthModifyEvent.Invoke(-p_currentDamage);
 
                 p_eventCallback.Invoke();
-
+                transform.DOShakePosition(shakePositionDuration, shakePositionPower, shakePositionVibrato, shakePositionRandomRange, shakePositionCanFade);
+                //StartCoroutine(Co_ShakeNode());
                 //}
             }
         }
     
     }
+    //IEnumerator Co_ShakeNode()
+    //{
 
+    //}
     public void RewardResource()
     {
+        CameraManager.onShakeCameraEvent.Invoke();
         int chosenIndex = Random.Range(0, resourceDrops.Count);
         
         ResourceDrop chosenResourceDrop = resourceDrops[chosenIndex];
