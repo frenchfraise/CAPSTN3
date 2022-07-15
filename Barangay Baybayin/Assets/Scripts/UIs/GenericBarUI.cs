@@ -220,9 +220,10 @@ public class GenericBarUI : MonoBehaviour
             StopCoroutine(runningCoroutine);
             runningCoroutine = null;
         }
-        realBarUI.fillAmount = 0f;
-        ghostBarUI.fillAmount = 0f;
-        restrictedBarUI.fillAmount = 0f;
+        realBarUI.fillAmount = savedFill;
+        ghostBarUI.fillAmount = savedFill;
+        restrictedBarUI.fillAmount = savedFill;
+        Debug.Log(gameObject.name + " - " + current + " - " + currentMax);
         InstantUpdateBar(current, currentMax, currentMax);
 
         
@@ -288,14 +289,17 @@ public class GenericBarUI : MonoBehaviour
     {
         StopAllCoroutines();
         isResetting = false;
- 
-     
+
+        current = p_current;
+        currentMax = p_max;
         float fill = p_current / p_max;
-        
-        float restrictedFill = (p_max/ p_max) - (p_currentMax / p_max);
+        savedFill = fill;
+        Debug.Log("INSTAAAAA: " + savedFill + " - " + p_current + " - " + p_max) ;
+        //float restrictedFill = (p_max/ p_max) - (p_currentMax / p_max);
         if (realBarUI)
         {
-            realBarUI.fillAmount = fill;
+            Debug.Log(savedFill);
+            realBarUI.DOFillAmount(savedFill,0.01f);
             realBarUI.color = new Color(realBarUI.color.r, realBarUI.color.g, realBarUI.color.b, 1);
         }
         else
@@ -305,7 +309,9 @@ public class GenericBarUI : MonoBehaviour
 
         if (ghostBarUI)
         {
-            ghostBarUI.fillAmount = fill;
+            Debug.Log(savedFill);
+            ghostBarUI.DOFillAmount(savedFill, 0.01f);
+            //ghostBarUI.fillAmount = savedFill;
             ghostBarUI.color = new Color(ghostBarUI.color.r, ghostBarUI.color.g, ghostBarUI.color.b, 1);
         }
         else
@@ -313,15 +319,16 @@ public class GenericBarUI : MonoBehaviour
             Debug.LogError(gameObject.name.ToString() + " IS MISSING ghostBarUI REFERENCE IN INSPECTOR");
         }
 
-        if (restrictedBarUI)
-        {
-            restrictedBarUI.fillAmount = restrictedFill;
-        }
-        else
-        {
-           // Debug.LogError(gameObject.name.ToString() + " IS MISSING restrictedBarUI REFERENCE IN INSPECTOR");
-        }
-        
+        //if (restrictedBarUI)
+        //{
+        //    restrictedBarUI.fillAmount = restrictedFill;
+        //}
+        //else
+        //{
+        //   // Debug.LogError(gameObject.name.ToString() + " IS MISSING restrictedBarUI REFERENCE IN INSPECTOR");
+        //}
+        Debug.Log(gameObject.name + " INSTA- " + current + " - " + currentMax);
+
     }
 
     public void ResetBar(float p_current = 0, float p_currentMax = 1)
@@ -339,7 +346,7 @@ public class GenericBarUI : MonoBehaviour
             runningCoroutine = Co_UpdateBar(fill);
             StartCoroutine(runningCoroutine);
         }
-
+        Debug.Log(gameObject.name + " RESET- " + current + " - " + currentMax);
     }
    
     public void UpdateBar(float p_current = 0, float p_currentMax =1)
@@ -362,6 +369,7 @@ public class GenericBarUI : MonoBehaviour
             }
 
         }
+        Debug.Log(gameObject.name + " UPDA- " + current + " - " + currentMax);
     }
     IEnumerator Co_UpdateBar(float p_fill = 0)
     {
@@ -459,33 +467,42 @@ public class GenericBarUI : MonoBehaviour
             s.Play();
             yield return s.WaitForCompletion();
             ghostBarUI.color = defaultGhostBarColor;
-
+            Debug.Log(gameObject.name + " UPODATIN- " + current + " - " + currentMax);
 
         }
         else
         {
-            
-            ghostBarUI.fillAmount = resetTransitionTime;
+            realBarUI.fillAmount = 1;
+            //ghostBarUI.fillAmount = resetTransitionTime;
             yield return new WaitForSeconds(delayTime);
-
-            Tween maxFill = realBarUI.DOFillAmount(1, 0.35f);
-            yield return maxFill.WaitForCompletion();
-
-            ghostBarUI.fillAmount = 0;
-            Tween defaultFill = realBarUI.DOFillAmount(0, resetTransitionTime);
+            realBarUI.fillAmount = 0;
+            Tween defaultFill = ghostBarUI.DOFillAmount(0, resetTransitionTime);
             yield return defaultFill.WaitForCompletion();
+            //Tween maxFill = realBarUI.DOFillAmount(1, 0.35f);
+            //yield return maxFill.WaitForCompletion();
+
+            //ghostBarUI.fillAmount = 0;
+            //Tween defaultFill = realBarUI.DOFillAmount(0, resetTransitionTime);
+            //yield return defaultFill.WaitForCompletion();
 
             isResetting = false;
-            if (runningCoroutine != null)
+            p_fill -= 1;
+            if (p_fill > -1)
             {
-                StopCoroutine(runningCoroutine);
-                runningCoroutine = null;
+                if (runningCoroutine != null)
+                {
+                    StopCoroutine(runningCoroutine);
+                    runningCoroutine = null;
+                }
+
+                runningCoroutine = Co_UpdateBar();
+                StartCoroutine(runningCoroutine);
             }
-            runningCoroutine = Co_UpdateBar(p_fill);
-            StartCoroutine(runningCoroutine);
+            Debug.Log(gameObject.name + " UPDAOUT- " + current + " - " + currentMax);
+
             //StartCoroutine(Co_UpdateBar(p_fill));
-            
-            
+
+
         }
         
     }

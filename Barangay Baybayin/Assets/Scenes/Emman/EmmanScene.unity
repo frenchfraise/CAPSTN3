@@ -720,28 +720,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6399bddeecafc134095c538687f0cea9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &47672786 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3703798871372326633, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
-  m_PrefabInstance: {fileID: 774775257}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &52778637 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2404473735615942754, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
-  m_PrefabInstance: {fileID: 774775257}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &53811020
 GameObject:
   m_ObjectHideFlags: 0
@@ -957,7 +935,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 101662862122452031, guid: fea5a514e58f9df44bdc47a1f3ee5647, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 0.000061035156
       objectReference: {fileID: 0}
     - target: {fileID: 101662862203666364, guid: fea5a514e58f9df44bdc47a1f3ee5647, type: 3}
       propertyPath: m_AnchorMax.x
@@ -10701,17 +10679,6 @@ Transform:
   m_Father: {fileID: 1320085458}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &374284677 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 640004668, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
-  m_PrefabInstance: {fileID: 774775257}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &374415463
 GameObject:
   m_ObjectHideFlags: 0
@@ -16461,17 +16428,6 @@ MonoBehaviour:
     passageway: {fileID: 99913648}
     playerDestinationPosition: {fileID: 441212691}
     connectedToPassageway: {fileID: 2704640440364236657}
---- !u!114 &746302889 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1039411982, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
-  m_PrefabInstance: {fileID: 774775257}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &753192556
 GameObject:
   m_ObjectHideFlags: 0
@@ -16704,102 +16660,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 845275496}
     m_Modifications:
-    - target: {fileID: 180616682, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
-      propertyPath: realBarUI
-      value: 
-      objectReference: {fileID: 374284677}
-    - target: {fileID: 180616682, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
-      propertyPath: ghostBarUI
-      value: 
-      objectReference: {fileID: 1845392527}
-    - target: {fileID: 180616682, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
-      propertyPath: ghostBarFadeTransition.amount
-      value: 999
-      objectReference: {fileID: 0}
-    - target: {fileID: 180616682, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
-      propertyPath: ghostBarFillTransition.amount
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 707724467, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
-      propertyPath: m_FillAmount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 850376320, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
-      propertyPath: m_FillAmount
-      value: 0.53
-      objectReference: {fileID: 0}
-    - target: {fileID: 989570442, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
-      propertyPath: realBarUI
-      value: 
-      objectReference: {fileID: 746302889}
-    - target: {fileID: 989570442, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
-      propertyPath: ghostBarUI
-      value: 
-      objectReference: {fileID: 52778637}
-    - target: {fileID: 989570442, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
-      propertyPath: ghostBarFadeTransition.amount
-      value: 999
-      objectReference: {fileID: 0}
-    - target: {fileID: 989570442, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
-      propertyPath: ghostBarFillTransition.amount
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1310999918, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
-      propertyPath: realBarUI
-      value: 
-      objectReference: {fileID: 1688430782}
-    - target: {fileID: 1310999918, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
-      propertyPath: ghostBarUI
-      value: 
-      objectReference: {fileID: 1923830163}
-    - target: {fileID: 1310999918, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
-      propertyPath: ghostBarFadeTransition.amount
-      value: 999
-      objectReference: {fileID: 0}
-    - target: {fileID: 1310999918, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
-      propertyPath: ghostBarFillTransition.amount
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1420076330, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
-      propertyPath: realBarUI
-      value: 
-      objectReference: {fileID: 1985121242}
-    - target: {fileID: 1420076330, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
-      propertyPath: ghostBarUI
-      value: 
-      objectReference: {fileID: 47672786}
-    - target: {fileID: 1420076330, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
-      propertyPath: restrictedBarUI
-      value: 
-      objectReference: {fileID: 1428122804}
-    - target: {fileID: 1420076330, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
-      propertyPath: defaultGhostBarColor.rgba
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 1420076330, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
-      propertyPath: realBarColorFlash.color.rgba
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 1420076330, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
-      propertyPath: ghostBarFadeTransition.amount
-      value: 999
-      objectReference: {fileID: 0}
-    - target: {fileID: 1420076330, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
-      propertyPath: ghostBarFillTransition.amount
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1420076330, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
-      propertyPath: transitionsDataHolders.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 384800536085462375, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
-      propertyPath: m_FillAmount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3703798871372326633, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
-      propertyPath: m_FillAmount
-      value: 0.18
-      objectReference: {fileID: 0}
     - target: {fileID: 5663208971731060726, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
       propertyPath: m_Name
       value: ToolsPanel
@@ -16888,22 +16748,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5663208971731060731, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
-      propertyPath: toolUI.Array.data[0].frame
-      value: 
-      objectReference: {fileID: 47672786}
-    - target: {fileID: 5663208971731060731, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
-      propertyPath: toolUI.Array.data[1].frame
-      value: 
-      objectReference: {fileID: 1923830163}
-    - target: {fileID: 5663208971731060731, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
-      propertyPath: toolUI.Array.data[2].frame
-      value: 
-      objectReference: {fileID: 52778637}
-    - target: {fileID: 5663208971731060731, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
-      propertyPath: toolUI.Array.data[3].frame
-      value: 
-      objectReference: {fileID: 1845392527}
     - target: {fileID: 5663208971818632351, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -24768,7 +24612,6 @@ MonoBehaviour:
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
-  m_AlphaBlendOnOverlap: 0
   m_OverlapOperation: 0
   m_NormalMapDistance: 3
   m_NormalMapQuality: 2
@@ -27314,17 +27157,6 @@ Transform:
   m_Father: {fileID: 844511968}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1428122804 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 663499176, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
-  m_PrefabInstance: {fileID: 774775257}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1431870300
 GameObject:
   m_ObjectHideFlags: 0
@@ -34488,7 +34320,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SendPointerHoverToParent: 1
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit
@@ -40956,17 +40787,6 @@ Transform:
   m_Father: {fileID: 1320085458}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1688430782 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 707724467, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
-  m_PrefabInstance: {fileID: 774775257}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1690042059
 GameObject:
   m_ObjectHideFlags: 0
@@ -41135,7 +40955,6 @@ MonoBehaviour:
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
-  m_AlphaBlendOnOverlap: 0
   m_OverlapOperation: 0
   m_NormalMapDistance: 3
   m_NormalMapQuality: 2
@@ -43213,17 +43032,6 @@ Transform:
   m_Father: {fileID: 1014869694}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1845392527 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3711158786129212453, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
-  m_PrefabInstance: {fileID: 774775257}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1846646606
 GameObject:
   m_ObjectHideFlags: 0
@@ -44702,17 +44510,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   room: {fileID: 0}
---- !u!114 &1923830163 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 384800536085462375, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
-  m_PrefabInstance: {fileID: 774775257}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1924720008
 GameObject:
   m_ObjectHideFlags: 0
@@ -45479,17 +45276,6 @@ Transform:
   m_Father: {fileID: 1249817845}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1985121242 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 850376320, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
-  m_PrefabInstance: {fileID: 774775257}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1987521657
 GameObject:
   m_ObjectHideFlags: 0

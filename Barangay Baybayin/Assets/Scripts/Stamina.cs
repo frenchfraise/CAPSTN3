@@ -26,23 +26,34 @@ public class Stamina : MonoBehaviour
     private void Awake()
     {
         onManualSetStaminaEvent.AddListener(ManualSetStaminaEvent);
-    }
-    private void OnEnable()
-    {
         OnStaminaModifiedEvent.AddListener(genericBarUI.UpdateBar);
         onStaminaDepletedEvent.AddListener(PenalizeStamina);
         TimeManager.onDayChangingEvent.AddListener(RegenerateStamina);
         currentMaxStamina = maxStamina; // some delay around here, when one starts the game and does Use(), THE PLAYER COULD FAINT
         genericBarUI.InstantUpdateBar(currentStamina, currentMaxStamina, maxStamina);
+        Debug.Log("STAM ENABLED");
+    }
+
+    private void Destroy()
+    {
+        OnStaminaModifiedEvent.RemoveListener(genericBarUI.UpdateBar);
+        onStaminaDepletedEvent.RemoveListener(PenalizeStamina);
+        TimeManager.onDayChangingEvent.RemoveListener(RegenerateStamina);
+    }
+    private void OnEnable()
+    {
+        
+        
+  
         
     }
 
     private void OnDisable()
     {
-        OnStaminaModifiedEvent.RemoveListener(genericBarUI.UpdateBar);
-        onStaminaDepletedEvent.RemoveListener(PenalizeStamina);
+ 
+ 
         
-        TimeManager.onDayChangingEvent.RemoveListener(RegenerateStamina);
+
         
         
     }
@@ -52,6 +63,7 @@ public class Stamina : MonoBehaviour
         //float amount = Mathf.Abs(p_currentStamina - currentStamina);
         //ModifyStamina(amount);
         genericBarUI.InstantUpdateBar(currentStamina, maxStamina, maxStamina);
+        Debug.Log("MANUAL STAM ENABLED");
     }
     public void PenalizeStamina()
     {

@@ -109,7 +109,7 @@ public class UIManager : MonoBehaviour
     }
     public IEnumerator Co_TransitionFade(float p_opacity, bool p_isActiveOnEnd)
     {
-        Debug.Log("CALLED");
+    
         UIManager.instance.transitionUI.gameObject.SetActive(true);
         Sequence fadeSequence = DOTween.Sequence();
         fadeSequence.Join(UIManager.instance.transitionUI.DOFade(p_opacity, 0.5f));
@@ -126,7 +126,7 @@ public class UIManager : MonoBehaviour
                                             Action p_preAction = null,
                                             Action p_postAction = null)
     {
-        Debug.Log("CALLED AUTOF");
+      
         UIManager.instance.StartCoroutine(UIManager.instance.Co_TransitionPreFadeAndPostFade(p_preOpacity,
                                                                                             p_preTransitionTime,
                                                                                             p_delayTime,

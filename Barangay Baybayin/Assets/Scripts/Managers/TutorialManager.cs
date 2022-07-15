@@ -6,6 +6,10 @@ public class TutorialEventEndedEvent : UnityEvent<int> { };
 public class TutorialManager : MonoBehaviour
 {
     public static TutorialManager instance;
+    public Transform spawnLocation;
+    public Transform panLimitUpperRightTransform;
+    public Vector2 panLimit;
+    public Transform startRoom;
     public int currentIndex = 0;
     public int currentDialogueIndex = 0;
     public List<SO_Dialogues> dialogues;
@@ -30,7 +34,7 @@ public class TutorialManager : MonoBehaviour
     public SO_Dialogues needToUpgradeAllTools;
     public SO_Dialogues cantGoThere;
 
-    public EdgeCollider2D edgeCollider;
+    public TutorialBlocker tutorialBlocker;
     public Passageway MidToPandayRoomPassageway;
     public Passageway MidToForkRoomPassageway;
     public Passageway PandayToMidPassageway;
@@ -66,6 +70,7 @@ public class TutorialManager : MonoBehaviour
 
     void Setup()
     {
+        CameraManager.instance.tutorialOn = true;
         StorylineManager.onWorldEventEndedEvent.AddListener(TellStory);
         UIManager.onGameplayModeChangedEvent.AddListener(GameplayModeChangedEvent);
         infrastructure.InitializeValues();
@@ -76,12 +81,15 @@ public class TutorialManager : MonoBehaviour
         TimeManager.instance.tutorialOn = true;
         TimeManager.onPauseGameTime.Invoke(true);
         Stamina.onManualSetStaminaEvent.Invoke(200);
-
-        //
+        PlayerManager.instance.playerTransform.position = spawnLocation.position;
+        panLimit = Vector2Abs(startRoom.position - panLimitUpperRightTransform.position);
+        CameraManager.onCameraMovedEvent.Invoke(startRoom.position, panLimit);
+        tutorialBlocker.gameObject.SetActive(true);//
         StartLecture();
     }
     void Unsetup()
     {
+        CameraManager.instance.tutorialOn = false;
         Debug.Log("UNSETTING UP");
         StorylineManager.onWorldEventEndedEvent.RemoveListener(TellStory);
         UIManager.onGameplayModeChangedEvent.RemoveListener(GameplayModeChangedEvent);
@@ -92,10 +100,14 @@ public class TutorialManager : MonoBehaviour
         TimeManager.onPauseGameTime.Invoke(true);
         tutorialUI.overheadUI.SetActive(false);
         panday.isQuestMode = false;
-
+        tutorialBlocker.gameObject.SetActive(false);
 
     }
-
+    Vector2 Vector2Abs(Vector2 p_vector2)
+    {
+        Vector2 answer = new Vector2(Mathf.Abs(p_vector2.x), Mathf.Abs(p_vector2.y));
+        return answer;
+    }
     void StartLecture()
     {
         Debug.Log("START LECTURE ID: O-" + currentIndex + " CURRENT INDEX: " + currentIndex + " CURRENT DIALOGUE: " + currentDialogueIndex);
@@ -121,6 +133,21 @@ public class TutorialManager : MonoBehaviour
         else if (p_id == "SWINGINGWRONGTOOL")
         {
             CharacterDialogueUI.onCharacterSpokenToEvent.Invoke("RETURNTOCURRENTTUTORIAL", swingingWrongTool);
+
+        }
+        else if (p_id == "UPGRADINGWRONG")
+        {
+            CharacterDialogueUI.onCharacterSpokenToEvent.Invoke("RETURNTOCURRENTTUTORIAL", upgradingWrong);
+
+        }
+        else if (p_id == "NEEDTOUPGRADEALLTOOLS")
+        {
+            CharacterDialogueUI.onCharacterSpokenToEvent.Invoke("RETURNTOCURRENTTUTORIAL", needToUpgradeAllTools);
+
+        }
+        else if (p_id == "CANTGOTHERE")
+        {
+            CharacterDialogueUI.onCharacterSpokenToEvent.Invoke("RETURNTOCURRENTTUTORIAL", cantGoThere);
 
         }
         else if (p_id == "RETURNTOCURRENTTUTORIAL")
@@ -221,7 +248,7 @@ public class TutorialManager : MonoBehaviour
         {
             InventoryManager.AddItem("Recipe 1", 1);
             InventoryManager.AddItem("Wood 1", 10);
-
+            UpgradeToolsUI.onSetSpecificToMachete.Invoke(true);
             ToolManager.onToolUpgradedEvent.AddListener(RequireMacheteCraftLevel1);
             EndStory();
 
@@ -230,9 +257,11 @@ public class TutorialManager : MonoBehaviour
         }
         else if (p_id == "O-7")
         {
+            Debug.Log("7 HAPPENEEEEEEEEEEEEEEEEEEEEEED");
             InventoryManager.AddItem("Recipe 1", 3); //it happens 3 times
             InventoryManager.AddItem("Wood 1", 30);
-
+            UpgradeToolsUI.onSetSpecificToMachete.Invoke(false);
+            UpgradeToolsUI.onSetSpecificToAllOther.Invoke(true);
             ToolManager.onToolUpgradedEvent.AddListener(RequireAllToolsCraftLevel1);
             EndStory();
 
@@ -240,8 +269,9 @@ public class TutorialManager : MonoBehaviour
         }
         else if (p_id == "O-8")
         {
+            UpgradeToolsUI.onSetSpecificToAllOther.Invoke(false);
             panday.isQuestMode = true;
-
+            Debug.Log("8 HAPPENEEEEEEEEEEEEEEEEEEEEEED");
             //ResourceNode newResourceNode = TreeVariantOneNodePool.pool.Get();
             //newResourceNode.transform.position = spawnPoint1.position + new Vector3(0f, -2.35f, 0f);
             //newResourceNode.InitializeValues();

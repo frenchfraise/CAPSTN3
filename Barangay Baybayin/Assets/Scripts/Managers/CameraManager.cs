@@ -50,6 +50,8 @@ public class CameraManager : MonoBehaviour
 
     [SerializeField] float zoomOutSize = 15f;
     [SerializeField] float zoomOutDuration = 1f;
+
+    public bool tutorialOn = true;
     private void Awake()
     {
        
@@ -81,8 +83,12 @@ public class CameraManager : MonoBehaviour
     }
     public void ResetCamera()
     {
-        //Debug.Log("Invoked: " + defaultRoom.transform.position + ", " + panLimit);
-        onCameraMovedEvent.Invoke(defaultRoom.transform.position, panLimit);
+        if (!tutorialOn)
+        {
+            //Debug.Log("Invoked: " + defaultRoom.transform.position + ", " + panLimit);
+            onCameraMovedEvent.Invoke(defaultRoom.transform.position, panLimit);
+        }
+
     }
 
     public void ShakeCamera()

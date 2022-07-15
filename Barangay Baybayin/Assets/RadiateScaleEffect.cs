@@ -19,7 +19,7 @@ public class RadiateScaleEffect : MonoBehaviour
     }
     public IEnumerator Co_Scale()
     {
-        Debug.Log("Scale ");
+       
         var sequence = DOTween.Sequence()
         .Append(affectedTransform.DOScale(new Vector3(scaleDownPeakOffset, scaleDownPeakOffset), scaleDownTime));
         sequence.Play();
@@ -29,7 +29,7 @@ public class RadiateScaleEffect : MonoBehaviour
         .Append(affectedTransform.DOScale(new Vector3(scaleUpPeakOffset, scaleUpPeakOffset), scaleUpTime));
         sequence.Play();
         yield return sequenceTwo.WaitForCompletion();
-        Debug.Log("Scale down ");
+       
         runningCoroutine = Co_Scale();
         StartCoroutine(runningCoroutine);
     }

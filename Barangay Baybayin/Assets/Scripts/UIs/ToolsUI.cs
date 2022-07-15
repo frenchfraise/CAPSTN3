@@ -86,7 +86,7 @@ public class ToolsUI : MonoBehaviour
         Tool selected_Tool = ToolManager.instance.tools[currentEquip];
         SO_Tool selectedSO_Tool = selected_Tool.so_Tool;
         toolUI[currentEquip].levelCount.text = selected_Tool.proficiencyLevel.ToString();
-        
+        toolUI[currentEquip].icon.sprite = selectedSO_Tool.equippedIcon[selected_Tool.craftLevel];
         toolUI[currentEquip].frame.sprite = frameLevels[selected_Tool.proficiencyLevel];
         toolUI[currentEquip].genericBarUI.ResetBar(1, 1);
   

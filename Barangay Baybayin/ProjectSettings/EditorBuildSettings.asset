@@ -12,17 +12,20 @@ EditorBuildSettings:
     path: Assets/Scenes/Jerry/TitleScreen.unity
     guid: 20b6934c37278204aadd870ccf527c4b
   - enabled: 1
+    path: Assets/Scenes/Jerry/JerryScene.unity
+    guid: d04f0460a24388941929b57aea6a5a81
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 1
     path: Assets/Scenes/Emman/EmmanScene.unity
     guid: 987babaf6f9c4f4418def72367d96b4f
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
-    path: Assets/Scenes/Jerry/OldJerryScene.unity
-    guid: 6bd7a2596aa65ed49add553adcae6993
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000

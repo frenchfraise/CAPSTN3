@@ -5,6 +5,7 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
 public class SetSpecificToMachete : UnityEvent<bool> { }
+public class SetSpecificToAllOther : UnityEvent<bool> { }
 
 public class UpgradeToolsUI : MonoBehaviour
 {
@@ -26,6 +27,7 @@ public class UpgradeToolsUI : MonoBehaviour
     [SerializeField] private List<UpgradeMaterialUI> upgradeMaterialUIs;
     [SerializeField]
     private bool isSpecificToMachete;
+    private bool isSpecificToAllOther;
     private int currentIndex;
 
     private bool threeRequirement = false;
@@ -33,7 +35,7 @@ public class UpgradeToolsUI : MonoBehaviour
     [SerializeField]
     private List<UpgradeToolUI> upgradeToolUIs = new List<UpgradeToolUI>();
     public static SetSpecificToMachete onSetSpecificToMachete = new SetSpecificToMachete();
-
+    public static SetSpecificToAllOther onSetSpecificToAllOther = new SetSpecificToAllOther();
     private void Awake()
     {
         foreach (UpgradeToolUI upgradeToolUI in upgradeToolUIs)
@@ -45,25 +47,72 @@ public class UpgradeToolsUI : MonoBehaviour
     {
         isSpecificToMachete = p_bool;
     }
+
+    public void SetSpecificToAllOther(bool p_bool)
+    {
+        isSpecificToAllOther = p_bool;
+    }
+
     private void OnEnable()
     {
         Panday.onPandaySpokenToEvent.AddListener(OpenButtonUIClicked);
         onSetSpecificToMachete.AddListener(SetSpecificToMachete);
+        onSetSpecificToAllOther.AddListener(SetSpecificToAllOther);
     }
 
     private void OnDisable()
     {
         Panday.onPandaySpokenToEvent.RemoveListener(OpenButtonUIClicked);
     }
+
+    public void ToolUp()
+    {
+        
+            upgradeMaterialUIs[0].requirementFulfilled = false;
+            upgradeMaterialUIs[1].requirementFulfilled = false;
+            threeRequirement = false;
+            
+            confirmPanelUI.SetActive(true);
+            selectionPanelUI.SetActive(false);
+            UpdateCurrentToolUI(ToolManager.instance.tools[currentIndex]);
+    }
     public void ToolButtonUIClicked(int p_toolIndex)
     {
-        upgradeMaterialUIs[0].requirementFulfilled = false;
-        upgradeMaterialUIs[1].requirementFulfilled = false;
-        threeRequirement = false;
+        Debug.Log("DAAAAAAAAA");
         currentIndex = p_toolIndex;
-        confirmPanelUI.SetActive(true);
-        selectionPanelUI.SetActive(false);
-        UpdateCurrentToolUI(ToolManager.instance.tools[currentIndex]);
+        if (isSpecificToMachete)
+        {
+            if (p_toolIndex == 2)
+            {
+                ToolUp();
+            }
+            else
+            {
+               
+                StorylineManager.onWorldEventEndedEvent.Invoke("UPGRADINGWRONG", 0, 0);
+            }
+
+        }
+       
+        else if (isSpecificToAllOther)
+        {
+            if (p_toolIndex == 0 ||
+                p_toolIndex == 1 ||
+                p_toolIndex == 3)
+            {
+                ToolUp();
+            }
+            else
+            {
+                StorylineManager.onWorldEventEndedEvent.Invoke("NEEDTOUPGRADEALLTOOLS", 0, 0);
+            }
+        }
+        else
+        {
+            ToolUp();
+        }
+       
+        
     }
 
     void UpdateCurrentToolUI(Tool p_currentTool)

@@ -954,7 +954,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &53811021
 RectTransform:
   m_ObjectHideFlags: 0
@@ -988,7 +988,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1407,7 +1407,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1498555638}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &69624694
 BoxCollider2D:
@@ -1771,7 +1771,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 82834100}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -21.4, y: 100.9, z: 0}
+  m_LocalPosition: {x: -144.3, y: -4.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2629,7 +2629,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 012e382e2c070974e9d1a86af9ee6fc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentRoomID: 2
+  currentRoomID: 5
   roomName: Tropical Field 2
   roomDescription: Fields
   cameraPanLimitUpperRightTransform: {fileID: 387846564}
@@ -5381,7 +5381,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1498555638}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &277373075
 BoxCollider2D:
@@ -5852,7 +5852,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 012e382e2c070974e9d1a86af9ee6fc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentRoomID: 0
+  currentRoomID: 11
   roomName: Fork in the Road
   roomDescription: Fields
   cameraPanLimitUpperRightTransform: {fileID: 1073248026}
@@ -17407,7 +17407,6 @@ Transform:
   - {fileID: 91260063}
   - {fileID: 1914668474}
   - {fileID: 481627797}
-  - {fileID: 1260187214}
   m_Father: {fileID: 743387694}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -18014,7 +18013,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 012e382e2c070974e9d1a86af9ee6fc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentRoomID: 3
+  currentRoomID: 6
   roomName: Tropical Field 3
   roomDescription: Fields
   cameraPanLimitUpperRightTransform: {fileID: 587215903}
@@ -18567,7 +18566,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 012e382e2c070974e9d1a86af9ee6fc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentRoomID: 13
+  currentRoomID: 16
   roomName: Mountain Path 2
   roomDescription: Fields
   cameraPanLimitUpperRightTransform: {fileID: 1040442246}
@@ -19490,7 +19489,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 012e382e2c070974e9d1a86af9ee6fc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentRoomID: 7
+  currentRoomID: 10
   roomName: Tropical Field 7
   roomDescription: Fields
   cameraPanLimitUpperRightTransform: {fileID: 1863160836}
@@ -20228,7 +20227,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &576771172
 Transform:
   m_ObjectHideFlags: 0
@@ -20528,7 +20527,7 @@ Transform:
   m_Children:
   - {fileID: 958126878}
   m_Father: {fileID: 1498555638}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &597783879
 MonoBehaviour:
@@ -21717,7 +21716,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 683238794}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.68, y: 100.9, z: 0}
+  m_LocalPosition: {x: -137.58, y: -4.300003, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -22684,7 +22683,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 012e382e2c070974e9d1a86af9ee6fc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentRoomID: 8
+  currentRoomID: 3
   roomName: Panday's House
   roomDescription: Town
   cameraPanLimitUpperRightTransform: {fileID: 1974151332}
@@ -22723,7 +22722,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 746739969}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -21.4, y: 100.9, z: 0}
+  m_LocalPosition: {x: -140.9, y: -6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -23351,7 +23350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 012e382e2c070974e9d1a86af9ee6fc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentRoomID: 14
+  currentRoomID: 17
   roomName: Mountain Path 3
   roomDescription: Fields
   cameraPanLimitUpperRightTransform: {fileID: 250039928}
@@ -23926,10 +23925,10 @@ RectTransform:
   - {fileID: 964401012}
   - {fileID: 408495068}
   - {fileID: 651986918}
+  - {fileID: 122254193}
   - {fileID: 1217759297}
   - {fileID: 929038095}
   - {fileID: 861361535}
-  - {fileID: 122254193}
   m_Father: {fileID: 285913585}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -24349,7 +24348,7 @@ RectTransform:
   - {fileID: 1589306402}
   - {fileID: 646313762}
   m_Father: {fileID: 845275496}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -24708,12 +24707,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 869936033}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -47, y: -0.3, z: 0}
+  m_LocalPosition: {x: -127.9, y: -11, z: 0}
   m_LocalScale: {x: 3.25, y: 3.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1498555638}
-  m_RootOrder: 3
+  m_Father: {fileID: 1834118591}
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &869936038
 MonoBehaviour:
@@ -25671,7 +25670,7 @@ RectTransform:
   m_Children:
   - {fileID: 6433026585257473463}
   m_Father: {fileID: 845275496}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -25909,7 +25908,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 012e382e2c070974e9d1a86af9ee6fc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentRoomID: 0
+  currentRoomID: 2
   roomName: Town
   roomDescription: Town
   cameraPanLimitUpperRightTransform: {fileID: 1727906337}
@@ -27392,7 +27391,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 012e382e2c070974e9d1a86af9ee6fc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentRoomID: 1
+  currentRoomID: 4
   roomName: Tropical Field 1
   roomDescription: Fields
   cameraPanLimitUpperRightTransform: {fileID: 710517376}
@@ -28678,7 +28677,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 012e382e2c070974e9d1a86af9ee6fc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentRoomID: 10
+  currentRoomID: 13
   roomName: Bamboo Thicket 2
   roomDescription: Fields
   cameraPanLimitUpperRightTransform: {fileID: 1953935773}
@@ -30599,7 +30598,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1217759297
 RectTransform:
   m_ObjectHideFlags: 0
@@ -30615,7 +30614,7 @@ RectTransform:
   - {fileID: 1452023492}
   - {fileID: 1127127429}
   m_Father: {fileID: 845275496}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -30728,7 +30727,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 012e382e2c070974e9d1a86af9ee6fc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentRoomID: 11
+  currentRoomID: 14
   roomName: Bamboo Thicket 3
   roomDescription: Fields
   cameraPanLimitUpperRightTransform: {fileID: 1220391350}
@@ -31098,7 +31097,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 012e382e2c070974e9d1a86af9ee6fc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentRoomID: 12
+  currentRoomID: 15
   roomName: Mountain Path 1
   roomDescription: Fields
   cameraPanLimitUpperRightTransform: {fileID: 1690424849}
@@ -31277,12 +31276,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1260187213}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -30.11, y: -0.3, z: 0}
+  m_LocalPosition: {x: -126.9, y: 3.5999985, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 421573573}
-  m_RootOrder: 3
+  m_Father: {fileID: 1834118591}
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1260187215
 MonoBehaviour:
@@ -31810,7 +31809,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1285870273}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -21.4, y: 95.45, z: 0}
+  m_LocalPosition: {x: -144.3, y: -9.750008, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -32043,7 +32042,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77c3247757a08ab45aec9dc70f01d783, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentRoomID: 8
+  currentRoomID: 11
   player: {fileID: 1919231791}
   playerMovement: {fileID: 1919231796}
   bed: {fileID: 481627798}
@@ -32440,7 +32439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 012e382e2c070974e9d1a86af9ee6fc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentRoomID: 5
+  currentRoomID: 8
   roomName: Tropical Field 5
   roomDescription: Fields
   cameraPanLimitUpperRightTransform: {fileID: 1485683454}
@@ -32549,7 +32548,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 012e382e2c070974e9d1a86af9ee6fc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentRoomID: 9
+  currentRoomID: 12
   roomName: Bamboo Thicket 1
   roomDescription: Fields
   cameraPanLimitUpperRightTransform: {fileID: 1046875686}
@@ -32914,7 +32913,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 012e382e2c070974e9d1a86af9ee6fc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentRoomID: 6
+  currentRoomID: 9
   roomName: Tropical Field 6
   roomDescription: Fields
   cameraPanLimitUpperRightTransform: {fileID: 1741709}
@@ -40062,7 +40061,6 @@ Transform:
   - {fileID: 1431870301}
   - {fileID: 1205680718}
   - {fileID: 1179622186}
-  - {fileID: 869936037}
   - {fileID: 2012764946}
   - {fileID: 597783878}
   - {fileID: 1834929390}
@@ -42150,6 +42148,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e50ea0841d21f6244be58c6f3e36aa7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnLocation: {fileID: 1965169263}
+  panLimitUpperRightTransform: {fileID: 1073248026}
+  panLimit: {x: 0, y: 0}
+  startRoom: {fileID: 293484883}
   currentIndex: 0
   currentDialogueIndex: 0
   dialogues:
@@ -42183,10 +42185,10 @@ MonoBehaviour:
   equippingWrongTool: {fileID: 11400000, guid: 97cea7f0c3f676a4d83178dc7dea1662, type: 2}
   swingingWrongTool: {fileID: 11400000, guid: 021b73bfd3bb72546ba2a045493f18f4, type: 2}
   swingingInAir: {fileID: 11400000, guid: 9f1135e2120f84341aa7cf852ae1548f, type: 2}
-  upgradingWrong: {fileID: 0}
-  needToUpgradeAllTools: {fileID: 0}
-  cantGoThere: {fileID: 0}
-  edgeCollider: {fileID: 0}
+  upgradingWrong: {fileID: 11400000, guid: b082d17fe0e3c614db52ebe37f3da5f3, type: 2}
+  needToUpgradeAllTools: {fileID: 11400000, guid: b48bf1b073f93b4448c4442a84456942, type: 2}
+  cantGoThere: {fileID: 11400000, guid: 37525499e5d08764ca03125beec6baaa, type: 2}
+  tutorialBlocker: {fileID: 2003055076}
   MidToPandayRoomPassageway: {fileID: 0}
   MidToForkRoomPassageway: {fileID: 0}
   PandayToMidPassageway: {fileID: 0}
@@ -43032,7 +43034,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 012e382e2c070974e9d1a86af9ee6fc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentRoomID: 4
+  currentRoomID: 7
   roomName: Tropical Field 4
   roomDescription: Fields
   cameraPanLimitUpperRightTransform: {fileID: 990637091}
@@ -43944,6 +43946,7 @@ MonoBehaviour:
   delayTime: 0.25
   zoomOutSize: 15
   zoomOutDuration: 1
+  tutorialOn: 1
 --- !u!1 &1735231038
 GameObject:
   m_ObjectHideFlags: 0
@@ -45459,6 +45462,9 @@ Transform:
   - {fileID: 254948655}
   - {fileID: 576771172}
   - {fileID: 193836488}
+  - {fileID: 1260187214}
+  - {fileID: 869936037}
+  - {fileID: 1965169263}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -45495,7 +45501,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1498555638}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1834929391
 BoxCollider2D:
@@ -45886,7 +45892,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 012e382e2c070974e9d1a86af9ee6fc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentRoomID: 0
+  currentRoomID: 1
   roomName: Middle Town
   roomDescription: Town
   cameraPanLimitUpperRightTransform: {fileID: 1289921393}
@@ -46964,7 +46970,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1919231791}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -138.8, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -48273,6 +48279,37 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -50, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1965169262
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1965169263}
+  m_Layer: 0
+  m_Name: Spawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1965169263
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1965169262}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -142.4, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1834118591}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1969193771
 GameObject:
   m_ObjectHideFlags: 0
@@ -48437,7 +48474,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5663208971731060727, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5663208971731060727, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
       propertyPath: m_AnchorMax.x
@@ -48767,6 +48804,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2003055074}
   - component: {fileID: 2003055075}
+  - component: {fileID: 2003055076}
   m_Layer: 0
   m_Name: TutorialForkCollider
   m_TagString: Untagged
@@ -48805,15 +48843,30 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -42.13475, y: 25.830784}
+  - {x: -23.305946, y: -24.911247}
+  - {x: -22.503166, y: -13.350491}
+  - {x: -18.526154, y: 28.195246}
   - {x: -81.850586, y: 18.258667}
   - {x: -81.27784, y: -7.376334}
-  - {x: -61.14777, y: -7.6829634}
-  - {x: -61.21145, y: -23.92991}
+  - {x: -74.4203, y: -13.522883}
+  - {x: -72.09493, y: -26.186243}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!114 &2003055076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2003055073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f1ce8bfa89a14c49a51ec6db9f97994, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  edgeCollider: {fileID: 2003055075}
 --- !u!1 &2009970820
 GameObject:
   m_ObjectHideFlags: 0
@@ -48890,7 +48943,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1498555638}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2012764947
 MonoBehaviour:
@@ -49105,7 +49158,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2042293458
 Transform:
   m_ObjectHideFlags: 0

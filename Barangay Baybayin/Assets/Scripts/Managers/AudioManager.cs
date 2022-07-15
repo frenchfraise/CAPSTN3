@@ -22,9 +22,11 @@ public class AudioManager : MonoBehaviour
     }
 
     private bool isFirstTime = true;
-    private Passageway currentAudioPassageway;
+   // private Passageway currentAudioPassageway;
     [NonReorderable] public Sound[] sounds;
     public AudioMixer mixer;
+    string currentSongPlaying = "";
+    string previousSongPlaying = "";
     // Start is called before the first frame update
     void Awake()
     {
@@ -68,16 +70,16 @@ public class AudioManager : MonoBehaviour
         //PlayerManager.onUpdateCurrentRoomIDEvent.RemoveListener(PlayOnRoomEnter);
     }
 
-    public void PlayByName(string name)
-    {
-        foreach (Sound s in sounds)
-        {
-            s.source.Stop();
-        }
-        Sound sound = Array.Find(sounds, sound => sound.name == name);
-        sound.source.Play();
-        sound.source.volume = 1f;
-    }
+    //public void PlayByName(string name)
+    //{
+    //    foreach (Sound s in sounds)
+    //    {
+    //        s.source.Stop();
+    //    }
+    //    Sound sound = Array.Find(sounds, sound => sound.name == name);
+    //    sound.source.Play();
+    //    sound.source.volume = 1f;
+    //}
 
     public Sound GetSoundByName(string name)
     {
@@ -89,28 +91,37 @@ public class AudioManager : MonoBehaviour
     {
         if (!isFirstTime)
         {
-            if (p_passageway.room.roomDescription != currentAudioPassageway.room.roomDescription) 
+            if (p_passageway.room.roomDescription != currentSongPlaying) 
                 isFirstTime = true;
         }
         if (isFirstTime)
         {
             isFirstTime = false;
-            StartCoroutine(Co_AudioFade(p_passageway));
+            previousSongPlaying = currentSongPlaying;
+            currentSongPlaying = p_passageway.room.roomDescription;
+            StartCoroutine(Co_AudioFade());
 
             //PlayByName(p_passageway.room.roomDescription);
         }
-        currentAudioPassageway = p_passageway;
+        
     }
   
-    IEnumerator Co_AudioFade(Passageway p_passageway)
+    IEnumerator Co_AudioFade()
     {
         Sound sound;
-        string soundName = p_passageway.room.roomDescription;
+        string soundName = previousSongPlaying;
         sound = GetSoundByName(soundName);
-        Sequence wee = DOTween.Sequence();
-        wee.Append(sound.source.DOFade(0, 1.25f));
-        wee.Play();
-        yield return wee.WaitForCompletion();
+        //Debug.Log("PLAYYYINNG " + soundName);
+        if (soundName != "")
+        {
+            Sequence wee = DOTween.Sequence();
+            wee.Append(sound.source.DOFade(0, 1.25f));
+            wee.Play();
+            yield return wee.WaitForCompletion();
+        }
+    
+
+ 
         //sound = GetSoundByName(soundName);
         //Sequence wee = DOTween.Sequence();
         //wee.Append(sound.source.DOFade(0, 1.25f));
@@ -122,10 +133,18 @@ public class AudioManager : MonoBehaviour
         //    timeElapsed += Time.deltaTime;
         //    yield return null;
         //}
-        sound.source.Play();
-        Sequence wee2 = DOTween.Sequence();
-        wee2.Append(sound.source.DOFade(1, 1.25f));
-        wee2.Play();
-        yield return wee2.WaitForCompletion();
+        Sound currentSound;
+        string currentSoundName = currentSongPlaying;
+        currentSound = GetSoundByName(currentSoundName);
+        //Debug.Log("NEWWWW PLAYYYINNG " + currentSoundName);
+        currentSound.source.Play();
+        if (currentSoundName != "")
+        {
+            Sequence wee2 = DOTween.Sequence();
+            wee2.Append(currentSound.source.DOFade(1, 1.25f));
+            wee2.Play();
+        }
+
+        // yield return wee2.WaitForCompletion();
     }
 }
