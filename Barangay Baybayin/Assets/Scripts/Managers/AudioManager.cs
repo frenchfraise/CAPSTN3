@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.Audio;
+using DG.Tweening;
 
 public class AudioManager : MonoBehaviour
 {
@@ -73,9 +74,15 @@ public class AudioManager : MonoBehaviour
         {
             s.source.Stop();
         }
-        //sounds[id].source.Play();
         Sound sound = Array.Find(sounds, sound => sound.name == name);
         sound.source.Play();
+        sound.source.volume = 1f;
+    }
+
+    public Sound GetSoundByName(string name)
+    {
+        Sound sound = Array.Find(sounds, sound => sound.name == name);
+        return sound;
     }
 
     private void PlayOnRoomEnter(Passageway p_passageway)
@@ -88,9 +95,37 @@ public class AudioManager : MonoBehaviour
         if (isFirstTime)
         {
             isFirstTime = false;
-            PlayByName(p_passageway.room.roomDescription);
+            StartCoroutine(Co_AudioFade(p_passageway));
+
+            //PlayByName(p_passageway.room.roomDescription);
         }
         currentAudioPassageway = p_passageway;
     }
   
+    IEnumerator Co_AudioFade(Passageway p_passageway)
+    {
+        Sound sound;
+        string soundName = p_passageway.room.roomDescription;
+        sound = GetSoundByName(soundName);
+        Sequence wee = DOTween.Sequence();
+        wee.Append(sound.source.DOFade(0, 1.25f));
+        wee.Play();
+        yield return wee.WaitForCompletion();
+        //sound = GetSoundByName(soundName);
+        //Sequence wee = DOTween.Sequence();
+        //wee.Append(sound.source.DOFade(0, 1.25f));
+        //wee.Play();
+        //yield return wee.WaitForCompletion();
+        //while (timeElapsed < timeToFade)
+        //{            
+        //    sound.volume = Mathf.Lerp(0, 0.5f, timeElapsed / timeToFade);
+        //    timeElapsed += Time.deltaTime;
+        //    yield return null;
+        //}
+        sound.source.Play();
+        Sequence wee2 = DOTween.Sequence();
+        wee2.Append(sound.source.DOFade(1, 1.25f));
+        wee2.Play();
+        yield return wee2.WaitForCompletion();
+    }
 }
