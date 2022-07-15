@@ -933,12 +933,20 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 101662862122452031, guid: fea5a514e58f9df44bdc47a1f3ee5647, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.000061035156
+      objectReference: {fileID: 0}
     - target: {fileID: 101662862203666364, guid: fea5a514e58f9df44bdc47a1f3ee5647, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 101662862203666364, guid: fea5a514e58f9df44bdc47a1f3ee5647, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 101662862203666364, guid: fea5a514e58f9df44bdc47a1f3ee5647, type: 3}
+      propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 101662862515392963, guid: fea5a514e58f9df44bdc47a1f3ee5647, type: 3}
@@ -2343,7 +2351,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentRoomID: 2
-  roomAudioID: 4
   roomName: Tropical Field 2
   roomDescription: Fields
   cameraPanLimitUpperRightTransform: {fileID: 387846564}
@@ -5047,7 +5054,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentRoomID: 0
-  roomAudioID: 4
   roomName: Fork in the Road
   roomDescription: Fields
   cameraPanLimitUpperRightTransform: {fileID: 1073248026}
@@ -12214,7 +12220,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentRoomID: 3
-  roomAudioID: 4
   roomName: Tropical Field 3
   roomDescription: Fields
   cameraPanLimitUpperRightTransform: {fileID: 587215903}
@@ -12737,7 +12742,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentRoomID: 13
-  roomAudioID: 4
   roomName: Mountain Thicket 2
   roomDescription: Fields
   cameraPanLimitUpperRightTransform: {fileID: 1040442246}
@@ -13660,7 +13664,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentRoomID: 7
-  roomAudioID: 4
   roomName: Tropical Field 7
   roomDescription: Fields
   cameraPanLimitUpperRightTransform: {fileID: 1863160836}
@@ -15178,6 +15181,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2855859840243644730, guid: 1026c74dd53792e469b4a5529cc24c87, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3248023094758581860, guid: 1026c74dd53792e469b4a5529cc24c87, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -16406,7 +16413,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentRoomID: 8
-  roomAudioID: 5
   roomName: Panday House
   roomDescription: Town
   cameraPanLimitUpperRightTransform: {fileID: 1974151332}
@@ -16643,6 +16649,172 @@ Transform:
   m_Father: {fileID: 1885094300}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &774775257
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 845275496}
+    m_Modifications:
+    - target: {fileID: 5663208971731060726, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
+      propertyPath: m_Name
+      value: ToolsPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663208971731060727, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
+      propertyPath: m_Pivot.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663208971731060727, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663208971731060727, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663208971731060727, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663208971731060727, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663208971731060727, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663208971731060727, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663208971731060727, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 170
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663208971731060727, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663208971731060727, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663208971731060727, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663208971731060727, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663208971731060727, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663208971731060727, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663208971731060727, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663208971731060727, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663208971731060727, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663208971731060727, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663208971731060727, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663208971731060727, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663208971731060727, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663208971818632351, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663208971818632351, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663208971818632351, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663208971818632351, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663208971997678341, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663208971997678341, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663208971997678341, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663208971997678341, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663208972789064864, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663208972789064864, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663208972789064864, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663208972789064864, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663208973565220976, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663208973565220976, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663208973565220976, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663208973565220976, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
+--- !u!224 &774775258 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5663208971731060727, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
+  m_PrefabInstance: {fileID: 774775257}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &777485727
 GameObject:
   m_ObjectHideFlags: 0
@@ -16984,7 +17156,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentRoomID: 14
-  roomAudioID: 4
   roomName: Mountain Thicket 3
   roomDescription: Fields
   cameraPanLimitUpperRightTransform: {fileID: 250039928}
@@ -17550,6 +17721,7 @@ RectTransform:
   - {fileID: 651986918}
   - {fileID: 1217759297}
   - {fileID: 929038095}
+  - {fileID: 774775258}
   m_Father: {fileID: 285913585}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -19184,7 +19356,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentRoomID: 0
-  roomAudioID: 5
   roomName: LowerTown
   roomDescription: Town
   cameraPanLimitUpperRightTransform: {fileID: 1727906337}
@@ -20596,7 +20767,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentRoomID: 1
-  roomAudioID: 4
   roomName: Tropical Field 1
   roomDescription: Fields
   cameraPanLimitUpperRightTransform: {fileID: 710517376}
@@ -21883,7 +22053,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentRoomID: 10
-  roomAudioID: 4
   roomName: Bamboo Thicket 2
   roomDescription: Fields
   cameraPanLimitUpperRightTransform: {fileID: 1953935773}
@@ -23744,7 +23913,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentRoomID: 11
-  roomAudioID: 4
   roomName: Bamboo Thicket 3
   roomDescription: Fields
   cameraPanLimitUpperRightTransform: {fileID: 1220391350}
@@ -24079,7 +24247,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentRoomID: 12
-  roomAudioID: 4
   roomName: Mountain Thicket 1
   roomDescription: Fields
   cameraPanLimitUpperRightTransform: {fileID: 1690424849}
@@ -24441,6 +24608,7 @@ MonoBehaviour:
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
+  m_AlphaBlendOnOverlap: 0
   m_OverlapOperation: 0
   m_NormalMapDistance: 3
   m_NormalMapQuality: 2
@@ -25552,7 +25720,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentRoomID: 5
-  roomAudioID: 4
   roomName: Tropical Field 5
   roomDescription: Fields
   cameraPanLimitUpperRightTransform: {fileID: 1485683454}
@@ -25662,7 +25829,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentRoomID: 9
-  roomAudioID: 4
   roomName: Bamboo Thicket 1
   roomDescription: Fields
   cameraPanLimitUpperRightTransform: {fileID: 1046875686}
@@ -26028,7 +26194,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentRoomID: 6
-  roomAudioID: 4
   roomName: Tropical Field 6
   roomDescription: Fields
   cameraPanLimitUpperRightTransform: {fileID: 1741709}
@@ -33555,6 +33720,7 @@ GameObject:
   - component: {fileID: 1548883405}
   - component: {fileID: 1548883407}
   - component: {fileID: 1548883406}
+  - component: {fileID: 1548883408}
   m_Layer: 0
   m_Name: BackgroundFrame
   m_TagString: Untagged
@@ -33590,12 +33756,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8cd09f31c134b04faf6baf1ec41f53e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hoverDownPeakOffset: 0
   hoverUpPeakOffset: 1
-  hoverUpSpeed: 0.05
-  hoverUpRate: 0.025
+  hoverUpTime: 0
   delayTime: 0.2
-  hoverDownSpeed: 0.05
-  hoverDownRate: 0.025
+  hoverDownTime: 0
   startYPosition: 0
   sr: {fileID: 0}
   srIcon: {fileID: 1071071662}
@@ -33651,6 +33816,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1548883408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1548883404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4621b2b43ee469499dc06ef52e73f8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  affectedTransform: {fileID: 1548883405}
+  scaleUpPeakOffset: 0
+  scaleUpTime: 0
+  delayTime: 0
+  scaleDownTime: 0
+  scaleDownPeakOffset: 0
 --- !u!1 &1553519163
 GameObject:
   m_ObjectHideFlags: 0
@@ -34134,6 +34317,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit
@@ -39840,21 +40024,22 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8303d07a24737c845958200255f3a293, type: 2}
   tutorialUI: {fileID: 1217759298}
   stamina: {fileID: 1919231793}
-  spawnPoint: {fileID: 617938175}
   spawnPoint1: {fileID: 82834101}
   spawnPoint2: {fileID: 683238795}
   spawnPoint3: {fileID: 1285870274}
-  spawnPoint4: {fileID: 675376235}
-  spawnPoint5: {fileID: 1266475202}
-  spawnPoint6: {fileID: 1816200985}
-  spawnPoint7: {fileID: 1796334090}
-  spawnPoint8: {fileID: 1455862544}
-  spawnPoint9: {fileID: 2086369314}
   resourceNode: {fileID: 0}
   infrastructure: {fileID: 1260187217}
   equippingWrongTool: {fileID: 11400000, guid: 97cea7f0c3f676a4d83178dc7dea1662, type: 2}
   swingingWrongTool: {fileID: 11400000, guid: 021b73bfd3bb72546ba2a045493f18f4, type: 2}
   swingingInAir: {fileID: 11400000, guid: 9f1135e2120f84341aa7cf852ae1548f, type: 2}
+  upgradingWrong: {fileID: 0}
+  needToUpgradeAllTools: {fileID: 0}
+  cantGoThere: {fileID: 0}
+  edgeCollider: {fileID: 0}
+  MidToPandayRoomPassageway: {fileID: 0}
+  MidToForkRoomPassageway: {fileID: 0}
+  PandayToMidPassageway: {fileID: 0}
+  ForkToMidPassageway: {fileID: 0}
   panday: {fileID: 869936038}
   firstTime: 1
 --- !u!1 &1630246652
@@ -40630,7 +40815,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentRoomID: 4
-  roomAudioID: 4
   roomName: Tropical Field 4
   roomDescription: Fields
   cameraPanLimitUpperRightTransform: {fileID: 990637091}
@@ -40769,6 +40953,7 @@ MonoBehaviour:
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
+  m_AlphaBlendOnOverlap: 0
   m_OverlapOperation: 0
   m_NormalMapDistance: 3
   m_NormalMapQuality: 2
@@ -41318,6 +41503,21 @@ MonoBehaviour:
   panLimitUpperRightTransform: {fileID: 1974151332}
   panLimit: {x: 0, y: 0}
   defaultRoom: {fileID: 743387695}
+  shakePositionDuration: 0.2
+  shakePositionPower: {x: 0.05, y: 0.05, z: 0}
+  shakePositionVibrato: 1
+  shakePositionRandomRange: 1
+  shakePositionCanFade: 1
+  shakeRotationDuration: 0.2
+  shakeRotationPower: {x: 0.05, y: 0.05, z: 0}
+  shakeRotationVibrato: 1
+  shakeRotationRandomRange: 1
+  shakeRotationCanFade: 1
+  zoomInSize: 13
+  zoomInDuration: 1
+  delayTime: 1
+  zoomOutSize: 15
+  zoomOutDuration: 1
 --- !u!1 &1735231038
 GameObject:
   m_ObjectHideFlags: 0
@@ -43082,7 +43282,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentRoomID: 0
-  roomAudioID: 5
   roomName: Town
   roomDescription: Town
   cameraPanLimitUpperRightTransform: {fileID: 1289921393}
@@ -43516,7 +43715,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentRoomID: 0
-  roomAudioID: 5
   roomName: UpperTown
   roomDescription: Town
   cameraPanLimitUpperRightTransform: {fileID: 1938217689}
@@ -46891,6 +47089,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   iconHoverEffect: {fileID: 1548883406}
+  radiateScaleEffect: {fileID: 1548883408}
 --- !u!1001 &8865648129028554595
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46906,10 +47105,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 869936038}
-    - target: {fileID: 8865648128532301072, guid: 38c28f0def4f83c4489208bd2ab184c3, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -9.386719
-      objectReference: {fileID: 0}
     - target: {fileID: 8865648129878622316, guid: 38c28f0def4f83c4489208bd2ab184c3, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -46997,6 +47192,10 @@ PrefabInstance:
     - target: {fileID: 8865648129878622317, guid: 38c28f0def4f83c4489208bd2ab184c3, type: 3}
       propertyPath: m_Name
       value: CharacterDialogueUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 8940339482206388735, guid: 38c28f0def4f83c4489208bd2ab184c3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38c28f0def4f83c4489208bd2ab184c3, type: 3}

@@ -50,10 +50,6 @@ public class RoomInfoUI : MonoBehaviour
     IEnumerator Co_RoomInfoUITransition(string p_roomName, string p_roomDescription, List<ResourceNodeDrop> p_availableResourceNodeDrops, Vector2 p_cameraPos, Vector2 p_cameraPanLimit)
     {
         //Clear resources // object pool this
-
-
-        
-
         for (int si = 0; si < availableResourcesContainer.childCount; si++)
         {
             //Debug.Log("DELETE");
@@ -75,7 +71,7 @@ public class RoomInfoUI : MonoBehaviour
         Sequence te = DOTween.Sequence();
         te.Join(roomNameText.DOFade(1f, 0.75f));
         te.Join(roomDescriptionText.DOFade(1f, 0.75f));
-        
+        te.Play();
 
 
         for (int i = 0; i < p_availableResourceNodeDrops.Count; i++)
@@ -132,9 +128,11 @@ public class RoomInfoUI : MonoBehaviour
         Sequence t = DOTween.Sequence();
         t.Join(roomNameText.DOFade(0f, 0.5f));
         t.Join(roomDescriptionText.DOFade(0f, 0.5f));
-
+        t.Play();
         availableResourcesGO.SetActive(false);
+        Debug.Log("ROOM INFO PERFORMING");
         yield return t.WaitForCompletion();
+        Debug.Log("ROOM INFO ENDING");
         gameObject.SetActive(false);
         UIManager.TransitionFade(0, false);
         //UIManager.onGameplayModeChangedEvent.Invoke(false);

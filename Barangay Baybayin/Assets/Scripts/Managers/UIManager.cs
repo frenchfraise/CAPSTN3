@@ -113,7 +113,7 @@ public class UIManager : MonoBehaviour
         UIManager.instance.transitionUI.gameObject.SetActive(true);
         Sequence fadeSequence = DOTween.Sequence();
         fadeSequence.Join(UIManager.instance.transitionUI.DOFade(p_opacity, 0.5f));
-
+        fadeSequence.Play();
         yield return fadeSequence.WaitForCompletion();
         UIManager.instance.transitionUI.gameObject.SetActive(p_isActiveOnEnd);
 
