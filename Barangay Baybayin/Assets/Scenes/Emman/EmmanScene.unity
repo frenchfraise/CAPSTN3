@@ -40001,6 +40001,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e50ea0841d21f6244be58c6f3e36aa7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnLocation: {fileID: 0}
+  panLimitUpperRightTransform: {fileID: 0}
+  panLimit: {x: 0, y: 0}
+  startRoom: {fileID: 0}
   currentIndex: 0
   currentDialogueIndex: 0
   dialogues:
@@ -40037,7 +40041,7 @@ MonoBehaviour:
   upgradingWrong: {fileID: 0}
   needToUpgradeAllTools: {fileID: 0}
   cantGoThere: {fileID: 0}
-  edgeCollider: {fileID: 0}
+  tutorialBlocker: {fileID: 0}
   MidToPandayRoomPassageway: {fileID: 0}
   MidToForkRoomPassageway: {fileID: 0}
   PandayToMidPassageway: {fileID: 0}
@@ -41069,47 +41073,61 @@ MonoBehaviour:
   sounds:
   - name: Sunny
     clip: {fileID: 8300000, guid: 5ec0058d72b8a4944bb9af3e3ac11230, type: 3}
+    output: {fileID: 0}
     volume: 1
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: Cloudy
     clip: {fileID: 8300000, guid: 5ec0058d72b8a4944bb9af3e3ac11230, type: 3}
+    output: {fileID: 0}
     volume: 1
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: Rainy
     clip: {fileID: 8300000, guid: cd153667dcdfc164ba38565a7298b53f, type: 3}
+    output: {fileID: 0}
     volume: 1
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: Stormy
     clip: {fileID: 8300000, guid: 5e559ce6b669ac041a89f7296133025c, type: 3}
+    output: {fileID: 0}
     volume: 1
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: Fields
     clip: {fileID: 8300000, guid: aeb26b510c266b548af31f1798ff0b7b, type: 3}
+    output: {fileID: -3939149997096469140, guid: 108417b1adcfff24f835a4eb8d361c03, type: 2}
     volume: 0.5
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: Town
     clip: {fileID: 8300000, guid: 19934844ccd88e04699e221cf951abd3, type: 3}
+    output: {fileID: -3939149997096469140, guid: 108417b1adcfff24f835a4eb8d361c03, type: 2}
     volume: 0.5
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: Quest Get
     clip: {fileID: 8300000, guid: 7d169c6ca6aa50043b22189b3d05dafd, type: 3}
+    output: {fileID: -3939149997096469140, guid: 108417b1adcfff24f835a4eb8d361c03, type: 2}
     volume: 0.5
     pitch: 1
     loop: 1
     source: {fileID: 0}
-  mixer: {fileID: 0}
+  - name: Hit
+    clip: {fileID: 8300000, guid: 9971734abbbc2d44e85b97780d6d2773, type: 3}
+    output: {fileID: -6732545374428874547, guid: 108417b1adcfff24f835a4eb8d361c03, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  mixer: {fileID: 24100000, guid: 108417b1adcfff24f835a4eb8d361c03, type: 2}
 --- !u!1 &1695236758
 GameObject:
   m_ObjectHideFlags: 0
@@ -41519,6 +41537,7 @@ MonoBehaviour:
   delayTime: 1
   zoomOutSize: 15
   zoomOutDuration: 1
+  tutorialOn: 1
 --- !u!1 &1735231038
 GameObject:
   m_ObjectHideFlags: 0

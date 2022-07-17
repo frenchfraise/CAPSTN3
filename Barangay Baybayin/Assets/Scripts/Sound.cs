@@ -6,10 +6,9 @@ using UnityEngine.Audio;
 [System.Serializable]
 public class Sound
 {
-    public string name;
-    //public int id;
+    public string name;    
     public AudioClip clip;
-    //public AudioSource sound;
+    public AudioMixerGroup output;
     [Range(0f, 1f)]
     public float volume;
     [Range(0.1f, 3f)]

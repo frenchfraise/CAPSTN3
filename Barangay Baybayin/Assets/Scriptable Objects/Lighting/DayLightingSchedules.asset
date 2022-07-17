@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3edd21089e63b17478cb17a717ac0c0d, type: 3}
-  m_Name: LightingSchedules
+  m_Name: DayLightingSchedules
   m_EditorClassIdentifier: 
   lightingBrightnessArray:
   - weatherName: Stormy

@@ -282,8 +282,7 @@ public class ToolCaster : MonoBehaviour
 
     public void ToolHitSuccess()
     {
-
-      
+        AudioManager.instance.GetSoundByName("Hit").source.Play();
         current_Tool.ModifyProficiencyAmount(current_Tool.so_Tool.proficiencyAmountReward[current_Tool.craftLevel]);
         current_Tool.ModifySpecialAmount(current_Tool.so_Tool.specialPointReward[current_Tool.craftLevel]); 
     }
