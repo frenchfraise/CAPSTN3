@@ -152,7 +152,9 @@ public class Item : MonoBehaviour
         }
         else
         {
-            InventoryManager.AddItem(so_Item, 1);
+ 
+            PlayerManager.instance.SpawnNewItemFloater(so_Item,
+                   (1));
             Destroy(gameObject);
         }
       

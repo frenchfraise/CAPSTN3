@@ -1,18 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
+
 [System.Serializable]
 public class ItemData
 {
     public SO_Item so_Item;
     public bool isUnlocked;
     [SerializeField] private bool isDynamicallyShown;
-    public int amount;
-    [HideInInspector] public TMP_Text amountText;
 
-    public void UpdateText()
+
+    public ItemUI itemUI;
+    public int amount;
+    public void SetItemUI(ItemUI p_itemUI)
     {
-        amountText.text = amount.ToString();
+        itemUI = p_itemUI;
     }
+    
 }

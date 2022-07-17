@@ -33,6 +33,8 @@ public class Dialogue
 
     [TextArea]
     public string words;
+
+    public Sprite backgroundSprite;
     public SpeechTransitionType speechTransitionType;
 }
 

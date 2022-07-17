@@ -58,7 +58,7 @@ public class PlayerManager : MonoBehaviour
         
     }
 
-    public void SpawnNewItemFloater(SO_Item p_SOItem, string p_name)
+    public void SpawnNewItemFloater(SO_Item p_SOItem, int p_name)
     {
         floaterStackCount++;
         if (runningFloaterSpawner == null)
@@ -69,8 +69,9 @@ public class PlayerManager : MonoBehaviour
        
     }
 
-    IEnumerator SpawnQueue(SO_Item p_SOItem, string p_amount)
+    IEnumerator SpawnQueue(SO_Item p_SOItem, int p_amount)
     {
+        InventoryManager.onAddItemEvent.Invoke(p_SOItem.name, p_amount);
         MaterialFloater newFloater = Instantiate(floaterPrefab);
 
         //if (isLeft) // go right

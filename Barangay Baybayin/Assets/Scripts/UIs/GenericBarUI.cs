@@ -294,11 +294,11 @@ public class GenericBarUI : MonoBehaviour
         currentMax = p_max;
         float fill = p_current / p_max;
         savedFill = fill;
-        Debug.Log("INSTAAAAA: " + savedFill + " - " + p_current + " - " + p_max) ;
+       // Debug.Log("INSTAAAAA: " + savedFill + " - " + p_current + " - " + p_max) ;
         //float restrictedFill = (p_max/ p_max) - (p_currentMax / p_max);
         if (realBarUI)
         {
-            Debug.Log(savedFill);
+            //Debug.Log(savedFill);
             realBarUI.DOFillAmount(savedFill,0.01f);
             realBarUI.color = new Color(realBarUI.color.r, realBarUI.color.g, realBarUI.color.b, 1);
         }
@@ -309,7 +309,7 @@ public class GenericBarUI : MonoBehaviour
 
         if (ghostBarUI)
         {
-            Debug.Log(savedFill);
+           // Debug.Log(savedFill);
             ghostBarUI.DOFillAmount(savedFill, 0.01f);
             //ghostBarUI.fillAmount = savedFill;
             ghostBarUI.color = new Color(ghostBarUI.color.r, ghostBarUI.color.g, ghostBarUI.color.b, 1);
@@ -327,15 +327,20 @@ public class GenericBarUI : MonoBehaviour
         //{
         //   // Debug.LogError(gameObject.name.ToString() + " IS MISSING restrictedBarUI REFERENCE IN INSPECTOR");
         //}
-        Debug.Log(gameObject.name + " INSTA- " + current + " - " + currentMax);
+       // Debug.Log(gameObject.name + " INSTA- " + current + " - " + currentMax);
 
     }
 
     public void ResetBar(float p_current = 0, float p_currentMax = 1)
     {
         isResetting = true;
+
+        current = p_current;
+        currentMax = p_currentMax;
+      
+
         float fill = p_current / p_currentMax;
-        
+        savedFill = fill;
         if (gameObject.activeSelf)
         {
             if (runningCoroutine != null)
@@ -495,7 +500,9 @@ public class GenericBarUI : MonoBehaviour
                     runningCoroutine = null;
                 }
 
-                runningCoroutine = Co_UpdateBar();
+              
+                savedFill = p_fill;
+                runningCoroutine = Co_UpdateBar(savedFill);
                 StartCoroutine(runningCoroutine);
             }
             Debug.Log(gameObject.name + " UPDAOUT- " + current + " - " + currentMax);

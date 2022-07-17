@@ -5,11 +5,11 @@ using UnityEngine.Events;
 public class SpecialPointsModifiedEvent : UnityEvent<float, float> { }
 
 public class SpecialPointsFilledEvent : UnityEvent { }
-
+public class ResourceNodeFinishedEvent : UnityEvent { }
 public class ProficiencyAmountModifiedEvent : UnityEvent<float,float> { }
 public class ProficiencyLevelModifiedEvent : UnityEvent<int> { }
 
-public class ToolUpgradedEvent : UnityEvent { }
+public class ToolCraftLevelUpgradedEvent : UnityEvent<int> { }
 
 public class ToolChangedEvent : UnityEvent <Tool>{ }
 public class ToolManager : MonoBehaviour
@@ -38,8 +38,8 @@ public class ToolManager : MonoBehaviour
 
 
     public static ToolChangedEvent onToolChangedEvent = new ToolChangedEvent();
-    public static ToolUpgradedEvent onToolUpgradedEvent  = new ToolUpgradedEvent();
-   
+    public static ToolCraftLevelUpgradedEvent onToolCraftLevelUpgradedEvent  = new ToolCraftLevelUpgradedEvent();
+    public static ResourceNodeFinishedEvent onResourceNodeFinishedEvent = new ResourceNodeFinishedEvent();
     private void Awake()
     {
         //if (_instance != null)

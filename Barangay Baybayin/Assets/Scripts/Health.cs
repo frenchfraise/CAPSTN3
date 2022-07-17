@@ -11,7 +11,7 @@ public class DeathEvent : UnityEvent { }
 public class Health : MonoBehaviour
 {
     [HideInInspector] public HealthOverheadUI healthOverheadUI;
-    private bool isAlive;
+    [HideInInspector] public bool isAlive;
     private float currentHealth;
     private float maxHealth;
 

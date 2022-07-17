@@ -145,7 +145,7 @@ public class UpgradeToolsUI : MonoBehaviour
             {
                 
                 ItemUpgradeRequirement materialRequirement = craftUpgradeItemRequirementsData.itemRequirements[i];
-                int amt = InventoryManager.GetItem(materialRequirement.so_Item).amount;
+                int amt = InventoryManager.GetItem(materialRequirement.so_Item.name).amount;
                 upgradeMaterialUIs[i].iconImage.sprite = materialRequirement.so_Item.icon;
                 upgradeMaterialUIs[i].gameObject.SetActive(true);
                 upgradeMaterialUIs[i].so_item = materialRequirement.so_Item;
@@ -186,14 +186,14 @@ public class UpgradeToolsUI : MonoBehaviour
                 {
                     if (upgradeMaterialUIs[i].requirementFulfilled)
                     {
-                        InventoryManager.ReduceItem(upgradeMaterialUIs[i].so_item, upgradeMaterialUIs[i].amountRequired);
+                        InventoryManager.onReduceItemEvent.Invoke(upgradeMaterialUIs[i].so_item.name, upgradeMaterialUIs[i].amountRequired);
                     }
                 }
                 
                 ToolManager.instance.tools[currentIndex].craftLevel++;
                 UpgradeToolUI currentlyUpgradedToolUI = upgradeToolUIs[currentIndex];
                 currentlyUpgradedToolUI.UpdateUI();
-                ToolManager.onToolUpgradedEvent.Invoke();
+                ToolManager.onToolCraftLevelUpgradedEvent.Invoke(currentIndex);
                 selectionPanelUI.SetActive(true);
                 confirmPanelUI.SetActive(false);
             }

@@ -89,20 +89,7 @@ public class Tool
         }
  
     }
-    
-    public void CheckUpgradeCraftLevel(SO_Item p_)
-    {
-        if (proficiencyLevel >= craftLevel)
-        {
-            List<ItemData> p_itemDatas = new List<ItemData>();
-            List<int> p_amount = new List<int>();
-            p_itemDatas.Add(InventoryManager.GetItem(p_));
-            p_amount.Add(1);
-            InventoryManager.ReduceItems(p_itemDatas, p_amount,ToolManager.onToolUpgradedEvent);
-            
-            
-        }
-    }
+   
 
     public void UpgradeCraftLevel()
     {

@@ -14,6 +14,25 @@ public class StorylineData
 
 
 }
+
+[System.Serializable]
+public class TownDialogueData
+{
+    [NonReorderable][SerializeField] public List<TD> td;
+    public int currentQuestChainIndex;
+    public int currentQuestLineIndex;
+
+
+}
+[System.Serializable]
+public class TD
+{
+    public int dayRequiredCount;
+    [SerializeField] public SO_Dialogues so_Dialogue;
+   
+
+
+}
 public class StorylineManager : MonoBehaviour
 {
 
@@ -33,6 +52,7 @@ public class StorylineManager : MonoBehaviour
             return _instance;
         }
     }
+    [NonReorderable][SerializeField] public TownDialogueData townEventDialogues;
     [NonReorderable][SerializeField] public List<StorylineData> storyLines;
 
     [HeaderAttribute("PANDAY")]
@@ -47,8 +67,17 @@ public class StorylineManager : MonoBehaviour
 
         _instance = this;
         //DontDestroyOnLoad(gameObject);
+        StorylineManager.onWorldEventEndedEvent.AddListener(FinishedTownEventStory);
     }
+    void FinishedTownEventStory(string p_id, int p_intone, int p_intto)
+    {
+        if (p_id == "TE")
+        {
+            StorylineManager.instance.townEventDialogues.currentQuestChainIndex++;
+          
 
+        }
+    }
     private void OnEnable()
     {
     
@@ -116,7 +145,7 @@ public class StorylineManager : MonoBehaviour
                  //   Debug.Log("PH: 3");
                     SO_Item currentSOItemQuestRequirement = specificQuestRequirement.so_Item[i];
                     //look for item in inventory
-                    ItemData itemData = InventoryManager.GetItem(currentSOItemQuestRequirement);
+                    ItemData itemData = InventoryManager.GetItem(currentSOItemQuestRequirement.name);
                     if (itemData != null)
                     {
                      //   Debug.Log("PH: 4");
@@ -179,7 +208,7 @@ public class StorylineManager : MonoBehaviour
                     //   
                     //    Debug.Log("PH: 12");
 
-                        InventoryManager.ReduceItem(currentSOItemQuestRequirement,
+                        InventoryManager.onReduceItemEvent.Invoke(currentSOItemQuestRequirement.name,
                                 specificQuestRequirement.requiredAmount[i]);
                         //QuestCompleted(storylineData);
                         isQuestCompleted = true;
@@ -236,7 +265,7 @@ public class StorylineManager : MonoBehaviour
         for (int i = 0; i < questlineData.quest.rewards.Count; i++)
         {
             Debug.Log("REWARDING");
-            InventoryManager.AddItem(questlineData.quest.rewards[i].so_Item,
+            InventoryManager.onAddItemEvent.Invoke(questlineData.quest.rewards[i].so_Item.name,
                 questlineData.quest.rewards[i].amount);
         }
         Debug.Log(p_storylineData.currentQuestLineIndex + " TESTIN" + (so_Questline.questlineData.Count -1).ToString());

@@ -23,7 +23,7 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Emman/EmmanScene.unity
     guid: 987babaf6f9c4f4418def72367d96b4f
   - enabled: 0

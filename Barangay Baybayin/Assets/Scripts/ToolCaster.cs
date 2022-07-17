@@ -36,7 +36,7 @@ public class ToolCaster : MonoBehaviour
     private Transform aim;
 
     public Animator animator;
-
+    [SerializeField] private float detectionRadius;
     public static ToolUsedEvent onToolUsedEvent = new ToolUsedEvent();
     public ToolHitSucceededEvent onToolHitSucceededEvent = new ToolHitSucceededEvent();
     public ToolCanUseUpdatedEvent onToolCanUseUpdatedEvent = new ToolCanUseUpdatedEvent();
@@ -236,7 +236,7 @@ public class ToolCaster : MonoBehaviour
     }
     public ResourceNode GetResourceNode() 
     {
-        Collider2D[] collider = Physics2D.OverlapCircleAll((Vector2)aim.position, 3f);
+        Collider2D[] collider = Physics2D.OverlapCircleAll((Vector2)aim.position, detectionRadius);
         foreach (Collider2D hit in collider)
         {
             if (hit != null)
@@ -247,8 +247,15 @@ public class ToolCaster : MonoBehaviour
                    // Debug.Log(hit + " phase 1 ");
                     if (hit.TryGetComponent<ResourceNode>(out ResourceNode resourceNode))
                     {
-                       // Debug.Log("FOUND RESOURCE NODE");
-                        return resourceNode;
+                        if (resourceNode.TryGetComponent<Health>(out Health health))
+                        {
+                            if (health.isAlive)
+                            {
+                                // Debug.Log("FOUND RESOURCE NODE");
+                                return resourceNode;
+                            }
+                        }
+                       
                     }
                         
                     
@@ -261,7 +268,7 @@ public class ToolCaster : MonoBehaviour
 
     public Infrastructure GetInfrastructure()
     {
-        Collider2D[] collider = Physics2D.OverlapCircleAll((Vector2)aim.position, 3f);
+        Collider2D[] collider = Physics2D.OverlapCircleAll((Vector2)aim.position, detectionRadius);
         foreach (Collider2D hit in collider)
         {
             if (hit != null)
@@ -271,7 +278,15 @@ public class ToolCaster : MonoBehaviour
 
                     if (hit.TryGetComponent<Infrastructure>(out Infrastructure infrastructure))
                     {
-                        return infrastructure;
+                        if (infrastructure.TryGetComponent<Health>(out Health health))
+                        {
+                            if (health.isAlive)
+                            {
+                                // Debug.Log("FOUND RESOURCE NODE");
+                                return infrastructure;
+                            }
+                        }
+                      
                     }
                 }
             }

@@ -52,7 +52,8 @@ public class ToolsUI : MonoBehaviour
         //ToolManager.onProficiencyLevelModifiedEvent.AddListener(UpdateLevel);
         //ToolManager.onProficiencyAmountModifiedEvent.AddListener(UpdateProf);
         ToolManager.onProficiencyAmountModifiedEvent.AddListener(UpdateProf);
-        ToolManager.onProficiencyLevelModifiedEvent.AddListener(UpdateLevel);
+        ToolManager.onProficiencyLevelModifiedEvent.AddListener(UpdateProfLevel);
+        ToolManager.onToolCraftLevelUpgradedEvent.AddListener(UpdateCraftLevel);
         onToolQuestSwitchEvent.AddListener(RequireTool);
         foreach (ToolUIElements t in toolUI)
         {
@@ -63,7 +64,7 @@ public class ToolsUI : MonoBehaviour
 
     private void OnDisable()
     {
-        ToolManager.onProficiencyLevelModifiedEvent.RemoveListener(UpdateLevel);
+        ToolManager.onProficiencyLevelModifiedEvent.RemoveListener(UpdateProfLevel);
         toolCaster.onToolCanUseUpdatedEvent.RemoveListener(CanUseUpdate);
         //toolCaster.onToolCanSwitchUpdatedEvent.RemoveListener(CanSwitchUpdate);
     }
@@ -80,13 +81,22 @@ public class ToolsUI : MonoBehaviour
     {
         canSwitch = p_canSwitch;
     }
+    public void UpdateCraftLevel(int p_index)
+    {
+        Tool selected_Tool = ToolManager.instance.tools[p_index];
+        SO_Tool selectedSO_Tool = selected_Tool.so_Tool;
+      
+        toolUI[currentEquip].icon.sprite = selectedSO_Tool.equippedIcon[selected_Tool.craftLevel+1];
 
-    public void UpdateLevel(int p_level)
+
+
+
+    }
+    public void UpdateProfLevel(int p_level)
     {
         Tool selected_Tool = ToolManager.instance.tools[currentEquip];
         SO_Tool selectedSO_Tool = selected_Tool.so_Tool;
         toolUI[currentEquip].levelCount.text = selected_Tool.proficiencyLevel.ToString();
-        toolUI[currentEquip].icon.sprite = selectedSO_Tool.equippedIcon[selected_Tool.craftLevel];
         toolUI[currentEquip].frame.sprite = frameLevels[selected_Tool.proficiencyLevel];
         toolUI[currentEquip].genericBarUI.ResetBar(1, 1);
   
@@ -139,7 +149,7 @@ public class ToolsUI : MonoBehaviour
                             Tool current_Tool = ToolManager.instance.tools[i];
                             SO_Tool so_Tool = current_Tool.so_Tool;
                             toolUI[i].background.sprite = so_Tool.unlockedFrame;
-                            toolUI[i].icon.sprite = so_Tool.unlockedIcon;
+                            toolUI[i].icon.sprite = so_Tool.equippedIcon[current_Tool.craftLevel];//.unlockedIcon;
 
                         }
 

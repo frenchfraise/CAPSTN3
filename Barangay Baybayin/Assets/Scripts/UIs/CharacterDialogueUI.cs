@@ -24,6 +24,7 @@ public class CharacterDialogueUI : MonoBehaviour
     [SerializeField] private TMP_Text characterNameText;
     [SerializeField] private TMP_Text dialogueText;
     [SerializeField] private Image avatarImage;
+    [SerializeField] private Image backgroundImage;
 
     private GameObject emoticonObject;
     private Image emoticonImage;
@@ -171,7 +172,7 @@ public class CharacterDialogueUI : MonoBehaviour
        
         if (isStartTransitionEnabled)
         {
-            UIManager.TransitionPreFadeAndPostFade(1, 0.5f, 1, 0, 0.5f, OnOpenCharacterDialogueUI);
+            TransitionUI.onFadeInAndOutTransition.Invoke(1, 0.5f, 1, 0, 0.5f, OnOpenCharacterDialogueUI);
         }
         else
         {
@@ -336,6 +337,15 @@ public class CharacterDialogueUI : MonoBehaviour
                 {
                     
                     dialogueText.text = currentDialogue.words;
+                    if (currentDialogue.backgroundSprite != null)
+                    {
+                        backgroundImage.sprite = currentDialogue.backgroundSprite;
+                        backgroundImage.color = new Color32(255, 255, 255, 255);
+                    }
+                    else
+                    {
+                        backgroundImage.color = new Color32(0, 0, 0, 0);
+                    }
                    
                     if (allowNext == true)
                     {
@@ -409,7 +419,7 @@ public class CharacterDialogueUI : MonoBehaviour
                         {
 
                             //Debug.Log("END TRANSIONING");
-                            UIManager.TransitionPreFadeAndPostFade(1, 0.5f, 1, 0, 0.5f, OnCloseCharacterDialogueUI);
+                            TransitionUI.onFadeInAndOutTransition.Invoke(1, 0.5f, 1, 0, 0.5f, OnCloseCharacterDialogueUI);
                         }
                         else
                         {

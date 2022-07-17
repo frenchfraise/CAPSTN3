@@ -7,16 +7,21 @@ using DG.Tweening;
 public class DayInfoUI : MonoBehaviour
 {
     [SerializeField] private GameObject frame;
+    [SerializeField] private RadiateScaleUIEffect faintRadiateScaleUI;
     public TMP_Text dayText; //make this action
 
     public TMP_Text dayCountText;
     public TMP_Text conditionsText;
     private bool fainted;
     private bool isFirstTime = true;
-
+    private void Awake()
+    {
+        faintRadiateScaleUI.gameObject.SetActive(false);
+    }
     private void OnEnable()
     {
         TimeManager.onDayEndedEvent.AddListener(DayEnd);
+
      
     }
     private void OnDisable()
@@ -43,6 +48,7 @@ public class DayInfoUI : MonoBehaviour
     IEnumerator Co_DayEndTransition(bool p_causedByFainting, int p_dayCount)
     {
         TimeManager.onPauseGameTime.Invoke(false);
+        Debug.Log("GOING TO TRY");
         if (!p_causedByFainting)
         {
             conditionsText.text = "ENDED";
@@ -54,14 +60,32 @@ public class DayInfoUI : MonoBehaviour
             conditionsText.text = "YOU FAINTED";
             dayCountText.text = "DAY " + (p_dayCount).ToString();
             dayText.text = "DAY " + (p_dayCount + 1).ToString();
+            faintRadiateScaleUI.gameObject.SetActive(true);
+            if (faintRadiateScaleUI.runningCoroutine != null) 
+            {
+                StopCoroutine(faintRadiateScaleUI.runningCoroutine);
+                faintRadiateScaleUI.runningCoroutine = null;
+
+            }
+            faintRadiateScaleUI.runningCoroutine = faintRadiateScaleUI.Co_Scale();
+            StartCoroutine(faintRadiateScaleUI.runningCoroutine);
+            yield return new WaitForSeconds(2f);
+
+            if (faintRadiateScaleUI.runningCoroutine != null)
+            {
+                StopCoroutine(faintRadiateScaleUI.runningCoroutine);
+                faintRadiateScaleUI.runningCoroutine = null;
+
+            }
+            faintRadiateScaleUI.gameObject.SetActive(false);
 
         }
 
-        UIManager.TransitionFade(1);
+        TransitionUI.onFadeTransition.Invoke(1);
         yield return new WaitForSeconds(0.5f);
         //TimeManager.onDayChangingEvent.Invoke();
         Sequence tr = DOTween.Sequence();
-        tr.Join(conditionsText.DOFade(1f, 0.75f));
+        tr.Append(conditionsText.DOFade(1f, 0.75f));
         tr.Join(dayCountText.DOFade(1f, 0.75f));
         yield return tr.WaitForCompletion();
 
@@ -72,7 +96,7 @@ public class DayInfoUI : MonoBehaviour
         //PlayerManager.instance.stamina.transform.position = PlayerManager.instance.bed.transform.position;
         // Uncomment this out when it is READY
         // UIManager.instance.recipeUpgrade.SetActive(false);
-       // CameraManager.onCameraMovedEvent.Invoke(new Vector3(0, 0, -10), new Vector3(41.5f, 20f, 0f));
+        // CameraManager.onCameraMovedEvent.Invoke(new Vector3(0, 0, -10), new Vector3(41.5f, 20f, 0f));
         Sequence trt = DOTween.Sequence();
         trt.Join(conditionsText.DOFade(0f, 0.75f));
         trt.Join(dayCountText.DOFade(0f, 0.75f));
@@ -85,8 +109,8 @@ public class DayInfoUI : MonoBehaviour
         Sequence t = DOTween.Sequence();
         t.Join(conditionsText.DOFade(1f, 0.75f));
         t.Join(dayCountText.DOFade(1f, 0.75f));
-        
-       
+
+
         yield return t.WaitForCompletion();
         yield return new WaitForSeconds(1f);
 
@@ -94,10 +118,20 @@ public class DayInfoUI : MonoBehaviour
         te.Join(conditionsText.DOFade(0f, 0.5f));
         te.Join(dayCountText.DOFade(0f, 0.5f));
         yield return te.WaitForCompletion();
-        UIManager.TransitionFade(0, false) ;
+        TransitionUI.onFadeTransition.Invoke(0, false);
         TimeManager.instance.NewDay();
         frame.SetActive(false);
         TimeManager.onPauseGameTime.Invoke(true);
+
+        TownDialogueData tdd = StorylineManager.instance.townEventDialogues;
+        Debug.Log("TRY");
+        Debug.Log("TRY " + tdd.td[tdd.currentQuestChainIndex].dayRequiredCount + " - - " + (p_dayCount + 1));
+        if (tdd.td[tdd.currentQuestChainIndex].dayRequiredCount == (p_dayCount + 1))
+        {
+            Debug.Log("TEEEEEEEEEEEE");
+            CharacterDialogueUI.onCharacterSpokenToEvent.Invoke("TE", tdd.td[tdd.currentQuestChainIndex].so_Dialogue);
+        }
+
     }
 
 

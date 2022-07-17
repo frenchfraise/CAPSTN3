@@ -15,9 +15,10 @@ public class ItemCategoryUI : MonoBehaviour
             ItemData currentItemData = p_itemCategory.items[i];
             ItemUI newItemUI = Instantiate(prefab);
             newItemUI.transform.SetParent(container, false);
-            newItemUI.InitializeValues(currentItemData.so_Item.name, currentItemData.amount.ToString(), currentItemData.so_Item.icon);
-     
-            currentItemData.amountText = newItemUI.GetitemAmountText();
+            newItemUI.itemData = currentItemData;
+            newItemUI.InitializeValues(currentItemData.so_Item.name, "0", currentItemData.so_Item.icon);
+
+            currentItemData.SetItemUI(newItemUI);
             i++;
             if (i >= p_itemCategory.items.Count)
             {

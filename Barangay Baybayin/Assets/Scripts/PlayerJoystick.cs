@@ -38,11 +38,19 @@ public class PlayerJoystick : MonoBehaviour
     private void OnEnable()
     {
         UIManager.onGameplayModeChangedEvent.AddListener(OnGameplayModeChangedEvent);
+        ToolManager.onResourceNodeFinishedEvent.AddListener(OnResourceNodeFinishedEvent);
         onUpdateJoystickEnabledEvent.AddListener(UpdateJoystickEnabled);
     }
     void UpdateJoystickEnabled(bool p_bool)
     {
         canJoystick = p_bool;
+    }
+    void OnResourceNodeFinishedEvent()
+    {
+        Debug.Log("IT DIED");
+        interactHint.SetActive(false);
+
+
     }
     private void OnGameplayModeChangedEvent(bool p_isActive)
     {

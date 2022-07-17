@@ -49,13 +49,13 @@ public class UpgradeToolUI : MonoBehaviour
         if (craftUpgradeItemRequirementsData.itemRequirements.Count > 0)
         {
             ItemUpgradeRequirement itemUpgradeRequirement = craftUpgradeItemRequirementsData.itemRequirements[0];
-            if (InventoryManager.GetItem(itemUpgradeRequirement.so_Item).amount >= itemUpgradeRequirement.requiredAmount)
+            if (InventoryManager.GetItem(itemUpgradeRequirement.so_Item.name).amount >= itemUpgradeRequirement.requiredAmount)
             {
                // hasRecipeImage.color = new Color32(0, 255, 0, 225);
                 hasRecipeImage.sprite = upgradeUI.sufficientIcon;
                 isUpgradableReqOne = true;
             }
-            else if (InventoryManager.GetItem(itemUpgradeRequirement.so_Item).amount < itemUpgradeRequirement.requiredAmount)
+            else if (InventoryManager.GetItem(itemUpgradeRequirement.so_Item.name).amount < itemUpgradeRequirement.requiredAmount)
             {
                 //hasRecipeImage.color = new Color32(255, 0, 0, 225);
                 hasRecipeImage.sprite = upgradeUI.insufficientIcon;
@@ -77,12 +77,12 @@ public class UpgradeToolUI : MonoBehaviour
             {
                 ItemUpgradeRequirement materialTwo = craftUpgradeItemRequirementsData.itemRequirements[1];
 
-                if (InventoryManager.GetItem(materialTwo.so_Item).amount >= materialTwo.requiredAmount)
+                if (InventoryManager.GetItem(materialTwo.so_Item.name).amount >= materialTwo.requiredAmount)
                 {
                     isUpgradableImage.sprite = upgradeUI.sufficientIcon;
                    // isUpgradableImage.color = new Color32(0, 255, 0, 225);
                 }
-                else if (InventoryManager.GetItem(materialTwo.so_Item).amount < materialTwo.requiredAmount)
+                else if (InventoryManager.GetItem(materialTwo.so_Item.name).amount < materialTwo.requiredAmount)
                 {
                     isUpgradableImage.sprite = upgradeUI.insufficientIcon;
                    // isUpgradableImage.color = new Color32(255, 0, 0, 225);

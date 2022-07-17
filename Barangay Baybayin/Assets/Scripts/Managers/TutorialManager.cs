@@ -17,6 +17,7 @@ public class TutorialManager : MonoBehaviour
     public TutorialUI tutorialUI;
     [SerializeField] private Stamina stamina;
 
+    public Transform spawnPoint0;
     public Transform spawnPoint1;
     public Transform spawnPoint2;
     public Transform spawnPoint3;
@@ -45,6 +46,8 @@ public class TutorialManager : MonoBehaviour
 
     public Panday panday;
     public bool firstTime = true;
+    bool oneToolRewardGiven = false;
+    bool allToolsRewardGiven = false;
     private void Awake()
     {
         instance = this;
@@ -164,7 +167,7 @@ public class TutorialManager : MonoBehaviour
         {
             //SPAWN
             resourceNode = TreeVariantOneNodePool.pool.Get();
-            resourceNode.transform.position = spawnPoint1.position + new Vector3(0f, -2.35f, 0f);
+            resourceNode.transform.position = spawnPoint0.position + new Vector3(0f, -2.35f, 0f);
             resourceNode.InitializeValues();
             resourceNode.GetComponent<Health>().OnDeathEvent.AddListener(TeachAppropriateToolForNode);
 
@@ -181,7 +184,7 @@ public class TutorialManager : MonoBehaviour
         {
             //SPAWN
             resourceNode = OreVariantOneNodePool.pool.Get();
-            resourceNode.transform.position = spawnPoint1.position + new Vector3(0f, -2.35f, 0f);
+            resourceNode.transform.position = spawnPoint0.position + new Vector3(0f, -2.35f, 0f);
             resourceNode.InitializeValues();
             resourceNode.GetComponent<Health>().OnDeathEvent.AddListener(TeachAppropriateToolForNode);
         
@@ -209,7 +212,7 @@ public class TutorialManager : MonoBehaviour
         {
             //SPAWN
             resourceNode = HerbVariantOneNodePool.pool.Get();
-            resourceNode.transform.position = spawnPoint1.position + new Vector3(0f, -2.35f, 0f);
+            resourceNode.transform.position = spawnPoint0.position + new Vector3(0f, -2.35f, 0f);
             resourceNode.InitializeValues();
             resourceNode.GetComponent<Health>().OnDeathEvent.AddListener(TeachAppropriateToolForNode);
 
@@ -246,29 +249,43 @@ public class TutorialManager : MonoBehaviour
         }
         else if (p_id == "O-6")
         {
-            InventoryManager.AddItem("Recipe 1", 1);
-            InventoryManager.AddItem("Wood 1", 10);
-            UpgradeToolsUI.onSetSpecificToMachete.Invoke(true);
-            ToolManager.onToolUpgradedEvent.AddListener(RequireMacheteCraftLevel1);
-            EndStory();
+            Debug.Log("IN");
+            if (!oneToolRewardGiven)
+            {
+                Debug.Log("OUT");
+                oneToolRewardGiven = true;
+                InventoryManager.onAddItemEvent.Invoke("Recipe 1", 1);
+                InventoryManager.onAddItemEvent.Invoke("Wood 1", 10);
+                UpgradeToolsUI.onSetSpecificToMachete.Invoke(true);
+                ToolManager.onToolCraftLevelUpgradedEvent.AddListener(RequireMacheteCraftLevel1);
+                EndStory();
+            }
+           
 
 
 
         }
         else if (p_id == "O-7")
         {
+          
             Debug.Log("7 HAPPENEEEEEEEEEEEEEEEEEEEEEED");
-            InventoryManager.AddItem("Recipe 1", 3); //it happens 3 times
-            InventoryManager.AddItem("Wood 1", 30);
-            UpgradeToolsUI.onSetSpecificToMachete.Invoke(false);
-            UpgradeToolsUI.onSetSpecificToAllOther.Invoke(true);
-            ToolManager.onToolUpgradedEvent.AddListener(RequireAllToolsCraftLevel1);
-            EndStory();
+            if (!allToolsRewardGiven)
+            {
+                allToolsRewardGiven = true;
+                InventoryManager.onAddItemEvent.Invoke("Recipe 1", 3); //it happens 3 times
+                InventoryManager.onAddItemEvent.Invoke("Wood 1", 30);
+                UpgradeToolsUI.onSetSpecificToMachete.Invoke(false);
+                UpgradeToolsUI.onSetSpecificToAllOther.Invoke(true);
+     
+                ToolManager.onToolCraftLevelUpgradedEvent.AddListener(RequireAllToolsCraftLevel1);
+                EndStory();
+            }
 
 
         }
         else if (p_id == "O-8")
         {
+  
             UpgradeToolsUI.onSetSpecificToAllOther.Invoke(false);
             panday.isQuestMode = true;
             Debug.Log("8 HAPPENEEEEEEEEEEEEEEEEEEEEEED");
@@ -316,18 +333,21 @@ public class TutorialManager : MonoBehaviour
                         firstTime = false;
                         EndStory();
                     }
-                    if (currentIndex == 9)
-                    {
-                        Debug.Log("QUEST COMPLETED");
-                        Debug.Log("END");
-                        Unsetup();
-                    }
+                    
                     //if(currentIndex == 9)
                     //{
                     //    Debug.Log("END");
                     //    Unsetup();
                     //}
 
+                }
+                else
+                {
+                    
+                    Debug.Log("QUEST COMPLETED");
+                    Debug.Log("END");
+                    Unsetup();
+                    
                 }
                 
             }
@@ -356,10 +376,7 @@ public class TutorialManager : MonoBehaviour
             //SPECFICI
             ToolCaster.onToolUsedEvent.AddListener(TeachUseTool);
         }
-        //else if (currentIndex == 7)
-        //{
-        //    tutorialUI.overheadUI.SetActive(false);
-        //}
+       
 
 
     }
@@ -378,7 +395,7 @@ public class TutorialManager : MonoBehaviour
         {
             StartLecture();
         }
-      
+
 
     }
 
@@ -452,6 +469,7 @@ public class TutorialManager : MonoBehaviour
         if (passed)
         {
             //SPECIFIC
+            ToolManager.onProficiencyLevelModifiedEvent.RemoveListener(RequireMacheteProfLevel1);
             ToolCaster.onSetIsPreciseEvent.Invoke(false);
             //SPECIFIC
             EndLecture();
@@ -461,25 +479,25 @@ public class TutorialManager : MonoBehaviour
 
     }
   
-    public void RequireMacheteCraftLevel1()
+    public void RequireMacheteCraftLevel1(int p_i)
     {
         bool passed = true;
-        Debug.Log("STARTED " + ToolManager.instance.tools[2].craftLevel);
-        for (int i = 0; i < ToolManager.instance.tools.Count;)
+        Debug.Log("STARTED " + ToolManager.instance.tools[p_i].craftLevel);
+        if (p_i == 2)
         {
-            Tool selected_Tool = ToolManager.instance.tools[2];
-            if (ToolManager.instance.tools[2].craftLevel < 1)
+            Tool selected_Tool = ToolManager.instance.tools[p_i];
+            if (ToolManager.instance.tools[p_i].craftLevel < 1)
             {
                 Debug.Log("FAILED");
                 passed = false;
-                break;
-            }
-            i++;
 
+            }
         }
+        
+          
         if (passed)
         {
-            ToolManager.onToolUpgradedEvent.RemoveListener(RequireMacheteCraftLevel1);
+            ToolManager.onToolCraftLevelUpgradedEvent.RemoveListener(RequireMacheteCraftLevel1);
             EndLecture();
         }
 
@@ -487,7 +505,7 @@ public class TutorialManager : MonoBehaviour
 
     }
 
-    public void RequireAllToolsCraftLevel1()
+    public void RequireAllToolsCraftLevel1(int p_i)
     {
         bool passed = true;
         for (int i = 0; i < ToolManager.instance.tools.Count;)
@@ -504,7 +522,7 @@ public class TutorialManager : MonoBehaviour
         if (passed)
         {
             
-            ToolManager.onToolUpgradedEvent.RemoveListener(RequireAllToolsCraftLevel1);
+            ToolManager.onToolCraftLevelUpgradedEvent.RemoveListener(RequireAllToolsCraftLevel1);
             EndLecture();
         }
 
@@ -519,7 +537,8 @@ public class TutorialManager : MonoBehaviour
             {
                 //if (p_testt == 1)
                 //{
-                    Debug.Log("QUEST COMPLETED");
+                StorylineManager.onWorldEventEndedEvent.RemoveListener(RequirePandayQuestComplete);
+                Debug.Log("QUEST COMPLETED");
                     EndLecture();
                // }
             }

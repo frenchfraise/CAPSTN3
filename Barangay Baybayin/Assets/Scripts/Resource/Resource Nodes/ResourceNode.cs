@@ -73,6 +73,7 @@ public class ResourceNode : Unit
     public void RewardResource()
     {
         CameraManager.onShakeCameraEvent.Invoke();
+        ToolManager.onResourceNodeFinishedEvent.Invoke();
         int chosenIndex = Random.Range(0, resourceDrops.Count);
         
         ResourceDrop chosenResourceDrop = resourceDrops[chosenIndex];

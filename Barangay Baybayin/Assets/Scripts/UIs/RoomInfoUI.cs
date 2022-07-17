@@ -60,7 +60,7 @@ public class RoomInfoUI : MonoBehaviour
         availableResourcesGO.SetActive(false);
    
 
-        UIManager.TransitionFade(1);
+        TransitionUI.onFadeTransition.Invoke(1);
         yield return new WaitForSeconds(0.5f);
      
 
@@ -134,7 +134,7 @@ public class RoomInfoUI : MonoBehaviour
         yield return t.WaitForCompletion();
         Debug.Log("ROOM INFO ENDING");
         gameObject.SetActive(false);
-        UIManager.TransitionFade(0, false);
+        TransitionUI.onFadeTransition.Invoke(0, false);
         //UIManager.onGameplayModeChangedEvent.Invoke(false);
         PlayerJoystick.onUpdateJoystickEnabledEvent.Invoke(true);
         TimeManager.onPauseGameTime.Invoke(true);

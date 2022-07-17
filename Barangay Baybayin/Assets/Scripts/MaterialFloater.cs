@@ -41,9 +41,10 @@ public class MaterialFloater : MonoBehaviour
         yield return new WaitForSeconds(p_delayTime);
         var sequence = DOTween.Sequence()
         .Append(image.DOFade(0, p_decayTime));
-        sequence.Append(textMeshPro.DOFade(0, p_decayTime));
+        sequence.Join(textMeshPro.DOFade(0, p_decayTime));
         sequence.Play();
         yield return sequence.WaitForCompletion();
+
 
 
 

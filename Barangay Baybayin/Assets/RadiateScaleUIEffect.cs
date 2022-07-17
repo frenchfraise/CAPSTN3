@@ -17,8 +17,8 @@ public class RadiateScaleUIEffect : MonoBehaviour
     private void Awake()
     {
 
-        runningCoroutine = Co_Scale();
-        StartCoroutine(runningCoroutine);
+        //runningCoroutine = Co_Scale();
+        //StartCoroutine(runningCoroutine);
     }
     public IEnumerator Co_Scale()
     {
