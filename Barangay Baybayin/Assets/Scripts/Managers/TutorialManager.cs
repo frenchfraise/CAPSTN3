@@ -67,12 +67,32 @@ public class TutorialManager : MonoBehaviour
     //}
     private void Start()
     {
-        Setup();
+        //Setup();
+        DontUseTutorial();
+
 
     }
+    void DontUseTutorial()
+    {
+        PlayerManager.instance.DayChanging();
 
+        Stamina.onManualSetStaminaEvent.Invoke(200);
+        CameraManager.instance.tutorialOn = false;
+        StorylineManager.onWorldEventEndedEvent.RemoveListener(TellStory);
+        UIManager.onGameplayModeChangedEvent.RemoveListener(GameplayModeChangedEvent);
+        CharacterDialogueUI.onSetEndTransitionEnabledEvent.Invoke(true);
+        CharacterDialogueUI.onSetIsCloseOnEndEvent.Invoke(true);
+        CharacterDialogueUI.onSetStartTransitionEnabledEvent.Invoke(true);
+        TimeManager.instance.tutorialOn = false;
+        TimeManager.onPauseGameTime.Invoke(true);
+        CameraManager.instance.ResetCamera();
+        tutorialUI.overheadUI.SetActive(false);
+        panday.isQuestMode = false;
+        tutorialBlocker.gameObject.SetActive(false);
+    }
     void Setup()
     {
+      
         CameraManager.instance.tutorialOn = true;
         StorylineManager.onWorldEventEndedEvent.AddListener(TellStory);
         UIManager.onGameplayModeChangedEvent.AddListener(GameplayModeChangedEvent);

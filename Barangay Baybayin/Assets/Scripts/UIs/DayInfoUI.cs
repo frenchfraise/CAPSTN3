@@ -51,8 +51,9 @@ public class DayInfoUI : MonoBehaviour
     {
         TimeManager.onPauseGameTime.Invoke(false);
         Debug.Log("FIRST TIME");
-        
 
+        conditionsText.text = "";
+        dayCountText.text = "DAY " + (1).ToString();
         TransitionUI.onFadeTransition.Invoke(1);
         yield return new WaitForSeconds(0.5f);
         //TimeManager.onDayChangingEvent.Invoke();

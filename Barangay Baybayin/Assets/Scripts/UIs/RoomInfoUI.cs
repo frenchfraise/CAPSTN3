@@ -127,7 +127,8 @@ public class RoomInfoUI : MonoBehaviour
             }
      
         }
-        CameraManager.instance.ResetCamera();
+        CameraManager.onCameraMovedEvent.Invoke(p_cameraPos,
+            p_cameraPanLimit);
         yield return new WaitForSeconds(3.75f);
         Sequence t = DOTween.Sequence();
         t.Join(roomNameText.DOFade(0f, 0.5f));

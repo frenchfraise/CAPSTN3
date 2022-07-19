@@ -196,6 +196,7 @@ public class CharacterDialogueUI : MonoBehaviour
             string song2 = AudioManager.instance.GetSoundByName("Quest Get").name;
             AudioManager.instance.StartCoFade(song1, song2);
         }
+        Debug.Log("WHO IS CALLING");
         frame.SetActive(true);
         //Debug.Log(id + " EVENT WITH NAME " + currentSO_Dialogues.name + " IS CURRENT DIALOGUE " + " OPENING");
         ResetCharacterDialogueUI();
@@ -257,7 +258,7 @@ public class CharacterDialogueUI : MonoBehaviour
         isAlreadyEnded = false;
         nextDialogueButton.SetActive(true);
         choiceUIsContainer.SetActive(false);
-
+        Debug.Log("WHO IS CALLING");
 
         avatarImage.color = new Color(avatarImage.color.r, avatarImage.color.g, avatarImage.color.b, 0);
 
@@ -271,8 +272,8 @@ public class CharacterDialogueUI : MonoBehaviour
     {
         currentDialogueIndex++;
         //ResetEmotionUI();
+        Debug.Log("WHO IS CALLING");
 
-  
         if (currentDialogueIndex == currentSO_Dialogues.dialogues.Count)
         {
             if (isAdvancedonWorldEventEndedEvent)
@@ -297,7 +298,7 @@ public class CharacterDialogueUI : MonoBehaviour
             runningEmotionCoroutine = Co_EmotionOut();
             StartCoroutine(runningEmotionCoroutine);
         }
-
+        Debug.Log("WHO IS CALLING");
 
         //Debug.Log(id + " EVENT WITH NAME " + currentSO_Dialogues.name + " IS CURRENT DIALOGUE " + currentDialogueIndex +  " IS CURRENT INDEX OUT OF " + currentSO_Dialogues.dialogues.Count);
         if (currentDialogueIndex < currentSO_Dialogues.dialogues.Count)

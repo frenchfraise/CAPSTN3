@@ -122,7 +122,7 @@ public class PlayerManager : MonoBehaviour
         TimeManager.onDayChangingEvent.RemoveListener(DayChanging);
     }
 
-    void DayChanging()
+    public void DayChanging()
     {
         playerTransform.position = bed.spawnTransform.position;
         //onRoomEnteredEvent.Invoke(startRoomPassageway);
