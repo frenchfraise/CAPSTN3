@@ -158,6 +158,11 @@ public class UpgradeToolsUI : MonoBehaviour
                 if (amt >= upgradeMaterialUIs[i].amountRequired)
                 {
                     upgradeMaterialUIs[i].requirementFulfilled = true;
+                    upgradeMaterialUIs[i].isValidImage.sprite = sufficientFrame;
+                }
+                else
+                {
+                    upgradeMaterialUIs[i].isValidImage.sprite = insufficientFrame;
                 }
             }
         }
@@ -167,6 +172,7 @@ public class UpgradeToolsUI : MonoBehaviour
             {
                 upgradeMaterialUIs[i].iconImage.gameObject.SetActive(false);
                 upgradeMaterialUIs[i].requirementFulfilled = true;
+                upgradeMaterialUIs[i].isValidImage.sprite = sufficientFrame;
             }
         }
    

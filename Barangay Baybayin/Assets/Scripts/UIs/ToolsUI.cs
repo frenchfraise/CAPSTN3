@@ -83,11 +83,23 @@ public class ToolsUI : MonoBehaviour
     }
     public void UpdateCraftLevel(int p_index)
     {
-        Tool selected_Tool = ToolManager.instance.tools[p_index];
-        SO_Tool selectedSO_Tool = selected_Tool.so_Tool;
+        //Tool selected_Tool = ToolManager.instance.tools[p_index];
+        //SO_Tool selectedSO_Tool = selected_Tool.so_Tool;
       
-        toolUI[currentEquip].icon.sprite = selectedSO_Tool.equippedIcon[selected_Tool.craftLevel+1];
+        //toolUI[currentEquip].icon.sprite = selectedSO_Tool.equippedIcon[selected_Tool.craftLevel+1];
+        for (int i = 0; i < toolUI.Count; i++)
+        {
+           
+            
+            Tool current_Tool = ToolManager.instance.tools[i];
+            SO_Tool so_Tool = current_Tool.so_Tool;
+            toolUI[i].background.sprite = so_Tool.unlockedFrame;
+            toolUI[i].icon.sprite = so_Tool.equippedIcon[current_Tool.craftLevel];//.unlockedIcon;
 
+            
+
+
+        }
 
 
 

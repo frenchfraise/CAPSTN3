@@ -61,13 +61,20 @@ public class AudioManager : MonoBehaviour
     private void OnEnable()
     {
         PlayerManager.onRoomEnteredEvent.AddListener(PlayOnRoomEnter);
+        TimeManager.onDayChangingEvent.AddListener(OnDayChangingEvent);
         // PlayerManager.onUpdateCurrentRoomIDEvent.AddListener(PlayOnRoomEnter);
     }
 
     private void OnDisable()
     {
         PlayerManager.onRoomEnteredEvent.RemoveListener(PlayOnRoomEnter);
+        TimeManager.onDayChangingEvent.AddListener(OnDayChangingEvent);
         //PlayerManager.onUpdateCurrentRoomIDEvent.RemoveListener(PlayOnRoomEnter);
+    }
+
+    public void OnDayChangingEvent()
+    {
+        PlayOnRoomEnter(PlayerManager.instance.startRoomPassageway);
     }
 
     //public void PlayByName(string name)

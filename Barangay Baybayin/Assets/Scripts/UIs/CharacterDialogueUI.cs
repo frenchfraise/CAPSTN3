@@ -194,6 +194,7 @@ public class CharacterDialogueUI : MonoBehaviour
         //Debug.Log(id + " EVENT WITH NAME " + currentSO_Dialogues.name + " IS CURRENT DIALOGUE " + " OPENING");
         ResetCharacterDialogueUI();
         //TimeManager.onPauseGameTime.Invoke(false);
+
         UIManager.onGameplayModeChangedEvent.Invoke(true);
     }
     public void OnCloseCharacterDialogueUI()

@@ -21,12 +21,15 @@ public class RoomInfoUI : MonoBehaviour
     private void Start()
     {
         PlayerManager.onRoomEnteredEvent.AddListener(RoomEntered);
+     
         gameObject.SetActive(false);
     }
     private void Destroy()
     {
         PlayerManager.onRoomEnteredEvent.RemoveListener(RoomEntered);
     }
+
+
     public void RoomEntered(Passageway p_passageway)
     {
         //PlayerManager.instance.joystick.enabled = false;
@@ -49,6 +52,7 @@ public class RoomInfoUI : MonoBehaviour
     }
     IEnumerator Co_RoomInfoUITransition(string p_roomName, string p_roomDescription, List<ResourceNodeDrop> p_availableResourceNodeDrops, Vector2 p_cameraPos, Vector2 p_cameraPanLimit)
     {
+        //TimeManager.onPauseGameTime.Invoke(true);
         //Clear resources // object pool this
         for (int si = 0; si < availableResourcesContainer.childCount; si++)
         {

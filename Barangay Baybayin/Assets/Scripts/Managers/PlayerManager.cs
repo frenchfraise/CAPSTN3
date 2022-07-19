@@ -31,7 +31,7 @@ public class PlayerManager : MonoBehaviour
     public Transform playerTransform { get; private set; }
     //[SerializeField] private Stamina stamina;
     [SerializeField] private Bed bed;
-    [SerializeField] private Passageway startRoomPassageway;
+    [SerializeField] public Passageway startRoomPassageway;
     [SerializeField] private MaterialFloater floaterPrefab;
     [SerializeField] private int floaterStackCount;
     [SerializeField] private IEnumerator runningFloaterSpawner;
@@ -125,7 +125,7 @@ public class PlayerManager : MonoBehaviour
     void DayChanging()
     {
         playerTransform.position = bed.spawnTransform.position;
-        onRoomEnteredEvent.Invoke(startRoomPassageway);
+        //onRoomEnteredEvent.Invoke(startRoomPassageway);
         //Debug.Log("ID: " + startRoomPassageway.room.currentRoomID);
         //onUpdateCurrentRoomIDEvent.Invoke(startRoomPassageway.room.currentRoomID);
     }

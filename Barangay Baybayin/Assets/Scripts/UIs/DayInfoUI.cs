@@ -17,6 +17,7 @@ public class DayInfoUI : MonoBehaviour
     private void Awake()
     {
         faintRadiateScaleUI.gameObject.SetActive(false);
+        DayEnd(false,0);
     }
     private void OnEnable()
     {
@@ -39,12 +40,74 @@ public class DayInfoUI : MonoBehaviour
         }
         else if (isFirstTime)
         {
+            Debug.Log("FIRST TIME");
             isFirstTime = false;
-            TimeManager.onDayChangingEvent.Invoke();
+            StartCoroutine(Co_fIRSTDayEndTransition());
+            //TimeManager.onDayChangingEvent.Invoke();
         }
 
     }
+    IEnumerator Co_fIRSTDayEndTransition()
+    {
+        TimeManager.onPauseGameTime.Invoke(false);
+        Debug.Log("FIRST TIME");
+        
 
+        TransitionUI.onFadeTransition.Invoke(1);
+        yield return new WaitForSeconds(0.5f);
+        //TimeManager.onDayChangingEvent.Invoke();
+        Sequence tr = DOTween.Sequence();
+        tr.Append(conditionsText.DOFade(1f, 0.75f));
+        tr.Join(dayCountText.DOFade(1f, 0.75f));
+        tr.Play();
+        yield return tr.WaitForCompletion();
+
+        yield return new WaitForSeconds(1f);
+
+        //TimeManager.onDayChangingEvent.Invoke();
+
+        //PlayerManager.instance.stamina.transform.position = PlayerManager.instance.bed.transform.position;
+        // Uncomment this out when it is READY
+        // UIManager.instance.recipeUpgrade.SetActive(false);
+        // CameraManager.onCameraMovedEvent.Invoke(new Vector3(0, 0, -10), new Vector3(41.5f, 20f, 0f));
+        Sequence trt = DOTween.Sequence();
+        trt.Join(conditionsText.DOFade(0f, 0.75f));
+        trt.Join(dayCountText.DOFade(0f, 0.75f));
+        trt.Play();
+        yield return trt.WaitForCompletion();
+        yield return new WaitForSeconds(1f);
+
+        conditionsText.text = "STARTS";
+        dayCountText.text = "DAY " + (1).ToString();
+        dayText.text = "DAY " + (1).ToString();
+        Sequence t = DOTween.Sequence();
+        t.Join(conditionsText.DOFade(1f, 0.75f));
+        t.Join(dayCountText.DOFade(1f, 0.75f));
+        t.Play();
+
+        yield return t.WaitForCompletion();
+        yield return new WaitForSeconds(1f);
+
+        Sequence te = DOTween.Sequence();
+        te.Join(conditionsText.DOFade(0f, 0.5f));
+        te.Join(dayCountText.DOFade(0f, 0.5f));
+        te.Play();
+        yield return te.WaitForCompletion();
+        TransitionUI.onFadeTransition.Invoke(0, false);
+        TimeManager.instance.NewDay();
+        frame.SetActive(false);
+        TimeManager.onPauseGameTime.Invoke(true);
+
+        TownDialogueData tdd = StorylineManager.instance.townEventDialogues;
+        Debug.Log("TRY");
+        Debug.Log("TRY " + tdd.td[tdd.currentQuestChainIndex].dayRequiredCount + " - - " + ( 1));
+        if (tdd.td[tdd.currentQuestChainIndex].dayRequiredCount == (1))
+        {
+            Debug.Log("TEEEEEEEEEEEE");
+            CharacterDialogueUI.onCharacterSpokenToEvent.Invoke("TE", tdd.td[tdd.currentQuestChainIndex].so_Dialogue);
+        }
+
+    }
     IEnumerator Co_DayEndTransition(bool p_causedByFainting, int p_dayCount)
     {
         TimeManager.onPauseGameTime.Invoke(false);
@@ -87,6 +150,7 @@ public class DayInfoUI : MonoBehaviour
         Sequence tr = DOTween.Sequence();
         tr.Append(conditionsText.DOFade(1f, 0.75f));
         tr.Join(dayCountText.DOFade(1f, 0.75f));
+        tr.Play();
         yield return tr.WaitForCompletion();
 
         yield return new WaitForSeconds(1f);
@@ -100,6 +164,7 @@ public class DayInfoUI : MonoBehaviour
         Sequence trt = DOTween.Sequence();
         trt.Join(conditionsText.DOFade(0f, 0.75f));
         trt.Join(dayCountText.DOFade(0f, 0.75f));
+        trt.Play();
         yield return trt.WaitForCompletion();
         yield return new WaitForSeconds(1f);
 
@@ -109,7 +174,7 @@ public class DayInfoUI : MonoBehaviour
         Sequence t = DOTween.Sequence();
         t.Join(conditionsText.DOFade(1f, 0.75f));
         t.Join(dayCountText.DOFade(1f, 0.75f));
-
+        t.Play();
 
         yield return t.WaitForCompletion();
         yield return new WaitForSeconds(1f);
@@ -117,6 +182,7 @@ public class DayInfoUI : MonoBehaviour
         Sequence te = DOTween.Sequence();
         te.Join(conditionsText.DOFade(0f, 0.5f));
         te.Join(dayCountText.DOFade(0f, 0.5f));
+        te.Play();
         yield return te.WaitForCompletion();
         TransitionUI.onFadeTransition.Invoke(0, false);
         TimeManager.instance.NewDay();

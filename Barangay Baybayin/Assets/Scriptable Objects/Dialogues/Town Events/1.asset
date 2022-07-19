@@ -16,12 +16,20 @@ MonoBehaviour:
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
     emotion: 7
     words: The funeral
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 64792cf6cb6b2a642becf92ac15202ce, type: 2}
     emotion: 7
     words: Its happening
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: d07ffa9457a5d704b91096369ccebe08, type: 2}
     emotion: 7
     words: How sad
+    backgroundSprite: {fileID: 0}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: d07ffa9457a5d704b91096369ccebe08, type: 2}
+    emotion: 7
+    words: How sad
+    backgroundSprite: {fileID: 21300000, guid: 72dc9e31a8c6ab942b72c59d756075f7, type: 3}
     speechTransitionType: 1

@@ -74,7 +74,7 @@ public class TimeManager : MonoBehaviour
         minute = 0;
         hour = startHour;
         tutorialOn = true;
-        onDayEndedEvent.Invoke(false,dayCount);
+        //onDayEndedEvent.Invoke(false,dayCount);
         onHourChanged.Invoke(hour); //TEMPORARY
         
         DoTimer = true;
@@ -87,6 +87,7 @@ public class TimeManager : MonoBehaviour
 
         Stamina.onStaminaDepletedEvent.AddListener(FaintedEndDay);
         Bed.onBedInteractedEvent.AddListener(EndDay);
+        UIManager.onGameplayModeChangedEvent.AddListener(OnGameplayModeChangedEvent);
         //dayInfoUI = UIManager.instance.dayInfoUI;
         //dayInfoUI = dayInfoUI?UIManager.instance.dayInfoUI:FindObjectOfType<DayInfoUI>();
 
@@ -104,8 +105,13 @@ public class TimeManager : MonoBehaviour
 
         onPauseGameTime.RemoveListener(SetPauseGame);
         onTimeChangedEvent.AddListener(OnTimeCheck);
+
     }
- 
+    private void OnGameplayModeChangedEvent(bool p_bool)
+    {
+        SetPauseGame(p_bool);
+
+    }
     IEnumerator ForceTest()
     {
         yield return new WaitForSeconds(2f);
