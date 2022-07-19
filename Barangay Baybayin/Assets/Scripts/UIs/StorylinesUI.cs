@@ -8,6 +8,7 @@ using TMPro;
 public class StorylinesUIClose : UnityEvent<bool> { }
 public class StorylinesUI : MonoBehaviour
 {
+    [SerializeField] private GameObject frame;
     [NonReorderable]
     [SerializeField]
     private List<Sprite> frameLevels;
@@ -179,13 +180,15 @@ public class StorylinesUI : MonoBehaviour
 
     public void QuitButtonUIClicked()
     {
-        gameObject.SetActive(false);
+        frame.SetActive(false);
+        //gameObject.SetActive(false);
         UIManager.onGameplayModeChangedEvent.Invoke(false);
        // TimeManager.onPauseGameTime.Invoke(true);
     }
 
     public void OpenButtonUIClicked()
     {
+        frame.SetActive(true);
         //TimeManager.onPauseGameTime.Invoke(false);
         for (int i = 0; i < storylines.Count; i++)
         {
@@ -194,7 +197,7 @@ public class StorylinesUI : MonoBehaviour
         }
         selectionPanel.SetActive(true);
         selectedPanel.SetActive(false);
-        gameObject.SetActive(true);
+        //gameObject.SetActive(true);
         UIManager.onGameplayModeChangedEvent.Invoke(true);
     }
 }

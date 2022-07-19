@@ -222,8 +222,8 @@ public class GenericBarUI : MonoBehaviour
         }
         realBarUI.fillAmount = savedFill;
         ghostBarUI.fillAmount = savedFill;
-        restrictedBarUI.fillAmount = savedFill;
-        Debug.Log(gameObject.name + " - " + current + " - " + currentMax);
+        //restrictedBarUI.fillAmount = savedFill;
+        //Debug.Log(gameObject.name + " - " + current + " - " + currentMax);
         InstantUpdateBar(current, currentMax, currentMax);
 
         
@@ -351,7 +351,7 @@ public class GenericBarUI : MonoBehaviour
             runningCoroutine = Co_UpdateBar(fill);
             StartCoroutine(runningCoroutine);
         }
-        Debug.Log(gameObject.name + " RESET- " + current + " - " + currentMax);
+        //Debug.Log(gameObject.name + " RESET- " + current + " - " + currentMax);
     }
    
     public void UpdateBar(float p_current = 0, float p_currentMax =1)
@@ -360,7 +360,7 @@ public class GenericBarUI : MonoBehaviour
         currentMax = p_currentMax;
   
         float fill = current / currentMax;
-        Debug.Log("FILL: " + fill);
+       // Debug.Log("FILL: " + fill + " - " + current + " - " + currentMax);
         if (gameObject.activeSelf)
         {
             if (enabled)
@@ -380,13 +380,14 @@ public class GenericBarUI : MonoBehaviour
     {
         if (!isResetting)
         {
+           // Debug.Log(gameObject.name + " UPDATING BAR- " + current + " - " + currentMax + " - " + savedFill + " - " + p_fill);
             //foreach (TransitionsDataHolder currentTransitionsDataHolder in transitionsDataHolders)
             //{
             //    currentTransitionsDataHolder.PerformTransitionsData();
             //    yield return new WaitForSeconds(delayTime);
             //}
-         
-           
+
+
             if (realBarColorFlash != null)
             {
                 realBarUI.color = realBarColorFlash.color;
@@ -466,13 +467,14 @@ public class GenericBarUI : MonoBehaviour
                 }
                 s.Join(ghostBarUI.DOFillAmount(p_fill, ghostBarFillTransition.transitionTime));
             
-                Debug.Log("ghost bar shud be " + p_fill + " - "+ secondaryBarFillAmount.ToString());
+             //   Debug.Log("ghost bar shud be " + p_fill + " - "+ secondaryBarFillAmount.ToString());
+             //   Debug.Log(gameObject.name + " UPDATING BAR- " + current + " - " + currentMax + " - " + savedFill + " - " + p_fill);
             }
    
             s.Play();
             yield return s.WaitForCompletion();
             ghostBarUI.color = defaultGhostBarColor;
-            Debug.Log(gameObject.name + " UPODATIN- " + current + " - " + currentMax);
+          //  Debug.Log(gameObject.name + " UPODATIN- " + current + " - " + currentMax + " - " + savedFill + " - " + p_fill);
 
         }
         else
@@ -491,21 +493,29 @@ public class GenericBarUI : MonoBehaviour
             //yield return defaultFill.WaitForCompletion();
 
             isResetting = false;
-            p_fill -= 1;
-            if (p_fill > -1)
-            {
+          //  Debug.Log(gameObject.name + " older - " + current + " - " + currentMax + " - " + savedFill + " - " + p_fill);
+            //p_fill -= 1;
+           // Debug.Log(gameObject.name + " old- " + current + " - " + currentMax + " - " + savedFill + " - " + p_fill);
+            //if (current - currentMax > 0)
+            //{
+            //    current -= currentMax;
+            //}
+            //if (p_fill > -1)
+            //{
                 if (runningCoroutine != null)
                 {
                     StopCoroutine(runningCoroutine);
                     runningCoroutine = null;
                 }
-
               
-                savedFill = p_fill;
+                
+
+               // savedFill = p_fill;
+              //  Debug.Log(gameObject.name + " UPDAINSIDING- " + current + " - " + currentMax + " - " + savedFill + " - " + p_fill);
                 runningCoroutine = Co_UpdateBar(savedFill);
                 StartCoroutine(runningCoroutine);
-            }
-            Debug.Log(gameObject.name + " UPDAOUT- " + current + " - " + currentMax);
+            //}
+           // Debug.Log(gameObject.name + " UPDAOUTING- " + current + " - " + currentMax + " / " + savedFill);
 
             //StartCoroutine(Co_UpdateBar(p_fill));
 

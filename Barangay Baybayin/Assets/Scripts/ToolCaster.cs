@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
-
+public class CriticalFirstTimeEvent : UnityEvent { }
 public class SetRequireCorrectToolEvent : UnityEvent<Tool> { }
 public class SetIsPreciseEvent : UnityEvent<bool> { }
 public class ToolUsedEvent : UnityEvent<float> { }
@@ -44,12 +44,16 @@ public class ToolCaster : MonoBehaviour
     public ToolSpecialUseEvent onToolSpecialUsedEvent = new ToolSpecialUseEvent();
     public static SetIsPreciseEvent onSetIsPreciseEvent = new SetIsPreciseEvent();
     public static SetRequireCorrectToolEvent onSetRequireCorrectToolEvent = new SetRequireCorrectToolEvent();
+    private bool isFirstTime;
+    public static CriticalFirstTimeEvent onCriticalFirstTimeEvent = new CriticalFirstTimeEvent();
     private void Awake()
     {
         aim = GetComponent<PlayerJoystick>().aim;
         ToolManager.onToolChangedEvent.AddListener(OnToolChanged);
+        onCriticalFirstTimeEvent.AddListener(FirstTime);
+        isFirstTime = true;
         //ToolManager.onToolChangedEvent.Invoke(ToolManager.instance.tools[0]);
-      
+
     }
     public void OnEnable()
     {
@@ -82,6 +86,12 @@ public class ToolCaster : MonoBehaviour
         onToolHitSucceededEvent.RemoveListener(ToolHitSuccess);
         ToolManager.onToolChangedEvent.RemoveListener(OnToolChanged);
         //onToolSpecialUsedEvent.RemoveListener(OnSpecialUsed);
+    }
+    public void FirstTime()
+    {
+        isFirstTime = false;
+        onCriticalFirstTimeEvent.RemoveListener(FirstTime);
+
     }
     void SetRequireCorrectTool(Tool p_isPrecise)
     {
@@ -297,9 +307,17 @@ public class ToolCaster : MonoBehaviour
 
     public void ToolHitSuccess()
     {
-        AudioManager.instance.GetSoundByName("Hit").source.Play();
-        current_Tool.ModifyProficiencyAmount(current_Tool.so_Tool.proficiencyAmountReward[current_Tool.craftLevel]);
-        current_Tool.ModifySpecialAmount(current_Tool.so_Tool.specialPointReward[current_Tool.craftLevel]); 
+
+        if (!isFirstTime)
+        {
+            AudioManager.instance.GetSoundByName("Hit").source.Play();
+            current_Tool.ModifyProficiencyAmount(current_Tool.so_Tool.proficiencyAmountReward[current_Tool.craftLevel]);
+            current_Tool.ModifySpecialAmount(current_Tool.so_Tool.specialPointReward[current_Tool.craftLevel]);
+        }
+        else
+        {
+            TutorialUI.onRemindTutorialEvent.Invoke("critHits");
+        }
     }
 
     IEnumerator Co_ToolUseCooldown()

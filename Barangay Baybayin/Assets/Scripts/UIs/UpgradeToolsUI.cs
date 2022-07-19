@@ -9,6 +9,7 @@ public class SetSpecificToAllOther : UnityEvent<bool> { }
 
 public class UpgradeToolsUI : MonoBehaviour
 {
+    [SerializeField] private GameObject frame;
     [SerializeField] private GameObject selectionPanelUI;
 
     [NonReorderable] [SerializeField] public List<Sprite> plates = new List<Sprite>(); // test
@@ -224,6 +225,7 @@ public class UpgradeToolsUI : MonoBehaviour
 
     public void QuitButtonUIClicked()
     {
+        frame.SetActive(false);
         confirmPanelUI.SetActive(false);
         selectionPanelUI.SetActive(false);
         UIManager.onGameplayModeChangedEvent.Invoke(false);
@@ -232,6 +234,7 @@ public class UpgradeToolsUI : MonoBehaviour
 
     public void OpenButtonUIClicked()
     {
+        frame.SetActive(true);
         TimeManager.onPauseGameTime.Invoke(false);
         foreach (UpgradeToolUI upgradeToolUI in upgradeToolUIs)
         {
