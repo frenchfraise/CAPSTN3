@@ -15,6 +15,12 @@ public class PauseMenuUI : MonoBehaviour
         PauseMenuPanel.SetActive(p_bool);
     }
 
+    public void QuitButton()
+    {
+        Debug.Log("Game quit!");
+        Application.Quit();
+    }
+
     public void TutorialButton()
     {
         Debug.Log("Tutorial Button open!");
