@@ -190,6 +190,12 @@ public class CharacterDialogueUI : MonoBehaviour
 
     public void OnOpenCharacterDialogueUI()
     {
+        if (!TimeManager.instance.tutorialOn) // TEMPORARY; Eli insisted
+        {
+            string song1 = AudioManager.instance.GetSoundByName("Town").name;
+            string song2 = AudioManager.instance.GetSoundByName("Quest Get").name;
+            AudioManager.instance.StartCoFade(song1, song2);
+        }
         frame.SetActive(true);
         //Debug.Log(id + " EVENT WITH NAME " + currentSO_Dialogues.name + " IS CURRENT DIALOGUE " + " OPENING");
         ResetCharacterDialogueUI();
@@ -199,6 +205,12 @@ public class CharacterDialogueUI : MonoBehaviour
     }
     public void OnCloseCharacterDialogueUI()
     {
+        if (!TimeManager.instance.tutorialOn) // TEMPORARY; Eli insisted
+        {
+            string song1 = AudioManager.instance.GetSoundByName("Quest Get").name;
+            string song2 = AudioManager.instance.GetSoundByName("Town").name;
+            AudioManager.instance.StartCoFade(song1, song2);
+        }
         //Debug.Log(id + " EVENT WITH NAME " + currentSO_Dialogues.name + " IS CURRENT DIALOGUE " + " CLOSING");
         frame.SetActive(false);
 

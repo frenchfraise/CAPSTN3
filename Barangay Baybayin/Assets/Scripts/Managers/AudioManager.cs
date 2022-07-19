@@ -35,6 +35,7 @@ public class AudioManager : MonoBehaviour
         foreach (Sound s in sounds)
         {
             s.source = gameObject.AddComponent<AudioSource>();
+            s.source.outputAudioMixerGroup = s.output;
             s.source.clip = s.clip;
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
@@ -153,5 +154,39 @@ public class AudioManager : MonoBehaviour
         }
 
         // yield return wee2.WaitForCompletion();
+    }
+
+    public void StartCoFade(string song1, string song2)
+    {
+        foreach (Sound s in sounds)
+        {
+            s.source.Stop();
+        }
+        StartCoroutine(Co_AudioFade2(song1, song2));
+    }
+
+    public IEnumerator Co_AudioFade2(string song1, string song2)
+    {
+        Sound sound;
+        string soundName = song1;
+        sound = GetSoundByName(soundName);
+        if (soundName != "")
+        {
+            Sequence wee = DOTween.Sequence();
+            wee.Append(sound.source.DOFade(0, 1.25f));
+            wee.Play();
+            yield return wee.WaitForCompletion();
+        }
+
+        Sound currentSound;
+        string currentSoundName = song2;
+        currentSound = GetSoundByName(currentSoundName);
+        currentSound.source.Play();
+        if (currentSoundName != "")
+        {
+            Sequence wee2 = DOTween.Sequence();
+            wee2.Append(currentSound.source.DOFade(1, 1.25f));
+            wee2.Play();
+        }
     }
 }
