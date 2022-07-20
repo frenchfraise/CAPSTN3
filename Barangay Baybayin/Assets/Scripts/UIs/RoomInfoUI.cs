@@ -4,7 +4,8 @@ using UnityEngine;
 using TMPro;
 using DG.Tweening;
 using UnityEngine.UI;
-
+using UnityEngine.Events;
+public class LeaveFirstTimeEvent : UnityEvent { }
 public class RoomInfoUI : MonoBehaviour
 {
 
@@ -16,12 +17,15 @@ public class RoomInfoUI : MonoBehaviour
     public GridLayoutGroup gridLayout;
     public ResourceDropUI resourceDropUIPrefab;
     public List<ResourceDrop> currentRoomsResourceDrops;
-  
-
+    private bool isFirstTime;
+    private Passageway firstTimeCached;
+    public static LeaveFirstTimeEvent onLeaveFirstTimeEvent = new LeaveFirstTimeEvent();
     private void Start()
     {
+        onLeaveFirstTimeEvent.AddListener(FirstTime);
+        isFirstTime = true;
         PlayerManager.onRoomEnteredEvent.AddListener(RoomEntered);
-     
+
         gameObject.SetActive(false);
     }
     private void Destroy()
@@ -29,26 +33,43 @@ public class RoomInfoUI : MonoBehaviour
         PlayerManager.onRoomEnteredEvent.RemoveListener(RoomEntered);
     }
 
-
+    public void FirstTime()
+    {
+        isFirstTime = false;
+        onLeaveFirstTimeEvent.RemoveListener(FirstTime);
+        RoomEntered(firstTimeCached);
+    }
     public void RoomEntered(Passageway p_passageway)
     {
-        //PlayerManager.instance.joystick.enabled = false;
-        PlayerJoystick.onUpdateJoystickEnabledEvent.Invoke(false);
-        TimeManager.onPauseGameTime.Invoke(false);
-        //UIManager.onGameplayModeChangedEvent.Invoke(true);
-        string roomName;
-        string roomDescription;
-        List<ResourceNodeDrop> availableResourceNodeDrops;
-        p_passageway.room.GetRoomInfos(out roomName, out roomDescription, out availableResourceNodeDrops);
-        Vector2 cameraPosition = new Vector2(p_passageway.cameraDestinationPosition.x,
-                                            p_passageway.cameraDestinationPosition.y);
-        Vector2 cameraPanLimit = new Vector2(p_passageway.cameraPanLimit.x,
-                                            p_passageway.cameraPanLimit.y
-                                            );
+        if (!isFirstTime)
+        {
+            Debug.Log("inside");
+            //PlayerManager.instance.joystick.enabled = false;
+            PlayerJoystick.onUpdateJoystickEnabledEvent.Invoke(false);
+            TimeManager.onPauseGameTime.Invoke(false);
+            //UIManager.onGameplayModeChangedEvent.Invoke(true);
+            string roomName;
+            string roomDescription;
+            List<ResourceNodeDrop> availableResourceNodeDrops;
+            p_passageway.room.GetRoomInfos(out roomName, out roomDescription, out availableResourceNodeDrops);
+            Vector2 cameraPosition = new Vector2(p_passageway.cameraDestinationPosition.x,
+                                                p_passageway.cameraDestinationPosition.y);
+            Vector2 cameraPanLimit = new Vector2(p_passageway.cameraPanLimit.x,
+                                                p_passageway.cameraPanLimit.y
+                                                );
 
-        //PlayerManager.instance.currentRoomID = p_passageway.room.currentRoomID;
-        gameObject.SetActive(true);        
-        StartCoroutine(Co_RoomInfoUITransition(roomName, roomDescription, availableResourceNodeDrops, cameraPosition, cameraPanLimit));
+            //PlayerManager.instance.currentRoomID = p_passageway.room.currentRoomID;
+            gameObject.SetActive(true);
+            StartCoroutine(Co_RoomInfoUITransition(roomName, roomDescription, availableResourceNodeDrops, cameraPosition, cameraPanLimit));
+        }
+        else
+        {
+            Debug.Log("outside");
+            firstTimeCached = p_passageway;
+            TutorialUI.onRemindTutorialEvent.Invoke("map");
+        }
+
+
     }
     IEnumerator Co_RoomInfoUITransition(string p_roomName, string p_roomDescription, List<ResourceNodeDrop> p_availableResourceNodeDrops, Vector2 p_cameraPos, Vector2 p_cameraPanLimit)
     {
@@ -62,11 +83,11 @@ public class RoomInfoUI : MonoBehaviour
         }
         currentRoomsResourceDrops.Clear();
         availableResourcesGO.SetActive(false);
-   
+
 
         TransitionUI.onFadeTransition.Invoke(1);
         yield return new WaitForSeconds(0.5f);
-     
+
 
 
         roomNameText.text = p_roomName;
@@ -76,7 +97,7 @@ public class RoomInfoUI : MonoBehaviour
         te.Join(roomNameText.DOFade(1f, 0.75f));
         te.Join(roomDescriptionText.DOFade(1f, 0.75f));
         te.Play();
-        
+
 
         for (int i = 0; i < p_availableResourceNodeDrops.Count; i++)
         {
@@ -118,14 +139,14 @@ public class RoomInfoUI : MonoBehaviour
                         newResourceDropUI.resourceNameText.text = resourceDrop.so_Item.name;
                         newResourceDropUI.resourceIcon.sprite = resourceDrop.so_Item.icon;
                         RectTransform newResourceDropUITransform = newResourceDropUI.GetComponent<RectTransform>();
-                        newResourceDropUITransform.SetParent(availableResourcesContainer,true);
+                        newResourceDropUITransform.SetParent(availableResourcesContainer, true);
                         newResourceDropUITransform.localScale = new Vector3(1, 1, 1);
 
                     }
-                    
+
                 }
             }
-     
+
         }
         CameraManager.onCameraMovedEvent.Invoke(p_cameraPos,
             p_cameraPanLimit);

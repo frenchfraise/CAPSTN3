@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Kuya Sagwan 2
   m_EditorClassIdentifier: 
   questlineData:
-  - name: Part A
+  - name: Quest 2 Part A
     initialSO_Dialogues: {fileID: 11400000, guid: 15ea8040b63668347a2de239068ae7ba, type: 2}
     questInProgressSO_Dialogues: {fileID: 11400000, guid: 9968c2db6045cd14e83282dd1f64ef76, type: 2}
     questCompleteSO_Dialogues: {fileID: 11400000, guid: b43c382ea0ff88d458501599607bed4f, type: 2}
     quest: {fileID: 11400000, guid: 2b5e1467f110ba64284917e13360ac3e, type: 2}
-  - name: Part B
+  - name: Quest 2 Part B
     initialSO_Dialogues: {fileID: 11400000, guid: 86ac59cbe965d394dab83a7bf952a0cc, type: 2}
     questInProgressSO_Dialogues: {fileID: 11400000, guid: 92694cff5d59dac458bf784bf36e32b8, type: 2}
     questCompleteSO_Dialogues: {fileID: 11400000, guid: b43c382ea0ff88d458501599607bed4f, type: 2}

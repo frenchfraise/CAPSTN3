@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using TMPro;
 using System;
 using DG.Tweening;
-
+public class QuestAcceptFirstTimeEvent : UnityEvent { }
 
 public class SetChoicesEvent : UnityEvent<bool> { }
 public class SetIsCloseOnEndEvent : UnityEvent<bool> { }
@@ -65,6 +65,10 @@ public class CharacterDialogueUI : MonoBehaviour
     [HideInInspector]
     public SO_Dialogues currentSO_Dialogues;
 
+    public static QuestAcceptFirstTimeEvent onQuestAcceptFirstTimeEvent = new QuestAcceptFirstTimeEvent();
+    private bool isFirstTime;
+
+
     private int currentDialogueIndex;
 
     private bool isPaused = false;
@@ -99,7 +103,8 @@ public class CharacterDialogueUI : MonoBehaviour
         emoticonImage = emoticonAnim.GetComponent<Image>();
 
         emoticonBubbleRectTransform = emoticonBubbleImage.GetComponent<RectTransform>();
-
+        onQuestAcceptFirstTimeEvent.AddListener(FirstTime);
+        isFirstTime = true;
     }
     private void OnEnable()
     {
@@ -122,7 +127,12 @@ public class CharacterDialogueUI : MonoBehaviour
     {   
         frame.SetActive(false);
     }
-
+    public void FirstTime()
+    {
+        isFirstTime = false;
+        onQuestAcceptFirstTimeEvent.RemoveListener(FirstTime);
+       
+    }
     public void SetChoicesEvent(bool p_bool)
     {
         hasChoices = p_bool;
@@ -208,17 +218,27 @@ public class CharacterDialogueUI : MonoBehaviour
     {
         if (!TimeManager.instance.tutorialOn) // TEMPORARY; Eli insisted
         {
-            string song1 = AudioManager.instance.GetSoundByName("Quest Get").name;
-            string song2 = AudioManager.instance.GetSoundByName("Town").name;
-            AudioManager.instance.StartCoFade(song1, song2);
+            if (!isFirstTime)
+            {
+                string song1 = AudioManager.instance.GetSoundByName("Quest Get").name;
+                string song2 = AudioManager.instance.GetSoundByName("Town").name;
+                AudioManager.instance.StartCoFade(song1, song2);
+            }
+            else
+            {
+                TutorialUI.onRemindTutorialEvent.Invoke("quests");
+
+            }
         }
         //Debug.Log(id + " EVENT WITH NAME " + currentSO_Dialogues.name + " IS CURRENT DIALOGUE " + " CLOSING");
         frame.SetActive(false);
-
+        
+           
         
 
+
         //emoticonAnim.stop;
-    //TimeManager.onPauseGameTime.Invoke(true);
+        //TimeManager.onPauseGameTime.Invoke(true);
 
         UIManager.onGameplayModeChangedEvent.Invoke(false);
      
@@ -308,7 +328,15 @@ public class CharacterDialogueUI : MonoBehaviour
             Dialogue currentDialogue = currentSO_Dialogues.dialogues[currentDialogueIndex];
 
             characterNameText.text = currentDialogue.character.name;
-
+            if (currentDialogue.backgroundSprite != null)
+            {
+                backgroundImage.sprite = currentDialogue.backgroundSprite;
+                backgroundImage.color = new Color32(255, 255, 255, 255);
+            }
+            else
+            {
+                backgroundImage.color = new Color32(0, 0, 0, 0);
+            }
 
             if ((int)currentDialogue.emotion == 10)
             {
@@ -334,11 +362,6 @@ public class CharacterDialogueUI : MonoBehaviour
                 firstTime = false;
                 
             }
-         
-           
-
-
-
 
             if (runningCoroutine != null)
             {
@@ -351,15 +374,7 @@ public class CharacterDialogueUI : MonoBehaviour
                 {
                     
                     dialogueText.text = currentDialogue.words;
-                    if (currentDialogue.backgroundSprite != null)
-                    {
-                        backgroundImage.sprite = currentDialogue.backgroundSprite;
-                        backgroundImage.color = new Color32(255, 255, 255, 255);
-                    }
-                    else
-                    {
-                        backgroundImage.color = new Color32(0, 0, 0, 0);
-                    }
+                 
                    
                     if (allowNext == true)
                     {
@@ -434,6 +449,7 @@ public class CharacterDialogueUI : MonoBehaviour
 
                             //Debug.Log("END TRANSIONING");
                             TransitionUI.onFadeInAndOutTransition.Invoke(1, 0.5f, 1, 0, 0.5f, OnCloseCharacterDialogueUI);
+                          
                         }
                         else
                         {

@@ -12,7 +12,7 @@ public class TutorialEventSubscriber : EventSubscriber
     }
     void TutorialEventEndedEvent(int i)
     {
-        Debug.Log(gameObject.name + " p_eventID: " + i);
+       // Debug.Log(gameObject.name + " p_eventID: " + i);
         DoAllActions(p_actionParameterBID: i);
     }
 

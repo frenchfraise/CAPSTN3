@@ -19,8 +19,10 @@ MonoBehaviour:
   description: "Lola and Lolo\u2019s broken carabao carriage is invaluable in transporting
     their crops and tools. Help them fix it, and get it off their backs.\r"
   rewards:
-  - so_Item: {fileID: 11400000, guid: 26abfc8135077e8479899616e6db5cb5, type: 2}
-    amount: 10
+  - so_Item: {fileID: 11400000, guid: c9e2f2a8dc4eeba45ae1a0550aa3f374, type: 2}
+    amount: 1
+  - so_Item: {fileID: 11400000, guid: 161f4ba54972a5a4b9089c737176d667, type: 2}
+    amount: 5
   requirements:
   - so_requirement: {fileID: 11400000, guid: 1b90adc28db021846a57fc20396ec599, type: 2}
     isCompleted: 0

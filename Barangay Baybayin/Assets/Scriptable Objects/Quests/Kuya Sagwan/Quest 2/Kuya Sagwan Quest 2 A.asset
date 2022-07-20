@@ -16,8 +16,10 @@ MonoBehaviour:
   title: "Boats Need to Float\r"
   description: "Kuya Ambay is requesting the fixing of the damaged boats.\r"
   rewards:
-  - so_Item: {fileID: 11400000, guid: a23150ace6c99194986348f059adf4b5, type: 2}
-    amount: 10
+  - so_Item: {fileID: 11400000, guid: c9e2f2a8dc4eeba45ae1a0550aa3f374, type: 2}
+    amount: 1
+  - so_Item: {fileID: 11400000, guid: 19d5e86c18c1554498ba53ee03bb4d38, type: 2}
+    amount: 5
   requirements:
   - so_requirement: {fileID: 11400000, guid: 90a6253b6ba8bf9488ea19ce168fdac2, type: 2}
     isCompleted: 0

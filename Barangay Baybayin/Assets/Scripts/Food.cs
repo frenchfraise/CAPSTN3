@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 public class OnFoodUseEvent : UnityEvent<float> { }
+public class OnFoodFirstTimeUseEvent : UnityEvent { }
 public class Food : MonoBehaviour
 {
     public OnFoodUseEvent onFoodUseEvent = new OnFoodUseEvent();
+    public static OnFoodFirstTimeUseEvent onFoodFirstTimeUseEvent = new OnFoodFirstTimeUseEvent();
 
     public float staminaRegen;
+    private bool isFirstTime;
 
     private void OnEnable()
     {
@@ -27,6 +30,19 @@ public class Food : MonoBehaviour
 
     public void FoodButton()
     {
-        onFoodUseEvent.Invoke(staminaRegen);
+        if (!isFirstTime)
+        {
+            onFoodUseEvent.Invoke(staminaRegen);
+        }
+        else
+        {
+            TutorialUI.onRemindTutorialEvent.Invoke("food");
+        }
+    }
+    public void FirstTime()
+    {
+        isFirstTime = false;
+        onFoodFirstTimeUseEvent.RemoveListener(FirstTime);
+        FoodButton();
     }
 }

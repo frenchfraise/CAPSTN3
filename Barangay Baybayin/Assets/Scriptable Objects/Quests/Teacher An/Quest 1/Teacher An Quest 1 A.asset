@@ -16,7 +16,11 @@ MonoBehaviour:
   title: Help on the Way
   description: Teacher An asks Sakoro for help, as the school has been affected by
     the typhoon.
-  rewards: []
+  rewards:
+  - so_Item: {fileID: 11400000, guid: b9728f2dfa98d584db38b418cea56478, type: 2}
+    amount: 1
+  - so_Item: {fileID: 11400000, guid: aaa9202b98b57234197af744ae889a10, type: 2}
+    amount: 3
   requirements:
   - so_requirement: {fileID: 11400000, guid: fb9fa596873ad124ca8a064719b25def, type: 2}
     isCompleted: 0

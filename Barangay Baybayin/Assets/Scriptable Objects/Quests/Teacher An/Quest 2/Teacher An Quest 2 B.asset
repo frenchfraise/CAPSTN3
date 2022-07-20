@@ -18,9 +18,9 @@ MonoBehaviour:
     lingering effects. Perhaps you can help allay Teacher An\u2019s apprehensions."
   rewards:
   - so_Item: {fileID: 11400000, guid: c9e2f2a8dc4eeba45ae1a0550aa3f374, type: 2}
-    amount: 1
+    amount: 3
   - so_Item: {fileID: 11400000, guid: 201d4d59631edc04f94390cb362a772e, type: 2}
-    amount: 10
+    amount: 5
   requirements:
   - so_requirement: {fileID: 11400000, guid: 23a9bae53e08aa74d918cad19ee9dcfd, type: 2}
     isCompleted: 0

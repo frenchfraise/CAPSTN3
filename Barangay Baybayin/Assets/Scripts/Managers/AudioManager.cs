@@ -27,11 +27,12 @@ public class AudioManager : MonoBehaviour
     public AudioMixer mixer;
     string currentSongPlaying = "";
     string previousSongPlaying = "";
+    bool isFirstEnterRoomTime = true;
     // Start is called before the first frame update
     void Awake()
     {
         _instance = this;
-
+        isFirstEnterRoomTime = true;
         foreach (Sound s in sounds)
         {
             s.source = gameObject.AddComponent<AudioSource>();
@@ -97,7 +98,7 @@ public class AudioManager : MonoBehaviour
 
     private void PlayOnRoomEnter(Passageway p_passageway)
     {
-        if (!isFirstTime)
+        if (!isFirstEnterRoomTime)
         {
             if (p_passageway.room.roomDescription != currentSongPlaying) 
                 isFirstTime = true;
@@ -111,7 +112,7 @@ public class AudioManager : MonoBehaviour
 
             //PlayByName(p_passageway.room.roomDescription);
         }
-        
+        else isFirstEnterRoomTime = false;
     }
   
     IEnumerator Co_AudioFade()

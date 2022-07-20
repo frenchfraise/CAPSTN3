@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fba4159f7222e43a232886d4fe6a6e, type: 3}
   m_Name: Brgy Captain 3 Quest Requirement B
   m_EditorClassIdentifier: 
-  so_infrastructure: {fileID: 0}
-  requiredLevel: 0
+  so_infrastructure: {fileID: 11400000, guid: c42f46d45a1818e47b88cc03d3911262, type: 2}
+  requiredLevel: 1

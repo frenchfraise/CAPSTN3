@@ -38,6 +38,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private Vector3 offset;
     [SerializeField] private float delay;
     private bool isLeft;
+    bool isFirstTime = true;
     //[SerializeField] public PlayerJoystick joystick;
 
     public static UpdateCurrentRoomIDEvent onUpdateCurrentRoomIDEvent = new UpdateCurrentRoomIDEvent();
@@ -131,6 +132,7 @@ public class PlayerManager : MonoBehaviour
     }
     void UpdateCurrentRoomIDEvent(int p_index)
     {
-        currentRoomID = p_index;
+        if (!isFirstTime) currentRoomID = p_index;
+        else isFirstTime = false;
     }
 }

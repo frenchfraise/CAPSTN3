@@ -35,10 +35,10 @@ RectTransform:
   m_Father: {fileID: 4577564449111122541}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 786.9785, y: -332.055}
+  m_SizeDelta: {x: 475, y: 175}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4577564448910364754
 CanvasRenderer:
@@ -663,6 +663,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PauseMenuPanel: {fileID: 4577564449164292231}
   MapGameObject: {fileID: 0}
+  TutorialPanel: {fileID: 0}
 --- !u!1 &4577564449120707496
 GameObject:
   m_ObjectHideFlags: 0
@@ -698,10 +699,10 @@ RectTransform:
   m_Father: {fileID: 4577564449111122541}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 286.97852, y: -522.055}
+  m_SizeDelta: {x: 475, y: 175}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4577564449120707500
 CanvasRenderer:
@@ -832,10 +833,10 @@ RectTransform:
   m_Father: {fileID: 4577564449111122541}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 786.9785, y: -142.055}
+  m_SizeDelta: {x: 475, y: 175}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4577564449156626623
 CanvasRenderer:
@@ -948,7 +949,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4577564449164292230
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1044,10 +1045,10 @@ RectTransform:
   m_Father: {fileID: 4577564449111122541}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 286.97852, y: -332.055}
+  m_SizeDelta: {x: 475, y: 175}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4577564449304978899
 CanvasRenderer:
@@ -1134,14 +1135,14 @@ MonoBehaviour:
       - m_Target: {fileID: 4577564449111122449}
         m_TargetAssemblyTypeName: PauseMenuUI, Assembly-CSharp
         m_MethodName: TutorialButton
-        m_Mode: 1
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!1 &4577564449645574979
 GameObject:
@@ -1178,10 +1179,10 @@ RectTransform:
   m_Father: {fileID: 4577564449111122541}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 286.97852, y: -557.57104}
-  m_SizeDelta: {x: 475, y: 175}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4577564449645574983
 CanvasRenderer:
@@ -1582,10 +1583,10 @@ RectTransform:
   m_Father: {fileID: 4577564449111122541}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 286.97852, y: -142.055}
+  m_SizeDelta: {x: 475, y: 175}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4577564450020976744
 CanvasRenderer:

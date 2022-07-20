@@ -68,13 +68,13 @@ public class HealthOverheadUI : MonoBehaviour
     {
       
         RepositionHealthBar();
-        Debug.Log("REPOSITIONING");
+        //Debug.Log("REPOSITIONING");
         yield return new WaitForSeconds(0.05f);
-        Debug.Log("REPOSITIONING");
+        //Debug.Log("REPOSITIONING");
         runningUpdateCoroutine = Co_UpdatePosition();
         StartCoroutine(runningUpdateCoroutine);
 
-        Debug.Log("REPOSITIONING 2");
+       // Debug.Log("REPOSITIONING 2");
     }
     public void OnHealthChanged(bool p_isAlive, float p_currentHealth, float p_maxHealth)
     {

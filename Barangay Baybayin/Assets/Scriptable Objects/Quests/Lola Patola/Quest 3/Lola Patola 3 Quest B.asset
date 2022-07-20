@@ -13,9 +13,13 @@ MonoBehaviour:
   m_Name: Lola Patola 3 Quest B
   m_EditorClassIdentifier: 
   questImage: {fileID: 21300000, guid: 36faf2a5c1a509d4b89f985a8ef576a0, type: 3}
-  title: 
-  description: 
-  rewards: []
+  title: Crop Shack
+  description: "Lola\u2019s final request is to fix the crop shack. \r"
+  rewards:
+  - so_Item: {fileID: 11400000, guid: e8a9caa46ae1cf640a79001d0c1a7e5a, type: 2}
+    amount: 5
+  - so_Item: {fileID: 11400000, guid: aaa9202b98b57234197af744ae889a10, type: 2}
+    amount: 5
   requirements:
   - so_requirement: {fileID: 11400000, guid: 2e289ca516b029f44a5ed79e5027f399, type: 2}
     isCompleted: 0

@@ -17,8 +17,10 @@ MonoBehaviour:
   description: "Kuya Ambay, one of the town\u2019s fishermen, requests help in rebuilding
     fishing tools and supplies.\r\n"
   rewards:
-  - so_Item: {fileID: 0}
-    amount: 10
+  - so_Item: {fileID: 11400000, guid: b9728f2dfa98d584db38b418cea56478, type: 2}
+    amount: 1
+  - so_Item: {fileID: 11400000, guid: 201d4d59631edc04f94390cb362a772e, type: 2}
+    amount: 3
   requirements:
   - so_requirement: {fileID: 11400000, guid: 16ca40bf5f4236d4497c08d25845a418, type: 2}
     isCompleted: 0

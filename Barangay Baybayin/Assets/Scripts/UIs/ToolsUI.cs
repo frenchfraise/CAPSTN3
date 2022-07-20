@@ -110,7 +110,8 @@ public class ToolsUI : MonoBehaviour
         SO_Tool selectedSO_Tool = selected_Tool.so_Tool;
         toolUI[currentEquip].levelCount.text = selected_Tool.proficiencyLevel.ToString();
         toolUI[currentEquip].frame.sprite = frameLevels[selected_Tool.proficiencyLevel];
-        toolUI[currentEquip].genericBarUI.ResetBar(1, 1);
+        toolUI[currentEquip].genericBarUI.ResetBar(selected_Tool.proficiencyAmount, 
+            selectedSO_Tool.maxProficiencyAmount[selected_Tool.proficiencyLevel]);
   
 
 

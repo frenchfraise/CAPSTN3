@@ -15,7 +15,11 @@ MonoBehaviour:
   questImage: {fileID: 21300000, guid: 36faf2a5c1a509d4b89f985a8ef576a0, type: 3}
   title: Farming is Hard Work
   description: 
-  rewards: []
+  rewards:
+  - so_Item: {fileID: 11400000, guid: b9728f2dfa98d584db38b418cea56478, type: 2}
+    amount: 1
+  - so_Item: {fileID: 11400000, guid: aaa9202b98b57234197af744ae889a10, type: 2}
+    amount: 5
   requirements:
   - so_requirement: {fileID: 11400000, guid: 7cbe0de034dc65340a1e272824254f30, type: 2}
     isCompleted: 0

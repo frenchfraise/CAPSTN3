@@ -6,6 +6,7 @@ public class PauseMenuUI : MonoBehaviour
 {
     public GameObject PauseMenuPanel;
     public GameObject MapGameObject;
+    public GameObject TutorialPanel;
 
     public void PauseMenuButton(bool p_bool)
     {
@@ -21,9 +22,11 @@ public class PauseMenuUI : MonoBehaviour
         Application.Quit();
     }
 
-    public void TutorialButton()
-    {
-        Debug.Log("Tutorial Button open!");
+    public void TutorialButton(bool p_bool)
+    {        
+        if (p_bool) Debug.Log("Tutorial Menu open!");
+        else Debug.Log("Tutorial Menu closed!");
+        TutorialPanel.SetActive(p_bool);
     }
 
     public void SettingsButton()

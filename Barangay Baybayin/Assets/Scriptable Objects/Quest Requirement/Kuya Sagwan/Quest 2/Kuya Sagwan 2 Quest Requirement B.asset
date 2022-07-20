@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fba4159f7222e43a232886d4fe6a6e, type: 3}
   m_Name: Kuya Sagwan 2 Quest Requirement B
   m_EditorClassIdentifier: 
-  so_infrastructure: {fileID: 0}
-  requiredLevel: 0
+  so_infrastructure: {fileID: 11400000, guid: 825584f80e6573b47810eb67b34b0208, type: 2}
+  requiredLevel: 1

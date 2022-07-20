@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fba4159f7222e43a232886d4fe6a6e, type: 3}
   m_Name: Lola Patola 1 Quest Requirement B
   m_EditorClassIdentifier: 
-  so_infrastructure: {fileID: 11400000, guid: 43f8eec148360e34c98e5e7a3f8df290, type: 2}
-  requiredLevel: 2
+  so_infrastructure: {fileID: 11400000, guid: a9e270897b1a87a49b1c3efcf8dec750, type: 2}
+  requiredLevel: 1
