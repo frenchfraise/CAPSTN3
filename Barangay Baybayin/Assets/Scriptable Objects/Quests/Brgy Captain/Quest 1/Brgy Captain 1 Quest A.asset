@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4c2f0828a94db54886d05067e7f6838, type: 3}
   m_Name: Brgy Captain 1 Quest A
   m_EditorClassIdentifier: 
-  questImage: {fileID: 21300000, guid: 5cf3fb75847d3414684eb4f69788e93d, type: 3}
-  title: Repair the Carriage
+  questImage: {fileID: 21300000, guid: 13e667b855307234284899df68cc0d92, type: 3}
+  title: Quest 1
   description: 
   rewards:
   - so_Item: {fileID: 0}
     amount: 10
   requirements:
-  - so_requirement: {fileID: 11400000, guid: 9ead17dd85ede874a926f4f276111f6d, type: 2}
+  - so_requirement: {fileID: 11400000, guid: 617c40b6b6767f64ba6a002f572420ff, type: 2}
     isCompleted: 0

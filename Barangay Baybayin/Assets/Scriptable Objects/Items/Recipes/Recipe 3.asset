@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f415a380d3dbc124e99577a74b26ca5d, type: 3}
   m_Name: Recipe 3
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 32ec8f3c7c3212b418563586d790b2bf, type: 3}
+  icon: {fileID: 21300000, guid: a5c016d3eff83894fa925dd651492297, type: 3}
   color:
     serializedVersion: 2
     rgba: 4287810273

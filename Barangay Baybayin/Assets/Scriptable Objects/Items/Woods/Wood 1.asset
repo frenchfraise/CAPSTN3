@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f415a380d3dbc124e99577a74b26ca5d, type: 3}
   m_Name: Wood 1
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 243cd02e3af117d40bd881663a34922c, type: 3}
+  icon: {fileID: 21300000, guid: 3c3afcaa15a694b4aabc065f2d585914, type: 3}
   color:
     serializedVersion: 2
     rgba: 4278919490

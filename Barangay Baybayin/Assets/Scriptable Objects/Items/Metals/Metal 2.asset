@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f415a380d3dbc124e99577a74b26ca5d, type: 3}
   m_Name: Metal 2
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 3a840071e15c68c429c004929cbd282a, type: 3}
+  icon: {fileID: 21300000, guid: ec9922c6ed2e9f24aa82f78dc71df7e5, type: 3}
   color:
     serializedVersion: 2
     rgba: 4294569939

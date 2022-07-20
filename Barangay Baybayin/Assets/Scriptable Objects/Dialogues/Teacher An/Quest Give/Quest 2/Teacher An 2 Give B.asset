@@ -15,9 +15,11 @@ MonoBehaviour:
   dialogues:
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
     emotion: 10
-    words: Great! Will all of these, the roof can be fixed!
+    words: Great! With all of these, the roof can be fixed!
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
     emotion: 10
     words: Head to the front of the school, and let your Hammer do the talking!
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1

@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: -1244431709
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 74a8e7c2fb1f4424e9045343e34ac3e9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f736885a31c4cb049b7d14000aa11f17, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -162,6 +162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthOverheadUI: {fileID: 0}
+  isAlive: 0
 --- !u!61 &5236343384847010663
 BoxCollider2D:
   m_ObjectHideFlags: 0

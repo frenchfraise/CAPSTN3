@@ -308,6 +308,8 @@ public class ToolCaster : MonoBehaviour
         //PlayerManager.instance.playerMovement.isMoving = false;
         // animator.SetTrigger("UseTool");
         onToolCanUseUpdatedEvent.Invoke(canUse);
+
+        Debug.Log(staminaCost);
  
         onToolUsedEvent.Invoke(staminaCost);
         yield return new WaitForSeconds(current_Tool.so_Tool.useRate[current_Tool.craftLevel]);
@@ -326,7 +328,7 @@ public class ToolCaster : MonoBehaviour
 
     private void CheckWeatherStaminaTax(List<Weather> p_weathers, List<Weather> p_currentWeathers)
     {
-       // Debug.Log(p_currentWeather.name + " - " + current_Tool.so_Tool.staminaCost[current_Tool.craftLevel - 1]);
+        //Debug.Log(p_currentWeathers[0].name + " - " + current_Tool.so_Tool.staminaCost[current_Tool.craftLevel - 1]);
         if (p_weathers[2].name == p_currentWeathers[0].name)
         {
             staminaCost = current_Tool.so_Tool.staminaCost[current_Tool.craftLevel] * 1.5f;
@@ -334,6 +336,7 @@ public class ToolCaster : MonoBehaviour
         }
         else
         {
+            Debug.Log("No tax applied!");
             staminaCost = current_Tool.so_Tool.staminaCost[current_Tool.craftLevel];           
         }
     }

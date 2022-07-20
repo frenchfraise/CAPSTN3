@@ -113,4 +113,20 @@ public class Stamina : MonoBehaviour
   
         }  
     }
+
+    public void IncrementStamina(float p_amount)
+    {
+        if (currentStamina < maxStamina)
+        {
+            currentStamina += p_amount;
+        }
+        else if (currentStamina >= maxStamina)
+        {
+            Debug.Log("Stamina is full you don't have to eat!");
+        }
+        if (UIManager.instance.gameplayHUD.activeSelf)
+        {
+            OnStaminaModifiedEvent.Invoke(currentStamina, maxStamina);
+        }
+    }
 }

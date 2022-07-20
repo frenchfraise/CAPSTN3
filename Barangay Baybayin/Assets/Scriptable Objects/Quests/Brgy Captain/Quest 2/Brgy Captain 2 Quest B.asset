@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4c2f0828a94db54886d05067e7f6838, type: 3}
   m_Name: Brgy Captain 2 Quest B
   m_EditorClassIdentifier: 
-  questImage: {fileID: 21300004, guid: 90dd48d359e7f6c48a8e4ef1563869f4, type: 3}
-  title: 
+  questImage: {fileID: 21300000, guid: 13e667b855307234284899df68cc0d92, type: 3}
+  title: Quest 2
   description: 
-  reward: {fileID: 11400000, guid: 944bc5930a2da5d42bf679f056c1e397, type: 2}
+  rewards: []
   requirements:
-  - so_requirement: {fileID: 11400000, guid: 7cbe0de034dc65340a1e272824254f30, type: 2}
+  - so_requirement: {fileID: 11400000, guid: a91ae35b1835d124687d729e13df621c, type: 2}
     isCompleted: 0

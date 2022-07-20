@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f415a380d3dbc124e99577a74b26ca5d, type: 3}
   m_Name: Vetiver
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 174afd6cfa4cdd041a049dbde5498878, type: 3}
+  icon: {fileID: 21300000, guid: 7d47e12cc08fdc34eae8fd49ca161b85, type: 3}
   color:
     serializedVersion: 2
     rgba: 4287810273

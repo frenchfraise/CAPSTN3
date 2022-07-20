@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Kuya Sagwan Quest 3 A
   m_EditorClassIdentifier: 
   questImage: {fileID: 21300004, guid: 90dd48d359e7f6c48a8e4ef1563869f4, type: 3}
-  title: 
-  description: 
+  title: "Fixing the Pier\r"
+  description: "A man can\u2019t set sail without a pier. Or so Kuya Ambay says.
+    Help him and his crew set sail by fixing the pier.\r"
   rewards:
   - so_Item: {fileID: 11400000, guid: a23150ace6c99194986348f059adf4b5, type: 2}
     amount: 10

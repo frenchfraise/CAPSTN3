@@ -15,17 +15,17 @@ MonoBehaviour:
   lightingBrightnessArray:
   - weatherName: Sunny
     hour: 10
-    color: {r: 1, g: 1, b: 1, a: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
     lightIntensity: 0
   - weatherName: Sunny
     hour: 17
-    color: {r: 1, g: 1, b: 1, a: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
     lightIntensity: 0.5
   - weatherName: Rainy
     hour: 10
-    color: {r: 1, g: 1, b: 1, a: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
     lightIntensity: 0.5
   - weatherName: Stormy
     hour: 10
-    color: {r: 1, g: 1, b: 1, a: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
     lightIntensity: 0.5

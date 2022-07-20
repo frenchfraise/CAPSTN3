@@ -15,13 +15,11 @@ MonoBehaviour:
   dialogues:
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
     emotion: 10
-    words: "Ah, you\u2019re back! "
-    speechTransitionType: 1
-  - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 10
-    words: "With these, we\u2019ll be able to start rebuilding."
+    words: "Thank you, Sakoro. \r\n\r\n"
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
     emotion: 10
     words: Say, would you be able to help some more?
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1

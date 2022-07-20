@@ -16,12 +16,16 @@ MonoBehaviour:
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
     emotion: 4
     words: "Ah, you\u2019re back!"
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
     emotion: 10
     words: "With these, we\u2019ll be able to start rebuilding."
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
     emotion: 10
-    words: Say, would you be able to help some more?
+    words: Go to the build area in front of the school. Then whack away with your
+      hammer.
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f415a380d3dbc124e99577a74b26ca5d, type: 3}
   m_Name: Bamboo 3
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: fd355f17791d42642bcc092f597ca47c, type: 3}
+  icon: {fileID: 21300000, guid: b27b4f37d8e26db469f559d7ca3e6628, type: 3}
   color:
     serializedVersion: 2
     rgba: 4281180806

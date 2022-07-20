@@ -1440,6 +1440,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthOverheadUI: {fileID: 0}
+  isAlive: 0
 --- !u!1 &73357954
 GameObject:
   m_ObjectHideFlags: 0
@@ -5786,6 +5787,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthOverheadUI: {fileID: 0}
+  isAlive: 0
 --- !u!1 &277394633
 GameObject:
   m_ObjectHideFlags: 0
@@ -20957,6 +20959,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthOverheadUI: {fileID: 0}
+  isAlive: 0
 --- !u!1 &599450849
 GameObject:
   m_ObjectHideFlags: 0
@@ -22336,7 +22339,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bd202aa2d16a554ebafac0f644dd550, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transitionUI: {fileID: 53811022}
   overheadUI: {fileID: 431043807}
   overlayCanvas: {fileID: 431043803}
   gameplayHUD: {fileID: 408495067}
@@ -26357,6 +26359,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   frame: {fileID: 1737105296}
+  faintRadiateScaleUI: {fileID: 0}
   dayText: {fileID: 1144784069}
   dayCountText: {fileID: 1642543674}
   conditionsText: {fileID: 1033780667}
@@ -26416,6 +26419,7 @@ MonoBehaviour:
   characterNameText: {fileID: 1927092673}
   dialogueText: {fileID: 1964372667}
   avatarImage: {fileID: 1752924169}
+  backgroundImage: {fileID: 0}
   emoticonBubbleImage: {fileID: 7517012190843177238}
   emoticonAnim: {fileID: 1181541866740636785}
   nextDialogueButton: {fileID: 1721514610}
@@ -32728,6 +32732,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthOverheadUI: {fileID: 0}
+  isAlive: 0
 --- !u!61 &1260187216
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -33951,8 +33956,8 @@ MonoBehaviour:
   m_LightType: 3
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Intensity: 0.5
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 00000000abf26aeea37ad3b5a137e9220193274d
@@ -44603,6 +44608,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8303d07a24737c845958200255f3a293, type: 2}
   tutorialUI: {fileID: 1217759298}
   stamina: {fileID: 1919231793}
+  spawnPoint0: {fileID: 0}
   spawnPoint1: {fileID: 82834101}
   spawnPoint2: {fileID: 683238795}
   spawnPoint3: {fileID: 1285870274}
@@ -48371,6 +48377,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthOverheadUI: {fileID: 0}
+  isAlive: 0
 --- !u!1 &1835534103
 GameObject:
   m_ObjectHideFlags: 0
@@ -49848,6 +49855,7 @@ MonoBehaviour:
     specialChargesCounter: 0
   switchRate: 0
   animator: {fileID: 1683850985}
+  detectionRadius: 0
 --- !u!114 &1919231801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52647,6 +52655,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6e4468cf43d43f44b5c80cf62376b88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  townEventDialogues:
+    td: []
+    currentQuestChainIndex: 0
+    currentQuestLineIndex: 0
   storyLines:
   - so_StoryLine: {fileID: 11400000, guid: 8ccf5fdb41060374a9f4e2be648bab02, type: 2}
     currentQuestChainIndex: 0
@@ -52889,95 +52901,95 @@ MonoBehaviour:
       - so_Item: {fileID: 11400000, guid: a23150ace6c99194986348f059adf4b5, type: 2}
         isUnlocked: 1
         isDynamicallyShown: 0
+        itemUI: {fileID: 0}
         amount: 0
-        amountText: {fileID: 0}
       - so_Item: {fileID: 11400000, guid: aaa9202b98b57234197af744ae889a10, type: 2}
         isUnlocked: 0
         isDynamicallyShown: 0
+        itemUI: {fileID: 0}
         amount: 0
-        amountText: {fileID: 0}
       - so_Item: {fileID: 11400000, guid: e5699f70e46f0f24dbca8182e7d5adfa, type: 2}
         isUnlocked: 0
         isDynamicallyShown: 0
+        itemUI: {fileID: 0}
         amount: 0
-        amountText: {fileID: 0}
     - name: Nipa Leaves
       items:
       - so_Item: {fileID: 11400000, guid: 68a8600696457cc4c9af9ccb2684987e, type: 2}
         isUnlocked: 1
         isDynamicallyShown: 0
+        itemUI: {fileID: 0}
         amount: 0
-        amountText: {fileID: 0}
       - so_Item: {fileID: 11400000, guid: 161f4ba54972a5a4b9089c737176d667, type: 2}
         isUnlocked: 0
         isDynamicallyShown: 0
+        itemUI: {fileID: 0}
         amount: 0
-        amountText: {fileID: 0}
       - so_Item: {fileID: 11400000, guid: 3e385a4551c350047987ff327e044a1e, type: 2}
         isUnlocked: 0
         isDynamicallyShown: 0
+        itemUI: {fileID: 0}
         amount: 0
-        amountText: {fileID: 0}
   - itemCategories:
     - name: Metals
       items:
       - so_Item: {fileID: 11400000, guid: 31008b96f54523443986acf68dc202aa, type: 2}
         isUnlocked: 1
         isDynamicallyShown: 0
+        itemUI: {fileID: 0}
         amount: 0
-        amountText: {fileID: 0}
       - so_Item: {fileID: 11400000, guid: f6c97304087fbc246a18a547ecdd28f8, type: 2}
         isUnlocked: 0
         isDynamicallyShown: 0
+        itemUI: {fileID: 0}
         amount: 0
-        amountText: {fileID: 0}
       - so_Item: {fileID: 11400000, guid: d625a0db3bfc0514b9fdd70c5c6b7a0f, type: 2}
         isUnlocked: 0
         isDynamicallyShown: 0
+        itemUI: {fileID: 0}
         amount: 0
-        amountText: {fileID: 0}
     - name: Herbs
       items:
       - so_Item: {fileID: 11400000, guid: 26abfc8135077e8479899616e6db5cb5, type: 2}
         isUnlocked: 1
         isDynamicallyShown: 0
+        itemUI: {fileID: 0}
         amount: 0
-        amountText: {fileID: 0}
       - so_Item: {fileID: 11400000, guid: d56a0dc8cd2621040a1a8834d0afd6c3, type: 2}
         isUnlocked: 0
         isDynamicallyShown: 0
+        itemUI: {fileID: 0}
         amount: 0
-        amountText: {fileID: 0}
       - so_Item: {fileID: 11400000, guid: e8a9caa46ae1cf640a79001d0c1a7e5a, type: 2}
         isUnlocked: 0
         isDynamicallyShown: 0
+        itemUI: {fileID: 0}
         amount: 0
-        amountText: {fileID: 0}
   - itemCategories:
     - name: Vetiver
       items:
       - so_Item: {fileID: 11400000, guid: 19d5e86c18c1554498ba53ee03bb4d38, type: 2}
         isUnlocked: 1
         isDynamicallyShown: 0
+        itemUI: {fileID: 0}
         amount: 0
-        amountText: {fileID: 0}
     - name: Recipes
       items:
       - so_Item: {fileID: 11400000, guid: 944bc5930a2da5d42bf679f056c1e397, type: 2}
         isUnlocked: 1
         isDynamicallyShown: 0
+        itemUI: {fileID: 0}
         amount: 0
-        amountText: {fileID: 0}
       - so_Item: {fileID: 11400000, guid: b9728f2dfa98d584db38b418cea56478, type: 2}
         isUnlocked: 0
         isDynamicallyShown: 1
+        itemUI: {fileID: 0}
         amount: 0
-        amountText: {fileID: 0}
       - so_Item: {fileID: 11400000, guid: c9e2f2a8dc4eeba45ae1a0550aa3f374, type: 2}
         isUnlocked: 0
         isDynamicallyShown: 1
+        itemUI: {fileID: 0}
         amount: 0
-        amountText: {fileID: 0}
 --- !u!4 &2094110335
 Transform:
   m_ObjectHideFlags: 0

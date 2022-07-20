@@ -160,7 +160,8 @@ public class WeatherManager : MonoBehaviour
         currentEmotion = currentWeatherDialogue.dialogues[0].emotion;
         currentWeatherDialogue.dialogues[0].words = currentText;
         currentWeatherDialogue.dialogues[0].emotion = currentEmotion;
-        
+
+        Debug.Log("Weather call!");
         onWeatherChangedEvent?.Invoke(weathers, currentWeathers);
         PlayerManager.onUpdateCurrentRoomIDEvent.Invoke(8);
     }

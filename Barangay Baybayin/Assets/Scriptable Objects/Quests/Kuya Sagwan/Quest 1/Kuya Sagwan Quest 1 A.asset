@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Kuya Sagwan Quest 1 A
   m_EditorClassIdentifier: 
   questImage: {fileID: 21300000, guid: cab601eeeef634842a8e652269a37e56, type: 3}
-  title: Broken Fishing Rod
-  description: 
+  title: Fishing for Food
+  description: "Kuya Ambay, one of the town\u2019s fishermen, requests help in rebuilding
+    fishing tools and supplies.\r\n"
   rewards:
   - so_Item: {fileID: 0}
     amount: 10
