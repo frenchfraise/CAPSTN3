@@ -22,7 +22,13 @@ MonoBehaviour:
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: d07ffa9457a5d704b91096369ccebe08, type: 2}
     emotion: 10
-    words: "Superb Nipa is found in the deepest parts of the Forest, while Superb
-      Bamboo is at the Bamboo Thicket, where the water is.\r"
+    words: 'Superb Nipa is found in the deepest parts of the Forest.
+
+'
+    backgroundSprite: {fileID: 0}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: d07ffa9457a5d704b91096369ccebe08, type: 2}
+    emotion: 10
+    words: "Superb Bamboo is at the Bamboo Thicket, where the water is.\r"
     backgroundSprite: {fileID: 0}
     speechTransitionType: 1

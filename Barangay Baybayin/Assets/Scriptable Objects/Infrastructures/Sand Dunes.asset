@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: Sand Dunes
   m_EditorClassIdentifier: 
   name: Sand Dunes
-  maxHealth: 0
-  sprites: []
+  maxHealth: 40
+  sprites:
+  - {fileID: 0}
+  - {fileID: 21300000, guid: 4d592a8a90371564aae2cebf259de074, type: 3}

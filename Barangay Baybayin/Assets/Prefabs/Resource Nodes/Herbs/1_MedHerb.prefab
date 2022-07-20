@@ -139,8 +139,8 @@ MonoBehaviour:
   resourceDrops:
   - so_Item: {fileID: 11400000, guid: 26abfc8135077e8479899616e6db5cb5, type: 2}
     chance: 100
-    minAmount: 1
-    maxAmount: 3
+    minAmount: 3
+    maxAmount: 6
 --- !u!114 &8653533781470353938
 MonoBehaviour:
   m_ObjectHideFlags: 0

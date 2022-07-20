@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: Boats
   m_EditorClassIdentifier: 
   name: Boats
-  maxHealth: 5
-  sprites: []
+  maxHealth: 25
+  sprites:
+  - {fileID: 21300000, guid: 0773adf43c5e8444ebd5aacd70309ec9, type: 3}
+  - {fileID: 21300000, guid: 5808418eaa03e54419ea7a89416d1da6, type: 3}

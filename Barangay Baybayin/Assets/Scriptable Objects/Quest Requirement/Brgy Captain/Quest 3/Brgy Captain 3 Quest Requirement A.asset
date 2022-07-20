@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Brgy Captain 3 Quest Requirement A
   m_EditorClassIdentifier: 
   so_Item:
-  - {fileID: 11400000, guid: d56a0dc8cd2621040a1a8834d0afd6c3, type: 2}
-  requiredAmount: 0f000000
+  - {fileID: 11400000, guid: e8a9caa46ae1cf640a79001d0c1a7e5a, type: 2}
+  requiredAmount: 0c000000

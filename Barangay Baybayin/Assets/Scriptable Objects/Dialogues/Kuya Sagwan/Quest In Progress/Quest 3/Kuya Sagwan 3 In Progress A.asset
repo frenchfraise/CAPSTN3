@@ -15,14 +15,17 @@ MonoBehaviour:
   dialogues:
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
     emotion: 10
-    words: The materials are [Superb Wood x 15] and [Superb Bamboo x 10].
+    words: The materials are [15 Superb Wood] and [10 Superb Bamboo].
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
     emotion: 10
     words: The superb kind of the Trees and Bamboos oughta be at the deepest of them
       maps.
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
     emotion: 10
     words: Your tools would be tested, Panday.
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1

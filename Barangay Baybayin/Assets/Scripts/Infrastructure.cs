@@ -75,6 +75,10 @@ public class Infrastructure : Unit
             //currentHealth = 0;
 
             //healthOverheadUI.SetHealthBarData(transform, UIManager.instance.overheadUI);
+            if (currentLevel < so_Infrastructure.boxColliderSize.Count)
+                GetComponent<BoxCollider2D>().size = so_Infrastructure.boxColliderSize[currentLevel];
+            if (currentLevel < so_Infrastructure.boxColliderOffSet.Count)
+                GetComponent<BoxCollider2D>().offset = so_Infrastructure.boxColliderOffSet[currentLevel];
             sr.sprite = so_Infrastructure.sprites[currentLevel];
             InitializeValues();
         }

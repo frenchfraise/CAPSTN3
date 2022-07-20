@@ -15,4 +15,4 @@ MonoBehaviour:
   so_Item:
   - {fileID: 11400000, guid: a23150ace6c99194986348f059adf4b5, type: 2}
   - {fileID: 11400000, guid: 68a8600696457cc4c9af9ccb2684987e, type: 2}
-  requiredAmount: 140000000f000000
+  requiredAmount: 0a00000007000000

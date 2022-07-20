@@ -15,5 +15,6 @@ MonoBehaviour:
   dialogues:
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
     emotion: 10
-    words: For the roof, we need 10 Rare Wood and 15 Rare Nipa. Counting on you!
+    words: Head to the front of the school, and let your hammer do the talking!
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1

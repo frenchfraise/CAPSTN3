@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   so_Item:
   - {fileID: 11400000, guid: d56a0dc8cd2621040a1a8834d0afd6c3, type: 2}
-  requiredAmount: 19000000
+  requiredAmount: 0a000000

@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: Pier
   m_EditorClassIdentifier: 
   name: Pier
-  maxHealth: 5
-  sprites: []
+  maxHealth: 40
+  sprites:
+  - {fileID: 21300000, guid: 86d036432413941429999701dd7feed1, type: 3}
+  - {fileID: 21300000, guid: 3d697372e1f61e84a8a7c8a6cacfcd06, type: 3}

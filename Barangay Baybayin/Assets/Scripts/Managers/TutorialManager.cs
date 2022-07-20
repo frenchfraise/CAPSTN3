@@ -76,7 +76,7 @@ public class TutorialManager : MonoBehaviour
     {
         PlayerManager.instance.DayChanging();
 
-        Stamina.onManualSetStaminaEvent.Invoke(200);
+        Stamina.onManualSetStaminaEvent.Invoke(150);
         CameraManager.instance.tutorialOn = false;
         StorylineManager.onWorldEventEndedEvent.RemoveListener(TellStory);
         UIManager.onGameplayModeChangedEvent.RemoveListener(GameplayModeChangedEvent);
@@ -103,7 +103,7 @@ public class TutorialManager : MonoBehaviour
         CharacterDialogueUI.onSetStartTransitionEnabledEvent.Invoke(false);
         TimeManager.instance.tutorialOn = true;
         TimeManager.onPauseGameTime.Invoke(true);
-        Stamina.onManualSetStaminaEvent.Invoke(200);
+        Stamina.onManualSetStaminaEvent.Invoke(150);
         PlayerManager.instance.playerTransform.position = spawnLocation.position;
         panLimit = Vector2Abs(startRoom.position - panLimitUpperRightTransform.position);
         CameraManager.onCameraMovedEvent.Invoke(startRoom.position, panLimit);

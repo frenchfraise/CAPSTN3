@@ -15,9 +15,11 @@ MonoBehaviour:
   dialogues:
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
     emotion: 0
-    words: We need [10 Common Wood] and [10 Common Herb].
+    words: We need [10 Common Wood] and [10 Yellow Herb].
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
     emotion: 10
     words: Counting on ya.
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1

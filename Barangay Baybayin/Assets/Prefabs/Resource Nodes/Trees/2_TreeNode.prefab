@@ -137,14 +137,10 @@ MonoBehaviour:
   hintSprite: {fileID: 21300000, guid: be734b9a7ee7e4c4699b472c126b0a49, type: 3}
   levelRequirement: 2
   resourceDrops:
-  - so_Item: {fileID: 11400000, guid: a23150ace6c99194986348f059adf4b5, type: 2}
-    chance: 50
-    minAmount: 3
-    maxAmount: 5
   - so_Item: {fileID: 11400000, guid: aaa9202b98b57234197af744ae889a10, type: 2}
-    chance: 50
-    minAmount: 4
-    maxAmount: 7
+    chance: 100
+    minAmount: 6
+    maxAmount: 8
 --- !u!114 &8653533781470353938
 MonoBehaviour:
   m_ObjectHideFlags: 0

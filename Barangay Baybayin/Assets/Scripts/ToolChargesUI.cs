@@ -9,6 +9,9 @@ public class ToolChargesUI : MonoBehaviour
     private TMP_Text toolChargeTMP;
     private Tool tool;
     public ToolCaster toolCaster;
+    public Image currentFistIcon;
+    public Sprite availFistIcon;
+    public Sprite unavailFistIcon;
 
     private void Awake()
     {
@@ -34,14 +37,38 @@ public class ToolChargesUI : MonoBehaviour
     void UpdateToolOnSwitch(Tool p_tool)
     {
         tool = p_tool;
-        toolChargeTMP.text = $"Charges: {tool.specialChargesCounter}";
+        if (tool.specialChargesCounter > 0)
+        {
+            currentFistIcon.sprite = availFistIcon;
+        }
+        else
+        {
+            currentFistIcon.sprite = unavailFistIcon;
+        }
+        toolChargeTMP.text = $"{tool.specialChargesCounter}";
     }
     void ModifiedUpdate(float p_max, float p_current)
     {
-        toolChargeTMP.text = $"Charges: {tool.specialChargesCounter}";
+        if (tool.specialChargesCounter > 0)
+        {
+            currentFistIcon.sprite = availFistIcon;
+        }
+        else
+        {
+            currentFistIcon.sprite = unavailFistIcon;
+        }
+        toolChargeTMP.text = $"{tool.specialChargesCounter}";
     }
     void ChangeUpdate()
     {
-        toolChargeTMP.text = $"Charges: {tool.specialChargesCounter}";
+        if (tool.specialChargesCounter > 0)
+        {
+            currentFistIcon.sprite = availFistIcon;
+        }
+        else
+        {
+            currentFistIcon.sprite = unavailFistIcon;
+        }
+        toolChargeTMP.text = $"{tool.specialChargesCounter}";
     }
 }

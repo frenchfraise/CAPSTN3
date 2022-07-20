@@ -15,9 +15,11 @@ MonoBehaviour:
   dialogues:
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
     emotion: 10
-    words: 'These oughta do: 10 Rare Wood and 10 Rare Bamboo.'
+    words: 'These oughta do: [10 Rare Wood] and [10 Rare Bamboo].'
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
     emotion: 10
     words: Come back safe, yeah?
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1

@@ -16,42 +16,52 @@ MonoBehaviour:
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
     emotion: 10
     words: Hello, Sakoro. Need your assistance again.
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
     emotion: 10
     words: 'Kapitan Lomhik patrolled the other day and noticed the roofing patch-up. '
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
     emotion: 10
     words: "He was concerned it wouldn\u2019t hold when the next storm comes."
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
     emotion: 10
     words: As the roof is being fixed, the kids and I could continue holding classes
       outside.
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
     emotion: 10
     words: "But it\u2019s been so hot, and the kids have a hard time concentrating\u2026"
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
     emotion: 10
     words: "I could swear it wasn\u2019t this hot when I was a student."
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
     emotion: 10
     words: Ah! Back to the task. Could you gather these?
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
     emotion: 10
-    words: '[10 Rare Wood] and [15 Nipa]. These ought to be sturdier.'
+    words: '[10 Rare Wood] and [15 Rare Nipa]. These ought to be sturdier.'
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
     emotion: 10
     words: "I\u2019ll be here minding the kids."
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
     emotion: 10
     words: Oh! Before you go, Kap said you ought to upgrade your tools for the new
       materials.
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1

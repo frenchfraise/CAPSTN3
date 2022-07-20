@@ -16,8 +16,10 @@ MonoBehaviour:
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
     emotion: 10
     words: "So you\u2019re back.\r"
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
     emotion: 10
-    words: The boat is over there, by the coast.
+    words: The boats are over there, by the coast.
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1

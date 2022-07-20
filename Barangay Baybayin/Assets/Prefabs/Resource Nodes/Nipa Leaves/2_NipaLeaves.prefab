@@ -138,11 +138,7 @@ MonoBehaviour:
   levelRequirement: 3
   resourceDrops:
   - so_Item: {fileID: 11400000, guid: 161f4ba54972a5a4b9089c737176d667, type: 2}
-    chance: 50
-    minAmount: 4
-    maxAmount: 6
-  - so_Item: {fileID: 11400000, guid: 68a8600696457cc4c9af9ccb2684987e, type: 2}
-    chance: 50
+    chance: 100
     minAmount: 4
     maxAmount: 6
 --- !u!114 &8653533781470353938

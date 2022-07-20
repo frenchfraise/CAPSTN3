@@ -13,5 +13,11 @@ MonoBehaviour:
   m_Name: Shack
   m_EditorClassIdentifier: 
   name: Shack
-  maxHealth: 5
-  sprites: []
+  maxHealth: 40
+  boxColliderSize:
+  - {x: 5.08, y: 2.85}
+  - {x: 5.74, y: 4.98}
+  boxColliderOffSet: []
+  sprites:
+  - {fileID: 21300000, guid: ec2ad6be3ee55bd4b904ffc916642cbc, type: 3}
+  - {fileID: 21300000, guid: fa585ec84b6c37e40a3d991033d21d3a, type: 3}

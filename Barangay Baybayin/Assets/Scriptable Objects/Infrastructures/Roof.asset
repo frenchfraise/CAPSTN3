@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Roof
   m_EditorClassIdentifier: 
   name: Roof
-  maxHealth: 5
+  maxHealth: 25
   sprites:
   - {fileID: 21300000, guid: fbb4b48a4976ca747bf30725e93a8d7f, type: 3}
   - {fileID: 21300000, guid: 34e571c27b298824a9d52be254f61058, type: 3}

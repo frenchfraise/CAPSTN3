@@ -16,7 +16,7 @@ MonoBehaviour:
   title: 'Farming is Hard Work
 
 '
-  description: 
+  description: 'Lola Pamanom and Lolo Upo are old. Help them, you heartless fool. '
   rewards:
   - so_Item: {fileID: 11400000, guid: b9728f2dfa98d584db38b418cea56478, type: 2}
     amount: 1

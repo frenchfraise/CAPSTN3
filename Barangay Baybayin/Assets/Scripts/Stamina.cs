@@ -108,6 +108,7 @@ public class Stamina : MonoBehaviour
         {
             if (UIManager.instance.gameplayHUD.activeSelf == true)
             {
+                Debug.Log("OnStaminaModifiedEvent.Invoke!");
                 OnStaminaModifiedEvent.Invoke(currentStamina, maxStamina);
             }
   

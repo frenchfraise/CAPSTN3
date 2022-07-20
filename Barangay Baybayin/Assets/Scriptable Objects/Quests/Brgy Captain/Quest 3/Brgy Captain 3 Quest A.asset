@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4c2f0828a94db54886d05067e7f6838, type: 3}
   m_Name: Brgy Captain 3 Quest A
   m_EditorClassIdentifier: 
-  questImage: {fileID: 21300000, guid: 13e667b855307234284899df68cc0d92, type: 3}
-  title: Quest 3
-  description: 
+  questImage: {fileID: 21300000, guid: 07cd1a72a0c7ce345bc3fbc3a510382d, type: 3}
+  title: Dunes
+  description: "Supposedly, these dunes would protect the town from water. What it
+    didn\u2019t prevent is your waterworks.\r\n"
   rewards:
   - so_Item: {fileID: 11400000, guid: a23150ace6c99194986348f059adf4b5, type: 2}
     amount: 10
