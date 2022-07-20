@@ -561,6 +561,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f842902a3c309a940a8e111050d5ff5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemData:
+    so_Item: {fileID: 0}
+    isUnlocked: 0
+    isDynamicallyShown: 0
+    itemUI: {fileID: 0}
+    amount: 0
+  targetTransitionTime: 0
+  defaultTransitionTime: 0
+  targetSizeTransition: {fileID: 0}
+  defaultSizeTransition: {fileID: 0}
   itemNameText: {fileID: 233622135972608677}
   itemAmountText: {fileID: 2306538634760962738}
   itemIconImage: {fileID: 8780220539701223597}
+  amountTextRectTransform: {fileID: 7501732749661295041}
+  frameRectTransform: {fileID: 2044806464588609844}

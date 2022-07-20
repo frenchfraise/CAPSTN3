@@ -23,16 +23,17 @@ public class RadiateScaleUIEffect : MonoBehaviour
     public IEnumerator Co_Scale()
     {
         Debug.Log("Scale ");
-
+        var sequenceTwo = DOTween.Sequence()
+       .Append(affectedTransform.DOSizeDelta(targetTransform.sizeDelta, scaleUpTime));
+        sequenceTwo.Play();
+        yield return sequenceTwo.WaitForCompletion();
+        yield return new WaitForSeconds(delayTime);
         var sequence = DOTween.Sequence()
         .Append(affectedTransform.DOSizeDelta(originalTransform.sizeDelta, scaleDownTime));
         sequence.Play();
         yield return sequence.WaitForCompletion();
-        yield return new WaitForSeconds(delayTime);
-        var sequenceTwo = DOTween.Sequence()
-        .Append(affectedTransform.DOSizeDelta(targetTransform.sizeDelta, scaleUpTime));
-        sequence.Play();
-        yield return sequenceTwo.WaitForCompletion();
+     
+       
         Debug.Log("Scale down ");
         runningCoroutine = Co_Scale();
         StartCoroutine(runningCoroutine);

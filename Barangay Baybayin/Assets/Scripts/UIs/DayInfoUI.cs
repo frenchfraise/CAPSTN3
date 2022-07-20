@@ -124,7 +124,7 @@ public class DayInfoUI : MonoBehaviour
             conditionsText.text = "YOU FAINTED";
             dayCountText.text = "DAY " + (p_dayCount).ToString();
             dayText.text = "DAY " + (p_dayCount + 1).ToString();
-            faintRadiateScaleUI.gameObject.SetActive(true);
+          
             if (faintRadiateScaleUI.runningCoroutine != null) 
             {
                 StopCoroutine(faintRadiateScaleUI.runningCoroutine);
@@ -132,8 +132,9 @@ public class DayInfoUI : MonoBehaviour
 
             }
             faintRadiateScaleUI.runningCoroutine = faintRadiateScaleUI.Co_Scale();
+            faintRadiateScaleUI.gameObject.SetActive(true);
             StartCoroutine(faintRadiateScaleUI.runningCoroutine);
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(4f);
 
             if (faintRadiateScaleUI.runningCoroutine != null)
             {

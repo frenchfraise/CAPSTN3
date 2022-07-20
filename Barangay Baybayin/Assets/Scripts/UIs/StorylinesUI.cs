@@ -135,15 +135,26 @@ public class StorylinesUI : MonoBehaviour
         storylines[index].titleText.text = so_StoryLine.character.name.ToString();// so_StoryLine.name; //so_StoryLine.questLines[currentCharacterDataIndex].quest.title;
         storylines[index].questCountText.text = "QUEST " + (currentStorylineIndex + 1).ToString() + " : " + questLineData.quest.title.ToString();//so_StoryLine.questLines[currentCharacterDataIndex].quest.description;
         storylines[index].icon.sprite = so_QuestLine.questlineData[currentQuestlinePartIndex].quest.questImage;
+        
         List<ItemReward> rewards = so_QuestLine.questlineData[so_QuestLine.questlineData.Count -1].quest.rewards;
         for (int i = 0; i < rewards.Count;)
         {
-            ItemUI newObject = Instantiate(prefab,storylines[index].container);
+            ItemUI newObject = Instantiate(prefab, storylines[index].container);
             storylines[index].itemUIs.Add(newObject);
-            newObject.InitializeValues("", rewards[i].amount.ToString(), rewards[i].so_Item.icon);
+      
+            //newObject.InitializeValues("", rewards[i].amount.ToString(), rewards[i].so_Item.icon);
+            newObject.itemAmountText.text = rewards[i].amount.ToString();
+            newObject.itemIconImage.sprite = rewards[i].so_Item.icon;
+        Debug.Log(index + " - INDEEEX " + i + " () "+rewards[i].amount.ToString());
             i++;
-            
+
         }
+
+        //for (int i = 0; i < storylines[index].itemUIs.Count; i++)
+        //{
+        //    //storylines[index].itemUIs[i].itemAmountText.text = "HELLO";// rewards[i].amount.ToString();
+        //    //storylines[index].itemUIs[i].InitializeValues("", rewards[i].amount.ToString(), rewards[i].so_Item.icon);
+        //}
 
     }
 
