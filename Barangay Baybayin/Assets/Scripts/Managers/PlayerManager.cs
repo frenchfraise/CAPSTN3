@@ -126,6 +126,7 @@ public class PlayerManager : MonoBehaviour
     public void DayChanging()
     {
         playerTransform.position = bed.spawnTransform.position;
+        AudioManager.instance.PlayOnRoomEnterString("Town");
         //onRoomEnteredEvent.Invoke(startRoomPassageway);
         //Debug.Log("ID: " + startRoomPassageway.room.currentRoomID);
         //onUpdateCurrentRoomIDEvent.Invoke(startRoomPassageway.room.currentRoomID);

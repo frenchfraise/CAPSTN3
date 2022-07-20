@@ -62,21 +62,21 @@ public class AudioManager : MonoBehaviour
     }
     private void OnEnable()
     {
-        PlayerManager.onRoomEnteredEvent.AddListener(PlayOnRoomEnter);
+        PlayerManager.onRoomEnteredEvent.AddListener(PlayOnRoomEnterPassageway);
         TimeManager.onDayChangingEvent.AddListener(OnDayChangingEvent);
         // PlayerManager.onUpdateCurrentRoomIDEvent.AddListener(PlayOnRoomEnter);
     }
 
     private void OnDisable()
     {
-        PlayerManager.onRoomEnteredEvent.RemoveListener(PlayOnRoomEnter);
+        PlayerManager.onRoomEnteredEvent.RemoveListener(PlayOnRoomEnterPassageway);
         TimeManager.onDayChangingEvent.AddListener(OnDayChangingEvent);
         //PlayerManager.onUpdateCurrentRoomIDEvent.RemoveListener(PlayOnRoomEnter);
     }
 
     public void OnDayChangingEvent()
     {
-        PlayOnRoomEnter(PlayerManager.instance.startRoomPassageway);
+        PlayOnRoomEnterPassageway(PlayerManager.instance.startRoomPassageway);
     }
 
     //public void PlayByName(string name)
@@ -96,9 +96,9 @@ public class AudioManager : MonoBehaviour
         return sound;
     }
 
-    private void PlayOnRoomEnter(Passageway p_passageway)
+    public void PlayOnRoomEnterPassageway(Passageway p_passageway)
     {
-        if (!isFirstEnterRoomTime)
+        if (!isFirstTime)
         {
             if (p_passageway.room.roomDescription != currentSongPlaying) 
                 isFirstTime = true;
@@ -112,9 +112,24 @@ public class AudioManager : MonoBehaviour
 
             //PlayByName(p_passageway.room.roomDescription);
         }
-        else isFirstEnterRoomTime = false;
     }
-  
+
+    public void PlayOnRoomEnterString(string p_passageway)
+    {
+        if (!isFirstTime)
+        {
+            if (p_passageway != currentSongPlaying)
+                isFirstTime = true;
+        }
+        if (isFirstTime)
+        {
+            isFirstTime = false;
+            previousSongPlaying = currentSongPlaying;
+            currentSongPlaying = p_passageway;
+            StartCoroutine(Co_AudioFade());
+        }
+    }
+
     IEnumerator Co_AudioFade()
     {
         Sound sound;

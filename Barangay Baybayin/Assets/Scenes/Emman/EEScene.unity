@@ -953,7 +953,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &53811021
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1094,6 +1094,22 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 40820753}
+    - target: {fileID: 101662861948965113, guid: fea5a514e58f9df44bdc47a1f3ee5647, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 101662861948965115, guid: fea5a514e58f9df44bdc47a1f3ee5647, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 101662861948965115, guid: fea5a514e58f9df44bdc47a1f3ee5647, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 101662861948965115, guid: fea5a514e58f9df44bdc47a1f3ee5647, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 101662862122452031, guid: fea5a514e58f9df44bdc47a1f3ee5647, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
@@ -1117,6 +1133,30 @@ PrefabInstance:
     - target: {fileID: 101662862203666364, guid: fea5a514e58f9df44bdc47a1f3ee5647, type: 3}
       propertyPath: m_AnchorMin.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 101662862248835638, guid: fea5a514e58f9df44bdc47a1f3ee5647, type: 3}
+      propertyPath: m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 101662862248835638, guid: fea5a514e58f9df44bdc47a1f3ee5647, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a41b7664524946c4e8ad37f3a79ac13d, type: 3}
+    - target: {fileID: 101662862248835638, guid: fea5a514e58f9df44bdc47a1f3ee5647, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 101662862248835638, guid: fea5a514e58f9df44bdc47a1f3ee5647, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 101662862248835638, guid: fea5a514e58f9df44bdc47a1f3ee5647, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 101662862248835638, guid: fea5a514e58f9df44bdc47a1f3ee5647, type: 3}
+      propertyPath: m_FillAmount
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 101662862570539298, guid: fea5a514e58f9df44bdc47a1f3ee5647, type: 3}
       propertyPath: toolCaster
@@ -1209,6 +1249,10 @@ PrefabInstance:
     - target: {fileID: 101662863131400238, guid: fea5a514e58f9df44bdc47a1f3ee5647, type: 3}
       propertyPath: m_Name
       value: GameplayHUD
+      objectReference: {fileID: 0}
+    - target: {fileID: 101662863164905726, guid: fea5a514e58f9df44bdc47a1f3ee5647, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 101662863644927406, guid: fea5a514e58f9df44bdc47a1f3ee5647, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

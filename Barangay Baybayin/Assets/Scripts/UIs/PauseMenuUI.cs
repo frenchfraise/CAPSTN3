@@ -11,8 +11,8 @@ public class PauseMenuUI : MonoBehaviour
     public void PauseMenuButton(bool p_bool)
     {
         //TimeManager.onPauseGameTime.Invoke(!p_bool);
-        if (p_bool) Debug.Log("Pause Menu open!");
-        else Debug.Log("Pause Menu closed!");
+        //if (p_bool) Debug.Log("Pause Menu open!");
+        //else Debug.Log("Pause Menu closed!");
         PauseMenuPanel.SetActive(p_bool);
     }
 
@@ -24,8 +24,8 @@ public class PauseMenuUI : MonoBehaviour
 
     public void TutorialButton(bool p_bool)
     {        
-        if (p_bool) Debug.Log("Tutorial Menu open!");
-        else Debug.Log("Tutorial Menu closed!");
+        //if (p_bool) Debug.Log("Tutorial Menu open!");
+        //else Debug.Log("Tutorial Menu closed!");
         TutorialPanel.SetActive(p_bool);
     }
 
@@ -36,8 +36,8 @@ public class PauseMenuUI : MonoBehaviour
 
     public void MapButton(bool p_bool)
     {
-        if (p_bool) Debug.Log("Map open!");
-        else Debug.Log("Map closed!");
+        //if (p_bool) Debug.Log("Map open!");
+        //else Debug.Log("Map closed!");
         MapGameObject.SetActive(p_bool);
     }
 }
