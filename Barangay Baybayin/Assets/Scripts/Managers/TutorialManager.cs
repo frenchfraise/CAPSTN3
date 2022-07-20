@@ -46,8 +46,14 @@ public class TutorialManager : MonoBehaviour
 
     public Panday panday;
     public bool firstTime = true;
+    bool treeSpawn = true;
+    bool oreSpawn = true;
+    bool infrastructureSpawn = true;
+    bool herbSpawn = true;
+    bool allSpawn = true;
     bool oneToolRewardGiven = false;
     bool allToolsRewardGiven = false;
+    bool characterQuest = true;
     private void Awake()
     {
         instance = this;
@@ -84,11 +90,19 @@ public class TutorialManager : MonoBehaviour
         CharacterDialogueUI.onSetIsCloseOnEndEvent.Invoke(true);
         CharacterDialogueUI.onSetStartTransitionEnabledEvent.Invoke(true);
         TimeManager.instance.tutorialOn = false;
-        TimeManager.onPauseGameTime.Invoke(true);
+        TimeManager.onPauseGameTime.Invoke(false);
         CameraManager.instance.ResetCamera();
+        CharacterDialogueUI.onSkipEvent.Invoke();
         tutorialUI.overheadUI.SetActive(false);
         panday.isQuestMode = false;
         tutorialBlocker.gameObject.SetActive(false);
+        StartCoroutine(Co_Loading());
+    }
+
+    IEnumerator Co_Loading()
+    {
+        yield return new WaitForSeconds(7f);
+        TutorialUI.onRemindTutorialEvent.Invoke(0);
     }
     void Setup()
     {
@@ -102,7 +116,7 @@ public class TutorialManager : MonoBehaviour
         CharacterDialogueUI.onSetIsCloseOnEndEvent.Invoke(false);
         CharacterDialogueUI.onSetStartTransitionEnabledEvent.Invoke(false);
         TimeManager.instance.tutorialOn = true;
-        TimeManager.onPauseGameTime.Invoke(true);
+        TimeManager.onPauseGameTime.Invoke(false);
         Stamina.onManualSetStaminaEvent.Invoke(200);
         PlayerManager.instance.playerTransform.position = spawnLocation.position;
         panLimit = Vector2Abs(startRoom.position - panLimitUpperRightTransform.position);
@@ -124,7 +138,7 @@ public class TutorialManager : MonoBehaviour
         tutorialUI.overheadUI.SetActive(false);
         panday.isQuestMode = false;
         tutorialBlocker.gameObject.SetActive(false);
-
+        TutorialUI.onRemindTutorialEvent.Invoke(0);
     }
     Vector2 Vector2Abs(Vector2 p_vector2)
     {
@@ -175,7 +189,7 @@ public class TutorialManager : MonoBehaviour
         }
         else if (p_id == "RETURNTOCURRENTTUTORIAL")
         {
-            tutorialUI.overheadUI.SetActive(true);
+            tutorialUI.overheadUI.SetActive(false);
         }
         else if (p_id == "O-0")
         {
@@ -185,87 +199,111 @@ public class TutorialManager : MonoBehaviour
         }
         else if (p_id == "O-1")
         {
-            //SPAWN
-            resourceNode = TreeVariantOneNodePool.pool.Get();
-            resourceNode.transform.position = spawnPoint0.position + new Vector3(0f, -2.35f, 0f);
-            resourceNode.InitializeValues();
-            resourceNode.GetComponent<Health>().OnDeathEvent.AddListener(TeachAppropriateToolForNode);
+            if (treeSpawn)
+            {
+                treeSpawn = false;
+                //SPAWN
+                resourceNode = TreeVariantOneNodePool.pool.Get();
+                resourceNode.transform.position = spawnPoint0.position + new Vector3(0f, -2.35f, 0f);
+                resourceNode.InitializeValues();
+                resourceNode.GetComponent<Health>().OnDeathEvent.AddListener(TeachAppropriateToolForNode);
 
-            //SPECIFIC
-            ToolsUI.onToolQuestSwitchEvent.Invoke(3);
-            ToolCaster.onSetIsPreciseEvent.Invoke(true);
-            ToolCaster.onSetRequireCorrectToolEvent.Invoke(ToolManager.instance.tools[3]);
-            //SPECFICI
-            EndStory();
+                //SPECIFIC
+                ToolsUI.onToolQuestSwitchEvent.Invoke(3);
+                ToolCaster.onSetIsPreciseEvent.Invoke(true);
+                ToolCaster.onSetRequireCorrectToolEvent.Invoke(ToolManager.instance.tools[3]);
+                //SPECFICI
+                EndStory();
+            }
+          
 
 
         }
         else if (p_id == "O-2")
         {
-            //SPAWN
-            resourceNode = OreVariantOneNodePool.pool.Get();
-            resourceNode.transform.position = spawnPoint0.position + new Vector3(0f, -2.35f, 0f);
-            resourceNode.InitializeValues();
-            resourceNode.GetComponent<Health>().OnDeathEvent.AddListener(TeachAppropriateToolForNode);
-        
-            //SPECIFIC
-            ToolsUI.onToolQuestSwitchEvent.Invoke(1);
-            ToolCaster.onSetIsPreciseEvent.Invoke(true);
-            ToolCaster.onSetRequireCorrectToolEvent.Invoke(ToolManager.instance.tools[1]);
-            //SPECFICI
-            EndStory();
+            if (oreSpawn)
+            {
+                oreSpawn = false;
+                //SPAWN
+                resourceNode = OreVariantOneNodePool.pool.Get();
+                resourceNode.transform.position = spawnPoint0.position + new Vector3(0f, -2.35f, 0f);
+                resourceNode.InitializeValues();
+                resourceNode.GetComponent<Health>().OnDeathEvent.AddListener(TeachAppropriateToolForNode);
+
+                //SPECIFIC
+                ToolsUI.onToolQuestSwitchEvent.Invoke(1);
+                ToolCaster.onSetIsPreciseEvent.Invoke(true);
+                ToolCaster.onSetRequireCorrectToolEvent.Invoke(ToolManager.instance.tools[1]);
+                //SPECFICI
+                EndStory();
+            }
+          
 
         }
         else if (p_id == "O-3") // change hint icon
         {
-            //SPAWN
-            infrastructure.GetComponent<Health>().OnDeathEvent.AddListener(TeachSix);
+            if (infrastructureSpawn)
+            {
+                infrastructureSpawn = false;
+                //SPAWN
+                infrastructure.GetComponent<Health>().OnDeathEvent.AddListener(TeachSix);
 
-            //SPECIFIC
-            ToolsUI.onToolQuestSwitchEvent.Invoke(0);
-            ToolCaster.onSetIsPreciseEvent.Invoke(true);
-            ToolCaster.onSetRequireCorrectToolEvent.Invoke(ToolManager.instance.tools[0]);
-            //SPECFICI
-            EndStory();
+                //SPECIFIC
+                ToolsUI.onToolQuestSwitchEvent.Invoke(0);
+                ToolCaster.onSetIsPreciseEvent.Invoke(true);
+                ToolCaster.onSetRequireCorrectToolEvent.Invoke(ToolManager.instance.tools[0]);
+                //SPECFICI
+                EndStory();
+            }
+     
         }
         else if (p_id == "O-4")
         {
-            //SPAWN
-            resourceNode = HerbVariantOneNodePool.pool.Get();
-            resourceNode.transform.position = spawnPoint0.position + new Vector3(0f, -2.35f, 0f);
-            resourceNode.InitializeValues();
-            resourceNode.GetComponent<Health>().OnDeathEvent.AddListener(TeachAppropriateToolForNode);
+            if (herbSpawn)
+            {
+                herbSpawn = false;
+                //SPAWN
+                resourceNode = HerbVariantOneNodePool.pool.Get();
+                resourceNode.transform.position = spawnPoint0.position + new Vector3(0f, -2.35f, 0f);
+                resourceNode.InitializeValues();
+                resourceNode.GetComponent<Health>().OnDeathEvent.AddListener(TeachAppropriateToolForNode);
 
-            //SPECIFIC
-            ToolsUI.onToolQuestSwitchEvent.Invoke(2);
-            ToolCaster.onSetIsPreciseEvent.Invoke(true);
-            ToolCaster.onSetRequireCorrectToolEvent.Invoke(ToolManager.instance.tools[2]);
-            //SPECFICI
-            EndStory();
+                //SPECIFIC
+                ToolsUI.onToolQuestSwitchEvent.Invoke(2);
+                ToolCaster.onSetIsPreciseEvent.Invoke(true);
+                ToolCaster.onSetRequireCorrectToolEvent.Invoke(ToolManager.instance.tools[2]);
+                //SPECFICI
+                EndStory();
+            }
+          
         }
         else if (p_id == "O-5")
         {
+            if (allSpawn)
+            {
+                allSpawn = false;
+                //SPAWN
+                ResourceNode newResourceNode = TreeVariantOneNodePool.pool.Get();
+                newResourceNode.transform.position = spawnPoint1.position + new Vector3(0f, -2.35f, 0f);
+                newResourceNode.InitializeValues();
 
-            //SPAWN
-            ResourceNode newResourceNode = TreeVariantOneNodePool.pool.Get();
-            newResourceNode.transform.position = spawnPoint1.position + new Vector3(0f, -2.35f, 0f);
-            newResourceNode.InitializeValues();
+                newResourceNode = OreVariantOneNodePool.pool.Get();
+                newResourceNode.transform.position = spawnPoint2.position + new Vector3(0f, -2.35f, 0f);
+                newResourceNode.InitializeValues();
 
-            newResourceNode = OreVariantOneNodePool.pool.Get();
-            newResourceNode.transform.position = spawnPoint2.position + new Vector3(0f, -2.35f, 0f);
-            newResourceNode.InitializeValues();
-
-            newResourceNode = HerbVariantOneNodePool.pool.Get();
-            newResourceNode.transform.position = spawnPoint3.position + new Vector3(0f, -2.35f, 0f);
-            newResourceNode.InitializeValues();
+                newResourceNode = HerbVariantOneNodePool.pool.Get();
+                newResourceNode.transform.position = spawnPoint3.position + new Vector3(0f, -2.35f, 0f);
+                newResourceNode.InitializeValues();
 
 
-            //SPECIFIC
-            ToolCaster.onSetIsPreciseEvent.Invoke(true);
-            //SPECFICI
+                //SPECIFIC
+                ToolCaster.onSetIsPreciseEvent.Invoke(true);
+                //SPECFICI
 
-            ToolManager.onProficiencyLevelModifiedEvent.AddListener(RequireMacheteProfLevel1);
-            EndStory();
+                ToolManager.onProficiencyLevelModifiedEvent.AddListener(RequireMacheteProfLevel1);
+                EndStory();
+            }
+         
         }
         else if (p_id == "O-6")
         {
@@ -557,9 +595,14 @@ public class TutorialManager : MonoBehaviour
             {
                 //if (p_testt == 1)
                 //{
-                StorylineManager.onWorldEventEndedEvent.RemoveListener(RequirePandayQuestComplete);
-                Debug.Log("QUEST COMPLETED");
+                if (characterQuest)
+                {
+                    characterQuest = false;
+                    StorylineManager.onWorldEventEndedEvent.RemoveListener(RequirePandayQuestComplete);
+                    Debug.Log("QUEST COMPLETED");
                     EndLecture();
+                }
+              
                // }
             }
 

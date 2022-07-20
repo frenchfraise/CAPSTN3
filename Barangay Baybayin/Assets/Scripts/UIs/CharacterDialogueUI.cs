@@ -6,8 +6,7 @@ using UnityEngine.UI;
 using TMPro;
 using System;
 using DG.Tweening;
-public class QuestAcceptFirstTimeEvent : UnityEvent { }
-
+public class SkipEvent : UnityEvent { }
 public class SetChoicesEvent : UnityEvent<bool> { }
 public class SetIsCloseOnEndEvent : UnityEvent<bool> { }
 public class SetStartTransitionEnabledEvent : UnityEvent<bool> { }
@@ -65,8 +64,6 @@ public class CharacterDialogueUI : MonoBehaviour
     [HideInInspector]
     public SO_Dialogues currentSO_Dialogues;
 
-    public static QuestAcceptFirstTimeEvent onQuestAcceptFirstTimeEvent = new QuestAcceptFirstTimeEvent();
-    private bool isFirstTime;
 
 
     private int currentDialogueIndex;
@@ -84,7 +81,8 @@ public class CharacterDialogueUI : MonoBehaviour
 
     bool isAlreadyEnded = false;
     bool firstTime = true;
-
+    bool firstfirstTimeTutorial = false;
+    bool firstTimeTutorial = false;
     bool hasChoices = false;
     public IEnumerator runningCoroutine;
     public IEnumerator runningEmotionCoroutine;
@@ -96,6 +94,11 @@ public class CharacterDialogueUI : MonoBehaviour
     public static SetStartTransitionEnabledEvent onSetStartTransitionEnabledEvent = new SetStartTransitionEnabledEvent();
     public static SetIsCloseOnEndEvent onSetIsCloseOnEndEvent = new SetIsCloseOnEndEvent();
     public static SetChoicesEvent onSetChoicesEvent = new SetChoicesEvent();
+    public static SkipEvent onSkipEvent = new SkipEvent();
+    public void Skip()
+    {
+        firstfirstTimeTutorial = true;
+    }
     private void Awake()
     {
         emoticonRectTransform = emoticonAnim.GetComponent<RectTransform>();
@@ -103,8 +106,10 @@ public class CharacterDialogueUI : MonoBehaviour
         emoticonImage = emoticonAnim.GetComponent<Image>();
 
         emoticonBubbleRectTransform = emoticonBubbleImage.GetComponent<RectTransform>();
-        onQuestAcceptFirstTimeEvent.AddListener(FirstTime);
-        isFirstTime = true;
+        firstTimeTutorial = true;
+        firstfirstTimeTutorial = false;
+
+
     }
     private void OnEnable()
     {
@@ -116,23 +121,32 @@ public class CharacterDialogueUI : MonoBehaviour
         onSetStartTransitionEnabledEvent.AddListener(SetStartTransitionEnabledEvent);
         onSetEndTransitionEnabledEvent.AddListener(SetEndTransitionEnabledEvent);
         onSetChoicesEvent.AddListener(SetChoicesEvent);
-        Panday.onPandaySpokenToEvent.AddListener(GameplayModeChangedEvent);
+        Panday.onPandaySpokenToEvent.AddListener(UniqueGameplayModeChangedEvent);
+        UIManager.onGameplayModeChangedEvent.AddListener(GameplayModeChangedEvent);
+        onSkipEvent.AddListener(Skip);
     }
     private void OnDisable()
     {
         onCharacterSpokenToEvent.RemoveListener(OnCharacterSpokenTo);
     }
-
-    public void GameplayModeChangedEvent()
-    {   
-        frame.SetActive(false);
-    }
-    public void FirstTime()
+    public void UniqueGameplayModeChangedEvent()
     {
-        isFirstTime = false;
-        onQuestAcceptFirstTimeEvent.RemoveListener(FirstTime);
-       
+        frame.SetActive(false);
+
+
+
+
+
     }
+    public void GameplayModeChangedEvent(bool p_set)
+    {   
+        
+      
+
+        
+
+    }
+
     public void SetChoicesEvent(bool p_bool)
     {
         hasChoices = p_bool;
@@ -218,18 +232,25 @@ public class CharacterDialogueUI : MonoBehaviour
     {
         if (!TimeManager.instance.tutorialOn) // TEMPORARY; Eli insisted
         {
-            if (!isFirstTime)
+            
+            string song1 = AudioManager.instance.GetSoundByName("Quest Get").name;
+            string song2 = AudioManager.instance.GetSoundByName("Town").name;
+            AudioManager.instance.StartCoFade(song1, song2);
+            Debug.Log("TRYING TO QUEST TEACH");
+            if (firstTimeTutorial)
             {
-                string song1 = AudioManager.instance.GetSoundByName("Quest Get").name;
-                string song2 = AudioManager.instance.GetSoundByName("Town").name;
-                AudioManager.instance.StartCoFade(song1, song2);
+                Debug.Log("TEACH QUEST IN");
+                if (firstfirstTimeTutorial)
+                {
+                    firstTimeTutorial = false;
+                    Debug.Log("IT SHUD BE WORKING TEACH QUEST");
+                    TutorialUI.onRemindTutorialEvent.Invoke(1);
+                }
+                firstfirstTimeTutorial = true;
             }
-            else
-            {
-                TutorialUI.onRemindTutorialEvent.Invoke("quests");
 
-            }
         }
+      
         //Debug.Log(id + " EVENT WITH NAME " + currentSO_Dialogues.name + " IS CURRENT DIALOGUE " + " CLOSING");
         frame.SetActive(false);
         
@@ -272,6 +293,7 @@ public class CharacterDialogueUI : MonoBehaviour
     }
     public void ResetCharacterDialogueUI()
     {
+      
         firstTime = true;
         currentDialogueIndex =0;
         allowNext = false;
@@ -318,7 +340,7 @@ public class CharacterDialogueUI : MonoBehaviour
             runningEmotionCoroutine = Co_EmotionOut();
             StartCoroutine(runningEmotionCoroutine);
         }
-        Debug.Log("WHO IS CALLING");
+        //Debug.Log("WHO IS CALLING");
 
         //Debug.Log(id + " EVENT WITH NAME " + currentSO_Dialogues.name + " IS CURRENT DIALOGUE " + currentDialogueIndex +  " IS CURRENT INDEX OUT OF " + currentSO_Dialogues.dialogues.Count);
         if (currentDialogueIndex < currentSO_Dialogues.dialogues.Count)

@@ -109,7 +109,8 @@ public class TimeManager : MonoBehaviour
     }
     private void OnGameplayModeChangedEvent(bool p_bool)
     {
-        SetPauseGame(p_bool);
+        Debug.Log("RAAAAAAAAAAAA");
+        SetPauseGame(!p_bool);
 
     }
     IEnumerator ForceTest()
@@ -184,7 +185,7 @@ public class TimeManager : MonoBehaviour
 
     private void SetPauseGame(bool p_bool)
     {
-        //Debug.Log("time " + p_bool);
+        Debug.Log("time " + p_bool);
         if (!tutorialOn)
         {
             DoTimer = p_bool;

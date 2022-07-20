@@ -4,23 +4,25 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Events;
-public class RemindTutorialEvent : UnityEvent<string> { }
+public class RemindTutorialEvent : UnityEvent<int> { }
+[System.Serializable]
+public class PopUpTutorialPanel
+{
+    [NonReorderable] public List<Sprite> panels;
+}
 public class TutorialUI : MonoBehaviour
 {
     public GameObject frame;
     public Image reminderFramesContainer;
-    public Sprite timeDay;
-    public Sprite weatherRadio;
-    public Sprite bed;
-    public Sprite inventory;
-    public Sprite quests;
-    public Sprite map;
-    public Sprite critHits;
-    public Sprite food;
+    public Button nextButton;
+    public Button reminderFrameButton;
+    [NonReorderable] public List<PopUpTutorialPanel> popUps;
+    public int currentTutorialIndex;
+    public int currentIndex;
+  
 
     public bool isTimeDay;
-    public bool isWeatherRadio;
-    public bool isBed;
+
     public bool isInventory;
     public bool isQuests;
     public bool isMap;
@@ -51,41 +53,13 @@ public class TutorialUI : MonoBehaviour
 
     public void OnCloseReminderButtonUI()
     {
-        if (isTimeDay)
-        {
+        reminderFrameButton.enabled = false;
+       
+        UIManager.onGameplayModeChangedEvent.Invoke(false);
+        //TimeManager.onPauseGameTime.Invoke(true);
 
-        }
-        else if (isWeatherRadio)
-        {
-            Radio.onRadioFirstTimeEvent.Invoke();
-        }
-        else if (isBed)
-        {
-            Bed.onBedFirstTimeEvent.Invoke();
-        }
-        else if (isInventory)
-        {
-
-        }
-        else if (isQuests)
-        {
-            CharacterDialogueUI.onQuestAcceptFirstTimeEvent.Invoke();
-        }
-        else if (isMap)
-        {
-            RoomInfoUI.onLeaveFirstTimeEvent.Invoke();
-        }
-        else if (isCritHits)
-        {
-            ToolCaster.onCriticalFirstTimeEvent.Invoke();
-        }
-        else if (isFood)
-        {
-            Food.onFoodFirstTimeUseEvent.Invoke();
-        }
         isTimeDay = false;
-        isWeatherRadio = false;
-        isBed = false;
+    
         isInventory = false;
         isQuests = false;
         isMap = false;
@@ -93,65 +67,90 @@ public class TutorialUI : MonoBehaviour
         isFood = false;
         reminderFramesContainer.gameObject.SetActive(false);
     }
-
-    public void RemindTutorialEvent(string p_tutorialReminder)
+    public void Check()
     {
-
-
-        if (p_tutorialReminder == "timeDay")
+        if (currentIndex < popUps[currentTutorialIndex].panels.Count - 1)
         {
-            reminderFramesContainer.sprite = timeDay;
-            isTimeDay = true;
-            reminderFramesContainer.gameObject.SetActive(true);
+
+            reminderFramesContainer.sprite = popUps[currentTutorialIndex].panels[currentIndex];
 
         }
-        else if (p_tutorialReminder == "weatherRadio")
+        else if (currentIndex >= popUps[currentTutorialIndex].panels.Count - 1)
         {
-            reminderFramesContainer.sprite = weatherRadio;
-            isWeatherRadio = true;
-            reminderFramesContainer.gameObject.SetActive(true);
+            if (currentIndex == popUps[currentTutorialIndex].panels.Count - 1)
+            {
+                reminderFramesContainer.sprite = popUps[currentTutorialIndex].panels[currentIndex];
+            }
+            else if (currentIndex > popUps[currentTutorialIndex].panels.Count - 1)
+            {
 
-        }
-        else if (p_tutorialReminder == "bed")
-        {
-            reminderFramesContainer.sprite = bed;
-            isBed = true;
-            reminderFramesContainer.gameObject.SetActive(true);
+            }
 
+            nextButton.gameObject.SetActive(false);
+            reminderFrameButton.enabled = true;
         }
-        else if (p_tutorialReminder == "inventory")
-        {
-            reminderFramesContainer.sprite = inventory;
-            reminderFramesContainer.gameObject.SetActive(true);
-            isInventory = true;
-        }
-        else if (p_tutorialReminder == "quests")
-        {
-            reminderFramesContainer.sprite = quests;
-            reminderFramesContainer.gameObject.SetActive(true);
+    }
+    public void OnNextReminderButtonUI()
+    {
+        currentIndex++;
+        Check();
 
-            isQuests = true;
-        }
-        else if (p_tutorialReminder == "map")
-        {
-            reminderFramesContainer.sprite = map;
-            isMap = true;
-            reminderFramesContainer.gameObject.SetActive(true);
+        //else 
+        //{
 
-        }
-        else if (p_tutorialReminder == "critHits")
-        {
-            reminderFramesContainer.sprite = critHits;
-            isCritHits = true;
-            reminderFramesContainer.gameObject.SetActive(true);
+        //    OnCloseReminderButtonUI();
+        //}
+    }
 
-        }
-        else if (p_tutorialReminder == "food")
+    public void RemindTutorialEvent(int p_tutorialReminder)
+    {
+        UIManager.onGameplayModeChangedEvent.Invoke(true);
+        //TimeManager.onPauseGameTime.Invoke(false);
+        reminderFrameButton.enabled = false;
+        currentIndex = 0;
+        Debug.Log("TUTORIAL UI: " +p_tutorialReminder);
+     
+        if (p_tutorialReminder < popUps.Count)
         {
-            reminderFramesContainer.sprite = food;
+            currentTutorialIndex = p_tutorialReminder;
+            reminderFramesContainer.sprite = popUps[currentTutorialIndex].panels[currentIndex];
+          
             reminderFramesContainer.gameObject.SetActive(true);
-            isFood = true;
+            nextButton.gameObject.SetActive(true);
+            Check();
         }
+        //else if (p_tutorialReminder == "quests")
+        //{
+        //    currentTutorialIndex = 1;
+        //    reminderFramesContainer.sprite = popUps[currentTutorialIndex].panels[currentIndex];
+
+        //    reminderFramesContainer.gameObject.SetActive(true);
+
+        //}
+     
+        //else if (p_tutorialReminder == "map")
+        //{
+        //    currentTutorialIndex = 2;
+        //    reminderFramesContainer.sprite = popUps[currentTutorialIndex].panels[currentIndex];
+
+        //    reminderFramesContainer.gameObject.SetActive(true);
+
+        //}
+        //else if (p_tutorialReminder == "critHits")
+        //{
+        //    currentTutorialIndex = 3;
+        //    reminderFramesContainer.sprite = popUps[currentTutorialIndex].panels[currentIndex];
+
+        //    reminderFramesContainer.gameObject.SetActive(true);
+
+        //}
+        //else if (p_tutorialReminder == "food")
+        //{
+        //    currentTutorialIndex = 4;
+        //    reminderFramesContainer.sprite = popUps[currentTutorialIndex].panels[currentIndex];
+
+        //    reminderFramesContainer.gameObject.SetActive(true);
+        //}
         else
         {
             reminderFramesContainer.gameObject.SetActive(false);

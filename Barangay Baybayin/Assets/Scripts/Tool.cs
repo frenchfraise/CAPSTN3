@@ -32,6 +32,7 @@ public class Tool
             specialPoints = 0;
             specialChargesCounter++;
             ToolManager.onSpecialPointsFilledEvent.Invoke();
+            
         }
         else
         {

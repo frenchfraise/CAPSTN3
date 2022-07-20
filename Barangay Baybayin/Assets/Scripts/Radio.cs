@@ -1,20 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
-public class RadioFirstTimeEvent : UnityEvent { }
+
 public class Radio : InteractibleObject
 {
     [SerializeField]
     private string id;
 
-    private bool isFirstTime;
-    public static RadioFirstTimeEvent onRadioFirstTimeEvent = new RadioFirstTimeEvent();
-    //  public CharacterSpokenToEvent onRadioSpokenToEvent = new CharacterSpokenToEvent();
+
+   //  public CharacterSpokenToEvent onRadioSpokenToEvent = new CharacterSpokenToEvent();
     private void Awake()
     {
-        onRadioFirstTimeEvent.AddListener(FirstTime);
-        isFirstTime = true;
+
     }
     protected override void OnEnable()
     {
@@ -31,22 +28,12 @@ public class Radio : InteractibleObject
 
     }
 
-    public void FirstTime()
-    {
-        isFirstTime = false;
-        onRadioFirstTimeEvent.RemoveListener(FirstTime);
-        OnInteract();
-    }
+   
     protected override void OnInteract()
     {
-        if (!isFirstTime)
-        {
-            CharacterDialogueUI.onCharacterSpokenToEvent.Invoke(id, WeatherManager.instance.currentWeatherDialogue);
-        }
-        else
-        {
-            TutorialUI.onRemindTutorialEvent.Invoke("weatherRadio");
-        }
+       
+        CharacterDialogueUI.onCharacterSpokenToEvent.Invoke(id, WeatherManager.instance.currentWeatherDialogue);
+      
         
     }
 }
