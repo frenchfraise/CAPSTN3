@@ -51,8 +51,17 @@ public class Character : InteractibleObject
                     if (isQuestCompleted)
                     {
                         Debug.Log("PHASE 2");
+                        if (storylineData.currentQuestLineIndex == 0)
+                        {
                         
-                        CharacterDialogueUI.onCharacterSpokenToEvent.Invoke(id, questlineData.questCompleteSO_Dialogues);
+                            QuestlineData questlineDataNext = so_Questline.questlineData[storylineData.currentQuestLineIndex+1];
+                            CharacterDialogueUI.onCharacterSpokenToEvent.Invoke(id, questlineDataNext.initialSO_Dialogues);
+                        }
+                        else
+                        {
+                            CharacterDialogueUI.onCharacterSpokenToEvent.Invoke(id, questlineData.questCompleteSO_Dialogues);
+                        }
+                        //CharacterDialogueUI.onCharacterSpokenToEvent.Invoke(id, questlineData.questCompleteSO_Dialogues);
                         
                         StorylineManager.instance.QuestCompleted(storylineData);
                         isFirstTime = true;

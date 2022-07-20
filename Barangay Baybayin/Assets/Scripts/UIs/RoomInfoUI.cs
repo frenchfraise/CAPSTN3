@@ -4,8 +4,7 @@ using UnityEngine;
 using TMPro;
 using DG.Tweening;
 using UnityEngine.UI;
-using UnityEngine.Events;
-public class LeaveFirstTimeEvent : UnityEvent { }
+
 public class RoomInfoUI : MonoBehaviour
 {
 
@@ -19,10 +18,10 @@ public class RoomInfoUI : MonoBehaviour
     public List<ResourceDrop> currentRoomsResourceDrops;
     private bool isFirstTime;
     private Passageway firstTimeCached;
-    public static LeaveFirstTimeEvent onLeaveFirstTimeEvent = new LeaveFirstTimeEvent();
+
     private void Start()
     {
-        onLeaveFirstTimeEvent.AddListener(FirstTime);
+
         isFirstTime = true;
         PlayerManager.onRoomEnteredEvent.AddListener(RoomEntered);
 
@@ -33,41 +32,30 @@ public class RoomInfoUI : MonoBehaviour
         PlayerManager.onRoomEnteredEvent.RemoveListener(RoomEntered);
     }
 
-    public void FirstTime()
-    {
-        isFirstTime = false;
-        onLeaveFirstTimeEvent.RemoveListener(FirstTime);
-        RoomEntered(firstTimeCached);
-    }
+    
     public void RoomEntered(Passageway p_passageway)
     {
-        if (!isFirstTime)
-        {
-            Debug.Log("inside");
-            //PlayerManager.instance.joystick.enabled = false;
-            PlayerJoystick.onUpdateJoystickEnabledEvent.Invoke(false);
-            TimeManager.onPauseGameTime.Invoke(false);
-            //UIManager.onGameplayModeChangedEvent.Invoke(true);
-            string roomName;
-            string roomDescription;
-            List<ResourceNodeDrop> availableResourceNodeDrops;
-            p_passageway.room.GetRoomInfos(out roomName, out roomDescription, out availableResourceNodeDrops);
-            Vector2 cameraPosition = new Vector2(p_passageway.cameraDestinationPosition.x,
-                                                p_passageway.cameraDestinationPosition.y);
-            Vector2 cameraPanLimit = new Vector2(p_passageway.cameraPanLimit.x,
-                                                p_passageway.cameraPanLimit.y
-                                                );
+        
+        Debug.Log("inside");
+        //PlayerManager.instance.joystick.enabled = false;
+        PlayerJoystick.onUpdateJoystickEnabledEvent.Invoke(false);
+        TimeManager.onPauseGameTime.Invoke(false);
+        //UIManager.onGameplayModeChangedEvent.Invoke(true);
+        string roomName;
+        string roomDescription;
+        List<ResourceNodeDrop> availableResourceNodeDrops;
+        p_passageway.room.GetRoomInfos(out roomName, out roomDescription, out availableResourceNodeDrops);
+        Vector2 cameraPosition = new Vector2(p_passageway.cameraDestinationPosition.x,
+                                            p_passageway.cameraDestinationPosition.y);
+        Vector2 cameraPanLimit = new Vector2(p_passageway.cameraPanLimit.x,
+                                            p_passageway.cameraPanLimit.y
+                                            );
 
-            //PlayerManager.instance.currentRoomID = p_passageway.room.currentRoomID;
-            gameObject.SetActive(true);
-            StartCoroutine(Co_RoomInfoUITransition(roomName, roomDescription, availableResourceNodeDrops, cameraPosition, cameraPanLimit));
-        }
-        else
-        {
-            Debug.Log("outside");
-            firstTimeCached = p_passageway;
-            TutorialUI.onRemindTutorialEvent.Invoke("map");
-        }
+        //PlayerManager.instance.currentRoomID = p_passageway.room.currentRoomID;
+        gameObject.SetActive(true);
+        StartCoroutine(Co_RoomInfoUITransition(roomName, roomDescription, availableResourceNodeDrops, cameraPosition, cameraPanLimit));
+        
+       
 
 
     }
@@ -164,6 +152,12 @@ public class RoomInfoUI : MonoBehaviour
         //UIManager.onGameplayModeChangedEvent.Invoke(false);
         PlayerJoystick.onUpdateJoystickEnabledEvent.Invoke(true);
         TimeManager.onPauseGameTime.Invoke(true);
+        if (isFirstTime)
+        {
+            Debug.Log("outside");
+
+            TutorialUI.onRemindTutorialEvent.Invoke(2);
+        }
         //PlayerManager.instance.joystick.enabled = true;
         //PlayerJoystick.onUpdateJoystickEnabledEvent.Invoke(true);
     }
