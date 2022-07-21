@@ -15,15 +15,17 @@ MonoBehaviour:
   useForResourceNode:
   - {fileID: 0}
   name:
+  - Iron Hammer
   - Copper Hammer
   - NIckel Hammer
   - Gold Hammer
   lockedFrame: {fileID: 21300000, guid: abf11a33121b8ba45a1c05396028d06e, type: 3}
   lockedIcon: {fileID: 21300000, guid: 934dedbc3faa5b1478b1d393d3bb5d0f, type: 3}
   unlockedFrame: {fileID: 21300000, guid: e8c3e5bef4d467b4d9ceb143afd48244, type: 3}
-  unlockedIcon: {fileID: 21300000, guid: b13f982af9aae5544b0ca29dbfbe4c84, type: 3}
+  unlockedIcon: {fileID: 21300000, guid: c95f7a62e1fa4be4a899a14aaf3cffd7, type: 3}
   equippedFrame: {fileID: 21300000, guid: 84487d73ca4b791498332d8f6858417f, type: 3}
   equippedIcon:
+  - {fileID: 21300000, guid: c95f7a62e1fa4be4a899a14aaf3cffd7, type: 3}
   - {fileID: 21300000, guid: b13f982af9aae5544b0ca29dbfbe4c84, type: 3}
   - {fileID: 21300000, guid: 9e08fec57740f314cbc1449761092bc7, type: 3}
   - {fileID: 21300000, guid: 3cf4d525cc527a0498efafcff302a18f, type: 3}

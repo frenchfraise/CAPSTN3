@@ -727,10 +727,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 845275496}
     m_Modifications:
-    - target: {fileID: 1409337054862797411, guid: 28f8dc5e291786f40a2f2ba8a598aac8, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1690951503216866365, guid: 28f8dc5e291786f40a2f2ba8a598aac8, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -818,14 +814,6 @@ PrefabInstance:
     - target: {fileID: 1690951503216866366, guid: 28f8dc5e291786f40a2f2ba8a598aac8, type: 3}
       propertyPath: m_Name
       value: Storylines
-      objectReference: {fileID: 0}
-    - target: {fileID: 3668407700654071095, guid: 28f8dc5e291786f40a2f2ba8a598aac8, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8618057186650071982, guid: 28f8dc5e291786f40a2f2ba8a598aac8, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28f8dc5e291786f40a2f2ba8a598aac8, type: 3}
@@ -19654,7 +19642,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 543333797}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 42.4, y: 20.2, z: -10}
+  m_LocalPosition: {x: 42.4, y: 20, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -25485,7 +25473,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentRoomID: 2
-  roomName: Town
+  roomName: Lower Town
   roomDescription: Town
   cameraPanLimitUpperRightTransform: {fileID: 1727906337}
   cameraPanLimit: {x: 0, y: 0}
@@ -25910,7 +25898,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 955158152}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 12.5, y: -24.899994, z: 0}
+  m_LocalPosition: {x: 12.29, y: -28.71, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -25943,7 +25931,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 8.817535, y: 10}
+  m_Size: {x: 8.817535, y: 2.5}
   m_EdgeRadius: 0
 --- !u!114 &955158155
 MonoBehaviour:
@@ -31288,7 +31276,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1289921392}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 42.4, y: 20.2, z: -10}
+  m_LocalPosition: {x: 42.4, y: 20, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -38627,7 +38615,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1461182766}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.1, y: -4.2, z: 0}
+  m_LocalPosition: {x: 0, y: -1.69, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -45275,7 +45263,7 @@ GameObject:
   - component: {fileID: 1850717524}
   - component: {fileID: 1850717525}
   m_Layer: 0
-  m_Name: MidTownRoom
+  m_Name: CentralTownRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45316,7 +45304,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentRoomID: 1
-  roomName: Middle Town
+  roomName: Central Town
   roomDescription: Town
   cameraPanLimitUpperRightTransform: {fileID: 1289921393}
   cameraPanLimit: {x: 0, y: 0}
@@ -46624,7 +46612,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1923598477}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -12.399994, y: 27.380005, z: 0}
+  m_LocalPosition: {x: -6.61, y: 28.72, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -46657,7 +46645,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5, y: 5}
+  m_Size: {x: 16.08, y: 2.5}
   m_EdgeRadius: 0
 --- !u!114 &1923598480
 MonoBehaviour:
@@ -46980,7 +46968,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1936441973}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.7, y: 2.6, z: 0}
+  m_LocalPosition: {x: -2.32, y: 2.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -49574,7 +49562,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 938525292180207318, guid: c84e02f53fb0dbf46a54bbe041141871, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -9.386597
+      value: -9.386719
       objectReference: {fileID: 0}
     - target: {fileID: 3011708417225269307, guid: c84e02f53fb0dbf46a54bbe041141871, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

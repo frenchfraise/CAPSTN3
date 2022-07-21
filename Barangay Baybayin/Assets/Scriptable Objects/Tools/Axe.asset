@@ -20,15 +20,17 @@ MonoBehaviour:
   - {fileID: 11400000, guid: afcbbd1a035119a49b36d243197c6270, type: 2}
   - {fileID: 11400000, guid: 39b3d15182b01f04084aa9819ca3d27d, type: 2}
   name:
+  - Iron Axe
   - Copper Axe
   - Nickel Axe
   - Gold Axe
   lockedFrame: {fileID: 21300000, guid: abf11a33121b8ba45a1c05396028d06e, type: 3}
   lockedIcon: {fileID: 21300000, guid: 04a93674c8053e64596c765e95fd027d, type: 3}
   unlockedFrame: {fileID: 21300000, guid: e8c3e5bef4d467b4d9ceb143afd48244, type: 3}
-  unlockedIcon: {fileID: 21300000, guid: d221494405d40cd46a5e57076de76ebb, type: 3}
+  unlockedIcon: {fileID: 21300000, guid: 73f2bfdc7af120e4aa236b3324e70bdb, type: 3}
   equippedFrame: {fileID: 21300000, guid: 84487d73ca4b791498332d8f6858417f, type: 3}
   equippedIcon:
+  - {fileID: 21300000, guid: 73f2bfdc7af120e4aa236b3324e70bdb, type: 3}
   - {fileID: 21300000, guid: d221494405d40cd46a5e57076de76ebb, type: 3}
   - {fileID: 21300000, guid: fe94147e74cf30d4c9fe1901585dea78, type: 3}
   - {fileID: 21300000, guid: f4b6578811c48a94cb811b2629d0aac8, type: 3}
