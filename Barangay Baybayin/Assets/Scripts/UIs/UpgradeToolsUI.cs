@@ -43,6 +43,16 @@ public class UpgradeToolsUI : MonoBehaviour
         {
             upgradeToolUI.upgradeUI = this;
         }
+        Panday.onPandaySpokenToEvent.AddListener(OpenButtonUIClicked);
+        onSetSpecificToMachete.AddListener(SetSpecificToMachete);
+        onSetSpecificToAllOther.AddListener(SetSpecificToAllOther);
+    }
+
+    private void OnDestroy()
+    {
+        Panday.onPandaySpokenToEvent.RemoveListener(OpenButtonUIClicked);
+        onSetSpecificToMachete.RemoveListener(SetSpecificToMachete);
+        onSetSpecificToAllOther.RemoveListener(SetSpecificToAllOther);
     }
     public void SetSpecificToMachete(bool p_bool)
     {
@@ -56,14 +66,12 @@ public class UpgradeToolsUI : MonoBehaviour
 
     private void OnEnable()
     {
-        Panday.onPandaySpokenToEvent.AddListener(OpenButtonUIClicked);
-        onSetSpecificToMachete.AddListener(SetSpecificToMachete);
-        onSetSpecificToAllOther.AddListener(SetSpecificToAllOther);
+
     }
 
     private void OnDisable()
     {
-        Panday.onPandaySpokenToEvent.RemoveListener(OpenButtonUIClicked);
+
     }
 
     public void ToolUp()

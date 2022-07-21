@@ -56,7 +56,14 @@ public class PlayerManager : MonoBehaviour
             //DontDestroyOnLoad(gameObject);
         //}
         playerTransform = player.transform;
-        
+        onUpdateCurrentRoomIDEvent.AddListener(UpdateCurrentRoomIDEvent);
+        TimeManager.onDayChangingEvent.AddListener(DayChanging);
+    }
+
+    private void OnDestroy()
+    {
+        onUpdateCurrentRoomIDEvent.RemoveListener(UpdateCurrentRoomIDEvent);
+        TimeManager.onDayChangingEvent.RemoveListener(DayChanging);
     }
 
     public void SpawnNewItemFloater(SO_Item p_SOItem, int p_name)
@@ -114,13 +121,11 @@ public class PlayerManager : MonoBehaviour
     }
     private void OnEnable()
     {
-        onUpdateCurrentRoomIDEvent.AddListener(UpdateCurrentRoomIDEvent);        
-        TimeManager.onDayChangingEvent.AddListener(DayChanging);
+
     }
     private void OnDisable()
     {
-        onUpdateCurrentRoomIDEvent.RemoveListener(UpdateCurrentRoomIDEvent);
-        TimeManager.onDayChangingEvent.RemoveListener(DayChanging);
+
     }
 
     public void DayChanging()

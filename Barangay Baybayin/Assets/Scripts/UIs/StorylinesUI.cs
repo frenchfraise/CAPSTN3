@@ -45,11 +45,13 @@ public class StorylinesUI : MonoBehaviour
         currentIndex = index;
         for (int i = 0; i < requirementsUIs.Count; i++)
         {
+            requirementsUIs[i].DeinitializeValues();
             Destroy(requirementsUIs[i].gameObject);
             
         }
         for (int i = 0; i < rewardsUIs.Count; i++)
         {
+            rewardsUIs[i].DeinitializeValues();
             Destroy(rewardsUIs[i].gameObject);
         }
         requirementsUIs.Clear();
@@ -121,6 +123,7 @@ public class StorylinesUI : MonoBehaviour
     {
         for (int i = 0; i < storylines[index].itemUIs.Count; i++)
         {
+            storylines[index].itemUIs[i].DeinitializeValues();
             Destroy(storylines[index].itemUIs[i].gameObject);
         }
         storylines[index].itemUIs.Clear();
@@ -145,7 +148,7 @@ public class StorylinesUI : MonoBehaviour
             //newObject.InitializeValues("", rewards[i].amount.ToString(), rewards[i].so_Item.icon);
             newObject.itemAmountText.text = rewards[i].amount.ToString();
             newObject.itemIconImage.sprite = rewards[i].so_Item.icon;
-        Debug.Log(index + " - INDEEEX " + i + " () "+rewards[i].amount.ToString());
+        //Debug.Log(index + " - INDEEEX " + i + " () "+rewards[i].amount.ToString());
             i++;
 
         }

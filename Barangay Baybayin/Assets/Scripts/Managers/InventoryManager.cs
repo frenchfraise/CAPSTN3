@@ -58,7 +58,7 @@ public class InventoryManager : MonoBehaviour
 
                 for (int i = 0; i < InventoryManager.instance.inventoryPages[iii].itemCategories[ii].items.Count;)
                 {
-                    Debug.Log(InventoryManager.instance.inventoryPages[iii].itemCategories[ii].items[i].so_Item.name);
+                    //Debug.Log(InventoryManager.instance.inventoryPages[iii].itemCategories[ii].items[i].so_Item.name);
                     if (InventoryManager.instance.inventoryPages[iii].itemCategories[ii].items[i].so_Item.name == p_item)
                     {
                         

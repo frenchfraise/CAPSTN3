@@ -40,7 +40,7 @@ public class DayInfoUI : MonoBehaviour
         }
         else if (isFirstTime)
         {
-            Debug.Log("FIRST TIME");
+           // Debug.Log("FIRST TIME");
             isFirstTime = false;
             StartCoroutine(Co_fIRSTDayEndTransition());
             //TimeManager.onDayChangingEvent.Invoke();
@@ -50,7 +50,7 @@ public class DayInfoUI : MonoBehaviour
     IEnumerator Co_fIRSTDayEndTransition()
     {
         TimeManager.onPauseGameTime.Invoke(false);
-        Debug.Log("FIRST TIME");
+    //    Debug.Log("FIRST TIME");
 
         conditionsText.text = "";
         dayCountText.text = "DAY " + (1).ToString();
@@ -100,11 +100,11 @@ public class DayInfoUI : MonoBehaviour
         TimeManager.onPauseGameTime.Invoke(true);
 
         TownDialogueData tdd = StorylineManager.instance.townEventDialogues;
-        Debug.Log("TRY");
-        Debug.Log("TRY " + tdd.td[tdd.currentQuestChainIndex].dayRequiredCount + " - - " + ( 1));
+        //Debug.Log("TRY");
+        //Debug.Log("TRY " + tdd.td[tdd.currentQuestChainIndex].dayRequiredCount + " - - " + ( 1));
         if (tdd.td[tdd.currentQuestChainIndex].dayRequiredCount == (1))
         {
-            Debug.Log("TEEEEEEEEEEEE");
+            //Debug.Log("TEEEEEEEEEEEE");
             CharacterDialogueUI.onCharacterSpokenToEvent.Invoke("TE", tdd.td[tdd.currentQuestChainIndex].so_Dialogue);
         }
 
@@ -193,7 +193,7 @@ public class DayInfoUI : MonoBehaviour
 
         TownDialogueData tdd = StorylineManager.instance.townEventDialogues;
         Debug.Log("TRY");
-        Debug.Log("TRY " + tdd.td[tdd.currentQuestChainIndex].dayRequiredCount + " - - " + (p_dayCount + 1));
+       // Debug.Log("TRY " + tdd.td[tdd.currentQuestChainIndex].dayRequiredCount + " - - " + (p_dayCount + 1));
         if (tdd.td[tdd.currentQuestChainIndex].dayRequiredCount == (p_dayCount + 1))
         {
             Debug.Log("TEEEEEEEEEEEE");

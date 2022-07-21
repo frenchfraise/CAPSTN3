@@ -7,21 +7,27 @@ public class ToolInfoUI : MonoBehaviour
     [SerializeField] private TMP_Text levelText;
     [SerializeField] private GenericBarUI genericBarUI;
 
-
-
-    private void OnEnable()
+    private void Awake()
     {
         ToolManager.onToolChangedEvent.AddListener(ToolChanged);
         ToolManager.onProficiencyAmountModifiedEvent.AddListener(genericBarUI.UpdateBar);
         ToolManager.onProficiencyLevelModifiedEvent.AddListener(UpdateLevel);
-       
-     
     }
-    private void OnDisable()
+    private void OnDestroy()
     {
         ToolManager.onToolChangedEvent.RemoveListener(ToolChanged);
         ToolManager.onProficiencyAmountModifiedEvent.RemoveListener(genericBarUI.UpdateBar);
         ToolManager.onProficiencyLevelModifiedEvent.RemoveListener(UpdateLevel);
+    }
+    private void OnEnable()
+    {
+
+
+
+    }
+    private void OnDisable()
+    {
+
         
     }
 

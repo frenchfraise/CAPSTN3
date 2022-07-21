@@ -11,10 +11,18 @@ public class CameraMovement : MonoBehaviour
     [HideInInspector] 
     public Vector2 panLimit;
 
-
-    private void OnEnable()
+    private void Awake()
     {
         CameraManager.onCameraMovedEvent.AddListener(CameraMoved);
+    }
+
+    private void OnDestroy()
+    {
+        CameraManager.onCameraMovedEvent.RemoveListener(CameraMoved);
+    }
+    private void OnEnable()
+    {
+   
         
     }
 

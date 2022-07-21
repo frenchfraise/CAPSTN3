@@ -52,20 +52,21 @@ public class WeatherManager : MonoBehaviour
     private void Awake()
     {
         _instance = this;
-    }
-
-    private void OnEnable()
-    {
-        PlayerManager.onUpdateCurrentRoomIDEvent.AddListener(CheckForRoom);        
+        PlayerManager.onUpdateCurrentRoomIDEvent.AddListener(CheckForRoom);
         TimeManager.onDayChangingEvent.AddListener(RandPredictWeathers);
         onWeatherChangedEvent.AddListener(SwitchWeatherParticleSys);
     }
 
-    private void OnDisable()
+    private void OnEnable()
     {
         PlayerManager.onUpdateCurrentRoomIDEvent.RemoveListener(CheckForRoom);
         TimeManager.onDayChangingEvent.RemoveListener(RandPredictWeathers);
         onWeatherChangedEvent.RemoveListener(SwitchWeatherParticleSys);
+    }
+
+    private void OnDisable()
+    {
+   
     }
 
     public Weather GetWeatherName(string p_weatherName)

@@ -23,9 +23,14 @@ public class RoomInfoUI : MonoBehaviour
     {
 
         isFirstTime = true;
-        PlayerManager.onRoomEnteredEvent.AddListener(RoomEntered);
+        
 
         gameObject.SetActive(false);
+    }
+
+    private void Awake()
+    {
+        PlayerManager.onRoomEnteredEvent.AddListener(RoomEntered);
     }
     private void Destroy()
     {
@@ -36,7 +41,7 @@ public class RoomInfoUI : MonoBehaviour
     public void RoomEntered(Passageway p_passageway)
     {
         
-        Debug.Log("inside");
+       // Debug.Log("inside");
         //PlayerManager.instance.joystick.enabled = false;
         PlayerJoystick.onUpdateJoystickEnabledEvent.Invoke(false);
         TimeManager.onPauseGameTime.Invoke(false);
@@ -144,9 +149,9 @@ public class RoomInfoUI : MonoBehaviour
         t.Join(roomDescriptionText.DOFade(0f, 0.5f));
         t.Play();
         availableResourcesGO.SetActive(false);
-        Debug.Log("ROOM INFO PERFORMING");
+       // Debug.Log("ROOM INFO PERFORMING");
         yield return t.WaitForCompletion();
-        Debug.Log("ROOM INFO ENDING");
+       // Debug.Log("ROOM INFO ENDING");
         gameObject.SetActive(false);
         TransitionUI.onFadeTransition.Invoke(0, false);
         //UIManager.onGameplayModeChangedEvent.Invoke(false);
@@ -154,8 +159,8 @@ public class RoomInfoUI : MonoBehaviour
         TimeManager.onPauseGameTime.Invoke(true);
         if (isFirstTime)
         {
-            Debug.Log("outside");
-
+            //    Debug.Log("outside");
+            isFirstTime = false;
             TutorialUI.onRemindTutorialEvent.Invoke(2);
         }
         //PlayerManager.instance.joystick.enabled = true;

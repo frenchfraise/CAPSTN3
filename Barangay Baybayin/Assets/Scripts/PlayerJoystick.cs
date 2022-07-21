@@ -33,13 +33,26 @@ public class PlayerJoystick : MonoBehaviour
         interactHintImage = interactHintImage ? interactHintImage : interactHint.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>();
         toolCaster = toolCaster ? toolCaster : PlayerManager.instance.player.GetComponent<ToolCaster>();
         interacter = interacter ? interacter : PlayerManager.instance.player.GetComponent<Interacter>();
+   
     }
 
+    private void Awake()
+    {
+        ToolManager.onResourceNodeFinishedEvent.AddListener(OnResourceNodeFinishedEvent);
+        UIManager.onGameplayModeChangedEvent.AddListener(OnGameplayModeChangedEvent);
+
+        onUpdateJoystickEnabledEvent.AddListener(UpdateJoystickEnabled);
+    }
+
+    private void OnDestroy()
+    {
+        ToolManager.onResourceNodeFinishedEvent.RemoveListener(OnResourceNodeFinishedEvent);
+        UIManager.onGameplayModeChangedEvent.RemoveListener(OnGameplayModeChangedEvent);
+        onUpdateJoystickEnabledEvent.RemoveListener(UpdateJoystickEnabled);
+    }
     private void OnEnable()
     {
-        UIManager.onGameplayModeChangedEvent.AddListener(OnGameplayModeChangedEvent);
-        ToolManager.onResourceNodeFinishedEvent.AddListener(OnResourceNodeFinishedEvent);
-        onUpdateJoystickEnabledEvent.AddListener(UpdateJoystickEnabled);
+
     }
     void UpdateJoystickEnabled(bool p_bool)
     {
@@ -126,8 +139,12 @@ public class PlayerJoystick : MonoBehaviour
       
                 else if (interactibleObject)
                 {
-                    interactHintImage.sprite = interactibleObject.hintSprite;
-                    interactHint.SetActive(true);
+                    if (interactibleObject.canInteract)
+                    {
+                        interactHintImage.sprite = interactibleObject.hintSprite;
+                        interactHint.SetActive(true);
+                    }
+                
                 }
                 else
                 {

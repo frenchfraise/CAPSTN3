@@ -41,7 +41,7 @@ public class ToolCaster : MonoBehaviour
     public ToolHitSucceededEvent onToolHitSucceededEvent = new ToolHitSucceededEvent();
     public ToolCanUseUpdatedEvent onToolCanUseUpdatedEvent = new ToolCanUseUpdatedEvent();
     public ToolCanSwitchUpdatedEvent onToolCanSwitchUpdatedEvent = new ToolCanSwitchUpdatedEvent();
-    public ToolSpecialUseEvent onToolSpecialUsedEvent = new ToolSpecialUseEvent();
+    public static ToolSpecialUseEvent onToolSpecialUsedEvent = new ToolSpecialUseEvent();
     public static SetIsPreciseEvent onSetIsPreciseEvent = new SetIsPreciseEvent();
     public static SetRequireCorrectToolEvent onSetRequireCorrectToolEvent = new SetRequireCorrectToolEvent();
     private bool isFirstTime;
@@ -53,11 +53,34 @@ public class ToolCaster : MonoBehaviour
         //onCriticalFirstTimeEvent.AddListener(FirstTime);
 
         ToolManager.onSpecialPointsFilledEvent.AddListener(FirstTime);
-        
+        onSetRequireCorrectToolEvent.AddListener(SetRequireCorrectTool);
+        onSetIsPreciseEvent.AddListener(SetIsPrecise);
+        WeatherManager.onWeatherChangedEvent.AddListener(CheckWeatherStaminaTax);
+
+        if (TryGetComponent<Stamina>(out Stamina stamina))
+        {
+            onToolUsedEvent.AddListener(stamina.ModifyStamina);
+        }
+
+        onToolHitSucceededEvent.AddListener(ToolHitSuccess);
         //ToolManager.onToolChangedEvent.Invoke(ToolManager.instance.tools[0]);
 
     }
+    private void OnDestroy()
+    {
+        ToolManager.onToolChangedEvent.RemoveListener(OnToolChanged);
+        ToolManager.onSpecialPointsFilledEvent.RemoveListener(FirstTime);
+        onSetRequireCorrectToolEvent.RemoveListener(SetRequireCorrectTool);
+        onSetIsPreciseEvent.RemoveListener(SetIsPrecise);
+        WeatherManager.onWeatherChangedEvent.RemoveListener(CheckWeatherStaminaTax);
 
+        if (GetComponent<Stamina>())
+        {
+            onToolUsedEvent.RemoveListener(GetComponent<Stamina>().ModifyStamina);
+        }
+        onToolHitSucceededEvent.RemoveListener(ToolHitSuccess);
+       
+    }
     private void FirstTime()
     {
         if (!TimeManager.instance.tutorialOn)
@@ -71,16 +94,7 @@ public class ToolCaster : MonoBehaviour
     }
     public void OnEnable()
     {
-        onSetRequireCorrectToolEvent.AddListener(SetRequireCorrectTool);
-        onSetIsPreciseEvent.AddListener(SetIsPrecise);
-        WeatherManager.onWeatherChangedEvent.AddListener(CheckWeatherStaminaTax);
-
-        if (TryGetComponent<Stamina>(out Stamina stamina))
-        {
-            onToolUsedEvent.AddListener(stamina.ModifyStamina);
-        }
-
-        onToolHitSucceededEvent.AddListener(ToolHitSuccess);
+     
 
 
         //onToolSpecialUsedEvent.AddListener(OnSpecialUsed);
@@ -91,14 +105,7 @@ public class ToolCaster : MonoBehaviour
 
     public void OnDisable()
     {
-        WeatherManager.onWeatherChangedEvent.RemoveListener(CheckWeatherStaminaTax);
-
-        if (GetComponent<Stamina>())
-        {
-            onToolUsedEvent.RemoveListener(GetComponent<Stamina>().ModifyStamina);
-        }
-        onToolHitSucceededEvent.RemoveListener(ToolHitSuccess);
-        ToolManager.onToolChangedEvent.RemoveListener(OnToolChanged);
+        
         //onToolSpecialUsedEvent.RemoveListener(OnSpecialUsed);
     }
 

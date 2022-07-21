@@ -7,4 +7,5 @@ public class SO_StoryLine : ScriptableObject
     public string ID;
     public SO_Character character;
     public List<SO_Questline> questLines = new List<SO_Questline>();
+    public SO_Dialogues finishedDialogue;
 }

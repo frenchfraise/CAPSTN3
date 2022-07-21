@@ -8,6 +8,15 @@ public class QuestHint : MonoBehaviour
     WorldEventSubscriber worldEventSubscriber;
     [SerializeField] private HoverEffect iconHoverEffect;
     [SerializeField] private RadiateScaleEffect radiateScaleEffect;
+    private void Awake()
+    {
+        UIManager.onGameplayModeChangedEvent.AddListener(OnGameplayModeChangedEvent);
+    }
+
+    private void OnDestroy()
+    {
+        UIManager.onGameplayModeChangedEvent.RemoveListener(OnGameplayModeChangedEvent);
+    }
     private void OnEnable()
     {
         iconHoverEffect.startYPosition = iconHoverEffect.transform.position.y;
@@ -17,7 +26,7 @@ public class QuestHint : MonoBehaviour
         StartCoroutine(iconHoverEffect.runningCoroutine);
         radiateScaleEffect.runningCoroutine = radiateScaleEffect.Co_Scale();
         StartCoroutine(radiateScaleEffect.runningCoroutine);
-        UIManager.onGameplayModeChangedEvent.AddListener(OnGameplayModeChangedEvent);
+    
     }
 
     private void OnGameplayModeChangedEvent(bool p_isActive)

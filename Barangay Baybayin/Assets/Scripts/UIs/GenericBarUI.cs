@@ -205,7 +205,10 @@ public class GenericBarUI : MonoBehaviour
         UIManager.onGameplayModeChangedEvent.AddListener(GameplayModeChangedEvent);
  
     }
-
+    private void OnDestroy()
+    {
+        UIManager.onGameplayModeChangedEvent.RemoveListener(GameplayModeChangedEvent);
+    }
     private void OnEnable()
     {
         realBarUI.fillAmount = 0f;

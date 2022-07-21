@@ -36,7 +36,7 @@ MonoBehaviour:
     words: 'Currently, Zenaida follows a trajectory of North-Northwest at 16mph through
       Central Luzon.
 
-      
+
 
 '
     backgroundSprite: {fileID: 0}
@@ -46,7 +46,7 @@ MonoBehaviour:
     words: 'It is currently at Purok Buko, which is reeling from the effects of the
       storm.
 
-      
+
 
 '
     backgroundSprite: {fileID: 0}
@@ -55,7 +55,7 @@ MonoBehaviour:
     emotion: 10
     words: 'The typhoon is expected to affect the area for several more days.
 
-      
+
 
 '
     backgroundSprite: {fileID: 0}

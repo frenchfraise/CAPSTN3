@@ -13,19 +13,24 @@ public class LightingControl : MonoBehaviour
     private void Awake()
     {
         light2D = GetComponent<Light2D>();
+        TimeManager.onHourChanged.AddListener(OnTimeCheck);
     }
 
+    private void OnDestroy()
+    {
+        TimeManager.onHourChanged.RemoveListener(OnTimeCheck);
+    }
     private void OnEnable()
     {
         //TimeManager.onTimeChangedEvent.AddListener(OnTimeCheck);
         //WeatherManager.onWeatherChangedEvent.AddListener(GetWeather);
-        TimeManager.onHourChanged.AddListener(OnTimeCheck);
+     
     }
 
     private void OnDisable()
     {
         //TimeManager.onTimeChangedEvent.RemoveListener(OnTimeCheck);
-        TimeManager.onHourChanged.RemoveListener(OnTimeCheck);
+   
     }
 
     private void OnTimeCheck(int p_hour)

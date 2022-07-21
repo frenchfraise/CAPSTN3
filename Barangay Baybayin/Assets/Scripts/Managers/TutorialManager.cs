@@ -26,7 +26,7 @@ public class TutorialManager : MonoBehaviour
     public ResourceNode resourceNode;
 
     public Infrastructure infrastructure;
-
+    public Infrastructure infrastructureTwo;
 
     public SO_Dialogues equippingWrongTool;
     public SO_Dialogues swingingWrongTool;
@@ -41,7 +41,7 @@ public class TutorialManager : MonoBehaviour
     public Passageway PandayToMidPassageway;
     public Passageway ForkToMidPassageway;
 
-
+    public bool isFirstTimeFood = true;
     public static TutorialEventEndedEvent onTutorialEventEndedEvent = new TutorialEventEndedEvent();
 
     public Panday panday;
@@ -54,6 +54,10 @@ public class TutorialManager : MonoBehaviour
     bool oneToolRewardGiven = false;
     bool allToolsRewardGiven = false;
     bool characterQuest = true;
+
+    bool dayFirstTime = true;
+
+    public GameObject specialButton;
     private void Awake()
     {
         instance = this;
@@ -64,7 +68,7 @@ public class TutorialManager : MonoBehaviour
     {
 
         StorylineManager.onWorldEventEndedEvent.Invoke("O-" + currentIndex, 0, 0);
-        Debug.Log(currentIndex + " NEXT " + (currentIndex + 1).ToString());
+        //Debug.Log(currentIndex + " NEXT " + (currentIndex + 1).ToString());
     }
 
     //void TutorialEventEndedEvent(int i)
@@ -73,15 +77,18 @@ public class TutorialManager : MonoBehaviour
     //}
     private void Start()
     {
-        //Setup();
-        DontUseTutorial();
+        Setup();
+        //DontUseTutorial();
 
 
     }
     void DontUseTutorial()
     {
+        infrastructure.gameObject.SetActive(false);
+        infrastructureTwo.gameObject.SetActive(false);
+        specialButton.SetActive(true);
         PlayerManager.instance.DayChanging();
-
+        panday.canInteract = true;
         Stamina.onManualSetStaminaEvent.Invoke(150);
         CameraManager.instance.tutorialOn = false;
         StorylineManager.onWorldEventEndedEvent.RemoveListener(TellStory);
@@ -102,16 +109,24 @@ public class TutorialManager : MonoBehaviour
     IEnumerator Co_Loading()
     {
         yield return new WaitForSeconds(7f);
-        TutorialUI.onRemindTutorialEvent.Invoke(0);
+        if (dayFirstTime)
+        {
+            dayFirstTime = false;
+            TutorialUI.onRemindTutorialEvent.Invoke(0);
+        }
+
     }
     void Setup()
     {
-      
+        specialButton.SetActive(false);
+        panday.canInteract = false;
         CameraManager.instance.tutorialOn = true;
         StorylineManager.onWorldEventEndedEvent.AddListener(TellStory);
         UIManager.onGameplayModeChangedEvent.AddListener(GameplayModeChangedEvent);
         infrastructure.InitializeValues();
         infrastructure.gameObject.SetActive(true);
+        infrastructureTwo.InitializeValues();
+        infrastructureTwo.gameObject.SetActive(true);
         CharacterDialogueUI.onSetEndTransitionEnabledEvent.Invoke(false);
         CharacterDialogueUI.onSetIsCloseOnEndEvent.Invoke(false);
         CharacterDialogueUI.onSetStartTransitionEnabledEvent.Invoke(false);
@@ -126,6 +141,11 @@ public class TutorialManager : MonoBehaviour
     }
     void Unsetup()
     {
+
+        infrastructure.gameObject.SetActive(false);
+        infrastructureTwo.gameObject.SetActive(false);
+        specialButton.SetActive(true);
+        panday.canInteract = true;
         CameraManager.instance.tutorialOn = false;
         Debug.Log("UNSETTING UP");
         StorylineManager.onWorldEventEndedEvent.RemoveListener(TellStory);
@@ -137,8 +157,14 @@ public class TutorialManager : MonoBehaviour
         TimeManager.onPauseGameTime.Invoke(true);
         tutorialUI.overheadUI.SetActive(false);
         panday.isQuestMode = false;
+
         tutorialBlocker.gameObject.SetActive(false);
-        TutorialUI.onRemindTutorialEvent.Invoke(0);
+        if (dayFirstTime)
+        {
+            dayFirstTime = false;
+            TutorialUI.onRemindTutorialEvent.Invoke(0);
+        }
+
     }
     Vector2 Vector2Abs(Vector2 p_vector2)
     {
@@ -247,7 +273,9 @@ public class TutorialManager : MonoBehaviour
                 infrastructureSpawn = false;
                 //SPAWN
                 infrastructure.GetComponent<Health>().OnDeathEvent.AddListener(TeachSix);
-
+                infrastructure.canInteract = true;
+  
+            
                 //SPECIFIC
                 ToolsUI.onToolQuestSwitchEvent.Invoke(0);
                 ToolCaster.onSetIsPreciseEvent.Invoke(true);
@@ -294,7 +322,8 @@ public class TutorialManager : MonoBehaviour
                 newResourceNode = HerbVariantOneNodePool.pool.Get();
                 newResourceNode.transform.position = spawnPoint3.position + new Vector3(0f, -2.35f, 0f);
                 newResourceNode.InitializeValues();
-
+                infrastructureTwo.gameObject.SetActive(true);
+                infrastructureTwo.canInteract = true;
 
                 //SPECIFIC
                 ToolCaster.onSetIsPreciseEvent.Invoke(true);
@@ -312,6 +341,7 @@ public class TutorialManager : MonoBehaviour
             {
                 Debug.Log("OUT");
                 oneToolRewardGiven = true;
+                panday.canInteract = true;
                 InventoryManager.onAddItemEvent.Invoke("Recipe 1", 1);
                 InventoryManager.onAddItemEvent.Invoke("Wood 1", 10);
                 UpgradeToolsUI.onSetSpecificToMachete.Invoke(true);
@@ -330,6 +360,7 @@ public class TutorialManager : MonoBehaviour
             if (!allToolsRewardGiven)
             {
                 allToolsRewardGiven = true;
+            
                 InventoryManager.onAddItemEvent.Invoke("Recipe 1", 3); //it happens 3 times
                 InventoryManager.onAddItemEvent.Invoke("Wood 1", 30);
                 UpgradeToolsUI.onSetSpecificToMachete.Invoke(false);
@@ -433,6 +464,7 @@ public class TutorialManager : MonoBehaviour
             ToolCaster.onSetRequireCorrectToolEvent.Invoke(ToolManager.instance.tools[3]);
             //SPECFICI
             ToolCaster.onToolUsedEvent.AddListener(TeachUseTool);
+            ToolCaster.onToolSpecialUsedEvent.AddListener(TeachSpecialUseTool);
         }
        
 
@@ -468,11 +500,23 @@ public class TutorialManager : MonoBehaviour
 
     }
 
- 
+    public void TeachSpecialUseTool() //You�re getting the hang of it, son. But what if you overdo it? Try swinging your axe until you wipe out.
+    {
+
+        ToolCaster.onToolUsedEvent.RemoveListener(TeachUseTool);
+        ToolCaster.onToolSpecialUsedEvent.RemoveListener(TeachSpecialUseTool);
+        //SPECIFIC RESET
+        ToolsUI.onToolQuestSwitchEvent.Invoke(-1);
+        ToolCaster.onSetIsPreciseEvent.Invoke(false);
+        ToolCaster.onSetRequireCorrectToolEvent.Invoke(null);
+        //SPECFICI RESET
+        EndLecture();
+    }
     public void TeachUseTool(float p_useless) //You�re getting the hang of it, son. But what if you overdo it? Try swinging your axe until you wipe out.
     {
 
         ToolCaster.onToolUsedEvent.RemoveListener(TeachUseTool);
+        ToolCaster.onToolSpecialUsedEvent.RemoveListener(TeachSpecialUseTool);
         //SPECIFIC RESET
         ToolsUI.onToolQuestSwitchEvent.Invoke(-1);
         ToolCaster.onSetIsPreciseEvent.Invoke(false);
