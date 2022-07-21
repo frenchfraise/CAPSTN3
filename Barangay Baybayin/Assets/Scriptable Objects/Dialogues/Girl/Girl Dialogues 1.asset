@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 846db7b038354e245b3974364be2d363, type: 3}
+  m_Name: Girl Dialogues 1
+  m_EditorClassIdentifier: 
+  dialogues:
+  - character: {fileID: 11400000, guid: 920370af6e922694e87bd05dad8330b8, type: 2}
+    emotion: 10
+    words: Oh hello.
+    backgroundSprite: {fileID: 0}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: 920370af6e922694e87bd05dad8330b8, type: 2}
+    emotion: 10
+    words: It has been so hot and humid.
+    backgroundSprite: {fileID: 0}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: 920370af6e922694e87bd05dad8330b8, type: 2}
+    emotion: 10
+    words: And then it would suddenly rain.
+    backgroundSprite: {fileID: 0}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: 920370af6e922694e87bd05dad8330b8, type: 2}
+    emotion: 10
+    words: "Um\u2026 Why do big storms happen\u2026?"
+    backgroundSprite: {fileID: 0}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: 920370af6e922694e87bd05dad8330b8, type: 2}
+    emotion: 10
+    words: They tell us to be careful and to stay near town.
+    backgroundSprite: {fileID: 0}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: 920370af6e922694e87bd05dad8330b8, type: 2}
+    emotion: 10
+    words: I wish it were always just a cloudy day!
+    backgroundSprite: {fileID: 0}
+    speechTransitionType: 1

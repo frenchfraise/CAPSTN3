@@ -11,7 +11,7 @@ public class TitlescreenUI : MonoBehaviour
     }
     //public async void OnPlayButtonUIClicked()
     //{
-        
+
     //    Task te = TransitionUI.onFadeTransition.Invoke(1);
     //    await te;
 
@@ -19,10 +19,10 @@ public class TitlescreenUI : MonoBehaviour
 
     //}
 
-    public  void OnPlayButtonUIClicked()
+    public void OnPlayButtonUIClicked()
     {
         StartCoroutine(Co_OnPlayButtonUIClicked());
-        
+
 
     }
 
@@ -34,5 +34,10 @@ public class TitlescreenUI : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
+    public void OnQuitButtonUIClicked()
+    {
+        Debug.Log("Game quit!");
+        Application.Quit();
+    }
 
 }

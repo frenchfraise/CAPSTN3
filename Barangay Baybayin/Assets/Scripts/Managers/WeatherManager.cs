@@ -161,20 +161,16 @@ public class WeatherManager : MonoBehaviour
         currentWeatherDialogue.dialogues[0].words = currentText;
         currentWeatherDialogue.dialogues[0].emotion = currentEmotion;
 
-        Debug.Log("Weather call!");
         onWeatherChangedEvent?.Invoke(weathers, currentWeathers);
         PlayerManager.onUpdateCurrentRoomIDEvent.Invoke(8);
     }
 
     private void CheckForRoom(int id)
     {
-        //Debug.Log(currentWeathers[0].name);
-        //Debug.Log("ID is " + id);
-        if (id == 8)
+        if (id == 3)
         {
             if (currentWeathers[0].particle != null)
             {
-                //Debug.Log("Listening HIT! Should stop by now...");
                 currentWeathers[0].particle.Stop();
                 currentWeathers[0].particle.Clear();
             }
