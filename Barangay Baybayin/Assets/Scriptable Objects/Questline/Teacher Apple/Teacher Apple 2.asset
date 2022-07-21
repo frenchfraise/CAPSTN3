@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 739ccaa9e830d964caaae04afa4833d9, type: 3}
+  m_Name: Teacher Apple 2
+  m_EditorClassIdentifier: 
+  questlineData:
+  - name: Quest 2 Part A
+    initialSO_Dialogues: {fileID: 11400000, guid: 5a3ce7094fb3c23458cd746865fcb175, type: 2}
+    questInProgressSO_Dialogues: {fileID: 11400000, guid: 63933365d14417d43980b166815481f7, type: 2}
+    questCompleteSO_Dialogues: {fileID: 11400000, guid: 78534c3115e240c41a8133381b78474e, type: 2}
+    quest: {fileID: 11400000, guid: 30de69160d41f6247924f2b83296c80a, type: 2}
+  - name: Quest 2 Part B
+    initialSO_Dialogues: {fileID: 11400000, guid: 4b3370919431db444b255b74003f80b3, type: 2}
+    questInProgressSO_Dialogues: {fileID: 11400000, guid: d674756a4b4de054d88f61d3977edf60, type: 2}
+    questCompleteSO_Dialogues: {fileID: 11400000, guid: 5c74da5803c67d84b8cc045e313d60b0, type: 2}
+    quest: {fileID: 11400000, guid: d9681a42e10fb614bb3a80ac8cb21bf7, type: 2}

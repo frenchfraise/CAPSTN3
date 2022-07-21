@@ -1,0 +1,147 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 846db7b038354e245b3974364be2d363, type: 3}
+  m_Name: Brgy Captain 2 Give A
+  m_EditorClassIdentifier: 
+  dialogues:
+  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
+    emotion: 10
+    words: 'Hey Sakoro.
+
+'
+    backgroundSprite: {fileID: 0}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
+    emotion: 10
+    words: 'Have you noticed the town recently?
+
+'
+    backgroundSprite: {fileID: 0}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
+    emotion: 10
+    words: 'Everyone''s doing their part and helping rebuild.
+
+'
+    backgroundSprite: {fileID: 0}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
+    emotion: 10
+    words: 'I know the town''s strong. But strength isn''t enough.
+
+'
+    backgroundSprite: {fileID: 0}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
+    emotion: 10
+    words: 'These calamities have happened, and will happen again and again.
+
+'
+    backgroundSprite: {fileID: 0}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
+    emotion: 10
+    words: 'Climate change has affected our livelihoods and our quality of life.
+
+'
+    backgroundSprite: {fileID: 0}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
+    emotion: 10
+    words: 'It''s true that it''s the government''s job to protect us.
+
+'
+    backgroundSprite: {fileID: 0}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
+    emotion: 10
+    words: 'We''ve sent requests for disaster programs, and I''ve been following
+      up on those.
+
+'
+    backgroundSprite: {fileID: 0}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
+    emotion: 10
+    words: 'I believe we deserve better. To have concrete solutions against these
+      recurring disasters.
+
+'
+    backgroundSprite: {fileID: 0}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
+    emotion: 10
+    words: 'We can rebuild and reinforce all we want.
+
+'
+    backgroundSprite: {fileID: 0}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
+    emotion: 10
+    words: "But the goal is for the town itself to be sturdy, for the people to be
+      safe. \r\n"
+    backgroundSprite: {fileID: 0}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
+    emotion: 10
+    words: 'For the structures to improve, for technology to warn us, for measures
+      to take place.
+
+'
+    backgroundSprite: {fileID: 0}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
+    emotion: 10
+    words: 'That''s my dream for the town. And it''s about to happen.
+
+'
+    backgroundSprite: {fileID: 0}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
+    emotion: 10
+    words: '... did I talk your ear off?
+
+'
+    backgroundSprite: {fileID: 0}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
+    emotion: 10
+    words: 'Well, I''m finishing up on the anti-erosion slopes.
+
+'
+    backgroundSprite: {fileID: 0}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
+    emotion: 10
+    words: 'Mind lending a hand?
+
+'
+    backgroundSprite: {fileID: 0}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
+    emotion: 10
+    words: We need [15 Superb Wood] and [10 Vetiver grass].
+    backgroundSprite: {fileID: 0}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
+    emotion: 10
+    words: 'That kind of wood is in the deepest parts of the Tropical Forest. The
+      vetiver are in the Bamboo Thicket.
+
+'
+    backgroundSprite: {fileID: 0}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
+    emotion: 10
+    words: "Be seeing you.\r"
+    backgroundSprite: {fileID: 0}
+    speechTransitionType: 1

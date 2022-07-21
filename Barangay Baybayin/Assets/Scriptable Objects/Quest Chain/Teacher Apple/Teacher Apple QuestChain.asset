@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dabccd67f58b89349ba4cab56a870d02, type: 3}
+  m_Name: Teacher Apple QuestChain
+  m_EditorClassIdentifier: 
+  ID: Q-TA
+  character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
+  questLines:
+  - {fileID: 11400000, guid: 9806d077fbc75e74b949fadacafb718d, type: 2}
+  - {fileID: 11400000, guid: 29aaf42276096ae43aac773e453f1aa5, type: 2}
+  - {fileID: 11400000, guid: 2dd57d04a826ecf4c9077c44b756197e, type: 2}

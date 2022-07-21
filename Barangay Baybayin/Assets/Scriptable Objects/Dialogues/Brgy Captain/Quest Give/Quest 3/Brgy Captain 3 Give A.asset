@@ -1,0 +1,122 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 846db7b038354e245b3974364be2d363, type: 3}
+  m_Name: Brgy Captain 3 Give A
+  m_EditorClassIdentifier: 
+  dialogues:
+  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
+    emotion: 10
+    words: 'Sakoro, am glad you''re here.
+
+'
+    backgroundSprite: {fileID: 0}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
+    emotion: 10
+    words: 'As the days pass, I''ve been seeing more and more of the town in high
+      spirits.
+
+'
+    backgroundSprite: {fileID: 0}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
+    emotion: 10
+    words: 'More and more structures and items are fixed.
+
+'
+    backgroundSprite: {fileID: 0}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
+    emotion: 10
+    words: 'The townspeople seem invigorated, abuzz.
+
+'
+    backgroundSprite: {fileID: 0}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
+    emotion: 10
+    words: 'No doubt due to you and your efforts.
+
+'
+    backgroundSprite: {fileID: 0}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
+    emotion: 10
+    words: 'I hold much pride for the Town.
+
+'
+    backgroundSprite: {fileID: 0}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
+    emotion: 10
+    words: 'My duty is to protect it.
+
+'
+    backgroundSprite: {fileID: 0}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
+    emotion: 10
+    words: 'That includes coordinating with the government for our structures systems
+      to improve.
+
+'
+    backgroundSprite: {fileID: 0}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
+    emotion: 10
+    words: 'As we await that, however, we ourselves can move.
+
+'
+    backgroundSprite: {fileID: 0}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
+    emotion: 10
+    words: 'Our final duty has come.
+
+'
+    backgroundSprite: {fileID: 0}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
+    emotion: 10
+    words: If you're lending a hand, our task is to make sand dunes on the Lower
+      Town coast.
+    backgroundSprite: {fileID: 0}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
+    emotion: 10
+    words: 'The dunes will protect against surges of water.
+
+'
+    backgroundSprite: {fileID: 0}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
+    emotion: 10
+    words: 'We would only need [12 Red Herbs], which is found at the deep of the
+      Tropical Forest.
+
+'
+    backgroundSprite: {fileID: 0}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
+    emotion: 10
+    words: 'The energizing tea made from these would sustain us.
+
+'
+    backgroundSprite: {fileID: 0}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
+    emotion: 10
+    words: 'Bring the materials back and meet me here.
+
+'
+    backgroundSprite: {fileID: 0}
+    speechTransitionType: 1

@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dabccd67f58b89349ba4cab56a870d02, type: 3}
+  m_Name: Brgy Captain Quest Chain
+  m_EditorClassIdentifier: 
+  ID: Q-BC
+  character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
+  questLines:
+  - {fileID: 11400000, guid: 7e1f1f70b32b8ba4b9ecf85139230408, type: 2}
+  - {fileID: 11400000, guid: 646b7717a7a80344983bdc7a80758ac6, type: 2}
+  - {fileID: 11400000, guid: 1f3156cb9a737db4084acba22736446a, type: 2}

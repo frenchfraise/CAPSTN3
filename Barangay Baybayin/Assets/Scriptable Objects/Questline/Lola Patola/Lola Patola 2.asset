@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 739ccaa9e830d964caaae04afa4833d9, type: 3}
+  m_Name: Lola Patola 2
+  m_EditorClassIdentifier: 
+  questlineData:
+  - name: Quest 2 Part A
+    initialSO_Dialogues: {fileID: 11400000, guid: 95be9b51cc9f9cf4aa077f1c372a8a94, type: 2}
+    questInProgressSO_Dialogues: {fileID: 11400000, guid: 6efcddd41949d3047aea3fe1e10304ac, type: 2}
+    questCompleteSO_Dialogues: {fileID: 11400000, guid: f6ac17077c4ba7544bd3aabb0bfe8b1a, type: 2}
+    quest: {fileID: 11400000, guid: 4b81156285e0a0a4e8cc14b172f8c837, type: 2}
+  - name: Quest 2 Part B
+    initialSO_Dialogues: {fileID: 11400000, guid: ad5a1e38672ac5a46b076be024d15a9e, type: 2}
+    questInProgressSO_Dialogues: {fileID: 11400000, guid: cf2a5ce2496bb0048a1117706f0987ce, type: 2}
+    questCompleteSO_Dialogues: {fileID: 11400000, guid: f6ac17077c4ba7544bd3aabb0bfe8b1a, type: 2}
+    quest: {fileID: 11400000, guid: be0556b95ca20ce42bb79f6712274cf1, type: 2}

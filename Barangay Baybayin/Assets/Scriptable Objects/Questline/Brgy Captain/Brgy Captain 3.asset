@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 739ccaa9e830d964caaae04afa4833d9, type: 3}
+  m_Name: Brgy Captain 3
+  m_EditorClassIdentifier: 
+  questlineData:
+  - name: Quest 3 Part A
+    initialSO_Dialogues: {fileID: 11400000, guid: c3788a9d28e2d6345a0f720475377da4, type: 2}
+    questInProgressSO_Dialogues: {fileID: 11400000, guid: 3befc4573521a1246998128af03bb024, type: 2}
+    questCompleteSO_Dialogues: {fileID: 11400000, guid: 4c6b39364169db046b990ef85898c446, type: 2}
+    quest: {fileID: 11400000, guid: 2a386d31a94fea749b2d0353afdd98ea, type: 2}
+  - name: Quest 3 Part B
+    initialSO_Dialogues: {fileID: 11400000, guid: 49166f32cf2c6514c860af845cbdfad3, type: 2}
+    questInProgressSO_Dialogues: {fileID: 11400000, guid: af0313e381930784f888e4e34b3cd2d5, type: 2}
+    questCompleteSO_Dialogues: {fileID: 11400000, guid: 4c6b39364169db046b990ef85898c446, type: 2}
+    quest: {fileID: 11400000, guid: 31da40dd3a5964549b86481c8956ec92, type: 2}

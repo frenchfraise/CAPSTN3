@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 846db7b038354e245b3974364be2d363, type: 3}
+  m_Name: Kuya Sagwan 2 Completed A
+  m_EditorClassIdentifier: 
+  dialogues:
+  - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
+    emotion: 10
+    words: "Ah, Sakoro. Great job back there.\r"
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
+    emotion: 10
+    words: The rest is up to us fishermen.
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
+    emotion: 10
+    words: We'll test the boat to see how sturdy it is.
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
+    emotion: 10
+    words: Can't have anyone in danger.
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
+    emotion: 10
+    words: This is promising, though.
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
+    emotion: 10
+    words: If we can upgrade more boats, they'd break less.
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
+    emotion: 10
+    words: We'd be safer, and the town's fish is in less danger of running out.
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
+    emotion: 10
+    words: Ah, I just remembered. There's one last request we have of you.
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
+    emotion: 10
+    words: Once again, we're grateful. 'Til next time.
+    speechTransitionType: 1

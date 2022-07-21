@@ -1,0 +1,101 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 846db7b038354e245b3974364be2d363, type: 3}
+  m_Name: Brgy Captain 1 Give A
+  m_EditorClassIdentifier: 
+  dialogues:
+  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
+    emotion: 10
+    words: 'Good day, Sakoro.
+
+'
+    backgroundSprite: {fileID: 0}
+    speechTransitionType: 0
+  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
+    emotion: 10
+    words: 'So the time has come for I myself to be helped, huh?
+
+'
+    backgroundSprite: {fileID: 0}
+    speechTransitionType: 0
+  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
+    emotion: 10
+    words: 'Current job''s remaking the anti-erosion slopes.
+
+'
+    backgroundSprite: {fileID: 0}
+    speechTransitionType: 0
+  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
+    emotion: 10
+    words: 'Those are on the hill at the back of the Town Plaza.
+
+'
+    backgroundSprite: {fileID: 0}
+    speechTransitionType: 0
+  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
+    emotion: 10
+    words: 'Storm blew the vetiver and logs into disarray.
+
+'
+    backgroundSprite: {fileID: 0}
+    speechTransitionType: 0
+  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
+    emotion: 10
+    words: 'You see, planting the vetiver there, with their long roots...
+
+'
+    backgroundSprite: {fileID: 0}
+    speechTransitionType: 0
+  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
+    emotion: 10
+    words: 'And reinforcing them with the logs make it difficult for landslides to
+      happen.
+
+'
+    backgroundSprite: {fileID: 0}
+    speechTransitionType: 0
+  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
+    emotion: 10
+    words: 'The slopes are one of our town''s lines of defenses.
+
+'
+    backgroundSprite: {fileID: 0}
+    speechTransitionType: 0
+  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
+    emotion: 10
+    words: 'While waiting for the government''s programs, I figured to do this.
+
+'
+    backgroundSprite: {fileID: 0}
+    speechTransitionType: 0
+  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
+    emotion: 10
+    words: 'Can you help? To begin, we need [10 Rare Wood] and [7 Vetiver grass].
+
+'
+    backgroundSprite: {fileID: 0}
+    speechTransitionType: 0
+  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
+    emotion: 10
+    words: 'The wood is at the Tropical Forest, while the vetiver is at the Bamboo
+      Thicket.
+
+'
+    backgroundSprite: {fileID: 0}
+    speechTransitionType: 0
+  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
+    emotion: 10
+    words: 'I''ll remain here cleaning the hill.
+
+'
+    backgroundSprite: {fileID: 0}
+    speechTransitionType: 0

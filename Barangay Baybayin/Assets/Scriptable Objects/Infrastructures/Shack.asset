@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a850d17609d68eb40a07fab8e4a9e03d, type: 3}
+  m_Name: Shack
+  m_EditorClassIdentifier: 
+  name: Shack
+  maxHealth: 40
+  boxColliderSize:
+  - {x: 5.08, y: 2.85}
+  - {x: 5.74, y: 4.98}
+  boxColliderOffSet: []
+  sprites:
+  - {fileID: 21300000, guid: ec2ad6be3ee55bd4b904ffc916642cbc, type: 3}
+  - {fileID: 21300000, guid: fa585ec84b6c37e40a3d991033d21d3a, type: 3}

@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 846db7b038354e245b3974364be2d363, type: 3}
+  m_Name: Panday Pasak May 1
+  m_EditorClassIdentifier: 
+  dialogues:
+  - character: {fileID: 11400000, guid: 64792cf6cb6b2a642becf92ac15202ce, type: 2}
+    emotion: 3
+    words: Storm has us stuck for a while, eh? Time to train then, Sakoro.
+    speechTransitionType: 0
+  - character: {fileID: 11400000, guid: 64792cf6cb6b2a642becf92ac15202ce, type: 2}
+    emotion: 7
+    words: "Now that you\u2019re 18, it\u2019s time to upgrade  \u2013 your skills,
+      your tools, and your service to the community."
+    speechTransitionType: 0
+  - character: {fileID: 11400000, guid: 64792cf6cb6b2a642becf92ac15202ce, type: 2}
+    emotion: 1
+    words: "Let\u2019s go step by step. We have a while stuck inside together, after
+      all."
+    speechTransitionType: 0
+  - character: {fileID: 11400000, guid: 64792cf6cb6b2a642becf92ac15202ce, type: 2}
+    emotion: 10
+    words: Mind your Stamina. Using your held tool decreases it. Go on, use your
+      tool.
+    speechTransitionType: 0
