@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Pool;
 using DG.Tweening;
-public class ResourceNodeHitEvent : UnityEvent<List<SO_ResourceNode> , int , int, UnityEvent > { }
+public class ResourceNodeHitEvent : UnityEvent<List<SO_ResourceNode> , int , float, UnityEvent > { }
 public class ResourceNode : Unit
 {
  
@@ -43,7 +43,7 @@ public class ResourceNode : Unit
         OnResourceNodeHitEvent.RemoveListener(Hit);
     }
 
-    public virtual void Hit( List<SO_ResourceNode> p_useForResourceNode,int p_craftLevel, int p_currentDamage, UnityEvent p_eventCallback) 
+    public virtual void Hit( List<SO_ResourceNode> p_useForResourceNode,int p_craftLevel, float p_currentDamage, UnityEvent p_eventCallback) 
     {
         Debug.Log("1 " + p_useForResourceNode + " - " + p_craftLevel + " - " + p_currentDamage + " - ");
         foreach(SO_ResourceNode useForResourceNode in p_useForResourceNode)

@@ -356,7 +356,7 @@ public class GenericBarUI : MonoBehaviour
    
     public void UpdateBar(float p_current = 0, float p_currentMax =1)
     {
-        Debug.Log("Update Bar 359");
+        
         current = p_current;
         currentMax = p_currentMax;
   

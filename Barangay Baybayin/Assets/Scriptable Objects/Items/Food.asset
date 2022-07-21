@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f415a380d3dbc124e99577a74b26ca5d, type: 3}
   m_Name: Food
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 33c9f6f5ed48d1246ab00f355a12dd9e, type: 3}
+  icon: {fileID: 21300000, guid: d4d38518155887e4188627df0b9e414f, type: 3}
   color:
     serializedVersion: 2
-    rgba: 4278190080
+    rgba: 0

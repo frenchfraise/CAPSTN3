@@ -17,7 +17,7 @@ public class ToolSpecialUseEvent : UnityEvent { }
 public class LongClickEvent : UnityEvent { }
 public class ToolCaster : MonoBehaviour
 {
- 
+    public float critMultiplier;
     private bool isPointerDown;
     private float pointerDownTimer; // this can be changed
     // public float requiredHoldTime;
@@ -141,10 +141,10 @@ public class ToolCaster : MonoBehaviour
                     current_Tool.specialChargesCounter--;
                     targetResourceNode.OnResourceNodeHitEvent.Invoke(current_Tool.so_Tool.useForResourceNode,
                         current_Tool.craftLevel,
-                        current_Tool.so_Tool.damage[current_Tool.craftLevel] * 9999,
+                        current_Tool.so_Tool.damage[current_Tool.craftLevel] * critMultiplier,
                         onToolSpecialUsedEvent);
                 }
-                Debug.Log("Use Special call Coroutine!");
+                //Debug.Log("Use Special call Coroutine!");
                 StartCoroutine(Co_ToolUseCooldown());
             }
            

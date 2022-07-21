@@ -62,6 +62,7 @@ public class TimeManager : MonoBehaviour
 
     public bool DoTimer;
     public IEnumerator runningTime;
+    public IEnumerator coroutineTime;
     public bool tutorialOn = true;
 
     private void Awake()
@@ -78,8 +79,7 @@ public class TimeManager : MonoBehaviour
         onHourChanged.Invoke(hour); //TEMPORARY
         
         DoTimer = true;
-        //NewDay();
-        //StartCoroutine(Co_DoTimer());
+        //NewDay();            
     }
 
     private void OnEnable()
@@ -181,7 +181,7 @@ public class TimeManager : MonoBehaviour
         onHourChanged.Invoke(hour);
         TimeManager.onDayChangeEndedEvent.Invoke();
         StorylineManager.onWorldEventEndedEvent.Invoke("W",0,dayCount);
-    }    
+    }
 
     private void SetPauseGame(bool p_bool)
     {
@@ -189,9 +189,15 @@ public class TimeManager : MonoBehaviour
         if (!tutorialOn)
         {
             DoTimer = p_bool;
-            if (p_bool) StartCoroutine(Co_DoTimer());
-        }    
-   
+            if (coroutineTime != null)
+            {
+                StopCoroutine(coroutineTime);
+                coroutineTime = null;
+            }
+            coroutineTime = Co_DoTimer();
+            if (p_bool) StartCoroutine(coroutineTime);
+            //if (p_bool) StartCoroutine(Co_DoTimer());
+        }
     }
     
     /* Krabby Patty Formuler

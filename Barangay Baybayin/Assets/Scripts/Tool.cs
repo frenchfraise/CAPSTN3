@@ -19,36 +19,26 @@ public class Tool
 
     public void ModifySpecialAmount(float p_modifierAmount)
     {
-
-        //Debug.Log("SPECIAL POINTS MODIFIED");
-        
-        specialPoints += p_modifierAmount;
-       
-        
-
-        if (specialPoints >= so_Tool.maxSpecialPoints[craftLevel])
+        if (specialChargesCounter < so_Tool.maxSpecialCharges[craftLevel])
         {
-            // specialPoints = so_Tool.maxSpecialPoints[craftLevel];
-            specialPoints = 0;
-            specialChargesCounter++;
-            ToolManager.onSpecialPointsFilledEvent.Invoke();
-            
+            specialPoints += p_modifierAmount;
+            if (specialPoints >= so_Tool.maxSpecialPoints[craftLevel])
+            {
+                specialPoints = 0; // Reset it
+                specialChargesCounter++;
+                ToolManager.onSpecialPointsFilledEvent.Invoke();
+            }
+            else
+            {
+                ToolManager.onSpecialPointsModifiedEvent.Invoke(specialPoints, so_Tool.maxSpecialPoints[craftLevel]);
+            }
         }
-        else
-        {
-            ToolManager.onSpecialPointsModifiedEvent.Invoke(specialPoints, so_Tool.maxSpecialPoints[craftLevel]);
-        }
-
-
-        
     }
 
     public void ModifyProficiencyAmount(float p_modifierAmount)
     {
-        //Debug.Log("PROFICIENCY MODIFIED");
         if (proficiencyLevel < so_Tool.maxProficiencyAmount.Count)
         {
-
             if (proficiencyAmount < so_Tool.maxProficiencyAmount[proficiencyLevel])
             {
                 
@@ -66,8 +56,6 @@ public class Tool
                 Debug.Log("EXP: " + proficiencyAmount + " - " + so_Tool.maxProficiencyAmount[proficiencyLevel] + " _ " + proficiencyLevel);
                 ToolManager.onProficiencyAmountModifiedEvent.Invoke(proficiencyAmount, so_Tool.maxProficiencyAmount[proficiencyLevel]);
             }
-            
-            
         } 
     }
 

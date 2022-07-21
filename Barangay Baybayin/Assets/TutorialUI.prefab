@@ -607,7 +607,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7340579885862432560}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -649,14 +649,14 @@ MonoBehaviour:
   reminderFrameButton: {fileID: 7340579885878418477}
   popUps:
   - panels:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
+    - {fileID: 21300000, guid: 2a1f3cba20f3e11498474a705db12fde, type: 3}
+    - {fileID: 21300000, guid: e9594c1d3a394334da55832deab143c4, type: 3}
+    - {fileID: 21300000, guid: 16ce52770b44794419f05a01b3b2b0dc, type: 3}
   - panels:
-    - {fileID: 0}
-    - {fileID: 0}
+    - {fileID: 21300000, guid: 7770eae19bdc539498ebd9e1ff93acf2, type: 3}
+    - {fileID: 21300000, guid: e80d247737b24f341ad0c715299d75fc, type: 3}
   - panels:
-    - {fileID: 0}
+    - {fileID: 21300000, guid: 35a8375a840e6444fabd8006469854b2, type: 3}
   - panels:
     - {fileID: 0}
   - panels:

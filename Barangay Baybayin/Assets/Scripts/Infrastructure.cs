@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-public class InfrastructureHitEvent : UnityEvent<int, int, UnityEvent> { }
+public class InfrastructureHitEvent : UnityEvent<int, float, UnityEvent> { }
 [RequireComponent(typeof(Health))]
 public class Infrastructure : Unit
 {
@@ -44,7 +44,7 @@ public class Infrastructure : Unit
         base.DeinitializeValues();
     }
    
-    protected void Hit(int p_craftLevel, int p_currentDamage, UnityEvent p_eventCallback)
+    protected void Hit(int p_craftLevel, float p_currentDamage, UnityEvent p_eventCallback)
     {
         if (canInteract)
         {

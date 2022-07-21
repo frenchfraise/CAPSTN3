@@ -40,7 +40,11 @@ MonoBehaviour:
   - 1
   - 0.5
   - 0.25
-  damage: 02000000030000000500000007000000
+  damage:
+  - 2
+  - 3
+  - 5
+  - 7
   staminaCost:
   - 2
   - 3.5
@@ -73,7 +77,7 @@ MonoBehaviour:
   - 90
   - 80
   - 70
-  maxSpecialCharges: 03000000040000000500000006000000
+  maxSpecialCharges: 14000000140000001400000014000000
   specialPointReward:
   - 20
   - 25

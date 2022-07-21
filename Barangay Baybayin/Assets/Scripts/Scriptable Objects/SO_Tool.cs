@@ -36,7 +36,7 @@ public class SO_Tool : ScriptableObject
 
     [NonReorderable] public List<float> useRate;
 
-    [NonReorderable] public List<int> damage;
+    [NonReorderable] public List<float> damage;
 
     [NonReorderable] public List<float> staminaCost;
 

@@ -43,8 +43,7 @@ public class LightingControl : MonoBehaviour
                 {
                     float targetLightingIntensity = lightingSchedule.lightingBrightnessArray[i].lightIntensity;
                     Color targetColor = lightingSchedule.lightingBrightnessArray[i].color;
-                    StartCoroutine(FadeLightRoutine(targetLightingIntensity, targetColor));
-                    Debug.Log("Lighting working!");
+                    StartCoroutine(FadeLightRoutine(targetLightingIntensity, targetColor));                    
                     break;
                 }
             }
@@ -55,9 +54,9 @@ public class LightingControl : MonoBehaviour
     {
         float fadeDuration = 5f;
         float fadeSpeed = Mathf.Abs(light2D.intensity - targetLightingIntensity) / fadeDuration;
-        while (light2D.intensity != targetLightingIntensity && light2D.color != targetColor)
+        while (light2D.intensity != targetLightingIntensity || light2D.color != targetColor)
         {
-            // Debug.Log(light2D.color + " != " + targetColor);
+            //Debug.Log(light2D.color + " != " + targetColor);
             light2D.intensity = Mathf.MoveTowards(light2D.intensity, targetLightingIntensity, fadeSpeed * Time.deltaTime);           
             light2D.color = Color.Lerp(light2D.color, targetColor, 0.01f);
             if (light2D.intensity == targetLightingIntensity && light2D.color == targetColor)
