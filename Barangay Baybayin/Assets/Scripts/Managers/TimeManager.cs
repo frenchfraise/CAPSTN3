@@ -68,6 +68,20 @@ public class TimeManager : MonoBehaviour
     private void Awake()
     {
         _instance = this;
+        Stamina.onStaminaDepletedEvent.AddListener(FaintedEndDay);
+        Bed.onBedInteractedEvent.AddListener(EndDay);
+        UIManager.onGameplayModeChangedEvent.AddListener(OnGameplayModeChangedEvent);
+        onPauseGameTime.AddListener(SetPauseGame);
+        onTimeChangedEvent.AddListener(OnTimeCheck);
+    }
+
+    private void OnDestroy()
+    {
+        Stamina.onStaminaDepletedEvent.RemoveListener(FaintedEndDay);
+        Bed.onBedInteractedEvent.RemoveListener(EndDay);
+        UIManager.onGameplayModeChangedEvent.RemoveListener(OnGameplayModeChangedEvent);
+        onPauseGameTime.RemoveListener(SetPauseGame);
+        onTimeChangedEvent.RemoveListener(OnTimeCheck);
     }
 
     void Start()
@@ -85,31 +99,28 @@ public class TimeManager : MonoBehaviour
     private void OnEnable()
     {
 
-        Stamina.onStaminaDepletedEvent.AddListener(FaintedEndDay);
-        Bed.onBedInteractedEvent.AddListener(EndDay);
-        UIManager.onGameplayModeChangedEvent.AddListener(OnGameplayModeChangedEvent);
+
         //dayInfoUI = UIManager.instance.dayInfoUI;
         //dayInfoUI = dayInfoUI?UIManager.instance.dayInfoUI:FindObjectOfType<DayInfoUI>();
 
         //onDayChangeEndedEvent.AddListener(NewDay);
-        onPauseGameTime.AddListener(SetPauseGame);
-        onTimeChangedEvent.AddListener(OnTimeCheck);
+
         
     }
 
     private void OnDisable()
     {
         
-        Stamina.onStaminaDepletedEvent.RemoveListener(FaintedEndDay);
-        Bed.onBedInteractedEvent.RemoveListener(EndDay);
+        //Stamina.onStaminaDepletedEvent.RemoveListener(FaintedEndDay);
+        //Bed.onBedInteractedEvent.RemoveListener(EndDay);
 
-        onPauseGameTime.RemoveListener(SetPauseGame);
-        onTimeChangedEvent.AddListener(OnTimeCheck);
+        //onPauseGameTime.RemoveListener(SetPauseGame);
+        //onTimeChangedEvent.AddListener(OnTimeCheck);
 
     }
     private void OnGameplayModeChangedEvent(bool p_bool)
     {
-        Debug.Log("RAAAAAAAAAAAA");
+      //  Debug.Log("RAAAAAAAAAAAA");
         SetPauseGame(!p_bool);
 
     }
@@ -185,7 +196,7 @@ public class TimeManager : MonoBehaviour
 
     private void SetPauseGame(bool p_bool)
     {
-        Debug.Log("time " + p_bool);
+       // Debug.Log("time " + p_bool);
         if (!tutorialOn)
         {
             DoTimer = p_bool;

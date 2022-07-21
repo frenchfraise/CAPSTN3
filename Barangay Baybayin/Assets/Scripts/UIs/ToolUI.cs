@@ -6,17 +6,26 @@ public class ToolUI : MonoBehaviour
 {
     [SerializeField] private Image toolIcon;
     SO_Tool selectedSO_Tool;
-
-    private void OnEnable()
+    private void Awake()
     {
         ToolManager.onToolChangedEvent.AddListener(ChangeToolIcon);
         ToolManager.onToolCraftLevelUpgradedEvent.AddListener(UpdateCraftLevel);
+    }
+    private void OnDestroy()
+    {
+    
+        ToolManager.onToolChangedEvent.RemoveListener(ChangeToolIcon);
+        ToolManager.onToolCraftLevelUpgradedEvent.RemoveListener(UpdateCraftLevel);
+    }
+    private void OnEnable()
+    {
+    
         //ChangeToolIcon(ToolManager.instance.tools[0]);
     }
 
     private void OnDisable()
     {
-        ToolManager.onToolChangedEvent.RemoveListener(ChangeToolIcon);
+        
     }
 
     public void UpdateCraftLevel(int p_index)

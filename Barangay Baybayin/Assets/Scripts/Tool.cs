@@ -65,16 +65,17 @@ public class Tool
         proficiencyAmount = proficiencyAmount - so_Tool.maxProficiencyAmount[proficiencyLevel];
         Debug.Log("EXP: " + proficiencyAmount + " - " + so_Tool.maxProficiencyAmount[proficiencyLevel] + " _ " + proficiencyLevel);
         //If max level, dont level up
-        if (proficiencyLevel >=  so_Tool.maxProficiencyAmount.Count)
-        {
-            Debug.Log("HIT MAX LEVEL");
-        }
-        else  //Else level up
+        if (proficiencyLevel <  so_Tool.maxProficiencyAmount.Count-1)
         {
             Debug.Log(proficiencyLevel);
             proficiencyLevel++;
             Debug.Log(proficiencyLevel);
             ToolManager.onProficiencyLevelModifiedEvent.Invoke(proficiencyLevel);
+    
+        }
+        else  //Else level up
+        {
+            Debug.Log("HIT MAX LEVEL");
         }
  
     }

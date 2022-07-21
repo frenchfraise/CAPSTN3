@@ -41,7 +41,15 @@ public class AudioManager : MonoBehaviour
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
-        }        
+        }
+        PlayerManager.onRoomEnteredEvent.AddListener(PlayOnRoomEnterPassageway);
+        TimeManager.onDayChangingEvent.AddListener(OnDayChangingEvent);
+    }
+
+    private void OnDestroy()
+    {
+        PlayerManager.onRoomEnteredEvent.RemoveListener(PlayOnRoomEnterPassageway);
+        TimeManager.onDayChangingEvent.RemoveListener(OnDayChangingEvent);
     }
     void Start()
     {
@@ -60,17 +68,17 @@ public class AudioManager : MonoBehaviour
             mixer.SetFloat("SFXVolume", PlayerPrefs.GetFloat("SFXVolume"));
         }
     }
+
+
     private void OnEnable()
     {
-        PlayerManager.onRoomEnteredEvent.AddListener(PlayOnRoomEnterPassageway);
-        TimeManager.onDayChangingEvent.AddListener(OnDayChangingEvent);
+
         // PlayerManager.onUpdateCurrentRoomIDEvent.AddListener(PlayOnRoomEnter);
     }
 
     private void OnDisable()
     {
-        PlayerManager.onRoomEnteredEvent.RemoveListener(PlayOnRoomEnterPassageway);
-        TimeManager.onDayChangingEvent.AddListener(OnDayChangingEvent);
+
         //PlayerManager.onUpdateCurrentRoomIDEvent.RemoveListener(PlayOnRoomEnter);
     }
 

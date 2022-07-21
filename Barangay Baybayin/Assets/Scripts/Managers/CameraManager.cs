@@ -60,12 +60,19 @@ public class CameraManager : MonoBehaviour
         worldCamera = worldCamera ? worldCamera : GameObject.Find("World Camera").GetComponent<Camera>();
         worldCamera = worldCamera ? worldCamera : GameObject.Find("UI Camera").GetComponent<Camera>();
         cameraMovement = worldCamera.GetComponent<CameraMovement>();
+        onShakeCameraEvent.AddListener(ShakeCamera);
+        TimeManager.onDayChangingEvent.AddListener(ResetCamera);
+    }
+
+    private void OnDestroy()
+    {
+        onShakeCameraEvent.RemoveListener(ShakeCamera);
+        TimeManager.onDayChangingEvent.RemoveListener(ResetCamera);
     }
 
     private void OnEnable()
     {
-        onShakeCameraEvent.AddListener(ShakeCamera);
-        TimeManager.onDayChangingEvent.AddListener(ResetCamera);
+
         panLimit = Vector2Abs(transform.position - panLimitUpperRightTransform.position);
 
         ResetCamera();
@@ -74,7 +81,7 @@ public class CameraManager : MonoBehaviour
 
     private void OnDisable()
     {
-        TimeManager.onDayChangingEvent.RemoveListener(ResetCamera);
+       
     }
     Vector2 Vector2Abs(Vector2 p_vector2)
     {

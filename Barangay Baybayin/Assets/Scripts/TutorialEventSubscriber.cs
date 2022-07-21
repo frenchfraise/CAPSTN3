@@ -10,6 +10,12 @@ public class TutorialEventSubscriber : EventSubscriber
         TutorialManager.onTutorialEventEndedEvent.AddListener(TutorialEventEndedEvent);
         StorylineManager.onWorldEventEndedEvent.AddListener(DoAllPostActions);
     }
+
+    private void OnDestroy()
+    {
+        TutorialManager.onTutorialEventEndedEvent.RemoveListener(TutorialEventEndedEvent);
+        StorylineManager.onWorldEventEndedEvent.RemoveListener(DoAllPostActions);
+    }
     void TutorialEventEndedEvent(int i)
     {
        // Debug.Log(gameObject.name + " p_eventID: " + i);

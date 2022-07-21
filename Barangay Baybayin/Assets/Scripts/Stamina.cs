@@ -31,7 +31,7 @@ public class Stamina : MonoBehaviour
         TimeManager.onDayChangingEvent.AddListener(RegenerateStamina);
         currentMaxStamina = maxStamina; // some delay around here, when one starts the game and does Use(), THE PLAYER COULD FAINT
         genericBarUI.InstantUpdateBar(currentStamina, currentMaxStamina, maxStamina);
-        Debug.Log("STAM ENABLED");
+       // Debug.Log("STAM ENABLED");
     }
 
     private void Destroy()
@@ -63,7 +63,7 @@ public class Stamina : MonoBehaviour
         //float amount = Mathf.Abs(p_currentStamina - currentStamina);
         //ModifyStamina(amount);
         genericBarUI.InstantUpdateBar(currentStamina, maxStamina, maxStamina);
-        Debug.Log("MANUAL STAM ENABLED");
+      //  Debug.Log("MANUAL STAM ENABLED");
     }
     public void PenalizeStamina()
     {

@@ -32,9 +32,22 @@ public class ToolsUI : MonoBehaviour
 
     public void Awake()
     {
-       
+        toolCaster = FindObjectOfType<ToolCaster>();
+        toolCaster.onToolCanUseUpdatedEvent.AddListener(CanUseUpdate);
+        ToolManager.onProficiencyAmountModifiedEvent.AddListener(UpdateProf);
+        ToolManager.onProficiencyLevelModifiedEvent.AddListener(UpdateProfLevel);
+        ToolManager.onToolCraftLevelUpgradedEvent.AddListener(UpdateCraftLevel);
+        onToolQuestSwitchEvent.AddListener(RequireTool);
     }
-
+    private void OnDestroy()
+    {
+      
+        toolCaster.onToolCanUseUpdatedEvent.RemoveListener(CanUseUpdate);
+        ToolManager.onProficiencyAmountModifiedEvent.RemoveListener(UpdateProf);
+        ToolManager.onProficiencyLevelModifiedEvent.RemoveListener(UpdateProfLevel);
+        ToolManager.onToolCraftLevelUpgradedEvent.RemoveListener(UpdateCraftLevel);
+        onToolQuestSwitchEvent.RemoveListener(RequireTool);
+    }
     private void Start()
     {
         OnToolButtonPressed(0); // temporary (?)
@@ -43,18 +56,14 @@ public class ToolsUI : MonoBehaviour
     public static ToolQuestSwitchEvent onToolQuestSwitchEvent = new ToolQuestSwitchEvent();
     private void OnEnable()
     {
-        toolCaster = FindObjectOfType<ToolCaster>();
-        toolCaster.onToolCanUseUpdatedEvent.AddListener(CanUseUpdate);
+        
         //toolCaster.onToolCanSwitchUpdatedEvent.AddListener(CanSwitchUpdate);
 
         canUse = true;
         canSwitch = true;
         //ToolManager.onProficiencyLevelModifiedEvent.AddListener(UpdateLevel);
         //ToolManager.onProficiencyAmountModifiedEvent.AddListener(UpdateProf);
-        ToolManager.onProficiencyAmountModifiedEvent.AddListener(UpdateProf);
-        ToolManager.onProficiencyLevelModifiedEvent.AddListener(UpdateProfLevel);
-        ToolManager.onToolCraftLevelUpgradedEvent.AddListener(UpdateCraftLevel);
-        onToolQuestSwitchEvent.AddListener(RequireTool);
+     
         foreach (ToolUIElements t in toolUI)
         {
             t.genericBarUI.InstantUpdateBar(0f,1f,1f);
@@ -64,8 +73,7 @@ public class ToolsUI : MonoBehaviour
 
     private void OnDisable()
     {
-        ToolManager.onProficiencyLevelModifiedEvent.RemoveListener(UpdateProfLevel);
-        toolCaster.onToolCanUseUpdatedEvent.RemoveListener(CanUseUpdate);
+   
         //toolCaster.onToolCanSwitchUpdatedEvent.RemoveListener(CanSwitchUpdate);
     }
     void RequireTool(int p_tool)
@@ -136,7 +144,7 @@ public class ToolsUI : MonoBehaviour
     }
     public void OnToolButtonPressed(int index)
     {
-        Debug.Log("tool button pressed");
+       // Debug.Log("tool button pressed");
         if (requiredTool == -1 || requiredTool != -1 && requiredTool == index)
         {
             if (canUse)

@@ -38,6 +38,11 @@ public class TutorialUI : MonoBehaviour
     {
         onRemindTutorialEvent.AddListener(RemindTutorialEvent);
     }
+
+    private void OnDestroy()
+    {
+        onRemindTutorialEvent.RemoveListener(RemindTutorialEvent);
+    }
     public void SetVisibility(bool p_bool)
     {
         frame.SetActive(p_bool);
@@ -108,7 +113,7 @@ public class TutorialUI : MonoBehaviour
         //TimeManager.onPauseGameTime.Invoke(false);
         reminderFrameButton.enabled = false;
         currentIndex = 0;
-        Debug.Log("TUTORIAL UI: " +p_tutorialReminder);
+       // Debug.Log("TUTORIAL UI: " +p_tutorialReminder);
      
         if (p_tutorialReminder < popUps.Count)
         {

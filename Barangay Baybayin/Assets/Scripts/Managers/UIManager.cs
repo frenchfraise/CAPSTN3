@@ -53,23 +53,30 @@ public class UIManager : MonoBehaviour
             _instance = this;
 
         //    DontDestroyOnLoad(gameObject);
-            
+
         //}
-
-      
-    }
-
-    private void OnEnable()
-    {
         WeatherManager.onWeatherChangedEvent.AddListener(OnWeatherUIChanged); //Make a WeatherUI class and Put this in it
         onGameplayModeChangedEvent.AddListener(OnGameplayHUDSwitch);
 
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         WeatherManager.onWeatherChangedEvent.RemoveListener(OnWeatherUIChanged); //Make a WeatherUI class and Put this in it
         onGameplayModeChangedEvent.RemoveListener(OnGameplayHUDSwitch);
+    }
+
+    private void OnEnable()
+    {
+        //WeatherManager.onWeatherChangedEvent.AddListener(OnWeatherUIChanged); //Make a WeatherUI class and Put this in it
+        //onGameplayModeChangedEvent.AddListener(OnGameplayHUDSwitch);
+
+    }
+
+    private void OnDisable()
+    {
+        //WeatherManager.onWeatherChangedEvent.RemoveListener(OnWeatherUIChanged); //Make a WeatherUI class and Put this in it
+        //onGameplayModeChangedEvent.RemoveListener(OnGameplayHUDSwitch);
    
     }
 

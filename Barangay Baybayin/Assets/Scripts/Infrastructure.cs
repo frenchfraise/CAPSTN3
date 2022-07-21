@@ -18,17 +18,21 @@ public class Infrastructure : Unit
     protected override void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
-        
+        OnInfrastructureHitEvent.AddListener(Hit);
     }
 
     protected override void Start()
     {
         canInteract = false; 
         base.Start();
-        OnInfrastructureHitEvent.AddListener(Hit);
+       
         InitializeValues();
     }
 
+    private void OnDestroy()
+    {
+        OnInfrastructureHitEvent.RemoveListener(Hit);
+    }
     public override void InitializeValues()
     {
      
@@ -41,7 +45,10 @@ public class Infrastructure : Unit
     }
     public override void DeinitializeValues()
     {
+        Health health = GetComponent<Health>();
+        health.OnDeathEvent.RemoveListener(Constructed);
         base.DeinitializeValues();
+       
     }
    
     protected void Hit(int p_craftLevel, float p_currentDamage, UnityEvent p_eventCallback)
@@ -77,7 +84,7 @@ public class Infrastructure : Unit
         {
             currentLevel++;
             //currentHealth = 0;
-
+            ToolManager.onResourceNodeFinishedEvent.Invoke();
             //healthOverheadUI.SetHealthBarData(transform, UIManager.instance.overheadUI);
             if (currentLevel < so_Infrastructure.boxColliderSize.Count)
                 GetComponent<BoxCollider2D>().size = so_Infrastructure.boxColliderSize[currentLevel];

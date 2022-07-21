@@ -24,11 +24,17 @@ public class ItemUI : MonoBehaviour
     [SerializeField] public RectTransform frameRectTransform;
     public void InitializeValues(string p_itemName, string p_itemAmount, Sprite p_itemIcon)
     {
-        Debug.Log("INITIALIZED " + p_itemAmount);
+      //  Debug.Log("INITIALIZED " + p_itemAmount);
         itemNameText.text = p_itemName;
         itemAmountText.text = p_itemAmount;
         itemIconImage.sprite = p_itemIcon;
         UIManager.onGameplayModeChangedEvent.AddListener(GameplayModeChangedEvent);
+    }
+
+    public void DeinitializeValues()
+    {
+  
+        UIManager.onGameplayModeChangedEvent.RemoveListener(GameplayModeChangedEvent);
     }
     public void InstantUpdateText()
     {

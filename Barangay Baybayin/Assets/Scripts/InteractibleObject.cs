@@ -8,7 +8,7 @@ public class InteractibleObject : MonoBehaviour
 {
     public InteractEvent onInteractEvent = new InteractEvent();
 
-    protected bool canInteract;
+    public bool canInteract;
     public Sprite hintSprite;
     protected virtual void OnEnable()
     {

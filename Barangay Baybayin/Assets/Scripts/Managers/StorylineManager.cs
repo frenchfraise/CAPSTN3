@@ -11,7 +11,7 @@ public class StorylineData
     [SerializeField] public SO_StoryLine so_StoryLine;
     public int currentQuestChainIndex;
     public int currentQuestLineIndex;
-
+    public bool completed = false; 
 
 }
 
@@ -29,6 +29,7 @@ public class TD
 {
     public int dayRequiredCount;
     [SerializeField] public SO_Dialogues so_Dialogue;
+
    
 
 
@@ -78,6 +79,11 @@ public class StorylineManager : MonoBehaviour
         _instance = this;
         //DontDestroyOnLoad(gameObject);
         StorylineManager.onWorldEventEndedEvent.AddListener(FinishedTownEventStory);
+    }
+
+    private void OnDestroy()
+    {
+        StorylineManager.onWorldEventEndedEvent.RemoveListener(FinishedTownEventStory);
     }
     void FinishedTownEventStory(string p_id, int p_intone, int p_intto)
     {
@@ -274,29 +280,35 @@ public class StorylineManager : MonoBehaviour
         //give reward
         for (int i = 0; i < questlineData.quest.rewards.Count; i++)
         {
-            Debug.Log("REWARDING");
+         //   Debug.Log("REWARDING");
             InventoryManager.onAddItemEvent.Invoke(questlineData.quest.rewards[i].so_Item.name,
                 questlineData.quest.rewards[i].amount);
         }
-        Debug.Log(p_storylineData.currentQuestLineIndex + " TESTIN" + (so_Questline.questlineData.Count -1).ToString());
+     //   Debug.Log(p_storylineData.currentQuestLineIndex + " TESTIN" + (so_Questline.questlineData.Count -1).ToString());
         if (p_storylineData.currentQuestLineIndex < so_Questline.questlineData.Count - 1)
         {
-            Debug.Log("WENT IN");
+          //  Debug.Log("WENT IN");
 
             p_storylineData.currentQuestLineIndex++;
 
         }
         else if (p_storylineData.currentQuestLineIndex >= so_Questline.questlineData.Count - 1) // No More Questline, move to questchain
         {
-            Debug.Log("WENT INCREaaase");
+           // Debug.Log("WENT INCREaaase");
             p_storylineData.currentQuestLineIndex = 0;
-            if (p_storylineData.currentQuestChainIndex < so_StoryLine.questLines.Count - 1)
+            if (p_storylineData.currentQuestChainIndex < so_StoryLine.questLines.Count - 1) 
             {
-                Debug.Log("WENT INCREaaaseAAAAAAAAAD");
+               // Debug.Log("WENT INCREaaaseAAAAAAAAAD");
                 p_storylineData.currentQuestChainIndex++;
+                //if (p_storylineData.currentQuestChainIndex >= so_StoryLine.questLines.Count)
+                //{
+                  //  p_storylineData.completed = true;
+                //}
             }
             else
             {
+                p_storylineData.completed = true;
+                //p_storylineData.completed = true;
                 Debug.Log("STORYLINE FINISHED");
             }
         }

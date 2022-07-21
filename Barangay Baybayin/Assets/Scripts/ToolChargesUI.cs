@@ -16,22 +16,27 @@ public class ToolChargesUI : MonoBehaviour
     private void Awake()
     {
         toolChargeTMP = GetComponent<TMP_Text>();
-    }
-
-    private void OnEnable()
-    {
         ToolManager.onSpecialPointsModifiedEvent.AddListener(ModifiedUpdate);
         ToolManager.onSpecialPointsFilledEvent.AddListener(ChangeUpdate);
-        toolCaster.onToolSpecialUsedEvent.AddListener(ChangeUpdate);
+        ToolCaster.onToolSpecialUsedEvent.AddListener(ChangeUpdate);
         ToolManager.onToolChangedEvent.AddListener(UpdateToolOnSwitch);
+    }
+
+    private void OnDestroy()
+    {
+        ToolManager.onSpecialPointsModifiedEvent.RemoveListener(ModifiedUpdate);
+        ToolManager.onSpecialPointsFilledEvent.RemoveListener(ChangeUpdate);
+        ToolCaster.onToolSpecialUsedEvent.RemoveListener(ChangeUpdate);
+        ToolManager.onToolChangedEvent.RemoveListener(UpdateToolOnSwitch);
+    }
+    private void OnEnable()
+    {
+ 
     }
 
     private void OnDisable()
     {
-        ToolManager.onSpecialPointsModifiedEvent.RemoveListener(ModifiedUpdate);
-        ToolManager.onSpecialPointsFilledEvent.RemoveListener(ChangeUpdate);
-        toolCaster.onToolSpecialUsedEvent.RemoveListener(ChangeUpdate);
-        ToolManager.onToolChangedEvent.RemoveListener(UpdateToolOnSwitch);
+    
     }
 
     void UpdateToolOnSwitch(Tool p_tool)

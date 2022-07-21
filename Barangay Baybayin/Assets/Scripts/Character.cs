@@ -10,9 +10,11 @@ public class Character : InteractibleObject
     [SerializeField]
     private string id;
     [SerializeField] private bool isFirstTime = true;
-    
 
-    
+
+
+
+
     protected override void OnEnable()
     {
         base.OnEnable();
@@ -37,44 +39,57 @@ public class Character : InteractibleObject
             {
                 Debug.Log("PHASE 1");
                 QuestlineData questlineData = so_Questline.questlineData[storylineData.currentQuestLineIndex];
-               
-                if (isFirstTime)
+                if (storylineData.completed)
                 {
-                    isFirstTime = false;
-                    CharacterDialogueUI.onCharacterSpokenToEvent.Invoke(id,questlineData.initialSO_Dialogues);
-
+                    CharacterDialogueUI.onCharacterSpokenToEvent.Invoke(id, so_StoryLine.finishedDialogue);
                 }
                 else
                 {
-                    bool isQuestCompleted = StorylineManager.instance.CheckIfQuestComplete(id);
-
-                    if (isQuestCompleted)
+                    if (isFirstTime)
                     {
-                        Debug.Log("PHASE 2");
-                        if (storylineData.currentQuestLineIndex == 0)
-                        {
-                          
-                            QuestlineData questlineDataNext = so_Questline.questlineData[storylineData.currentQuestLineIndex+1];
-                            SO_InfrastructureRequirement ir = questlineDataNext.quest.requirements[0].so_requirement as SO_InfrastructureRequirement;
-                            InfrastructureManager.GetInfrastructure(ir.so_infrastructure).ForQuest();
-                            CharacterDialogueUI.onCharacterSpokenToEvent.Invoke(id, questlineDataNext.initialSO_Dialogues);
-                        }
-                        else
-                        {
-                            CharacterDialogueUI.onCharacterSpokenToEvent.Invoke(id, questlineData.questCompleteSO_Dialogues);
-                            isFirstTime = true;
-                        }
-                        //CharacterDialogueUI.onCharacterSpokenToEvent.Invoke(id, questlineData.questCompleteSO_Dialogues);
-                        
-                        StorylineManager.instance.QuestCompleted(storylineData);
-                        
+                        isFirstTime = false;
+                        CharacterDialogueUI.onCharacterSpokenToEvent.Invoke(id, questlineData.initialSO_Dialogues);
+
                     }
                     else
                     {
-                        CharacterDialogueUI.onCharacterSpokenToEvent.Invoke(id, questlineData.questInProgressSO_Dialogues);
+                        bool isQuestCompleted = StorylineManager.instance.CheckIfQuestComplete(id);
+
+                        if (isQuestCompleted)
+                        {
+                            Debug.Log("PHASE 2");
+                            if (storylineData.currentQuestLineIndex == 0)
+                            {
+
+                                QuestlineData questlineDataNext = so_Questline.questlineData[storylineData.currentQuestLineIndex + 1];
+                                SO_InfrastructureRequirement ir = questlineDataNext.quest.requirements[0].so_requirement as SO_InfrastructureRequirement;
+                                InfrastructureManager.GetInfrastructure(ir.so_infrastructure).ForQuest();
+                                CharacterDialogueUI.onCharacterSpokenToEvent.Invoke(id, questlineDataNext.initialSO_Dialogues);
+                            }
+                            else
+                            {
+                                CharacterDialogueUI.onCharacterSpokenToEvent.Invoke(id, questlineData.questCompleteSO_Dialogues);
+                               
+                                isFirstTime = true;
+                                if (TutorialManager.instance.isFirstTimeFood)
+                                {
+                                    TutorialManager.instance.isFirstTimeFood = false;
+                                    CharacterDialogueUI.onFirstTimeFoodOnEndEvent.Invoke();
+                                }
+                            }
+                            //CharacterDialogueUI.onCharacterSpokenToEvent.Invoke(id, questlineData.questCompleteSO_Dialogues);
+
+                            StorylineManager.instance.QuestCompleted(storylineData);
+
+                        }
+                        else
+                        {
+                            CharacterDialogueUI.onCharacterSpokenToEvent.Invoke(id, questlineData.questInProgressSO_Dialogues);
+                        }
+
                     }
-                        
                 }
+                
                 
             }
         }

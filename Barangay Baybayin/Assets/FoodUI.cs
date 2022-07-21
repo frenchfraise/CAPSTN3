@@ -11,6 +11,10 @@ public class FoodUI : MonoBehaviour
         Food.onUpdateFood.AddListener(AmountUpdated);
     }
 
+    private void OnDestroy()
+    {
+        Food.onUpdateFood.RemoveListener(AmountUpdated);
+    }
     void AmountUpdated(int p_currentAmount)
     {
         amountText.text = p_currentAmount.ToString();
