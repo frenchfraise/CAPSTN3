@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [System.Serializable]
 
@@ -10,12 +11,14 @@ public class ActionTransform
 }
 
 
-
+public class AllActionsDoneEvent : UnityEvent { }
 public class OnEventDoTransform : OnEventDoAction
 {
     [SerializeField]
     private Transform transformAffected;
     [NonReorderable][SerializeField] private List<ActionTransform> actionTransform;
+
+    public AllActionsDoneEvent onAllActionsDoneEvent = new AllActionsDoneEvent();
     public override void DoAction(int p_actionParameterAID =-1, int p_actionParameterBID = -1)
     {
         base.DoAction(p_actionParameterAID, p_actionParameterBID);
@@ -30,7 +33,6 @@ public class OnEventDoTransform : OnEventDoAction
             BID = 0;
         }
         transformAffected.position = actionTransform[AID].actionPartTransform[BID].position;
-
-        
+        onAllActionsDoneEvent.Invoke();
     }
 }

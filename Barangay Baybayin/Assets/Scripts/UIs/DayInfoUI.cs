@@ -125,24 +125,24 @@ public class DayInfoUI : MonoBehaviour
             dayCountText.text = "DAY " + (p_dayCount).ToString();
             dayText.text = "DAY " + (p_dayCount + 1).ToString();
           
-            if (faintRadiateScaleUI.runningCoroutine != null) 
-            {
-                StopCoroutine(faintRadiateScaleUI.runningCoroutine);
-                faintRadiateScaleUI.runningCoroutine = null;
+            //if (faintRadiateScaleUI.runningCoroutine != null) 
+            //{
+            //    StopCoroutine(faintRadiateScaleUI.runningCoroutine);
+            //    faintRadiateScaleUI.runningCoroutine = null;
 
-            }
-            faintRadiateScaleUI.runningCoroutine = faintRadiateScaleUI.Co_Scale();
-            faintRadiateScaleUI.gameObject.SetActive(true);
-            StartCoroutine(faintRadiateScaleUI.runningCoroutine);
-            yield return new WaitForSeconds(4f);
+            //}
+            //faintRadiateScaleUI.runningCoroutine = faintRadiateScaleUI.Co_Scale();
+            //faintRadiateScaleUI.gameObject.SetActive(true);
+            //StartCoroutine(faintRadiateScaleUI.runningCoroutine);
+            //yield return new WaitForSeconds(4f);
 
-            if (faintRadiateScaleUI.runningCoroutine != null)
-            {
-                StopCoroutine(faintRadiateScaleUI.runningCoroutine);
-                faintRadiateScaleUI.runningCoroutine = null;
+            //if (faintRadiateScaleUI.runningCoroutine != null)
+            //{
+            //    StopCoroutine(faintRadiateScaleUI.runningCoroutine);
+            //    faintRadiateScaleUI.runningCoroutine = null;
 
-            }
-            faintRadiateScaleUI.gameObject.SetActive(false);
+            //}
+            //faintRadiateScaleUI.gameObject.SetActive(false);
 
         }
 

@@ -18,4 +18,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9806d077fbc75e74b949fadacafb718d, type: 2}
   - {fileID: 11400000, guid: 29aaf42276096ae43aac773e453f1aa5, type: 2}
   - {fileID: 11400000, guid: 2dd57d04a826ecf4c9077c44b756197e, type: 2}
-  finishedDialogue: {fileID: 11400000, guid: 253584b869135b040897e57128d570db, type: 2}
+  finishedDialogue: {fileID: 11400000, guid: 8e27b60d79a95474ba36780760309fc6, type: 2}
