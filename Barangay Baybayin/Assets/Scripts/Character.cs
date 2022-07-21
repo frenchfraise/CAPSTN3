@@ -53,8 +53,10 @@ public class Character : InteractibleObject
                         Debug.Log("PHASE 2");
                         if (storylineData.currentQuestLineIndex == 0)
                         {
-                        
+                          
                             QuestlineData questlineDataNext = so_Questline.questlineData[storylineData.currentQuestLineIndex+1];
+                            SO_InfrastructureRequirement ir = questlineDataNext.quest.requirements[0].so_requirement as SO_InfrastructureRequirement;
+                            InfrastructureManager.GetInfrastructure(ir.so_infrastructure).ForQuest();
                             CharacterDialogueUI.onCharacterSpokenToEvent.Invoke(id, questlineDataNext.initialSO_Dialogues);
                         }
                         else

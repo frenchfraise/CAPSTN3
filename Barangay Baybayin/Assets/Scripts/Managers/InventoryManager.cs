@@ -50,6 +50,7 @@ public class InventoryManager : MonoBehaviour
     }
     public static ItemData GetItem(string p_item)
     {
+   
         for (int iii = 0; iii < InventoryManager.instance.inventoryPages.Count; iii++)
         {
             for (int ii = 0; ii < InventoryManager.instance.inventoryPages[iii].itemCategories.Count; ii++)
@@ -76,14 +77,23 @@ public class InventoryManager : MonoBehaviour
     }
     public void AddItem(string p_item, int p_amount)
     {
-        ItemData foundItem = GetItem(p_item);
-        if (runningCoroutine != null)
+        if (p_item != "Food")
         {
-            StopCoroutine(runningCoroutine);
-            runningCoroutine = null;
+            ItemData foundItem = GetItem(p_item);
+            if (runningCoroutine != null)
+            {
+                StopCoroutine(runningCoroutine);
+                runningCoroutine = null;
+            }
+            runningCoroutine = foundItem.itemUI.Co_UpdateText(p_amount);
+            StartCoroutine(runningCoroutine);
         }
-        runningCoroutine = foundItem.itemUI.Co_UpdateText(p_amount);
-        StartCoroutine(runningCoroutine);
+        else
+        {
+            Debug.Log("Food");
+            Food.onAddFood.Invoke(p_amount);
+        }
+       
     
    
         //MAKE THIS EVENT FOR NOW ITS PLAYERMANAGER

@@ -31,7 +31,7 @@ public class UpgradeToolUI : MonoBehaviour
     public void UpdateUI()
     {
         Tool tool = ToolManager.instance.tools[toolIndex];
-        nameText.text = tool.so_Tool.name[1];
+        nameText.text = tool.so_Tool.name[tool.craftLevel];
         iconImage.sprite = tool.so_Tool.equippedIcon[tool.craftLevel];
         nameFrameImage.sprite = upgradeUI.plates[tool.craftLevel];
         proficiencyFrameImage.sprite = upgradeUI.plates[tool.craftLevel];

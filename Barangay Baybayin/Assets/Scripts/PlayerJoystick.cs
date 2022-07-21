@@ -117,9 +117,13 @@ public class PlayerJoystick : MonoBehaviour
                 }
                 else if (targetInfrastructure)
                 {
-                    interactHintImage.sprite = targetInfrastructure.hintSprite;
-                    interactHint.SetActive(true);
+                    if (targetInfrastructure.canInteract)
+                    {
+                        interactHintImage.sprite = targetInfrastructure.hintSprite;
+                        interactHint.SetActive(true);
+                    }
                 }
+      
                 else if (interactibleObject)
                 {
                     interactHintImage.sprite = interactibleObject.hintSprite;

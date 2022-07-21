@@ -6,7 +6,7 @@ public class InfrastructureHitEvent : UnityEvent<int, int, UnityEvent> { }
 [RequireComponent(typeof(Health))]
 public class Infrastructure : Unit
 {
-    bool canInteract = true;
+    public bool canInteract = false;
     public Sprite hintSprite;
 
     [SerializeField] public SO_Infrastructure so_Infrastructure;
@@ -23,6 +23,7 @@ public class Infrastructure : Unit
 
     protected override void Start()
     {
+        canInteract = false; 
         base.Start();
         OnInfrastructureHitEvent.AddListener(Hit);
         InitializeValues();
@@ -61,7 +62,10 @@ public class Infrastructure : Unit
         }
 
     }
-
+    public void ForQuest()
+    {
+        canInteract = true;
+    }
     void Constructed()
     {
         
@@ -80,6 +84,7 @@ public class Infrastructure : Unit
             if (currentLevel < so_Infrastructure.boxColliderOffSet.Count)
                 GetComponent<BoxCollider2D>().offset = so_Infrastructure.boxColliderOffSet[currentLevel];
             sr.sprite = so_Infrastructure.sprites[currentLevel];
+            canInteract = false;
             InitializeValues();
         }
 
