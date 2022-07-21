@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 846db7b038354e245b3974364be2d363, type: 3}
-  m_Name: Initial 1
+  m_Name: Panday Initial 1
   m_EditorClassIdentifier: 
   dialogues:
   - character: {fileID: 11400000, guid: 64792cf6cb6b2a642becf92ac15202ce, type: 2}

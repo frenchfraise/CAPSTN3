@@ -61,6 +61,16 @@ public class StorylineManager : MonoBehaviour
     [NonReorderable][HideInInspector] public List<SO_Dialogues> currentPandaySODialogues;
     [NonReorderable][SerializeField] public List<SO_Dialogues> potentialPandaySODialogues;
     [NonReorderable][SerializeField] public SO_Dialogues finishedPandayDialogue;
+
+    [HeaderAttribute("LOLO UPO")]
+    [NonReorderable][SerializeField] public List<SO_Dialogues> initialLoloDialogues;
+
+    //[HeaderAttribute("BOY")]
+    //[NonReorderable][SerializeField] public List<SO_Dialogues> initialBoyDialogues;
+
+    //[HeaderAttribute("GIRL")]
+    //[NonReorderable][SerializeField] public List<SO_Dialogues> initialGirlDialogues;
+
     private void Awake()
     {
         currentPandaySODialogues = potentialPandaySODialogues;
