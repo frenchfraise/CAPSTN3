@@ -150,7 +150,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7340579885358561716
 RectTransform:
   m_ObjectHideFlags: 0
@@ -298,7 +298,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7340579885717274357
 RectTransform:
   m_ObjectHideFlags: 0
@@ -317,8 +317,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 239}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 156}
+  m_SizeDelta: {x: 771.17, y: 200.03}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7340579885717274361
 CanvasRenderer:
@@ -689,7 +689,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7340579885878418476
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1554,10 +1554,10 @@ RectTransform:
   m_Father: {fileID: 7340579885717274357}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 385.585, y: -100.015}
+  m_SizeDelta: {x: 697.17, y: 126.03}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7340579887397592611
 CanvasRenderer:
@@ -1715,9 +1715,9 @@ RectTransform:
   m_Father: {fileID: 7340579885878418476}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0.5}
-  m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -157, y: 462}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -157, y: -153.1}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2628388769598327500
@@ -1804,7 +1804,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7340579885862432562}
         m_TargetAssemblyTypeName: TutorialUI, Assembly-CSharp
-        m_MethodName: OnNextReminderButtonUI
+        m_MethodName: OnCloseReminderButtonUI
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

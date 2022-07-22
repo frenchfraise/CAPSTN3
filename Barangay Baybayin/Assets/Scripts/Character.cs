@@ -38,10 +38,10 @@ public class Character : InteractibleObject
         {
            
             SO_Questline so_Questline = so_StoryLine.questLines[storylineData.currentQuestChainIndex];
-            Debug.Log("PHASE " + storylineData.currentQuestLineIndex + " - " + so_Questline.questlineData.Count);
+          //  Debug.Log("PHASE " + storylineData.currentQuestLineIndex + " - " + so_Questline.questlineData.Count);
             if (storylineData.currentQuestLineIndex < so_Questline.questlineData.Count)
             {
-                Debug.Log("PHASE 1");
+              //  Debug.Log("PHASE 1");
                 QuestlineData questlineData = so_Questline.questlineData[storylineData.currentQuestLineIndex];
                 if (storylineData.completed)
                 {
@@ -61,7 +61,7 @@ public class Character : InteractibleObject
 
                         if (isQuestCompleted)
                         {
-                            Debug.Log("PHASE 2");
+                           // Debug.Log("PHASE 2");
                             if (storylineData.currentQuestLineIndex == 0)
                             {
 
