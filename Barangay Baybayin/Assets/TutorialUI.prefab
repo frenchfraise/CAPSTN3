@@ -650,7 +650,7 @@ MonoBehaviour:
   popUps:
   - panels:
     - {fileID: 21300000, guid: 3f45d1046890e8348976d80e647943e4, type: 3}
-    - {fileID: 21300000, guid: b4770d23f6dfbfb4f8fb110a2b1c4414, type: 3}
+    - {fileID: 21300000, guid: 05533e7c87ebb7640a4176fc0de08395, type: 3}
     - {fileID: 21300000, guid: db1be51dd63126b4793237d6fc8b36cb, type: 3}
   - panels:
     - {fileID: 21300000, guid: 4b24afd97b1d8be4489dbd87217f6df8, type: 3}
@@ -1554,10 +1554,10 @@ RectTransform:
   m_Father: {fileID: 7340579885717274357}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 385.585, y: -100.015}
+  m_SizeDelta: {x: 697.17, y: 126.03}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7340579887397592611
 CanvasRenderer:

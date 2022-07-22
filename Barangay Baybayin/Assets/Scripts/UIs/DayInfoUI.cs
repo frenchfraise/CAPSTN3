@@ -112,7 +112,7 @@ public class DayInfoUI : MonoBehaviour
     IEnumerator Co_DayEndTransition(bool p_causedByFainting, int p_dayCount)
     {
         TimeManager.onPauseGameTime.Invoke(false);
-        Debug.Log("GOING TO TRY");
+       // Debug.Log("GOING TO TRY");
         if (!p_causedByFainting)
         {
             conditionsText.text = "ENDED";
@@ -192,11 +192,11 @@ public class DayInfoUI : MonoBehaviour
         TimeManager.onPauseGameTime.Invoke(true);
 
         TownDialogueData tdd = StorylineManager.instance.townEventDialogues;
-        Debug.Log("TRY");
+      //  Debug.Log("TRY");
        // Debug.Log("TRY " + tdd.td[tdd.currentQuestChainIndex].dayRequiredCount + " - - " + (p_dayCount + 1));
         if (tdd.td[tdd.currentQuestChainIndex].dayRequiredCount == (p_dayCount + 1))
         {
-            Debug.Log("TEEEEEEEEEEEE");
+          //  Debug.Log("TEEEEEEEEEEEE");
             CharacterDialogueUI.onCharacterSpokenToEvent.Invoke("TE", tdd.td[tdd.currentQuestChainIndex].so_Dialogue);
         }
 

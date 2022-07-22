@@ -17,14 +17,5 @@ MonoBehaviour:
     emotion: 10
     words: 'Today is Sunny. For Day 2, the weather will be Sunny. For Day 3, the
       weather will be Sunny. For Day 4, it is highly likely to be Sunny. '
-    speechTransitionType: 0
-  - character: {fileID: 11400000, guid: 88aa14d00365c39438cbfaa3e215ba70, type: 2}
-    emotion: 10
-    words: "Let\u2019s go step by step. We have a while stuck inside together, after
-      all."
-    speechTransitionType: 0
-  - character: {fileID: 11400000, guid: 64792cf6cb6b2a642becf92ac15202ce, type: 2}
-    emotion: 10
-    words: Mind your Stamina. Using your held tool decreases it. Go on, use your
-      tool.
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 0

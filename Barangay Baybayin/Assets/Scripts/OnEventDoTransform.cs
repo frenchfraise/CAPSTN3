@@ -16,7 +16,7 @@ public class OnEventDoTransform : OnEventDoAction
 {
     [SerializeField]
     private Transform transformAffected;
-    [NonReorderable][SerializeField] private List<ActionTransform> actionTransform;
+    [NonReorderable][SerializeField] public List<ActionTransform> actionTransform;
 
     public AllActionsDoneEvent onAllActionsDoneEvent = new AllActionsDoneEvent();
     public override void DoAction(int p_actionParameterAID =-1, int p_actionParameterBID = -1)

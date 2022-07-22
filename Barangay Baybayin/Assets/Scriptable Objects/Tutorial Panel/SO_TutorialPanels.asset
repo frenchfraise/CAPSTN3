@@ -14,30 +14,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panels:
   - tutorialTitle: Radio 1
-    image: {fileID: 0}
+    image: {fileID: 21300000, guid: 05533e7c87ebb7640a4176fc0de08395, type: 3}
     words: "Approach the Radio in your room to hear the Weather Forecast. Use the
       interact icon \u2013 with the hand \u2013 to confirm.\r"
   - tutorialTitle: Radio 2
-    image: {fileID: 0}
+    image: {fileID: 21300000, guid: b4770d23f6dfbfb4f8fb110a2b1c4414, type: 3}
     words: "The Weather Forecast provides an insight on the next few days\u2019 weather.
       Use it to plan your days, as using tools in the rain consumes more stamina!\r\n"
   - tutorialTitle: Bed 1
-    image: {fileID: 0}
+    image: {fileID: 21300000, guid: 6c8b76ab6e2e76a49bceedc7ced96077, type: 3}
     words: "Is your stamina low? Want to skip the remaining day? Approach the Bed
       in your room to sleep. Use the interact icon \u2013 with the hand \u2013 to
       confirm.\r\n"
   - tutorialTitle: Bed 2
-    image: {fileID: 0}
+    image: {fileID: 21300000, guid: 8d87e243c6712e3468ac53f51a3b5d10, type: 3}
     words: "Using the Bed progresses the game a day. But doing so will refill your
       Stamina bar! Don\u2019t forget to mind the remaining days, though!\r\n"
   - tutorialTitle: Inventory 1
-    image: {fileID: 0}
+    image: {fileID: 21300000, guid: 04b495c55495b7e468e3101c180dfc62, type: 3}
     words: 'The Inventory shows held items. Most items have Common, Rare, and Superb
       ranks. Others have 3 different types, while some only have 1.
 
 '
   - tutorialTitle: Inventory 2
-    image: {fileID: 0}
+    image: {fileID: 21300000, guid: 211de0a6f7be4d64685211eb6ef96538, type: 3}
     words: Each item type has an item count. You can increase the amount by harvesting
       the corresponding rank of material nodes. Drops spawned magnetize to you, and
       add to the count.
@@ -47,38 +47,38 @@ MonoBehaviour:
       a day. The Weather Icon represents the day\u2019s weather. The Date & Time
       portion shows the current calendar day and time.   \r\n"
   - tutorialTitle: Day Progression
-    image: {fileID: 0}
+    image: {fileID: 21300000, guid: bf52e28cc14f17c469a3c14f9024c274, type: 3}
     words: "The Date progresses in 3 ways: staying up beyond 18:00, interacting with
       the bed, and fainting. You faint when your stamina is depleted. Days are limited
       so be wary!   \r\n"
   - tutorialTitle: Map
-    image: {fileID: 0}
+    image: {fileID: 21300000, guid: 80196ab997c36164c9da86f6791c90d0, type: 3}
     words: "Selecting the Map button, on the Menus Panel, will show a Map of Purok
       Buko. \r\nLocations of important villagers and fields and materials within
       are shown.\r\n"
   - tutorialTitle: Quests 1
-    image: {fileID: 0}
+    image: {fileID: 21300000, guid: 89ae2161ebd496b4ba816434fcf5b916, type: 3}
     words: 'The Quest menu, accessible from the Main Menu panel, shows the four quest
       lines available. Selecting one panel shows the current quest.
 
 '
   - tutorialTitle: Quests 2
-    image: {fileID: 0}
+    image: {fileID: 21300000, guid: 71eca5099c795bd428ffbb647868c6f2, type: 3}
     words: "The current quest screen shows the quest giver, quest title and description,
       requirements, and rewards of a chain\u2019s quest you\u2019re currently on.
       \r\n"
   - tutorialTitle: Action Buttons 1
-    image: {fileID: 0}
+    image: {fileID: 21300000, guid: 0bc754e29be174548b795bf896b34efc, type: 3}
     words: "1 \u2013 Interaction Button: Tap to interact or talk with object or person
       you\u2019re currently facing.\r\n2 - Tool Action Button: Tap to use current
       tool on node or object to build. Consumes stamina.\r"
   - tutorialTitle: Action Buttons 2
-    image: {fileID: 0}
+    image: {fileID: 21300000, guid: 36885048aebf84f4a9380b265c06b98d, type: 3}
     words: '3 - Food Button: When you have food, tap to consume 1 and restore stamina.
 
 '
   - tutorialTitle: Action Buttons 3
-    image: {fileID: 0}
+    image: {fileID: 21300000, guid: b29f856ac4c59d040873464ce0525178, type: 3}
     words: "4 - Strong Hit Button and Gauge: Gauge increases as you use your tools.
       When filled, grants a charge and resets gauge. Charges cap at 3. Use a charge
       to unleash a strong hit on a node, which doesn\u2019t consume stamina.\r\n"

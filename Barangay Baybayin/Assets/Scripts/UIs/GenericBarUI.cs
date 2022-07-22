@@ -180,6 +180,8 @@ public class GenericBarUI : MonoBehaviour
     [SerializeField] private Image restrictedBarUI; //red
 
     private bool isResetting = false;
+    private bool isCurrentlyResettingCoroutine = false;
+    private bool isUpdateNext = false;
     [SerializeField] private float resetTransitionTime;
 
 
@@ -214,6 +216,16 @@ public class GenericBarUI : MonoBehaviour
         realBarUI.fillAmount = 0f;
         ghostBarUI.fillAmount = 0f;
         restrictedBarUI.fillAmount = 0f;
+    }
+
+    private void OnDisable()
+    {
+        if (runningCoroutine != null)
+        {
+            StopCoroutine(runningCoroutine);
+            runningCoroutine = null;
+        }
+        InstantUpdateBar(savedFill);
     }
 
     void GameplayModeChangedEvent(bool p_set)
@@ -290,6 +302,7 @@ public class GenericBarUI : MonoBehaviour
     }
     public void InstantUpdateBar(float p_current =0, float p_currentMax = 1, float p_max =1)
     {
+        //Debug.Log("INSTANT: " + p_current + " " + p_currentMax);
         StopAllCoroutines();
         isResetting = false;
 
@@ -336,8 +349,9 @@ public class GenericBarUI : MonoBehaviour
 
     public void ResetBar(float p_current = 0, float p_currentMax = 1)
     {
+        //Debug.Log("RESETTING: " + p_current + " " + p_currentMax);
         isResetting = true;
-
+        isCurrentlyResettingCoroutine = true;
         current = p_current;
         currentMax = p_currentMax;
       
@@ -359,14 +373,15 @@ public class GenericBarUI : MonoBehaviour
    
     public void UpdateBar(float p_current = 0, float p_currentMax =1)
     {
-        
-        current = p_current;
-        currentMax = p_currentMax;
-  
-        float fill = current / currentMax;
-       // Debug.Log("FILL: " + fill + " - " + current + " - " + currentMax);
-        if (gameObject.activeSelf)
+        if (isCurrentlyResettingCoroutine == false)
         {
+            //Debug.Log("UPDATING: " + p_current + " " + p_currentMax);
+            current = p_current;
+            currentMax = p_currentMax;
+
+            float fill = current / currentMax;
+            // Debug.Log("FILL: " + fill + " - " + current + " - " + currentMax);
+           
             if (enabled)
             {
                 if (runningCoroutine != null)
@@ -374,14 +389,19 @@ public class GenericBarUI : MonoBehaviour
                     StopCoroutine(runningCoroutine);
                     runningCoroutine = null;
                 }
+            }
+
+            if (gameObject.activeSelf)
+            {
                 StartCoroutine(Co_UpdateBar(fill));
             }
 
         }
-        Debug.Log(gameObject.name + " UPDA- " + current + " - " + currentMax);
+       // Debug.Log(gameObject.name + " UPDA- " + current + " - " + currentMax);
     }
     IEnumerator Co_UpdateBar(float p_fill = 0)
     {
+        //Debug.Log("CO_UPDATING: " + p_fill);
         if (!isResetting)
         {
            // Debug.Log(gameObject.name + " UPDATING BAR- " + current + " - " + currentMax + " - " + savedFill + " - " + p_fill);
@@ -511,15 +531,16 @@ public class GenericBarUI : MonoBehaviour
                     StopCoroutine(runningCoroutine);
                     runningCoroutine = null;
                 }
-              
-                
+       
 
-               // savedFill = p_fill;
+
+              // savedFill = p_fill;
               //  Debug.Log(gameObject.name + " UPDAINSIDING- " + current + " - " + currentMax + " - " + savedFill + " - " + p_fill);
-                runningCoroutine = Co_UpdateBar(savedFill);
+              runningCoroutine = Co_UpdateBar(savedFill);
                 StartCoroutine(runningCoroutine);
+            isCurrentlyResettingCoroutine = false;
             //}
-           // Debug.Log(gameObject.name + " UPDAOUTING- " + current + " - " + currentMax + " / " + savedFill);
+            // Debug.Log(gameObject.name + " UPDAOUTING- " + current + " - " + currentMax + " / " + savedFill);
 
             //StartCoroutine(Co_UpdateBar(p_fill));
 

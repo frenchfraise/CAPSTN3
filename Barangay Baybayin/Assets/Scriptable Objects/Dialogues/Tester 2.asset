@@ -17,21 +17,25 @@ MonoBehaviour:
     emotion: 10
     words: So you see, items and nodes have rarities. A discerning eye goes a long
       way.
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 0
   - character: {fileID: 11400000, guid: 64792cf6cb6b2a642becf92ac15202ce, type: 2}
     emotion: 10
     words: 'Surely, you will be asked to gather certain items from certain nodes. '
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 0
   - character: {fileID: 11400000, guid: 64792cf6cb6b2a642becf92ac15202ce, type: 2}
     emotion: 10
     words: Keep your skills sharp and upgrade your tools!
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 0
   - character: {fileID: 11400000, guid: 64792cf6cb6b2a642becf92ac15202ce, type: 2}
     emotion: 10
     words: "That\u2019s all for the training. "
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 0
   - character: {fileID: 11400000, guid: 64792cf6cb6b2a642becf92ac15202ce, type: 2}
     emotion: 10
-    words: "The world is yours to explore, and the town yours to improve. We\u2019re
-      counting on you."
+    words: "We\u2019re counting on you."
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 0

@@ -56,6 +56,7 @@ public class TutorialManager : MonoBehaviour
     bool characterQuest = true;
 
     bool dayFirstTime = true;
+    bool proceed = true;
     public GameObject upgradeIsOpen;
     public GameObject specialButton;
     private void Awake()
@@ -80,8 +81,9 @@ public class TutorialManager : MonoBehaviour
         Setup();
         //DontUseTutorial();
     }
-    void DontUseTutorial()
+    public void DontUseTutorial()
     {
+     
         infrastructure.gameObject.SetActive(false);
         infrastructureTwo.gameObject.SetActive(false);
         specialButton.SetActive(true);
@@ -111,6 +113,7 @@ public class TutorialManager : MonoBehaviour
         {
             dayFirstTime = false;
             TutorialUI.onRemindTutorialEvent.Invoke(0);
+            //AudioManager.instance.OnDayChangingEvent();
         }
 
     }
@@ -135,6 +138,7 @@ public class TutorialManager : MonoBehaviour
         panLimit = Vector2Abs(startRoom.position - panLimitUpperRightTransform.position);
         CameraManager.onCameraMovedEvent.Invoke(startRoom.position, panLimit);
         tutorialBlocker.gameObject.SetActive(true);
+        AudioManager.instance.OnDayChangingEvent();
         StartLecture();
     }
     void Unsetup()
@@ -171,6 +175,7 @@ public class TutorialManager : MonoBehaviour
     }
     void StartLecture()
     {
+        proceed = true;
         Debug.Log("START LECTURE ID: O-" + currentIndex + " CURRENT INDEX: " + currentIndex + " CURRENT DIALOGUE: " + currentDialogueIndex);
         onTutorialEventEndedEvent.Invoke(currentIndex);
         CharacterDialogueUI.onCharacterSpokenToEvent.Invoke("O-" + currentIndex, dialogues[currentDialogueIndex]);
@@ -470,19 +475,23 @@ public class TutorialManager : MonoBehaviour
     }
     void EndLecture()
     {
-       
-        Debug.Log("END LECTURE ID: O-" + currentIndex + " CURRENT INDEX: " + currentIndex + " CURRENT DIALOGUE: " + currentDialogueIndex);
-        currentIndex++;
-        currentDialogueIndex++;
-        if (currentIndex == 10)
+        if (proceed)
         {
-            Debug.Log("END");
-            Unsetup();
+            proceed = false;
+            Debug.Log("END LECTURE ID: O-" + currentIndex + " CURRENT INDEX: " + currentIndex + " CURRENT DIALOGUE: " + currentDialogueIndex);
+            currentIndex++;
+            currentDialogueIndex++;
+            if (currentIndex == 10)
+            {
+                Debug.Log("END");
+                Unsetup();
+            }
+            else
+            {
+                StartLecture();
+            }
         }
-        else
-        {
-            StartLecture();
-        }
+     
 
 
     }

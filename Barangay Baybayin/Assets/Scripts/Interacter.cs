@@ -78,7 +78,7 @@ public class Interacter : MonoBehaviour
         {
        
             canInteract = false;
-            Debug.Log("PRESSED");
+           // Debug.Log("PRESSED");
             
             StartCoroutine(Cooldown());
         }

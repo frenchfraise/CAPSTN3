@@ -20,9 +20,7 @@ MonoBehaviour:
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 88aa14d00365c39438cbfaa3e215ba70, type: 2}
     emotion: 10
-    words: 'Despite earlier forecasts, the Zenaida has suddenly changed direction.
-
-'
+    words: Despite earlier forecasts, the Zenaida has suddenly changed direction.
     backgroundSprite: {fileID: 21300000, guid: afec612ed4d742548a36158a371ee470, type: 3}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 88aa14d00365c39438cbfaa3e215ba70, type: 2}
@@ -33,31 +31,19 @@ MonoBehaviour:
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 88aa14d00365c39438cbfaa3e215ba70, type: 2}
     emotion: 10
-    words: 'Currently, Zenaida follows a trajectory of North-Northwest at 16mph through
+    words: Currently, Zenaida follows a trajectory of North-Northwest at 16mph through
       Central Luzon.
-
-
-
-'
     backgroundSprite: {fileID: 21300000, guid: afec612ed4d742548a36158a371ee470, type: 3}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 88aa14d00365c39438cbfaa3e215ba70, type: 2}
     emotion: 10
-    words: 'It is currently at Purok Buko, which is reeling from the effects of the
+    words: It is currently at Purok Buko, which is reeling from the effects of the
       storm.
-
-
-
-'
     backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 88aa14d00365c39438cbfaa3e215ba70, type: 2}
     emotion: 10
-    words: 'The typhoon is expected to affect the area for several more days.
-
-
-
-'
+    words: The typhoon is expected to affect the area for several more days.
     backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 6b42c85a890cd4a498705d8521418c4b, type: 2}
@@ -67,7 +53,7 @@ MonoBehaviour:
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 64792cf6cb6b2a642becf92ac15202ce, type: 2}
     emotion: 10
-    words: "Storms nowadays sure are different. \r\n"
+    words: "Storms nowadays sure are different. \r"
     backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 64792cf6cb6b2a642becf92ac15202ce, type: 2}

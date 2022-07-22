@@ -90,7 +90,7 @@ public class InventoryManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("Food");
+           // Debug.Log("Food");
             Food.onAddFood.Invoke(p_amount);
         }
        

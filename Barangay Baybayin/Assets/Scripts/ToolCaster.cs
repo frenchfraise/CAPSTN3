@@ -45,6 +45,7 @@ public class ToolCaster : MonoBehaviour
     public static SetIsPreciseEvent onSetIsPreciseEvent = new SetIsPreciseEvent();
     public static SetRequireCorrectToolEvent onSetRequireCorrectToolEvent = new SetRequireCorrectToolEvent();
     private bool isFirstTime;
+    private bool rewardSpecialAllowed = true;
 
     private void Awake()
     {
@@ -129,7 +130,9 @@ public class ToolCaster : MonoBehaviour
         if (canUse)
         {
             if (current_Tool.specialChargesCounter >= 1)
-            {          
+            {
+                rewardSpecialAllowed = false;
+                current_Tool.specialChargesCounter--;
                 animator.SetTrigger(current_Tool.toolName.ToString());
                 AudioManager.instance.GetSoundByName("Swing").source.Play();
                 if (current_Tool.toolName == "Hammer")
@@ -267,7 +270,7 @@ public class ToolCaster : MonoBehaviour
                 }
                 if (isPrecise && canHit || !isPrecise)
                 {
-                    Debug.Log("PRESSED" + " " + isPrecise + " " + current_Tool.so_Tool.staminaCost[current_Tool.craftLevel] + " " + canHit + " " + current_Tool.so_Tool.useRate[current_Tool.craftLevel]);
+                    //Debug.Log("PRESSED" + " " + isPrecise + " " + current_Tool.so_Tool.staminaCost[current_Tool.craftLevel] + " " + canHit + " " + current_Tool.so_Tool.useRate[current_Tool.craftLevel]);
                     StartCoroutine(Co_ToolUseCooldown(true));
                 }
                 else if (isPrecise && !canHit)
@@ -346,7 +349,12 @@ public class ToolCaster : MonoBehaviour
     {
         AudioManager.instance.GetSoundByName("Hit").source.Play();
         current_Tool.ModifyProficiencyAmount(current_Tool.so_Tool.proficiencyAmountReward[current_Tool.craftLevel]);
-        current_Tool.ModifySpecialAmount(current_Tool.so_Tool.specialPointReward[current_Tool.craftLevel]);
+        if (rewardSpecialAllowed)
+        {
+            current_Tool.ModifySpecialAmount(current_Tool.so_Tool.specialPointReward[current_Tool.craftLevel]);
+            rewardSpecialAllowed = true;
+        }
+
     }
 
     IEnumerator Co_ToolUseCooldown(bool p_bool)
@@ -359,7 +367,7 @@ public class ToolCaster : MonoBehaviour
         //Debug.Log(current_Tool.so_Tool.staminaCost[current_Tool.craftLevel]);
         if (p_bool)
             onToolUsedEvent.Invoke(current_Tool.so_Tool.staminaCost[current_Tool.craftLevel]);
-        Debug.Log("Tool Cooldown Use Rate: " + current_Tool.so_Tool.useRate[current_Tool.craftLevel]);
+        //Debug.Log("Tool Cooldown Use Rate: " + current_Tool.so_Tool.useRate[current_Tool.craftLevel]);
         yield return new WaitForSeconds(current_Tool.so_Tool.useRate[current_Tool.craftLevel]);
         canUse = true;
         //PlayerManager.instance.playerMovement.isMoving = true;

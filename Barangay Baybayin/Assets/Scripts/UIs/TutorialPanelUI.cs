@@ -13,16 +13,26 @@ public class TutorialPanelUI : MonoBehaviour
     public GameObject backButton;
     public SO_TutorialPanelUI currentSO_TutPanels;    
     public int currentPanelIndex;
+    //public List<Sprite> tutorialPages = new List<Sprite>();
 
+    public void Open()
+    {
+        TPUI currentPanel = currentSO_TutPanels.panels[0];
+        titleText.text = currentPanel.tutorialTitle;
+        demoImage.sprite = currentPanel.image;
+        descriptionText.text = currentPanel.words;
+      
+    }
     public void NextButtonHit()
     {
         if (currentPanelIndex >= 0) backButton.SetActive(true);
         if (currentPanelIndex < currentSO_TutPanels.panels.Count - 1)
         {
+          
             currentPanelIndex++;
             TPUI currentPanel = currentSO_TutPanels.panels[currentPanelIndex];
             titleText.text = currentPanel.tutorialTitle;
-            //demoImage.sprite = currentPanel.image;
+            demoImage.sprite = currentPanel.image;
             descriptionText.text = currentPanel.words;
         }
         if (currentPanelIndex >= currentSO_TutPanels.panels.Count - 1)
@@ -35,11 +45,12 @@ public class TutorialPanelUI : MonoBehaviour
     {
         if (currentPanelIndex > 0)
         {
+         
             currentPanelIndex--;
             nextButton.SetActive(true);
             TPUI currentPanel = currentSO_TutPanels.panels[currentPanelIndex];
             titleText.text = currentPanel.tutorialTitle;
-            //demoImage.sprite = currentPanel.image;
+            demoImage.sprite = currentPanel.image;
             descriptionText.text = currentPanel.words;
         }
         if (currentPanelIndex <= 0)

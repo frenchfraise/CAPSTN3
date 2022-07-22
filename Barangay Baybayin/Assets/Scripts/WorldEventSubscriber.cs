@@ -6,7 +6,11 @@ using UnityEngine.Events;
 
 public class WorldEventSubscriber : EventSubscriber
 {
-    
+    public void ForceEvents(int p_actionParameterAID = -1, int p_actionParameterBID = -1)
+    {
+        // Debug.Log(gameObject.name + " p_eventID: " + i);
+        DoAllActions( p_actionParameterAID,  p_actionParameterBID);
+    }
     protected override void CheckIDMatches(string p_eventID, int p_actionParameterAID, int p_actionParameterBID = -1)
     {
         if (id == p_eventID)

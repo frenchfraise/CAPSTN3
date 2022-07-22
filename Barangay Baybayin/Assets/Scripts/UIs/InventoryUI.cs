@@ -51,7 +51,7 @@ public class InventoryUI : MonoBehaviour
     void Snap()
     {
         Canvas.ForceUpdateCanvases();
-        Debug.Log(currentPage + " POSI: " + (Vector2)pages[currentPage].position + " - " +  (Vector2)pages[currentPage].anchoredPosition);
+        //Debug.Log(currentPage + " POSI: " + (Vector2)pages[currentPage].position + " - " +  (Vector2)pages[currentPage].anchoredPosition);
         Vector2 newp = (Vector2)pages[currentPage].position + tempoffset;
         contentPanel.anchoredPosition =
                 (Vector2)scrollRect.transform.InverseTransformPoint(contentPanel.position)

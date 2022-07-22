@@ -11,13 +11,14 @@ public class Infrastructure : Unit
 
     [SerializeField] public SO_Infrastructure so_Infrastructure;
 
-    private SpriteRenderer sr;
+    [SerializeField] private SpriteRenderer sr;
     [SerializeField] public int currentLevel = 1;
+    [SerializeField] public Collider2D col;
 
     public InfrastructureHitEvent OnInfrastructureHitEvent = new InfrastructureHitEvent();
     protected override void Awake()
     {
-        sr = GetComponent<SpriteRenderer>();
+        sr = sr ? sr : GetComponent<SpriteRenderer>();
         OnInfrastructureHitEvent.AddListener(Hit);
     }
 
@@ -57,7 +58,7 @@ public class Infrastructure : Unit
         {
             //if (p_craftLevel >= levelRequirement)
             //{
-            Debug.Log("HIT");
+          //  Debug.Log("HIT");
             Health health = GetComponent<Health>();
 
             health.onHealthModifyEvent.Invoke(-p_currentDamage);
@@ -86,10 +87,19 @@ public class Infrastructure : Unit
             //currentHealth = 0;
             ToolManager.onResourceNodeFinishedEvent.Invoke();
             //healthOverheadUI.SetHealthBarData(transform, UIManager.instance.overheadUI);
-            if (currentLevel < so_Infrastructure.boxColliderSize.Count)
-                GetComponent<BoxCollider2D>().size = so_Infrastructure.boxColliderSize[currentLevel];
-            if (currentLevel < so_Infrastructure.boxColliderOffSet.Count)
-                GetComponent<BoxCollider2D>().offset = so_Infrastructure.boxColliderOffSet[currentLevel];
+            if (col == null)
+            {
+                if (currentLevel < so_Infrastructure.boxColliderSize.Count)
+                    GetComponent<BoxCollider2D>().size = so_Infrastructure.boxColliderSize[currentLevel];
+                if (currentLevel < so_Infrastructure.boxColliderOffSet.Count)
+                    GetComponent<BoxCollider2D>().offset = so_Infrastructure.boxColliderOffSet[currentLevel];
+
+            }
+            else if(col != null)
+            {
+                col.enabled = false;
+            }
+      
             sr.sprite = so_Infrastructure.sprites[currentLevel];
             canInteract = false;
             InitializeValues();

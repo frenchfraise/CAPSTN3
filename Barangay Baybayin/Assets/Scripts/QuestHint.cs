@@ -8,6 +8,7 @@ public class QuestHint : MonoBehaviour
     WorldEventSubscriber worldEventSubscriber;
     [SerializeField] private HoverEffect iconHoverEffect;
     [SerializeField] private RadiateScaleEffect radiateScaleEffect;
+ 
     private void Awake()
     {
         if(TryGetComponent(out OnEventDoTransform eventDoTransform))
@@ -15,6 +16,7 @@ public class QuestHint : MonoBehaviour
             eventDoTransform.onAllActionsDoneEvent.AddListener(Subscriber);
         }
         UIManager.onGameplayModeChangedEvent.AddListener(OnGameplayModeChangedEvent);
+        worldEventSubscriber = GetComponent<WorldEventSubscriber>();
     }
 
     private void OnDestroy()
@@ -27,8 +29,12 @@ public class QuestHint : MonoBehaviour
     }
     private void OnEnable()
     {
-        
-        worldEventSubscriber =GetComponent<WorldEventSubscriber>();
+
+
+        //worldEventSubscriber.ForceEvents(0,0);
+        OnEventDoTransform eventTrans = GetComponent<OnEventDoTransform>();
+        transform.position = eventTrans.actionTransform[0].actionPartTransform[0].position;
+        iconHoverEffect.startYPosition = iconHoverEffect.transform.position.y;
         iconHoverEffect.gameObject.SetActive(true);
         iconHoverEffect.runningCoroutine = iconHoverEffect.Co_Hover();
         StartCoroutine(iconHoverEffect.runningCoroutine);

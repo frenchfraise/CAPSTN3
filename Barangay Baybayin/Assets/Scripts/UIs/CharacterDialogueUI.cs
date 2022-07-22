@@ -249,7 +249,7 @@ public class CharacterDialogueUI : MonoBehaviour
             string song2 = AudioManager.instance.GetSoundByName("Quest Get").name;
             AudioManager.instance.StartCoFade(song1, song2);
         }
-        Debug.Log("WHO IS CALLING");
+       // Debug.Log("WHO IS CALLING");
         frame.SetActive(true);
         //Debug.Log(id + " EVENT WITH NAME " + currentSO_Dialogues.name + " IS CURRENT DIALOGUE " + " OPENING");
         ResetCharacterDialogueUI();
@@ -329,7 +329,7 @@ public class CharacterDialogueUI : MonoBehaviour
     public void ResetCharacterDialogueUI()
     {
         cachedSprite = null;
-       //  firstTime = true;
+        //  firstTime = true;
         currentDialogueIndex =0;
         allowNext = false;
         isAlreadyEnded = false;

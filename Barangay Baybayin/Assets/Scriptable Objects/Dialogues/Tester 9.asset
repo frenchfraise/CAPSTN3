@@ -17,14 +17,16 @@ MonoBehaviour:
     emotion: 10
     words: "Easy, isn\u2019t it? You can rebuild many items and help around town
       this way."
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 0
   - character: {fileID: 11400000, guid: 64792cf6cb6b2a642becf92ac15202ce, type: 2}
     emotion: 10
-    words: "Rounding out your toolkit is the Machete. Use this for herbs, but remember:
-      vetiver grass is harvested, not cut.\r"
+    words: Rounding out your toolkit is the Bolo. Use this for herbs and grass.
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 0
   - character: {fileID: 11400000, guid: 64792cf6cb6b2a642becf92ac15202ce, type: 2}
     emotion: 10
     words: Go ahead and harvest those herbs. Using a certain  tool repeatedly will
       improve your skill.
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 0
