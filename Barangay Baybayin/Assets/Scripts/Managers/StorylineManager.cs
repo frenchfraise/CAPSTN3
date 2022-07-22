@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-
+public class FirstTimeStoryline : UnityEvent<int> { };
+public class FirstTimeStorylineEndedEvent : UnityEvent<int> { };
 public class WorldEventEndedEvent : UnityEvent<string, int, int> { };
 
 [System.Serializable]
@@ -11,6 +12,7 @@ public class StorylineData
     [SerializeField] public SO_StoryLine so_StoryLine;
     public int currentQuestChainIndex;
     public int currentQuestLineIndex;
+    public bool firstTime = true;
     public bool completed = false; 
 
 }
@@ -38,6 +40,9 @@ public class StorylineManager : MonoBehaviour
 {
 
     public static WorldEventEndedEvent onWorldEventEndedEvent = new WorldEventEndedEvent();
+    public static FirstTimeStoryline onFirstTimeStoryline = new FirstTimeStoryline();
+    public static FirstTimeStorylineEndedEvent onFirstTimeStorylineEndedEvent = new FirstTimeStorylineEndedEvent();
+
     private static StorylineManager _instance;
     public static StorylineManager instance
 
@@ -79,11 +84,13 @@ public class StorylineManager : MonoBehaviour
         _instance = this;
         //DontDestroyOnLoad(gameObject);
         StorylineManager.onWorldEventEndedEvent.AddListener(FinishedTownEventStory);
+        StorylineManager.onFirstTimeStoryline.AddListener(FirstTimeStoryline);
     }
 
     private void OnDestroy()
     {
         StorylineManager.onWorldEventEndedEvent.RemoveListener(FinishedTownEventStory);
+        StorylineManager.onFirstTimeStoryline.AddListener(FirstTimeStoryline);
     }
     void FinishedTownEventStory(string p_id, int p_intone, int p_intto)
     {
@@ -93,6 +100,13 @@ public class StorylineManager : MonoBehaviour
           
 
         }
+    }
+
+    public void FirstTimeStoryline(int p_ID)
+    {
+        storyLines[p_ID].firstTime = true;
+        onFirstTimeStorylineEndedEvent.Invoke(p_ID);
+
     }
     private void OnEnable()
     {
@@ -133,6 +147,13 @@ public class StorylineManager : MonoBehaviour
     {
         int index = StorylineManager.GetStorylineIndexFromID(p_ID);
         return StorylineManager.instance.storyLines[index];
+
+    }
+
+    public static int GetIndexFromID(string p_ID)
+    {
+        int index = StorylineManager.GetStorylineIndexFromID(p_ID);
+        return index;
 
     }
 

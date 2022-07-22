@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Panday Pasak 1 Quest Requirement
   m_EditorClassIdentifier: 
   so_Item:
-  - {fileID: 11400000, guid: a23150ace6c99194986348f059adf4b5, type: 2}
+  - {fileID: 11400000, guid: aaa9202b98b57234197af744ae889a10, type: 2}
   requiredAmount: 01000000

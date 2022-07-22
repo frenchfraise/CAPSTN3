@@ -10,7 +10,7 @@ public class Character : InteractibleObject
     [SerializeField]
     private string id;
     [SerializeField] private bool isFirstTime = true;
-
+    private bool isFirstTimeInEver = true;
 
 
 
@@ -26,10 +26,14 @@ public class Character : InteractibleObject
     }
     protected override void OnInteract()
     {
-
+        int storylineDataIndex = StorylineManager.GetIndexFromID(id);
         StorylineData storylineData = StorylineManager.GetStorylineDataFromID(id);
         SO_StoryLine so_StoryLine = storylineData.so_StoryLine;
-
+        if (isFirstTimeInEver)
+        {
+            isFirstTimeInEver = false;
+            StorylineManager.onFirstTimeStoryline.Invoke(storylineDataIndex);
+        }
         if (storylineData.currentQuestChainIndex < so_StoryLine.questLines.Count)
         {
            
