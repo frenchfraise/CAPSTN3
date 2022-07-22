@@ -18,6 +18,9 @@ public class StorylinesUI : MonoBehaviour
     public GameObject selectionPanel;
     public GameObject selectedPanel;
 
+    public Sprite unseenFrame;
+    public Sprite seenFrame;
+
     public TMP_Text characterNameText;
     public Image icon;
     public TMP_Text counterText;
@@ -32,6 +35,16 @@ public class StorylinesUI : MonoBehaviour
     public int currentIndex = 0;
 
     public Image questFrame;
+    private void Awake()
+    {
+        StorylineManager.onFirstTimeStorylineEndedEvent.AddListener(FirstTimeStorylineEndedEvent);
+    }
+
+    void FirstTimeStorylineEndedEvent(int p_int)
+    {
+        storylines[p_int].isSeen = true;
+        UpdateStoryLineUI(p_int);
+    }
     private void Start()
     {
         for (int i = 0; i < storylines.Count; i++)
@@ -125,6 +138,16 @@ public class StorylinesUI : MonoBehaviour
         {
             storylines[index].itemUIs[i].DeinitializeValues();
             Destroy(storylines[index].itemUIs[i].gameObject);
+        }
+        if (storylines[index].isSeen)
+        {
+            storylines[index].seenFrame.SetActive(false);
+            storylines[index].thisFrame.sprite = seenFrame;
+        }
+        else
+        {
+            storylines[index].seenFrame.SetActive(true);
+            storylines[index].thisFrame.sprite = unseenFrame;
         }
         storylines[index].itemUIs.Clear();
         StorylineData storylineData = StorylineManager.instance.storyLines[index];

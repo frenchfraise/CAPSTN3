@@ -56,7 +56,7 @@ public class TutorialManager : MonoBehaviour
     bool characterQuest = true;
 
     bool dayFirstTime = true;
-
+    public GameObject upgradeIsOpen;
     public GameObject specialButton;
     private void Awake()
     {
@@ -380,7 +380,7 @@ public class TutorialManager : MonoBehaviour
             //newResourceNode.transform.position = spawnPoint1.position + new Vector3(0f, -2.35f, 0f);
             //newResourceNode.InitializeValues();
 
-            ResourceNode newResourceNode = TreeVariantOneNodePool.pool.Get();
+            ResourceNode newResourceNode = TreeVariantTwoNodePool.pool.Get();
             newResourceNode.transform.position = spawnPoint2.position + new Vector3(0f, -2.35f, 0f);
             newResourceNode.InitializeValues();
 
@@ -491,9 +491,17 @@ public class TutorialManager : MonoBehaviour
     void GameplayModeChangedEvent(bool p_set)
     {
         tutorialUI.overheadUI.SetActive(!p_set);
-       if (currentIndex == 7 || currentIndex == 8)
+       if (currentIndex == 6 || currentIndex == 7 || currentIndex == 8)
        {
-           tutorialUI.overheadUI.SetActive(false);
+            if(upgradeIsOpen.activeSelf)
+            {
+                tutorialUI.overheadUI.SetActive(false);
+            }
+            else
+            {
+                tutorialUI.overheadUI.SetActive(true);
+            }
+     
        }
 
     }

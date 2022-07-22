@@ -10,7 +10,7 @@ public class Character : InteractibleObject
     [SerializeField]
     private string id;
     [SerializeField] private bool isFirstTime = true;
-
+    private bool isFirstTimeInEver = true;
 
 
 
@@ -26,18 +26,22 @@ public class Character : InteractibleObject
     }
     protected override void OnInteract()
     {
-
+        int storylineDataIndex = StorylineManager.GetIndexFromID(id);
         StorylineData storylineData = StorylineManager.GetStorylineDataFromID(id);
         SO_StoryLine so_StoryLine = storylineData.so_StoryLine;
-
+        if (isFirstTimeInEver)
+        {
+            isFirstTimeInEver = false;
+            StorylineManager.onFirstTimeStoryline.Invoke(storylineDataIndex);
+        }
         if (storylineData.currentQuestChainIndex < so_StoryLine.questLines.Count)
         {
            
             SO_Questline so_Questline = so_StoryLine.questLines[storylineData.currentQuestChainIndex];
-            Debug.Log("PHASE " + storylineData.currentQuestLineIndex + " - " + so_Questline.questlineData.Count);
+          //  Debug.Log("PHASE " + storylineData.currentQuestLineIndex + " - " + so_Questline.questlineData.Count);
             if (storylineData.currentQuestLineIndex < so_Questline.questlineData.Count)
             {
-                Debug.Log("PHASE 1");
+              //  Debug.Log("PHASE 1");
                 QuestlineData questlineData = so_Questline.questlineData[storylineData.currentQuestLineIndex];
                 if (storylineData.completed)
                 {
@@ -57,7 +61,7 @@ public class Character : InteractibleObject
 
                         if (isQuestCompleted)
                         {
-                            Debug.Log("PHASE 2");
+                           // Debug.Log("PHASE 2");
                             if (storylineData.currentQuestLineIndex == 0)
                             {
 

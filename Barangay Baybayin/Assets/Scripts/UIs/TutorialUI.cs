@@ -58,7 +58,7 @@ public class TutorialUI : MonoBehaviour
 
     public void OnCloseReminderButtonUI()
     {
-        reminderFrameButton.enabled = false;
+        //reminderFrameButton.enabled = false;
        
         UIManager.onGameplayModeChangedEvent.Invoke(false);
         //TimeManager.onPauseGameTime.Invoke(true);
@@ -92,7 +92,7 @@ public class TutorialUI : MonoBehaviour
             }
 
             nextButton.gameObject.SetActive(false);
-            reminderFrameButton.enabled = true;
+            //reminderFrameButton.enabled = true;
         }
     }
     public void OnNextReminderButtonUI()
@@ -111,7 +111,7 @@ public class TutorialUI : MonoBehaviour
     {
         UIManager.onGameplayModeChangedEvent.Invoke(true);
         //TimeManager.onPauseGameTime.Invoke(false);
-        reminderFrameButton.enabled = false;
+        //reminderFrameButton.enabled = false;
         currentIndex = 0;
        // Debug.Log("TUTORIAL UI: " +p_tutorialReminder);
      
