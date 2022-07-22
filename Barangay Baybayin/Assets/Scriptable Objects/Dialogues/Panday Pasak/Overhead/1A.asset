@@ -15,7 +15,7 @@ MonoBehaviour:
   dialogues:
   - character: {fileID: 0}
     emotion: 10
-    words: "Use the Axe using the Tool Action button on the lower right, \nwhile
-      minding the Stamina Bar on the upper left."
+    words: "Use the Axe using the\nTool Action button on the lower right,\nwhile
+      minding the \nStamina Bar on the upper left."
     backgroundSprite: {fileID: 0}
-    speechTransitionType: 0
+    speechTransitionType: 1

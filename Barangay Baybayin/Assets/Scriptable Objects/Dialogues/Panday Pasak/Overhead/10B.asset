@@ -15,6 +15,7 @@ MonoBehaviour:
   dialogues:
   - character: {fileID: 0}
     emotion: 10
-    words: 'Use your Copper Axe to collect Wood (2 star). A tool can interact with
-      a node of its own rank or that higher by 1. '
+    words: "Use your Copper Axe to collect Wood (2 star). \nA tool can interact with
+      a node of its own rank or that higher by 1. "
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 0

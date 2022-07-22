@@ -15,6 +15,9 @@ MonoBehaviour:
   dialogues:
   - character: {fileID: 0}
     emotion: 10
-    words: Use the Axe, Hammer, and Pickaxe on the appropriate nodes, and level them
-      all up to Level 1!
+    words: 'Use the Axe, Hammer, and Pickaxe on the
+
+      appropriate nodes, and
+      level them all up to Level 1!'
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 0

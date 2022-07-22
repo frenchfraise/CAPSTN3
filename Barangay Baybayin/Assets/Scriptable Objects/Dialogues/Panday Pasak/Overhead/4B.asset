@@ -15,5 +15,7 @@ MonoBehaviour:
   dialogues:
   - character: {fileID: 0}
     emotion: 10
-    words: Mine the Tree node. Change tools by tapping the Axe icon on the Tool bar.
+    words: "Mine the Tree node. \nChange tools by tapping the Axe icon on the Tool
+      bar."
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 0

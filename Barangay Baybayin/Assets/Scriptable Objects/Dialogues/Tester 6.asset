@@ -15,6 +15,7 @@ MonoBehaviour:
   dialogues:
   - character: {fileID: 0}
     emotion: 10
-    words: Mine the Copper node. Change tools by tapping the Pickaxe icon on the
-      Tool bar.
+    words: "Mine the Copper node. \nChange tools by tapping \nthe Pickaxe icon on
+      the Tool bar."
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 0

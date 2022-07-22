@@ -28,6 +28,7 @@ public class PlayerManager : MonoBehaviour
 
     public GameObject player;
     public PlayerJoystick playerMovement;
+    public Stamina playerStamina;
     public Transform playerTransform { get; private set; }
     //[SerializeField] private Stamina stamina;
     [SerializeField] private Bed bed;

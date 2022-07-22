@@ -15,6 +15,7 @@ MonoBehaviour:
   dialogues:
   - character: {fileID: 0}
     emotion: 10
-    words: Build something from the Wood Pile. Position near the pile, then use your
-      Hammer.
+    words: "Build something from the Wood Pile. \nPosition near the pile, \nthen
+      use your Hammer."
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 0

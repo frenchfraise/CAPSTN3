@@ -129,34 +129,57 @@ public class ToolCaster : MonoBehaviour
         if (canUse)
         {
             if (current_Tool.specialChargesCounter >= 1)
-            {
+            {          
                 animator.SetTrigger(current_Tool.toolName.ToString());
                 AudioManager.instance.GetSoundByName("Swing").source.Play();
-                ResourceNode targetResourceNode = GetResourceNode();
-                if (targetResourceNode)
+                if (current_Tool.toolName == "Hammer")
                 {
-                    float xPos = targetResourceNode.transform.position.x;
-                    if (xPos > transform.position.x) // right
+                    Infrastructure targetInfrastructure = GetInfrastructure();
+                    if (targetInfrastructure)
                     {
-                        animator.SetBool("isFacingRight", true);
+                        float xPos = targetInfrastructure.transform.position.x;
+                        if (xPos > transform.position.x) // right
+                        {
+                            animator.SetBool("isFacingRight", true);
+                        }
+                        else // left
+                        {
+                            animator.SetBool("isFacingRight", false);
+                        }
+                        targetInfrastructure.OnInfrastructureHitEvent.Invoke(
+                           current_Tool.craftLevel,
+                           current_Tool.so_Tool.damage[current_Tool.craftLevel],
+                           onToolHitSucceededEvent);
                     }
-                    else // left
+                }
+                else
+                {
+                    animator.SetTrigger(current_Tool.toolName.ToString());
+                    AudioManager.instance.GetSoundByName("Swing").source.Play();
+                    ResourceNode targetResourceNode = GetResourceNode();
+                    if (targetResourceNode)
                     {
-                        animator.SetBool("isFacingRight", false);
+                        float xPos = targetResourceNode.transform.position.x;
+                        if (xPos > transform.position.x) // right
+                        {
+                            animator.SetBool("isFacingRight", true);
+                        }
+                        else // left
+                        {
+                            animator.SetBool("isFacingRight", false);
+                        }
+                        //Debug.Log("SPECIAL USED");
+                        current_Tool.specialChargesCounter--;
+                        targetResourceNode.OnResourceNodeHitEvent.Invoke(current_Tool.so_Tool.useForResourceNode,
+                            current_Tool.craftLevel,
+                            current_Tool.so_Tool.damage[current_Tool.craftLevel] * critMultiplier,
+                            onToolSpecialUsedEvent);
                     }
-                    //Debug.Log("SPECIAL USED");
-                    current_Tool.specialChargesCounter--;
-                    targetResourceNode.OnResourceNodeHitEvent.Invoke(current_Tool.so_Tool.useForResourceNode,
-                        current_Tool.craftLevel,
-                        current_Tool.so_Tool.damage[current_Tool.craftLevel] * critMultiplier,
-                        onToolSpecialUsedEvent);
                 }
                 //Debug.Log("Use Special call Coroutine!");
-                StartCoroutine(Co_ToolUseCooldown());
-            }
-           
-        }
-        
+                StartCoroutine(Co_ToolUseCooldown(false));
+            }           
+        }        
     }
     public void OnToolChanged(Tool p_newTool)
     {
@@ -245,7 +268,7 @@ public class ToolCaster : MonoBehaviour
                 if (isPrecise && canHit || !isPrecise)
                 {
                     Debug.Log("PRESSED" + " " + isPrecise + " " + current_Tool.so_Tool.staminaCost[current_Tool.craftLevel] + " " + canHit + " " + current_Tool.so_Tool.useRate[current_Tool.craftLevel]);
-                    StartCoroutine(Co_ToolUseCooldown());
+                    StartCoroutine(Co_ToolUseCooldown(true));
                 }
                 else if (isPrecise && !canHit)
                 {
@@ -256,12 +279,7 @@ public class ToolCaster : MonoBehaviour
             {
                 StorylineManager.onWorldEventEndedEvent.Invoke("SWINGINGWRONGTOOL", 0, 0);
             }
-           
-    
-       
-
         }
-
     }
     public ResourceNode GetResourceNode() 
     {
@@ -331,7 +349,7 @@ public class ToolCaster : MonoBehaviour
         current_Tool.ModifySpecialAmount(current_Tool.so_Tool.specialPointReward[current_Tool.craftLevel]);
     }
 
-    IEnumerator Co_ToolUseCooldown()
+    IEnumerator Co_ToolUseCooldown(bool p_bool)
     {
         canUse = false;
         //PlayerManager.instance.playerMovement.isMoving = false;
@@ -339,8 +357,8 @@ public class ToolCaster : MonoBehaviour
         onToolCanUseUpdatedEvent.Invoke(canUse);
 
         //Debug.Log(current_Tool.so_Tool.staminaCost[current_Tool.craftLevel]);
- 
-        onToolUsedEvent.Invoke(current_Tool.so_Tool.staminaCost[current_Tool.craftLevel]);
+        if (p_bool)
+            onToolUsedEvent.Invoke(current_Tool.so_Tool.staminaCost[current_Tool.craftLevel]);
         Debug.Log("Tool Cooldown Use Rate: " + current_Tool.so_Tool.useRate[current_Tool.craftLevel]);
         yield return new WaitForSeconds(current_Tool.so_Tool.useRate[current_Tool.craftLevel]);
         canUse = true;

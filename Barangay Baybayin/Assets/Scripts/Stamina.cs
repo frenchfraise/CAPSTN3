@@ -10,8 +10,8 @@ public class Stamina : MonoBehaviour
 {
     [SerializeField] private GenericBarUI genericBarUI;
 
-    private float currentStamina;
-    private float currentMaxStamina;
+    [HideInInspector] public float currentStamina { get; private set; }
+    [HideInInspector] public float currentMaxStamina { get; private set; }
     [SerializeField] private float maxStamina;
 
     [SerializeField] private float staminaFatiguePenalty;

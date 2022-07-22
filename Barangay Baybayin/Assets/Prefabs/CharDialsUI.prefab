@@ -180,7 +180,7 @@ MonoBehaviour:
   choiceUIPrefab: {fileID: 0}
   typewriterSpeed: 0.1
   avatarFadeTime: 0.5
-  avatarDelayTime: 1
+  avatarDelayTime: 2
   emoticonFadeTime: 0.5
   defaultEmoticonSize: {fileID: 1388465678332820902}
   targetEmoticonSize: {fileID: 8040242094185367306}
@@ -191,6 +191,7 @@ MonoBehaviour:
   emoticonBubbleSizeTime: 0.5
   character: {fileID: 0}
   currentSO_Dialogues: {fileID: 0}
+  isFoodFirstTime: 0
 --- !u!1 &938525291846429770
 GameObject:
   m_ObjectHideFlags: 0
@@ -672,7 +673,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 85d50ac31a5dd5a49a1e7a05d9ce62e3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6e9a85d3af3b3824195cf44d377b32b4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

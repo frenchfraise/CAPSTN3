@@ -15,5 +15,6 @@ MonoBehaviour:
   dialogues:
   - character: {fileID: 0}
     emotion: 10
-    words: Talk to Panday Pasak and upgrade your Pickaxe, Axe, and Hammer.
+    words: "Talk to Panday Pasak and upgrade \nyour Pickaxe, Axe, and Hammer."
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 0

@@ -15,5 +15,6 @@ MonoBehaviour:
   dialogues:
   - character: {fileID: 0}
     emotion: 10
-    words: Approach the Panday again and Talk to him, to accept his quest.
+    words: "Approach the Panday again \nand Talk to him, to accept his quest."
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 0

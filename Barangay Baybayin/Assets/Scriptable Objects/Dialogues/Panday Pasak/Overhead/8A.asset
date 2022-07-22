@@ -15,5 +15,6 @@ MonoBehaviour:
   dialogues:
   - character: {fileID: 0}
     emotion: 10
-    words: Talk to Panday Pasak and upgrade your Machete.
+    words: "Talk to Panday Pasak \nand upgrade your Bolo."
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 0
