@@ -21,8 +21,8 @@ MonoBehaviour:
     amount: 1
   - so_Item: {fileID: 11400000, guid: aaa9202b98b57234197af744ae889a10, type: 2}
     amount: 3
-  - so_Item: {fileID: 11400000, guid: f47be291e6fe4be4a878fc008e1698df, type: 2}
-    amount: 3
+  - so_Item: {fileID: 11400000, guid: 7ad2b8367688c364ea9be0e1403ae539, type: 2}
+    amount: 2
   requirements:
   - so_requirement: {fileID: 11400000, guid: 481aeb558144aa1479d3e3a669d2e343, type: 2}
     isCompleted: 0

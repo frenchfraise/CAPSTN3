@@ -37,10 +37,10 @@ MonoBehaviour:
   - 0.5
   - 0.25
   damage:
-  - 2
   - 3
-  - 5
-  - 7
+  - 4
+  - 6
+  - 8
   staminaCost:
   - 2
   - 3.5

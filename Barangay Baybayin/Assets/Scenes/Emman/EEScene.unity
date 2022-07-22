@@ -1051,7 +1051,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 101662862122452031, guid: fea5a514e58f9df44bdc47a1f3ee5647, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.00012207031
+      value: 0.000061035156
       objectReference: {fileID: 0}
     - target: {fileID: 101662862203666364, guid: fea5a514e58f9df44bdc47a1f3ee5647, type: 3}
       propertyPath: m_AnchorMax.x
@@ -27032,7 +27032,7 @@ MonoBehaviour:
   canInteract: 1
   hintSprite: {fileID: 21300000, guid: be734b9a7ee7e4c4699b472c126b0a49, type: 3}
   so_Infrastructure: {fileID: 11400000, guid: 825584f80e6573b47810eb67b34b0208, type: 2}
-  currentLevel: 1
+  currentLevel: 0
 --- !u!114 &1303261354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27059,6 +27059,7 @@ GameObject:
   - component: {fileID: 1307310947}
   - component: {fileID: 1307310949}
   - component: {fileID: 1307310948}
+  - component: {fileID: 1307310950}
   m_Layer: 7
   m_Name: Pier
   m_TagString: Untagged
@@ -27149,7 +27150,7 @@ MonoBehaviour:
   canInteract: 1
   hintSprite: {fileID: 21300000, guid: be734b9a7ee7e4c4699b472c126b0a49, type: 3}
   so_Infrastructure: {fileID: 11400000, guid: 31e6de9b90a468e42be79544109d900a, type: 2}
-  currentLevel: 1
+  currentLevel: 0
 --- !u!114 &1307310949
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27164,6 +27165,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthOverheadUI: {fileID: 0}
   isAlive: 0
+--- !u!61 &1307310950
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1307310945}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 8.747875, y: 8.355341}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 29.16, y: 37.11602}
+    newSize: {x: 29.16, y: 37.11602}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 11.664249, y: 3.3581905}
+  m_EdgeRadius: 0
 --- !u!1 &1314657924
 GameObject:
   m_ObjectHideFlags: 0
@@ -40727,7 +40754,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1847512295
 Transform:
   m_ObjectHideFlags: 0
@@ -46987,7 +47014,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83312e8b381ed184c814acb47a790981, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amount: 0
+  amount: 2
   staminaRegen: 30
 --- !u!1 &1919849043
 GameObject:

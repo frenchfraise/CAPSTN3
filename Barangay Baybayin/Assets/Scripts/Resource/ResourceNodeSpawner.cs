@@ -123,7 +123,7 @@ public class ResourceNodeSpawner : MonoBehaviour
             }
             else if (newResourceNode is TreeVariantThreeNode)
             {
-                TreeVariantTwoNode nResourceNode = TreeVariantTwoNodePool.pool.Get();
+                TreeVariantThreeNode nResourceNode = TreeVariantThreeNodePool.pool.Get();
                 nResourceNode.transform.position = transform.position + new Vector3(0f, 0f, 0f);
                 nResourceNode.InitializeValues();
             }
