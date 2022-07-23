@@ -27,7 +27,7 @@ public class RadiateScaleEffect : MonoBehaviour
         yield return new WaitForSeconds(delayTime);
         var sequenceTwo = DOTween.Sequence()
         .Append(affectedTransform.DOScale(new Vector3(scaleUpPeakOffset, scaleUpPeakOffset), scaleUpTime));
-        sequence.Play();
+        sequenceTwo.Play();
         yield return sequenceTwo.WaitForCompletion();
        
         runningCoroutine = Co_Scale();

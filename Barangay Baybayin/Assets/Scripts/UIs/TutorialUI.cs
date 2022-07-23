@@ -37,8 +37,9 @@ public class TutorialUI : MonoBehaviour
     private void Awake()
     {
         onRemindTutorialEvent.AddListener(RemindTutorialEvent);
+ 
     }
-
+  
     private void OnDestroy()
     {
         onRemindTutorialEvent.RemoveListener(RemindTutorialEvent);

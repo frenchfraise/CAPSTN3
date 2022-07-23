@@ -63,12 +63,12 @@ public class Panday : InteractibleObject
 
                 if (storylineData.currentQuestChainIndex < so_StoryLine.questLines.Count)
                 {
-                    Debug.Log("wee");
+                    //Debug.Log("wee");
                     SO_Questline so_Questline = so_StoryLine.questLines[storylineData.currentQuestChainIndex];
-                    Debug.Log("PHASE " + storylineData.currentQuestLineIndex + " - " + so_Questline.questlineData.Count);
+                    //Debug.Log("PHASE " + storylineData.currentQuestLineIndex + " - " + so_Questline.questlineData.Count);
                     if (storylineData.currentQuestLineIndex < so_Questline.questlineData.Count)
                     {
-                        Debug.Log("PHASE 1");
+                       // Debug.Log("PHASE 1");
                         QuestlineData questlineData = so_Questline.questlineData[storylineData.currentQuestLineIndex];
 
                         if (isFirstTime)
@@ -84,7 +84,7 @@ public class Panday : InteractibleObject
                             if (isQuestCompleted)
                             {
                                 complete = true;
-                                Debug.Log("PHASE 2");
+                              //  Debug.Log("PHASE 2");
 
                                 CharacterDialogueUI.onCharacterSpokenToEvent.Invoke(questId, questlineData.questCompleteSO_Dialogues);
 

@@ -26,7 +26,7 @@ public class ToolsUI : MonoBehaviour
     private ToolCaster toolCaster;
     private bool canUse = true;
     private bool canSwitch = true;
-    float val = 465f;
+    public float val = 465f;
 
     private int currentEquip = 0;
     [SerializeField] private int requiredTool = -1;
@@ -138,7 +138,7 @@ public class ToolsUI : MonoBehaviour
         SO_Tool selectedSO_Tool = selected_Tool.so_Tool;
         toolUI[currentEquip].levelCount.text = selected_Tool.proficiencyLevel.ToString();
         toolUI[currentEquip].frame.sprite = frameLevels[selected_Tool.proficiencyLevel];
-        Debug.Log(p_level + " " + selected_Tool.toolName + " " +selected_Tool.proficiencyAmount  + " "+ selectedSO_Tool.maxProficiencyAmount[selected_Tool.proficiencyLevel]);
+        //Debug.Log(p_level + " " + selected_Tool.toolName + " " +selected_Tool.proficiencyAmount  + " "+ selectedSO_Tool.maxProficiencyAmount[selected_Tool.proficiencyLevel]);
         toolUI[currentEquip].genericBarUI.ResetBar(selected_Tool.proficiencyAmount, 
             selectedSO_Tool.maxProficiencyAmount[selected_Tool.proficiencyLevel]);
   
@@ -206,7 +206,7 @@ public class ToolsUI : MonoBehaviour
         }
         else if (requiredTool != -1 && requiredTool != index)
         {
-            Debug.Log("DADA");
+            //Debug.Log("DADA");
             StorylineManager.onWorldEventEndedEvent.Invoke("EQUIPPINGWRONGTOOL", 0, 0);
         }
 

@@ -83,7 +83,11 @@ public class TutorialManager : MonoBehaviour
     }
     public void DontUseTutorial()
     {
-     
+        ToolCaster.onToolUsedEvent.RemoveListener(TeachUseTool);
+        ToolCaster.onToolSpecialUsedEvent.RemoveListener(TeachSpecialUseTool);
+        ToolsUI.onToolQuestSwitchEvent.Invoke(-1);
+        ToolCaster.onSetIsPreciseEvent.Invoke(false);
+        ToolCaster.onSetRequireCorrectToolEvent.Invoke(null);
         infrastructure.gameObject.SetActive(false);
         infrastructureTwo.gameObject.SetActive(false);
         specialButton.SetActive(true);
@@ -143,7 +147,9 @@ public class TutorialManager : MonoBehaviour
     }
     void Unsetup()
     {
-
+        ToolsUI.onToolQuestSwitchEvent.Invoke(-1);
+        ToolCaster.onSetIsPreciseEvent.Invoke(false);
+        ToolCaster.onSetRequireCorrectToolEvent.Invoke(null);
         infrastructure.gameObject.SetActive(false);
         infrastructureTwo.gameObject.SetActive(false);
         specialButton.SetActive(true);

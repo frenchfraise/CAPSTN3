@@ -47,6 +47,7 @@ public class ToolCaster : MonoBehaviour
     private bool isFirstTime;
     private bool rewardSpecialAllowed = true;
 
+    private int currentCharges;
     private void Awake()
     {
         aim = GetComponent<PlayerJoystick>().aim;
@@ -132,7 +133,7 @@ public class ToolCaster : MonoBehaviour
             if (current_Tool.specialChargesCounter >= 1)
             {
                 rewardSpecialAllowed = false;
-                current_Tool.specialChargesCounter--;
+        
                 animator.SetTrigger(current_Tool.toolName.ToString());
                 AudioManager.instance.GetSoundByName("Swing").source.Play();
                 if (current_Tool.toolName == "Hammer")
@@ -149,10 +150,11 @@ public class ToolCaster : MonoBehaviour
                         {
                             animator.SetBool("isFacingRight", false);
                         }
+                        current_Tool.specialChargesCounter--;
                         targetInfrastructure.OnInfrastructureHitEvent.Invoke(
                            current_Tool.craftLevel,
                            current_Tool.so_Tool.damage[current_Tool.craftLevel],
-                           onToolHitSucceededEvent);
+                           onToolSpecialUsedEvent);
                     }
                 }
                 else
@@ -178,6 +180,7 @@ public class ToolCaster : MonoBehaviour
                             current_Tool.so_Tool.damage[current_Tool.craftLevel] * critMultiplier,
                             onToolSpecialUsedEvent);
                     }
+                 
                 }
                 //Debug.Log("Use Special call Coroutine!");
                 StartCoroutine(Co_ToolUseCooldown(false));
@@ -218,6 +221,7 @@ public class ToolCaster : MonoBehaviour
     {
         if (canUse)
         {
+            rewardSpecialAllowed = true;
             if (requiredTool == null || requiredTool != null && current_Tool == requiredTool)
             {
                 // animator.SetTrigger("UseTool");            

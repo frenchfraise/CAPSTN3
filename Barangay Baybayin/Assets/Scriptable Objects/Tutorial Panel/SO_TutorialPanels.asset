@@ -42,7 +42,7 @@ MonoBehaviour:
       the corresponding rank of material nodes. Drops spawned magnetize to you, and
       add to the count.
   - tutorialTitle: Time, Date, and Weather
-    image: {fileID: 0}
+    image: {fileID: 21300000, guid: 3f45d1046890e8348976d80e647943e4, type: 3}
     words: "The Time Dial shows the relative amount of time from sunrise to end of
       a day. The Weather Icon represents the day\u2019s weather. The Date & Time
       portion shows the current calendar day and time.   \r\n"

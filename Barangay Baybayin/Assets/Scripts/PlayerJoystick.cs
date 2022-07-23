@@ -60,7 +60,7 @@ public class PlayerJoystick : MonoBehaviour
     }
     void OnResourceNodeFinishedEvent()
     {
-        Debug.Log("IT DIED");
+        //Debug.Log("IT DIED");
         interactHint.SetActive(false);
 
 
