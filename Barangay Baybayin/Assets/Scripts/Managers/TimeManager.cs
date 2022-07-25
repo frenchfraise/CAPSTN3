@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class TimeChangedEvent : UnityEvent<int, int, int> { };
+public class TimeChangedEvent : UnityEvent<int, int, int, int> { };
 public class DayEndedEvent : UnityEvent<bool,int> { };
 
 public class DayChangingEvent : UnityEvent { };
@@ -55,8 +55,9 @@ public class TimeManager : MonoBehaviour
     public static int minute;
     private int minuteByTwos;
     public static int minuteByTens;
-    private int hour;
-    public static string abbreviation;
+    private int hour24;
+    private int hour12;
+    public string abbreviation { get; private set; }
 
     [SerializeField] private float oneMinToRealSeconds;
 
@@ -87,10 +88,12 @@ public class TimeManager : MonoBehaviour
     void Start()
     {
         minute = 0;
-        hour = startHour;
+        hour24 = startHour;
+        hour12 = startHour;
+        abbreviation = "AM";
         tutorialOn = true;
         //onDayEndedEvent.Invoke(false,dayCount);
-        onHourChanged.Invoke(hour); //TEMPORARY
+        onHourChanged.Invoke(hour24); //TEMPORARY
         
         DoTimer = true;
         //NewDay();            
@@ -127,7 +130,7 @@ public class TimeManager : MonoBehaviour
     IEnumerator ForceTest()
     {
         yield return new WaitForSeconds(2f);
-        onHourChanged.Invoke(hour); //TEMPORARY
+        onHourChanged.Invoke(hour24); //TEMPORARY
     }
 
     IEnumerator Co_DoTimer()
@@ -146,13 +149,19 @@ public class TimeManager : MonoBehaviour
                 }
                 if (minute >= minutesInHour)
                 {
-                    hour++;
-                    if (hour > hoursInDay) hour = 0;
-                    onHourChanged.Invoke(hour); //TEMPORARY
+                    hour24++;
+                    hour12++;
+                    if (hour24 > hoursInDay) hour24 = 0;
+                    if (hour12 > 11)
+                    {
+                        abbreviation = "PM";
+                        if (hour12 > 12) hour12 = 1;
+                    }
+                    onHourChanged.Invoke(hour24); //TEMPORARY
                     minute = 0;
                     minuteByTens = 0;
                 }
-                onTimeChangedEvent?.Invoke(hour, minute, minuteByTens);
+                onTimeChangedEvent?.Invoke(hour24, hour12, minute, minuteByTens);
 
             }
         }
@@ -160,11 +169,13 @@ public class TimeManager : MonoBehaviour
         
     }
 
-    private void OnTimeCheck(int p_hour, int p_minute, int p_minuteByTens)
+    private void OnTimeCheck(int p_hour24, int p_hour12, int p_minute, int p_minuteByTens)
     {
-        if (p_hour >= endHour)
+        if (p_hour24 >= endHour)
         {
-            hour = startHour;
+            hour24 = startHour;
+            hour12 = startHour;
+            abbreviation = "AM";
             onDayEndedEvent.Invoke(false,dayCount);
         }
     }
@@ -182,14 +193,14 @@ public class TimeManager : MonoBehaviour
     public void NewDay()
     {
         Debug.Log("NEW DAY");
-        TimeManager.instance.hour = TimeManager.instance.startHour;
+        TimeManager.instance.hour24 = TimeManager.instance.startHour;
        
         minute = 0;
         minuteByTwos = 0;
         minuteByTens = 0;
-        onTimeChangedEvent?.Invoke(hour, minute, minuteByTens);
+        onTimeChangedEvent?.Invoke(hour24, hour12, minute, minuteByTens);
         TimeManager.instance.dayCount++;
-        onHourChanged.Invoke(hour);
+        onHourChanged.Invoke(hour24);
         TimeManager.onDayChangeEndedEvent.Invoke();
         StorylineManager.onWorldEventEndedEvent.Invoke("W",0,dayCount);
     }

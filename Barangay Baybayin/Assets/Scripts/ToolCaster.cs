@@ -340,7 +340,6 @@ public class ToolCaster : MonoBehaviour
                     }
                 }
             }
-
         }
         return null;
     }
@@ -359,18 +358,15 @@ public class ToolCaster : MonoBehaviour
 
     IEnumerator Co_ToolUseCooldown(bool p_bool)
     {
-        canUse = false;
-        //PlayerManager.instance.playerMovement.isMoving = false;
-        // animator.SetTrigger("UseTool");
+        canUse = false;        
         onToolCanUseUpdatedEvent.Invoke(canUse);
 
         //Debug.Log(current_Tool.so_Tool.staminaCost[current_Tool.craftLevel]);
-        if (p_bool)
-            onToolUsedEvent.Invoke(current_Tool.so_Tool.staminaCost[current_Tool.craftLevel]);
+        if (p_bool) onToolUsedEvent.Invoke(staminaCost);
         //Debug.Log("Tool Cooldown Use Rate: " + current_Tool.so_Tool.useRate[current_Tool.craftLevel]);
         yield return new WaitForSeconds(current_Tool.so_Tool.useRate[current_Tool.craftLevel]);
-        canUse = true;
-        //PlayerManager.instance.playerMovement.isMoving = true;
+        
+        canUse = true;        
         onToolCanUseUpdatedEvent.Invoke(canUse);
     }
     IEnumerator Co_ToolSwitchCooldown()
@@ -389,6 +385,11 @@ public class ToolCaster : MonoBehaviour
         {
             staminaCost = current_Tool.so_Tool.staminaCost[current_Tool.craftLevel] * 1.5f;
             Debug.Log("It is rainy! Tax is: " + staminaCost);
+        }
+        else if (p_currentWeathers[0] == null)
+        {
+            Debug.Log("No tax applied!");
+            staminaCost = current_Tool.so_Tool.staminaCost[current_Tool.craftLevel];
         }
         else
         {

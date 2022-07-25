@@ -7,9 +7,8 @@ using DG.Tweening;
 public class LightingControl : MonoBehaviour
 {
     [SerializeField] private SO_LightingSchedule lightingSchedule;
-
     private Light2D light2D;
-
+    private IEnumerator lightCoroutine;
     private void Awake()
     {
         light2D = GetComponent<Light2D>();
@@ -48,10 +47,32 @@ public class LightingControl : MonoBehaviour
                 {
                     float targetLightingIntensity = lightingSchedule.lightingBrightnessArray[i].lightIntensity;
                     Color targetColor = lightingSchedule.lightingBrightnessArray[i].color;
-                    StartCoroutine(FadeLightRoutine(targetLightingIntensity, targetColor));                    
+                    if (lightCoroutine != null)
+                    {
+                        StopCoroutine(lightCoroutine);
+                        lightCoroutine = null;
+                    }
+                    lightCoroutine = FadeLightRoutine(targetLightingIntensity, targetColor);
+                    StartCoroutine(lightCoroutine);                    
                     break;
                 }
             }
+            /*else if (WeatherManager.instance.GetCurrentWeathers(0).name == null && lightingSchedule.lightingBrightnessArray[i].weatherName == null)
+            {
+                if (lightingSchedule.lightingBrightnessArray[i].hour == p_hour)
+                {
+                    float targetLightingIntensity = lightingSchedule.lightingBrightnessArray[i].lightIntensity;
+                    Color targetColor = lightingSchedule.lightingBrightnessArray[i].color;
+                    if (lightCoroutine != null)
+                    {
+                        StopCoroutine(lightCoroutine);
+                        lightCoroutine = null;
+                    }
+                    lightCoroutine = FadeLightRoutine(targetLightingIntensity, targetColor);
+                    StartCoroutine(lightCoroutine);
+                    break;
+                }
+            }*/
         }
     }
 
@@ -63,7 +84,7 @@ public class LightingControl : MonoBehaviour
         {
             //Debug.Log(light2D.color + " != " + targetColor);
             light2D.intensity = Mathf.MoveTowards(light2D.intensity, targetLightingIntensity, fadeSpeed * Time.deltaTime);           
-            light2D.color = Color.Lerp(light2D.color, targetColor, 0.01f);
+            light2D.color = Color.Lerp(light2D.color, targetColor, 0.01f);            
             if (light2D.intensity == targetLightingIntensity && light2D.color == targetColor)
             {
                 light2D.intensity = targetLightingIntensity;

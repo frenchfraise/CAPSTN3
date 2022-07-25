@@ -21,9 +21,10 @@ public class DigitalClockUI : MonoBehaviour
         TimeManager.onTimeChangedEvent.RemoveListener(UpdateTime);
     }
 
-    // Update is called once per frame
-    private void UpdateTime(int hour, int minute, int minuteByTens)
+    private void UpdateTime(int hour24, int hour12, int minute, int minuteByTens)
     {
-        textDisplay.text = $"{hour:00}:{minuteByTens:00}";
+        //Debug.Log(TimeManager.);
+        textDisplay.text = $"{hour12:00}:{minuteByTens:00} {TimeManager.instance.abbreviation}";
+        //textDisplay.text = hour12.ToString() + ":" + minuteByTens.ToString() + " " + TimeManager.abbreviation;
     }
 }

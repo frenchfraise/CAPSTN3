@@ -30,7 +30,7 @@ public class PlayerManager : MonoBehaviour
     public PlayerJoystick playerMovement;
     public Stamina playerStamina;
     public Transform playerTransform { get; private set; }
-    //[SerializeField] private Stamina stamina;
+    public Room playerRoom;
     [SerializeField] private Bed bed;
     [SerializeField] public Passageway startRoomPassageway;
     [SerializeField] private MaterialFloater floaterPrefab;
