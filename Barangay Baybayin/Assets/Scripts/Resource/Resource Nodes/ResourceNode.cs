@@ -46,7 +46,18 @@ public class ResourceNode : Unit
     public virtual void Hit( List<SO_ResourceNode> p_useForResourceNode,int p_craftLevel, float p_currentDamage, UnityEvent p_eventCallback) 
     {
         //Debug.Log("1 " + p_useForResourceNode + " - " + p_craftLevel + " - " + p_currentDamage + " - ");
-        foreach(SO_ResourceNode useForResourceNode in p_useForResourceNode)
+        if (health.healthOverheadUI == null)
+        {
+            health.healthOverheadUI = HealthOverheadUIPool.pool.Get();
+
+            health.healthOverheadUI.SetHealthBarData(transform, UIManager.instance.overheadUI);
+            health.healthOverheadUI.health = health;
+            health.onHealthModifiedEvent.AddListener(health.healthOverheadUI.OnHealthChanged);
+            health.OnDeathEvent.AddListener(health.healthOverheadUI.OnHealthDied);
+            
+        }
+        
+        foreach (SO_ResourceNode useForResourceNode in p_useForResourceNode)
         {
             if (useForResourceNode == so_ResourceNode)
             {
@@ -54,7 +65,7 @@ public class ResourceNode : Unit
                 //if (p_craftLevel >= levelRequirement)
                 //{
 
-                Health health = GetComponent<Health>();
+           
 
                 health.onHealthModifyEvent.Invoke(-p_currentDamage);
 
@@ -85,7 +96,7 @@ public class ResourceNode : Unit
             newItem.transform.position = (Vector2) transform.position;
             newItem.startPosition = (Vector2) transform.position;
             newItem.so_Item = chosenResourceDrop.so_Item;
-            newItem.GetComponent<SpriteRenderer>().sprite = chosenResourceDrop.so_Item.icon;
+            newItem.sr.sprite = chosenResourceDrop.so_Item.icon;
         }
         
     }

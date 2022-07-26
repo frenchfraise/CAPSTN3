@@ -6,8 +6,7 @@ using UnityEngine;
 public class QuestHint : MonoBehaviour
 {
     WorldEventSubscriber worldEventSubscriber;
-    [SerializeField] private HoverEffect iconHoverEffect;
-    [SerializeField] private RadiateScaleEffect radiateScaleEffect;
+    public Animator anim;
  
     private void Awake()
     {
@@ -34,12 +33,7 @@ public class QuestHint : MonoBehaviour
         //worldEventSubscriber.ForceEvents(0,0);
         OnEventDoTransform eventTrans = GetComponent<OnEventDoTransform>();
         transform.position = eventTrans.actionTransform[0].actionPartTransform[0].position;
-        iconHoverEffect.startYPosition = iconHoverEffect.transform.position.y;
-        iconHoverEffect.gameObject.SetActive(true);
-        iconHoverEffect.runningCoroutine = iconHoverEffect.Co_Hover();
-        StartCoroutine(iconHoverEffect.runningCoroutine);
-        radiateScaleEffect.runningCoroutine = radiateScaleEffect.Co_Scale();
-        StartCoroutine(radiateScaleEffect.runningCoroutine);
+        
     
     }
 
@@ -48,49 +42,19 @@ public class QuestHint : MonoBehaviour
        // iconHoverEffect.gameObject.SetActive(!p_isActive);
         if (!p_isActive == true)
         {
-            iconHoverEffect.gameObject.SetActive(true);
-            if (iconHoverEffect.runningCoroutine != null)
-            {
-                StopCoroutine(iconHoverEffect.runningCoroutine);
-                iconHoverEffect.runningCoroutine = null;
-            }
-            iconHoverEffect.sr.enabled = true;
-            iconHoverEffect.srIcon.enabled = true;
-            iconHoverEffect.runningCoroutine = iconHoverEffect.Co_Hover();
-            StartCoroutine(iconHoverEffect.runningCoroutine);
-
-            if (radiateScaleEffect.runningCoroutine != null)
-            {
-                StopCoroutine(radiateScaleEffect.runningCoroutine);
-                radiateScaleEffect.runningCoroutine = null;
-            }
-            radiateScaleEffect.runningCoroutine = radiateScaleEffect.Co_Scale();
-            StartCoroutine(radiateScaleEffect.runningCoroutine);
+            anim.enabled = true;
         }
         else if (!p_isActive == false)
         {
-            if (iconHoverEffect.runningCoroutine != null)
-            {
-                StopCoroutine(iconHoverEffect.runningCoroutine);
-                iconHoverEffect.runningCoroutine = null;
-                iconHoverEffect.srIcon.enabled = false;
-                iconHoverEffect.sr.enabled = false;//gameObject.SetActive(false);
-      
-            }
-            else if (radiateScaleEffect.runningCoroutine != null)
-            {
-                StopCoroutine(radiateScaleEffect.runningCoroutine);
-                radiateScaleEffect.runningCoroutine = null;
-        
+            anim.enabled = false;
 
-            }
 
         }
     }
 
     public void Subscriber()
     {
-        iconHoverEffect.startYPosition = iconHoverEffect.transform.position.y;
+        
     }
  
 

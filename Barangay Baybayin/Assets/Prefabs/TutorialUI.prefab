@@ -450,7 +450,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3874304419177015076
 RectTransform:
   m_ObjectHideFlags: 0
@@ -598,7 +598,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3874304419523141733
 RectTransform:
   m_ObjectHideFlags: 0
@@ -618,7 +618,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -222.67929}
-  m_SizeDelta: {x: 193.62, y: 79.109985}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3874304419523141737
 CanvasRenderer:
@@ -892,7 +892,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3874304419681808801}
   - component: {fileID: 3874304419681808803}
-  - component: {fileID: 3874304419681808802}
   m_Layer: 5
   m_Name: TutorialUI
   m_TagString: Untagged
@@ -931,39 +930,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3874304419681808800}
   m_CullTransparentMesh: 1
---- !u!114 &3874304419681808802
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3874304419681808800}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 419d35ab0c0bd1b40ad2067fcf509867, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  frame: {fileID: 3874304419177015075}
-  reminderFramesContainer: {fileID: 304821927688994944}
-  timeDay: {fileID: 0}
-  weatherRadio: {fileID: 0}
-  bed: {fileID: 0}
-  inventory: {fileID: 0}
-  quests: {fileID: 0}
-  map: {fileID: 0}
-  critHits: {fileID: 0}
-  food: {fileID: 0}
-  isTimeDay: 0
-  isWeatherRadio: 0
-  isBed: 0
-  isInventory: 0
-  isQuests: 0
-  isMap: 0
-  isCritHits: 0
-  isFood: 0
-  button: {fileID: 3874304419162314612}
-  overheadUI: {fileID: 3874304419523141732}
-  overheadText: {fileID: 3874304420126441650}
 --- !u!1 &3874304420101602088
 GameObject:
   m_ObjectHideFlags: 0
@@ -1034,10 +1000,10 @@ RectTransform:
   m_Father: {fileID: 3874304419523141733}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 96.81, y: -39.555}
-  m_SizeDelta: {x: 153.62, y: 39.11}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3874304420126441651
 CanvasRenderer:
@@ -1578,7 +1544,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3874304419681808802}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: TutorialUI, Assembly-CSharp
         m_MethodName: OnCloseReminderButtonUI
         m_Mode: 1

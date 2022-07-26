@@ -7,16 +7,18 @@ using DG.Tweening;
 public class DayInfoUI : MonoBehaviour
 {
     [SerializeField] private GameObject frame;
-    [SerializeField] private RadiateScaleUIEffect faintRadiateScaleUI;
+
     public TMP_Text dayText; //make this action
 
     public TMP_Text dayCountText;
+    public TMP_Text daysRemainingText;
     public TMP_Text conditionsText;
     private bool fainted;
     private bool isFirstTime = true;
+
     private void Awake()
     {
-        faintRadiateScaleUI.gameObject.SetActive(false);
+
         DayEnd(false,0);
     }
     private void OnEnable()
@@ -117,14 +119,32 @@ public class DayInfoUI : MonoBehaviour
         {
             conditionsText.text = "ENDED";
             dayCountText.text = "DAY " + (p_dayCount).ToString();
-
+            if (TimeManager.instance.daysRemaining <= 12)
+            {
+                daysRemainingText.text = (TimeManager.instance.daysRemaining - 1).ToString() + " DAYS REMAING";
+                daysRemainingText.color = new Color32(255, 255, 255, 0);
+            }
+            else
+            {
+                daysRemainingText.color = new Color32(0, 0, 0, 0);
+            }
         }
         else
         {
             conditionsText.text = "YOU FAINTED";
             dayCountText.text = "DAY " + (p_dayCount).ToString();
             dayText.text = "DAY " + (p_dayCount + 1).ToString();
-          
+            if (TimeManager.instance.daysRemaining <= 12)
+            {
+                daysRemainingText.text = (TimeManager.instance.daysRemaining - 1).ToString() + " DAYS REMAING";
+                daysRemainingText.color = new Color32(255, 255, 255, 0);
+
+            }
+            else
+            {
+                daysRemainingText.color = new Color32(0,0,0,0);
+            }
+
             //if (faintRadiateScaleUI.runningCoroutine != null) 
             //{
             //    StopCoroutine(faintRadiateScaleUI.runningCoroutine);
@@ -152,6 +172,10 @@ public class DayInfoUI : MonoBehaviour
         Sequence tr = DOTween.Sequence();
         tr.Append(conditionsText.DOFade(1f, 0.75f));
         tr.Join(dayCountText.DOFade(1f, 0.75f));
+        //if (TimeManager.instance.daysRemaining <= 12)
+        //{
+        //    tr.Join(daysRemainingText.DOFade(1f, 0.75f));
+        //}
         tr.Play();
         yield return tr.WaitForCompletion();
 
@@ -166,6 +190,10 @@ public class DayInfoUI : MonoBehaviour
         Sequence trt = DOTween.Sequence();
         trt.Join(conditionsText.DOFade(0f, 0.75f));
         trt.Join(dayCountText.DOFade(0f, 0.75f));
+        //if (TimeManager.instance.daysRemaining <= 12)
+        //{
+        //    trt.Join(daysRemainingText.DOFade(0f, 0.75f));
+        //}
         trt.Play();
         yield return trt.WaitForCompletion();
         yield return new WaitForSeconds(1f);
@@ -176,6 +204,10 @@ public class DayInfoUI : MonoBehaviour
         Sequence t = DOTween.Sequence();
         t.Join(conditionsText.DOFade(1f, 0.75f));
         t.Join(dayCountText.DOFade(1f, 0.75f));
+        if (TimeManager.instance.daysRemaining <= 12)
+        {
+            t.Join(daysRemainingText.DOFade(1f, 0.75f));
+        }
         t.Play();
 
         yield return t.WaitForCompletion();
@@ -184,6 +216,11 @@ public class DayInfoUI : MonoBehaviour
         Sequence te = DOTween.Sequence();
         te.Join(conditionsText.DOFade(0f, 0.5f));
         te.Join(dayCountText.DOFade(0f, 0.5f));
+        if (TimeManager.instance.daysRemaining <= 12)
+        {
+            te.Join(daysRemainingText.DOFade(0f, 0.5f));
+        }
+
         te.Play();
         yield return te.WaitForCompletion();
         TransitionUI.onFadeTransition.Invoke(0, false);
@@ -194,11 +231,15 @@ public class DayInfoUI : MonoBehaviour
         TownDialogueData tdd = StorylineManager.instance.townEventDialogues;
       //  Debug.Log("TRY");
        // Debug.Log("TRY " + tdd.td[tdd.currentQuestChainIndex].dayRequiredCount + " - - " + (p_dayCount + 1));
-        if (tdd.td[tdd.currentQuestChainIndex].dayRequiredCount == (p_dayCount + 1))
+        if (tdd.currentQuestChainIndex < tdd.td.Count - 1)
         {
-          //  Debug.Log("TEEEEEEEEEEEE");
-            CharacterDialogueUI.onCharacterSpokenToEvent.Invoke("TE", tdd.td[tdd.currentQuestChainIndex].so_Dialogue);
+            if (tdd.td[tdd.currentQuestChainIndex].dayRequiredCount == (p_dayCount + 1))
+            {
+                //  Debug.Log("TEEEEEEEEEEEE");
+                CharacterDialogueUI.onCharacterSpokenToEvent.Invoke("TE", tdd.td[tdd.currentQuestChainIndex].so_Dialogue);
+            }
         }
+        
 
     }
 

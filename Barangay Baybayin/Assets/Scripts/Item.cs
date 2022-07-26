@@ -37,7 +37,9 @@ public class Item : MonoBehaviour
     private Rigidbody2D rb;
     [SerializeField] private float magnetizeDelay = 2f;
     [SerializeField] private float magnetizeSpeed = 40f;
-    HoverEffect hoverEffect;
+
+    public SpriteRenderer sr;
+    [SerializeField] Animator anim;
     //protected override void OnInteract()
     //{
     //    if (canInteract)
@@ -58,11 +60,7 @@ public class Item : MonoBehaviour
         plrTransform = PlayerManager.instance.playerTransform;
 
         offsetY = Random.Range(minOffsetY, maxOffsetY);
-        hoverEffect = GetComponent<HoverEffect>();
-        if (hoverEffect.runningCoroutine != null)
-        {
-            hoverEffect.StopCoroutine(hoverEffect.runningCoroutine);
-        }
+     
     
     }
     private void Awake()
@@ -127,7 +125,7 @@ public class Item : MonoBehaviour
                 //canInteract = true;
                 isSplashing = true;
                
-                hoverEffect.startYPosition = transform.position.y;
+             
                 if (firstTime)
                 {
                     firstTime = false;
@@ -164,19 +162,10 @@ public class Item : MonoBehaviour
     
     IEnumerator Co_Magnetize()
     {
-        if (hoverEffect.runningCoroutine != null)
-        {
-            hoverEffect.StopCoroutine(hoverEffect.runningCoroutine);
-        }
-        hoverEffect.runningCoroutine = hoverEffect.Co_Hover();
-        StartCoroutine(hoverEffect.runningCoroutine);
-       // hoverEffect.runningCoroutine = StartCoroutine(hoverEffect.Co_Hover());
+        anim.enabled = (true);
+        // hoverEffect.runningCoroutine = StartCoroutine(hoverEffect.Co_Hover());
         yield return new WaitForSeconds(magnetizeDelay);
-        if (hoverEffect.runningCoroutine != null)
-        {
-            hoverEffect.StopCoroutine(hoverEffect.runningCoroutine);
-            //Debug.Log("DISABLED");
-        }
+        anim.enabled = (false);
         isMagnetizing = true;
 
 

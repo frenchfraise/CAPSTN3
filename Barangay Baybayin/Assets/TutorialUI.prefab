@@ -121,7 +121,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7340579885862432562}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: TutorialUI, Assembly-CSharp
         m_MethodName: OnNextReminderButtonUI
         m_Mode: 1
@@ -592,7 +592,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7340579885862432561}
   - component: {fileID: 7340579885862432563}
-  - component: {fileID: 7340579885862432562}
   m_Layer: 5
   m_Name: TutorialUI
   m_TagString: Untagged
@@ -631,47 +630,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7340579885862432560}
   m_CullTransparentMesh: 1
---- !u!114 &7340579885862432562
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7340579885862432560}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 419d35ab0c0bd1b40ad2067fcf509867, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  frame: {fileID: 7340579885358561715}
-  reminderFramesContainer: {fileID: 7340579885878418478}
-  nextButton: {fileID: 5918871386140628273}
-  reminderFrameButton: {fileID: 6143982913817190694}
-  popUps:
-  - panels:
-    - {fileID: 21300000, guid: 3f45d1046890e8348976d80e647943e4, type: 3}
-    - {fileID: 21300000, guid: 05533e7c87ebb7640a4176fc0de08395, type: 3}
-    - {fileID: 21300000, guid: db1be51dd63126b4793237d6fc8b36cb, type: 3}
-  - panels:
-    - {fileID: 21300000, guid: 4b24afd97b1d8be4489dbd87217f6df8, type: 3}
-    - {fileID: 21300000, guid: 608b81c9c7961e140bd78e27a76ed7ea, type: 3}
-  - panels:
-    - {fileID: 21300000, guid: 35a8375a840e6444fabd8006469854b2, type: 3}
-  - panels:
-    - {fileID: 0}
-  - panels:
-    - {fileID: 0}
-  currentTutorialIndex: 0
-  currentIndex: 0
-  isTimeDay: 0
-  isInventory: 0
-  isQuests: 0
-  isMap: 0
-  isCritHits: 0
-  isFood: 0
-  button: {fileID: 7340579886413400548}
-  overheadUI: {fileID: 7340579885717274356}
-  overheadText: {fileID: 7340579887397592610}
 --- !u!1 &7340579885878418475
 GameObject:
   m_ObjectHideFlags: 0
@@ -689,7 +647,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7340579885878418476
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1802,7 +1760,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7340579885862432562}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: TutorialUI, Assembly-CSharp
         m_MethodName: OnCloseReminderButtonUI
         m_Mode: 1

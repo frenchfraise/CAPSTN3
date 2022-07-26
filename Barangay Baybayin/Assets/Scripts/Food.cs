@@ -38,7 +38,7 @@ public class Food : MonoBehaviour
         {
             onFirstTimeFood.RemoveListener(FirstTime);
             firstTime = false;            
-            TutorialUI.onRemindTutorialEvent.Invoke(4);
+            TutorialManager.instance.tutorialUI.RemindTutorialEvent(4);
         }
     }
     void AddFood(int p_newAmount)

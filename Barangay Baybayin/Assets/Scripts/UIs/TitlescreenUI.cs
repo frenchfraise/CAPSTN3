@@ -7,7 +7,7 @@ public class TitlescreenUI : MonoBehaviour
 {
     private void Start()
     {
-        TransitionUI.onFadeTransition.Invoke(0);
+        //TransitionUI.onFadeTransition.Invoke(0);
     }
     //public async void OnPlayButtonUIClicked()
     //{

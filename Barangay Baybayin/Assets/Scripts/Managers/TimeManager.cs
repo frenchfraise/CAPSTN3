@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-
+using UnityEngine.SceneManagement;
 public class TimeChangedEvent : UnityEvent<int, int, int> { };
 public class DayEndedEvent : UnityEvent<bool,int> { };
 
@@ -58,6 +58,9 @@ public class TimeManager : MonoBehaviour
     private int hour;
     public static string abbreviation;
 
+    public int daysRemaining =16;
+    public int maxDays = 16;
+
     [SerializeField] private float oneMinToRealSeconds;
 
     public bool DoTimer;
@@ -71,15 +74,17 @@ public class TimeManager : MonoBehaviour
         Stamina.onStaminaDepletedEvent.AddListener(FaintedEndDay);
         Bed.onBedInteractedEvent.AddListener(EndDay);
         UIManager.onGameplayModeChangedEvent.AddListener(OnGameplayModeChangedEvent);
+        StorylineManager.onWorldEventEndedEvent.AddListener(worldEndEvent);
         onPauseGameTime.AddListener(SetPauseGame);
         onTimeChangedEvent.AddListener(OnTimeCheck);
     }
-
+   
     private void OnDestroy()
     {
         Stamina.onStaminaDepletedEvent.RemoveListener(FaintedEndDay);
         Bed.onBedInteractedEvent.RemoveListener(EndDay);
         UIManager.onGameplayModeChangedEvent.RemoveListener(OnGameplayModeChangedEvent);
+        StorylineManager.onWorldEventEndedEvent.RemoveListener(worldEndEvent);
         onPauseGameTime.RemoveListener(SetPauseGame);
         onTimeChangedEvent.RemoveListener(OnTimeCheck);
     }
@@ -96,6 +101,16 @@ public class TimeManager : MonoBehaviour
         //NewDay();            
     }
 
+    void worldEndEvent(string p_id, int p_intone, int p_intto)
+    {
+        if (p_id == "GOODENDING" || p_id == "BADENDING")
+        {
+
+            SceneManager.LoadScene(0);
+        }
+        
+
+    }
     private void OnEnable()
     {
 
@@ -191,7 +206,25 @@ public class TimeManager : MonoBehaviour
         TimeManager.instance.dayCount++;
         onHourChanged.Invoke(hour);
         TimeManager.onDayChangeEndedEvent.Invoke();
-        StorylineManager.onWorldEventEndedEvent.Invoke("W",0,dayCount);
+        if (daysRemaining > 0)
+        {
+            daysRemaining--;
+            StorylineManager.onWorldEventEndedEvent.Invoke("W", 0, dayCount);
+        }
+        else
+        {
+            if (StorylineManager.instance.amountQuestComplete >= 8 )
+            {
+                CharacterDialogueUI.onCharacterSpokenToEvent.Invoke("GOODENDING", StorylineManager.instance.goodso_dialogue);
+
+            }
+            else
+            {
+                CharacterDialogueUI.onCharacterSpokenToEvent.Invoke("BADENDING", StorylineManager.instance.badso_dialogue);
+            }
+        }
+        
+       
     }
 
     private void SetPauseGame(bool p_bool)
@@ -206,7 +239,10 @@ public class TimeManager : MonoBehaviour
                 coroutineTime = null;
             }
             coroutineTime = Co_DoTimer();
-            if (p_bool) StartCoroutine(coroutineTime);
+            if (p_bool)
+            {
+                StartCoroutine(coroutineTime);
+            }
             //if (p_bool) StartCoroutine(Co_DoTimer());
         }
     }

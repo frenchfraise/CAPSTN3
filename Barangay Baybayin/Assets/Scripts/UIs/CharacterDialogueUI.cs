@@ -243,12 +243,7 @@ public class CharacterDialogueUI : MonoBehaviour
 
     public void OnOpenCharacterDialogueUI()
     {
-        if (!TimeManager.instance.tutorialOn) // TEMPORARY; Eli insisted
-        {
-            string song1 = AudioManager.instance.GetSoundByName("Town").name;
-            string song2 = AudioManager.instance.GetSoundByName("Quest Get").name;
-            AudioManager.instance.StartCoFade(song1, song2);
-        }
+    
        // Debug.Log("WHO IS CALLING");
         frame.SetActive(true);
         //Debug.Log(id + " EVENT WITH NAME " + currentSO_Dialogues.name + " IS CURRENT DIALOGUE " + " OPENING");
@@ -262,18 +257,20 @@ public class CharacterDialogueUI : MonoBehaviour
         if (!TimeManager.instance.tutorialOn) // TEMPORARY; Eli insisted
         {
             
-            string song1 = AudioManager.instance.GetSoundByName("Quest Get").name;
-            string song2 = AudioManager.instance.GetSoundByName("Town").name;
-            AudioManager.instance.StartCoFade(song1, song2);
-          //  Debug.Log("TRYING TO QUEST TEACH");
+            //string song1 = AudioManager.instance.GetSoundByName("Quest Get").name;
+            //string song2 = AudioManager.instance.GetSoundByName("Town").name;
+
+            //AudioManager.instance.StartCoFade(song1, song2);
+            AudioManager.instance.PlayOnRoomEnterString("Town");
+            //  Debug.Log("TRYING TO QUEST TEACH");
             if (firstTimeTutorial)
             {
               //  Debug.Log("TEACH QUEST IN");
                 if (firstfirstTimeTutorial)
                 {
                     firstTimeTutorial = false;
-                 //   Debug.Log("IT SHUD BE WORKING TEACH QUEST");
-                    TutorialUI.onRemindTutorialEvent.Invoke(1);
+                    //   Debug.Log("IT SHUD BE WORKING TEACH QUEST");
+                    TutorialManager.instance.tutorialUI.RemindTutorialEvent(1);
                 }
                 firstfirstTimeTutorial = true;
             }
@@ -387,6 +384,7 @@ public class CharacterDialogueUI : MonoBehaviour
         {
             StopCoroutine(runningEmotionCoroutine);
             runningEmotionCoroutine = null;
+     
             runningEmotionCoroutine = Co_EmotionOut();
             StartCoroutine(runningEmotionCoroutine);
         }
@@ -405,7 +403,7 @@ public class CharacterDialogueUI : MonoBehaviour
                 backgroundImage.sprite = currentDialogue.backgroundSprite;
                 backgroundImage.color = new Color32(255, 255, 255, 255);
             }
-            else
+            else if (currentDialogue.backgroundSprite == null)
             {
                 backgroundImage.color = new Color32(0, 0, 0, 0);
             }
@@ -432,6 +430,11 @@ public class CharacterDialogueUI : MonoBehaviour
             }
             else
             {
+                //if (runningEmotionCoroutine != null)
+                //{
+                //    StopCoroutine(runningEmotionCoroutine);
+                //    runningEmotionCoroutine = null;
+                //}
                 runningEmotionCoroutine = Co_EmotionIn(currentDialogue.character.avatar, currentDialogue.emotion);
                 StartCoroutine(runningEmotionCoroutine);
             }
@@ -464,8 +467,12 @@ public class CharacterDialogueUI : MonoBehaviour
                 }
                 else
                 {
-             
 
+                    if (runningCoroutine != null)
+                    {
+                        StopCoroutine(runningCoroutine);
+                        runningCoroutine = null;
+                    }
                     runningCoroutine = Co_TypeWriterEffect(dialogueText, currentDialogue.words);
                     StartCoroutine(runningCoroutine);
                 }

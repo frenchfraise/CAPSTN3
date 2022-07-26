@@ -15,7 +15,21 @@ MonoBehaviour:
   dialogues:
   - character: {fileID: 11400000, guid: 88aa14d00365c39438cbfaa3e215ba70, type: 2}
     emotion: 10
-    words: 'Today is Sunny. For Day 2, the weather will be Sunny. For Day 3, the
-      weather will be Sunny. For Day 4, it is highly likely to be Sunny. '
+    words: Good day, viewers. Purok Buko weather for the day is  Rainy.
+    backgroundSprite: {fileID: 0}
+    speechTransitionType: 0
+  - character: {fileID: 11400000, guid: 88aa14d00365c39438cbfaa3e215ba70, type: 2}
+    emotion: 10
+    words: For Day 2, there is a moderate to high chance of weather to be Sunny.
+    backgroundSprite: {fileID: 0}
+    speechTransitionType: 0
+  - character: {fileID: 11400000, guid: 88aa14d00365c39438cbfaa3e215ba70, type: 2}
+    emotion: 10
+    words: For Day 3, the weather is forecasted as Sunny.
+    backgroundSprite: {fileID: 0}
+    speechTransitionType: 0
+  - character: {fileID: 11400000, guid: 88aa14d00365c39438cbfaa3e215ba70, type: 2}
+    emotion: 10
+    words: For Day 4, there is a moderate to high chance of weather to be Sunny.
     backgroundSprite: {fileID: 0}
     speechTransitionType: 0

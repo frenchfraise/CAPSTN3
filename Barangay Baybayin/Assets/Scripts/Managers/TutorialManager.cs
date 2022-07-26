@@ -14,7 +14,7 @@ public class TutorialManager : MonoBehaviour
     public int currentDialogueIndex = 0;
     public List<SO_Dialogues> dialogues;
 
-    public TutorialUI tutorialUI;
+    public TutorialPanelUI tutorialUI;
     [SerializeField] private Stamina stamina;
 
     public Transform spawnPoint0;
@@ -53,6 +53,7 @@ public class TutorialManager : MonoBehaviour
     bool allSpawn = true;
     bool oneToolRewardGiven = false;
     bool allToolsRewardGiven = false;
+    bool level2tree = false;
     bool characterQuest = true;
 
     bool dayFirstTime = true;
@@ -83,6 +84,9 @@ public class TutorialManager : MonoBehaviour
     }
     public void DontUseTutorial()
     {
+        //temp
+        WeatherManager.instance.RandPredictWeathers();
+
         ToolCaster.onToolUsedEvent.RemoveListener(TeachUseTool);
         ToolCaster.onToolSpecialUsedEvent.RemoveListener(TeachSpecialUseTool);
         ToolsUI.onToolQuestSwitchEvent.Invoke(-1);
@@ -107,20 +111,24 @@ public class TutorialManager : MonoBehaviour
         tutorialUI.overheadUI.SetActive(false);
         panday.isQuestMode = false;
         tutorialBlocker.gameObject.SetActive(false);
-        StartCoroutine(Co_Loading());
+        dayFirstTime = false;
+        tutorialUI.RemindTutorialEvent(0);
+        TimeManager.onDayEndedEvent.Invoke(false,1);
+        ToolCaster.onSetRequireCorrectToolSwingEvent.Invoke(false);
+        //StartCoroutine(Co_Loading());
     }
 
-    IEnumerator Co_Loading()
-    {
-        yield return new WaitForSeconds(7f);
-        if (dayFirstTime)
-        {
-            dayFirstTime = false;
-            TutorialUI.onRemindTutorialEvent.Invoke(0);
-            //AudioManager.instance.OnDayChangingEvent();
-        }
+    //IEnumerator Co_Loading()
+    //{
+    //    yield return new WaitForSeconds(7f);
+    //    if (dayFirstTime)
+    //    {
+    //        dayFirstTime = false;
+    //        TutorialUI.onRemindTutorialEvent.Invoke(0);
+    //        //AudioManager.instance.OnDayChangingEvent();
+    //    }
 
-    }
+    //}
     void Setup()
     {
         specialButton.SetActive(false);
@@ -147,6 +155,8 @@ public class TutorialManager : MonoBehaviour
     }
     void Unsetup()
     {
+
+        ToolCaster.onSetRequireCorrectToolSwingEvent.Invoke(false);
         ToolsUI.onToolQuestSwitchEvent.Invoke(-1);
         ToolCaster.onSetIsPreciseEvent.Invoke(false);
         ToolCaster.onSetRequireCorrectToolEvent.Invoke(null);
@@ -170,8 +180,9 @@ public class TutorialManager : MonoBehaviour
         if (dayFirstTime)
         {
             dayFirstTime = false;
-            TutorialUI.onRemindTutorialEvent.Invoke(0);
+            tutorialUI.RemindTutorialEvent(0);
         }
+        TimeManager.onDayEndedEvent.Invoke(false, 1);
 
     }
     Vector2 Vector2Abs(Vector2 p_vector2)
@@ -335,6 +346,7 @@ public class TutorialManager : MonoBehaviour
                 infrastructureTwo.canInteract = true;
 
                 //SPECIFIC
+                ToolCaster.onSetRequireCorrectToolSwingEvent.Invoke(true);
                 ToolCaster.onSetIsPreciseEvent.Invoke(true);
                 //SPECFICI
 
@@ -351,9 +363,13 @@ public class TutorialManager : MonoBehaviour
                 Debug.Log("OUT");
                 oneToolRewardGiven = true;
                 panday.canInteract = true;
+                CharacterDialogueUI.onSetEndTransitionEnabledEvent.Invoke(false);
+                CharacterDialogueUI.onSetIsCloseOnEndEvent.Invoke(true);
+                CharacterDialogueUI.onSetStartTransitionEnabledEvent.Invoke(false);
                 InventoryManager.onAddItemEvent.Invoke("Recipe 1", 1);
                 InventoryManager.onAddItemEvent.Invoke("Wood 1", 10);
                 UpgradeToolsUI.onSetSpecificToMachete.Invoke(true);
+                ToolCaster.onSetRequireCorrectToolSwingEvent.Invoke(false);
                 ToolManager.onToolCraftLevelUpgradedEvent.AddListener(RequireMacheteCraftLevel1);
                 EndStory();
             }
@@ -369,7 +385,9 @@ public class TutorialManager : MonoBehaviour
             if (!allToolsRewardGiven)
             {
                 allToolsRewardGiven = true;
-            
+                CharacterDialogueUI.onSetEndTransitionEnabledEvent.Invoke(false);
+                CharacterDialogueUI.onSetIsCloseOnEndEvent.Invoke(true);
+                CharacterDialogueUI.onSetStartTransitionEnabledEvent.Invoke(false);
                 InventoryManager.onAddItemEvent.Invoke("Recipe 1", 3); //it happens 3 times
                 InventoryManager.onAddItemEvent.Invoke("Wood 1", 30);
                 UpgradeToolsUI.onSetSpecificToMachete.Invoke(false);
@@ -383,37 +401,45 @@ public class TutorialManager : MonoBehaviour
         }
         else if (p_id == "O-8")
         {
-  
-            UpgradeToolsUI.onSetSpecificToAllOther.Invoke(false);
-            panday.isQuestMode = true;
-            Debug.Log("8 HAPPENEEEEEEEEEEEEEEEEEEEEEED");
-            //ResourceNode newResourceNode = TreeVariantOneNodePool.pool.Get();
-            //newResourceNode.transform.position = spawnPoint1.position + new Vector3(0f, -2.35f, 0f);
-            //newResourceNode.InitializeValues();
+            if (!level2tree)
+            {
+                CharacterDialogueUI.onSetEndTransitionEnabledEvent.Invoke(false);
+                CharacterDialogueUI.onSetIsCloseOnEndEvent.Invoke(true);
+                CharacterDialogueUI.onSetStartTransitionEnabledEvent.Invoke(false);
+                level2tree = true;
+                UpgradeToolsUI.onSetSpecificToAllOther.Invoke(false);
+                panday.isQuestMode = true;
+                Debug.Log("8 HAPPENEEEEEEEEEEEEEEEEEEEEEED");
+                //ResourceNode newResourceNode = TreeVariantOneNodePool.pool.Get();
+                //newResourceNode.transform.position = spawnPoint1.position + new Vector3(0f, -2.35f, 0f);
+                //newResourceNode.InitializeValues();
 
-            ResourceNode newResourceNode = TreeVariantTwoNodePool.pool.Get();
-            newResourceNode.transform.position = spawnPoint2.position + new Vector3(0f, -2.35f, 0f);
-            newResourceNode.InitializeValues();
+                ResourceNode newResourceNode = TreeVariantTwoNodePool.pool.Get();
+                newResourceNode.transform.position = spawnPoint2.position + new Vector3(0f, -2.35f, 0f);
+                newResourceNode.InitializeValues();
+                ToolCaster.onSetRequireCorrectToolSwingEvent.Invoke(true);
+                ToolCaster.onSetIsPreciseEvent.Invoke(true);
+                //newResourceNode = TreeVariantOneNodePool.pool.Get();
+                //newResourceNode.transform.position = spawnPoint3.position + new Vector3(0f, -2.35f, 0f);
+                //newResourceNode.InitializeValues();
 
-            //newResourceNode = TreeVariantOneNodePool.pool.Get();
-            //newResourceNode.transform.position = spawnPoint3.position + new Vector3(0f, -2.35f, 0f);
-            //newResourceNode.InitializeValues();
+                //newResourceNode = NipaLeavesVariantOneNodePool.pool.Get();
+                //newResourceNode.transform.position = spawnPoint7.position + new Vector3(0f, -2.35f, 0f);
+                //newResourceNode.InitializeValues();
 
-            //newResourceNode = NipaLeavesVariantOneNodePool.pool.Get();
-            //newResourceNode.transform.position = spawnPoint7.position + new Vector3(0f, -2.35f, 0f);
-            //newResourceNode.InitializeValues();
+                //newResourceNode = NipaLeavesVariantOneNodePool.pool.Get();
+                //newResourceNode.transform.position = spawnPoint8.position + new Vector3(0f, -2.35f, 0f);
+                //newResourceNode.InitializeValues();
 
-            //newResourceNode = NipaLeavesVariantOneNodePool.pool.Get();
-            //newResourceNode.transform.position = spawnPoint8.position + new Vector3(0f, -2.35f, 0f);
-            //newResourceNode.InitializeValues();
+                //newResourceNode = NipaLeavesVariantOneNodePool.pool.Get();
+                //newResourceNode.transform.position = spawnPoint9.position + new Vector3(0f, -2.35f, 0f);
+                //newResourceNode.InitializeValues();
+                StorylineManager.onWorldEventEndedEvent.AddListener(RequirePandayQuestComplete);
 
-            //newResourceNode = NipaLeavesVariantOneNodePool.pool.Get();
-            //newResourceNode.transform.position = spawnPoint9.position + new Vector3(0f, -2.35f, 0f);
-            //newResourceNode.InitializeValues();
-            StorylineManager.onWorldEventEndedEvent.AddListener(RequirePandayQuestComplete);
 
-           
-            EndStory();
+                EndStory();
+            }
+            
 
         }
         else if (p_id == "O-9")
@@ -556,7 +582,7 @@ public class TutorialManager : MonoBehaviour
         ToolCaster.onSetRequireCorrectToolEvent.Invoke(null);
         //SPECFICI
 
-        Debug.Log("AAAAAAAAAAAAAAAAAAA: " + currentIndex);
+        //Debug.Log("AAAAAAAAAAAAAAAAAAA: " + currentIndex);
         EndLecture();
     }
   

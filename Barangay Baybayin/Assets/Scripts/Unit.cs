@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
-    public HealthOverheadUI healthOverheadUI;
+    protected Health health;
+
     protected float maxHealth;
     protected virtual void Awake()
     {
@@ -30,21 +31,11 @@ public class Unit : MonoBehaviour
     public virtual void InitializeValues()
     {
        
-        Health health = GetComponent<Health>();
+        health = GetComponent<Health>();
         health.OnDeathEvent.AddListener(Death);
         health.SetValues(maxHealth);
         health.InitializeValues();
-        healthOverheadUI = HealthOverheadUIPool.pool.Get();
-        if (healthOverheadUI == null)
-        {
-            Debug.Log(gameObject.name + " - INIALIZE MISSING OVERHEAD UI");
-        }
-        else
-        {
-            healthOverheadUI.SetHealthBarData(transform, UIManager.instance.overheadUI);
-            health.onHealthModifiedEvent.AddListener(healthOverheadUI.OnHealthChanged);
-            health.OnDeathEvent.AddListener(healthOverheadUI.OnHealthDied);
-        }
+     
 
     
 
@@ -57,23 +48,17 @@ public class Unit : MonoBehaviour
     public virtual void DeinitializeValues()
     {
         //Debug.Log(gameObject.name + " DEINITIALIZED");
-        Health health = GetComponent<Health>();
-        health.OnDeathEvent.RemoveListener(Death);
-        if (healthOverheadUI == null)
-        {
-            Debug.Log(gameObject.name + " - MISSING OVERHEAD UI");
-        }
-        else
-        {
-            //Debug.Log(gameObject.name + " - ");
-            health.onHealthModifiedEvent.RemoveListener(healthOverheadUI.OnHealthChanged);
-            health.OnDeathEvent.RemoveListener(healthOverheadUI.OnHealthDied);
-            HealthOverheadUIPool.pool.Release(healthOverheadUI);
-            healthOverheadUI = null;
-        }
-  
-
       
+        health.OnDeathEvent.RemoveListener(Death);
+        if (health.healthOverheadUI != null)
+        {
+            health.healthOverheadUI.Deinit();
+            health.healthOverheadUI = null;
+        }
+
+
+
+
     }
 
     protected virtual void Death()

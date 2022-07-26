@@ -72,6 +72,11 @@ public class PlayerManager : MonoBehaviour
         floaterStackCount++;
         if (runningFloaterSpawner == null)
         {
+            if (runningFloaterSpawner != null)
+            {
+                StopCoroutine(runningFloaterSpawner);
+                runningFloaterSpawner = null;
+            }
             runningFloaterSpawner = SpawnQueue(p_SOItem, p_name);
             StartCoroutine(runningFloaterSpawner);
         }
@@ -110,6 +115,12 @@ public class PlayerManager : MonoBehaviour
         yield return new WaitForSeconds(delay);
         if (floaterStackCount > 0)
         {
+            runningFloaterSpawner = SpawnQueue(p_SOItem, p_amount);
+            if (runningFloaterSpawner != null)
+            {
+              
+                runningFloaterSpawner = null;
+            }
             runningFloaterSpawner = SpawnQueue(p_SOItem, p_amount);
             StartCoroutine(runningFloaterSpawner);
         }

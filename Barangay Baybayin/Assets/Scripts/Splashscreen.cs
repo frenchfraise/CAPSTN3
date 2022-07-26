@@ -8,14 +8,19 @@ using UnityEngine.Video;
 public class Splashscreen : MonoBehaviour
 {
     [SerializeField] private VideoPlayer splashcreenVideo;
-    //CancellationTokenSource tokenSource;
-    IEnumerator runningCoroutine;
+    [SerializeField]
+    private GameObject titlescreen;
+    [SerializeField]
+    private GameObject background;
+    [SerializeField]
+    private BlinkEffect tip;
+  IEnumerator runningCoroutine;
     private void Start()
     {
         float waitTime = (float)splashcreenVideo.clip.length;
-        //tokenSource = new CancellationTokenSource();
+
         InitializeSplashscreen(waitTime);
-        // WaitForIntro(waitTime);
+
     }
     public void InitializeSplashscreen(float p_videoLength)
     {
@@ -27,43 +32,9 @@ public class Splashscreen : MonoBehaviour
         runningCoroutine = Co_InitializeSplashscreen(p_videoLength);
         StartCoroutine(runningCoroutine);
 
-        //await Task.Yield();
-    }
-    //public async void InitializeSplashscreen(float p_videoLength)
-    //{
-    //    Task fadeIn = Task.Run(() => 
-    //    TransitionUI.onFadeTransition.Invoke(0,false),
-    //    tokenSource.Token);
        
-        
-    //    await fadeIn;
-    //    if (tokenSource.IsCancellationRequested)
-    //    {
-    //        tokenSource.Dispose();
-    //        tokenSource = null;
-    //    }
-    //    splashcreenVideo.Play();
-    //    Task waitVideo = Task.Delay((int)p_videoLength * 1000,cancellationToken: tokenSource.Token);
-        
-    //    await waitVideo;
-    //    if (tokenSource.IsCancellationRequested)
-    //    {
-    //        tokenSource.Dispose();
-    //        tokenSource = null;
-    //    }
-    //    Task fadeOut = Task.Run(() => 
-    //    TransitionUI.onFadeTransition.Invoke(1),
-    //    tokenSource.Token);
-    //    await fadeOut;
-    //    if (tokenSource.IsCancellationRequested)
-    //    {
-    //        tokenSource.Dispose();
-    //        tokenSource = null;
-    //    }
-    //    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-
-    //    //await Task.Yield();
-    //}
+    }
+  
     IEnumerator Co_InitializeSplashscreen(float p_videoLength)
     {
 
@@ -72,20 +43,18 @@ public class Splashscreen : MonoBehaviour
         
         splashcreenVideo.Play();
         yield return new WaitForSeconds(p_videoLength);
+        if (runningCoroutine != null)
+        {
+            //StopCoroutine(runningCoroutine);
+            runningCoroutine = null;
+        }
+        runningCoroutine = Co_OpenTitlescreen();
+        StartCoroutine(runningCoroutine);
 
-        TransitionUI.onFadeTransition.Invoke(1);
-        yield return new WaitForSeconds(0.5f);
-      
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
+
     }
-    //public async void OnSkipButtonUIClicked()
-    //{
 
-    //    tokenSource.Cancel();
-    //    Task fadeOut = TransitionUI.onFadeTransition.Invoke(1);
-    //    await fadeOut;
-    //    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-    //}
     public void OnSkipButtonUIClicked()
     {
         if (runningCoroutine != null)
@@ -93,14 +62,24 @@ public class Splashscreen : MonoBehaviour
             StopCoroutine(runningCoroutine);
             runningCoroutine = null;
         }
-        runningCoroutine = Co_OnSkipButtonUIClicked();
+   
+        runningCoroutine = Co_OpenTitlescreen();
         StartCoroutine(runningCoroutine);
-    }
 
-    IEnumerator Co_OnSkipButtonUIClicked()
+    }
+    IEnumerator Co_OpenTitlescreen()
     {
+        tip.Stop();
         TransitionUI.onFadeTransition.Invoke(1);
         yield return new WaitForSeconds(0.5f);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        titlescreen.SetActive(true);
+        background.SetActive(true);
+        TransitionUI.onFadeTransition.Invoke(0);
+
+
+
     }
+
+
+  
 }

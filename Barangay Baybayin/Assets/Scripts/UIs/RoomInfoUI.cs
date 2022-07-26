@@ -161,7 +161,7 @@ public class RoomInfoUI : MonoBehaviour
         {
             //    Debug.Log("outside");
             isFirstTime = false;
-            TutorialUI.onRemindTutorialEvent.Invoke(2);
+            TutorialManager.instance.tutorialUI.RemindTutorialEvent(2);
         }
         //PlayerManager.instance.joystick.enabled = true;
         //PlayerJoystick.onUpdateJoystickEnabledEvent.Invoke(true);

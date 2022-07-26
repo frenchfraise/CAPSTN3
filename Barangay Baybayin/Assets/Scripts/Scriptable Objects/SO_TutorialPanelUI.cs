@@ -14,4 +14,14 @@ public class TPUI
 public class SO_TutorialPanelUI : ScriptableObject
 {
     [NonReorderable] public List<TPUI> panels = new List<TPUI>();
+  
 }
+
+[System.Serializable]
+public class TutorialPanelUIData
+{
+    [NonReorderable] public List<TPUI> panels = new List<TPUI>();
+  
+}
+
+

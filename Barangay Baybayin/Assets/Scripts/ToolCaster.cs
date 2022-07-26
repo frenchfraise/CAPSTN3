@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 
 public class SetRequireCorrectToolEvent : UnityEvent<Tool> { }
+public class SetRequireCorrectToolSwingEvent : UnityEvent<bool> { }
 public class SetIsPreciseEvent : UnityEvent<bool> { }
 public class ToolUsedEvent : UnityEvent<float> { }
 
@@ -44,9 +45,11 @@ public class ToolCaster : MonoBehaviour
     public static ToolSpecialUseEvent onToolSpecialUsedEvent = new ToolSpecialUseEvent();
     public static SetIsPreciseEvent onSetIsPreciseEvent = new SetIsPreciseEvent();
     public static SetRequireCorrectToolEvent onSetRequireCorrectToolEvent = new SetRequireCorrectToolEvent();
+    public static SetRequireCorrectToolSwingEvent onSetRequireCorrectToolSwingEvent = new SetRequireCorrectToolSwingEvent();
+    
     private bool isFirstTime;
     private bool rewardSpecialAllowed = true;
-
+    bool requireCorrectTool = false;
     private int currentCharges;
     private void Awake()
     {
@@ -56,6 +59,7 @@ public class ToolCaster : MonoBehaviour
 
         ToolManager.onSpecialPointsFilledEvent.AddListener(FirstTime);
         onSetRequireCorrectToolEvent.AddListener(SetRequireCorrectTool);
+        onSetRequireCorrectToolSwingEvent.AddListener(SetRequireCorrectToolEvent);
         onSetIsPreciseEvent.AddListener(SetIsPrecise);
         WeatherManager.onWeatherChangedEvent.AddListener(CheckWeatherStaminaTax);
 
@@ -73,6 +77,7 @@ public class ToolCaster : MonoBehaviour
         ToolManager.onToolChangedEvent.RemoveListener(OnToolChanged);
         ToolManager.onSpecialPointsFilledEvent.RemoveListener(FirstTime);
         onSetRequireCorrectToolEvent.RemoveListener(SetRequireCorrectTool);
+        onSetRequireCorrectToolSwingEvent.RemoveListener(SetRequireCorrectToolEvent);
         onSetIsPreciseEvent.RemoveListener(SetIsPrecise);
         WeatherManager.onWeatherChangedEvent.RemoveListener(CheckWeatherStaminaTax);
 
@@ -89,7 +94,7 @@ public class ToolCaster : MonoBehaviour
         {
             isFirstTime = false;
             ToolManager.onSpecialPointsFilledEvent.RemoveListener(FirstTime);
-            TutorialUI.onRemindTutorialEvent.Invoke(3);
+            TutorialManager.instance.tutorialUI.RemindTutorialEvent(3);
         }
  
 
@@ -110,10 +115,13 @@ public class ToolCaster : MonoBehaviour
         
         //onToolSpecialUsedEvent.RemoveListener(OnSpecialUsed);
     }
-
     void SetRequireCorrectTool(Tool p_isPrecise)
     {
         requiredTool = p_isPrecise;
+    }
+    void SetRequireCorrectToolEvent(bool p_RequireCorrectTool)
+    {
+        requireCorrectTool = p_RequireCorrectTool;
     }
     void SetIsPrecise(bool p_isPrecise)
     {
@@ -219,15 +227,19 @@ public class ToolCaster : MonoBehaviour
     }
     public void UseTool()
     {
+        bool canHit = false;
+        bool temprequireCorrectTool = false;
         if (canUse)
         {
             rewardSpecialAllowed = true;
-            if (requiredTool == null || requiredTool != null && current_Tool == requiredTool)
+            if (requiredTool == null ||
+               
+                requiredTool != null && current_Tool == requiredTool)
             {
                 // animator.SetTrigger("UseTool");            
                 animator.SetTrigger(current_Tool.toolName.ToString());
                 AudioManager.instance.GetSoundByName("Swing").source.Play();
-                bool canHit = false;
+                
 
                 if (current_Tool.toolName == "Hammer")
                 {
@@ -245,6 +257,7 @@ public class ToolCaster : MonoBehaviour
                             animator.SetBool("isFacingRight", false);
                         }
                         canHit = true;
+                        temprequireCorrectTool = true;
                         targetInfrastructure.OnInfrastructureHitEvent.Invoke(
                            current_Tool.craftLevel,
                            current_Tool.so_Tool.damage[current_Tool.craftLevel],
@@ -266,20 +279,48 @@ public class ToolCaster : MonoBehaviour
                             animator.SetBool("isFacingRight", false);
                         }
                         canHit = true;
+                        for (int i = 0; i < current_Tool.so_Tool.useForResourceNode.Count; i++)
+                        {
+                            if (targetResourceNode.so_ResourceNode == current_Tool.so_Tool.useForResourceNode[i])
+                            {
+                                temprequireCorrectTool = true;
+                                
+                                break;
+                            }
+
+                        }
+                   
                         targetResourceNode.OnResourceNodeHitEvent.Invoke(current_Tool.so_Tool.useForResourceNode,
                            current_Tool.craftLevel,
                            current_Tool.so_Tool.damage[current_Tool.craftLevel],
                            onToolHitSucceededEvent);
                     }
                 }
-                if (isPrecise && canHit || !isPrecise)
+                if (!isPrecise || isPrecise && canHit)
                 {
                     //Debug.Log("PRESSED" + " " + isPrecise + " " + current_Tool.so_Tool.staminaCost[current_Tool.craftLevel] + " " + canHit + " " + current_Tool.so_Tool.useRate[current_Tool.craftLevel]);
-                    StartCoroutine(Co_ToolUseCooldown(true));
+                  
+                    if (requireCorrectTool && !temprequireCorrectTool)
+                    {
+                        StorylineManager.onWorldEventEndedEvent.Invoke("SWINGINGWRONGTOOL", 0, 0);
+                    }
+                    else
+                    {
+                        StartCoroutine(Co_ToolUseCooldown(true));
+                    }
                 }
                 else if (isPrecise && !canHit)
                 {
-                    StorylineManager.onWorldEventEndedEvent.Invoke("SWINGINGINAIR", 0, 0);
+                    //if (requireCorrectTool && !temprequireCorrectTool)
+                    //{
+                    //    StorylineManager.onWorldEventEndedEvent.Invoke("SWINGINGWRONGTOOL", 0, 0);
+                    //}
+                    //else
+
+                    //{
+                        StorylineManager.onWorldEventEndedEvent.Invoke("SWINGINGINAIR", 0, 0);
+                    //}
+               
                 }
             }
             else
@@ -358,6 +399,7 @@ public class ToolCaster : MonoBehaviour
             current_Tool.ModifySpecialAmount(current_Tool.so_Tool.specialPointReward[current_Tool.craftLevel]);
             rewardSpecialAllowed = true;
         }
+        
 
     }
 

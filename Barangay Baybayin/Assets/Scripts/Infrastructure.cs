@@ -58,9 +58,18 @@ public class Infrastructure : Unit
         {
             //if (p_craftLevel >= levelRequirement)
             //{
-          //  Debug.Log("HIT");
-            Health health = GetComponent<Health>();
+            //  Debug.Log("HIT");
+            if (health.healthOverheadUI == null)
+            {
+                health.healthOverheadUI = HealthOverheadUIPool.pool.Get();
 
+                health.healthOverheadUI.SetHealthBarData(transform, UIManager.instance.overheadUI);
+                health.healthOverheadUI.health = health;
+                health.onHealthModifiedEvent.AddListener(health.healthOverheadUI.OnHealthChanged);
+                health.OnDeathEvent.AddListener(health.healthOverheadUI.OnHealthDied);
+
+            }
+            
             health.onHealthModifyEvent.Invoke(-p_currentDamage);
 
             p_eventCallback.Invoke();

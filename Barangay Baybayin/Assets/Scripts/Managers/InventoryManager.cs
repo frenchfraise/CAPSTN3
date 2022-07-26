@@ -58,17 +58,17 @@ public class InventoryManager : MonoBehaviour
 
                 for (int i = 0; i < InventoryManager.instance.inventoryPages[iii].itemCategories[ii].items.Count;)
                 {
-                    //Debug.Log(InventoryManager.instance.inventoryPages[iii].itemCategories[ii].items[i].so_Item.name);
+                    //Debug.Log(p_item);
                     if (InventoryManager.instance.inventoryPages[iii].itemCategories[ii].items[i].so_Item.name == p_item)
                     {
-                        
+                        //Debug.Log(InventoryManager.instance.inventoryPages[iii].itemCategories[ii].items[i].so_Item.name);
                         return InventoryManager.instance.inventoryPages[iii].itemCategories[ii].items[i];
                     }
                     i++;
                     if (i >= InventoryManager.instance.inventoryPages.Count)
                     {
                         //Loop finished but didnt find any matching item
-                        //Debug.Log("FAILED TO ADD ITEM " + p_item.name + " BECAUSE COULD NOT FIND ITEM IN INVENTORY WITH MATCHING NAME");
+                        //Debug.Log("FAILED TO ADD ITEM " + p_item + " BECAUSE COULD NOT FIND ITEM IN INVENTORY WITH MATCHING NAME");
                     }
                 }
             }

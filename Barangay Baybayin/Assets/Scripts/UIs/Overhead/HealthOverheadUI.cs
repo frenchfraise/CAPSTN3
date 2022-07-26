@@ -7,7 +7,7 @@ public class HealthOverheadUI : MonoBehaviour
 {
     private bool isRevealed;
     [SerializeField] private float unrevealTimeOut;
-
+    public Health health;
     private Camera cam;
     [SerializeField] private Vector2 positionCorrection = new Vector2(0, 40);
     private RectTransform targetCanvas;
@@ -26,10 +26,12 @@ public class HealthOverheadUI : MonoBehaviour
         if (currentTimeOut != null)
         {
             StopCoroutine(currentTimeOut);
+            currentTimeOut = null;
         }
         if (runningUpdateCoroutine != null)
         {
             StopCoroutine(runningUpdateCoroutine);
+            runningUpdateCoroutine = null;
         }
         isRevealed = false;
         healthFrame.gameObject.SetActive(false);
@@ -46,20 +48,38 @@ public class HealthOverheadUI : MonoBehaviour
         if (currentTimeOut != null)
         {
             StopCoroutine(currentTimeOut);
+            currentTimeOut = null;
         }
 
         if (runningUpdateCoroutine != null)
         {
             StopCoroutine(runningUpdateCoroutine);
+            runningUpdateCoroutine = null;
         }
-    }
 
+        //Debug.Log(gameObject.name + " - ");
+
+        Deinit();
+
+
+    }
+    public void Deinit()
+    {
+        health.onHealthModifiedEvent.RemoveListener(OnHealthChanged);
+        health.OnDeathEvent.RemoveListener(OnHealthDied);
+        health.healthOverheadUI = null;
+        HealthOverheadUIPool.pool.Release(this);
+    }
     public void SetHealthBarData(Transform p_targetTransform, RectTransform p_healthBarPanel)
     {
+        cam = cam ? cam : CameraManager.instance.worldCamera;
+      
+        isRevealed = false;
         this.targetCanvas = p_healthBarPanel;
         healthBarTransform = GetComponent<RectTransform>();
         objectToFollow = p_targetTransform;
-        healthFrame.gameObject.SetActive(false);
+        //Debug.Log("TES");
+        healthFrame.gameObject.SetActive(true);
         transform.SetParent(p_healthBarPanel, false);
 
     }
@@ -71,6 +91,11 @@ public class HealthOverheadUI : MonoBehaviour
         //Debug.Log("REPOSITIONING");
         yield return new WaitForSeconds(0.05f);
         //Debug.Log("REPOSITIONING");
+        if (runningUpdateCoroutine != null)
+        {
+            StopCoroutine(runningUpdateCoroutine);
+            runningUpdateCoroutine = null;
+        }
         runningUpdateCoroutine = Co_UpdatePosition();
         StartCoroutine(runningUpdateCoroutine);
 
@@ -80,12 +105,13 @@ public class HealthOverheadUI : MonoBehaviour
     {
         if (p_isAlive)
         {
-
+            //Debug.Log("RES");
             if (!isRevealed)
             {
                 if (runningUpdateCoroutine != null)
                 {
                     StopCoroutine(runningUpdateCoroutine);
+                    runningUpdateCoroutine = null;
                 }
                 runningUpdateCoroutine = Co_UpdatePosition();
                 StartCoroutine(runningUpdateCoroutine);
@@ -98,8 +124,9 @@ public class HealthOverheadUI : MonoBehaviour
             }
 
             fill = p_currentHealth / p_maxHealth;
-            
-          
+
+      
+
             StartCoroutine(Co_Transition());
 
 
@@ -108,6 +135,7 @@ public class HealthOverheadUI : MonoBehaviour
             if (currentTimeOut != null)
             {
                 StopCoroutine(currentTimeOut);
+                currentTimeOut = null;
             }
             currentTimeOut = Co_RevealTimeOut();
             StartCoroutine(currentTimeOut);
@@ -143,13 +171,14 @@ public class HealthOverheadUI : MonoBehaviour
     }
     private void Start()
     {
-        cam = cam ? cam : CameraManager.instance.worldCamera;
+
         
     }
 
    
     private void RepositionHealthBar()
     {
+
         Vector2 ViewportPosition = cam.WorldToViewportPoint(objectToFollow.position);
 
         Vector2 WorldObject_ScreenPosition = new Vector2(

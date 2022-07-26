@@ -19,6 +19,8 @@ public class ItemUI : MonoBehaviour
     public RectTransform defaultSizeTransition;
     [SerializeField] public TMP_Text itemNameText;
     [SerializeField] public TMP_Text itemAmountText;
+    [SerializeField] public TMP_Text totalitemAmountText;
+
     [SerializeField] public Image itemIconImage;
     [SerializeField] public RectTransform amountTextRectTransform;
     [SerializeField] public RectTransform frameRectTransform;

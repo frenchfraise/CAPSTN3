@@ -13,6 +13,7 @@ public class StorylinesUI : MonoBehaviour
     [SerializeField]
     private List<Sprite> frameLevels;
     public ItemUI prefab;
+    public ItemUI innerprefab;
     public List<StorylineUI> storylines = new List<StorylineUI>();
 
     public GameObject selectionPanel;
@@ -32,14 +33,23 @@ public class StorylinesUI : MonoBehaviour
     public List<ItemUI> requirementsUIs;
     public List<ItemUI> rewardsUIs;
 
+    public Sprite hammer;
+
     public int currentIndex = 0;
+
+    public TMP_Text amountQuestCompleted;
 
     public Image questFrame;
     private void Awake()
     {
         StorylineManager.onFirstTimeStorylineEndedEvent.AddListener(FirstTimeStorylineEndedEvent);
+        StorylineManager.onLastTimeStoryline.AddListener(LastTimeStorylineEvent);
     }
-
+    void LastTimeStorylineEvent(int p_int)
+    {
+        storylines[p_int].isFinished = true;
+        UpdateStoryLineUI(p_int);
+    }
     void FirstTimeStorylineEndedEvent(int p_int)
     {
         storylines[p_int].isSeen = true;
@@ -55,132 +65,197 @@ public class StorylinesUI : MonoBehaviour
     }
     public void UpdateSelectedStoryLineUI(int index)
     {
-        currentIndex = index;
-        for (int i = 0; i < requirementsUIs.Count; i++)
+        if (storylines[index].isFinished)
         {
-            requirementsUIs[i].DeinitializeValues();
-            Destroy(requirementsUIs[i].gameObject);
-            
+            storylines[index].completed.SetActive(true);
+            storylines[index].seenFrame.SetActive(true);
         }
-        for (int i = 0; i < rewardsUIs.Count; i++)
+        else
         {
-            rewardsUIs[i].DeinitializeValues();
-            Destroy(rewardsUIs[i].gameObject);
-        }
-        requirementsUIs.Clear();
-        rewardsUIs.Clear();
-
-        if (index < StorylineManager.instance.storyLines.Count)
-        {
-            StorylineData storylineData = StorylineManager.instance.storyLines[index];
-            SO_StoryLine so_StoryLine = storylineData.so_StoryLine;
-            int currentStorylineIndex = storylineData.currentQuestChainIndex;
-            int currentQuestlinePartIndex = storylineData.currentQuestLineIndex;
-            SO_Questline so_QuestLine = so_StoryLine.questLines[currentStorylineIndex];
-            if (currentStorylineIndex < so_StoryLine.questLines.Count)
+            currentIndex = index;
+            for (int i = 0; i < requirementsUIs.Count; i++)
             {
-              
-                if (currentQuestlinePartIndex < so_QuestLine.questlineData.Count)
+                requirementsUIs[i].DeinitializeValues();
+                Destroy(requirementsUIs[i].gameObject);
+
+            }
+            for (int i = 0; i < rewardsUIs.Count; i++)
+            {
+                rewardsUIs[i].DeinitializeValues();
+                Destroy(rewardsUIs[i].gameObject);
+            }
+            requirementsUIs.Clear();
+            rewardsUIs.Clear();
+
+            if (index < StorylineManager.instance.storyLines.Count)
+            {
+                StorylineData storylineData = StorylineManager.instance.storyLines[index];
+                SO_StoryLine so_StoryLine = storylineData.so_StoryLine;
+                int currentStorylineIndex = storylineData.currentQuestChainIndex;
+                int currentQuestlinePartIndex = storylineData.currentQuestLineIndex;
+                SO_Questline so_QuestLine = so_StoryLine.questLines[currentStorylineIndex];
+                if (currentStorylineIndex < so_StoryLine.questLines.Count)
                 {
-                    QuestlineData questlineData = so_QuestLine.questlineData[currentQuestlinePartIndex];
 
-                    characterNameText.text = so_StoryLine.character.name.ToString();//.text = so_StoryLine.questLines[currentCharacterDataIndex].quest.title;
-                    icon.sprite = questlineData.quest.questImage;
-                    counterText.text = "QUEST " + (currentStorylineIndex + 1).ToString() + " : " + questlineData.quest.title.ToString();
-                    questFrame.sprite = frameLevels[currentStorylineIndex];
-                    descriptionText.text = questlineData.quest.description;
-
-                    List<QuestRequirement> requirements = so_QuestLine.questlineData[0].quest.requirements;
-                    for (int i = 0; i < requirements.Count;)
+                    if (currentQuestlinePartIndex < so_QuestLine.questlineData.Count)
                     {
+                        QuestlineData questlineData = so_QuestLine.questlineData[currentQuestlinePartIndex];
 
-                        if (requirements[i].so_requirement is SO_ItemRequirement)
+                        characterNameText.text = so_StoryLine.character.name.ToString();//.text = so_StoryLine.questLines[currentCharacterDataIndex].quest.title;
+                        icon.sprite = questlineData.quest.questImage;
+                        counterText.text = "QUEST " + (currentStorylineIndex + 1).ToString() + " : " + questlineData.quest.title.ToString();
+                        questFrame.sprite = frameLevels[currentStorylineIndex];
+                        descriptionText.text = questlineData.quest.description;
+
+                        List<QuestRequirement> requirements = so_QuestLine.questlineData[0].quest.requirements;
+
+
+
+                        if (requirements[0].so_requirement is SO_ItemRequirement)
                         {
 
-                            SO_ItemRequirement so_ItemRequirement = requirements[i].so_requirement as SO_ItemRequirement;
+                            SO_ItemRequirement so_ItemRequirement = requirements[0].so_requirement as SO_ItemRequirement;
                             for (int ii = 0; ii < so_ItemRequirement.so_Item.Count; ii++)
                             {
-                                ItemUI newObject = Instantiate(prefab, requirementsContainer);
+                                ItemUI newObject = Instantiate(innerprefab, requirementsContainer);
                                 requirementsUIs.Add(newObject);
-                                newObject.InitializeValues("", so_ItemRequirement.requiredAmount[ii].ToString(), so_ItemRequirement.so_Item[ii].icon);
+                                Debug.Log(InventoryManager.GetItem(so_ItemRequirement.so_Item[ii].name.ToString()).amount.ToString());
+                                string combi = InventoryManager.GetItem(so_ItemRequirement.so_Item[ii].name.ToString()).amount.ToString() + " / " + so_ItemRequirement.requiredAmount[ii].ToString();
+                                newObject.InitializeValues("", combi, so_ItemRequirement.so_Item[ii].icon);
                             }
 
 
                         }
-                      
-                        i++;
 
+
+                        else
+                        {
+                            SO_InfrastructureRequirement infra = so_QuestLine.questlineData[1].quest.requirements[0].so_requirement as SO_InfrastructureRequirement;
+                            ItemUI newObject = Instantiate(prefab, storylines[index].reqcontainer);
+                            storylines[index].requiredItemUIs.Add(newObject);
+
+                            //newObject.InitializeValues("", rewards[i].amount.ToString(), rewards[i].so_Item.icon);
+                            newObject.itemIconImage.sprite = infra.so_infrastructure.sprites[0];
+                            newObject.frameRectTransform.gameObject.SetActive(false);
+                        }
+
+
+
+
+
+
+                        List<ItemReward> rewards = so_QuestLine.questlineData[so_QuestLine.questlineData.Count - 1].quest.rewards;
+                        for (int i = 0; i < rewards.Count;)
+                        {
+
+                            ItemUI newObject = Instantiate(prefab, rewardsContainer);
+                            rewardsUIs.Add(newObject);
+                            newObject.InitializeValues("", rewards[i].amount.ToString(), rewards[i].so_Item.icon);
+                            i++;
+
+                        }
+                        selectionPanel.SetActive(false);
+                        selectedPanel.SetActive(true);
                     }
 
-                    List<ItemReward> rewards = so_QuestLine.questlineData[so_QuestLine.questlineData.Count - 1].quest.rewards;
-                    for (int i = 0; i < rewards.Count;)
-                    {
-         
-                        ItemUI newObject = Instantiate(prefab, rewardsContainer);
-                        rewardsUIs.Add(newObject);
-                        newObject.InitializeValues("", rewards[i].amount.ToString(), rewards[i].so_Item.icon);
-                        i++;
-
-                    }
-                    selectionPanel.SetActive(false);
-                    selectedPanel.SetActive(true);
                 }
-                
             }
         }
+            
        
        
     }
 
     public void UpdateStoryLineUI(int index)
     {
-        for (int i = 0; i < storylines[index].itemUIs.Count; i++)
+        amountQuestCompleted.text = "Quests Completed: " + StorylineManager.instance.amountQuestComplete.ToString();
+        if (storylines[index].isFinished)
         {
-            storylines[index].itemUIs[i].DeinitializeValues();
-            Destroy(storylines[index].itemUIs[i].gameObject);
-        }
-        if (storylines[index].isSeen)
-        {
-            storylines[index].seenFrame.SetActive(false);
-            storylines[index].thisFrame.sprite = seenFrame;
+            storylines[index].completed.SetActive(true);
+            storylines[index].seenFrame.SetActive(true);
         }
         else
         {
-            storylines[index].seenFrame.SetActive(true);
-            storylines[index].thisFrame.sprite = unseenFrame;
-        }
-        storylines[index].itemUIs.Clear();
-        StorylineData storylineData = StorylineManager.instance.storyLines[index];
-        SO_StoryLine so_StoryLine = storylineData.so_StoryLine;
-        
-        int currentStorylineIndex = storylineData.currentQuestChainIndex;
-        int currentQuestlinePartIndex = storylineData.currentQuestLineIndex;
-        SO_Questline so_QuestLine = so_StoryLine.questLines[currentStorylineIndex];
-        QuestlineData questLineData = so_QuestLine.questlineData[currentQuestlinePartIndex];
-        storylines[index].questFrame.sprite = frameLevels[currentStorylineIndex];
-        storylines[index].titleText.text = so_StoryLine.character.name.ToString();// so_StoryLine.name; //so_StoryLine.questLines[currentCharacterDataIndex].quest.title;
-        storylines[index].questCountText.text = "QUEST " + (currentStorylineIndex + 1).ToString() + " : " + questLineData.quest.title.ToString();//so_StoryLine.questLines[currentCharacterDataIndex].quest.description;
-        storylines[index].icon.sprite = so_QuestLine.questlineData[currentQuestlinePartIndex].quest.questImage;
-        
-        List<ItemReward> rewards = so_QuestLine.questlineData[so_QuestLine.questlineData.Count -1].quest.rewards;
-        for (int i = 0; i < rewards.Count;)
-        {
-            ItemUI newObject = Instantiate(prefab, storylines[index].container);
-            storylines[index].itemUIs.Add(newObject);
-      
-            //newObject.InitializeValues("", rewards[i].amount.ToString(), rewards[i].so_Item.icon);
-            newObject.itemAmountText.text = rewards[i].amount.ToString();
-            newObject.itemIconImage.sprite = rewards[i].so_Item.icon;
-        //Debug.Log(index + " - INDEEEX " + i + " () "+rewards[i].amount.ToString());
-            i++;
+            
+            for (int i = 0; i < storylines[index].itemUIs.Count; i++)
+            {
+                storylines[index].itemUIs[i].DeinitializeValues();
+                Destroy(storylines[index].itemUIs[i].gameObject);
+            }
 
-        }
+            for (int i = 0; i < storylines[index].requiredItemUIs.Count; i++)
+            {
+                storylines[index].requiredItemUIs[i].DeinitializeValues();
+                Destroy(storylines[index].requiredItemUIs[i].gameObject);
+            }
+            if (storylines[index].isSeen)
+            {
+                storylines[index].seenFrame.SetActive(false);
+                storylines[index].thisFrame.sprite = seenFrame;
+            }
+            else
+            {
+                storylines[index].seenFrame.SetActive(true);
+                storylines[index].thisFrame.sprite = unseenFrame;
+            }
+            storylines[index].itemUIs.Clear();
+            storylines[index].requiredItemUIs.Clear();
+            StorylineData storylineData = StorylineManager.instance.storyLines[index];
+            SO_StoryLine so_StoryLine = storylineData.so_StoryLine;
 
-        //for (int i = 0; i < storylines[index].itemUIs.Count; i++)
-        //{
-        //    //storylines[index].itemUIs[i].itemAmountText.text = "HELLO";// rewards[i].amount.ToString();
-        //    //storylines[index].itemUIs[i].InitializeValues("", rewards[i].amount.ToString(), rewards[i].so_Item.icon);
-        //}
+            int currentStorylineIndex = storylineData.currentQuestChainIndex;
+            int currentQuestlinePartIndex = storylineData.currentQuestLineIndex;
+            SO_Questline so_QuestLine = so_StoryLine.questLines[currentStorylineIndex];
+            QuestlineData questLineData = so_QuestLine.questlineData[currentQuestlinePartIndex];
+            storylines[index].questFrame.sprite = frameLevels[currentStorylineIndex];
+            storylines[index].titleText.text = so_StoryLine.character.name.ToString();// so_StoryLine.name; //so_StoryLine.questLines[currentCharacterDataIndex].quest.title;
+            storylines[index].questCountText.text = "QUEST " + (currentStorylineIndex + 1).ToString() + " : " + questLineData.quest.title.ToString();//so_StoryLine.questLines[currentCharacterDataIndex].quest.description;
+            storylines[index].icon.sprite = so_QuestLine.questlineData[currentQuestlinePartIndex].quest.questImage;
+
+            List<ItemReward> rewards = so_QuestLine.questlineData[so_QuestLine.questlineData.Count - 1].quest.rewards;
+            for (int i = 0; i < rewards.Count;)
+            {
+                ItemUI newObject = Instantiate(prefab, storylines[index].container);
+                storylines[index].itemUIs.Add(newObject);
+
+                //newObject.InitializeValues("", rewards[i].amount.ToString(), rewards[i].so_Item.icon);
+                newObject.itemAmountText.text = rewards[i].amount.ToString();
+                newObject.itemIconImage.sprite = rewards[i].so_Item.icon;
+                //Debug.Log(index + " - INDEEEX " + i + " () "+rewards[i].amount.ToString());
+                i++;
+
+            }
+            SO_ItemRequirement ir = so_QuestLine.questlineData[0].quest.requirements[0].so_requirement as SO_ItemRequirement;
+            List<SO_Item> requirements = ir.so_Item;
+            if (ir != null)
+            {
+                for (int i = 0; i < requirements.Count;)
+                {
+                    ItemUI newObject = Instantiate(prefab, storylines[index].reqcontainer);
+                    storylines[index].requiredItemUIs.Add(newObject);
+
+                    //newObject.InitializeValues("", rewards[i].amount.ToString(), rewards[i].so_Item.icon);
+                    newObject.itemAmountText.text = ir.requiredAmount[i].ToString();
+                    newObject.itemIconImage.sprite = requirements[i].icon;
+                    //Debug.Log(index + " - INDEEEX " + i + " () "+rewards[i].amount.ToString());
+                    i++;
+
+                }
+            }
+            else
+            {
+                SO_InfrastructureRequirement infra = so_QuestLine.questlineData[1].quest.requirements[0].so_requirement as SO_InfrastructureRequirement;
+                ItemUI newObject = Instantiate(prefab, storylines[index].reqcontainer);
+                storylines[index].requiredItemUIs.Add(newObject);
+
+                //newObject.InitializeValues("", rewards[i].amount.ToString(), rewards[i].so_Item.icon);
+                newObject.itemIconImage.sprite = infra.so_infrastructure.sprites[0];
+                newObject.frameRectTransform.gameObject.SetActive(false);
+            }
+        }
+        
+
+     
 
     }
 

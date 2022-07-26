@@ -146,6 +146,7 @@ public class AudioManager : MonoBehaviour
         //Debug.Log("PLAYYYINNG " + soundName);
         if (soundName != "")
         {
+            Debug.Log("REPLACE");
             Sequence wee = DOTween.Sequence();
             wee.Append(sound.source.DOFade(0, 1.25f));
             wee.Play();
@@ -175,6 +176,7 @@ public class AudioManager : MonoBehaviour
             Sequence wee2 = DOTween.Sequence();
             wee2.Append(currentSound.source.DOFade(1, 1.25f));
             wee2.Play();
+            Debug.Log("NEW");
         }
 
         // yield return wee2.WaitForCompletion();

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 public class FirstTimeStoryline : UnityEvent<int> { };
 public class FirstTimeStorylineEndedEvent : UnityEvent<int> { };
+public class LastTimeStoryline : UnityEvent<int> { };
 public class WorldEventEndedEvent : UnityEvent<string, int, int> { };
 
 [System.Serializable]
@@ -32,9 +33,6 @@ public class TD
     public int dayRequiredCount;
     [SerializeField] public SO_Dialogues so_Dialogue;
 
-   
-
-
 }
 public class StorylineManager : MonoBehaviour
 {
@@ -42,7 +40,7 @@ public class StorylineManager : MonoBehaviour
     public static WorldEventEndedEvent onWorldEventEndedEvent = new WorldEventEndedEvent();
     public static FirstTimeStoryline onFirstTimeStoryline = new FirstTimeStoryline();
     public static FirstTimeStorylineEndedEvent onFirstTimeStorylineEndedEvent = new FirstTimeStorylineEndedEvent();
-
+    public static LastTimeStoryline onLastTimeStoryline = new LastTimeStoryline();
     private static StorylineManager _instance;
     public static StorylineManager instance
 
@@ -71,11 +69,15 @@ public class StorylineManager : MonoBehaviour
     [HeaderAttribute("LOLO UPO")]
     [NonReorderable][SerializeField] public List<SO_Dialogues> initialLoloDialogues;
 
-    //[HeaderAttribute("BOY")]
-    //[NonReorderable][SerializeField] public List<SO_Dialogues> initialBoyDialogues;
+    [SerializeField]
+    public SO_Dialogues goodso_dialogue;
 
-    //[HeaderAttribute("GIRL")]
-    //[NonReorderable][SerializeField] public List<SO_Dialogues> initialGirlDialogues;
+    [SerializeField]
+    public SO_Dialogues badso_dialogue;
+
+    public int amountQuestComplete = 0;
+    public int neededAmountQuestComplete = 0;
+
 
     private void Awake()
     {
@@ -90,7 +92,7 @@ public class StorylineManager : MonoBehaviour
     private void OnDestroy()
     {
         StorylineManager.onWorldEventEndedEvent.RemoveListener(FinishedTownEventStory);
-        StorylineManager.onFirstTimeStoryline.AddListener(FirstTimeStoryline);
+        StorylineManager.onFirstTimeStoryline.RemoveListener(FirstTimeStoryline);
     }
     void FinishedTownEventStory(string p_id, int p_intone, int p_intto)
     {
@@ -149,7 +151,19 @@ public class StorylineManager : MonoBehaviour
         return StorylineManager.instance.storyLines[index];
 
     }
+    public static int GetIndexFromStorylineData(StorylineData p_StorylineData)
+    {
+        for (int i =0; i< StorylineManager.instance.storyLines.Count; i++)
+        {
+            if (StorylineManager.instance.storyLines[i] == p_StorylineData)
+            {
+                return i;
+            }
+        }
+     
+        return -1;
 
+    }
     public static int GetIndexFromID(string p_ID)
     {
         int index = StorylineManager.GetStorylineIndexFromID(p_ID);
@@ -292,8 +306,8 @@ public class StorylineManager : MonoBehaviour
 
     public void QuestCompleted(StorylineData p_storylineData)
     {
-        
-  
+
+
         SO_StoryLine so_StoryLine = p_storylineData.so_StoryLine;
         SO_Questline so_Questline = so_StoryLine.questLines[p_storylineData.currentQuestChainIndex];
         QuestlineData questlineData = so_Questline.questlineData[p_storylineData.currentQuestLineIndex];
@@ -329,6 +343,7 @@ public class StorylineManager : MonoBehaviour
             else
             {
                 p_storylineData.completed = true;
+                onLastTimeStoryline.Invoke(GetIndexFromStorylineData(p_storylineData));
                 //p_storylineData.completed = true;
                 Debug.Log("STORYLINE FINISHED");
             }

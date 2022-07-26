@@ -56,12 +56,16 @@ public class WeatherManager : MonoBehaviour
         TimeManager.onDayChangingEvent.AddListener(RandPredictWeathers);
         onWeatherChangedEvent.AddListener(SwitchWeatherParticleSys);
     }
-
-    private void OnEnable()
+  
+    private void OnDestroy()
     {
         PlayerManager.onUpdateCurrentRoomIDEvent.RemoveListener(CheckForRoom);
         TimeManager.onDayChangingEvent.RemoveListener(RandPredictWeathers);
         onWeatherChangedEvent.RemoveListener(SwitchWeatherParticleSys);
+    }
+    private void OnEnable()
+    {
+      
     }
 
     private void OnDisable()
@@ -144,23 +148,37 @@ public class WeatherManager : MonoBehaviour
         int chosenSecondPredictedWeatherFillerDialogueIndex = Random.Range(0, predictedWeatherFillersDialogue.Count);
         int chosenThirdPredictedWeatherFillerDialogueIndex = Random.Range(0, predictedWeatherFillersDialogue.Count);
         currentText = currentWeatherFillersDialogue[chosenCurrentWeatherFillerDialogueIndex] + " " +
-            currentWeathers[0].name + ". " +
-            
-            "For Day " + (TimeManager.instance.dayCount + 1).ToString() + ", " +
-            predictedWeatherFillersDialogue[chosenFirstPredictedWeatherFillerDialogueIndex] + " " +
-            currentWeathers[1].name + ". " +
-            
-            "For Day " + (TimeManager.instance.dayCount + 2).ToString() + ", " +
-            predictedWeatherFillersDialogue[chosenSecondPredictedWeatherFillerDialogueIndex] + " " +
-            currentWeathers[2].name + ". " +
-
-            "For Day " + (TimeManager.instance.dayCount + 3).ToString() + ", " +
-            predictedWeatherFillersDialogue[chosenThirdPredictedWeatherFillerDialogueIndex] + " " +
-            currentWeathers[3].name + ". ";
+            currentWeathers[0].name + ".";
 
         currentEmotion = currentWeatherDialogue.dialogues[0].emotion;
         currentWeatherDialogue.dialogues[0].words = currentText;
         currentWeatherDialogue.dialogues[0].emotion = currentEmotion;
+
+        currentText = "For Day " + (TimeManager.instance.dayCount + 1).ToString() + ", " +
+           predictedWeatherFillersDialogue[chosenFirstPredictedWeatherFillerDialogueIndex] + " " +
+           currentWeathers[1].name + ".";
+
+        currentEmotion = currentWeatherDialogue.dialogues[1].emotion;
+        currentWeatherDialogue.dialogues[1].words = currentText;
+        currentWeatherDialogue.dialogues[1].emotion = currentEmotion;
+
+        currentText = "For Day " + (TimeManager.instance.dayCount + 2).ToString() + ", " +
+          predictedWeatherFillersDialogue[chosenSecondPredictedWeatherFillerDialogueIndex] + " " +
+          currentWeathers[2].name + ".";
+
+        currentEmotion = currentWeatherDialogue.dialogues[2].emotion;
+        currentWeatherDialogue.dialogues[2].words = currentText;
+        currentWeatherDialogue.dialogues[2].emotion = currentEmotion;
+
+        currentText = "For Day " + (TimeManager.instance.dayCount + 3).ToString() + ", " +
+            predictedWeatherFillersDialogue[chosenThirdPredictedWeatherFillerDialogueIndex] + " " +
+            currentWeathers[3].name + ".";
+
+        currentEmotion = currentWeatherDialogue.dialogues[3].emotion;
+        currentWeatherDialogue.dialogues[3].words = currentText;
+        currentWeatherDialogue.dialogues[3].emotion = currentEmotion;
+
+      
 
         onWeatherChangedEvent?.Invoke(weathers, currentWeathers);
         PlayerManager.onUpdateCurrentRoomIDEvent.Invoke(8);
