@@ -101,7 +101,7 @@ public class PlayerJoystick : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (canJoystick)
+        if (canJoystick && isMoving)
         {
             rb.MovePosition(rb.position + movement * speed * Time.deltaTime);
             if (movement != Vector2.zero)

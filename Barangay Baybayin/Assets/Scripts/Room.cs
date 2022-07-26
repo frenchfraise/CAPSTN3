@@ -31,7 +31,7 @@ public class Room : MonoBehaviour
     public string roomName;
     public string roomDescription;
    // [SerializeField] public Transform cameraDestinationTransform;
-    [SerializeField] public Transform cameraPanLimitUpperRightTransform;
+    [SerializeField] public Transform cameraPanLimitUpperRightTransform;    
     [HideInInspector] public Vector2 cameraPanLimit;
     [NonReorderable] public List<ResourceNodeDrop> availableResourceNodeDrops = new List<ResourceNodeDrop>(); // populate by node
     [NonReorderable] [SerializeField] private List<ResourceNodeSpawner> resourceNodeSpawners = new List<ResourceNodeSpawner>();
@@ -48,8 +48,7 @@ public class Room : MonoBehaviour
     }
 
     private void OnEnable()
-    {
-        
+    {        
         cameraPanLimit = Vector2Abs(transform.position - cameraPanLimitUpperRightTransform.position);
 
         foreach (ResourceNodeSpawner resourceNodeSpawner in resourceNodeSpawners)

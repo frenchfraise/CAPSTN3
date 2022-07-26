@@ -56,7 +56,7 @@ public class DayInfoUI : MonoBehaviour
     //    Debug.Log("FIRST TIME");
 
         conditionsText.text = "";
-        dayCountText.text = "DAY " + (1).ToString();
+        dayCountText.text = "MAY " + (1).ToString();
         TransitionUI.onFadeTransition.Invoke(1);
         yield return new WaitForSeconds(0.5f);
         //TimeManager.onDayChangingEvent.Invoke();
@@ -82,8 +82,8 @@ public class DayInfoUI : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         conditionsText.text = "STARTS";
-        dayCountText.text = "DAY " + (1).ToString();
-        dayText.text = "DAY " + (1).ToString();
+        dayCountText.text = "MAY " + (1).ToString();
+        dayText.text = "MAY " + (1).ToString();
         Sequence t = DOTween.Sequence();
         t.Join(conditionsText.DOFade(1f, 0.75f));
         t.Join(dayCountText.DOFade(1f, 0.75f));
@@ -119,10 +119,10 @@ public class DayInfoUI : MonoBehaviour
         if (!p_causedByFainting)
         {
             conditionsText.text = "ENDED";
-            dayCountText.text = "DAY " + (p_dayCount).ToString();
+            dayCountText.text = "MAY " + (p_dayCount).ToString();
             if (TimeManager.instance.daysRemaining <= 12)
             {
-                daysRemainingText.text = (TimeManager.instance.daysRemaining - 1).ToString() + " DAYS REMAING";
+                daysRemainingText.text = (TimeManager.instance.daysRemaining - 1).ToString() + " DAYS REMAINING";
                 daysRemainingText.color = new Color32(255, 255, 255, 0);
             }
             else
@@ -133,11 +133,11 @@ public class DayInfoUI : MonoBehaviour
         else
         {
             conditionsText.text = "YOU FAINTED";
-            dayCountText.text = "DAY " + (p_dayCount).ToString();
-            dayText.text = "DAY " + (p_dayCount + 1).ToString();
+            dayCountText.text = "MAY " + (p_dayCount).ToString();
+            dayText.text = "MAY " + (p_dayCount + 1).ToString();
             if (TimeManager.instance.daysRemaining <= 12)
             {
-                daysRemainingText.text = (TimeManager.instance.daysRemaining - 1).ToString() + " DAYS REMAING";
+                daysRemainingText.text = (TimeManager.instance.daysRemaining - 1).ToString() + " DAYS REMAINING";
                 daysRemainingText.color = new Color32(255, 255, 255, 0);
 
             }
@@ -201,8 +201,8 @@ public class DayInfoUI : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         conditionsText.text = "STARTS";
-        dayCountText.text = "DAY " + (p_dayCount + 1).ToString();
-        dayText.text = "DAY " + (p_dayCount + 1).ToString();
+        dayCountText.text = "MAY " + (p_dayCount + 1).ToString();
+        dayText.text = "MAY " + (p_dayCount + 1).ToString();
         Sequence t = DOTween.Sequence();
         t.Join(conditionsText.DOFade(1f, 0.75f));
         t.Join(dayCountText.DOFade(1f, 0.75f));
