@@ -56,21 +56,12 @@ public class WeatherManager : MonoBehaviour
         TimeManager.onDayChangingEvent.AddListener(RandPredictWeathers);
         onWeatherChangedEvent.AddListener(SwitchWeatherParticleSys);
     }
-  
+
     private void OnDestroy()
     {
         PlayerManager.onUpdateCurrentRoomIDEvent.RemoveListener(CheckForRoom);
         TimeManager.onDayChangingEvent.RemoveListener(RandPredictWeathers);
         onWeatherChangedEvent.RemoveListener(SwitchWeatherParticleSys);
-    }
-    private void OnEnable()
-    {
-      
-    }
-
-    private void OnDisable()
-    {
-   
     }
 
     public Weather GetWeatherName(string p_weatherName)
@@ -106,8 +97,9 @@ public class WeatherManager : MonoBehaviour
      * Next next Weather = 2
      * and so on...*/
     public void RandPredictWeathers() // Predicts weathers for 2 days = Current [0] and Next [1] day
-    {        
+    {
         //if (isStormy)
+        //Debug.Log("RandPredictWeathers start!");
         if (randNums[0] == -1) // Initialization
         {
             for (int i = 0; i < currentWeathers.Count; i++)
@@ -181,12 +173,12 @@ public class WeatherManager : MonoBehaviour
       
 
         onWeatherChangedEvent?.Invoke(weathers, currentWeathers);
-        PlayerManager.onUpdateCurrentRoomIDEvent.Invoke(8);
+        PlayerManager.onUpdateCurrentRoomIDEvent.Invoke(PlayerManager.instance.playerRoom.currentRoomID);
     }
 
     private void CheckForRoom(int id)
     {
-        if (id == 3)
+        if (id == PlayerManager.instance.playerRoom.currentRoomID)
         {
             if (currentWeathers[0].particle != null)
             {

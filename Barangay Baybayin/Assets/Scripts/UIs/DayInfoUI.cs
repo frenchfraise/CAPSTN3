@@ -38,6 +38,7 @@ public class DayInfoUI : MonoBehaviour
         if (!isFirstTime)
         {
             frame.SetActive(true);
+            //Debug.Log("isFirstTime is: " + isFirstTime + " so it goes here!");
             StartCoroutine(Co_DayEndTransition(p_causedByFainting, p_dayCount));
         }
         else if (isFirstTime)
@@ -181,6 +182,7 @@ public class DayInfoUI : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
+        //Debug.Log("day changing call!");
         TimeManager.onDayChangingEvent.Invoke();
 
         //PlayerManager.instance.stamina.transform.position = PlayerManager.instance.bed.transform.position;

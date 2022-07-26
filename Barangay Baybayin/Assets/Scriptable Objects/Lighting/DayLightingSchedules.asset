@@ -65,3 +65,31 @@ MonoBehaviour:
     hour: 19
     color: {r: 0.4, g: 0.4509804, b: 1, a: 1}
     lightIntensity: 0.8
+  - weatherName: 
+    hour: 10
+    color: {r: 1, g: 1, b: 1, a: 1}
+    lightIntensity: 1
+  - weatherName: 
+    hour: 12
+    color: {r: 1, g: 1, b: 1, a: 1}
+    lightIntensity: 1.1
+  - weatherName: 
+    hour: 14
+    color: {r: 1, g: 1, b: 1, a: 1}
+    lightIntensity: 1
+  - weatherName: 
+    hour: 16
+    color: {r: 1, g: 0.8352941, b: 0.6, a: 1}
+    lightIntensity: 1
+  - weatherName: 
+    hour: 17
+    color: {r: 1, g: 0.73333335, b: 0.6, a: 1}
+    lightIntensity: 1
+  - weatherName: 
+    hour: 18
+    color: {r: 0.6, g: 0.7372549, b: 1, a: 1}
+    lightIntensity: 1
+  - weatherName: 
+    hour: 19
+    color: {r: 0.39999998, g: 0.44999993, b: 1, a: 1}
+    lightIntensity: 0.8

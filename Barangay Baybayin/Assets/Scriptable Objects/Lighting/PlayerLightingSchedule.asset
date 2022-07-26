@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: PlayerLightingSchedule
   m_EditorClassIdentifier: 
   lightingBrightnessArray:
+  - weatherName: Stormy
+    hour: 10
+    color: {r: 1, g: 1, b: 1, a: 1}
+    lightIntensity: 0.5
   - weatherName: Sunny
     hour: 10
     color: {r: 1, g: 1, b: 1, a: 1}
@@ -20,12 +24,28 @@ MonoBehaviour:
   - weatherName: Sunny
     hour: 17
     color: {r: 1, g: 1, b: 1, a: 1}
+    lightIntensity: 0.25
+  - weatherName: Sunny
+    hour: 18
+    color: {r: 1, g: 1, b: 1, a: 1}
     lightIntensity: 0.5
   - weatherName: Rainy
     hour: 10
     color: {r: 1, g: 1, b: 1, a: 1}
+    lightIntensity: 0.25
+  - weatherName: Rainy
+    hour: 17
+    color: {r: 1, g: 1, b: 1, a: 1}
     lightIntensity: 0.5
-  - weatherName: Stormy
+  - weatherName: 
     hour: 10
+    color: {r: 1, g: 1, b: 1, a: 1}
+    lightIntensity: 0
+  - weatherName: 
+    hour: 17
+    color: {r: 1, g: 1, b: 1, a: 1}
+    lightIntensity: 0.25
+  - weatherName: 
+    hour: 18
     color: {r: 1, g: 1, b: 1, a: 1}
     lightIntensity: 0.5

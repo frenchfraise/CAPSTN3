@@ -25,8 +25,8 @@ public class ClockUI : MonoBehaviour
     }
 
     // Update is called once per frame
-    private void UpdateTime(int hour, int minute, int minuteByTwos)
+    private void UpdateTime(int hour24, int hour12, int minute, int minuteByTwos)
     {
-        hand.localRotation = Quaternion.Euler(0, 0, 90 + hoursToDegrees * ((hour + TimeManager.hoursInDay - TimeManager.sunriseHour) % TimeManager.hoursInDay));
+        hand.localRotation = Quaternion.Euler(0, 0, 90 + hoursToDegrees * ((hour24 + TimeManager.hoursInDay - TimeManager.sunriseHour) % TimeManager.hoursInDay));
     }
 }
