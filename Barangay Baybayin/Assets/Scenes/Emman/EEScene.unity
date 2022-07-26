@@ -1038,6 +1038,10 @@ PrefabInstance:
       propertyPath: toolCaster
       value: 
       objectReference: {fileID: 1919231799}
+    - target: {fileID: 1117614733, guid: fea5a514e58f9df44bdc47a1f3ee5647, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -64.69531
+      objectReference: {fileID: 0}
     - target: {fileID: 1117614734, guid: fea5a514e58f9df44bdc47a1f3ee5647, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1150,6 +1154,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameplayHUD
       objectReference: {fileID: 0}
+    - target: {fileID: 101662863457654749, guid: fea5a514e58f9df44bdc47a1f3ee5647, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 57
+      objectReference: {fileID: 0}
+    - target: {fileID: 101662863673742661, guid: fea5a514e58f9df44bdc47a1f3ee5647, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -332.20312
+      objectReference: {fileID: 0}
     - target: {fileID: 101662863673742663, guid: fea5a514e58f9df44bdc47a1f3ee5647, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1178,6 +1190,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1919231799}
+    - target: {fileID: 5545815030341102943, guid: fea5a514e58f9df44bdc47a1f3ee5647, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -39.007812
+      objectReference: {fileID: 0}
+    - target: {fileID: 6281930841023168264, guid: fea5a514e58f9df44bdc47a1f3ee5647, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -64.69531
+      objectReference: {fileID: 0}
     - target: {fileID: 8392125885464714965, guid: fea5a514e58f9df44bdc47a1f3ee5647, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -15933,7 +15953,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &543333798
 Transform:
   m_ObjectHideFlags: 0
@@ -50250,6 +50270,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5663208972496897023, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -220.23438
+      objectReference: {fileID: 0}
     - target: {fileID: 5663208972789064864, guid: f551c65b4e024454e97d07228753d5c3, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -52512,7 +52536,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 938525292180207318, guid: c84e02f53fb0dbf46a54bbe041141871, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -9.386719
+      value: -9.390625
       objectReference: {fileID: 0}
     - target: {fileID: 938525292180207318, guid: c84e02f53fb0dbf46a54bbe041141871, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -52710,7 +52734,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7317183181926446723, guid: 09d195036bff3d341b4563fbf7529426, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -153.09961
+      value: -153.10156
       objectReference: {fileID: 0}
     - target: {fileID: 7340579885862432560, guid: 09d195036bff3d341b4563fbf7529426, type: 3}
       propertyPath: m_Name
