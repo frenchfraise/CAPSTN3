@@ -96,10 +96,11 @@ public class StorylineManager : MonoBehaviour
     }
     void FinishedTownEventStory(string p_id, int p_intone, int p_intto)
     {
-        if (p_id == "TE")
+        if (p_id == "TE-0"|| p_id == "TE-1" || p_id == "TE-2")
         {
             StorylineManager.instance.townEventDialogues.currentQuestChainIndex++;
-          
+ 
+
 
         }
     }

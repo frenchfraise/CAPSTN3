@@ -7,6 +7,8 @@ using TMPro;
 
 public class TutorialPanelUI : MonoBehaviour
 {
+    public PauseMenuUI pauseMenu;
+    public bool immediate;
     public GameObject frame;
     public GameObject overheadUI;
     public TMP_Text overheadText;
@@ -37,6 +39,7 @@ public class TutorialPanelUI : MonoBehaviour
     {
         UIManager.onGameplayModeChangedEvent.Invoke(true);
         specificToPage = true;
+        immediate = true;
         tutorialPanelPagesUIDataIndex = p_tutorialPanelPagesUIDataIndex;
         tutorialPanelUIDataIndex = 0;
         backButton.SetActive(false);
@@ -49,6 +52,23 @@ public class TutorialPanelUI : MonoBehaviour
       
         InitializeValues(0);
         frame.SetActive(true);
+    }
+
+    public void Quit()
+    {
+        if (immediate)
+        {
+            immediate = false;
+            UIManager.onGameplayModeChangedEvent.Invoke(false);
+            frame.SetActive(false);
+        
+        }
+        else
+        {
+            pauseMenu.BackToPauseMenuButton();
+
+        }
+       
     }
     public void Open()
     {

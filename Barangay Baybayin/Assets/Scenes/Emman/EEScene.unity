@@ -1020,7 +1020,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 101662862122452031, guid: fea5a514e58f9df44bdc47a1f3ee5647, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.000061035156
+      value: 0.00012207031
       objectReference: {fileID: 0}
     - target: {fileID: 101662862203666364, guid: fea5a514e58f9df44bdc47a1f3ee5647, type: 3}
       propertyPath: m_AnchorMax.x
@@ -30565,8 +30565,8 @@ MonoBehaviour:
   dayCount: 0
   startHour: 10
   endHour: 20
-  daysRemaining: 16
-  maxDays: 16
+  daysRemaining: 18
+  maxDays: 18
   oneMinToRealSeconds: 0.6
   DoTimer: 0
   tutorialOn: 0
@@ -39188,6 +39188,7 @@ MonoBehaviour:
   MidToForkRoomPassageway: {fileID: 0}
   PandayToMidPassageway: {fileID: 0}
   ForkToMidPassageway: {fileID: 0}
+  characterDialogue: {fileID: 0}
   isFirstTimeFood: 1
   panday: {fileID: 869936038}
   firstTime: 1
@@ -51532,9 +51533,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   townEventDialogues:
     td:
-    - dayRequiredCount: 10
+    - dayRequiredCount: 2
       so_Dialogue: {fileID: 11400000, guid: ec7a9c6bb1d00ba4abf6c0bb92cde616, type: 2}
-    - dayRequiredCount: 11
+    - dayRequiredCount: 3
       so_Dialogue: {fileID: 11400000, guid: 1033e16aca3ebb64880c0d1e9f953604, type: 2}
     - dayRequiredCount: 12
       so_Dialogue: {fileID: 11400000, guid: b8530d383ad5c734cb2cfb7117c4f141, type: 2}
@@ -51580,8 +51581,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b55d24341771a9d44955aea4ec20573e, type: 2}
   - {fileID: 11400000, guid: 6ff72cda744d3b549bf372cb5a95fd4d, type: 2}
   - {fileID: 11400000, guid: 6f18757f1d065df4db55f462e1338f4d, type: 2}
-  goodso_dialogue: {fileID: 0}
-  badso_dialogue: {fileID: 0}
+  goodso_dialogue: {fileID: 11400000, guid: 34a8f59d1f245e54da7fbcf51b3209ea, type: 2}
+  badso_dialogue: {fileID: 11400000, guid: 775d975f1f521f04e99d82e77f314913, type: 2}
   amountQuestComplete: 0
   neededAmountQuestComplete: 0
 --- !u!4 &2088500566
@@ -52348,6 +52349,10 @@ PrefabInstance:
       propertyPath: frame
       value: 
       objectReference: {fileID: 1750036332}
+    - target: {fileID: 296346276062335505, guid: 45d1ab5fa8caef4459132af97bd343dc, type: 3}
+      propertyPath: pauseMenu
+      value: 
+      objectReference: {fileID: 1649524555}
     - target: {fileID: 296346276062335508, guid: 45d1ab5fa8caef4459132af97bd343dc, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -52447,10 +52452,10 @@ PrefabInstance:
     - target: {fileID: 296346276563168133, guid: 45d1ab5fa8caef4459132af97bd343dc, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1649524555}
+      objectReference: {fileID: 335674596}
     - target: {fileID: 296346276563168133, guid: 45d1ab5fa8caef4459132af97bd343dc, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: BackToPauseMenuButton
+      value: Quit
       objectReference: {fileID: 0}
     - target: {fileID: 296346276563168134, guid: 45d1ab5fa8caef4459132af97bd343dc, type: 3}
       propertyPath: m_AnchoredPosition.x

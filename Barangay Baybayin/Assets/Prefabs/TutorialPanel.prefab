@@ -214,6 +214,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b3dd547e4e7d164e88e491b562927a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pauseMenu: {fileID: 0}
+  immediate: 0
+  frame: {fileID: 0}
   overheadUI: {fileID: 6642408695202868911}
   overheadText: {fileID: 3159463439707746484}
   titleText: {fileID: 296346276434906263}
@@ -699,9 +702,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PauseMenuUI, Assembly-CSharp
-        m_MethodName: BackToPauseMenuButton
+      - m_Target: {fileID: 296346276062335505}
+        m_TargetAssemblyTypeName: TutorialPanelUI, Assembly-CSharp
+        m_MethodName: Quit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

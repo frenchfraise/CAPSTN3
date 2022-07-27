@@ -101,8 +101,8 @@ public class ToolCaster : MonoBehaviour
     }
     public void OnEnable()
     {
-     
 
+       
 
         //onToolSpecialUsedEvent.AddListener(OnSpecialUsed);
 
@@ -198,6 +198,7 @@ public class ToolCaster : MonoBehaviour
     public void OnToolChanged(Tool p_newTool)
     {
         current_Tool = p_newTool;
+        staminaCost = current_Tool.so_Tool.staminaCost[current_Tool.craftLevel];
         StartCoroutine(Co_ToolSwitchCooldown());
     }
     private void Update()
@@ -306,6 +307,7 @@ public class ToolCaster : MonoBehaviour
                     }
                     else
                     {
+                      
                         StartCoroutine(Co_ToolUseCooldown(true));
                     }
                 }
@@ -408,7 +410,13 @@ public class ToolCaster : MonoBehaviour
         onToolCanUseUpdatedEvent.Invoke(canUse);
 
         //Debug.Log(current_Tool.so_Tool.staminaCost[current_Tool.craftLevel]);
-        if (p_bool) onToolUsedEvent.Invoke(staminaCost);
+        if (p_bool)
+        {
+            Debug.Log("DECREASE STAM " + staminaCost);
+            onToolUsedEvent.Invoke(staminaCost);
+
+        }
+      
         //Debug.Log("Tool Cooldown Use Rate: " + current_Tool.so_Tool.useRate[current_Tool.craftLevel]);
         yield return new WaitForSeconds(current_Tool.so_Tool.useRate[current_Tool.craftLevel]);
         

@@ -41,6 +41,8 @@ public class TutorialManager : MonoBehaviour
     public Passageway PandayToMidPassageway;
     public Passageway ForkToMidPassageway;
 
+    public CharacterDialogueUI characterDialogue;
+
     public bool isFirstTimeFood = true;
     public static TutorialEventEndedEvent onTutorialEventEndedEvent = new TutorialEventEndedEvent();
 
@@ -101,7 +103,7 @@ public class TutorialManager : MonoBehaviour
         CameraManager.instance.tutorialOn = false;
         StorylineManager.onWorldEventEndedEvent.RemoveListener(TellStory);
         UIManager.onGameplayModeChangedEvent.RemoveListener(GameplayModeChangedEvent);
-        CharacterDialogueUI.onSetEndTransitionEnabledEvent.Invoke(true);
+        CharacterDialogueUI.onSetEndTransitionEnabledEvent.Invoke(false);
         CharacterDialogueUI.onSetIsCloseOnEndEvent.Invoke(true);
         CharacterDialogueUI.onSetStartTransitionEnabledEvent.Invoke(true);
         TimeManager.instance.tutorialOn = false;
@@ -112,7 +114,7 @@ public class TutorialManager : MonoBehaviour
         panday.isQuestMode = false;
         tutorialBlocker.gameObject.SetActive(false);
         dayFirstTime = false;
-        tutorialUI.RemindTutorialEvent(0);
+
         TimeManager.onDayEndedEvent.Invoke(false,1);
         ToolCaster.onSetRequireCorrectToolSwingEvent.Invoke(false);
         //StartCoroutine(Co_Loading());
@@ -168,7 +170,7 @@ public class TutorialManager : MonoBehaviour
         Debug.Log("UNSETTING UP");
         StorylineManager.onWorldEventEndedEvent.RemoveListener(TellStory);
         UIManager.onGameplayModeChangedEvent.RemoveListener(GameplayModeChangedEvent);
-        CharacterDialogueUI.onSetEndTransitionEnabledEvent.Invoke(true);
+        CharacterDialogueUI.onSetEndTransitionEnabledEvent.Invoke(false);
         CharacterDialogueUI.onSetIsCloseOnEndEvent.Invoke(true);
         CharacterDialogueUI.onSetStartTransitionEnabledEvent.Invoke(true);
         TimeManager.instance.tutorialOn = false;
@@ -177,11 +179,11 @@ public class TutorialManager : MonoBehaviour
         panday.isQuestMode = false;
 
         tutorialBlocker.gameObject.SetActive(false);
-        if (dayFirstTime)
-        {
-            dayFirstTime = false;
-            tutorialUI.RemindTutorialEvent(0);
-        }
+        //if (dayFirstTime)
+        //{
+        //    dayFirstTime = false;
+        //    tutorialUI.RemindTutorialEvent(0);
+        //}
         TimeManager.onDayEndedEvent.Invoke(false, 1);
 
     }
@@ -413,7 +415,7 @@ public class TutorialManager : MonoBehaviour
                 //ResourceNode newResourceNode = TreeVariantOneNodePool.pool.Get();
                 //newResourceNode.transform.position = spawnPoint1.position + new Vector3(0f, -2.35f, 0f);
                 //newResourceNode.InitializeValues();
-
+                characterDialogue.firstTimeTutorial = true;
                 ResourceNode newResourceNode = TreeVariantTwoNodePool.pool.Get();
                 newResourceNode.transform.position = spawnPoint2.position + new Vector3(0f, -2.35f, 0f);
                 newResourceNode.InitializeValues();

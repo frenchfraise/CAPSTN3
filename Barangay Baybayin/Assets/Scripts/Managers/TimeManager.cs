@@ -111,9 +111,15 @@ public class TimeManager : MonoBehaviour
 
             SceneManager.LoadScene(0);
         }
+        else if (p_id == "TE-0")
+        {
+            TimeManager.onDayEndedEvent.Invoke(false, 2);
+        }
         
 
     }
+
+    
     private void OnEnable()
     {
 
@@ -176,8 +182,26 @@ public class TimeManager : MonoBehaviour
                     minute = 0;
                     minuteByTens = 0;
                 }
-                onTimeChangedEvent?.Invoke(hour24, hour12, minute, minuteByTens);
+                
+                    onTimeChangedEvent?.Invoke(hour24, hour12, minute, minuteByTens);
+              
 
+            }
+            if (daysRemaining > 0)
+            {
+
+            }
+            else
+            {
+                if (StorylineManager.instance.amountQuestComplete >= 8)
+                {
+                    CharacterDialogueUI.onCharacterSpokenToEvent.Invoke("GOODENDING", StorylineManager.instance.goodso_dialogue);
+
+                }
+                else
+                {
+                    CharacterDialogueUI.onCharacterSpokenToEvent.Invoke("BADENDING", StorylineManager.instance.badso_dialogue);
+                }
             }
         }
         
@@ -224,7 +248,7 @@ public class TimeManager : MonoBehaviour
         }
         else
         {
-            if (StorylineManager.instance.amountQuestComplete >= 8 )
+            if (StorylineManager.instance.amountQuestComplete >= 8)
             {
                 CharacterDialogueUI.onCharacterSpokenToEvent.Invoke("GOODENDING", StorylineManager.instance.goodso_dialogue);
 

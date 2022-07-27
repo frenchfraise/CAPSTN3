@@ -85,7 +85,7 @@ public class CharacterDialogueUI : MonoBehaviour
     Sprite cachedSprite;
 
     bool firstfirstTimeTutorial = false;
-    bool firstTimeTutorial = false;
+    public bool firstTimeTutorial = false;
 
     bool hasChoices = false;
     public IEnumerator runningCoroutine;
@@ -101,7 +101,7 @@ public class CharacterDialogueUI : MonoBehaviour
     public static SetChoicesEvent onSetChoicesEvent = new SetChoicesEvent();
     public static SkipEvent onSkipEvent = new SkipEvent();
     public static FirstTimeFoodOnEndEvent onFirstTimeFoodOnEndEvent = new FirstTimeFoodOnEndEvent();
-
+    bool canDo = false;
 
    [SerializeField] private bool isFoodFirstTime = false;
     public void Skip()
@@ -119,7 +119,7 @@ public class CharacterDialogueUI : MonoBehaviour
         emoticonImage = emoticonAnim.GetComponent<Image>();
         onFirstTimeFoodOnEndEvent.AddListener(FirstTimeFoodOnEndEvent);
         emoticonBubbleRectTransform = emoticonBubbleImage.GetComponent<RectTransform>();
-        firstTimeTutorial = true;
+ 
         firstfirstTimeTutorial = false;
         isFoodFirstTime = false;
         onCharacterSpokenToEvent.AddListener(OnCharacterSpokenTo);
@@ -243,7 +243,7 @@ public class CharacterDialogueUI : MonoBehaviour
 
     public void OnOpenCharacterDialogueUI()
     {
-    
+        canDo = true;
        // Debug.Log("WHO IS CALLING");
         frame.SetActive(true);
         //Debug.Log(id + " EVENT WITH NAME " + currentSO_Dialogues.name + " IS CURRENT DIALOGUE " + " OPENING");
@@ -262,23 +262,30 @@ public class CharacterDialogueUI : MonoBehaviour
 
             //AudioManager.instance.StartCoFade(song1, song2);
             AudioManager.instance.PlayOnRoomEnterString("Town");
+            
+           
             //  Debug.Log("TRYING TO QUEST TEACH");
             if (firstTimeTutorial)
             {
               //  Debug.Log("TEACH QUEST IN");
-                if (firstfirstTimeTutorial)
-                {
+                //if (firstfirstTimeTutorial)
+                //{
                     firstTimeTutorial = false;
                     //   Debug.Log("IT SHUD BE WORKING TEACH QUEST");
-                    TutorialManager.instance.tutorialUI.RemindTutorialEvent(1);
-                }
-                firstfirstTimeTutorial = true;
+                    TutorialManager.instance.tutorialUI.RemindTutorialEvent(0);
+
+                //}
+                //firstfirstTimeTutorial = true;
             }
 
             if (isFoodFirstTime)
             {
                 isFoodFirstTime = false;
                 Food.onFirstTimeFood.Invoke();
+            }
+            if (TimeManager.instance.dayCount == 3)
+            {
+                TutorialManager.instance.tutorialUI.RemindTutorialEvent(1);
             }
 
         }
@@ -393,6 +400,7 @@ public class CharacterDialogueUI : MonoBehaviour
         //Debug.Log(id + " EVENT WITH NAME " + currentSO_Dialogues.name + " IS CURRENT DIALOGUE " + currentDialogueIndex +  " IS CURRENT INDEX OUT OF " + currentSO_Dialogues.dialogues.Count);
         if (currentDialogueIndex < currentSO_Dialogues.dialogues.Count)
         {
+           
             //Debug.Log("within");
 
             Dialogue currentDialogue = currentSO_Dialogues.dialogues[currentDialogueIndex];
@@ -506,50 +514,56 @@ public class CharacterDialogueUI : MonoBehaviour
         }
         else if (currentDialogueIndex >= currentSO_Dialogues.dialogues.Count)        //TEMPORARY END CONVO, BUT EVENTUALLY SHOW AND GIVE QUEST
         {
-            if (!isAlreadyEnded)
+            if (canDo)
             {
-                //Debug.Log("OUTSIDE");
+                canDo = false;
+                if (!isAlreadyEnded)
+                {
+                    //Debug.Log("OUTSIDE");
 
-                if (!isAdvancedonWorldEventEndedEvent)
-                {
-                    //Debug.Log("NORMAL");
-                    StorylineData storylineData = StorylineManager.GetStorylineDataFromID(id);
-                    int currentQuestChainIndex = storylineData.currentQuestChainIndex;
-                    int currentQuestLineIndex = storylineData.currentQuestLineIndex;
-                    StorylineManager.onWorldEventEndedEvent.Invoke(id, currentQuestChainIndex, currentQuestLineIndex);
-                }
-                if (hasChoices)
-                {
-                    hasChoices = false;
-                    nextDialogueButton.SetActive(false);
-                    choiceUIsContainer.SetActive(true);
-                }
-                else
-                {
-                    if (isCloseOnEnd)
+                    if (!isAdvancedonWorldEventEndedEvent)
                     {
-                        //Debug.Log("AUTO CLOSE BEING DONE");
-                        if (isEndTransitionEnabled)
-                        {
-
-                            //Debug.Log("END TRANSIONING");
-                            TransitionUI.onFadeInAndOutTransition.Invoke(1, 0.5f, 1, 0, 0.5f, OnCloseCharacterDialogueUI);
-                          
-                        }
-                        else
-                        {
-                            // Debug.Log("END WITHOUT TRANSIONING");
-                            OnCloseCharacterDialogueUI();
-                        }
-
+                        //Debug.Log("NORMAL");
+                        StorylineData storylineData = StorylineManager.GetStorylineDataFromID(id);
+                        int currentQuestChainIndex = storylineData.currentQuestChainIndex;
+                        int currentQuestLineIndex = storylineData.currentQuestLineIndex;
+                        StorylineManager.onWorldEventEndedEvent.Invoke(id, currentQuestChainIndex, currentQuestLineIndex);
+                    }
+                    if (hasChoices)
+                    {
+                        hasChoices = false;
+                        nextDialogueButton.SetActive(false);
+                        choiceUIsContainer.SetActive(true);
                     }
                     else
                     {
-                        //Debug.Log("MANUAL CLOSED NEEDED");
+                        if (isCloseOnEnd)
+                        {
+                            //Debug.Log("AUTO CLOSE BEING DONE");
+                            if (isEndTransitionEnabled)
+                            {
+
+                                Debug.Log("END TRANSIONING");
+                               // TransitionUI.onFadeInAndOutTransition.Invoke(1, 0.5f, 1, 0, 0.5f, OnCloseCharacterDialogueUI);
+                                TransitionUI.onFadeInAndOutTransition.Invoke(1, 0.25f, 1, 0, 0.25f, OnCloseCharacterDialogueUI);
+
+                            }
+                            else
+                            {
+                                // Debug.Log("END WITHOUT TRANSIONING");
+                                OnCloseCharacterDialogueUI();
+                            }
+
+                        }
+                        else
+                        {
+                            //Debug.Log("MANUAL CLOSED NEEDED");
+                        }
                     }
+
                 }
-                
             }
+            
           
             
         }
