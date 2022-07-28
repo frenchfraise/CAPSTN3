@@ -146,7 +146,7 @@ public class AudioManager : MonoBehaviour
         //Debug.Log("PLAYYYINNG " + soundName);
         if (soundName != "")
         {
-            Debug.Log("REPLACE");
+            //Debug.Log("REPLACE");
             Sequence wee = DOTween.Sequence();
             wee.Append(sound.source.DOFade(0, 1.25f));
             wee.Play();

@@ -1020,7 +1020,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 101662862122452031, guid: fea5a514e58f9df44bdc47a1f3ee5647, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.00012207031
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 101662862203666364, guid: fea5a514e58f9df44bdc47a1f3ee5647, type: 3}
       propertyPath: m_AnchorMax.x
@@ -51537,7 +51537,7 @@ MonoBehaviour:
       so_Dialogue: {fileID: 11400000, guid: ec7a9c6bb1d00ba4abf6c0bb92cde616, type: 2}
     - dayRequiredCount: 3
       so_Dialogue: {fileID: 11400000, guid: 1033e16aca3ebb64880c0d1e9f953604, type: 2}
-    - dayRequiredCount: 12
+    - dayRequiredCount: 15
       so_Dialogue: {fileID: 11400000, guid: b8530d383ad5c734cb2cfb7117c4f141, type: 2}
     currentQuestChainIndex: 0
     currentQuestLineIndex: 0

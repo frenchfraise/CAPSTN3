@@ -107,7 +107,7 @@ public class TutorialManager : MonoBehaviour
         CharacterDialogueUI.onSetIsCloseOnEndEvent.Invoke(true);
         CharacterDialogueUI.onSetStartTransitionEnabledEvent.Invoke(true);
         TimeManager.instance.tutorialOn = false;
-        TimeManager.onPauseGameTime.Invoke(false);
+        //TimeManager.onPauseGameTime.Invoke(false);
         CameraManager.instance.ResetCamera();
         CharacterDialogueUI.onSkipEvent.Invoke();
         tutorialUI.overheadUI.SetActive(false);
@@ -489,7 +489,7 @@ public class TutorialManager : MonoBehaviour
 
     void EndStory()
     {
-        Debug.Log("END STORY ID: O-" + currentIndex + " CURRENT INDEX: " + currentIndex + " CURRENT DIALOGUE: " + currentDialogueIndex);
+     
         currentDialogueIndex++;
         tutorialUI.overheadText.text = dialogues[currentDialogueIndex].dialogues[0].words;
         if (currentIndex == 0)

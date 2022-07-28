@@ -156,12 +156,16 @@ public class RoomInfoUI : MonoBehaviour
         TransitionUI.onFadeTransition.Invoke(0, false);
         //UIManager.onGameplayModeChangedEvent.Invoke(false);
         PlayerJoystick.onUpdateJoystickEnabledEvent.Invoke(true);
-        TimeManager.onPauseGameTime.Invoke(true);
+
         if (isFirstTime)
         {
             //    Debug.Log("outside");
             isFirstTime = false;
             TutorialManager.instance.tutorialUI.RemindTutorialEvent(2);
+        }
+        else
+        {
+            TimeManager.onPauseGameTime.Invoke(true);
         }
         //PlayerManager.instance.joystick.enabled = true;
         //PlayerJoystick.onUpdateJoystickEnabledEvent.Invoke(true);

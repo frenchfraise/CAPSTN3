@@ -24,7 +24,7 @@ public class PauseMenuUI : MonoBehaviour
     }
     public void PauseMenuButton(bool p_bool)
     {
-        TimeManager.onPauseGameTime.Invoke(!p_bool);
+        //TimeManager.onPauseGameTime.Invoke(!p_bool);
         //if (p_bool) Debug.Log("Pause Menu open!");
         //else Debug.Log("Pause Menu closed!");
         UIManager.onGameplayModeChangedEvent.Invoke(p_bool);
@@ -39,7 +39,7 @@ public class PauseMenuUI : MonoBehaviour
     public void SkipTutorial()
     {
         TutorialManager.instance.DontUseTutorial();
-        UIManager.onGameplayModeChangedEvent.Invoke(false);
+        //UIManager.onGameplayModeChangedEvent.Invoke(false);
         PauseMenuPanel.SetActive(false);
     }
     public void TutorialButton(bool p_bool)

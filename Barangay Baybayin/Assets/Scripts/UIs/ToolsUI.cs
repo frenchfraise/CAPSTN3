@@ -86,13 +86,13 @@ public class ToolsUI : MonoBehaviour
         {
             //move side
 
-            rectFrame.offsetMin = new Vector2(rectFrame.offsetMin.x, val);
-            rectFrame.offsetMax = new Vector2(rectFrame.offsetMax.x, -val);
+            rectFrame.offsetMin = new Vector2(val, 0f);
+            rectFrame.offsetMax = new Vector2(0f, 0f);
         }
         else
         {
-            rectFrame.offsetMin = new Vector2(rectFrame.offsetMin.x, 0f);
-            rectFrame.offsetMax = new Vector2(rectFrame.offsetMax.x, 0f);
+            rectFrame.offsetMin = new Vector2(0f, 0f);
+            rectFrame.offsetMax = new Vector2(0f,0f);
         }
         //.SetActive(!p_bool);
     }

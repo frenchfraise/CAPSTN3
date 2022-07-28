@@ -115,37 +115,34 @@ public class TimeManager : MonoBehaviour
         {
             TimeManager.onDayEndedEvent.Invoke(false, 2);
         }
-        
+        if (p_id == "TE-0" || p_id == "TE-1" || p_id == "TE-2" )
+        {
+            StartCoroutine(test());
+
+        }
+
 
     }
 
-    
-    private void OnEnable()
+    IEnumerator test()
     {
-
-
-        //dayInfoUI = UIManager.instance.dayInfoUI;
-        //dayInfoUI = dayInfoUI?UIManager.instance.dayInfoUI:FindObjectOfType<DayInfoUI>();
-
-        //onDayChangeEndedEvent.AddListener(NewDay);
-
-        
+        yield return new WaitForSeconds(5f);
+        CharacterDialogueUI.onSetEndTransitionEnabledEvent.Invoke(true);
+        CharacterDialogueUI.onSetStartTransitionEnabledEvent.Invoke(true);
     }
-
-    private void OnDisable()
-    {
-        
-        //Stamina.onStaminaDepletedEvent.RemoveListener(FaintedEndDay);
-        //Bed.onBedInteractedEvent.RemoveListener(EndDay);
-
-        //onPauseGameTime.RemoveListener(SetPauseGame);
-        //onTimeChangedEvent.AddListener(OnTimeCheck);
-
-    }
+  
     private void OnGameplayModeChangedEvent(bool p_bool)
     {
-      //  Debug.Log("RAAAAAAAAAAAA");
-        SetPauseGame(!p_bool);
+        //  Debug.Log("RAAAAAAAAAAAA");
+        //if (PlayerManager.instance.currentRoomID != PlayerManager.instance.playerRoom.currentRoomID)
+        //{
+        //    SetPauseGame(!p_bool);
+        //}
+        //else
+        //{
+        //    SetPauseGame(false);
+        //}
+     
 
     }
     IEnumerator ForceTest()
@@ -187,22 +184,7 @@ public class TimeManager : MonoBehaviour
               
 
             }
-            if (daysRemaining > 0)
-            {
-
-            }
-            else
-            {
-                if (StorylineManager.instance.amountQuestComplete >= 8)
-                {
-                    CharacterDialogueUI.onCharacterSpokenToEvent.Invoke("GOODENDING", StorylineManager.instance.goodso_dialogue);
-
-                }
-                else
-                {
-                    CharacterDialogueUI.onCharacterSpokenToEvent.Invoke("BADENDING", StorylineManager.instance.badso_dialogue);
-                }
-            }
+         
         }
         
         
@@ -267,18 +249,32 @@ public class TimeManager : MonoBehaviour
        // Debug.Log("time " + p_bool);
         if (!tutorialOn)
         {
-            DoTimer = p_bool;
-            if (coroutineTime != null)
+            if (PlayerManager.instance.currentRoomID != PlayerManager.instance.playerRoom.currentRoomID)
             {
-                StopCoroutine(coroutineTime);
-                coroutineTime = null;
+                Debug.Log("DDDDDDDDD " + p_bool);
+                DoTimer = p_bool;
+                if (coroutineTime != null)
+                {
+                    StopCoroutine(coroutineTime);
+                    coroutineTime = null;
+                }
+                coroutineTime = Co_DoTimer();
+                if (p_bool)
+                {
+                    StartCoroutine(coroutineTime);
+                }
+                //if (p_bool) StartCoroutine(Co_DoTimer());
             }
-            coroutineTime = Co_DoTimer();
-            if (p_bool)
+            else
             {
-                StartCoroutine(coroutineTime);
+                DoTimer = false;
+                if (coroutineTime != null)
+                {
+                    StopCoroutine(coroutineTime);
+                    coroutineTime = null;
+                }
             }
-            //if (p_bool) StartCoroutine(Co_DoTimer());
+           
         }
     }
     

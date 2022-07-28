@@ -59,6 +59,7 @@ public class TutorialPanelUI : MonoBehaviour
         if (immediate)
         {
             immediate = false;
+            
             UIManager.onGameplayModeChangedEvent.Invoke(false);
             frame.SetActive(false);
         

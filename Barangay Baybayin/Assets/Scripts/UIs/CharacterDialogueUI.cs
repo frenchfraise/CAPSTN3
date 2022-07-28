@@ -86,7 +86,7 @@ public class CharacterDialogueUI : MonoBehaviour
 
     bool firstfirstTimeTutorial = false;
     public bool firstTimeTutorial = false;
-
+    public bool firstTimeTut = false;
     bool hasChoices = false;
     public IEnumerator runningCoroutine;
     public IEnumerator runningEmotionCoroutine;
@@ -285,7 +285,12 @@ public class CharacterDialogueUI : MonoBehaviour
             }
             if (TimeManager.instance.dayCount == 3)
             {
-                TutorialManager.instance.tutorialUI.RemindTutorialEvent(1);
+                if (!firstTimeTut)
+                {
+                    firstTimeTut = true;
+                    TutorialManager.instance.tutorialUI.RemindTutorialEvent(1);
+                }
+
             }
 
         }

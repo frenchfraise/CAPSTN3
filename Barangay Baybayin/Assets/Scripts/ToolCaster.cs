@@ -47,7 +47,6 @@ public class ToolCaster : MonoBehaviour
     public static SetRequireCorrectToolEvent onSetRequireCorrectToolEvent = new SetRequireCorrectToolEvent();
     public static SetRequireCorrectToolSwingEvent onSetRequireCorrectToolSwingEvent = new SetRequireCorrectToolSwingEvent();
     
-    private bool isFirstTime;
     private bool rewardSpecialAllowed = true;
     bool requireCorrectTool = false;
     private int currentCharges;
@@ -92,7 +91,6 @@ public class ToolCaster : MonoBehaviour
     {
         if (!TimeManager.instance.tutorialOn)
         {
-            isFirstTime = false;
             ToolManager.onSpecialPointsFilledEvent.RemoveListener(FirstTime);
             TutorialManager.instance.tutorialUI.RemindTutorialEvent(3);
         }

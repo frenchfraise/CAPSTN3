@@ -88,15 +88,6 @@ public class PlayerManager : MonoBehaviour
         InventoryManager.onAddItemEvent.Invoke(p_SOItem.name, p_amount);
         MaterialFloater newFloater = Instantiate(floaterPrefab);
 
-        //if (isLeft) // go right
-        //{
-
-        //    offset = offset * -1;
-        //}
-        //else // go left
-        //{
-
-        //}
         int amt;
         offset.x = offset.x * -1;
         isLeft = !isLeft;
@@ -130,14 +121,6 @@ public class PlayerManager : MonoBehaviour
         }
  
         
-    }
-    private void OnEnable()
-    {
-
-    }
-    private void OnDisable()
-    {
-
     }
 
     public void DayChanging()
