@@ -68,7 +68,6 @@ public class CharacterDialogueUI : MonoBehaviour
 
     bool isStartTransitionEnabled = true;
     bool isEndTransitionEnabled = true;
-    bool isCloseOnEnd = true;
 
     bool isAdvancedonWorldEventEndedEvent = false;
 
@@ -137,10 +136,7 @@ public class CharacterDialogueUI : MonoBehaviour
     {
         hasChoices = p_bool;
     }
-    public void SetIsCloseOnEndEvent(bool p_bool)
-    {
-        isCloseOnEnd = p_bool;
-    }
+  
     public void SetButtonEnabledEvent(bool p_bool)
     {
         nextDialogueButton.SetActive(p_bool);
@@ -254,14 +250,14 @@ public class CharacterDialogueUI : MonoBehaviour
       
         //Debug.Log(id + " EVENT WITH NAME " + currentSO_Dialogues.name + " IS CURRENT DIALOGUE " + " CLOSING");
         frame.SetActive(false);
-        
-           
-        
+
+
+
 
 
         //emoticonAnim.stop;
         //TimeManager.onPauseGameTime.Invoke(true);
-
+      
         UIManager.onGameplayModeChangedEvent.Invoke(false);
      
         //onCharacterDialogueUIClose.Invoke(true);
@@ -499,9 +495,8 @@ public class CharacterDialogueUI : MonoBehaviour
                     }
                     else
                     {
-                        if (isCloseOnEnd)
-                        {
-                            //Debug.Log("AUTO CLOSE BEING DONE");
+                        
+                            Debug.Log("AUTO CLOSE BEING DONE");
                             if (isEndTransitionEnabled)
                             {
 
@@ -512,15 +507,12 @@ public class CharacterDialogueUI : MonoBehaviour
                             }
                             else
                             {
-                                // Debug.Log("END WITHOUT TRANSIONING");
+                                Debug.Log("END WITHOUT TRANSIONING");
                                 OnCloseCharacterDialogueUI();
                             }
 
-                        }
-                        else
-                        {
-                            //Debug.Log("MANUAL CLOSED NEEDED");
-                        }
+                       
+                        
                     }
 
                 }

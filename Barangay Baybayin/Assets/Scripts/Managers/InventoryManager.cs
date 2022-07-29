@@ -80,7 +80,7 @@ public class InventoryManager : MonoBehaviour
         if (p_item != "Food")
         {
             ItemData foundItem = GetItem(p_item);
-            Debug.Log(foundItem);
+            //Debug.Log(foundItem);
             if (runningCoroutine != null)
             {
                 StopCoroutine(runningCoroutine);

@@ -95,7 +95,7 @@ public class TutorialManager : MonoBehaviour
         StorylineManager.onWorldEventEndedEvent.RemoveListener(TellStory);
         UIManager.onGameplayModeChangedEvent.RemoveListener(GameplayModeChangedEvent);
         UIManager.instance.characterDialogueUI.SetEndTransitionEnabledEvent(false);
-        UIManager.instance.characterDialogueUI.SetIsCloseOnEndEvent(true);
+       // UIManager.instance.characterDialogueUI.SetIsCloseOnEndEvent(true);
         UIManager.instance.characterDialogueUI.SetStartTransitionEnabledEvent(true);
         TimeManager.instance.tutorialOn = false;
         //TimeManager.onPauseGameTime.Invoke(false);
@@ -124,7 +124,7 @@ public class TutorialManager : MonoBehaviour
         infrastructureTwo.InitializeValues();
         infrastructureTwo.gameObject.SetActive(true);
         UIManager.instance.characterDialogueUI.SetEndTransitionEnabledEvent(false);
-        UIManager.instance.characterDialogueUI.SetIsCloseOnEndEvent(false);
+        //UIManager.instance.characterDialogueUI.SetIsCloseOnEndEvent(false);
         UIManager.instance.characterDialogueUI.SetStartTransitionEnabledEvent(false);
         TimeManager.instance.tutorialOn = true;
         TimeManager.onPauseGameTime.Invoke(false);
@@ -152,7 +152,7 @@ public class TutorialManager : MonoBehaviour
         StorylineManager.onWorldEventEndedEvent.RemoveListener(TellStory);
         UIManager.onGameplayModeChangedEvent.RemoveListener(GameplayModeChangedEvent);
         UIManager.instance.characterDialogueUI.SetEndTransitionEnabledEvent(false);
-        UIManager.instance.characterDialogueUI.SetIsCloseOnEndEvent(true);
+       // UIManager.instance.characterDialogueUI.SetIsCloseOnEndEvent(true);
         UIManager.instance.characterDialogueUI.SetStartTransitionEnabledEvent(true);
         TimeManager.instance.tutorialOn = false;
         TimeManager.onPauseGameTime.Invoke(true);
@@ -271,7 +271,8 @@ public class TutorialManager : MonoBehaviour
         {
             if (infrastructureSpawn)
             {
-                infrastructureSpawn = false;
+                infrastructureSpawn = false; ;
+                Debug.Log("SHOULD BE WORKING");
                 //SPAWN
                 infrastructure.GetComponent<Health>().OnDeathEvent.AddListener(TeachSix);
                 infrastructure.canInteract = true;
@@ -279,7 +280,7 @@ public class TutorialManager : MonoBehaviour
             
                 //SPECIFIC
                 ToolsUI.onToolQuestSwitchEvent.Invoke(0);
-                ToolsUI.onToolQuestSwitchEvent.Invoke(1);
+               
                 PlayerManager.instance.playerToolCaster.SetIsPrecise(true);
                 PlayerManager.instance.playerToolCaster.SetRequireCorrectTool(ToolManager.instance.tools[0]);
 
@@ -348,11 +349,11 @@ public class TutorialManager : MonoBehaviour
                 oneToolRewardGiven = true;
                 panday.canInteract = true;
                 UIManager.instance.characterDialogueUI.SetEndTransitionEnabledEvent(false);
-                UIManager.instance.characterDialogueUI.SetIsCloseOnEndEvent(true);
+               // UIManager.instance.characterDialogueUI.SetIsCloseOnEndEvent(true);
                 UIManager.instance.characterDialogueUI.SetStartTransitionEnabledEvent(false);
                 InventoryManager.onAddItemEvent.Invoke("Recipe 1", 1);
                 InventoryManager.onAddItemEvent.Invoke("Wood 1", 10);
-                UpgradeToolsUI.onSetSpecificToMachete.Invoke(true);
+                UIManager.instance.upgradeToolsUI.SetSpecificToMachete(true);
                 PlayerManager.instance.playerToolCaster.SetRequireCorrectToolEvent(false);
                 ToolManager.onToolCraftLevelUpgradedEvent.AddListener(RequireMacheteCraftLevel1);
                 EndStory();
@@ -370,12 +371,12 @@ public class TutorialManager : MonoBehaviour
             {
                 allToolsRewardGiven = true;
                 UIManager.instance.characterDialogueUI.SetEndTransitionEnabledEvent(false);
-                UIManager.instance.characterDialogueUI.SetIsCloseOnEndEvent(true);
+               // UIManager.instance.characterDialogueUI.SetIsCloseOnEndEvent(true);
                 UIManager.instance.characterDialogueUI.SetStartTransitionEnabledEvent(false);
                 InventoryManager.onAddItemEvent.Invoke("Recipe 1", 3); //it happens 3 times
                 InventoryManager.onAddItemEvent.Invoke("Wood 1", 30);
-                UpgradeToolsUI.onSetSpecificToMachete.Invoke(false);
-                UpgradeToolsUI.onSetSpecificToAllOther.Invoke(true);
+                UIManager.instance.upgradeToolsUI.SetSpecificToMachete(false);
+                UIManager.instance.upgradeToolsUI.SetSpecificToAllOther(true);
      
                 ToolManager.onToolCraftLevelUpgradedEvent.AddListener(RequireAllToolsCraftLevel1);
                 EndStory();
@@ -388,10 +389,10 @@ public class TutorialManager : MonoBehaviour
             if (!level2tree)
             {
                 UIManager.instance.characterDialogueUI.SetEndTransitionEnabledEvent(false);
-                UIManager.instance.characterDialogueUI.SetIsCloseOnEndEvent(true);
+               // UIManager.instance.characterDialogueUI.SetIsCloseOnEndEvent(true);
                 UIManager.instance.characterDialogueUI.SetStartTransitionEnabledEvent(false);
                 level2tree = true;
-                UpgradeToolsUI.onSetSpecificToAllOther.Invoke(false);
+                UIManager.instance.upgradeToolsUI.SetSpecificToAllOther(false);
                 panday.isQuestMode = true;
                 Debug.Log("8 HAPPENEEEEEEEEEEEEEEEEEEEEEED");
 

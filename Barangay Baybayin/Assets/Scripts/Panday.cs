@@ -48,7 +48,7 @@ public class Panday : InteractibleObject
                 int chosenInitialPandayDialogueIndex = Random.Range(0, StorylineManager.instance.initialPandayDialogue.Count);
                 SO_Dialogues chosenInitialPandayDialogue = StorylineManager.instance.initialPandayDialogue[chosenInitialPandayDialogueIndex];
                 UIManager.instance.characterDialogueUI.SetEndTransitionEnabledEvent(false);
-                UIManager.instance.characterDialogueUI.SetIsCloseOnEndEvent(false);
+               // UIManager.instance.characterDialogueUI.SetIsCloseOnEndEvent(false);
                 UIManager.instance.characterDialogueUI.SetChoicesEvent(true);
                 CharacterDialogueUI.onCharacterSpokenToEvent.Invoke(id, chosenInitialPandayDialogue);
                 UIManager.instance.characterDialogueUI.SetStartTransitionEnabledEvent(false);
@@ -140,7 +140,7 @@ public class Panday : InteractibleObject
             CharacterDialogueUI.onCharacterSpokenToEvent.Invoke(id, StorylineManager.instance.finishedPandayDialogue);
         }
         UIManager.instance.characterDialogueUI.SetEndTransitionEnabledEvent(true);
-        UIManager.instance.characterDialogueUI.SetIsCloseOnEndEvent(true);
+        //UIManager.instance.characterDialogueUI.SetIsCloseOnEndEvent(true);
         UIManager.instance.characterDialogueUI.SetStartTransitionEnabledEvent(true);
 
     }
@@ -148,7 +148,7 @@ public class Panday : InteractibleObject
     public void OpenUI()
     {
         UIManager.instance.characterDialogueUI.SetEndTransitionEnabledEvent(true);
-        UIManager.instance.characterDialogueUI.SetIsCloseOnEndEvent(true);
+        //UIManager.instance.characterDialogueUI.SetIsCloseOnEndEvent(true);
         UIManager.instance.characterDialogueUI.SetStartTransitionEnabledEvent(true);
         onPandaySpokenToEvent.Invoke();
 

@@ -33,7 +33,7 @@ public class UIManager : MonoBehaviour
     public GameObject overlayCanvas;
     public GameObject gameplayHUD;
     public CharacterDialogueUI characterDialogueUI;
-
+    public UpgradeToolsUI upgradeToolsUI;
     public Image weatherSpriteUI; 
 
     public IEnumerator runningCoroutine;
@@ -81,6 +81,7 @@ public class UIManager : MonoBehaviour
     {
         TimeManager.onPauseGameTime.Invoke(!p_isActive);
         //p_isActive = !p_isActive;
+        Debug.Log("wah " !+ p_isActive);
         gameplayHUD.SetActive(!p_isActive);
         
     }

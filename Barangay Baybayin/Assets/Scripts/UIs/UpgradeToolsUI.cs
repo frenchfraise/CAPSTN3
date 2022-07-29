@@ -4,8 +4,6 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
-public class SetSpecificToMachete : UnityEvent<bool> { }
-public class SetSpecificToAllOther : UnityEvent<bool> { }
 
 public class UpgradeToolsUI : MonoBehaviour
 {
@@ -35,8 +33,7 @@ public class UpgradeToolsUI : MonoBehaviour
 
     [SerializeField]
     private List<UpgradeToolUI> upgradeToolUIs = new List<UpgradeToolUI>();
-    public static SetSpecificToMachete onSetSpecificToMachete = new SetSpecificToMachete();
-    public static SetSpecificToAllOther onSetSpecificToAllOther = new SetSpecificToAllOther();
+
     private void Awake()
     {
         foreach (UpgradeToolUI upgradeToolUI in upgradeToolUIs)
@@ -44,15 +41,13 @@ public class UpgradeToolsUI : MonoBehaviour
             upgradeToolUI.upgradeUI = this;
         }
         Panday.onPandaySpokenToEvent.AddListener(OpenButtonUIClicked);
-        onSetSpecificToMachete.AddListener(SetSpecificToMachete);
-        onSetSpecificToAllOther.AddListener(SetSpecificToAllOther);
+
     }
 
     private void OnDestroy()
     {
         Panday.onPandaySpokenToEvent.RemoveListener(OpenButtonUIClicked);
-        onSetSpecificToMachete.RemoveListener(SetSpecificToMachete);
-        onSetSpecificToAllOther.RemoveListener(SetSpecificToAllOther);
+
     }
     public void SetSpecificToMachete(bool p_bool)
     {
@@ -64,30 +59,19 @@ public class UpgradeToolsUI : MonoBehaviour
         isSpecificToAllOther = p_bool;
     }
 
-    private void OnEnable()
-    {
-
-    }
-
-    private void OnDisable()
-    {
-
-    }
-
     public void ToolUp()
     {
         
-            upgradeMaterialUIs[0].requirementFulfilled = false;
-            upgradeMaterialUIs[1].requirementFulfilled = false;
-            threeRequirement = false;
+        upgradeMaterialUIs[0].requirementFulfilled = false;
+        upgradeMaterialUIs[1].requirementFulfilled = false;
+        threeRequirement = false;
             
-            confirmPanelUI.SetActive(true);
-            selectionPanelUI.SetActive(false);
-            UpdateCurrentToolUI(ToolManager.instance.tools[currentIndex]);
+        confirmPanelUI.SetActive(true);
+        selectionPanelUI.SetActive(false);
+        UpdateCurrentToolUI(ToolManager.instance.tools[currentIndex]);
     }
     public void ToolButtonUIClicked(int p_toolIndex)
     {
-        Debug.Log("DAAAAAAAAA");
         currentIndex = p_toolIndex;
         if (isSpecificToMachete)
         {
@@ -215,7 +199,11 @@ public class UpgradeToolsUI : MonoBehaviour
             
             
         }
-     
+        for (int i = 0; i < ToolManager.instance.tools.Count;i++)
+        {
+            UpdateCurrentToolUI(ToolManager.instance.tools[i]);
+        }
+        
 
     }
 
