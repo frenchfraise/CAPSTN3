@@ -1,0 +1,632 @@
+fileFormatVersion: 2
+guid: bc3dbbe569cd32a4f86fc05e40629854
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Item_Rarity_Spritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 6468
+        y: 6164
+        width: 1400
+        height: 1992
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32d95c889ff75294592bf22033ba8dba
+      internalID: 668018724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Item_Rarity_Spritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 6120
+        width: 1900
+        height: 1992
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72c3ac7cf0d855340825b4434ac2ee0e
+      internalID: 532669872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Item_Rarity_Spritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 8320
+        y: 6232
+        width: 1794
+        height: 1874
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23e21bb3e2065da41996a232ad4e2355
+      internalID: 330508635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Item_Rarity_Spritesheet_9
+      rect:
+        serializedVersion: 2
+        x: 10384
+        y: 6192
+        width: 1787
+        height: 1914
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14a82a0a27b5173409619b6772287530
+      internalID: 1256777184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Item_Rarity_Spritesheet_11
+      rect:
+        serializedVersion: 2
+        x: 12436
+        y: 6240
+        width: 1755
+        height: 1866
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ada75c82d9206c4aab510cb7ac167ec
+      internalID: 1707953826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Item_Rarity_Spritesheet_13
+      rect:
+        serializedVersion: 2
+        x: 14404
+        y: 6140
+        width: 1904
+        height: 1968
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb64e1a6b2bb8cc41b1b85d702856418
+      internalID: 1768052305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Item_Rarity_Spritesheet_14
+      rect:
+        serializedVersion: 2
+        x: 2328
+        y: 6120
+        width: 1488
+        height: 1924
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef3ea6c51acc61b478f2e89b1dcec149
+      internalID: -1611280835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Item_Rarity_Spritesheet_16
+      rect:
+        serializedVersion: 2
+        x: 4236
+        y: 6164
+        width: 1656
+        height: 1891
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d686fe5ba232e02469845e4007fce91b
+      internalID: 2095121261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Item_Rarity_Spritesheet_43
+      rect:
+        serializedVersion: 2
+        x: 14480
+        y: 4088
+        width: 1744
+        height: 2039
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd44fe161cd85c34f915834abdcb8b0d
+      internalID: -781051682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Item_Rarity_Spritesheet_45
+      rect:
+        serializedVersion: 2
+        x: 10277
+        y: 4073
+        width: 1943
+        height: 2011
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 380fb18cb3b4ca14cb6ec5494aefdd85
+      internalID: -1839438540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Item_Rarity_Spritesheet_46
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 4092
+        width: 1656
+        height: 1971
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84fd56ffeef68e348aceee310ae0ba84
+      internalID: 1437380942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Item_Rarity_Spritesheet_47
+      rect:
+        serializedVersion: 2
+        x: 2752
+        y: 4088
+        width: 656
+        height: 1967
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f5899a8143dfea46b275b3527b99504
+      internalID: -1850897030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Item_Rarity_Spritesheet_52
+      rect:
+        serializedVersion: 2
+        x: 8332
+        y: 4088
+        width: 1768
+        height: 1860
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9530f3abfe453eb4c9daf378175a5cd6
+      internalID: -916876265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Item_Rarity_Spritesheet_53
+      rect:
+        serializedVersion: 2
+        x: 12336
+        y: 4092
+        width: 1867
+        height: 1888
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 761508b94cae51146b6b34aca2f5d9c0
+      internalID: -1020645333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Item_Rarity_Spritesheet_54
+      rect:
+        serializedVersion: 2
+        x: 4168
+        y: 4073
+        width: 1900
+        height: 1851
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19b674246a515bf4595c49e58b34a715
+      internalID: -1608478310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Item_Rarity_Spritesheet_56
+      rect:
+        serializedVersion: 2
+        x: 6264
+        y: 4092
+        width: 1788
+        height: 1832
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0323cc6fbfba4694a816b03a6c2de429
+      internalID: -1398479865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Item_Rarity_Spritesheet_87
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 2036
+        width: 1918
+        height: 1952
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3934f42b01d97148823b5f0d10209ab
+      internalID: 1225352295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Item_Rarity_Spritesheet_89
+      rect:
+        serializedVersion: 2
+        x: 2321
+        y: 2033
+        width: 1475
+        height: 1970
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e782992462f73c34eb04902f3b41cbec
+      internalID: 977285205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Item_Rarity_Spritesheet_93
+      rect:
+        serializedVersion: 2
+        x: 4268
+        y: 2068
+        width: 1700
+        height: 1844
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8bc56b52ce932a8448cc31ee8941a07a
+      internalID: 1567462328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Item_Rarity_Spritesheet_74: 1114668141
+      Item_Rarity_Spritesheet_82: -810033356
+      Item_Rarity_Spritesheet_40: -2140841628
+      Item_Rarity_Spritesheet_23: -1087949444
+      Item_Rarity_Spritesheet_61: 999286254
+      Item_Rarity_Spritesheet_34: -1838117152
+      Item_Rarity_Spritesheet_87: 1225352295
+      Item_Rarity_Spritesheet_39: 1724883650
+      Item_Rarity_Spritesheet_47: -1850897030
+      Item_Rarity_Spritesheet_48: -1073885552
+      Item_Rarity_Spritesheet_51: -958781599
+      Item_Rarity_Spritesheet_83: -439268600
+      Item_Rarity_Spritesheet_90: 80967874
+      Item_Rarity_Spritesheet_70: 2010387179
+      Item_Rarity_Spritesheet_27: 1062822948
+      Item_Rarity_Spritesheet_92: 820410573
+      Item_Rarity_Spritesheet_3: 668018724
+      Item_Rarity_Spritesheet_6: -2002397967
+      Item_Rarity_Spritesheet_45: -1839438540
+      Item_Rarity_Spritesheet_1: 1826708511
+      Item_Rarity_Spritesheet_8: 330508635
+      Item_Rarity_Spritesheet_91: 804547188
+      Item_Rarity_Spritesheet_7: -581859113
+      Item_Rarity_Spritesheet_37: -645361304
+      Item_Rarity_Spritesheet_13: 1768052305
+      Item_Rarity_Spritesheet_97: 136165610
+      Item_Rarity_Spritesheet_10: 1857073017
+      Item_Rarity_Spritesheet_86: 933863279
+      Item_Rarity_Spritesheet_24: 1717296391
+      Item_Rarity_Spritesheet_64: 1115436723
+      Item_Rarity_Spritesheet_68: 981982387
+      Item_Rarity_Spritesheet_65: -1806985366
+      Item_Rarity_Spritesheet_58: 261097292
+      Item_Rarity_Spritesheet_77: 785622078
+      Item_Rarity_Spritesheet_81: -231945492
+      Item_Rarity_Spritesheet_98: 1000398857
+      Item_Rarity_Spritesheet_41: 121650298
+      Item_Rarity_Spritesheet_35: 1828501036
+      Item_Rarity_Spritesheet_79: 101346635
+      Item_Rarity_Spritesheet_5: 532669872
+      Item_Rarity_Spritesheet_20: -1039888374
+      Item_Rarity_Spritesheet_49: -1471733994
+      Item_Rarity_Spritesheet_88: 1975264225
+      Item_Rarity_Spritesheet_55: -615573753
+      Item_Rarity_Spritesheet_36: -759194371
+      Item_Rarity_Spritesheet_66: -2145463128
+      Item_Rarity_Spritesheet_22: -1938029754
+      Item_Rarity_Spritesheet_4: -466151342
+      Item_Rarity_Spritesheet_44: 631567186
+      Item_Rarity_Spritesheet_25: 605918272
+      Item_Rarity_Spritesheet_76: 1657596977
+      Item_Rarity_Spritesheet_43: -781051682
+      Item_Rarity_Spritesheet_52: -916876265
+      Item_Rarity_Spritesheet_69: -917404263
+      Item_Rarity_Spritesheet_60: 1349107873
+      Item_Rarity_Spritesheet_67: -1051598372
+      Item_Rarity_Spritesheet_38: -1803034603
+      Item_Rarity_Spritesheet_85: 1294564259
+      Item_Rarity_Spritesheet_75: 130193364
+      Item_Rarity_Spritesheet_28: 1805877299
+      Item_Rarity_Spritesheet_11: 1707953826
+      Item_Rarity_Spritesheet_12: -179953002
+      Item_Rarity_Spritesheet_0: -1998788969
+      Item_Rarity_Spritesheet_73: 780970855
+      Item_Rarity_Spritesheet_84: -610869918
+      Item_Rarity_Spritesheet_50: -1894392711
+      Item_Rarity_Spritesheet_33: -1247808301
+      Item_Rarity_Spritesheet_59: 841466123
+      Item_Rarity_Spritesheet_9: 1256777184
+      Item_Rarity_Spritesheet_18: -215022651
+      Item_Rarity_Spritesheet_16: 2095121261
+      Item_Rarity_Spritesheet_32: 1524952741
+      Item_Rarity_Spritesheet_93: 1567462328
+      Item_Rarity_Spritesheet_26: 376962277
+      Item_Rarity_Spritesheet_46: 1437380942
+      Item_Rarity_Spritesheet_19: -1650615626
+      Item_Rarity_Spritesheet_2: 1901001720
+      Item_Rarity_Spritesheet_95: 665443240
+      Item_Rarity_Spritesheet_80: -679689728
+      Item_Rarity_Spritesheet_42: -201635681
+      Item_Rarity_Spritesheet_72: -1857298111
+      Item_Rarity_Spritesheet_89: 977285205
+      Item_Rarity_Spritesheet_31: -911378624
+      Item_Rarity_Spritesheet_96: 344477504
+      Item_Rarity_Spritesheet_17: -1066845304
+      Item_Rarity_Spritesheet_62: -1964476085
+      Item_Rarity_Spritesheet_56: -1398479865
+      Item_Rarity_Spritesheet_30: 759300746
+      Item_Rarity_Spritesheet_78: -444851152
+      Item_Rarity_Spritesheet_63: 340832996
+      Item_Rarity_Spritesheet_14: -1611280835
+      Item_Rarity_Spritesheet_21: -1290883116
+      Item_Rarity_Spritesheet_29: -966076047
+      Item_Rarity_Spritesheet_54: -1608478310
+      Item_Rarity_Spritesheet_53: -1020645333
+      Item_Rarity_Spritesheet_15: -523766725
+      Item_Rarity_Spritesheet_94: 2055447294
+      Item_Rarity_Spritesheet_57: 1144881500
+      Item_Rarity_Spritesheet_71: -329329885
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

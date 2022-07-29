@@ -15,6 +15,6 @@ MonoBehaviour:
   dialogues:
   - character: {fileID: 11400000, guid: 64792cf6cb6b2a642becf92ac15202ce, type: 2}
     emotion: 10
-    words: Use your Copper Axe to collect Rare Wood.
+    words: Use your Copper Axe to collect Wood <sprite=7>.
     backgroundSprite: {fileID: 0}
     speechTransitionType: 0

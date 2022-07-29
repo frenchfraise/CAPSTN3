@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 //using System.Threading.Tasks;
 public class TitlescreenUI : MonoBehaviour
 {
+    public GameObject creditsScreen;
+
     private void Start()
     {
         //TransitionUI.onFadeTransition.Invoke(0);
@@ -22,8 +24,6 @@ public class TitlescreenUI : MonoBehaviour
     public void OnPlayButtonUIClicked()
     {
         StartCoroutine(Co_OnPlayButtonUIClicked());
-
-
     }
 
     IEnumerator Co_OnPlayButtonUIClicked()
@@ -32,6 +32,11 @@ public class TitlescreenUI : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public void OnCreditsButtonClicked(bool p_bool)
+    {
+        creditsScreen.SetActive(p_bool);
     }
 
     public void OnQuitButtonUIClicked()

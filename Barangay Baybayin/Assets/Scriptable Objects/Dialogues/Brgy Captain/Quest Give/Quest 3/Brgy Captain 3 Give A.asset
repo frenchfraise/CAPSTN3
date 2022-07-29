@@ -100,8 +100,8 @@ MonoBehaviour:
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
     emotion: 10
-    words: 'We would only need [12 Red Herbs], which is found at the deep of the
-      Tropical Forest.
+    words: 'We would only need [<b>12 Red Herbs</b> <sprite=15>], which is found
+      at the deep of the Tropical Forest.
 
 '
     backgroundSprite: {fileID: 0}

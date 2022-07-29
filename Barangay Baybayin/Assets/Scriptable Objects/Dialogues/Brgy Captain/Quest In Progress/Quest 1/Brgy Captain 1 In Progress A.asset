@@ -15,9 +15,8 @@ MonoBehaviour:
   dialogues:
   - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
     emotion: 10
-    words: 'To begin, we need [10 Rare Wood] and [7 Vetiver grass].
-
-'
+    words: To begin, we need [<b>10 Wood</b> <sprite=7>] and [<b>7 Vetiver grass</b>
+      <sprite=4>].
     backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}

@@ -48,7 +48,7 @@ MonoBehaviour:
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: d07ffa9457a5d704b91096369ccebe08, type: 2}
     emotion: 10
-    words: 'We need [15 Common Bamboo] and [10 Rare Bamboo].
+    words: 'We need [<b>15 Bamboo</b> <sprite=16>] and [<b>10 Bamboo</b> <sprite=18>].
 
 '
     backgroundSprite: {fileID: 0}

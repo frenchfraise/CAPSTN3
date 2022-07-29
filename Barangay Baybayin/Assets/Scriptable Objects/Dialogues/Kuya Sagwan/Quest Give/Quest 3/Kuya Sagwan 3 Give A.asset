@@ -18,53 +18,66 @@ MonoBehaviour:
     words: 'Hey Sakoro. Glad to have you around.
 
 '
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
     emotion: 10
     words: The upgrades to the boat worked - they're more durable.
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
     emotion: 10
     words: "The others and I are working on the other ones.\r"
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
     emotion: 10
     words: Before we start fishing again, there's one more thing.
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
     emotion: 10
     words: The piers were damaged by the storm.
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
     emotion: 10
     words: Them piers are where we set out, return, and haul our catch.
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
     emotion: 10
     words: That's where we entertain visitors and trading boats as well.
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
     emotion: 10
     words: The piers are vital to the town.
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
     emotion: 10
     words: With them destroyed like this, our town is hampered.
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
     emotion: 10
     words: Think you could fix 'er up?
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
     emotion: 10
-    words: The materials are [15 Superb Wood] and [10 Superb Bamboo].
+    words: The materials are [<b>15 Wood</b> <sprite=6>] and [<b>10 Bamboo</b> <sprite=17>].
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
     emotion: 10
     words: "The rarest of the Trees and Bamboos oughta be at the deepest of them
       maps.\r"
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
     emotion: 10
     words: Your tools would be tested, Panday.
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1

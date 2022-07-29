@@ -51,7 +51,8 @@ MonoBehaviour:
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
     emotion: 10
-    words: '[10 Rare Wood] and [15 Rare Nipa]. These ought to be sturdier.'
+    words: '[<b>10 Wood</b> <sprite=7>] and [<b>15 Nipa</b> <sprite=8>]. These ought
+      to be sturdier.'
     backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}

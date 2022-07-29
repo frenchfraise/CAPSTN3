@@ -15,20 +15,18 @@ MonoBehaviour:
   dialogues:
   - character: {fileID: 11400000, guid: d07ffa9457a5d704b91096369ccebe08, type: 2}
     emotion: 10
-    words: 'We need [15 Superb Nipa] and [15 Superb Bamboo].
+    words: We need [<b>15 Nipa</b> <sprite=5>] and [<b>15 Bamboo</b> <sprite=17>].
+    backgroundSprite: {fileID: 0}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: d07ffa9457a5d704b91096369ccebe08, type: 2}
+    emotion: 10
+    words: 'Nipa <sprite=5> is found in the deepest parts of the Forest.
 
 '
     backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: d07ffa9457a5d704b91096369ccebe08, type: 2}
     emotion: 10
-    words: 'Superb Nipa is found in the deepest parts of the Forest.
-
-'
-    backgroundSprite: {fileID: 0}
-    speechTransitionType: 1
-  - character: {fileID: 11400000, guid: d07ffa9457a5d704b91096369ccebe08, type: 2}
-    emotion: 10
-    words: "Superb Bamboo is at the Bamboo Thicket, where the water is.\r"
+    words: Bamboo <sprite=17> is at the Bamboo Thicket, where the water is.
     backgroundSprite: {fileID: 0}
     speechTransitionType: 1

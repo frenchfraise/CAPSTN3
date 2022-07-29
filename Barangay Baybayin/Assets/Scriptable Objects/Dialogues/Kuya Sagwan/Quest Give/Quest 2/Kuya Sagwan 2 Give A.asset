@@ -16,52 +16,65 @@ MonoBehaviour:
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
     emotion: 10
     words: "Sakoro, you've returned.\r"
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
     emotion: 10
     words: Most of our boats are wrecked.
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
     emotion: 10
     words: Was thinking of using sturdier material.
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
     emotion: 10
     words: We can fix up one boat first, and leave the rest for later.
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
     emotion: 10
     words: 'You know how it is: storms are more intense nowadays.'
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
     emotion: 10
     words: Boats like these are our lives.
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
     emotion: 10
     words: Fishing is risky, yes, but we're men of the water.
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
     emotion: 10
     words: We grew up doing this.
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
     emotion: 10
     words: We have to do this. For ourselves, and for the town.
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
     emotion: 10
     words: Fixing up and reinforcing the boats would let us work at peace.
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
     emotion: 10
     words: Not too heavy though, or it would sink! Hahaha, just messing around.
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
     emotion: 10
-    words: 'These oughta do: [10 Rare Wood] and [10 Rare Bamboo].'
+    words: 'These oughta do: [<b>10 Wood</b> <sprite=7>] and [<b>10 Bamboo</b> <sprite=18>].'
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
     emotion: 10
     words: Come back safe, yeah?
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1

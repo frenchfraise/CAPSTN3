@@ -16,45 +16,57 @@ MonoBehaviour:
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
     emotion: 0
     words: 'Panday Sakoro, good day. '
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 0
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
     emotion: 5
     words: 'Are you on the job? '
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 0
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
     emotion: 10
     words: You see, the typhoon did a number on the school.
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 0
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
     emotion: 1
     words: "Some of the chairs and tables got destroyed. An area of the roof did,
       too\u2026 "
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 0
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
     emotion: 10
     words: "We aren\u2019t able to hold classes yet. I feel for the children."
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
     emotion: 10
     words: "Being in school, they\u2019re with their friends and they can play."
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
     emotion: 7
     words: "It\u2019s time away from the destruction and loss we face\u2026"
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
     emotion: 10
     words: "I want to bring the safe place back for them \u2013 for us."
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
     emotion: 4
     words: Perhaps you could help us?
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
     emotion: 10
-    words: "Seems like we\u2019d need [10 Common Wood] and [7 Common Nipa]."
+    words: "Seems like we\u2019d need [<b>10 Wood</b> <sprite=3>] and [<b>7 Nipa</b>
+      <sprite=11>]."
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
     emotion: 10
     words: "I\u2019ll be here waiting, so\u2026 Hope it goes well!"
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1

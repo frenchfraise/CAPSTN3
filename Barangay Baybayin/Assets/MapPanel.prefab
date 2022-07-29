@@ -144,7 +144,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b7e550fae1abf044192e7ba308275a0d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 183e3276aeadf714e897f8fe39dbd595, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -413,8 +413,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PauseMenuUI, Assembly-CSharp
-        m_MethodName: MapButton
-        m_Mode: 6
+        m_MethodName: BackToPauseMenuButton
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
