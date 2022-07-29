@@ -28,6 +28,7 @@ public class PlayerManager : MonoBehaviour
 
     public GameObject player;
     public PlayerJoystick playerMovement;
+    public ToolCaster playerToolCaster;
     public Stamina playerStamina;
     public Transform playerTransform { get; private set; }
     public Room playerRoom;
@@ -40,6 +41,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private float delay;
     private bool isLeft;
     bool isFirstTime = true;
+
     //[SerializeField] public PlayerJoystick joystick;
 
     public static UpdateCurrentRoomIDEvent onUpdateCurrentRoomIDEvent = new UpdateCurrentRoomIDEvent();

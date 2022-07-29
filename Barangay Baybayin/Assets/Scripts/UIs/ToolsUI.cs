@@ -60,12 +60,9 @@ public class ToolsUI : MonoBehaviour
     private void OnEnable()
     {
 
-        //toolCaster.onToolCanSwitchUpdatedEvent.AddListener(CanSwitchUpdate);
-    
         canUse = true;
         canSwitch = true;
-        //ToolManager.onProficiencyLevelModifiedEvent.AddListener(UpdateLevel);
-        //ToolManager.onProficiencyAmountModifiedEvent.AddListener(UpdateProf);
+
      
         foreach (ToolUIElements t in toolUI)
         {
@@ -74,11 +71,6 @@ public class ToolsUI : MonoBehaviour
         }
     }
 
-    private void OnDisable()
-    {
-   
-        //toolCaster.onToolCanSwitchUpdatedEvent.RemoveListener(CanSwitchUpdate);
-    }
 
     public void GameplayHUDSwitch(bool p_bool)
     {
@@ -111,10 +103,7 @@ public class ToolsUI : MonoBehaviour
     }
     public void UpdateCraftLevel(int p_index)
     {
-        //Tool selected_Tool = ToolManager.instance.tools[p_index];
-        //SO_Tool selectedSO_Tool = selected_Tool.so_Tool;
-      
-        //toolUI[currentEquip].icon.sprite = selectedSO_Tool.equippedIcon[selected_Tool.craftLevel+1];
+   
         for (int i = 0; i < toolUI.Count; i++)
         {
            
@@ -123,9 +112,6 @@ public class ToolsUI : MonoBehaviour
             SO_Tool so_Tool = current_Tool.so_Tool;
             toolUI[i].background.sprite = so_Tool.unlockedFrame;
             toolUI[i].icon.sprite = so_Tool.equippedIcon[current_Tool.craftLevel];//.unlockedIcon;
-
-            
-
 
         }
 
@@ -138,7 +124,6 @@ public class ToolsUI : MonoBehaviour
         SO_Tool selectedSO_Tool = selected_Tool.so_Tool;
         toolUI[currentEquip].levelCount.text = selected_Tool.proficiencyLevel.ToString();
         toolUI[currentEquip].frame.sprite = frameLevels[selected_Tool.proficiencyLevel];
-        //Debug.Log(p_level + " " + selected_Tool.toolName + " " +selected_Tool.proficiencyAmount  + " "+ selectedSO_Tool.maxProficiencyAmount[selected_Tool.proficiencyLevel]);
         toolUI[currentEquip].genericBarUI.ResetBar(selected_Tool.proficiencyAmount, 
             selectedSO_Tool.maxProficiencyAmount[selected_Tool.proficiencyLevel]);
   
@@ -150,9 +135,7 @@ public class ToolsUI : MonoBehaviour
     {
         Tool selected_Tool = ToolManager.instance.tools[currentEquip];
         SO_Tool selectedSO_Tool = selected_Tool.so_Tool;
-       // Debug.Log(p_curr + " - " + p_max);
-       // Debug.Log(selected_Tool.proficiencyAmount + " - " +  selectedSO_Tool.maxProficiencyAmount[selected_Tool.craftLevel]);
-        //toolUI[currentEquip].genericBarUI.fillAmount = selected_Tool.proficiencyAmount / selectedSO_Tool.maxProficiencyAmount[selected_Tool.craftLevel];
+      
         if (toolUI[currentEquip].genericBarUI.gameObject.activeSelf)
         {
             toolUI[currentEquip].genericBarUI.UpdateBar(selected_Tool.proficiencyAmount, selectedSO_Tool.maxProficiencyAmount[selected_Tool.proficiencyLevel]);
@@ -165,7 +148,7 @@ public class ToolsUI : MonoBehaviour
     }
     public void OnToolButtonPressed(int index)
     {
-       // Debug.Log("tool button pressed");
+  
         if (requiredTool == -1 || requiredTool != -1 && requiredTool == index)
         {
             if (canUse)
@@ -191,7 +174,7 @@ public class ToolsUI : MonoBehaviour
                             Tool current_Tool = ToolManager.instance.tools[i];
                             SO_Tool so_Tool = current_Tool.so_Tool;
                             toolUI[i].background.sprite = so_Tool.unlockedFrame;
-                            toolUI[i].icon.sprite = so_Tool.equippedIcon[current_Tool.craftLevel];//.unlockedIcon;
+                            toolUI[i].icon.sprite = so_Tool.equippedIcon[current_Tool.craftLevel];
 
                         }
 
@@ -206,7 +189,6 @@ public class ToolsUI : MonoBehaviour
         }
         else if (requiredTool != -1 && requiredTool != index)
         {
-            //Debug.Log("DADA");
             StorylineManager.onWorldEventEndedEvent.Invoke("EQUIPPINGWRONGTOOL", 0, 0);
         }
 

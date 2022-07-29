@@ -47,11 +47,11 @@ public class Panday : InteractibleObject
             {
                 int chosenInitialPandayDialogueIndex = Random.Range(0, StorylineManager.instance.initialPandayDialogue.Count);
                 SO_Dialogues chosenInitialPandayDialogue = StorylineManager.instance.initialPandayDialogue[chosenInitialPandayDialogueIndex];
-                CharacterDialogueUI.onSetEndTransitionEnabledEvent.Invoke(false);
-                CharacterDialogueUI.onSetIsCloseOnEndEvent.Invoke(false);
-                CharacterDialogueUI.onSetChoicesEvent.Invoke(true);
+                UIManager.instance.characterDialogueUI.SetEndTransitionEnabledEvent(false);
+                UIManager.instance.characterDialogueUI.SetIsCloseOnEndEvent(false);
+                UIManager.instance.characterDialogueUI.SetChoicesEvent(true);
                 CharacterDialogueUI.onCharacterSpokenToEvent.Invoke(id, chosenInitialPandayDialogue);
-                CharacterDialogueUI.onSetStartTransitionEnabledEvent.Invoke(false);
+                UIManager.instance.characterDialogueUI.SetStartTransitionEnabledEvent(false);
             }
             else
             {
@@ -139,17 +139,17 @@ public class Panday : InteractibleObject
         {
             CharacterDialogueUI.onCharacterSpokenToEvent.Invoke(id, StorylineManager.instance.finishedPandayDialogue);
         }
-        CharacterDialogueUI.onSetEndTransitionEnabledEvent.Invoke(true);
-        CharacterDialogueUI.onSetIsCloseOnEndEvent.Invoke(true);
-        CharacterDialogueUI.onSetStartTransitionEnabledEvent.Invoke(true);
+        UIManager.instance.characterDialogueUI.SetEndTransitionEnabledEvent(true);
+        UIManager.instance.characterDialogueUI.SetIsCloseOnEndEvent(true);
+        UIManager.instance.characterDialogueUI.SetStartTransitionEnabledEvent(true);
 
     }
 
     public void OpenUI()
     {
-        CharacterDialogueUI.onSetEndTransitionEnabledEvent.Invoke(true);
-        CharacterDialogueUI.onSetIsCloseOnEndEvent.Invoke(true);
-        CharacterDialogueUI.onSetStartTransitionEnabledEvent.Invoke(true);
+        UIManager.instance.characterDialogueUI.SetEndTransitionEnabledEvent(true);
+        UIManager.instance.characterDialogueUI.SetIsCloseOnEndEvent(true);
+        UIManager.instance.characterDialogueUI.SetStartTransitionEnabledEvent(true);
         onPandaySpokenToEvent.Invoke();
 
 

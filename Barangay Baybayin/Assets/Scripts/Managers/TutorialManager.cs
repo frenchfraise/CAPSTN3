@@ -36,12 +36,7 @@ public class TutorialManager : MonoBehaviour
     public SO_Dialogues cantGoThere;
 
     public TutorialBlocker tutorialBlocker;
-    public Passageway MidToPandayRoomPassageway;
-    public Passageway MidToForkRoomPassageway;
-    public Passageway PandayToMidPassageway;
-    public Passageway ForkToMidPassageway;
-
-    public CharacterDialogueUI characterDialogue;
+    public Transform pandayNormalPosition;
 
     public bool isFirstTimeFood = true;
     public static TutorialEventEndedEvent onTutorialEventEndedEvent = new TutorialEventEndedEvent();
@@ -65,72 +60,58 @@ public class TutorialManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        //onTutorialEventEndedEvent.AddListener(TutorialEventEndedEvent);
+    
     }
 
     public void Next()
     {
 
         StorylineManager.onWorldEventEndedEvent.Invoke("O-" + currentIndex, 0, 0);
-        //Debug.Log(currentIndex + " NEXT " + (currentIndex + 1).ToString());
+
     }
 
-    //void TutorialEventEndedEvent(int i)
-    //{
-
-    //}
     private void Start()
     {
         Setup();
-        //DontUseTutorial();
+   
     }
     public void DontUseTutorial()
     {
-        //temp
-        WeatherManager.instance.RandPredictWeathers();
+    
+   
 
         ToolCaster.onToolUsedEvent.RemoveListener(TeachUseTool);
         ToolCaster.onToolSpecialUsedEvent.RemoveListener(TeachSpecialUseTool);
         ToolsUI.onToolQuestSwitchEvent.Invoke(-1);
-        ToolCaster.onSetIsPreciseEvent.Invoke(false);
-        ToolCaster.onSetRequireCorrectToolEvent.Invoke(null);
+        PlayerManager.instance.playerToolCaster.SetIsPrecise(false);
+        PlayerManager.instance.playerToolCaster.SetRequireCorrectTool(null);
         infrastructure.gameObject.SetActive(false);
         infrastructureTwo.gameObject.SetActive(false);
         specialButton.SetActive(true);
         PlayerManager.instance.DayChanging();
         panday.canInteract = true;
-        Stamina.onManualSetStaminaEvent.Invoke(150);
+        PlayerManager.instance.playerStamina.ManualSetStaminaEvent(150);
         CameraManager.instance.tutorialOn = false;
         StorylineManager.onWorldEventEndedEvent.RemoveListener(TellStory);
         UIManager.onGameplayModeChangedEvent.RemoveListener(GameplayModeChangedEvent);
-        CharacterDialogueUI.onSetEndTransitionEnabledEvent.Invoke(false);
-        CharacterDialogueUI.onSetIsCloseOnEndEvent.Invoke(true);
-        CharacterDialogueUI.onSetStartTransitionEnabledEvent.Invoke(true);
+        UIManager.instance.characterDialogueUI.SetEndTransitionEnabledEvent(false);
+        UIManager.instance.characterDialogueUI.SetIsCloseOnEndEvent(true);
+        UIManager.instance.characterDialogueUI.SetStartTransitionEnabledEvent(true);
         TimeManager.instance.tutorialOn = false;
         //TimeManager.onPauseGameTime.Invoke(false);
         CameraManager.instance.ResetCamera();
-        CharacterDialogueUI.onSkipEvent.Invoke();
+        UIManager.instance.characterDialogueUI.Skip();
         tutorialUI.overheadUI.SetActive(false);
         panday.isQuestMode = false;
         tutorialBlocker.gameObject.SetActive(false);
         dayFirstTime = false;
-
+        panday.transform.position = pandayNormalPosition.position;
         TimeManager.onDayEndedEvent.Invoke(false,1);
-        ToolCaster.onSetRequireCorrectToolSwingEvent.Invoke(false);
-        //StartCoroutine(Co_Loading());
+        PlayerManager.instance.playerToolCaster.SetRequireCorrectToolEvent(false);
+ 
     }
 
-    //IEnumerator Co_Loading()
-    //{
-    //    yield return new WaitForSeconds(7f);
-    //    if (dayFirstTime)
-    //    {
-    //        dayFirstTime = false;
-    //        TutorialUI.onRemindTutorialEvent.Invoke(0);
-    //        //AudioManager.instance.OnDayChangingEvent();
-    //    }
-
-    //}
+  
     void Setup()
     {
         specialButton.SetActive(false);
@@ -142,12 +123,12 @@ public class TutorialManager : MonoBehaviour
         infrastructure.gameObject.SetActive(true);
         infrastructureTwo.InitializeValues();
         infrastructureTwo.gameObject.SetActive(true);
-        CharacterDialogueUI.onSetEndTransitionEnabledEvent.Invoke(false);
-        CharacterDialogueUI.onSetIsCloseOnEndEvent.Invoke(false);
-        CharacterDialogueUI.onSetStartTransitionEnabledEvent.Invoke(false);
+        UIManager.instance.characterDialogueUI.SetEndTransitionEnabledEvent(false);
+        UIManager.instance.characterDialogueUI.SetIsCloseOnEndEvent(false);
+        UIManager.instance.characterDialogueUI.SetStartTransitionEnabledEvent(false);
         TimeManager.instance.tutorialOn = true;
         TimeManager.onPauseGameTime.Invoke(false);
-        Stamina.onManualSetStaminaEvent.Invoke(150);
+        PlayerManager.instance.playerStamina.ManualSetStaminaEvent(150);
         PlayerManager.instance.playerTransform.position = spawnLocation.position;
         panLimit = Vector2Abs(startRoom.position - panLimitUpperRightTransform.position);
         CameraManager.onCameraMovedEvent.Invoke(startRoom.position, panLimit);
@@ -158,10 +139,10 @@ public class TutorialManager : MonoBehaviour
     void Unsetup()
     {
 
-        ToolCaster.onSetRequireCorrectToolSwingEvent.Invoke(false);
+        PlayerManager.instance.playerToolCaster.SetRequireCorrectToolEvent(false);
         ToolsUI.onToolQuestSwitchEvent.Invoke(-1);
-        ToolCaster.onSetIsPreciseEvent.Invoke(false);
-        ToolCaster.onSetRequireCorrectToolEvent.Invoke(null);
+        PlayerManager.instance.playerToolCaster.SetIsPrecise(false);
+        PlayerManager.instance.playerToolCaster.SetRequireCorrectTool(null);
         infrastructure.gameObject.SetActive(false);
         infrastructureTwo.gameObject.SetActive(false);
         specialButton.SetActive(true);
@@ -170,20 +151,16 @@ public class TutorialManager : MonoBehaviour
         Debug.Log("UNSETTING UP");
         StorylineManager.onWorldEventEndedEvent.RemoveListener(TellStory);
         UIManager.onGameplayModeChangedEvent.RemoveListener(GameplayModeChangedEvent);
-        CharacterDialogueUI.onSetEndTransitionEnabledEvent.Invoke(false);
-        CharacterDialogueUI.onSetIsCloseOnEndEvent.Invoke(true);
-        CharacterDialogueUI.onSetStartTransitionEnabledEvent.Invoke(true);
+        UIManager.instance.characterDialogueUI.SetEndTransitionEnabledEvent(false);
+        UIManager.instance.characterDialogueUI.SetIsCloseOnEndEvent(true);
+        UIManager.instance.characterDialogueUI.SetStartTransitionEnabledEvent(true);
         TimeManager.instance.tutorialOn = false;
         TimeManager.onPauseGameTime.Invoke(true);
         tutorialUI.overheadUI.SetActive(false);
         panday.isQuestMode = false;
 
         tutorialBlocker.gameObject.SetActive(false);
-        //if (dayFirstTime)
-        //{
-        //    dayFirstTime = false;
-        //    tutorialUI.RemindTutorialEvent(0);
-        //}
+        panday.transform.position = pandayNormalPosition.position;
         TimeManager.onDayEndedEvent.Invoke(false, 1);
 
     }
@@ -198,6 +175,7 @@ public class TutorialManager : MonoBehaviour
         Debug.Log("START LECTURE ID: O-" + currentIndex + " CURRENT INDEX: " + currentIndex + " CURRENT DIALOGUE: " + currentDialogueIndex);
         onTutorialEventEndedEvent.Invoke(currentIndex);
         CharacterDialogueUI.onCharacterSpokenToEvent.Invoke("O-" + currentIndex, dialogues[currentDialogueIndex]);
+
     }
     void TellStory(string p_id, int p_intone, int p_intto)
     {
@@ -258,8 +236,8 @@ public class TutorialManager : MonoBehaviour
 
                 //SPECIFIC
                 ToolsUI.onToolQuestSwitchEvent.Invoke(3);
-                ToolCaster.onSetIsPreciseEvent.Invoke(true);
-                ToolCaster.onSetRequireCorrectToolEvent.Invoke(ToolManager.instance.tools[3]);
+                PlayerManager.instance.playerToolCaster.SetIsPrecise(true);
+                PlayerManager.instance.playerToolCaster.SetRequireCorrectTool(ToolManager.instance.tools[3]);
                 //SPECFICI
                 EndStory();
             }
@@ -280,8 +258,9 @@ public class TutorialManager : MonoBehaviour
 
                 //SPECIFIC
                 ToolsUI.onToolQuestSwitchEvent.Invoke(1);
-                ToolCaster.onSetIsPreciseEvent.Invoke(true);
-                ToolCaster.onSetRequireCorrectToolEvent.Invoke(ToolManager.instance.tools[1]);
+                PlayerManager.instance.playerToolCaster.SetIsPrecise(true);
+                PlayerManager.instance.playerToolCaster.SetRequireCorrectTool(ToolManager.instance.tools[1]);
+     
                 //SPECFICI
                 EndStory();
             }
@@ -300,8 +279,10 @@ public class TutorialManager : MonoBehaviour
             
                 //SPECIFIC
                 ToolsUI.onToolQuestSwitchEvent.Invoke(0);
-                ToolCaster.onSetIsPreciseEvent.Invoke(true);
-                ToolCaster.onSetRequireCorrectToolEvent.Invoke(ToolManager.instance.tools[0]);
+                ToolsUI.onToolQuestSwitchEvent.Invoke(1);
+                PlayerManager.instance.playerToolCaster.SetIsPrecise(true);
+                PlayerManager.instance.playerToolCaster.SetRequireCorrectTool(ToolManager.instance.tools[0]);
+
                 //SPECFICI
                 EndStory();
             }
@@ -320,8 +301,8 @@ public class TutorialManager : MonoBehaviour
 
                 //SPECIFIC
                 ToolsUI.onToolQuestSwitchEvent.Invoke(2);
-                ToolCaster.onSetIsPreciseEvent.Invoke(true);
-                ToolCaster.onSetRequireCorrectToolEvent.Invoke(ToolManager.instance.tools[2]);
+                PlayerManager.instance.playerToolCaster.SetIsPrecise(true);
+                PlayerManager.instance.playerToolCaster.SetRequireCorrectTool(ToolManager.instance.tools[2]);
                 //SPECFICI
                 EndStory();
             }
@@ -348,8 +329,9 @@ public class TutorialManager : MonoBehaviour
                 infrastructureTwo.canInteract = true;
 
                 //SPECIFIC
-                ToolCaster.onSetRequireCorrectToolSwingEvent.Invoke(true);
-                ToolCaster.onSetIsPreciseEvent.Invoke(true);
+            
+                PlayerManager.instance.playerToolCaster.SetIsPrecise(true);
+                PlayerManager.instance.playerToolCaster.SetRequireCorrectToolEvent(true);
                 //SPECFICI
 
                 ToolManager.onProficiencyLevelModifiedEvent.AddListener(RequireMacheteProfLevel1);
@@ -365,13 +347,13 @@ public class TutorialManager : MonoBehaviour
                 Debug.Log("OUT");
                 oneToolRewardGiven = true;
                 panday.canInteract = true;
-                CharacterDialogueUI.onSetEndTransitionEnabledEvent.Invoke(false);
-                CharacterDialogueUI.onSetIsCloseOnEndEvent.Invoke(true);
-                CharacterDialogueUI.onSetStartTransitionEnabledEvent.Invoke(false);
+                UIManager.instance.characterDialogueUI.SetEndTransitionEnabledEvent(false);
+                UIManager.instance.characterDialogueUI.SetIsCloseOnEndEvent(true);
+                UIManager.instance.characterDialogueUI.SetStartTransitionEnabledEvent(false);
                 InventoryManager.onAddItemEvent.Invoke("Recipe 1", 1);
                 InventoryManager.onAddItemEvent.Invoke("Wood 1", 10);
                 UpgradeToolsUI.onSetSpecificToMachete.Invoke(true);
-                ToolCaster.onSetRequireCorrectToolSwingEvent.Invoke(false);
+                PlayerManager.instance.playerToolCaster.SetRequireCorrectToolEvent(false);
                 ToolManager.onToolCraftLevelUpgradedEvent.AddListener(RequireMacheteCraftLevel1);
                 EndStory();
             }
@@ -387,9 +369,9 @@ public class TutorialManager : MonoBehaviour
             if (!allToolsRewardGiven)
             {
                 allToolsRewardGiven = true;
-                CharacterDialogueUI.onSetEndTransitionEnabledEvent.Invoke(false);
-                CharacterDialogueUI.onSetIsCloseOnEndEvent.Invoke(true);
-                CharacterDialogueUI.onSetStartTransitionEnabledEvent.Invoke(false);
+                UIManager.instance.characterDialogueUI.SetEndTransitionEnabledEvent(false);
+                UIManager.instance.characterDialogueUI.SetIsCloseOnEndEvent(true);
+                UIManager.instance.characterDialogueUI.SetStartTransitionEnabledEvent(false);
                 InventoryManager.onAddItemEvent.Invoke("Recipe 1", 3); //it happens 3 times
                 InventoryManager.onAddItemEvent.Invoke("Wood 1", 30);
                 UpgradeToolsUI.onSetSpecificToMachete.Invoke(false);
@@ -405,37 +387,22 @@ public class TutorialManager : MonoBehaviour
         {
             if (!level2tree)
             {
-                CharacterDialogueUI.onSetEndTransitionEnabledEvent.Invoke(false);
-                CharacterDialogueUI.onSetIsCloseOnEndEvent.Invoke(true);
-                CharacterDialogueUI.onSetStartTransitionEnabledEvent.Invoke(false);
+                UIManager.instance.characterDialogueUI.SetEndTransitionEnabledEvent(false);
+                UIManager.instance.characterDialogueUI.SetIsCloseOnEndEvent(true);
+                UIManager.instance.characterDialogueUI.SetStartTransitionEnabledEvent(false);
                 level2tree = true;
                 UpgradeToolsUI.onSetSpecificToAllOther.Invoke(false);
                 panday.isQuestMode = true;
                 Debug.Log("8 HAPPENEEEEEEEEEEEEEEEEEEEEEED");
-                //ResourceNode newResourceNode = TreeVariantOneNodePool.pool.Get();
-                //newResourceNode.transform.position = spawnPoint1.position + new Vector3(0f, -2.35f, 0f);
-                //newResourceNode.InitializeValues();
-                characterDialogue.firstTimeTutorial = true;
+
+                UIManager.instance.characterDialogueUI.firstTimeTutorial = true;
                 ResourceNode newResourceNode = TreeVariantTwoNodePool.pool.Get();
                 newResourceNode.transform.position = spawnPoint2.position + new Vector3(0f, -2.35f, 0f);
                 newResourceNode.InitializeValues();
-                ToolCaster.onSetRequireCorrectToolSwingEvent.Invoke(true);
-                ToolCaster.onSetIsPreciseEvent.Invoke(true);
-                //newResourceNode = TreeVariantOneNodePool.pool.Get();
-                //newResourceNode.transform.position = spawnPoint3.position + new Vector3(0f, -2.35f, 0f);
-                //newResourceNode.InitializeValues();
-
-                //newResourceNode = NipaLeavesVariantOneNodePool.pool.Get();
-                //newResourceNode.transform.position = spawnPoint7.position + new Vector3(0f, -2.35f, 0f);
-                //newResourceNode.InitializeValues();
-
-                //newResourceNode = NipaLeavesVariantOneNodePool.pool.Get();
-                //newResourceNode.transform.position = spawnPoint8.position + new Vector3(0f, -2.35f, 0f);
-                //newResourceNode.InitializeValues();
-
-                //newResourceNode = NipaLeavesVariantOneNodePool.pool.Get();
-                //newResourceNode.transform.position = spawnPoint9.position + new Vector3(0f, -2.35f, 0f);
-                //newResourceNode.InitializeValues();
+                PlayerManager.instance.playerToolCaster.SetRequireCorrectToolEvent(true);
+                PlayerManager.instance.playerToolCaster.SetIsPrecise(true);
+                
+                
                 StorylineManager.onWorldEventEndedEvent.AddListener(RequirePandayQuestComplete);
 
 
@@ -459,13 +426,7 @@ public class TutorialManager : MonoBehaviour
                         firstTime = false;
                         EndStory();
                     }
-                    
-                    //if(currentIndex == 9)
-                    //{
-                    //    Debug.Log("END");
-                    //    Unsetup();
-                    //}
-
+    
                 }
                 else
                 {
@@ -494,11 +455,13 @@ public class TutorialManager : MonoBehaviour
         tutorialUI.overheadText.text = dialogues[currentDialogueIndex].dialogues[0].words;
         if (currentIndex == 0)
         {
-            CharacterDialogueUI.onSetStartTransitionEnabledEvent.Invoke(false);
+            UIManager.instance.characterDialogueUI.SetStartTransitionEnabledEvent(false);
             //SPECIFIC
             ToolsUI.onToolQuestSwitchEvent.Invoke(3);
-            ToolCaster.onSetIsPreciseEvent.Invoke(false);
-            ToolCaster.onSetRequireCorrectToolEvent.Invoke(ToolManager.instance.tools[3]);
+  
+            PlayerManager.instance.playerToolCaster.SetIsPrecise(false);
+            PlayerManager.instance.playerToolCaster.SetRequireCorrectTool(ToolManager.instance.tools[3]);
+
             //SPECFICI
             ToolCaster.onToolUsedEvent.AddListener(TeachUseTool);
             ToolCaster.onToolSpecialUsedEvent.AddListener(TeachSpecialUseTool);
@@ -556,8 +519,10 @@ public class TutorialManager : MonoBehaviour
         ToolCaster.onToolSpecialUsedEvent.RemoveListener(TeachSpecialUseTool);
         //SPECIFIC RESET
         ToolsUI.onToolQuestSwitchEvent.Invoke(-1);
-        ToolCaster.onSetIsPreciseEvent.Invoke(false);
-        ToolCaster.onSetRequireCorrectToolEvent.Invoke(null);
+        PlayerManager.instance.playerToolCaster.SetIsPrecise(false);
+        PlayerManager.instance.playerToolCaster.SetRequireCorrectTool(null);
+
+   
         //SPECFICI RESET
         EndLecture();
     }
@@ -568,8 +533,10 @@ public class TutorialManager : MonoBehaviour
         ToolCaster.onToolSpecialUsedEvent.RemoveListener(TeachSpecialUseTool);
         //SPECIFIC RESET
         ToolsUI.onToolQuestSwitchEvent.Invoke(-1);
-        ToolCaster.onSetIsPreciseEvent.Invoke(false);
-        ToolCaster.onSetRequireCorrectToolEvent.Invoke(null);
+    
+        PlayerManager.instance.playerToolCaster.SetIsPrecise(false);
+        PlayerManager.instance.playerToolCaster.SetRequireCorrectTool(null);
+
         //SPECFICI RESET
         EndLecture();
     }
@@ -580,8 +547,10 @@ public class TutorialManager : MonoBehaviour
 
         //SPECIFIC
         ToolsUI.onToolQuestSwitchEvent.Invoke(-1);
-        ToolCaster.onSetIsPreciseEvent.Invoke(false);
-        ToolCaster.onSetRequireCorrectToolEvent.Invoke(null);
+      
+        PlayerManager.instance.playerToolCaster.SetIsPrecise(false);
+        PlayerManager.instance.playerToolCaster.SetRequireCorrectTool(null);
+
         //SPECFICI
 
         //Debug.Log("AAAAAAAAAAAAAAAAAAA: " + currentIndex);
@@ -595,8 +564,11 @@ public class TutorialManager : MonoBehaviour
 
         //SPECIFIC
         ToolsUI.onToolQuestSwitchEvent.Invoke(-1);
-        ToolCaster.onSetIsPreciseEvent.Invoke(false);
-        ToolCaster.onSetRequireCorrectToolEvent.Invoke(null);
+
+
+        PlayerManager.instance.playerToolCaster.SetIsPrecise(false);
+        PlayerManager.instance.playerToolCaster.SetRequireCorrectTool(null);
+
         //SPECFICI
 
         EndLecture();
@@ -621,7 +593,9 @@ public class TutorialManager : MonoBehaviour
         {
             //SPECIFIC
             ToolManager.onProficiencyLevelModifiedEvent.RemoveListener(RequireMacheteProfLevel1);
-            ToolCaster.onSetIsPreciseEvent.Invoke(false);
+            PlayerManager.instance.playerToolCaster.SetIsPrecise(false);
+     
+
             //SPECIFIC
             EndLecture();
         }

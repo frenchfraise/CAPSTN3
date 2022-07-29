@@ -6,14 +6,6 @@ using UnityEngine.UI;
 using TMPro;
 using System;
 using DG.Tweening;
-public class SkipEvent : UnityEvent { }
-public class SetChoicesEvent : UnityEvent<bool> { }
-public class SetIsCloseOnEndEvent : UnityEvent<bool> { }
-public class SetStartTransitionEnabledEvent : UnityEvent<bool> { }
-public class SetEndTransitionEnabledEvent : UnityEvent<bool> { }
-public class SetButtonEnabledEvent : UnityEvent<bool> { }
-public class SetIsPausedEvent : UnityEvent<bool> { }
-public class SetIsAdvancedonWorldEventEndedEvent : UnityEvent<bool> { }
 public class CharacterSpokenToEvent : UnityEvent<string, SO_Dialogues> { }
 public class FirstTimeFoodOnEndEvent : UnityEvent { }
 
@@ -92,14 +84,6 @@ public class CharacterDialogueUI : MonoBehaviour
     public IEnumerator runningEmotionCoroutine;
     public IEnumerator runningAvatarCoroutine;
     public static CharacterSpokenToEvent onCharacterSpokenToEvent = new CharacterSpokenToEvent();
-    public static SetButtonEnabledEvent onSetButtonEnabledEvent = new SetButtonEnabledEvent();
-    public static SetIsAdvancedonWorldEventEndedEvent onSetIsAdvancedonWorldEventEndedEvent = new SetIsAdvancedonWorldEventEndedEvent();
-    public static SetIsPausedEvent onSetIsPausedEvent = new SetIsPausedEvent();
-    public static SetEndTransitionEnabledEvent onSetEndTransitionEnabledEvent = new SetEndTransitionEnabledEvent();
-    public static SetStartTransitionEnabledEvent onSetStartTransitionEnabledEvent = new SetStartTransitionEnabledEvent();
-    public static SetIsCloseOnEndEvent onSetIsCloseOnEndEvent = new SetIsCloseOnEndEvent();
-    public static SetChoicesEvent onSetChoicesEvent = new SetChoicesEvent();
-    public static SkipEvent onSkipEvent = new SkipEvent();
     public static FirstTimeFoodOnEndEvent onFirstTimeFoodOnEndEvent = new FirstTimeFoodOnEndEvent();
     bool canDo = false;
 
@@ -123,56 +107,29 @@ public class CharacterDialogueUI : MonoBehaviour
         firstfirstTimeTutorial = false;
         isFoodFirstTime = false;
         onCharacterSpokenToEvent.AddListener(OnCharacterSpokenTo);
-        onSetIsAdvancedonWorldEventEndedEvent.AddListener(SetIsAdvancedonWorldEventEndedEvent);
-        onSetIsPausedEvent.AddListener(SetIsPausedEvent);
-        onSetButtonEnabledEvent.AddListener(SetButtonEnabledEvent);
-        onSetStartTransitionEnabledEvent.AddListener(SetStartTransitionEnabledEvent);
-        onSetEndTransitionEnabledEvent.AddListener(SetEndTransitionEnabledEvent);
-        onSetChoicesEvent.AddListener(SetChoicesEvent);
+   
         Panday.onPandaySpokenToEvent.AddListener(UniqueGameplayModeChangedEvent);
         UIManager.onGameplayModeChangedEvent.AddListener(GameplayModeChangedEvent);
-        onSkipEvent.AddListener(Skip);
+
     }
 
     private void OnDestroy()
     {
         onFirstTimeFoodOnEndEvent.RemoveListener(FirstTimeFoodOnEndEvent);
         onCharacterSpokenToEvent.RemoveListener(OnCharacterSpokenTo);
-        onSetIsAdvancedonWorldEventEndedEvent.RemoveListener(SetIsAdvancedonWorldEventEndedEvent);
-        onSetIsPausedEvent.RemoveListener(SetIsPausedEvent);
-        onSetButtonEnabledEvent.RemoveListener(SetButtonEnabledEvent);
-        onSetStartTransitionEnabledEvent.RemoveListener(SetStartTransitionEnabledEvent);
-        onSetEndTransitionEnabledEvent.RemoveListener(SetEndTransitionEnabledEvent);
-        onSetChoicesEvent.RemoveListener(SetChoicesEvent);
+
         Panday.onPandaySpokenToEvent.RemoveListener(UniqueGameplayModeChangedEvent);
         UIManager.onGameplayModeChangedEvent.RemoveListener(GameplayModeChangedEvent);
-        onSkipEvent.RemoveListener(Skip);
-    }
-    private void OnEnable()
-    {
 
-    
     }
-    private void OnDisable()
-    {
-   
-       
-    }
+
     public void UniqueGameplayModeChangedEvent()
     {
         frame.SetActive(false);
 
-
-
-
-
     }
     public void GameplayModeChangedEvent(bool p_set)
     {   
-        
-      
-
-        
 
     }
 

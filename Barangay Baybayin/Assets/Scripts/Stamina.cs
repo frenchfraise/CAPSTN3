@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class ManualSetStaminaEvent : UnityEvent<float> { }
+
 public class StaminaDecreaseEvent : UnityEvent<float,float> { }
 public class StaminaDepletedEvent : UnityEvent{ }
 public class Stamina : MonoBehaviour
@@ -21,11 +21,11 @@ public class Stamina : MonoBehaviour
 
     public StaminaDecreaseEvent OnStaminaModifiedEvent = new StaminaDecreaseEvent();
     public static StaminaDepletedEvent onStaminaDepletedEvent = new StaminaDepletedEvent();
-    public static ManualSetStaminaEvent onManualSetStaminaEvent = new ManualSetStaminaEvent();
+
 
     private void Awake()
     {
-        onManualSetStaminaEvent.AddListener(ManualSetStaminaEvent);
+
         OnStaminaModifiedEvent.AddListener(genericBarUI.UpdateBar);
         onStaminaDepletedEvent.AddListener(PenalizeStamina);
         TimeManager.onDayChangingEvent.AddListener(RegenerateStamina);
@@ -40,30 +40,13 @@ public class Stamina : MonoBehaviour
         onStaminaDepletedEvent.RemoveListener(PenalizeStamina);
         TimeManager.onDayChangingEvent.RemoveListener(RegenerateStamina);
     }
-    private void OnEnable()
-    {
-        
-        
-  
-        
-    }
-
-    private void OnDisable()
-    {
  
- 
-        
-
-        
-        
-    }
-    void ManualSetStaminaEvent(float p_currentStamina)
+    public void ManualSetStaminaEvent(float p_currentStamina)
     {
         currentStamina = p_currentStamina;
-        //float amount = Mathf.Abs(p_currentStamina - currentStamina);
-        //ModifyStamina(amount);
+    
         genericBarUI.InstantUpdateBar(currentStamina, maxStamina, maxStamina);
-      //  Debug.Log("MANUAL STAM ENABLED");
+ 
     }
     public void PenalizeStamina()
     {

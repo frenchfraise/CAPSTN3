@@ -4,9 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 
-public class SetRequireCorrectToolEvent : UnityEvent<Tool> { }
-public class SetRequireCorrectToolSwingEvent : UnityEvent<bool> { }
-public class SetIsPreciseEvent : UnityEvent<bool> { }
 public class ToolUsedEvent : UnityEvent<float> { }
 
 public class ToolCanUseUpdatedEvent : UnityEvent<bool> { }
@@ -43,9 +40,7 @@ public class ToolCaster : MonoBehaviour
     public ToolCanUseUpdatedEvent onToolCanUseUpdatedEvent = new ToolCanUseUpdatedEvent();
     public ToolCanSwitchUpdatedEvent onToolCanSwitchUpdatedEvent = new ToolCanSwitchUpdatedEvent();
     public static ToolSpecialUseEvent onToolSpecialUsedEvent = new ToolSpecialUseEvent();
-    public static SetIsPreciseEvent onSetIsPreciseEvent = new SetIsPreciseEvent();
-    public static SetRequireCorrectToolEvent onSetRequireCorrectToolEvent = new SetRequireCorrectToolEvent();
-    public static SetRequireCorrectToolSwingEvent onSetRequireCorrectToolSwingEvent = new SetRequireCorrectToolSwingEvent();
+
     
     private bool rewardSpecialAllowed = true;
     bool requireCorrectTool = false;
@@ -57,9 +52,7 @@ public class ToolCaster : MonoBehaviour
         //onCriticalFirstTimeEvent.AddListener(FirstTime);
 
         ToolManager.onSpecialPointsFilledEvent.AddListener(FirstTime);
-        onSetRequireCorrectToolEvent.AddListener(SetRequireCorrectTool);
-        onSetRequireCorrectToolSwingEvent.AddListener(SetRequireCorrectToolEvent);
-        onSetIsPreciseEvent.AddListener(SetIsPrecise);
+
         WeatherManager.onWeatherChangedEvent.AddListener(CheckWeatherStaminaTax);
 
         if (TryGetComponent<Stamina>(out Stamina stamina))
@@ -75,9 +68,7 @@ public class ToolCaster : MonoBehaviour
     {
         ToolManager.onToolChangedEvent.RemoveListener(OnToolChanged);
         ToolManager.onSpecialPointsFilledEvent.RemoveListener(FirstTime);
-        onSetRequireCorrectToolEvent.RemoveListener(SetRequireCorrectTool);
-        onSetRequireCorrectToolSwingEvent.RemoveListener(SetRequireCorrectToolEvent);
-        onSetIsPreciseEvent.RemoveListener(SetIsPrecise);
+   
         WeatherManager.onWeatherChangedEvent.RemoveListener(CheckWeatherStaminaTax);
 
         if (GetComponent<Stamina>())
@@ -113,15 +104,15 @@ public class ToolCaster : MonoBehaviour
         
         //onToolSpecialUsedEvent.RemoveListener(OnSpecialUsed);
     }
-    void SetRequireCorrectTool(Tool p_isPrecise)
+    public void SetRequireCorrectTool(Tool p_isPrecise)
     {
         requiredTool = p_isPrecise;
     }
-    void SetRequireCorrectToolEvent(bool p_RequireCorrectTool)
+    public void SetRequireCorrectToolEvent(bool p_RequireCorrectTool)
     {
         requireCorrectTool = p_RequireCorrectTool;
     }
-    void SetIsPrecise(bool p_isPrecise)
+    public void SetIsPrecise(bool p_isPrecise)
     {
         isPrecise = p_isPrecise;
     }

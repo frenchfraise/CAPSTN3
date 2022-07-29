@@ -63,7 +63,7 @@ public class Food : MonoBehaviour
         if (amount > 0)
         {
             if (stamina.currentMaxStamina < stamina.currentStamina + staminaRegen)
-                Stamina.onManualSetStaminaEvent.Invoke(stamina.currentMaxStamina);
+                PlayerManager.instance.playerStamina.ManualSetStaminaEvent(stamina.currentMaxStamina);
             amount--;
             onUpdateFood.Invoke(amount);
             onFoodUseEvent.Invoke(staminaRegen);

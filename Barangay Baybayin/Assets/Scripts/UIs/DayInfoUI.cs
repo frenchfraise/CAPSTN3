@@ -38,19 +38,16 @@ public class DayInfoUI : MonoBehaviour
         if (!isFirstTime )
         {
             frame.SetActive(true);
-            //Debug.Log("isFirstTime is: " + isFirstTime + " so it goes here!");
             StartCoroutine(Co_DayEndTransition(p_causedByFainting, p_dayCount));
-            CharacterDialogueUI.onSetEndTransitionEnabledEvent.Invoke(false);
-            CharacterDialogueUI.onSetStartTransitionEnabledEvent.Invoke(false);
+            UIManager.instance.characterDialogueUI.SetEndTransitionEnabledEvent(false);
+            UIManager.instance.characterDialogueUI.SetStartTransitionEnabledEvent(false);
         }
         else if (isFirstTime)
         {
-            // Debug.Log("FIRST TIME");
             isFirstTime = false;
 
             StartCoroutine(Co_fIRSTDayEndTransition());
             frame.SetActive(true);
-            //TimeManager.onDayChangingEvent.Invoke();
         }
 
     }
@@ -200,8 +197,8 @@ public class DayInfoUI : MonoBehaviour
             }
             else
             {
-                CharacterDialogueUI.onSetEndTransitionEnabledEvent.Invoke(true);
-                CharacterDialogueUI.onSetStartTransitionEnabledEvent.Invoke(true);
+                UIManager.instance.characterDialogueUI.SetEndTransitionEnabledEvent(true);
+                UIManager.instance.characterDialogueUI.SetStartTransitionEnabledEvent(true);
                 TimeManager.onPauseGameTime.Invoke(false);
             }
             Sequence te = DOTween.Sequence();

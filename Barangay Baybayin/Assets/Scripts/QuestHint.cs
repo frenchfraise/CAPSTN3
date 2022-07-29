@@ -6,8 +6,10 @@ using UnityEngine;
 public class QuestHint : MonoBehaviour
 {
     WorldEventSubscriber worldEventSubscriber;
-    public Animator anim;
- 
+    [SerializeField] private Animator anim;
+    [SerializeField] private SpriteRenderer backgroundSR;
+    [SerializeField] private SpriteRenderer iconSR;
+
     private void Awake()
     {
         if(TryGetComponent(out OnEventDoTransform eventDoTransform))
@@ -43,11 +45,14 @@ public class QuestHint : MonoBehaviour
         if (!p_isActive == true)
         {
             anim.enabled = true;
+            backgroundSR.color = new Color(1, 1, 1, 1);
+            iconSR.color = new Color(1, 1, 1, 1);
         }
         else if (!p_isActive == false)
         {
             anim.enabled = false;
-
+            backgroundSR.color = new Color(1, 1, 1, 0);
+            iconSR.color = new Color(1, 1, 1, 0);
 
         }
     }

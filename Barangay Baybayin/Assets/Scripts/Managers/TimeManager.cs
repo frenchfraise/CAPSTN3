@@ -127,21 +127,13 @@ public class TimeManager : MonoBehaviour
     IEnumerator test()
     {
         yield return new WaitForSeconds(5f);
-        CharacterDialogueUI.onSetEndTransitionEnabledEvent.Invoke(true);
-        CharacterDialogueUI.onSetStartTransitionEnabledEvent.Invoke(true);
+        UIManager.instance.characterDialogueUI.SetEndTransitionEnabledEvent(true);
+        UIManager.instance.characterDialogueUI.SetStartTransitionEnabledEvent(true);
     }
   
     private void OnGameplayModeChangedEvent(bool p_bool)
     {
-        //  Debug.Log("RAAAAAAAAAAAA");
-        //if (PlayerManager.instance.currentRoomID != PlayerManager.instance.playerRoom.currentRoomID)
-        //{
-        //    SetPauseGame(!p_bool);
-        //}
-        //else
-        //{
-        //    SetPauseGame(false);
-        //}
+     
      
 
     }

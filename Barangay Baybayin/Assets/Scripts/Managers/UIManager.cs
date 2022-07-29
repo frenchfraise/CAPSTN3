@@ -32,8 +32,9 @@ public class UIManager : MonoBehaviour
 
     public GameObject overlayCanvas;
     public GameObject gameplayHUD;
+    public CharacterDialogueUI characterDialogueUI;
 
-    public Image weatherSpriteUI; //Make a WeatherUI class and Put this in it
+    public Image weatherSpriteUI; 
 
     public IEnumerator runningCoroutine;
 
@@ -43,18 +44,8 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
-        //if (_instance != null)
-        //{
-        //    //Destroy(gameObject);
-            
-        //}
-        //else
-        //{
-            _instance = this;
-
-        //    DontDestroyOnLoad(gameObject);
-
-        //}
+        
+        _instance = this;
         WeatherManager.onWeatherChangedEvent.AddListener(OnWeatherUIChanged); //Make a WeatherUI class and Put this in it
         onGameplayModeChangedEvent.AddListener(OnGameplayHUDSwitch);
 
@@ -66,19 +57,7 @@ public class UIManager : MonoBehaviour
         onGameplayModeChangedEvent.RemoveListener(OnGameplayHUDSwitch);
     }
 
-    private void OnEnable()
-    {
-        //WeatherManager.onWeatherChangedEvent.AddListener(OnWeatherUIChanged); //Make a WeatherUI class and Put this in it
-        //onGameplayModeChangedEvent.AddListener(OnGameplayHUDSwitch);
-
-    }
-
-    private void OnDisable()
-    {
-        //WeatherManager.onWeatherChangedEvent.RemoveListener(OnWeatherUIChanged); //Make a WeatherUI class and Put this in it
-        //onGameplayModeChangedEvent.RemoveListener(OnGameplayHUDSwitch);
-   
-    }
+  
 
     public static void ForceReload(GameObject p_gameObject)
     {
@@ -89,16 +68,13 @@ public class UIManager : MonoBehaviour
         p_gameObject.SetActive(false);
         
         yield return new WaitForSeconds(0.01f);
-        //Debug.Log("TEST");
         p_gameObject.SetActive(true);
     }
-    //TEMPORARY Make a WeatherUI class and Put this in it
-    //private void OnWeatherUIChanged(Weather p_currentWeather, Weather[] p_nextWeather) RECHECK BEFORE MERGE
+
     private void OnWeatherUIChanged(List<Weather> p_weathers, List<Weather> p_currentWeathers)
     {
         weatherSpriteUI.sprite = p_currentWeathers[0].sprite;
-        //Debug.Log(p_currentWeather.audioName);
-        //AudioManager.instance.Play(p_currentWeathers[0].audioName);       
+     
     }
 
     private void OnGameplayHUDSwitch(bool p_isActive)
