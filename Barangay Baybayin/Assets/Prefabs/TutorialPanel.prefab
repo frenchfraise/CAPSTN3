@@ -298,16 +298,14 @@ MonoBehaviour:
         are shown.\r\n"
   - panels:
     - tutorialTitle: Crit Hits
-      image: {fileID: 0}
-      words: '
-
-'
+      image: {fileID: 21300000, guid: b29f856ac4c59d040873464ce0525178, type: 3}
+      words: "Strong Hit Button and Gauge: Gauge increases as you use your tools.
+        When filled, grants a charge and resets gauge. Charges cap at 3. Use a charge
+        to unleash a strong hit on a node, which doesn\u2019t consume stamina."
   - panels:
     - tutorialTitle: Food
-      image: {fileID: 0}
-      words: '
-
-'
+      image: {fileID: 21300000, guid: 36885048aebf84f4a9380b265c06b98d, type: 3}
+      words: 'Food Button: When you have food, tap to consume 1 and restore stamina.'
   specificToPage: 0
 --- !u!1 &296346276400191158
 GameObject:
@@ -702,7 +700,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 296346276062335505}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: TutorialPanelUI, Assembly-CSharp
         m_MethodName: Quit
         m_Mode: 1
