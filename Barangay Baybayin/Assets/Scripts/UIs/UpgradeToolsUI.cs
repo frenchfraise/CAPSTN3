@@ -40,6 +40,10 @@ public class UpgradeToolsUI : MonoBehaviour
         {
             upgradeToolUI.upgradeUI = this;
         }
+        for (int i = 0; i < ToolManager.instance.tools.Count; i++)
+        {
+            UpdateCurrentToolUI(ToolManager.instance.tools[i]);
+        }
         Panday.onPandaySpokenToEvent.AddListener(OpenButtonUIClicked);
 
     }
@@ -113,7 +117,7 @@ public class UpgradeToolsUI : MonoBehaviour
         SO_Tool currentSOTool = p_currentTool.so_Tool;
         int currentToolLevel = p_currentTool.craftLevel;
         int upgradeToolLevel = currentToolLevel+1;
-        Debug.Log(currentToolLevel + " + " + upgradeToolLevel);
+       // Debug.Log(currentToolLevel + " + " + upgradeToolLevel);
         currentUpgradePreviewToolUI.nameText.text = currentSOTool.name[p_currentTool.craftLevel];
         currentUpgradePreviewToolUI.iconImage.sprite = currentSOTool.equippedIcon[p_currentTool.craftLevel];
         currentUpgradePreviewToolUI.frame.sprite = plates[p_currentTool.craftLevel];
@@ -195,14 +199,16 @@ public class UpgradeToolsUI : MonoBehaviour
                 ToolManager.onToolCraftLevelUpgradedEvent.Invoke(currentIndex);
                 selectionPanelUI.SetActive(true);
                 confirmPanelUI.SetActive(false);
+
+                for (int i = 0; i < ToolManager.instance.tools.Count; i++)
+                {
+                    UpdateCurrentToolUI(ToolManager.instance.tools[i]);
+                }
             }
-            
+
             
         }
-        for (int i = 0; i < ToolManager.instance.tools.Count;i++)
-        {
-            UpdateCurrentToolUI(ToolManager.instance.tools[i]);
-        }
+        
         
 
     }

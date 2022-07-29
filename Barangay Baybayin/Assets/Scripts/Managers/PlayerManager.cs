@@ -71,67 +71,41 @@ public class PlayerManager : MonoBehaviour
 
     public void SpawnNewItemFloater(SO_Item p_SOItem, int p_name)
     {
-        floaterStackCount++;
-        if (runningFloaterSpawner == null)
+        floaterStackCount+= p_name;
+        
+        if (runningFloaterSpawner != null)
         {
-            if (runningFloaterSpawner != null)
-            {
-                StopCoroutine(runningFloaterSpawner);
-                runningFloaterSpawner = null;
-            }
-            runningFloaterSpawner = SpawnQueue(p_SOItem, p_name);
-            StartCoroutine(runningFloaterSpawner);
+            StopCoroutine(runningFloaterSpawner);
+            runningFloaterSpawner = null;
         }
+        runningFloaterSpawner = SpawnQueue(p_SOItem, floaterStackCount);
+        StartCoroutine(runningFloaterSpawner);
+        
        
     }
 
     IEnumerator SpawnQueue(SO_Item p_SOItem, int p_amount)
     {
+        yield return new WaitForSeconds(0.5f);
+       
         InventoryManager.onAddItemEvent.Invoke(p_SOItem.name, p_amount);
         MaterialFloater newFloater = Instantiate(floaterPrefab);
 
-        int amt;
+       
         offset.x = offset.x * -1;
         isLeft = !isLeft;
-        if (floaterStackCount > 2)
-        {
-            floaterStackCount -= 2;
-            amt = 2;
-        }
-        else
-        {
-            amt = 1;
-            floaterStackCount--;
-        }
-        newFloater.InitializeValues(p_SOItem, amt.ToString(), playerTransform.position + offset);
+       
+        newFloater.InitializeValues(p_SOItem, p_amount.ToString(), playerTransform.position + offset);
+        floaterStackCount = 0;
 
-        yield return new WaitForSeconds(delay);
-        if (floaterStackCount > 0)
-        {
-            runningFloaterSpawner = SpawnQueue(p_SOItem, p_amount);
-            if (runningFloaterSpawner != null)
-            {
-              
-                runningFloaterSpawner = null;
-            }
-            runningFloaterSpawner = SpawnQueue(p_SOItem, p_amount);
-            StartCoroutine(runningFloaterSpawner);
-        }
-        else
-        {
-            runningFloaterSpawner = null;
-        }
- 
-        
+
     }
 
     public void DayChanging()
     {
         playerTransform.position = bed.spawnTransform.position;
         AudioManager.instance.PlayOnRoomEnterString("Town");
-        //onRoomEnteredEvent.Invoke(startRoomPassageway);
-        //Debug.Log("ID: " + startRoomPassageway.room.currentRoomID);
-        //onUpdateCurrentRoomIDEvent.Invoke(startRoomPassageway.room.currentRoomID);
+
     }
     void UpdateCurrentRoomIDEvent(int p_index)
     {

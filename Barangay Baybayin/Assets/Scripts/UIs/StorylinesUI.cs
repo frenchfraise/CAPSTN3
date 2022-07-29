@@ -47,8 +47,12 @@ public class StorylinesUI : MonoBehaviour
     }
     void LastTimeStorylineEvent(int p_int)
     {
-        storylines[p_int].isFinished = true;
-        UpdateStoryLineUI(p_int);
+        if (p_int != 4)
+        {
+            storylines[p_int].isFinished = true;
+            UpdateStoryLineUI(p_int);
+        }
+    
     }
     void FirstTimeStorylineEndedEvent(int p_int)
     {
@@ -119,7 +123,7 @@ public class StorylinesUI : MonoBehaviour
                             {
                                 ItemUI newObject = Instantiate(innerprefab, requirementsContainer);
                                 requirementsUIs.Add(newObject);
-                                Debug.Log(InventoryManager.GetItem(so_ItemRequirement.so_Item[ii].name.ToString()).amount.ToString());
+                                //Debug.Log(InventoryManager.GetItem(so_ItemRequirement.so_Item[ii].name.ToString()).amount.ToString());
                                 string combi = InventoryManager.GetItem(so_ItemRequirement.so_Item[ii].name.ToString()).amount.ToString() + " / " + so_ItemRequirement.requiredAmount[ii].ToString();
                                 newObject.InitializeValues("", combi, so_ItemRequirement.so_Item[ii].icon);
                             }

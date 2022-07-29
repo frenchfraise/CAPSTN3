@@ -78,7 +78,7 @@ public class Stamina : MonoBehaviour
 
     public void ModifyStamina(float p_amount)
     {
-        Debug.Log("STAM STAM " + p_amount);
+       
         if (currentStamina > 0)
         {
             currentStamina -= p_amount;

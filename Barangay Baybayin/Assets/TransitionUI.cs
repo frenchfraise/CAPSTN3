@@ -23,7 +23,7 @@ public class TransitionUI : MonoBehaviour
                                             Action p_preAction = null,
                                             Action p_postAction = null);
     public static FadeInAndOutTransition onFadeInAndOutTransition;
-    [SerializeField] private Image transitionUI;
+    [SerializeField] public Image transitionUI;
     public IEnumerator runningCoroutine;
     public static FadeTransition onFadeTransition;
     //public static FadeInAndOutTransition onFadeInAndOutTransition = new FadeInAndOutTransition();

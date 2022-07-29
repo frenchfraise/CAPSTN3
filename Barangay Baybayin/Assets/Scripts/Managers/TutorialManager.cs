@@ -75,43 +75,8 @@ public class TutorialManager : MonoBehaviour
         Setup();
    
     }
-    public void DontUseTutorial()
-    {
-    
-   
 
-        ToolCaster.onToolUsedEvent.RemoveListener(TeachUseTool);
-        ToolCaster.onToolSpecialUsedEvent.RemoveListener(TeachSpecialUseTool);
-        ToolsUI.onToolQuestSwitchEvent.Invoke(-1);
-        PlayerManager.instance.playerToolCaster.SetIsPrecise(false);
-        PlayerManager.instance.playerToolCaster.SetRequireCorrectTool(null);
-        infrastructure.gameObject.SetActive(false);
-        infrastructureTwo.gameObject.SetActive(false);
-        specialButton.SetActive(true);
-        PlayerManager.instance.DayChanging();
-        panday.canInteract = true;
-        PlayerManager.instance.playerStamina.ManualSetStaminaEvent(130);
-        CameraManager.instance.tutorialOn = false;
-        StorylineManager.onWorldEventEndedEvent.RemoveListener(TellStory);
-        UIManager.onGameplayModeChangedEvent.RemoveListener(GameplayModeChangedEvent);
-        UIManager.instance.characterDialogueUI.SetEndTransitionEnabledEvent(false);
-       // UIManager.instance.characterDialogueUI.SetIsCloseOnEndEvent(true);
-        UIManager.instance.characterDialogueUI.SetStartTransitionEnabledEvent(true);
-        TimeManager.instance.tutorialOn = false;
-        //TimeManager.onPauseGameTime.Invoke(false);
-        CameraManager.instance.ResetCamera();
-        UIManager.instance.characterDialogueUI.Skip();
-        tutorialUI.overheadUI.SetActive(false);
-        panday.isQuestMode = false;
-        tutorialBlocker.gameObject.SetActive(false);
-        dayFirstTime = false;
-        panday.transform.position = pandayNormalPosition.position;
-        TimeManager.onDayEndedEvent.Invoke(false,1);
-        PlayerManager.instance.playerToolCaster.SetRequireCorrectToolEvent(false);
- 
-    }
 
-  
     void Setup()
     {
         specialButton.SetActive(false);
@@ -123,6 +88,7 @@ public class TutorialManager : MonoBehaviour
         infrastructure.gameObject.SetActive(true);
         infrastructureTwo.InitializeValues();
         infrastructureTwo.gameObject.SetActive(true);
+        infrastructureTwo.gameObject.SetActive(false);
         UIManager.instance.characterDialogueUI.SetEndTransitionEnabledEvent(false);
         //UIManager.instance.characterDialogueUI.SetIsCloseOnEndEvent(false);
         UIManager.instance.characterDialogueUI.SetStartTransitionEnabledEvent(false);
@@ -136,34 +102,72 @@ public class TutorialManager : MonoBehaviour
         AudioManager.instance.OnDayChangingEvent();
         StartLecture();
     }
+
+    public void DontUseTutorial()
+    {
+
+        ToolCaster.onToolUsedEvent.RemoveListener(TeachUseTool);
+        ToolCaster.onToolSpecialUsedEvent.RemoveListener(TeachSpecialUseTool);
+  
+     
+        PlayerManager.instance.DayChanging();
+  
+        CameraManager.instance.ResetCamera();
+
+        UIManager.instance.characterDialogueUI.Skip();
+
+     
+        tutorialBlocker.gameObject.SetActive(false);
+
+        InventoryManager.onAddItemEvent.Invoke("Recipe 1", 4); //it happens 3 times
+        InventoryManager.onAddItemEvent.Invoke("Metal 1", 40);
+
+        dayFirstTime = false;
+        Same();
+
+    }
+
     void Unsetup()
     {
 
+        TimeManager.onPauseGameTime.Invoke(true);
+        Same();
+    }
+
+    void Same()
+    {
         PlayerManager.instance.playerToolCaster.SetRequireCorrectToolEvent(false);
-        ToolsUI.onToolQuestSwitchEvent.Invoke(-1);
         PlayerManager.instance.playerToolCaster.SetIsPrecise(false);
         PlayerManager.instance.playerToolCaster.SetRequireCorrectTool(null);
+
+        ToolsUI.onToolQuestSwitchEvent.Invoke(-1);
+
         infrastructure.gameObject.SetActive(false);
         infrastructureTwo.gameObject.SetActive(false);
+
         specialButton.SetActive(true);
+
         panday.canInteract = true;
+
         CameraManager.instance.tutorialOn = false;
-        Debug.Log("UNSETTING UP");
+
+        TimeManager.instance.tutorialOn = false;
+
         StorylineManager.onWorldEventEndedEvent.RemoveListener(TellStory);
+
         UIManager.onGameplayModeChangedEvent.RemoveListener(GameplayModeChangedEvent);
         UIManager.instance.characterDialogueUI.SetEndTransitionEnabledEvent(false);
-       // UIManager.instance.characterDialogueUI.SetIsCloseOnEndEvent(true);
         UIManager.instance.characterDialogueUI.SetStartTransitionEnabledEvent(true);
-        TimeManager.instance.tutorialOn = false;
-        TimeManager.onPauseGameTime.Invoke(true);
+
         tutorialUI.overheadUI.SetActive(false);
-        panday.isQuestMode = false;
 
         tutorialBlocker.gameObject.SetActive(false);
+
+        panday.isQuestMode = false;
         panday.transform.position = pandayNormalPosition.position;
         TimeManager.onDayEndedEvent.Invoke(false, 1);
-
     }
+   
     Vector2 Vector2Abs(Vector2 p_vector2)
     {
         Vector2 answer = new Vector2(Mathf.Abs(p_vector2.x), Mathf.Abs(p_vector2.y));
@@ -352,7 +356,7 @@ public class TutorialManager : MonoBehaviour
                // UIManager.instance.characterDialogueUI.SetIsCloseOnEndEvent(true);
                 UIManager.instance.characterDialogueUI.SetStartTransitionEnabledEvent(false);
                 InventoryManager.onAddItemEvent.Invoke("Recipe 1", 1);
-                InventoryManager.onAddItemEvent.Invoke("Wood 1", 10);
+                InventoryManager.onAddItemEvent.Invoke("Metal 1", 10);
                 UIManager.instance.upgradeToolsUI.SetSpecificToMachete(true);
                 PlayerManager.instance.playerToolCaster.SetRequireCorrectToolEvent(false);
                 ToolManager.onToolCraftLevelUpgradedEvent.AddListener(RequireMacheteCraftLevel1);
@@ -374,7 +378,7 @@ public class TutorialManager : MonoBehaviour
                // UIManager.instance.characterDialogueUI.SetIsCloseOnEndEvent(true);
                 UIManager.instance.characterDialogueUI.SetStartTransitionEnabledEvent(false);
                 InventoryManager.onAddItemEvent.Invoke("Recipe 1", 3); //it happens 3 times
-                InventoryManager.onAddItemEvent.Invoke("Wood 1", 30);
+                InventoryManager.onAddItemEvent.Invoke("Metal 1", 30);
                 UIManager.instance.upgradeToolsUI.SetSpecificToMachete(false);
                 UIManager.instance.upgradeToolsUI.SetSpecificToAllOther(true);
      

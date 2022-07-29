@@ -496,18 +496,18 @@ public class CharacterDialogueUI : MonoBehaviour
                     else
                     {
                         
-                            Debug.Log("AUTO CLOSE BEING DONE");
+                           // Debug.Log("AUTO CLOSE BEING DONE");
                             if (isEndTransitionEnabled)
                             {
 
-                                Debug.Log("END TRANSIONING");
+                                //Debug.Log("END TRANSIONING");
                                // TransitionUI.onFadeInAndOutTransition.Invoke(1, 0.5f, 1, 0, 0.5f, OnCloseCharacterDialogueUI);
                                 TransitionUI.onFadeInAndOutTransition.Invoke(1, 0.25f, 1, 0, 0.25f, OnCloseCharacterDialogueUI);
 
                             }
                             else
                             {
-                                Debug.Log("END WITHOUT TRANSIONING");
+                               // Debug.Log("END WITHOUT TRANSIONING");
                                 OnCloseCharacterDialogueUI();
                             }
 

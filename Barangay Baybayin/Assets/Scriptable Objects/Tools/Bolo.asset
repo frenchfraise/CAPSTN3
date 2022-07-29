@@ -57,19 +57,19 @@ MonoBehaviour:
   - itemRequirements:
     - so_Item: {fileID: 11400000, guid: 944bc5930a2da5d42bf679f056c1e397, type: 2}
       requiredAmount: 1
-    - so_Item: {fileID: 11400000, guid: a23150ace6c99194986348f059adf4b5, type: 2}
+    - so_Item: {fileID: 11400000, guid: 31008b96f54523443986acf68dc202aa, type: 2}
       requiredAmount: 10
     requiredProficiencyLevel: 1
   - itemRequirements:
-    - so_Item: {fileID: 11400000, guid: 944bc5930a2da5d42bf679f056c1e397, type: 2}
+    - so_Item: {fileID: 11400000, guid: b9728f2dfa98d584db38b418cea56478, type: 2}
       requiredAmount: 1
-    - so_Item: {fileID: 11400000, guid: a23150ace6c99194986348f059adf4b5, type: 2}
+    - so_Item: {fileID: 11400000, guid: f6c97304087fbc246a18a547ecdd28f8, type: 2}
       requiredAmount: 10
     requiredProficiencyLevel: 2
   - itemRequirements:
-    - so_Item: {fileID: 11400000, guid: 944bc5930a2da5d42bf679f056c1e397, type: 2}
+    - so_Item: {fileID: 11400000, guid: c9e2f2a8dc4eeba45ae1a0550aa3f374, type: 2}
       requiredAmount: 1
-    - so_Item: {fileID: 11400000, guid: a23150ace6c99194986348f059adf4b5, type: 2}
+    - so_Item: {fileID: 11400000, guid: d625a0db3bfc0514b9fdd70c5c6b7a0f, type: 2}
       requiredAmount: 10
     requiredProficiencyLevel: 3
   maxSpecialPoints:

@@ -126,7 +126,7 @@ public class StorylineManager : MonoBehaviour
         {
             return 0;
         }
-        else  if (p_ID == "Q-KS") //temp
+        else  if (p_ID == "Q-KA") //temp
         {
             return 1;
         }
@@ -134,15 +134,16 @@ public class StorylineManager : MonoBehaviour
         {
             return 2;
         }
-        else if (p_ID == "Q-BC") //temp
+        else if (p_ID == "Q-KL") //temp
         {
             return 3;
         }
         else if (p_ID == "Q-P") //temp
         {
-            Debug.Log("CALLED");
+            
             return 4;
         }
+
         return 0;
     }
 

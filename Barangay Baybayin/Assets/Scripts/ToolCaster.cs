@@ -398,10 +398,9 @@ public class ToolCaster : MonoBehaviour
         canUse = false;        
         onToolCanUseUpdatedEvent.Invoke(canUse);
 
-        //Debug.Log(current_Tool.so_Tool.staminaCost[current_Tool.craftLevel]);
         if (p_bool)
         {
-            Debug.Log("DECREASE STAM " + staminaCost);
+           
             onToolUsedEvent.Invoke(staminaCost);
 
         }
