@@ -90,7 +90,7 @@ public class TutorialManager : MonoBehaviour
         specialButton.SetActive(true);
         PlayerManager.instance.DayChanging();
         panday.canInteract = true;
-        PlayerManager.instance.playerStamina.ManualSetStaminaEvent(150);
+        PlayerManager.instance.playerStamina.ManualSetStaminaEvent(130);
         CameraManager.instance.tutorialOn = false;
         StorylineManager.onWorldEventEndedEvent.RemoveListener(TellStory);
         UIManager.onGameplayModeChangedEvent.RemoveListener(GameplayModeChangedEvent);
@@ -128,7 +128,7 @@ public class TutorialManager : MonoBehaviour
         UIManager.instance.characterDialogueUI.SetStartTransitionEnabledEvent(false);
         TimeManager.instance.tutorialOn = true;
         TimeManager.onPauseGameTime.Invoke(false);
-        PlayerManager.instance.playerStamina.ManualSetStaminaEvent(150);
+        PlayerManager.instance.playerStamina.ManualSetStaminaEvent(130);
         PlayerManager.instance.playerTransform.position = spawnLocation.position;
         panLimit = Vector2Abs(startRoom.position - panLimitUpperRightTransform.position);
         CameraManager.onCameraMovedEvent.Invoke(startRoom.position, panLimit);

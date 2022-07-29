@@ -15,9 +15,8 @@ MonoBehaviour:
   dialogues:
   - character: {fileID: 11400000, guid: d07ffa9457a5d704b91096369ccebe08, type: 2}
     emotion: 10
-    words: 'Lolo Upo said we would need [10 Common Bamboo] and [10 Copper].
-
-'
+    words: Lolo Upo said we would need [<b>10 </b>Bamboo <sprite=16>] and [<b>10
+      Copper</b> <sprite=12>].
     backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: d07ffa9457a5d704b91096369ccebe08, type: 2}

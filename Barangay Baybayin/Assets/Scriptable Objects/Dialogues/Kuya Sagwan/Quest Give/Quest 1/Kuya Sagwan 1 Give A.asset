@@ -60,7 +60,7 @@ MonoBehaviour:
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
     emotion: 10
-    words: We need [10 Common Wood] and [10 Yellow Herb].
+    words: We need [<b>10 Wood</b> <sprite=3>] and [<b>10 Yellow Herb</b> <sprite=13>].
     backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}

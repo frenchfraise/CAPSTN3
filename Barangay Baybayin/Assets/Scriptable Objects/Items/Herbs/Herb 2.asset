@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f415a380d3dbc124e99577a74b26ca5d, type: 3}
   m_Name: Herb 2
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: d23ba2ca351e588498727008ae5e3125, type: 3}
+  icon: {fileID: 21300000, guid: 1881260b5ad9843489174fdd2af84302, type: 3}
   color:
     serializedVersion: 2
     rgba: 4278190080

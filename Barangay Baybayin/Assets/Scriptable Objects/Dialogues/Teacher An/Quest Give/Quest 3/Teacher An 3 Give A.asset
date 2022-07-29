@@ -55,8 +55,8 @@ MonoBehaviour:
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
     emotion: 10
-    words: But first, could you forage for some [10 Blue Herbs]? They are the sweet
-      kind.
+    words: But first, could you forage for some [<b>10 Blue Herbs</b> <sprite=10>]?
+      They are the sweet kind.
     backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}

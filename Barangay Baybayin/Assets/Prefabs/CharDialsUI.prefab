@@ -448,8 +448,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Quick brown Fox jumps over the lazy dog. Quick brown Fox jumps over the
-    lazy dog. Quick brown Fox jumps over the lazy dog. '
+  m_text: Quick brown Fox jumps over the lazy dog. Quick brown Fox jumps over the
+    lazy dog. Quick brown Fox jumps over the lazy dog. ( <sprite=0><sprite=0><sprite=0>)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f74993e7ed6f5ee4289833155b2a538b, type: 2}
   m_sharedMaterial: {fileID: 2113804007650697980, guid: f74993e7ed6f5ee4289833155b2a538b, type: 2}
@@ -468,7 +468,7 @@ MonoBehaviour:
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
   m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 0}
+  m_spriteAsset: {fileID: 11400000, guid: 93236532df97bec4285ffd5d5a28de24, type: 2}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
   m_TextStyleHashCode: -1183493901

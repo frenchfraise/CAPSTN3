@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Roof
   maxHealth: 25
+  boxColliderSize: []
+  boxColliderOffSet: []
   sprites:
-  - {fileID: 21300000, guid: fbb4b48a4976ca747bf30725e93a8d7f, type: 3}
-  - {fileID: 21300000, guid: 34e571c27b298824a9d52be254f61058, type: 3}
+  - {fileID: 21300000, guid: 2732162e2980ead4b8b5c007ca958e78, type: 3}
+  - {fileID: 21300000, guid: 2456ad93878e29b42bcd908fddc462ff, type: 3}
