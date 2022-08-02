@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 //using System.Threading.Tasks;
 public class TitlescreenUI : MonoBehaviour
 {
+    public GameObject settingsScreen;
     public GameObject creditsScreen;
-
     private void Start()
     {
         //TransitionUI.onFadeTransition.Invoke(0);
@@ -34,6 +34,15 @@ public class TitlescreenUI : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
+    public void OnSettingsButtonClicked(bool p_bool)
+    {
+        settingsScreen.SetActive(p_bool);
+    }
+
+    public void OnCheatButtonClicked()
+    {
+
+    }
     public void OnCreditsButtonClicked(bool p_bool)
     {
         creditsScreen.SetActive(p_bool);
