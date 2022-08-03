@@ -19,10 +19,12 @@ public class EventSubscriber : MonoBehaviour
     {
         StorylineManager.onWorldEventEndedEvent.AddListener(CheckIDMatches);
     }
-    protected virtual void OnEnable()
+
+    protected virtual void OnDestroy()
     {
-        
+        StorylineManager.onWorldEventEndedEvent.RemoveListener(CheckIDMatches);
     }
+ 
 
     protected virtual void CheckIDMatches(string p_eventID, int p_actionParameterAID, int p_actionParameterBID = -1)
     {

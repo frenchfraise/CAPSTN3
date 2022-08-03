@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
+public class MovedEvent : UnityEvent { }
 public class UpdateJoystickEnabledEvent : UnityEvent<bool> { }
 public class PlayerJoystick : MonoBehaviour
 {
@@ -24,8 +26,11 @@ public class PlayerJoystick : MonoBehaviour
 
     [SerializeField] public Transform aim;
     [SerializeField] private float aimOffset;
-
+    public Image interactIcon;
+    public Sprite workIcon;
+    public Sprite talkIcon;
     public static UpdateJoystickEnabledEvent onUpdateJoystickEnabledEvent = new UpdateJoystickEnabledEvent();
+    public static MovedEvent onMovedEvent = new MovedEvent();
     private void Start()
     {
         rb = rb ? rb : GetComponent<Rigidbody2D>();
@@ -40,6 +45,7 @@ public class PlayerJoystick : MonoBehaviour
     {
         ToolManager.onResourceNodeFinishedEvent.AddListener(OnResourceNodeFinishedEvent);
         UIManager.onGameplayModeChangedEvent.AddListener(OnGameplayModeChangedEvent);
+    
 
         onUpdateJoystickEnabledEvent.AddListener(UpdateJoystickEnabled);
     }
@@ -96,6 +102,8 @@ public class PlayerJoystick : MonoBehaviour
 
             Vector3 moveArrow = new Vector3(joystick.Horizontal, joystick.Vertical);
             arrow.transform.rotation = Quaternion.LookRotation(Vector3.forward, moveArrow);
+
+          
         }
     }
 
@@ -106,6 +114,7 @@ public class PlayerJoystick : MonoBehaviour
             rb.MovePosition(rb.position + movement * speed * Time.deltaTime);
             if (movement != Vector2.zero)
             {
+                onMovedEvent.Invoke();
                 animator.SetFloat("FaceFloat", aim.localPosition.y);
                 aim.position = (Vector2)transform.position + (aimOffset * movement);
                 HintAction();
@@ -133,7 +142,8 @@ public class PlayerJoystick : MonoBehaviour
                     if (targetInfrastructure.canInteract)
                     {
                         interactHintImage.sprite = targetInfrastructure.hintSprite;
-                        interactHint.SetActive(true);
+                    interactIcon.sprite = workIcon;
+                    interactHint.SetActive(true);
                     }
                 }
       
@@ -142,6 +152,7 @@ public class PlayerJoystick : MonoBehaviour
                     if (interactibleObject.canInteract)
                     {
                         interactHintImage.sprite = interactibleObject.hintSprite;
+                        interactIcon.sprite = talkIcon;
                         interactHint.SetActive(true);
                     }
                 
@@ -150,6 +161,7 @@ public class PlayerJoystick : MonoBehaviour
                 {
                     if (interactHint.activeSelf)
                     {
+
                         interactHint.SetActive(false);
                     }
                
