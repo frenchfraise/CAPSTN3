@@ -15,6 +15,128 @@ MonoBehaviour:
   dialogues:
   - character: {fileID: 11400000, guid: 88aa14d00365c39438cbfaa3e215ba70, type: 2}
     emotion: 10
-    words: Good Ending
-    backgroundSprite: {fileID: 0}
-    speechTransitionType: 0
+    words: 'Typhoon A* has made landfall, and is currently X kilometers from Purok
+      Buko. '
+    backgroundSprite: {fileID: 21300000, guid: f111821f25679be468718e8fd489bf1e, type: 3}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: 88aa14d00365c39438cbfaa3e215ba70, type: 2}
+    emotion: 10
+    words: Purok Buko has just been recovering from effects of Typhoon Zenaida.
+    backgroundSprite: {fileID: 21300000, guid: f111821f25679be468718e8fd489bf1e, type: 3}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: 88aa14d00365c39438cbfaa3e215ba70, type: 2}
+    emotion: 10
+    words: "The town\u2019s condition remains to be confirmed. We will provide you
+      updated on the hour. "
+    backgroundSprite: {fileID: 21300000, guid: f111821f25679be468718e8fd489bf1e, type: 3}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
+    emotion: 10
+    words: Good day, my people.
+    backgroundSprite: {fileID: 21300000, guid: a304703f6d8dc2b4ca3b2b78c4eb83bc, type: 3}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
+    emotion: 10
+    words: 'Our town has braved the brunt of Typhoon A*, no doubt due to our rebuilding
+      efforts. '
+    backgroundSprite: {fileID: 21300000, guid: a304703f6d8dc2b4ca3b2b78c4eb83bc, type: 3}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
+    emotion: 10
+    words: 'However, we cannot be rebuilding forever as the stronger storms and sweltering
+      heat hamper us. '
+    backgroundSprite: {fileID: 21300000, guid: a304703f6d8dc2b4ca3b2b78c4eb83bc, type: 3}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
+    emotion: 10
+    words: As discussed, we have requested the aid of the local government.
+    backgroundSprite: {fileID: 21300000, guid: a304703f6d8dc2b4ca3b2b78c4eb83bc, type: 3}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
+    emotion: 10
+    words: 'The officials arrive and start work in the coming week. '
+    backgroundSprite: {fileID: 21300000, guid: a304703f6d8dc2b4ca3b2b78c4eb83bc, type: 3}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
+    emotion: 10
+    words: They will give recommendations on how to improve our structures.
+    backgroundSprite: {fileID: 21300000, guid: a304703f6d8dc2b4ca3b2b78c4eb83bc, type: 3}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
+    emotion: 10
+    words: 'Also, they will install early warning devices, so we would not be caught
+      unaware. '
+    backgroundSprite: {fileID: 21300000, guid: a304703f6d8dc2b4ca3b2b78c4eb83bc, type: 3}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
+    emotion: 10
+    words: 'Lastly, they will inspect areas most vulnerable to landslides, floods,
+      and other calamities. '
+    backgroundSprite: {fileID: 21300000, guid: a304703f6d8dc2b4ca3b2b78c4eb83bc, type: 3}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
+    emotion: 10
+    words: We can now breathe easy, my townsfolk.
+    backgroundSprite: {fileID: 21300000, guid: a304703f6d8dc2b4ca3b2b78c4eb83bc, type: 3}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
+    emotion: 10
+    words: 'Now, to hear from everyone. Please update us on how you are doing. '
+    backgroundSprite: {fileID: 21300000, guid: a304703f6d8dc2b4ca3b2b78c4eb83bc, type: 3}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: f142546a761c9f447a927727385155d6, type: 2}
+    emotion: 10
+    words: We harvested a big coconut when we were farming!
+    backgroundSprite: {fileID: 21300000, guid: a304703f6d8dc2b4ca3b2b78c4eb83bc, type: 3}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: d07ffa9457a5d704b91096369ccebe08, type: 2}
+    emotion: 10
+    words: "Surely it\u2019s a good sign for the town. "
+    backgroundSprite: {fileID: 21300000, guid: a304703f6d8dc2b4ca3b2b78c4eb83bc, type: 3}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: 965634ccc85d1834987fed7baeab2dc4, type: 2}
+    emotion: 10
+    words: "The Kapitan teaches me about the slopes and the dunes! \r"
+    backgroundSprite: {fileID: 21300000, guid: a304703f6d8dc2b4ca3b2b78c4eb83bc, type: 3}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: 920370af6e922694e87bd05dad8330b8, type: 2}
+    emotion: 10
+    words: "We\u2019re taught that at school, too."
+    backgroundSprite: {fileID: 21300000, guid: a304703f6d8dc2b4ca3b2b78c4eb83bc, type: 3}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
+    emotion: 10
+    words: 'The kids are glad to be at school. Even those from the island outskirts
+      can come now. '
+    backgroundSprite: {fileID: 21300000, guid: a304703f6d8dc2b4ca3b2b78c4eb83bc, type: 3}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
+    emotion: 10
+    words: Boats are sailing, fish are biting, people are eating. All good.
+    backgroundSprite: {fileID: 21300000, guid: a304703f6d8dc2b4ca3b2b78c4eb83bc, type: 3}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: 64792cf6cb6b2a642becf92ac15202ce, type: 2}
+    emotion: 10
+    words: 'Seems like most of the tools and structures have been fixed. '
+    backgroundSprite: {fileID: 21300000, guid: a304703f6d8dc2b4ca3b2b78c4eb83bc, type: 3}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: 6b42c85a890cd4a498705d8521418c4b, type: 2}
+    emotion: 10
+    words: We did what we could and helped.
+    backgroundSprite: {fileID: 21300000, guid: a304703f6d8dc2b4ca3b2b78c4eb83bc, type: 3}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
+    emotion: 10
+    words: Our defenses against the effects of storms have been improved.
+    backgroundSprite: {fileID: 21300000, guid: a304703f6d8dc2b4ca3b2b78c4eb83bc, type: 3}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
+    emotion: 10
+    words: Our efforts, with the government programs, will safeguard the town.
+    backgroundSprite: {fileID: 21300000, guid: a304703f6d8dc2b4ca3b2b78c4eb83bc, type: 3}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
+    emotion: 10
+    words: And with that, we heartily welcome the day our Purok Buko is a town anew.
+    backgroundSprite: {fileID: 21300000, guid: a304703f6d8dc2b4ca3b2b78c4eb83bc, type: 3}
+    speechTransitionType: 1

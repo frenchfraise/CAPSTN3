@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using UnityEngine.VFX;
 
 public class ToolUsedEvent : UnityEvent<float> { }
 
@@ -16,22 +17,21 @@ public class LongClickEvent : UnityEvent { }
 public class ToolCaster : MonoBehaviour
 {
     public float critMultiplier;
-    private bool isPointerDown;
-    private float pointerDownTimer; // this can be changed
-    // public float requiredHoldTime;
-    private int chargeCounter;
     private float staminaCost;
+    private float useRate;
 
-    public LongClickEvent onLongClickEvent;
+    [SerializeField] private Image toolImageCooldown;
 
     [HideInInspector] public Tool current_Tool;
-    private bool isTax = false;
     private bool canUse = true;
     private bool canSwitch = true;
     private bool isPrecise = false;
     private Tool requiredTool = null;
     [SerializeField] private float switchRate;
     private Transform aim;
+
+    public VisualEffect onHitVFX;
+    public VisualEffect critHitVFX;
 
     public Animator animator;
     [SerializeField] private float detectionRadius;
@@ -90,20 +90,10 @@ public class ToolCaster : MonoBehaviour
     }
     public void OnEnable()
     {
-
-       
-
-        //onToolSpecialUsedEvent.AddListener(OnSpecialUsed);
-
         canUse = true;
         canSwitch = true;
     }
 
-    public void OnDisable()
-    {
-        
-        //onToolSpecialUsedEvent.RemoveListener(OnSpecialUsed);
-    }
     public void SetRequireCorrectTool(Tool p_isPrecise)
     {
         requiredTool = p_isPrecise;
@@ -116,13 +106,7 @@ public class ToolCaster : MonoBehaviour
     {
         isPrecise = p_isPrecise;
     }
-    public void OnSpecialUsed()
-    {
-        // I'm guessing this is where it decrements when it is "full"
-        // current_Tool.ModifySpecialAmount(-current_Tool.so_Tool.maxSpecialPoints[current_Tool.craftLevel]);
-        
-    }
-  
+    
     public void UseSpecial()
     {
         if (canUse)
@@ -147,6 +131,8 @@ public class ToolCaster : MonoBehaviour
                         {
                             animator.SetBool("isFacingRight", false);
                         }
+                        critHitVFX.transform.position = targetInfrastructure.transform.position;
+                        critHitVFX.Play();
                         current_Tool.specialChargesCounter--;
                         targetInfrastructure.OnInfrastructureHitEvent.Invoke(
                            current_Tool.craftLevel,
@@ -170,7 +156,8 @@ public class ToolCaster : MonoBehaviour
                         {
                             animator.SetBool("isFacingRight", false);
                         }
-                        //Debug.Log("SPECIAL USED");
+                        critHitVFX.transform.position = new Vector2 (targetResourceNode.transform.position.x, targetResourceNode.transform.position.y + 5);
+                        critHitVFX.Play();
                         current_Tool.specialChargesCounter--;
                         targetResourceNode.OnResourceNodeHitEvent.Invoke(current_Tool.so_Tool.useForResourceNode,
                             current_Tool.craftLevel,
@@ -190,31 +177,7 @@ public class ToolCaster : MonoBehaviour
         staminaCost = current_Tool.so_Tool.staminaCost[current_Tool.craftLevel];
         StartCoroutine(Co_ToolSwitchCooldown());
     }
-    private void Update()
-    {     
-        if (isPointerDown)
-        {
-            pointerDownTimer += Time.deltaTime;            
-            if (pointerDownTimer >= current_Tool.so_Tool.chargeSpeedRate)
-            {
-                // Debug.Log("pointerDownTimer reached.");
-                onLongClickEvent?.Invoke();
-               
-                if (chargeCounter != current_Tool.so_Tool.maxToolCharge)
-                {
-                    chargeCounter++;
-                    Debug.Log("Charge: " + chargeCounter + "/" + current_Tool.so_Tool.maxToolCharge);
-                }
-                Reset();
-            }
-        }
-    }   
 
-    IEnumerator Co_Cooldown()
-    {
-        yield return new WaitForSeconds(current_Tool.so_Tool.useRate[current_Tool.craftLevel]);
-        canUse = true;
-    }
     public void UseTool()
     {
         bool canHit = false;
@@ -246,6 +209,8 @@ public class ToolCaster : MonoBehaviour
                         {
                             animator.SetBool("isFacingRight", false);
                         }
+                        onHitVFX.transform.position = targetInfrastructure.transform.position;
+                        onHitVFX.Play();
                         canHit = true;
                         temprequireCorrectTool = true;
                         targetInfrastructure.OnInfrastructureHitEvent.Invoke(
@@ -274,12 +239,13 @@ public class ToolCaster : MonoBehaviour
                             if (targetResourceNode.so_ResourceNode == current_Tool.so_Tool.useForResourceNode[i])
                             {
                                 temprequireCorrectTool = true;
-                                
+
                                 break;
                             }
 
                         }
-                   
+                        onHitVFX.transform.position = new Vector2(targetResourceNode.transform.position.x, targetResourceNode.transform.position.y + 5);
+                        onHitVFX.Play();
                         targetResourceNode.OnResourceNodeHitEvent.Invoke(current_Tool.so_Tool.useForResourceNode,
                            current_Tool.craftLevel,
                            current_Tool.so_Tool.damage[current_Tool.craftLevel],
@@ -342,12 +308,10 @@ public class ToolCaster : MonoBehaviour
                             }
                         }
                        
-                    }
-                        
+                    }                        
                     
                 }
             }
-
         }
         return null;
     }
@@ -398,18 +362,31 @@ public class ToolCaster : MonoBehaviour
         canUse = false;        
         onToolCanUseUpdatedEvent.Invoke(canUse);
 
+        //Debug.Log(current_Tool.so_Tool.staminaCost[current_Tool.craftLevel]);
         if (p_bool)
         {
-           
             onToolUsedEvent.Invoke(staminaCost);
-
         }
-      
-        //Debug.Log("Tool Cooldown Use Rate: " + current_Tool.so_Tool.useRate[current_Tool.craftLevel]);
-        yield return new WaitForSeconds(current_Tool.so_Tool.useRate[current_Tool.craftLevel]);
-        
-        canUse = true;        
-        onToolCanUseUpdatedEvent.Invoke(canUse);
+
+        useRate = current_Tool.so_Tool.useRate[current_Tool.craftLevel];
+
+        while (!canUse)
+        {
+            useRate -= Time.deltaTime;
+            yield return new WaitForSeconds(Time.deltaTime);
+
+            if (useRate <= 0)
+            {
+                canUse = true;
+                onToolCanUseUpdatedEvent.Invoke(canUse);
+                toolImageCooldown.fillAmount = 0;
+                break;
+            }
+            else
+            {
+                toolImageCooldown.fillAmount = useRate / current_Tool.so_Tool.useRate[current_Tool.craftLevel];
+            }
+        }        
     }
     IEnumerator Co_ToolSwitchCooldown()
     {
@@ -438,24 +415,5 @@ public class ToolCaster : MonoBehaviour
             Debug.Log("No tax applied!");
             staminaCost = current_Tool.so_Tool.staminaCost[current_Tool.craftLevel];           
         }
-    }
-
-    public void OnPointerDown()
-    {
-        isPointerDown = true;
-        //Debug.Log("[OnPointerDown] Charging...");
-    }
-
-    public void OnPointerUp()
-    {
-        Reset();
-       // Debug.Log("[OnPointerUp] Charging done.");
-    }
-
-    private void Reset()
-    {
-        isPointerDown = false;
-        pointerDownTimer = 0;
-        // Invoke Tool Charge Use()
-    }    
+    } 
 }

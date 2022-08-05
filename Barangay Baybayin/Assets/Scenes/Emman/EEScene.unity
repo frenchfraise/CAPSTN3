@@ -18272,7 +18272,7 @@ BoxCollider2D:
   m_Offset: {x: 0, y: -0.64984345}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0}
     oldSize: {x: 7.11, y: 9.53}
     newSize: {x: 7.11, y: 9.53}
     adaptiveTilingThreshold: 0.5
@@ -50399,6 +50399,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   critMultiplier: 2.5
+  toolImageCooldown: {fileID: 0}
   current_Tool:
     so_Tool: {fileID: 11400000, guid: 1f83244fd5335334f92400ec19026fe8, type: 2}
     toolName: 
@@ -50409,6 +50410,8 @@ MonoBehaviour:
     specialPoints: 0
     specialChargesCounter: 0
   switchRate: 0
+  onHitVFX: {fileID: 0}
+  critHitVFX: {fileID: 0}
   animator: {fileID: 1683850985}
   detectionRadius: 3
 --- !u!114 &1919231801

@@ -16,130 +16,130 @@ MonoBehaviour:
   - character: {fileID: 11400000, guid: 965634ccc85d1834987fed7baeab2dc4, type: 2}
     emotion: 10
     words: What's happening?
-    backgroundSprite: {fileID: 21300000, guid: 18c5738a89ea28c4fb83658d2686b1bb, type: 3}
+    backgroundSprite: {fileID: 21300000, guid: a304703f6d8dc2b4ca3b2b78c4eb83bc, type: 3}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 920370af6e922694e87bd05dad8330b8, type: 2}
     emotion: 10
     words: I think there's an event?
-    backgroundSprite: {fileID: 21300000, guid: 18c5738a89ea28c4fb83658d2686b1bb, type: 3}
+    backgroundSprite: {fileID: 21300000, guid: a304703f6d8dc2b4ca3b2b78c4eb83bc, type: 3}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 965634ccc85d1834987fed7baeab2dc4, type: 2}
     emotion: 10
     words: "Is it a fiesta?\r"
-    backgroundSprite: {fileID: 21300000, guid: 18c5738a89ea28c4fb83658d2686b1bb, type: 3}
+    backgroundSprite: {fileID: 21300000, guid: a304703f6d8dc2b4ca3b2b78c4eb83bc, type: 3}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 920370af6e922694e87bd05dad8330b8, type: 2}
     emotion: 10
     words: "But there are no decorations!\r"
-    backgroundSprite: {fileID: 21300000, guid: 18c5738a89ea28c4fb83658d2686b1bb, type: 3}
+    backgroundSprite: {fileID: 21300000, guid: a304703f6d8dc2b4ca3b2b78c4eb83bc, type: 3}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
     emotion: 10
     words: "Kids, the Kapitan called for the townspeople. Let\u2019s quiet down a
       little and listen.\r"
-    backgroundSprite: {fileID: 21300000, guid: 18c5738a89ea28c4fb83658d2686b1bb, type: 3}
+    backgroundSprite: {fileID: 21300000, guid: a304703f6d8dc2b4ca3b2b78c4eb83bc, type: 3}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 965634ccc85d1834987fed7baeab2dc4, type: 2}
     emotion: 10
     words: "Oh alright\u2026"
-    backgroundSprite: {fileID: 21300000, guid: 18c5738a89ea28c4fb83658d2686b1bb, type: 3}
+    backgroundSprite: {fileID: 21300000, guid: a304703f6d8dc2b4ca3b2b78c4eb83bc, type: 3}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
     emotion: 10
     words: The unexpected storm has wreaked havoc on our town.
-    backgroundSprite: {fileID: 21300000, guid: 18c5738a89ea28c4fb83658d2686b1bb, type: 3}
+    backgroundSprite: {fileID: 21300000, guid: a304703f6d8dc2b4ca3b2b78c4eb83bc, type: 3}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
     emotion: 10
     words: The intensity of the storm destroyed some of our homes, fields, and tools.
-    backgroundSprite: {fileID: 21300000, guid: 18c5738a89ea28c4fb83658d2686b1bb, type: 3}
+    backgroundSprite: {fileID: 21300000, guid: a304703f6d8dc2b4ca3b2b78c4eb83bc, type: 3}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
     emotion: 10
     words: To prevent similar destruction, we have requested the aid of the local
       government.
-    backgroundSprite: {fileID: 21300000, guid: 18c5738a89ea28c4fb83658d2686b1bb, type: 3}
+    backgroundSprite: {fileID: 21300000, guid: a304703f6d8dc2b4ca3b2b78c4eb83bc, type: 3}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
     emotion: 10
     words: However, their support will happen in a month or two, as they are in efforts
       to relieve other areas hit.
-    backgroundSprite: {fileID: 21300000, guid: 18c5738a89ea28c4fb83658d2686b1bb, type: 3}
+    backgroundSprite: {fileID: 21300000, guid: a304703f6d8dc2b4ca3b2b78c4eb83bc, type: 3}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
     emotion: 10
     words: "In the meantime, I declare the start of Purok Buko\u2019s Project Bayanihan."
-    backgroundSprite: {fileID: 21300000, guid: 18c5738a89ea28c4fb83658d2686b1bb, type: 3}
+    backgroundSprite: {fileID: 21300000, guid: a304703f6d8dc2b4ca3b2b78c4eb83bc, type: 3}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
     emotion: 10
     words: Let us help one another and rebuild together.
-    backgroundSprite: {fileID: 21300000, guid: 18c5738a89ea28c4fb83658d2686b1bb, type: 3}
+    backgroundSprite: {fileID: 21300000, guid: a304703f6d8dc2b4ca3b2b78c4eb83bc, type: 3}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
     emotion: 10
     words: Using our skills and talents, we can rebuild what was broken, and be present
       for our townsfolk.
-    backgroundSprite: {fileID: 21300000, guid: 18c5738a89ea28c4fb83658d2686b1bb, type: 3}
+    backgroundSprite: {fileID: 21300000, guid: a304703f6d8dc2b4ca3b2b78c4eb83bc, type: 3}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
     emotion: 10
     words: We will get through this difficult time.
-    backgroundSprite: {fileID: 21300000, guid: 18c5738a89ea28c4fb83658d2686b1bb, type: 3}
+    backgroundSprite: {fileID: 21300000, guid: a304703f6d8dc2b4ca3b2b78c4eb83bc, type: 3}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
     emotion: 10
     words: By the next strong typhoon, the town can be stronger and more prepared.
-    backgroundSprite: {fileID: 21300000, guid: 18c5738a89ea28c4fb83658d2686b1bb, type: 3}
+    backgroundSprite: {fileID: 21300000, guid: a304703f6d8dc2b4ca3b2b78c4eb83bc, type: 3}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
     emotion: 10
     words: Can we count on you?
-    backgroundSprite: {fileID: 21300000, guid: 18c5738a89ea28c4fb83658d2686b1bb, type: 3}
+    backgroundSprite: {fileID: 21300000, guid: a304703f6d8dc2b4ca3b2b78c4eb83bc, type: 3}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 64792cf6cb6b2a642becf92ac15202ce, type: 2}
     emotion: 10
     words: "You have the Smithy, me, and my son.\r"
-    backgroundSprite: {fileID: 21300000, guid: 18c5738a89ea28c4fb83658d2686b1bb, type: 3}
+    backgroundSprite: {fileID: 21300000, guid: a304703f6d8dc2b4ca3b2b78c4eb83bc, type: 3}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 6b42c85a890cd4a498705d8521418c4b, type: 2}
     emotion: 10
     words: "Yes, I will put my training to use.\r"
-    backgroundSprite: {fileID: 21300000, guid: 18c5738a89ea28c4fb83658d2686b1bb, type: 3}
+    backgroundSprite: {fileID: 21300000, guid: a304703f6d8dc2b4ca3b2b78c4eb83bc, type: 3}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
     emotion: 10
     words: Those who need assistance may now speak.
-    backgroundSprite: {fileID: 21300000, guid: 18c5738a89ea28c4fb83658d2686b1bb, type: 3}
+    backgroundSprite: {fileID: 21300000, guid: a304703f6d8dc2b4ca3b2b78c4eb83bc, type: 3}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
     emotion: 10
     words: The school needs some help for the kids to resume studies.
-    backgroundSprite: {fileID: 21300000, guid: 18c5738a89ea28c4fb83658d2686b1bb, type: 3}
+    backgroundSprite: {fileID: 21300000, guid: a304703f6d8dc2b4ca3b2b78c4eb83bc, type: 3}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
     emotion: 10
     words: "Pier and \u2018em boats were hit. Tools too."
-    backgroundSprite: {fileID: 21300000, guid: 18c5738a89ea28c4fb83658d2686b1bb, type: 3}
+    backgroundSprite: {fileID: 21300000, guid: a304703f6d8dc2b4ca3b2b78c4eb83bc, type: 3}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: d07ffa9457a5d704b91096369ccebe08, type: 2}
     emotion: 10
     words: Our fields and tools were ravaged by the storm.
-    backgroundSprite: {fileID: 21300000, guid: 18c5738a89ea28c4fb83658d2686b1bb, type: 3}
+    backgroundSprite: {fileID: 21300000, guid: a304703f6d8dc2b4ca3b2b78c4eb83bc, type: 3}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
     emotion: 10
     words: "For my part, the town\u2019s anti-erosion slopes and anti-flood dunes
       need work done."
-    backgroundSprite: {fileID: 21300000, guid: 18c5738a89ea28c4fb83658d2686b1bb, type: 3}
+    backgroundSprite: {fileID: 21300000, guid: a304703f6d8dc2b4ca3b2b78c4eb83bc, type: 3}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 6b42c85a890cd4a498705d8521418c4b, type: 2}
     emotion: 10
     words: You can count on me.
-    backgroundSprite: {fileID: 21300000, guid: 18c5738a89ea28c4fb83658d2686b1bb, type: 3}
+    backgroundSprite: {fileID: 21300000, guid: a304703f6d8dc2b4ca3b2b78c4eb83bc, type: 3}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
     emotion: 10
     words: Good. Purok Buko is simply waiting for the day it is a town anew.
-    backgroundSprite: {fileID: 21300000, guid: 18c5738a89ea28c4fb83658d2686b1bb, type: 3}
+    backgroundSprite: {fileID: 21300000, guid: a304703f6d8dc2b4ca3b2b78c4eb83bc, type: 3}
     speechTransitionType: 1

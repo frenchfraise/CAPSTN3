@@ -14,4 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Tools
   maxHealth: 10
-  sprites: []
+  boxColliderSize: []
+  boxColliderOffSet: []
+  sprites:
+  - {fileID: 21300000, guid: 30714a02e48f9524aab4daf70d01901c, type: 3}
+  - {fileID: 21300000, guid: 00dd0644fa6b8ae42b70a4f62cd2a331, type: 3}

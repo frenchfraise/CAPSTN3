@@ -229,82 +229,82 @@ MonoBehaviour:
   tutorialPanelPagesUIData:
   - panels:
     - tutorialTitle: Action Buttons 1
-      image: {fileID: 21300000, guid: 0bc754e29be174548b795bf896b34efc, type: 3}
+      image: {fileID: 21300000, guid: eee9b11469366b74aad958e6caf1847f, type: 3}
       words: "1 \u2013 Interaction Button: Tap to interact or talk with object or
         person you\u2019re currently facing.\r\n2 - Tool Action Button: Tap to use
         current tool on node or object to build. Consumes stamina.\r"
     - tutorialTitle: Action Buttons 2
-      image: {fileID: 21300000, guid: 36885048aebf84f4a9380b265c06b98d, type: 3}
+      image: {fileID: 21300000, guid: ba8dbd29408969440a96dd8f4a15d836, type: 3}
       words: '3 - Food Button: When you have food, tap to consume 1 and restore stamina.
 
 '
     - tutorialTitle: Action Buttons 3
-      image: {fileID: 21300000, guid: b29f856ac4c59d040873464ce0525178, type: 3}
+      image: {fileID: 21300000, guid: c6c1c6ea75a0936459448832a2018eb4, type: 3}
       words: "4 - Strong Hit Button and Gauge: Gauge increases as you use your tools.
         When filled, grants a charge and resets gauge. Charges cap at 3. Use a charge
         to unleash a strong hit on a node, which doesn\u2019t consume stamina.\r\n"
   - panels:
     - tutorialTitle: Time, Date, and Weather
-      image: {fileID: 21300000, guid: 3f45d1046890e8348976d80e647943e4, type: 3}
+      image: {fileID: 21300000, guid: cafb87f313fd7994baa0f603f5d97b8e, type: 3}
       words: "The Time Dial shows the relative amount of time from sunrise to end
         of a day. The Weather Icon represents the day\u2019s weather. The Date &
         Time portion shows the current calendar day and time.   \r\n"
     - tutorialTitle: Radio 1
-      image: {fileID: 21300000, guid: 05533e7c87ebb7640a4176fc0de08395, type: 3}
+      image: {fileID: 21300000, guid: 3fd9e1392af11264f9d0622629265ecf, type: 3}
       words: "Approach the Radio in your room to hear the Weather Forecast. Use the
         interact icon \u2013 with the hand \u2013 to confirm.\r"
     - tutorialTitle: Radio 2
-      image: {fileID: 21300000, guid: b4770d23f6dfbfb4f8fb110a2b1c4414, type: 3}
+      image: {fileID: 21300000, guid: 35382bc05be866b4a8b0e7cbbe5988b1, type: 3}
       words: "The Weather Forecast provides an insight on the next few days\u2019
         weather. Use it to plan your days, as using tools in the rain consumes more
         stamina!\r\n"
     - tutorialTitle: Bed 1
-      image: {fileID: 21300000, guid: 6c8b76ab6e2e76a49bceedc7ced96077, type: 3}
+      image: {fileID: 21300000, guid: 3fd9e1392af11264f9d0622629265ecf, type: 3}
       words: "Is your stamina low? Want to skip the remaining day? Approach the Bed
         in your room to sleep. Use the interact icon \u2013 with the hand \u2013
         to confirm.\r\n"
     - tutorialTitle: Bed 2
-      image: {fileID: 21300000, guid: 8d87e243c6712e3468ac53f51a3b5d10, type: 3}
+      image: {fileID: 21300000, guid: 3fd9e1392af11264f9d0622629265ecf, type: 3}
       words: "Using the Bed progresses the game a day. But doing so will refill your
         Stamina bar! Don\u2019t forget to mind the remaining days, though!\r\n"
   - panels:
     - tutorialTitle: Inventory 1
-      image: {fileID: 21300000, guid: 04b495c55495b7e468e3101c180dfc62, type: 3}
+      image: {fileID: 21300000, guid: ad3f2408f7f464842a7fe78c0db55f04, type: 3}
       words: 'The Inventory shows held items. Most items have Common, Rare, and Superb
         ranks. Others have 3 different types, while some only have 1.
 
 '
     - tutorialTitle: Inventory 2
-      image: {fileID: 21300000, guid: 211de0a6f7be4d64685211eb6ef96538, type: 3}
+      image: {fileID: 21300000, guid: 08db9bcf059a3984ebfd7155b237f84f, type: 3}
       words: Each item type has an item count. You can increase the amount by harvesting
         the corresponding rank of material nodes. Drops spawned magnetize to you,
         and add to the count.
     - tutorialTitle: Quests 1
-      image: {fileID: 21300000, guid: 89ae2161ebd496b4ba816434fcf5b916, type: 3}
+      image: {fileID: 21300000, guid: 8a482ab669f9d9c4fbd1e000fe7445e3, type: 3}
       words: 'The Quest menu, accessible from the Main Menu panel, shows the four
         quest lines available. Selecting one panel shows the current quest.
 
 '
     - tutorialTitle: Quests 2
-      image: {fileID: 21300000, guid: 71eca5099c795bd428ffbb647868c6f2, type: 3}
+      image: {fileID: 21300000, guid: 1ac4a8c097c93cf46817efe6fcf9ae71, type: 3}
       words: "The current quest screen shows the quest giver, quest title and description,
         requirements, and rewards of a chain\u2019s quest you\u2019re currently on.
         \r\n"
   - panels:
     - tutorialTitle: Map
-      image: {fileID: 21300000, guid: 80196ab997c36164c9da86f6791c90d0, type: 3}
+      image: {fileID: 21300000, guid: 86c548b087742df468d379571202162c, type: 3}
       words: "Selecting the Map button, on the Menus Panel, will show a Map of Purok
         Buko. \r\nLocations of important villagers and fields and materials within
         are shown.\r\n"
   - panels:
     - tutorialTitle: Crit Hits
-      image: {fileID: 21300000, guid: b29f856ac4c59d040873464ce0525178, type: 3}
+      image: {fileID: 21300000, guid: 04f400ae337adb94d841cf59b185d045, type: 3}
       words: "Strong Hit Button and Gauge: Gauge increases as you use your tools.
         When filled, grants a charge and resets gauge. Charges cap at 3. Use a charge
         to unleash a strong hit on a node, which doesn\u2019t consume stamina."
   - panels:
     - tutorialTitle: Food
-      image: {fileID: 21300000, guid: 36885048aebf84f4a9380b265c06b98d, type: 3}
+      image: {fileID: 21300000, guid: c8e97eca66e75954b9641dc6a18b9192, type: 3}
       words: 'Food Button: When you have food, tap to consume 1 and restore stamina.'
   specificToPage: 0
 --- !u!1 &296346276400191158
@@ -700,7 +700,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 296346276062335505}
         m_TargetAssemblyTypeName: TutorialPanelUI, Assembly-CSharp
         m_MethodName: Quit
         m_Mode: 1
