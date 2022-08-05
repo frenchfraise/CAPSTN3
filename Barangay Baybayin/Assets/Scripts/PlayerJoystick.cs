@@ -63,6 +63,31 @@ public class PlayerJoystick : MonoBehaviour
     void UpdateJoystickEnabled(bool p_bool)
     {
         canJoystick = p_bool;
+        if (p_bool)
+        {
+
+            //joystick.gameObject.SetActive(true);
+            joystick.background.gameObject.SetActive(false);
+            joystick.handle.anchoredPosition = Vector2.zero;
+
+        }
+        else
+        {
+            movement.x = 0;
+            movement.y = 0;
+
+            animator.SetFloat("Horizontal", movement.x);
+            animator.SetFloat("Vertical", movement.y);
+            animator.SetFloat("Speed", movement.sqrMagnitude);
+
+            Vector3 moveArrow = new Vector3(0, 0);
+            arrow.transform.rotation = Quaternion.LookRotation(Vector3.forward, moveArrow);
+
+            joystick.input = new Vector2(0, 0);
+            joystick.handle.anchoredPosition = Vector2.zero;
+            //joystick.gameObject.SetActive(false);
+            joystick.background.gameObject.SetActive(false);
+        }
     }
     void OnResourceNodeFinishedEvent()
     {

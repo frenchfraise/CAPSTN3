@@ -196,6 +196,9 @@ public class CharacterDialogueUI : MonoBehaviour
 
     public void OnOpenCharacterDialogueUI()
     {
+        PlayerJoystick.onUpdateJoystickEnabledEvent.Invoke(false);
+        //PlayerManager.instance.playerMovement.enabled = false;
+        //PlayerManager.instance.playerMovement.joystick.gameObject.SetActive(false);
         canDo = true;
        // Debug.Log("WHO IS CALLING");
         frame.SetActive(true);
@@ -207,6 +210,7 @@ public class CharacterDialogueUI : MonoBehaviour
     }
     public void OnCloseCharacterDialogueUI()
     {
+
         if (!TimeManager.instance.tutorialOn) // TEMPORARY; Eli insisted
         {
             
@@ -245,9 +249,11 @@ public class CharacterDialogueUI : MonoBehaviour
                 }
 
             }
-
+       
         }
-      
+        PlayerJoystick.onUpdateJoystickEnabledEvent.Invoke(true);
+        //PlayerManager.instance.playerMovement.enabled = true;
+       // PlayerManager.instance.playerMovement.joystick.gameObject.SetActive(true);
         //Debug.Log(id + " EVENT WITH NAME " + currentSO_Dialogues.name + " IS CURRENT DIALOGUE " + " CLOSING");
         frame.SetActive(false);
 
