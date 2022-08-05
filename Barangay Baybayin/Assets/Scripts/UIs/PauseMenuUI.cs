@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 public class PauseMenuUI : MonoBehaviour
 {
-    public GameObject PauseMenuPanel;
-    public GameObject MapGameObject;
+    public GameObject pauseMenuPanel;
+    public GameObject mapGameObject;
+    public GameObject settingsGameObject;
     public TutorialPanelUI tutorialPanelUI;
 
     private void Awake()
@@ -18,17 +19,48 @@ public class PauseMenuUI : MonoBehaviour
         //TimeManager.onPauseGameTime.Invoke(!p_bool);
         //if (p_bool) Debug.Log("Pause Menu open!");
         //else Debug.Log("Pause Menu closed!");
-        MapGameObject.SetActive(false);
+        mapGameObject.SetActive(false);
         tutorialPanelUI.frame.SetActive(false);
-        PauseMenuPanel.SetActive(true);
+        settingsGameObject.SetActive(false);
+        pauseMenuPanel.SetActive(true);
     }
+
+    public void GoodEndingCheat()
+    {
+        PlayerManager.instance.GoodEndingCheat();
+        settingsGameObject.SetActive(false);
+        PauseMenuButton(false);
+    }
+
+    public void BadEndingCheat()
+    {
+        PlayerManager.instance.BadEndingCheat();
+        settingsGameObject.SetActive(false);
+        PauseMenuButton(false);
+    }
+
+    public void UpgradeCheat()
+    {
+        PlayerManager.instance.UpgradeToolCheat();
+        settingsGameObject.SetActive(false);
+        PauseMenuButton(false);
+    }
+
+    public void GiveCheat()
+    {
+        PlayerManager.instance.GiveCheat();
+        settingsGameObject.SetActive(false);
+        PauseMenuButton(false);
+    }
+
     public void PauseMenuButton(bool p_bool)
     {
         //TimeManager.onPauseGameTime.Invoke(!p_bool);
         //if (p_bool) Debug.Log("Pause Menu open!");
         //else Debug.Log("Pause Menu closed!");
         UIManager.onGameplayModeChangedEvent.Invoke(p_bool);
-        PauseMenuPanel.SetActive(p_bool);
+
+        pauseMenuPanel.SetActive(p_bool);
     }
 
     public void QuitButton()
@@ -39,8 +71,9 @@ public class PauseMenuUI : MonoBehaviour
     public void SkipTutorial()
     {
         TutorialManager.instance.DontUseTutorial();
+        settingsGameObject.SetActive(false);
         //UIManager.onGameplayModeChangedEvent.Invoke(false);
-        PauseMenuPanel.SetActive(false);
+        pauseMenuPanel.SetActive(false);
     }
     public void TutorialButton(bool p_bool)
     {
@@ -57,12 +90,13 @@ public class PauseMenuUI : MonoBehaviour
     public void SettingsButton()
     {
         Debug.Log("Settings Button open!");
+        settingsGameObject.SetActive(true);
     }
 
     public void MapButton(bool p_bool)
     {
         //if (p_bool) Debug.Log("Map open!");
         //else Debug.Log("Map closed!");
-        MapGameObject.SetActive(p_bool);
+        mapGameObject.SetActive(p_bool);
     }
 }

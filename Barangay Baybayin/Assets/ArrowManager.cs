@@ -16,7 +16,7 @@ public class MissionPointerData
     [SerializeField] public RectTransform _missionDistanceTransform;
     [SerializeField] public RectTransform _missionPointerTransform;
     [SerializeField] public GameObject _missionPointerGameObject;
-    [SerializeField] public TMP_Text _missionText;
+    //[SerializeField] public TMP_Text _missionText;
 }
 public class ArrowManager : MonoBehaviour
 {
@@ -44,6 +44,7 @@ public class ArrowManager : MonoBehaviour
     [SerializeField] private Sprite _arrowSprite;
     [SerializeField] private Sprite _missionIconSprite;
 
+    bool isInUse = false;
 
     private void Awake()
     {
@@ -64,18 +65,27 @@ public class ArrowManager : MonoBehaviour
         // iconHoverEffect.gameObject.SetActive(!p_isActive);
         if (!p_isActive == true)
         {
-            for (int i = 0; i < missionPointerData.Count; i++)
+            if (PlayerManager.instance.currentRoomID == 0 ||
+                PlayerManager.instance.currentRoomID == 1 ||
+                PlayerManager.instance.currentRoomID == 2 ||
+                PlayerManager.instance.currentRoomID == 3)
             {
-                if (missionPointerData[i].firstTimeWork)
+               
+                isInUse = true;
+                for (int i = 0; i < missionPointerData.Count; i++)
                 {
-                    ShowPointer(i);
-                }
+                    if (missionPointerData[i].firstTimeWork)
+                    {
+                        ShowPointer(i);
+                    }
 
+                }
             }
+           
         }
         else if (!p_isActive == false)
         {
-
+            isInUse = false;
             for (int i = 0; i < missionPointerData.Count; i++)
             {
                 if (missionPointerData[i].firstTimeWork)
@@ -129,14 +139,50 @@ public class ArrowManager : MonoBehaviour
     void UpdateMissionPointers()
 
     {
-        for (int i = 0; i < missionPointerData.Count; i++)
+        if (PlayerManager.instance.currentRoomID == 0 ||
+                PlayerManager.instance.currentRoomID == 1 ||
+                PlayerManager.instance.currentRoomID == 2 ||
+                PlayerManager.instance.currentRoomID == 3)
         {
-            if (missionPointerData[i].isSeen)
+            if (isInUse == false)
             {
-                UpdateMissionPointer(i);
+                for (int i = 0; i < missionPointerData.Count; i++)
+                {
+                    if (missionPointerData[i].firstTimeWork)
+                    {
+                        ShowPointer(i);
+                    }
+
+                }
             }
-            
+            isInUse = true;
+            for (int i = 0; i < missionPointerData.Count; i++)
+            {
+                if (missionPointerData[i].isSeen)
+                {
+                    UpdateMissionPointer(i);
+                }
+
+            }
         }
+        else
+        {
+            if (isInUse == true)
+            {
+               
+                for (int i = 0; i < missionPointerData.Count; i++)
+                {
+                    if (missionPointerData[i].isSeen)
+                    {
+                        HidePointer(i);
+                    }
+
+                }
+            }
+            isInUse = false;
+
+        }
+        
     }
     void UpdateMissionPointer(int index)
     {
@@ -167,19 +213,19 @@ public class ArrowManager : MonoBehaviour
 
             RotatePointer(index);
             missionPointerData[index]._missionPointerImage.enabled = true;
-            Debug.Log(targetPositionScreenPoint + 
-                " OFFSCREEN " +
-                isOffScreen +
-                " position " +
-                PlayerManager.instance.playerTransform.position + 
-                " bot x " + 
-                xScaledBotBorderSize + 
-                " top x " + 
-                xScaledTopBorderSize +
-                " bot y " +
-                yScaledBotBorderSize +
-                " top y " +
-                yScaledTopBorderSize);
+            //Debug.Log(targetPositionScreenPoint + 
+            //    " OFFSCREEN " +
+            //    isOffScreen +
+            //    " position " +
+            //    PlayerManager.instance.playerTransform.position + 
+            //    " bot x " + 
+            //    xScaledBotBorderSize + 
+            //    " top x " + 
+            //    xScaledTopBorderSize +
+            //    " bot y " +
+            //    yScaledBotBorderSize +
+            //    " top y " +
+            //    yScaledTopBorderSize);
         
             Vector2 cappedTargetScreenPosition =
             targetPositionScreenPoint;
@@ -212,8 +258,8 @@ public class ArrowManager : MonoBehaviour
 
 
         }
-        missionPointerData[index]._missionText.text = Mathf.RoundToInt(Vector2.Distance(_camTransform.position,
-            missionPointerData[index].currentPosition)).ToString() + "m";
+        //missionPointerData[index]._missionText.text = Mathf.RoundToInt(Vector2.Distance(_camTransform.position,
+        //    missionPointerData[index].currentPosition)).ToString() + "m";
 
 
     }

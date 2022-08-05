@@ -75,6 +75,35 @@ public class InventoryManager : MonoBehaviour
         }
         return null;
     }
+    public void AddAllItems(int p_amount)
+    {
+        for (int iii = 0; iii < InventoryManager.instance.inventoryPages.Count; iii++)
+        {
+            for (int ii = 0; ii < InventoryManager.instance.inventoryPages[iii].itemCategories.Count; ii++)
+            {
+
+                for (int i = 0; i < InventoryManager.instance.inventoryPages[iii].itemCategories[ii].items.Count;)
+                {
+                    //Debug.Log(p_item);
+                    if (InventoryManager.instance.inventoryPages[iii].itemCategories[ii].items[i].so_Item.name != "Food")
+                    {
+                        ItemData foundItem = InventoryManager.instance.inventoryPages[iii].itemCategories[ii].items[i];
+                        //Debug.Log(foundItem);
+                        if (runningCoroutine != null)
+                        {
+                            StopCoroutine(runningCoroutine);
+                            runningCoroutine = null;
+                        }
+                        runningCoroutine = foundItem.itemUI.Co_UpdateText(p_amount);
+                        StartCoroutine(runningCoroutine);
+                    }
+                    i++;
+                }
+            }
+        }
+
+      
+    }
     public void AddItem(string p_item, int p_amount)
     {
         if (p_item != "Food")

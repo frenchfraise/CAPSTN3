@@ -14,6 +14,7 @@ public class DayInfoUI : MonoBehaviour
     public TMP_Text daysRemainingText;
     public TMP_Text conditionsText;
     public Image trans;
+    public Image fader;
     public Sprite defaultSR;
     public Animator anim;
     private bool fainted;
@@ -149,15 +150,16 @@ public class DayInfoUI : MonoBehaviour
         }
         else
         {
+            Debug.Log("ENDING");
             TimeManager.onPauseGameTime.Invoke(false);
             TransitionUI.onFadeTransition(1f);
-
+            fader.color = new Color32(0, 0, 0,0);
             frame.SetActive(false);
             yield return new WaitForSeconds(0.5f);
-            
-         
-           
-    
+            TransitionUI.onFadeTransition(0f);
+
+
+
             if (StorylineManager.instance.amountQuestComplete >= 8)
             {
                 CharacterDialogueUI.onCharacterSpokenToEvent.Invoke("GOODENDING", StorylineManager.instance.goodso_dialogue);

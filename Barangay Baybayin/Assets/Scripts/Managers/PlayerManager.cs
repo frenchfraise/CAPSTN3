@@ -84,6 +84,30 @@ public class PlayerManager : MonoBehaviour
        
     }
 
+    public void GoodEndingCheat()
+    {
+        TimeManager.instance.daysRemaining = 0;
+        StorylineManager.instance.amountQuestComplete = 10;
+        TimeManager.onDayEndedEvent.Invoke(false, 18);
+    }
+
+    public void BadEndingCheat()
+    {
+        TimeManager.instance.daysRemaining = 0;
+        StorylineManager.instance.amountQuestComplete = 0;
+        TimeManager.onDayEndedEvent.Invoke(false, 18);
+    }
+  
+
+    public void GiveCheat()
+    {
+        InventoryManager.instance.AddAllItems(60);
+    }
+
+    public void UpgradeToolCheat()
+    {
+
+    }
     IEnumerator SpawnQueue(SO_Item p_SOItem, int p_amount)
     {
         yield return new WaitForSeconds(0.5f);
