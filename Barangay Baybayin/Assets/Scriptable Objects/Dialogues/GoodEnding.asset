@@ -17,18 +17,18 @@ MonoBehaviour:
     emotion: 10
     words: 'Typhoon A* has made landfall, and is currently X kilometers from Purok
       Buko. '
-    backgroundSprite: {fileID: 21300000, guid: a5760c68d62c0f0488c980bf8654ba77, type: 3}
+    backgroundSprite: {fileID: 21300000, guid: f111821f25679be468718e8fd489bf1e, type: 3}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 88aa14d00365c39438cbfaa3e215ba70, type: 2}
     emotion: 10
     words: Purok Buko has just been recovering from effects of Typhoon Zenaida.
-    backgroundSprite: {fileID: 21300000, guid: a5760c68d62c0f0488c980bf8654ba77, type: 3}
+    backgroundSprite: {fileID: 21300000, guid: f111821f25679be468718e8fd489bf1e, type: 3}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 88aa14d00365c39438cbfaa3e215ba70, type: 2}
     emotion: 10
     words: "The town\u2019s condition remains to be confirmed. We will provide you
       updated on the hour. "
-    backgroundSprite: {fileID: 21300000, guid: a5760c68d62c0f0488c980bf8654ba77, type: 3}
+    backgroundSprite: {fileID: 21300000, guid: f111821f25679be468718e8fd489bf1e, type: 3}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
     emotion: 10

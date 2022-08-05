@@ -72,8 +72,8 @@ public class TutorialManager : MonoBehaviour
 
     private void Start()
     {
-        Setup();
-   
+        //Setup();
+        DontUseTutorial();   
     }
     public void DontUseTutorial()
     {

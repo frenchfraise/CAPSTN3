@@ -33,8 +33,8 @@ public class DayInfoUI : MonoBehaviour
     }
 
     public void DayEnd(bool p_causedByFainting, int p_dayCount)
-    {
-
+    {        
+        TransitionUI.onFadeTransition.Invoke(0, false); //BAND-AID SOLUTION
         if (!isFirstTime )
         {
             frame.SetActive(true);
