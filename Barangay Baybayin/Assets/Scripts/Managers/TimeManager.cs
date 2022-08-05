@@ -120,8 +120,6 @@ public class TimeManager : MonoBehaviour
             StartCoroutine(test());
 
         }
-
-
     }
 
     IEnumerator test()
@@ -171,15 +169,9 @@ public class TimeManager : MonoBehaviour
                     minute = 0;
                     minuteByTens = 0;
                 }
-                
-                    onTimeChangedEvent?.Invoke(hour24, hour12, minute, minuteByTens);
-              
-
+                onTimeChangedEvent?.Invoke(hour24, hour12, minute, minuteByTens);
             }
-         
         }
-        
-        
     }
 
     private void OnTimeCheck(int p_hour24, int p_hour12, int p_minute, int p_minuteByTens)
@@ -206,8 +198,8 @@ public class TimeManager : MonoBehaviour
     public void NewDay()
     {
         Debug.Log("NEW DAY");
-        TimeManager.instance.hour24 = TimeManager.instance.startHour;
-       
+        hour24 = startHour;
+        hour12 = startHour;
         minute = 0;
         minuteByTwos = 0;
         minuteByTens = 0;
@@ -225,15 +217,12 @@ public class TimeManager : MonoBehaviour
             if (StorylineManager.instance.amountQuestComplete >= 8)
             {
                 CharacterDialogueUI.onCharacterSpokenToEvent.Invoke("GOODENDING", StorylineManager.instance.goodso_dialogue);
-
             }
             else
             {
                 CharacterDialogueUI.onCharacterSpokenToEvent.Invoke("BADENDING", StorylineManager.instance.badso_dialogue);
             }
         }
-        
-       
     }
 
     private void SetPauseGame(bool p_bool)
@@ -266,7 +255,6 @@ public class TimeManager : MonoBehaviour
                     coroutineTime = null;
                 }
             }
-           
         }
     }
     

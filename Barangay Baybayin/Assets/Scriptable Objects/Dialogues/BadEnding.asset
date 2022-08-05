@@ -15,6 +15,54 @@ MonoBehaviour:
   dialogues:
   - character: {fileID: 11400000, guid: 88aa14d00365c39438cbfaa3e215ba70, type: 2}
     emotion: 10
-    words: Bad Ending
-    backgroundSprite: {fileID: 0}
-    speechTransitionType: 0
+    words: Super Typhoon A*, which has intensified in the last 6 hours, has passed
+      through Purok Buko.
+    backgroundSprite: {fileID: 21300000, guid: f111821f25679be468718e8fd489bf1e, type: 3}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: 88aa14d00365c39438cbfaa3e215ba70, type: 2}
+    emotion: 10
+    words: 'At least 1 casualty, and multiple injured, has been reported, as recovery
+      efforts are on-going. '
+    backgroundSprite: {fileID: 21300000, guid: f111821f25679be468718e8fd489bf1e, type: 3}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: 88aa14d00365c39438cbfaa3e215ba70, type: 2}
+    emotion: 10
+    words: 'A 77 year old woman was drowned by the rushing flood, which broke the
+      shack she and her husband sheltered in. '
+    backgroundSprite: {fileID: 21300000, guid: f111821f25679be468718e8fd489bf1e, type: 3}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: 88aa14d00365c39438cbfaa3e215ba70, type: 2}
+    emotion: 10
+    words: "She was the town\u2019s oldest resident, and is fondly remembered by
+      the townsfolk. "
+    backgroundSprite: {fileID: 21300000, guid: f111821f25679be468718e8fd489bf1e, type: 3}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: 88aa14d00365c39438cbfaa3e215ba70, type: 2}
+    emotion: 10
+    words: 'Our on-site reporter states structures, as in roofs, boats, and homes,
+      lay in disarray as the flood subsides. '
+    backgroundSprite: {fileID: 21300000, guid: f111821f25679be468718e8fd489bf1e, type: 3}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: 88aa14d00365c39438cbfaa3e215ba70, type: 2}
+    emotion: 10
+    words: 'Storms have been noted to be intensifying in strength and following unpredictable
+      patterns. '
+    backgroundSprite: {fileID: 21300000, guid: f111821f25679be468718e8fd489bf1e, type: 3}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: 88aa14d00365c39438cbfaa3e215ba70, type: 2}
+    emotion: 10
+    words: 'The effects of climate change have to be met with disaster risk management
+      programs. '
+    backgroundSprite: {fileID: 21300000, guid: f111821f25679be468718e8fd489bf1e, type: 3}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: 88aa14d00365c39438cbfaa3e215ba70, type: 2}
+    emotion: 10
+    words: 'The local government has pledged to improve the disaster preparedness
+      and management of towns such as Purok Buko. '
+    backgroundSprite: {fileID: 21300000, guid: f111821f25679be468718e8fd489bf1e, type: 3}
+    speechTransitionType: 1
+  - character: {fileID: 11400000, guid: 88aa14d00365c39438cbfaa3e215ba70, type: 2}
+    emotion: 10
+    words: 'But the question is: is it too little too late, with lives already lost?'
+    backgroundSprite: {fileID: 21300000, guid: f111821f25679be468718e8fd489bf1e, type: 3}
+    speechTransitionType: 1
