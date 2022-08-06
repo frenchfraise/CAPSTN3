@@ -26,6 +26,7 @@ public class PlayerJoystick : MonoBehaviour
 
     [SerializeField] public Transform aim;
     [SerializeField] private float aimOffset;
+    public GameObject interactIconObject;
     public Image interactIcon;
     public Sprite workIcon;
     public Sprite talkIcon;
@@ -85,29 +86,19 @@ public class PlayerJoystick : MonoBehaviour
 
             joystick.input = new Vector2(0, 0);
             joystick.handle.anchoredPosition = Vector2.zero;
-            //joystick.gameObject.SetActive(false);
             joystick.background.gameObject.SetActive(false);
         }
     }
     void OnResourceNodeFinishedEvent()
     {
-        //Debug.Log("IT DIED");
         interactHint.SetActive(false);
 
 
     }
     private void OnGameplayModeChangedEvent(bool p_isActive)
     {
-        //Debug.Log("RARARA");
         interactHint.gameObject.SetActive(!p_isActive);
         canInteractHint = !p_isActive;
-
-
-        //joystick.HandleRange = p_isActive ? 0 : 1;
-        //joystick.enabled = (!p_isActive);
-        //joystick.gameObject.SetActive(!p_isActive);
-   
-        //canJoystick = !p_isActive;
     
         movement = new Vector2(0, 0);
     }
@@ -152,52 +143,72 @@ public class PlayerJoystick : MonoBehaviour
     {
         if (canInteractHint)
         {
-            //if (!interactHint.activeSelf)
-            //{
-                ResourceNode resourceNode = toolCaster.GetResourceNode();
-                Infrastructure targetInfrastructure = toolCaster.GetInfrastructure();
-                InteractibleObject interactibleObject = interacter.GetInteractibleObject();
-                if (resourceNode)
+           
+            ResourceNode resourceNode = toolCaster.GetResourceNode();
+            Infrastructure targetInfrastructure = toolCaster.GetInfrastructure();
+            InteractibleObject interactibleObject = interacter.GetInteractibleObject();
+            if (resourceNode)
+            {
+                interactHintImage.sprite = resourceNode.hintSprite;
+              
+                if (!interactHint.activeSelf)
                 {
-                    interactHintImage.sprite = resourceNode.hintSprite;
                     interactHint.SetActive(true);
                 }
-                else if (targetInfrastructure)
+                if (interactIconObject.activeSelf)
                 {
-                    if (targetInfrastructure.canInteract)
-                    {
-                        interactHintImage.sprite = targetInfrastructure.hintSprite;
+                    interactIconObject.SetActive(false);
+                }
+            }
+            else if (targetInfrastructure)
+            {
+                if (targetInfrastructure.canInteract)
+                {
+                    interactHintImage.sprite = targetInfrastructure.hintSprite;
                     interactIcon.sprite = workIcon;
-                    interactHint.SetActive(true);
-                    }
-                }
-      
-                else if (interactibleObject)
-                {
-                    if (interactibleObject.canInteract)
+                    if (!interactHint.activeSelf)
                     {
-                        interactHintImage.sprite = interactibleObject.hintSprite;
-                        interactIcon.sprite = talkIcon;
                         interactHint.SetActive(true);
                     }
-                
-                }
-                else
-                {
-                    if (interactHint.activeSelf)
+                    if (!interactIconObject.activeSelf)
                     {
-
-                        interactHint.SetActive(false);
+                        interactIconObject.SetActive(true);
                     }
-               
+           
+                }
+            }
+      
+            else if (interactibleObject)
+            {
+                if (interactibleObject.canInteract)
+                {
+                    interactHintImage.sprite = interactibleObject.hintSprite;
+                    interactIcon.sprite = talkIcon;
+                    if (!interactHint.activeSelf)
+                    {
+                        interactHint.SetActive(true);
+                    }
+                    if (!interactIconObject.activeSelf)
+                    {
+                        interactIconObject.SetActive(true);
+                    }
                 }
                 
-            //}
-           
-            //else if (interactHint.activeSelf)
-            //{
-            //    interactHint.SetActive(false);
-            //}
+            }
+            else
+            {
+                if (interactHint.activeSelf)
+                {
+                   
+                    interactHint.SetActive(false);
+                }
+                if (interactIconObject.activeSelf)
+                {
+                    interactIconObject.SetActive(false);
+                }
+               
+            }
+          
 
         }
         

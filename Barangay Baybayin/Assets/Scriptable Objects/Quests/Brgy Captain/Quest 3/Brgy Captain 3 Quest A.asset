@@ -16,9 +16,7 @@ MonoBehaviour:
   title: Dunes
   description: "Supposedly, these dunes would protect the town from water. What it
     didn\u2019t prevent is your waterworks.\r\n"
-  rewards:
-  - so_Item: {fileID: 11400000, guid: a23150ace6c99194986348f059adf4b5, type: 2}
-    amount: 10
+  rewards: []
   requirements:
   - so_requirement: {fileID: 11400000, guid: a5bf2f8fd6d8e2a478f0665bdb35fbb1, type: 2}
     isCompleted: 0

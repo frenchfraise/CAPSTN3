@@ -36,11 +36,9 @@ public class Character : InteractibleObject
     void PlaySound()
       
     {
-        if (!TimeManager.instance.tutorialOn) // TEMPORARY; Eli insisted
+        if (!TimeManager.instance.tutorialOn) 
         {
-            //string song1 = AudioManager.instance.GetSoundByName("Town").name;
-            //string song2 = AudioManager.instance.GetSoundByName("Quest Get").name;
-            //AudioManager.instance.StartCoFade(song1, song2);
+    
             AudioManager.instance.PlayOnRoomEnterString("Quest Get");
         }
     }
@@ -66,10 +64,10 @@ public class Character : InteractibleObject
             {
 
                 SO_Questline so_Questline = so_StoryLine.questLines[storylineData.currentQuestChainIndex];
-                //  Debug.Log("PHASE " + storylineData.currentQuestLineIndex + " - " + so_Questline.questlineData.Count);
+  
                 if (storylineData.currentQuestLineIndex < so_Questline.questlineData.Count)
                 {
-                    //  Debug.Log("PHASE 1");
+                   
                     QuestlineData questlineData = so_Questline.questlineData[storylineData.currentQuestLineIndex];
                     if (storylineData.completed)
                     {
@@ -89,11 +87,10 @@ public class Character : InteractibleObject
                         else
                         {
                             bool isQuestCompleted = StorylineManager.instance.CheckIfQuestComplete(id);
-                            //Debug.Log("QUEST COMPLETE PLAY");
-                           
+                         
                             if (isQuestCompleted)
                             {
-                                // Debug.Log("PHASE 2");
+                              
                                 if (storylineData.currentQuestLineIndex == 0)
                                 {
 
@@ -115,8 +112,7 @@ public class Character : InteractibleObject
                                         CharacterDialogueUI.onFirstTimeFoodOnEndEvent.Invoke();
                                     }
                                 }
-                                //CharacterDialogueUI.onCharacterSpokenToEvent.Invoke(id, questlineData.questCompleteSO_Dialogues);
-
+                               
                                 StorylineManager.instance.QuestCompleted(storylineData);
 
                             }
@@ -149,16 +145,7 @@ public class Character : InteractibleObject
                 ResetDialogueOptions();
             }
         }
-
-                
-        
-
     }
-
-    
-
-    
-       
 
 
 }

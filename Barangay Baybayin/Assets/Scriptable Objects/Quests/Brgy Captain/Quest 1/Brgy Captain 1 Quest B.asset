@@ -16,10 +16,8 @@ MonoBehaviour:
   title: The Town
   description: Kapitan Lomhik. A man with a mission. Help him.
   rewards:
-  - so_Item: {fileID: 11400000, guid: 31008b96f54523443986acf68dc202aa, type: 2}
-    amount: 0
   - so_Item: {fileID: 11400000, guid: 7ad2b8367688c364ea9be0e1403ae539, type: 2}
-    amount: 3
+    amount: 1
   requirements:
   - so_requirement: {fileID: 11400000, guid: 28c891ecc325fe64b84997abb7622559, type: 2}
     isCompleted: 0

@@ -163,11 +163,12 @@ public class DayInfoUI : MonoBehaviour
             if (StorylineManager.instance.amountQuestComplete >= 8)
             {
                 CharacterDialogueUI.onCharacterSpokenToEvent.Invoke("GOODENDING", StorylineManager.instance.goodso_dialogue);
-
+                AudioManager.instance.PlayOnRoomEnterString("QuestComplete");
             }
             else
             {
                 CharacterDialogueUI.onCharacterSpokenToEvent.Invoke("BADENDING", StorylineManager.instance.badso_dialogue);
+                AudioManager.instance.PlayOnRoomEnterString("Quest Get");
             }
         }
 

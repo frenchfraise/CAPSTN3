@@ -11,9 +11,6 @@ public class MissionPointer : MonoBehaviour
     [SerializeField] private RectTransform _missionDistanceTransform;
     [SerializeField] private RectTransform _missionPointerTransform;
 
-    [SerializeField] private Sprite _arrowSprite;
-    [SerializeField] private Sprite _missionIconSprite;
-
     [SerializeField] private Vector2 _targetPosition;
 
 

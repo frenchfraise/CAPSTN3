@@ -230,6 +230,7 @@ public class UpgradeToolsUI : MonoBehaviour
         frame.SetActive(false);
         confirmPanelUI.SetActive(false);
         selectionPanelUI.SetActive(false);
+        PlayerJoystick.onUpdateJoystickEnabledEvent.Invoke(true);
         UIManager.onGameplayModeChangedEvent.Invoke(false);
         TimeManager.onPauseGameTime.Invoke(true);
     }

@@ -17,9 +17,7 @@ MonoBehaviour:
 
 '
   description: "Continue on the Anti-Erosion slopes with Kapitan. It\u2019s the climb."
-  rewards:
-  - so_Item: {fileID: 11400000, guid: a23150ace6c99194986348f059adf4b5, type: 2}
-    amount: 10
+  rewards: []
   requirements:
   - so_requirement: {fileID: 11400000, guid: 1628ae2e4d316614a8fb1cc38ee03e98, type: 2}
     isCompleted: 0

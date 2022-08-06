@@ -17,23 +17,12 @@ public class TutorialPanelUI : MonoBehaviour
     public TMP_Text descriptionText;
     public GameObject nextButton;
     public GameObject backButton;
-    //public SO_TutorialPanelUI currentSO_TutPanels;
+
     public int tutorialPanelPagesUIDataIndex;
     public int tutorialPanelUIDataIndex;
     [NonReorderable] public List<TutorialPanelUIData> tutorialPanelPagesUIData = new List<TutorialPanelUIData>();
     public bool specificToPage = false;
  
-    //public List<Sprite> tutorialPages = new List<Sprite>();
-    private void Awake()
-    {
-
-
-    }
-
-    private void OnDestroy()
-    {
-   
-    }
 
     public void RemindTutorialEvent(int p_tutorialPanelPagesUIDataIndex)
     {
@@ -106,7 +95,6 @@ public class TutorialPanelUI : MonoBehaviour
     }
     public void NextButtonHit()
     {
-       
         if (tutorialPanelUIDataIndex < tutorialPanelPagesUIData[tutorialPanelPagesUIDataIndex].panels.Count - 1)
         {
 
@@ -141,20 +129,13 @@ public class TutorialPanelUI : MonoBehaviour
             }
             if (tutorialPanelPagesUIDataIndex >= tutorialPanelPagesUIData.Count -1)
             {
-
                 nextButton.SetActive(false);
             }
-
         }
-        
-
-
     }
 
     public void BackButtonHit()
     {
-        Debug.Log("TEST");
-
         if (tutorialPanelUIDataIndex > 0)
         {
 
@@ -164,7 +145,6 @@ public class TutorialPanelUI : MonoBehaviour
             {
                 if (specificToPage)
                 {
-                
                     backButton.SetActive(false);
                 }
 

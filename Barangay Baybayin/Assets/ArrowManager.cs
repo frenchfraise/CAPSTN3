@@ -16,7 +16,7 @@ public class MissionPointerData
     [SerializeField] public RectTransform _missionDistanceTransform;
     [SerializeField] public RectTransform _missionPointerTransform;
     [SerializeField] public GameObject _missionPointerGameObject;
-    //[SerializeField] public TMP_Text _missionText;
+
 }
 public class ArrowManager : MonoBehaviour
 {
@@ -41,11 +41,15 @@ public class ArrowManager : MonoBehaviour
     private float yTopBorderSize = 90f;
     [SerializeField]
     private float yBotBorderSize = 25f;
-    [SerializeField] private Sprite _arrowSprite;
-    [SerializeField] private Sprite _missionIconSprite;
 
     bool isInUse = false;
 
+    public Transform upTownToMidTown;
+    public Transform midTownToUpTown;
+    public Transform midTownToDownTown;
+    public Transform midTownToPandayRoom;
+    public Transform downTownToMidTown;
+    public Transform pandayRoomToMidTown;
     private void Awake()
     {
         _cam = _cam ? _cam : Camera.main;
@@ -98,8 +102,6 @@ public class ArrowManager : MonoBehaviour
     }
     protected void CheckIDMatches(string p_eventID, int p_actionParameterAID = -1, int p_actionParameterBID = -1)
     {
-
-
         int index = StorylineManager.GetIndexFromID(p_eventID);
         if (p_eventID == "Q-LP" || p_eventID == "Q-KA" || p_eventID == "Q-TA"|| p_eventID == "Q-KL")
         {
@@ -111,20 +113,16 @@ public class ArrowManager : MonoBehaviour
 
                 missionPointerData[index].currentPosition = (missionPointerData[index].doTransform.actionTransform[p_actionParameterAID].actionPartTransform[p_actionParameterBID].position);
                 ShowPointer(index);
-                UpdateMissionPointer(index);
+                UpdateMissionPointerPosition(index);
+                //UpdateMissionPointer(index);
             }
             else
             {
                 HidePointer(index);
             }
         }
-        
-       
-   
-
 
     }
- 
  
     void ShowPointer(int index)
     {
@@ -135,6 +133,90 @@ public class ArrowManager : MonoBehaviour
     {
         missionPointerData[index].isSeen = false;
         missionPointerData[index]._missionPointerGameObject.SetActive(false);
+    }
+    void UpdateMissionPointerInSameRoom(int i)
+    {
+        if (missionPointerData[i].isSeen)
+        {
+            if (PlayerManager.instance.currentRoomID == 0) //Up town
+            {
+                if (missionPointerData[i].currentPosition.y < 265f &&
+                    missionPointerData[i].currentPosition.y > 188f) // Up town
+                {
+
+                    UpdateMissionPointer(i, missionPointerData[i].currentPosition);
+                }
+                else
+                {
+                    UpdateMissionPointer(i, upTownToMidTown.position);
+                }
+            }
+            else if (PlayerManager.instance.currentRoomID == 1) // Midtown
+            {
+                if (missionPointerData[i].currentPosition.y < 265f &&
+                    missionPointerData[i].currentPosition.y > 188f) // Up town
+                {
+
+                    UpdateMissionPointer(i, midTownToUpTown.position);
+                }
+                else if (missionPointerData[i].currentPosition.y < 35f &&
+                    missionPointerData[i].currentPosition.y > -35f) // Midtown
+                {
+                    UpdateMissionPointer(i, missionPointerData[i].currentPosition);
+                }
+                else if (missionPointerData[i].currentPosition.y < -44f &&
+                   missionPointerData[i].currentPosition.y > -255f) // Down town
+                {
+                    UpdateMissionPointer(i, midTownToDownTown.position);
+                }
+                else if (missionPointerData[i].currentPosition.y < 145f &&
+                      missionPointerData[i].currentPosition.y > 60f) // Panday House
+                {
+                    UpdateMissionPointer(i, midTownToPandayRoom.position);
+                }
+
+            }
+            else if (PlayerManager.instance.currentRoomID == 2) //Down town
+            {
+                if (missionPointerData[i].currentPosition.y < -44f &&
+                    missionPointerData[i].currentPosition.y > -255f) // Down town
+                {
+                    UpdateMissionPointer(i, missionPointerData[i].currentPosition);
+                }
+                else
+                {
+                    UpdateMissionPointer(i, downTownToMidTown.position);
+                }
+            }
+            else if (PlayerManager.instance.currentRoomID == 3) //Panday House
+            {
+                if (missionPointerData[i].currentPosition.y < 145f &&
+                        missionPointerData[i].currentPosition.y > 60f) // Panday House
+                {
+                    UpdateMissionPointer(i, missionPointerData[i].currentPosition);
+                }
+                else
+                {
+                    UpdateMissionPointer(i, pandayRoomToMidTown.position);
+                }
+            }
+        }
+    }
+    void UpdateMissionPointerPosition(int targetIndex = -1)
+    {
+        if (targetIndex == -1)
+        {
+            for (int i = 0; i < missionPointerData.Count; i++)
+            {
+                UpdateMissionPointerInSameRoom(i);
+
+            }
+        }
+        else
+        {
+            UpdateMissionPointerInSameRoom(targetIndex);
+        }
+        
     }
     void UpdateMissionPointers()
 
@@ -156,14 +238,7 @@ public class ArrowManager : MonoBehaviour
                 }
             }
             isInUse = true;
-            for (int i = 0; i < missionPointerData.Count; i++)
-            {
-                if (missionPointerData[i].isSeen)
-                {
-                    UpdateMissionPointer(i);
-                }
-
-            }
+            UpdateMissionPointerPosition();
         }
         else
         {
@@ -184,35 +259,29 @@ public class ArrowManager : MonoBehaviour
         }
         
     }
-    void UpdateMissionPointer(int index)
+    void UpdateMissionPointer(int index,Vector2 targetPositionWorld)
     {
-        float xScaledTopBorderSize = rightScreen.anchoredPosition.x;//screenSize.offsetMax.x;
-        float xScaledBotBorderSize = leftScreen.anchoredPosition.x;// screenSize.offsetMin.x;
-        float yScaledTopBorderSize = topScreen.anchoredPosition.y;//screenSize.offsetMax.y;// -screenSize.offsetMin.y + 600f;
-        float yScaledBotBorderSize = botScreen.anchoredPosition.y;//screenSize.offsetMin.y;// -screenSize.offsetMax.y + 300f;
+        float xScaledTopBorderSize = rightScreen.anchoredPosition.x;
+        float xScaledBotBorderSize = leftScreen.anchoredPosition.x;
+        float yScaledTopBorderSize = topScreen.anchoredPosition.y;
+        float yScaledBotBorderSize = botScreen.anchoredPosition.y;
 
-        //Vector2 targetPositionScreenPoint =
-        //    _cam.WorldToScreenPoint(missionPointerData[index].currentPosition);
-        Vector2 targetPositionWorld =
-            missionPointerData[index].currentPosition;
-        bool isOffScreen = targetPositionWorld.x <= PlayerManager.instance.playerTransform.position.x + 35|| // right
-            targetPositionWorld.x >= PlayerManager.instance.playerTransform.position.x - 35|| // left
-            targetPositionWorld.y <= PlayerManager.instance.playerTransform.position.y + 15 || //top
-            targetPositionWorld.y >= PlayerManager.instance.playerTransform.position.y - 15; // bot
+    
+        bool isOffScreen = targetPositionWorld.x <= PlayerManager.instance.playerTransform.position.x - 35|| // left
+            targetPositionWorld.x >= PlayerManager.instance.playerTransform.position.x + 35 || // right
+            targetPositionWorld.y <= PlayerManager.instance.playerTransform.position.y - 15 || // bot
+            targetPositionWorld.y >= PlayerManager.instance.playerTransform.position.y + 15; // top
 
         Vector2 targetPositionScreenPoint =
-            _cam.WorldToScreenPoint(missionPointerData[index].currentPosition);
-
-        //bool isOffScreen = targetPositionScreenPoint.x <= xScaledBotBorderSize || 
-        //    targetPositionScreenPoint.x >= xScaledTopBorderSize || 
-        //    targetPositionScreenPoint.y <= yScaledBotBorderSize || 
-        //    targetPositionScreenPoint.y >= yScaledTopBorderSize;
+            _cam.WorldToScreenPoint(targetPositionWorld);
 
         if (isOffScreen) //outside screen
         {
-
-            RotatePointer(index);
-            missionPointerData[index]._missionPointerImage.enabled = true;
+            RotatePointer(index, targetPositionWorld);
+            if (!missionPointerData[index]._missionPointerImage.enabled)
+            {
+                missionPointerData[index]._missionPointerImage.enabled = true;
+            }
             //Debug.Log(targetPositionScreenPoint + 
             //    " OFFSCREEN " +
             //    isOffScreen +
@@ -235,43 +304,36 @@ public class ArrowManager : MonoBehaviour
                 yScaledBotBorderSize + " - " +
                 yScaledTopBorderSize);
 
-
-
             cappedTargetScreenPosition.x = Mathf.Clamp(cappedTargetScreenPosition.x, xScaledBotBorderSize, xScaledTopBorderSize);
             cappedTargetScreenPosition.y = Mathf.Clamp(cappedTargetScreenPosition.y, yScaledBotBorderSize, yScaledTopBorderSize);
             Debug.Log(cappedTargetScreenPosition);
             Vector2 pointerWorldPosition = (cappedTargetScreenPosition);
             missionPointerData[index]._missionPointerTransform.anchoredPosition = pointerWorldPosition;
-
+            if (!missionPointerData[index]._missionDistanceTransform.gameObject.activeSelf)
+            {
+                missionPointerData[index]._missionDistanceTransform.gameObject.SetActive(true);
+            }
 
         }
         else
         {
-
-
-            missionPointerData[index]._missionPointerImage.enabled = false;
-            missionPointerData[index]._missionDistanceTransform.gameObject.SetActive(false);
-
-
-
-
-
-
+            if (missionPointerData[index]._missionPointerImage.enabled)
+            {
+                missionPointerData[index]._missionPointerImage.enabled = false;
+            }
+            if (missionPointerData[index]._missionDistanceTransform.gameObject.activeSelf)
+            {
+                missionPointerData[index]._missionDistanceTransform.gameObject.SetActive(false);
+            }
         }
-        //missionPointerData[index]._missionText.text = Mathf.RoundToInt(Vector2.Distance(_camTransform.position,
-        //    missionPointerData[index].currentPosition)).ToString() + "m";
-
-
     }
 
-    private void RotatePointer(int index)
+    private void RotatePointer(int index, Vector2 targetPositionWorld)
     {
- 
         Vector2 originPosition = _camTransform.position;
-        Vector2 dir = (missionPointerData[index].currentPosition - originPosition).normalized;
+        Vector2 dir = (targetPositionWorld - originPosition).normalized;
         float angle = (Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg) % 360;
         missionPointerData[index]._missionPointerTransform.localEulerAngles = new Vector3(0f, 0f, angle);
         missionPointerData[index]._missionDistanceTransform.localEulerAngles = new Vector3(0f, 0f, -angle);
-
     }
 }

@@ -14,8 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Sand Dunes
   maxHealth: 40
-  boxColliderSize: []
-  boxColliderOffSet: []
+  boxColliderSize:
+  - {x: 5.5, y: 1.51}
+  - {x: 0.1, y: 0.1}
+  boxColliderOffSet:
+  - {x: -0.3, y: -0.3}
+  - {x: 0, y: 0}
   sprites:
   - {fileID: 21300000, guid: ec2ad6be3ee55bd4b904ffc916642cbc, type: 3}
   - {fileID: 21300000, guid: 4d592a8a90371564aae2cebf259de074, type: 3}

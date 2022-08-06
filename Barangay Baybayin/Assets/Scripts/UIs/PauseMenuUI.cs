@@ -8,6 +8,7 @@ public class PauseMenuUI : MonoBehaviour
     public GameObject mapGameObject;
     public GameObject settingsGameObject;
     public TutorialPanelUI tutorialPanelUI;
+    public GameObject skipTutorialButton;
 
     private void Awake()
     {
@@ -72,6 +73,7 @@ public class PauseMenuUI : MonoBehaviour
     {
         TutorialManager.instance.DontUseTutorial();
         settingsGameObject.SetActive(false);
+        skipTutorialButton.SetActive(false);
         //UIManager.onGameplayModeChangedEvent.Invoke(false);
         pauseMenuPanel.SetActive(false);
     }
