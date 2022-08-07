@@ -44,7 +44,7 @@ public class PlayerJoystick : MonoBehaviour
 
     private void Awake()
     {
-        ToolManager.onResourceNodeFinishedEvent.AddListener(OnResourceNodeFinishedEvent);
+        //ToolManager.onResourceNodeFinishedEvent.AddListener(OnResourceNodeFinishedEvent);
         UIManager.onGameplayModeChangedEvent.AddListener(OnGameplayModeChangedEvent);
     
 
@@ -53,7 +53,7 @@ public class PlayerJoystick : MonoBehaviour
 
     private void OnDestroy()
     {
-        ToolManager.onResourceNodeFinishedEvent.RemoveListener(OnResourceNodeFinishedEvent);
+       // ToolManager.onResourceNodeFinishedEvent.RemoveListener(OnResourceNodeFinishedEvent);
         UIManager.onGameplayModeChangedEvent.RemoveListener(OnGameplayModeChangedEvent);
         onUpdateJoystickEnabledEvent.RemoveListener(UpdateJoystickEnabled);
     }
@@ -89,9 +89,13 @@ public class PlayerJoystick : MonoBehaviour
             joystick.background.gameObject.SetActive(false);
         }
     }
-    void OnResourceNodeFinishedEvent()
+    public void OnResourceNodeFinishedEvent()
     {
-        interactHint.SetActive(false);
+        if (interactHint.activeSelf)
+        {
+            interactHint.SetActive(false);
+        }
+
 
 
     }

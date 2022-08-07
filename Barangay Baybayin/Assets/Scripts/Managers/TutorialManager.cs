@@ -264,7 +264,7 @@ public class TutorialManager : MonoBehaviour
                 ToolsUI.onToolQuestSwitchEvent.Invoke(1);
                 PlayerManager.instance.playerToolCaster.SetIsPrecise(true);
                 PlayerManager.instance.playerToolCaster.SetRequireCorrectTool(ToolManager.instance.tools[1]);
-     
+
                 //SPECFICI
                 EndStory();
             }

@@ -373,7 +373,7 @@ public class ToolCaster : MonoBehaviour
         while (!canUse)
         {
             useRate -= Time.deltaTime;
-            yield return new WaitForSeconds(Time.deltaTime);
+            yield return null;// new WaitForSeconds(Time.deltaTime);
 
             if (useRate <= 0)
             {

@@ -30,7 +30,7 @@ public class PlayerManager : MonoBehaviour
     public PlayerJoystick playerMovement;
     public ToolCaster playerToolCaster;
     public Stamina playerStamina;
-    public Transform playerTransform { get; private set; }
+    public Transform playerTransform;
     public Room playerRoom;
     [SerializeField] private Bed bed;
     [SerializeField] public Passageway startRoomPassageway;
@@ -42,29 +42,46 @@ public class PlayerManager : MonoBehaviour
     private bool isLeft;
     bool isFirstTime = true;
 
-    //[SerializeField] public PlayerJoystick joystick;
+
+    public Vector2 playerNodePosition;
+
+    public DropTest itemDropPrefab;
+   
 
     public static UpdateCurrentRoomIDEvent onUpdateCurrentRoomIDEvent = new UpdateCurrentRoomIDEvent();
 
     public static RoomEnteredEvent onRoomEnteredEvent = new RoomEnteredEvent();
+
+    public void RewardResource(List<ResourceDrop> resourceDrops)
+    {
+        CameraManager.onShakeCameraEvent.Invoke();
+        ToolManager.onResourceNodeFinishedEvent.Invoke();
+        int chosenIndex = Random.Range(0, resourceDrops.Count);
+
+        ResourceDrop chosenResourceDrop = resourceDrops[chosenIndex];
+        int rewardAmount = Random.Range(chosenResourceDrop.minAmount, chosenResourceDrop.maxAmount);
+        for (int i = 0; i < rewardAmount; i++)
+        {
+            DropTest newI = Instantiate(itemDropPrefab, transform);
+            StartCoroutine(newI.test(chosenResourceDrop));
+          
+        }
+
+    }
+
     private void Awake()
     {
-        //if (_instance != null)
-        //{
-        //    //Destroy(gameObject);
-        //}
-        //else
-        //{
         _instance = this;
-            //DontDestroyOnLoad(gameObject);
-        //}
+
         playerTransform = player.transform;
         onUpdateCurrentRoomIDEvent.AddListener(UpdateCurrentRoomIDEvent);
+        ToolManager.onResourceNodeFinishedEvent.AddListener(playerMovement.OnResourceNodeFinishedEvent);
         TimeManager.onDayChangingEvent.AddListener(DayChanging);
     }
 
     private void OnDestroy()
     {
+        ToolManager.onResourceNodeFinishedEvent.RemoveListener(playerMovement.OnResourceNodeFinishedEvent);
         onUpdateCurrentRoomIDEvent.RemoveListener(UpdateCurrentRoomIDEvent);
         TimeManager.onDayChangingEvent.RemoveListener(DayChanging);
     }

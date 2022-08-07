@@ -72,10 +72,10 @@ public class ResourceNodeSpawner : MonoBehaviour
         if (PlayerManager.instance.currentRoomID != room.currentRoomID)
         {
             bool isSpawnAvailable = CheckSpawnAvailability();
-            //Debug.Log(gameObject.name + " - 5 " + isSpawnAvailable);
+ 
             if (isSpawnAvailable)
             {
-                //Debug.Log(gameObject.name + " SPAN SPAN " + isSpawnAvailable);
+    
                 float chanceRolled = Random.Range(0, 100);
                 int savedIndex = 0;
                 float currentCount = 0;
@@ -84,7 +84,7 @@ public class ResourceNodeSpawner : MonoBehaviour
                     currentCount += room.availableResourceNodeDrops[i].chance;
                     if (chanceRolled <= currentCount)
                     {
-                        //Debug.Log(gameObject.name + " SPAN " + isSpawnAvailable);
+                  
                         //within chance range
                         savedIndex = i;
                         break;
@@ -92,231 +92,119 @@ public class ResourceNodeSpawner : MonoBehaviour
 
                 }
 
-                //System.Type m = room.availableResourceNodeDrops[savedIndex].resourceNode.GetType();
-                //System.Type m1 = m.GetGenericTypeDefinition();
-                //System.Type[] typeArgs = { typeof(string), typeof(ResourceNode) };
-                //System.Type constructed = m1.MakeGenericType(typeArgs);
-                //System.Type m = .GetProperty("Value").PropertyType;
-                //var ra = typeof(ResourceNode);
-                //var test = ra.MakeGenericType(m);
-                //Spawn<constructed>(savedIndex);
-                //Debug.Log(room.gameObject.name + " - ");
                 TempSpawn(room.availableResourceNodeDrops[savedIndex].resourceNode,savedIndex);
             }
         }
-        void TempSpawn(ResourceNode newResourceNode, int savedIndex)
+    }
+
+    void TempSpawn(ResourceNode newResourceNode, int savedIndex)
+    {
+        //This is wrong, dont do this, Asking sir Dale
+
+
+        if (newResourceNode is TreeVariantOneNode)
         {
-            //This is wrong, dont do this, Asking sir Dale
-         
-            
-            if (newResourceNode is TreeVariantOneNode)
-            {
-                TreeVariantOneNode nResourceNode = TreeVariantOneNodePool.pool.Get();//<TreeVariantOneNode>.pool.Get();
-                nResourceNode.transform.position = transform.position + new Vector3(0f, 0f, 0f);
-                nResourceNode.InitializeValues();
-            }
-            else if (newResourceNode is TreeVariantTwoNode)
-            {
-                TreeVariantTwoNode nResourceNode = TreeVariantTwoNodePool.pool.Get();
-                nResourceNode.transform.position = transform.position + new Vector3(0f, 0f, 0f);
-                nResourceNode.InitializeValues();
-            }
-            else if (newResourceNode is TreeVariantThreeNode)
-            {
-                TreeVariantThreeNode nResourceNode = TreeVariantThreeNodePool.pool.Get();
-                nResourceNode.transform.position = transform.position + new Vector3(0f, 0f, 0f);
-                nResourceNode.InitializeValues();
-            }
-            else if (newResourceNode is OreVariantOneNode)
-            {
-                OreVariantOneNode nResourceNode = OreVariantOneNodePool.pool.Get();
-                nResourceNode.transform.position = transform.position + new Vector3(0f, -2.35f, 0f);
-                nResourceNode.InitializeValues();
-            }
-            else if (newResourceNode is OreVariantTwoNode)
-            {
-                OreVariantTwoNode nResourceNode = OreVariantTwoNodePool.pool.Get();
-                nResourceNode.transform.position = transform.position + new Vector3(0f, -2.35f, 0f);
-                nResourceNode.InitializeValues();
-            }
-            else if (newResourceNode is OreVariantThreeNode)
-            {
-                OreVariantThreeNode nResourceNode = OreVariantThreeNodePool.pool.Get();
-                nResourceNode.transform.position = transform.position + new Vector3(0f, -2.35f, 0f);
-                nResourceNode.InitializeValues();
-            }
-            else if (newResourceNode is BambooVariantOneNode)
-            {
-                BambooVariantOneNode nResourceNode = BambooVariantOneNodePool.pool.Get();
-                nResourceNode.transform.position = transform.position + new Vector3(0f, -2.35f, 0f);
-                nResourceNode.InitializeValues();
-            }
-            else if (newResourceNode is BambooVariantTwoNode)
-            {
-                BambooVariantTwoNode nResourceNode = BambooVariantTwoNodePool.pool.Get();
-                nResourceNode.transform.position = transform.position + new Vector3(0f, -2.35f, 0f);
-                nResourceNode.InitializeValues();
-            }
-            else if (newResourceNode is BambooVariantThreeNode)
-            {
-                BambooVariantThreeNode nResourceNode = BambooVariantThreeNodePool.pool.Get();
-                nResourceNode.transform.position = transform.position + new Vector3(0f, -2.35f, 0f);
-                nResourceNode.InitializeValues();
-            }
-            else if (newResourceNode is NipaLeavesVariantOneNode)
-            {
-                NipaLeavesVariantOneNode nResourceNode = NipaLeavesVariantOneNodePool.pool.Get();
-                nResourceNode.transform.position = transform.position + new Vector3(0f, -2.35f, 0f);
-                nResourceNode.InitializeValues();
-            }
-            else if (newResourceNode is NipaLeavesVariantTwoNode)
-            {
-                NipaLeavesVariantTwoNode nResourceNode = NipaLeavesVariantTwoNodePool.pool.Get();
-                nResourceNode.transform.position = transform.position + new Vector3(0f, -2.35f, 0f);
-                nResourceNode.InitializeValues();
-            }
-            else if (newResourceNode is NipaLeavesVariantThreeNode)
-            {
-                NipaLeavesVariantThreeNode nResourceNode = NipaLeavesVariantThreeNodePool.pool.Get();
-                nResourceNode.transform.position = transform.position + new Vector3(0f, -2.35f, 0f);
-                nResourceNode.InitializeValues();
-            }
-            else if (newResourceNode is HerbVariantOneNode)
-            {
-                HerbVariantOneNode nResourceNode = HerbVariantOneNodePool.pool.Get();
-                nResourceNode.transform.position = transform.position + new Vector3(0f, -2.35f, 0f);
-                nResourceNode.InitializeValues();
-            }
-            else if (newResourceNode is HerbVariantTwoNode)
-            {
-                HerbVariantTwoNode nResourceNode = HerbVariantTwoNodePool.pool.Get();
-                nResourceNode.transform.position = transform.position + new Vector3(0f, -2.35f, 0f);
-                nResourceNode.InitializeValues();
-            }
-            else if (newResourceNode is HerbVariantThreeNode)
-            {
-                HerbVariantThreeNode nResourceNode = HerbVariantThreeNodePool.pool.Get();
-                nResourceNode.transform.position = transform.position + new Vector3(0f, -2.35f, 0f);
-                nResourceNode.InitializeValues();
-            }
-            else if (newResourceNode is VetiverLeafVariantOneNode)
-            {
-                VetiverLeafVariantOneNode nResourceNode = VetiverLeafVariantOneNodePool.pool.Get();
-                nResourceNode.transform.position = transform.position + new Vector3(0f, -2.35f, 0f);
-                nResourceNode.InitializeValues();
-            }
+            TreeVariantOneNode nResourceNode = TreeVariantOneNodePool.pool.Get();//<TreeVariantOneNode>.pool.Get();
+            nResourceNode.transform.position = transform.position + new Vector3(0f, 0f, 0f);
+            nResourceNode.InitializeValues();
         }
-        //void Spawn<T>(int savedIndex) where T : MonoBehaviour
-        //{
-        //    //if ((System.Type)T is typeof(TreeVariantOneNode))
-        //    //{
-
-        //    //}
-  
-        //    T genericObject = GenericObjectPool<T>.pool.Get();
-      
-        //    ResourceNode newResourceNode = genericObject as ResourceNode;
-        //    newResourceNode.transform.position = transform.position;
-
-        //}
-
-
+        else if (newResourceNode is TreeVariantTwoNode)
+        {
+            TreeVariantTwoNode nResourceNode = TreeVariantTwoNodePool.pool.Get();
+            nResourceNode.transform.position = transform.position + new Vector3(0f, 0f, 0f);
+            nResourceNode.InitializeValues();
+        }
+        else if (newResourceNode is TreeVariantThreeNode)
+        {
+            TreeVariantThreeNode nResourceNode = TreeVariantThreeNodePool.pool.Get();
+            nResourceNode.transform.position = transform.position + new Vector3(0f, 0f, 0f);
+            nResourceNode.InitializeValues();
+        }
+        else if (newResourceNode is OreVariantOneNode)
+        {
+            OreVariantOneNode nResourceNode = OreVariantOneNodePool.pool.Get();
+            nResourceNode.transform.position = transform.position + new Vector3(0f, -2.35f, 0f);
+            nResourceNode.InitializeValues();
+        }
+        else if (newResourceNode is OreVariantTwoNode)
+        {
+            OreVariantTwoNode nResourceNode = OreVariantTwoNodePool.pool.Get();
+            nResourceNode.transform.position = transform.position + new Vector3(0f, -2.35f, 0f);
+            nResourceNode.InitializeValues();
+        }
+        else if (newResourceNode is OreVariantThreeNode)
+        {
+            OreVariantThreeNode nResourceNode = OreVariantThreeNodePool.pool.Get();
+            nResourceNode.transform.position = transform.position + new Vector3(0f, -2.35f, 0f);
+            nResourceNode.InitializeValues();
+        }
+        else if (newResourceNode is BambooVariantOneNode)
+        {
+            BambooVariantOneNode nResourceNode = BambooVariantOneNodePool.pool.Get();
+            nResourceNode.transform.position = transform.position + new Vector3(0f, -2.35f, 0f);
+            nResourceNode.InitializeValues();
+        }
+        else if (newResourceNode is BambooVariantTwoNode)
+        {
+            BambooVariantTwoNode nResourceNode = BambooVariantTwoNodePool.pool.Get();
+            nResourceNode.transform.position = transform.position + new Vector3(0f, -2.35f, 0f);
+            nResourceNode.InitializeValues();
+        }
+        else if (newResourceNode is BambooVariantThreeNode)
+        {
+            BambooVariantThreeNode nResourceNode = BambooVariantThreeNodePool.pool.Get();
+            nResourceNode.transform.position = transform.position + new Vector3(0f, -2.35f, 0f);
+            nResourceNode.InitializeValues();
+        }
+        else if (newResourceNode is NipaLeavesVariantOneNode)
+        {
+            NipaLeavesVariantOneNode nResourceNode = NipaLeavesVariantOneNodePool.pool.Get();
+            nResourceNode.transform.position = transform.position + new Vector3(0f, -2.35f, 0f);
+            nResourceNode.InitializeValues();
+        }
+        else if (newResourceNode is NipaLeavesVariantTwoNode)
+        {
+            NipaLeavesVariantTwoNode nResourceNode = NipaLeavesVariantTwoNodePool.pool.Get();
+            nResourceNode.transform.position = transform.position + new Vector3(0f, -2.35f, 0f);
+            nResourceNode.InitializeValues();
+        }
+        else if (newResourceNode is NipaLeavesVariantThreeNode)
+        {
+            NipaLeavesVariantThreeNode nResourceNode = NipaLeavesVariantThreeNodePool.pool.Get();
+            nResourceNode.transform.position = transform.position + new Vector3(0f, -2.35f, 0f);
+            nResourceNode.InitializeValues();
+        }
+        else if (newResourceNode is HerbVariantOneNode)
+        {
+            HerbVariantOneNode nResourceNode = HerbVariantOneNodePool.pool.Get();
+            nResourceNode.transform.position = transform.position + new Vector3(0f, -2.35f, 0f);
+            nResourceNode.InitializeValues();
+        }
+        else if (newResourceNode is HerbVariantTwoNode)
+        {
+            HerbVariantTwoNode nResourceNode = HerbVariantTwoNodePool.pool.Get();
+            nResourceNode.transform.position = transform.position + new Vector3(0f, -2.35f, 0f);
+            nResourceNode.InitializeValues();
+        }
+        else if (newResourceNode is HerbVariantThreeNode)
+        {
+            HerbVariantThreeNode nResourceNode = HerbVariantThreeNodePool.pool.Get();
+            nResourceNode.transform.position = transform.position + new Vector3(0f, -2.35f, 0f);
+            nResourceNode.InitializeValues();
+        }
+        else if (newResourceNode is VetiverLeafVariantOneNode)
+        {
+            VetiverLeafVariantOneNode nResourceNode = VetiverLeafVariantOneNodePool.pool.Get();
+            nResourceNode.transform.position = transform.position + new Vector3(0f, -2.35f, 0f);
+            nResourceNode.InitializeValues();
+        }
     }
     void Despawn(ResourceNode p_newResourceNode)
     {
         //This is wrong, dont do this, Asking sir Dale
-        //This is wrong, dont do this, Asking sir Dale
-
+       
         p_newResourceNode.DeinitializeValues();
-        //if (p_newResourceNode is TreeVariantOneNode)
-        //{
         
-            
-        //}
-        //else if (p_newResourceNode is TreeVariantTwoNode)
-        //{
-        //    TreeVariantTwoNode nResourceNode = TreeVariantTwoNodePool.pool.Get();
-        //    nResourceNode.transform.position = transform.position;
-        //    nResourceNode.DeinitializeValues();
-        //}
-        //else if (p_newResourceNode is TreeVariantThreeNode)
-        //{
-        //    TreeVariantTwoNode nResourceNode = TreeVariantTwoNodePool.pool.Get();
-        //    nResourceNode.transform.position = transform.position;
-        //    nResourceNode.DeinitializeValues();
-        //}
-        //else if (p_newResourceNode is OreVariantOneNode)
-        //{
-        //    TreeVariantTwoNode nResourceNode = TreeVariantTwoNodePool.pool.Get();
-        //    nResourceNode.transform.position = transform.position;
-        //    nResourceNode.DeinitializeValues();
-        //}
-        //else if (p_newResourceNode is OreVariantTwoNode)
-        //{
-        //    TreeVariantTwoNode nResourceNode = TreeVariantTwoNodePool.pool.Get();
-        //    nResourceNode.transform.position = transform.position;
-        //    nResourceNode.DeinitializeValues();
-        //}
-        //else if (p_newResourceNode is OreVariantThreeNode)
-        //{
-        //    TreeVariantTwoNode nResourceNode = TreeVariantTwoNodePool.pool.Get();
-        //    nResourceNode.transform.position = transform.position;
-        //    nResourceNode.DeinitializeValues();
-        //}
-        //else if (p_newResourceNode is BambooVariantOneNode)
-        //{
-        //    BambooVariantOneNode nResourceNode = BambooVariantOneNodePool.pool.Get();
-        //    nResourceNode.transform.position = transform.position;
-        //    nResourceNode.DeinitializeValues();
-        //}
-        //else if (p_newResourceNode is BambooVariantTwoNode)
-        //{
-        //    BambooVariantTwoNode nResourceNode = BambooVariantTwoNodePool.pool.Get();
-        //    nResourceNode.transform.position = transform.position;
-        //    nResourceNode.DeinitializeValues();
-        //}
-        //else if (p_newResourceNode is BambooVariantThreeNode)
-        //{
-        //    BambooVariantThreeNode nResourceNode = BambooVariantThreeNodePool.pool.Get();
-        //    nResourceNode.transform.position = transform.position;
-        //    nResourceNode.DeinitializeValues();
-        //}
-        //else if (p_newResourceNode is NipaLeavesVariantOneNode)
-        //{
-        //    NipaLeavesVariantOneNode nResourceNode = NipaLeavesVariantOneNodePool.pool.Get();
-        //    nResourceNode.transform.position = transform.position;
-        //    nResourceNode.DeinitializeValues();
-        //}
-        //else if (p_newResourceNode is NipaLeavesVariantTwoNode)
-        //{
-        //    NipaLeavesVariantTwoNode nResourceNode = NipaLeavesVariantTwoNodePool.pool.Get();
-        //    nResourceNode.transform.position = transform.position;
-        //    nResourceNode.DeinitializeValues();
-        //}
-        //else if (p_newResourceNode is NipaLeavesVariantThreeNode)
-        //{
-        //    NipaLeavesVariantThreeNode nResourceNode = NipaLeavesVariantThreeNodePool.pool.Get();
-        //    nResourceNode.transform.position = transform.position;
-        //    nResourceNode.DeinitializeValues();
-        //}
-        //else if (p_newResourceNode is HerbVariantOneNode)
-        //{
-        //    HerbVariantOneNode nResourceNode = HerbVariantOneNodePool.pool.Get();
-        //    nResourceNode.transform.position = transform.position;
-        //    nResourceNode.DeinitializeValues();
-        //}
-        //else if (p_newResourceNode is HerbVariantTwoNode)
-        //{
-        //    HerbVariantTwoNode nResourceNode = HerbVariantTwoNodePool.pool.Get();
-        //    nResourceNode.transform.position = transform.position;
-        //    nResourceNode.DeinitializeValues();
-        //}
-        //else if (p_newResourceNode is HerbVariantThreeNode)
-        //{
-        //    HerbVariantThreeNode nResourceNode = HerbVariantThreeNodePool.pool.Get();
-        //    nResourceNode.transform.position = transform.position;
-        //    nResourceNode.DeinitializeValues();
-        //}
 
 
     }

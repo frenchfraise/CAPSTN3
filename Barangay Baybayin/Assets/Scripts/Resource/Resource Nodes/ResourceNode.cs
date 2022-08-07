@@ -4,14 +4,12 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Pool;
 using DG.Tweening;
+using System;
 public class ResourceNodeHitEvent : UnityEvent<List<SO_ResourceNode> , int , float, UnityEvent > { }
 public class ResourceNode : Unit
 {
  
     public SO_ResourceNode so_ResourceNode;
-
-    [Header("Item")]
-    public Item itemPrefab;
 
     public Sprite hintSprite;
 
@@ -30,7 +28,7 @@ public class ResourceNode : Unit
     protected override void OnEnable()
     {
         Health health = GetComponent<Health>();
-        health.OnDeathEvent.AddListener(RewardResource);
+        //health.OnDeathEvent.AddListener(RewardResource);
  
         OnResourceNodeHitEvent.AddListener(Hit);
     }
@@ -38,14 +36,14 @@ public class ResourceNode : Unit
     protected override void OnDisable()
     {
         Health health = GetComponent<Health>();
-        health.OnDeathEvent.RemoveListener(RewardResource);
+        //health.OnDeathEvent.RemoveListener(RewardResource);
    
         OnResourceNodeHitEvent.RemoveListener(Hit);
     }
 
     public virtual void Hit( List<SO_ResourceNode> p_useForResourceNode,int p_craftLevel, float p_currentDamage, UnityEvent p_eventCallback) 
     {
-        //Debug.Log("1 " + p_useForResourceNode + " - " + p_craftLevel + " - " + p_currentDamage + " - ");
+
         if (health.healthOverheadUI == null)
         {
             health.healthOverheadUI = HealthOverheadUIPool.pool.Get();
@@ -62,52 +60,36 @@ public class ResourceNode : Unit
             if (useForResourceNode == so_ResourceNode)
             {
 
-                //if (p_craftLevel >= levelRequirement)
-                //{
-
-           
+                PlayerManager.instance.playerNodePosition = transform.position;
 
                 health.onHealthModifyEvent.Invoke(-p_currentDamage);
 
                 p_eventCallback.Invoke();
                 transform.DOShakePosition(shakePositionDuration, shakePositionPower, shakePositionVibrato, shakePositionRandomRange, shakePositionCanFade);
-                //StartCoroutine(Co_ShakeNode());
-                //}
+               
             }
         }
     
     }
-    //IEnumerator Co_ShakeNode()
-    //{
-
-    //}
-    public void RewardResource()
-    {
-        CameraManager.onShakeCameraEvent.Invoke();
-        ToolManager.onResourceNodeFinishedEvent.Invoke();
-        int chosenIndex = Random.Range(0, resourceDrops.Count);
-        
-        ResourceDrop chosenResourceDrop = resourceDrops[chosenIndex];
-        int rewardAmount = Random.Range(chosenResourceDrop.minAmount, chosenResourceDrop.maxAmount);
-        for (int i=0; i<rewardAmount; i++)
-        {
-            Item newItem = Instantiate(itemPrefab);
-            
-            newItem.transform.position = (Vector2) transform.position;
-            newItem.startPosition = (Vector2) transform.position;
-            newItem.so_Item = chosenResourceDrop.so_Item;
-            newItem.sr.sprite = chosenResourceDrop.so_Item.icon;
-        }
-        
-    }
+  
+   
 
     public override void InitializeValues()
     {
-          
-
         maxHealth = so_ResourceNode.maxHealth;
         base.InitializeValues();
-        
 
     }
+
+    protected override void Death()
+    {
+        //List<ResourceDrop> res = new List<ResourceDrop>(resourceDrops); //chance
+        //PlayerManager.instance.playerNodePosition = transform.position;
+
+        PlayerManager.instance.RewardResource(resourceDrops);
+        base.Death();
+        //StartCoroutine(Co_test(base.Death));
+    }
+
+   
 }

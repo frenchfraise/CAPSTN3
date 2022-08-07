@@ -12,9 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Emman/EEScene.unity
     guid: f9b137eab0d36ca4994c6fe2ca078bf4
   - enabled: 0
-    path: Assets/Scenes/Jerry/JerryScene.unity
-    guid: d04f0460a24388941929b57aea6a5a81
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 0
-    path: Assets/Scenes/Emman/EmmanScene.unity
-    guid: 987babaf6f9c4f4418def72367d96b4f
+    path: 
+    guid: 00000000000000000000000000000000
   m_configObjects: {}
