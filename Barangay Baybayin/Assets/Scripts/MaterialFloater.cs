@@ -9,14 +9,23 @@ public class MaterialFloater : MonoBehaviour
     [SerializeField] private TextMeshPro textMeshPro;
     [SerializeField] private float decayTime = 1.5f;
     [SerializeField] private float delayTime = 1.5f;
+    float recordAmt = 0f;
     //[SerializeField] private Vector3 offsetPosition;
     //[SerializeField] private Vector3 targetMovePosition;
-    public void InitializeValues(SO_Item p_SOItem, string p_text, Vector3 p_playerPosition)
-    {
+    //public void InitializeValues(SO_Item p_SOItem, string p_text, Vector3 p_playerPosition)
+    //{
+    //    image.sprite = p_SOItem.icon;
+    //    textMeshPro.color = p_SOItem.color;
+    //    textMeshPro.text = "+"+ p_text;
+    //   // transform.position = p_playerPosition;// +offsetPosition;
+    //    //targetMovePosition += transform.position;
+    //}
+    public void InitializeValues(SO_Item p_SOItem, string p_text)
+    { 
         image.sprite = p_SOItem.icon;
         textMeshPro.color = p_SOItem.color;
-        textMeshPro.text = "+"+ p_text;
-        transform.position = p_playerPosition;// +offsetPosition;
+        textMeshPro.text = "+" + p_text;
+        // transform.position = p_playerPosition;// +offsetPosition;
         //targetMovePosition += transform.position;
     }
     private void OnEnable()
@@ -31,6 +40,7 @@ public class MaterialFloater : MonoBehaviour
 
     public void Update()
     {
+        recordAmt += 1f * Time.deltaTime;
         transform.Translate(new Vector2(0, 1) * 1f * Time.deltaTime);
     }
 
@@ -44,10 +54,12 @@ public class MaterialFloater : MonoBehaviour
         sequence.Join(textMeshPro.DOFade(0, p_decayTime));
         sequence.Play();
         yield return sequence.WaitForCompletion();
-
-
-
-
-        Destroy(gameObject);
+ 
+        image.color = new Color32(0, 0, 0,0);
+        textMeshPro.color = new Color32(0, 0, 0, 0);
+        transform.Translate(new Vector2(0, -1) * recordAmt);
+        recordAmt = 0;
+        PlayerManager.instance.trans.SetActive(false);
+        //Destroy(gameObject);
     }
 }

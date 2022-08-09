@@ -60,7 +60,7 @@ public class ResourceNode : Unit
             if (useForResourceNode == so_ResourceNode)
             {
 
-                PlayerManager.instance.playerNodePosition = transform.position;
+              
 
                 health.onHealthModifyEvent.Invoke(-p_currentDamage);
 
@@ -85,11 +85,19 @@ public class ResourceNode : Unit
     {
         //List<ResourceDrop> res = new List<ResourceDrop>(resourceDrops); //chance
         //PlayerManager.instance.playerNodePosition = transform.position;
-
+        PlayerManager.instance.playerNodePosition = transform.position;
         PlayerManager.instance.RewardResource(resourceDrops);
+        //base.Death();
         base.Death();
-        //StartCoroutine(Co_test(base.Death));
+       // StartCoroutine(Test(base.Death));
     }
+
+    //IEnumerator Test(Action p_a)
+    //{
+     
+    //    yield return new WaitForSeconds(5f);
+    //    p_a.Invoke();
+    //}
 
    
 }

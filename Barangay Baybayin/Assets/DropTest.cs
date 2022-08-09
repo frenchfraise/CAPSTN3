@@ -42,120 +42,130 @@ public class DropTest : MonoBehaviour
     [SerializeField] Animator anim;
 
     public bool isSetUped = false;
-  
-    public IEnumerator test(ResourceDrop chosenResourceDrop)
-    {
-        offsetY = Random.Range(minOffsetY, maxOffsetY);
-        splashVelocity = Vector2.up * Random.Range(minBurstVelocity, maxBurstVelocity);
-        splashVelocity += new Vector2(Random.Range(-1f, 1f) * Random.Range(minOffsetX, maxOffsetX), 0);
-        currentSplashVelocity = splashVelocity;
+
+    //public void SetUpInit(ResourceDrop chosenResourceDrop)
+    //{
+
+    //    so_Item = chosenResourceDrop.so_Item;
+    //    PlayerManager.instance.SpawnNewItemFloater(so_Item,
+    //       (1));
+    //    Destroy(gameObject);
+
+    //}
+    //public IEnumerator test(ResourceDrop chosenResourceDrop)
+    //{
+
+    //    //offsetY = Random.Range(minOffsetY, maxOffsetY);
+    //    //splashVelocity = Vector2.up * Random.Range(minBurstVelocity, maxBurstVelocity);
+    //    //splashVelocity += new Vector2(Random.Range(-1f, 1f) * Random.Range(minOffsetX, maxOffsetX), 0);
+    //    //currentSplashVelocity = splashVelocity;
  
-        so_Item = chosenResourceDrop.so_Item;
-        sr.sprite = chosenResourceDrop.so_Item.icon;
-
-        isSplashing = false;
-        isMagnetizing = false;
-        plrTransform = PlayerManager.instance.playerTransform;
      
-        yield return new WaitForSeconds(2.75f); //2 og
-        SetUp(chosenResourceDrop);
-    }
-    public void SetUp(ResourceDrop chosenResourceDrop)
-    {
+    //    //sr.sprite = chosenResourceDrop.so_Item.icon;
 
-        transform.position = PlayerManager.instance.playerNodePosition;//.position;
-        startPositionY = transform.position.y;
+    //    //isSplashing = false;
+    //    //isMagnetizing = false;
+    //    //plrTransform = PlayerManager.instance.playerTransform;
      
-        isSetUped = true;
+    //    //yield return new WaitForSeconds(2.8f); //2.75 og
+    //    //SetUp(chosenResourceDrop);
+    //}
+    //public void SetUp(ResourceDrop chosenResourceDrop)
+    //{
 
-    }
+    //    transform.position = PlayerManager.instance.playerNodePosition;//.position;
+    //    startPositionY = transform.position.y;
+     
+    //    isSetUped = true;
+
+    //}
   
-    private void Update()
-    {
-        if (isSetUped)
-        {
-            if (isMagnetizing == true)
-            {
-                Magnetize();
-            }
-        }
+    //private void Update()
+    //{
+    //    if (isSetUped)
+    //    {
+    //        if (isMagnetizing == true)
+    //        {
+    //            Magnetize();
+    //        }
+    //    }
 
-    }
+    //}
 
-    private void FixedUpdate()
-    {
-        if (isSetUped)
-        {
-            if (!isSplashing)
-            {
-                Splash();
-            }
+    //private void FixedUpdate()
+    //{
+    //    if (isSetUped)
+    //    {
+    //        if (!isSplashing)
+    //        {
+    //            Splash();
+    //        }
 
-        }
+    //    }
 
-    }
-    void Splash()
-    {
-        rb.position += currentSplashVelocity * Time.deltaTime;
-        if (currentSplashVelocity.y < downwardVelocityLimit)
-        {
-            currentSplashVelocity.y = downwardVelocityLimit;
-        }
-        else
-        {
-            currentSplashVelocity -= Vector2.up * downwardVelocity * Time.deltaTime;
-        }
+    //}
+    //void Splash()
+    //{
+    //    rb.position += currentSplashVelocity * Time.deltaTime;
+    //    if (currentSplashVelocity.y < downwardVelocityLimit)
+    //    {
+    //        currentSplashVelocity.y = downwardVelocityLimit;
+    //    }
+    //    else
+    //    {
+    //        currentSplashVelocity -= Vector2.up * downwardVelocity * Time.deltaTime;
+    //    }
 
-        if (currentSplashVelocity.y < 0f)
-        {
-            if (rb.position.y < startPositionY - offsetY)
-            {
+    //    if (currentSplashVelocity.y < 0f)
+    //    {
+    //        if (rb.position.y < startPositionY - offsetY)
+    //        {
 
-                currentSplashVelocity = Vector2.zero;
-                rb.velocity = Vector2.zero;
-                rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+    //            currentSplashVelocity = Vector2.zero;
+    //            rb.velocity = Vector2.zero;
+    //            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
 
-                isSplashing = true;
+    //            isSplashing = true;
 
 
-                if (firstTime)
-                {
-                    firstTime = false;
-                    StartCoroutine(Co_Magnetize());
-                }
+    //            if (firstTime)
+    //            {
+    //                firstTime = false;
+    //                StartCoroutine(Co_Magnetize());
+    //            }
 
-            }
-        }
-    }
+    //        }
+    //    }
+    //}
 
-    void Magnetize()
-    {
-        Vector3 plrPosition = plrTransform.position;
+    //void Magnetize()
+    //{
+    //    Vector3 plrPosition = plrTransform.position;
 
-        if (Vector3.Distance(transform.position, plrPosition) > 1)
-        {
-            Vector3 playerPoint = Vector3.MoveTowards(transform.position,
-            plrPosition + new Vector3(0, 0, 0),
-            magnetizeSpeed * Time.deltaTime);
-            transform.position = (playerPoint);
+    //    if (Vector3.Distance(transform.position, plrPosition) > 1)
+    //    {
+    //        Vector3 playerPoint = Vector3.MoveTowards(transform.position,
+    //        plrPosition + new Vector3(0, 0, 0),
+    //        magnetizeSpeed * Time.deltaTime);
+    //        transform.position = (playerPoint);
 
-        }
-        else
-        {
-            PlayerManager.instance.SpawnNewItemFloater(so_Item,
-            (1));
-            Destroy(gameObject);
+    //    }
+    //    else
+    //    {
+    //        PlayerManager.instance.SpawnNewItemFloater(so_Item,
+    //        (1));
+    //        Destroy(gameObject);
       
-        }
-    }
+    //    }
+    //}
 
-    IEnumerator Co_Magnetize()
-    {
-        anim.SetTrigger("start");
-        yield return new WaitForSeconds(magnetizeDelay);
-        anim.SetTrigger("stop");
-        isMagnetizing = true;
+    //IEnumerator Co_Magnetize()
+    //{
+    //    anim.SetTrigger("start");
+    //    yield return new WaitForSeconds(magnetizeDelay);
+    //    anim.SetTrigger("stop");
+    //    isMagnetizing = true;
 
 
-    }
+    //}
 }

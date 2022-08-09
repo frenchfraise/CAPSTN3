@@ -53,20 +53,25 @@ public class PlayerManager : MonoBehaviour
 
     public static RoomEnteredEvent onRoomEnteredEvent = new RoomEnteredEvent();
 
+    public GameObject trans;
+
     public void RewardResource(List<ResourceDrop> resourceDrops)
     {
-        CameraManager.onShakeCameraEvent.Invoke();
-        ToolManager.onResourceNodeFinishedEvent.Invoke();
+        //CameraManager.onShakeCameraEvent?.Invoke();
+        ToolManager.onResourceNodeFinishedEvent?.Invoke();
         int chosenIndex = Random.Range(0, resourceDrops.Count);
 
         ResourceDrop chosenResourceDrop = resourceDrops[chosenIndex];
         int rewardAmount = Random.Range(chosenResourceDrop.minAmount, chosenResourceDrop.maxAmount);
-        for (int i = 0; i < rewardAmount; i++)
-        {
-            DropTest newI = Instantiate(itemDropPrefab, transform);
-            StartCoroutine(newI.test(chosenResourceDrop));
-          
-        }
+        //for (int i = 0; i < rewardAmount; i++)
+        //{
+        //    DropTest newI = Instantiate(itemDropPrefab, transform);
+        //    StartCoroutine(newI.test(chosenResourceDrop));
+
+        //}
+        //so_Item = chosenResourceDrop.so_Item;
+        PlayerManager.instance.SpawnNewItemFloater(chosenResourceDrop.so_Item,
+           (rewardAmount));
 
     }
 
@@ -144,15 +149,19 @@ public class PlayerManager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
        
-        InventoryManager.onAddItemEvent.Invoke(p_SOItem.name, p_amount);
-        MaterialFloater newFloater = Instantiate(floaterPrefab);
+        InventoryManager.onAddItemEvent?.Invoke(p_SOItem.name, p_amount);
+        //MaterialFloater newFloater = Instantiate(floaterPrefab);
+        //PlayerManager.instance.trans.SetActive(true);
+        //MaterialFloater newFloater = PlayerManager.instance.trans.GetComponent<MaterialFloater>();
 
+        //offset.x = offset.x * -1;
+        //isLeft = !isLeft;
        
-        offset.x = offset.x * -1;
-        isLeft = !isLeft;
-       
-        newFloater.InitializeValues(p_SOItem, p_amount.ToString(), playerTransform.position + offset);
-        floaterStackCount = 0;
+        ////newFloater.InitializeValues(p_SOItem, p_amount.ToString(), playerTransform.position + offset);
+        ////newFloater.InitializeValues(p_SOItem, p_amount.ToString());
+        //floaterStackCount = 0;
+        //yield return new WaitForSeconds(0.5f);
+        //PlayerManager.instance.trans.SetActive(true);
 
 
     }
