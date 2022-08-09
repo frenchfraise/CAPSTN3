@@ -70,8 +70,11 @@ public class PlayerManager : MonoBehaviour
         for (int i = 0; i < rewardAmount; i++)
         {
             DropTest newI = Instantiate(itemDropPrefab, transform);
-            StartCoroutine(newI.test(chosenResourceDrop));
+            //StartCoroutine(newI.test(chosenResourceDrop));
+
             newI.transform.position = p_vector;
+
+            newI.SetUp(chosenResourceDrop);
         }
     }
     private void Awake()

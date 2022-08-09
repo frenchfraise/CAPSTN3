@@ -131,9 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb7d3146eb567184ea69263fe8c96838, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthOverheadUI: {fileID: 0}
   so_ResourceNode: {fileID: 11400000, guid: a7c549a61664dd746837e10fd05b9af5, type: 2}
-  itemPrefab: {fileID: 8436199365745860972, guid: 2bf34b5e8f26c294d8ba4e3060dded9a, type: 3}
   hintSprite: {fileID: 21300000, guid: be734b9a7ee7e4c4699b472c126b0a49, type: 3}
   levelRequirement: 1
   resourceDrops:
@@ -179,5 +177,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.32, y: 3.2152681}
+  m_Size: {x: 4.32, y: 3.2135623}
   m_EdgeRadius: 0

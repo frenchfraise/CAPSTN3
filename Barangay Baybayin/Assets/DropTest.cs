@@ -62,12 +62,21 @@ public class DropTest : MonoBehaviour
     }
     public void SetUp(ResourceDrop chosenResourceDrop)
     {
+        offsetY = Random.Range(minOffsetY, maxOffsetY);
+        splashVelocity = Vector2.up * Random.Range(minBurstVelocity, maxBurstVelocity);
+        splashVelocity += new Vector2(Random.Range(-1f, 1f) * Random.Range(minOffsetX, maxOffsetX), 0);
+        currentSplashVelocity = splashVelocity;
 
+        so_Item = chosenResourceDrop.so_Item;
+        sr.sprite = chosenResourceDrop.so_Item.icon;
+
+        isSplashing = false;
+        isMagnetizing = false;
+        plrTransform = PlayerManager.instance.playerTransform;
         //transform.position = PlayerManager.instance.playerNodePosition;//.position;
         startPositionY = transform.position.y;
 
         isSetUped = true;
-
     }
 
     private void Update()

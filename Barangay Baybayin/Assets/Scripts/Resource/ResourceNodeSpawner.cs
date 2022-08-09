@@ -49,12 +49,26 @@ public class ResourceNodeSpawner : MonoBehaviour
                         if (hit.gameObject.CompareTag("Nodes"))
                         {
                             //Debug.Log(gameObject.name + "RA");
+                            if (hit.gameObject.GetComponent<ResourceNode>())
+                            {
+                                if (hit.gameObject.GetComponent<ResourceNode>() as VetiverLeafVariantOneNode)
+                                {
+                                    Debug.Log(hit.gameObject.name + " OOOOOOOOOOOO trruuu");
+                                }
+                            }
                             Despawn(hit.gameObject.GetComponent<ResourceNode>());
                             //Destroy(hit.gameObject);
                             return true;
                         }
                         else
                         {
+                            if (hit.gameObject.GetComponent<ResourceNode>())
+                            {
+                                if (hit.gameObject.GetComponent<ResourceNode>() as VetiverLeafVariantOneNode)
+                                {
+                                    Debug.Log(hit.gameObject.name + " OOOOOOOOOOOO trruuu");
+                                }
+                            }
                             return true;
                         }
                        
