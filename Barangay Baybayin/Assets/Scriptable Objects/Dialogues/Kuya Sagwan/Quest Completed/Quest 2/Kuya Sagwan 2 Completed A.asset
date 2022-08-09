@@ -16,36 +16,45 @@ MonoBehaviour:
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
     emotion: 10
     words: "Ah, Sakoro. Great job back there.\r"
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
     emotion: 10
     words: The rest is up to us fishermen.
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
     emotion: 10
     words: We'll test the boat to see how sturdy it is.
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
-    emotion: 10
+    emotion: 1
     words: Can't have anyone in danger.
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
     emotion: 10
     words: This is promising, though.
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
     emotion: 10
     words: If we can upgrade more boats, they'd break less.
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
     emotion: 10
     words: We'd be safer, and the town's fish is in less danger of running out.
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
-    emotion: 10
+    emotion: 4
     words: Ah, I just remembered. There's one last request we have of you.
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
     emotion: 10
     words: Once again, we're grateful. 'Til next time.
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1

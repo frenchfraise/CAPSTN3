@@ -147,7 +147,6 @@ public class TimeManager : MonoBehaviour
         {
             while (DoTimer)
             {
-                //Debug.Log("test");
                 yield return new WaitForSeconds(oneMinToRealSeconds);
                 minute++;
                 minuteByTwos = minute * 2;
@@ -159,12 +158,19 @@ public class TimeManager : MonoBehaviour
                 {
                     hour24++;
                     hour12++;
-                    if (hour24 > hoursInDay) hour24 = 0;
+                    if (hour24 > hoursInDay)
+                    {
+                        hour24 = 0;
+                        abbreviation = "PM";
+                    }
                     if (hour12 > 11)
                     {
                         abbreviation = "PM";
-                        if (hour12 > 12) hour12 = 1;
-                    }
+                        if (hour12 > 12)
+                        {
+                            hour12 = 1;
+                        }
+                    }                    
                     onHourChanged.Invoke(hour24); //TEMPORARY
                     minute = 0;
                     minuteByTens = 0;
@@ -200,6 +206,7 @@ public class TimeManager : MonoBehaviour
         Debug.Log("NEW DAY");
         hour24 = startHour;
         hour12 = startHour;
+        abbreviation = "AM";
         minute = 0;
         minuteByTwos = 0;
         minuteByTens = 0;

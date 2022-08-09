@@ -15,7 +15,7 @@ MonoBehaviour:
   dialogues:
   - character: {fileID: 11400000, guid: 88aa14d00365c39438cbfaa3e215ba70, type: 2}
     emotion: 10
-    words: "The Typhoon Zenaida has made landfall on the Philippines on May X, 202X.\r"
+    words: "The Typhoon Zenaida has made landfall on the Philippines on May 1, 202X.\r"
     backgroundSprite: {fileID: 21300000, guid: f111821f25679be468718e8fd489bf1e, type: 3}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 88aa14d00365c39438cbfaa3e215ba70, type: 2}
@@ -25,13 +25,13 @@ MonoBehaviour:
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 88aa14d00365c39438cbfaa3e215ba70, type: 2}
     emotion: 10
-    words: Zenaida has continued to accelerate and strengthen, now being a Category
-      4 typhoon.
+    words: Zenaida has continued to accelerate and strengthen, now being a Super
+      Typhoon.
     backgroundSprite: {fileID: 21300000, guid: f111821f25679be468718e8fd489bf1e, type: 3}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 88aa14d00365c39438cbfaa3e215ba70, type: 2}
     emotion: 10
-    words: Currently, Zenaida follows a trajectory of North-Northwest at 16mph through
+    words: Currently, Zenaida follows a trajectory of North-Northwest at 26kmph through
       Central Luzon.
     backgroundSprite: {fileID: 21300000, guid: f111821f25679be468718e8fd489bf1e, type: 3}
     speechTransitionType: 1
@@ -63,12 +63,12 @@ MonoBehaviour:
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 64792cf6cb6b2a642becf92ac15202ce, type: 2}
     emotion: 10
-    words: " Reports say the past years, we\u2019ve been having less storms, but
-      those are more powerful.\r"
+    words: "Reports say the past years, we\u2019ve been having less storms, but those
+      are more powerful.\r"
     backgroundSprite: {fileID: 21300000, guid: 2af4c9a926e29194b864636b715194f5, type: 3}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 6b42c85a890cd4a498705d8521418c4b, type: 2}
-    emotion: 10
+    emotion: 5
     words: "The town will hold up, won\u2019t it?"
     backgroundSprite: {fileID: 21300000, guid: 2af4c9a926e29194b864636b715194f5, type: 3}
     speechTransitionType: 1
@@ -78,7 +78,7 @@ MonoBehaviour:
     backgroundSprite: {fileID: 21300000, guid: 2af4c9a926e29194b864636b715194f5, type: 3}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 6b42c85a890cd4a498705d8521418c4b, type: 2}
-    emotion: 10
+    emotion: 1
     words: "Hope the townsfolk are safe.\r"
     backgroundSprite: {fileID: 21300000, guid: 2af4c9a926e29194b864636b715194f5, type: 3}
     speechTransitionType: 1

@@ -15,7 +15,7 @@ MonoBehaviour:
   dialogues:
   - character: {fileID: 11400000, guid: 88aa14d00365c39438cbfaa3e215ba70, type: 2}
     emotion: 10
-    words: Super Typhoon A*, which has intensified in the last 6 hours, has passed
+    words: Super Typhoon Agila, which has intensified in the last 6 hours, has passed
       through Purok Buko.
     backgroundSprite: {fileID: 21300000, guid: f111821f25679be468718e8fd489bf1e, type: 3}
     speechTransitionType: 1

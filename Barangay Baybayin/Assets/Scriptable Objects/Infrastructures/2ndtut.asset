@@ -14,9 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Tutorial
   maxHealth: 15
-  boxColliderSize: []
-  boxColliderOffSet: []
+  boxColliderSize:
+  - {x: 8.7, y: 4.1}
+  - {x: 4.8, y: 6.1}
+  boxColliderOffSet:
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
   sprites:
   - {fileID: 21300000, guid: 3606ca42a362174429063dc57317d3a0, type: 3}
-  - {fileID: 21300000, guid: 6605de2f736590d4980583886dc00a82, type: 3}
-  - {fileID: 21300000, guid: 6605de2f736590d4980583886dc00a82, type: 3}
+  - {fileID: 21300000, guid: 69235a5c46e0b164ab258e848e8fad7f, type: 3}

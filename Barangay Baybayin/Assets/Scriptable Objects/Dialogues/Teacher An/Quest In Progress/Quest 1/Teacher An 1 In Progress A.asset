@@ -15,8 +15,8 @@ MonoBehaviour:
   dialogues:
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
     emotion: 10
-    words: "Seems like we\u2019d need [<b>10 Wood</b> <sprite=3>] and [<b>7 Nipa</b>
-      <sprite=11>]."
+    words: "Seems like we\u2019d need [<b>10 Common Wood</b> <sprite=3>] and [<b>7
+      Common Nipa</b> <sprite=11>]."
     backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}

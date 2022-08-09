@@ -17,37 +17,37 @@ MonoBehaviour:
     emotion: 10
     words: The forecasted Typhoon Agila has entered the Philippine Area of Responsibility
       today.
-    backgroundSprite: {fileID: 21300000, guid: d623c620b7242b5428dc3747252e09b3, type: 3}
+    backgroundSprite: {fileID: 21300000, guid: 2af4c9a926e29194b864636b715194f5, type: 3}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 88aa14d00365c39438cbfaa3e215ba70, type: 2}
     emotion: 10
     words: Agila is moving West-Northwest, and is predicted to reach Central Luzon
       in 3 days.
-    backgroundSprite: {fileID: 21300000, guid: d623c620b7242b5428dc3747252e09b3, type: 3}
+    backgroundSprite: {fileID: 21300000, guid: 2af4c9a926e29194b864636b715194f5, type: 3}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 88aa14d00365c39438cbfaa3e215ba70, type: 2}
     emotion: 10
     words: Areas such as Purok Buko, which are still reeling from Typhoon Zenaida,
       are urged to take precautions.
-    backgroundSprite: {fileID: 21300000, guid: d623c620b7242b5428dc3747252e09b3, type: 3}
+    backgroundSprite: {fileID: 21300000, guid: 2af4c9a926e29194b864636b715194f5, type: 3}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 64792cf6cb6b2a642becf92ac15202ce, type: 2}
-    emotion: 10
+    emotion: 1
     words: "Another one\u2019s coming, and soon."
-    backgroundSprite: {fileID: 21300000, guid: d623c620b7242b5428dc3747252e09b3, type: 3}
+    backgroundSprite: {fileID: 21300000, guid: 2af4c9a926e29194b864636b715194f5, type: 3}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 6b42c85a890cd4a498705d8521418c4b, type: 2}
     emotion: 10
     words: "I\u2019d like to make the days left count. The town can be better prepared."
-    backgroundSprite: {fileID: 0}
+    backgroundSprite: {fileID: 21300000, guid: 2af4c9a926e29194b864636b715194f5, type: 3}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 64792cf6cb6b2a642becf92ac15202ce, type: 2}
     emotion: 10
     words: "I\u2019m with you, son. Let\u2019s do our best for our town."
-    backgroundSprite: {fileID: 21300000, guid: d623c620b7242b5428dc3747252e09b3, type: 3}
+    backgroundSprite: {fileID: 21300000, guid: 2af4c9a926e29194b864636b715194f5, type: 3}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 6b42c85a890cd4a498705d8521418c4b, type: 2}
-    emotion: 10
+    emotion: 3
     words: Yes!
-    backgroundSprite: {fileID: 21300000, guid: d623c620b7242b5428dc3747252e09b3, type: 3}
+    backgroundSprite: {fileID: 21300000, guid: 2af4c9a926e29194b864636b715194f5, type: 3}
     speechTransitionType: 1

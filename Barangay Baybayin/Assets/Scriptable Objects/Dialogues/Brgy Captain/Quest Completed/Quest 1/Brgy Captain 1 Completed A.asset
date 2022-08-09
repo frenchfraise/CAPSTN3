@@ -19,7 +19,7 @@ MonoBehaviour:
     backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
-    emotion: 10
+    emotion: 0
     words: 'I''ll be sure to let Pasak know his son did well.
 
 '

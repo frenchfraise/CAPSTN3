@@ -449,7 +449,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: Quick brown Fox jumps over the lazy dog. Quick brown Fox jumps over the
-    lazy dog. Quick brown Fox jumps over the lazy dog. ( <sprite=0><sprite=0><sprite=0>)
+    lazy dog. Quick brown Fox jumps over the lazy dog. ( <sprite=0><sprite=0><sprite=4>)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f74993e7ed6f5ee4289833155b2a538b, type: 2}
   m_sharedMaterial: {fileID: 2113804007650697980, guid: f74993e7ed6f5ee4289833155b2a538b, type: 2}

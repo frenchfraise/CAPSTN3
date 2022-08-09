@@ -21,7 +21,7 @@ MonoBehaviour:
     backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
-    emotion: 10
+    emotion: 6
     words: 'As the days pass, I''ve been seeing more and more of the town in high
       spirits.
 
@@ -79,7 +79,7 @@ MonoBehaviour:
     backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
-    emotion: 10
+    emotion: 3
     words: 'Our final duty has come.
 
 '

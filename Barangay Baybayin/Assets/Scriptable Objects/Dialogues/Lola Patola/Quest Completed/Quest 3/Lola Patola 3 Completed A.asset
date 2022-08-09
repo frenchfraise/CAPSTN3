@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogues:
   - character: {fileID: 11400000, guid: d07ffa9457a5d704b91096369ccebe08, type: 2}
-    emotion: 10
+    emotion: 6
     words: 'We thank you, Sakoro.
 
 '
@@ -35,7 +35,7 @@ MonoBehaviour:
     backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: d07ffa9457a5d704b91096369ccebe08, type: 2}
-    emotion: 10
+    emotion: 4
     words: 'Remember, Sakoro: We''ve lived our lives here.
 
 '
@@ -70,14 +70,14 @@ MonoBehaviour:
     backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: d07ffa9457a5d704b91096369ccebe08, type: 2}
-    emotion: 10
+    emotion: 3
     words: 'It has survived quite a number of things, I''ll have you know.
 
 '
     backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: d07ffa9457a5d704b91096369ccebe08, type: 2}
-    emotion: 10
+    emotion: 6
     words: 'Finally, Lola is here for you.
 
 '

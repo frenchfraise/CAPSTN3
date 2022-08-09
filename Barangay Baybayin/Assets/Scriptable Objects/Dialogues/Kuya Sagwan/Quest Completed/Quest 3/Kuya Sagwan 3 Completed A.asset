@@ -16,76 +16,95 @@ MonoBehaviour:
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
     emotion: 10
     words: "Was looking forward to this day for a while.\r"
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
     emotion: 10
     words: "The day we can do our part for our town again.\r"
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
     emotion: 10
     words: With the tools, boats, and pier fixed...
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
     emotion: 10
     words: We can ensure the town has enough food from the sea again.
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
-    emotion: 10
+    emotion: 1
     words: This body of water sure is a strange bedfellow.
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
     emotion: 10
     words: It's as much of a blessing and a curse.
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
     emotion: 10
     words: Gives us our food, but can take us out in an instant.
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
     emotion: 10
     words: The weather has been changing, and our practices have to adapt.
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
     emotion: 10
     words: Strong storms happen out of turn, and it endangers us at sea.
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
     emotion: 10
     words: Town's been hit harder too. Just look at that last storm.
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
     emotion: 10
     words: Purok Buko is our land, our waters, our air...
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
     emotion: 10
     words: But since things are changing, we gotta adapt.
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
     emotion: 10
     words: We gotta learn how to better protect ourselves.
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
     emotion: 10
     words: To better fish, farm, and live with nature.
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
-    emotion: 10
+    emotion: 5
     words: So how's that?
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
     emotion: 10
     words: A sample of my thoughts at sea.
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
-    emotion: 10
+    emotion: 0
     words: Lots of time to think there, you know.
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
     emotion: 10
     words: Guess you gotta help somewhere else.
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
-    emotion: 10
+    emotion: 6
     words: Thanks again.
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
