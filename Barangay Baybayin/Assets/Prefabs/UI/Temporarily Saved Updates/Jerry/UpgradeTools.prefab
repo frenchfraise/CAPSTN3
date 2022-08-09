@@ -3446,6 +3446,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   toolIndex: 2
   iconImage: {fileID: 2547773636813112130}
+  button: {fileID: 6943310396795507850}
   nameText: {fileID: 2547773635960881522}
   nameFrameImage: {fileID: 3248023094758581860}
   isUpgradableImage: {fileID: 2547773636061367891}
@@ -3836,6 +3837,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   toolIndex: 0
   iconImage: {fileID: 2547773636988381629}
+  button: {fileID: 5229621021714928204}
   nameText: {fileID: 2547773636606757781}
   nameFrameImage: {fileID: 6937794596408750965}
   isUpgradableImage: {fileID: 2547773636308534729}
@@ -4361,6 +4363,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   toolIndex: 1
   iconImage: {fileID: 2547773637858596860}
+  button: {fileID: 8773826558651086160}
   nameText: {fileID: 2547773636525545833}
   nameFrameImage: {fileID: 2619528503185982642}
   isUpgradableImage: {fileID: 2547773636529740087}
@@ -4814,6 +4817,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   toolIndex: 3
   iconImage: {fileID: 2547773636542420569}
+  button: {fileID: 1660110231528260435}
   nameText: {fileID: 2547773637861568286}
   nameFrameImage: {fileID: 4125583430123885714}
   isUpgradableImage: {fileID: 2547773636532162332}

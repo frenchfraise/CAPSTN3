@@ -42,11 +42,12 @@ public class PlayerManager : MonoBehaviour
     private bool isLeft;
     bool isFirstTime = true;
 
-
+    public bool canPressPanel = false;
     public Vector2 playerNodePosition;
 
     public DropTest itemDropPrefab;
-   
+
+    public PauseMenuUI pauseMenuUI;
 
     public static UpdateCurrentRoomIDEvent onUpdateCurrentRoomIDEvent = new UpdateCurrentRoomIDEvent();
 
@@ -123,7 +124,21 @@ public class PlayerManager : MonoBehaviour
 
     public void UpgradeToolCheat()
     {
+        if (playerToolCaster.current_Tool.craftLevel < playerToolCaster.current_Tool.so_Tool.maxCraftLevel)
+        {
+            playerToolCaster.current_Tool.craftLevel++;
+          
+            for (int i =0; i < ToolManager.instance.tools.Count; i++)
+            {
+                if (ToolManager.instance.tools[i] == playerToolCaster.current_Tool)
+                {
+                    ToolManager.onToolCraftLevelUpgradedEvent.Invoke(i);
+                }
 
+            }
+           
+        }
+ 
     }
     IEnumerator SpawnQueue(SO_Item p_SOItem, int p_amount)
     {

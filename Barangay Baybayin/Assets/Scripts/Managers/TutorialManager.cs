@@ -57,6 +57,8 @@ public class TutorialManager : MonoBehaviour
     bool proceed = true;
     public GameObject upgradeIsOpen;
     public GameObject specialButton;
+
+
     private void Awake()
     {
         instance = this;
@@ -100,6 +102,7 @@ public class TutorialManager : MonoBehaviour
         CameraManager.onCameraMovedEvent.Invoke(startRoom.position, panLimit);
         tutorialBlocker.gameObject.SetActive(true);
         AudioManager.instance.OnDayChangingEvent();
+
         StartLecture();
     }
 
@@ -108,8 +111,8 @@ public class TutorialManager : MonoBehaviour
 
         ToolCaster.onToolUsedEvent.RemoveListener(TeachUseTool);
         ToolCaster.onToolSpecialUsedEvent.RemoveListener(TeachSpecialUseTool);
-  
      
+
         PlayerManager.instance.DayChanging();
   
         CameraManager.instance.ResetCamera();
@@ -142,8 +145,8 @@ public class TutorialManager : MonoBehaviour
 
         ToolsUI.onToolQuestSwitchEvent.Invoke(-1);
 
-        infrastructure.gameObject.SetActive(false);
-        infrastructureTwo.gameObject.SetActive(false);
+        //infrastructure.gameObject.SetActive(false);
+        //infrastructureTwo.gameObject.SetActive(false);
 
         specialButton.SetActive(true);
 
@@ -166,6 +169,7 @@ public class TutorialManager : MonoBehaviour
         panday.isQuestMode = false;
         panday.transform.position = pandayNormalPosition.position;
         TimeManager.onDayEndedEvent.Invoke(false, 1);
+        PlayerManager.instance.pauseMenuUI.skipTutorialButton.gameObject.SetActive(false);
     }
    
     Vector2 Vector2Abs(Vector2 p_vector2)

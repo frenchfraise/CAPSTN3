@@ -10,7 +10,7 @@ public class UpgradeToolUI : MonoBehaviour
     public int toolIndex;
     [SerializeField]
     private Image iconImage;
-
+    public Button button;
     [SerializeField]
     private TMP_Text nameText;
     [SerializeField]
@@ -39,61 +39,73 @@ public class UpgradeToolUI : MonoBehaviour
 
         bool isUpgradableReqTwo = false;
         Tool selectedTool = ToolManager.instance.tools[toolIndex];
-        CraftUpgradeItemRequirementsData craftUpgradeItemRequirementsData = selectedTool.so_Tool.craftUpgradeItemRequirementsDatas[selectedTool.craftLevel];
-
-        proficiencyText.text = craftUpgradeItemRequirementsData.requiredProficiencyLevel.ToString();
-        if (selectedTool.proficiencyLevel >= craftUpgradeItemRequirementsData.requiredProficiencyLevel)
+        if (selectedTool.craftLevel < selectedTool.so_Tool.maxCraftLevel)
         {
-            isUpgradableReqTwo = true;
-        }
-        if (craftUpgradeItemRequirementsData.itemRequirements.Count > 0)
-        {
-            ItemUpgradeRequirement itemUpgradeRequirement = craftUpgradeItemRequirementsData.itemRequirements[0];
-            if (InventoryManager.GetItem(itemUpgradeRequirement.so_Item.name).amount >= itemUpgradeRequirement.requiredAmount)
+            CraftUpgradeItemRequirementsData craftUpgradeItemRequirementsData = selectedTool.so_Tool.craftUpgradeItemRequirementsDatas[selectedTool.craftLevel];
+            proficiencyText.text = craftUpgradeItemRequirementsData.requiredProficiencyLevel.ToString();
+            if (selectedTool.proficiencyLevel >= craftUpgradeItemRequirementsData.requiredProficiencyLevel)
             {
-               // hasRecipeImage.color = new Color32(0, 255, 0, 225);
-                hasRecipeImage.sprite = upgradeUI.sufficientIcon;
+                isUpgradableReqTwo = true;
+            }
+            if (craftUpgradeItemRequirementsData.itemRequirements.Count > 0)
+            {
+                ItemUpgradeRequirement itemUpgradeRequirement = craftUpgradeItemRequirementsData.itemRequirements[0];
+                if (InventoryManager.GetItem(itemUpgradeRequirement.so_Item.name).amount >= itemUpgradeRequirement.requiredAmount)
+                {
+                    // hasRecipeImage.color = new Color32(0, 255, 0, 225);
+                    hasRecipeImage.sprite = upgradeUI.sufficientIcon;
+                    isUpgradableReqOne = true;
+                }
+                else if (InventoryManager.GetItem(itemUpgradeRequirement.so_Item.name).amount < itemUpgradeRequirement.requiredAmount)
+                {
+                    //hasRecipeImage.color = new Color32(255, 0, 0, 225);
+                    hasRecipeImage.sprite = upgradeUI.insufficientIcon;
+
+                }
+            }
+            else
+            {
                 isUpgradableReqOne = true;
+                // hasRecipeImage.color = new Color32(0, 255, 0, 225);
+                hasRecipeImage.sprite = upgradeUI.sufficientIcon;
+                // isUpgradableImage.color = new Color32(0, 255, 0, 225);
+                isUpgradableImage.sprite = upgradeUI.sufficientIcon;
             }
-            else if (InventoryManager.GetItem(itemUpgradeRequirement.so_Item.name).amount < itemUpgradeRequirement.requiredAmount)
+
+            if (isUpgradableReqOne && isUpgradableReqTwo)
             {
-                //hasRecipeImage.color = new Color32(255, 0, 0, 225);
-                hasRecipeImage.sprite = upgradeUI.insufficientIcon;
-                
+                if (craftUpgradeItemRequirementsData.itemRequirements.Count > 1)
+                {
+                    ItemUpgradeRequirement materialTwo = craftUpgradeItemRequirementsData.itemRequirements[1];
+
+                    if (InventoryManager.GetItem(materialTwo.so_Item.name).amount >= materialTwo.requiredAmount)
+                    {
+                        isUpgradableImage.sprite = upgradeUI.sufficientIcon;
+                        // isUpgradableImage.color = new Color32(0, 255, 0, 225);
+                    }
+                    else if (InventoryManager.GetItem(materialTwo.so_Item.name).amount < materialTwo.requiredAmount)
+                    {
+                        isUpgradableImage.sprite = upgradeUI.insufficientIcon;
+                        // isUpgradableImage.color = new Color32(255, 0, 0, 225);
+                    }
+
+                }
+            }
+            else
+            {
+                isUpgradableImage.sprite = upgradeUI.insufficientIcon;
             }
         }
         else
         {
-            isUpgradableReqOne = true;
-           // hasRecipeImage.color = new Color32(0, 255, 0, 225);
-            hasRecipeImage.sprite = upgradeUI.sufficientIcon;
-           // isUpgradableImage.color = new Color32(0, 255, 0, 225);
-            isUpgradableImage.sprite = upgradeUI.sufficientIcon;
+            proficiencyText.text = "MAX";
+            proficiencyText.fontSize = 45;
+            hasRecipeImage.gameObject.SetActive(false);
+            isUpgradableImage.gameObject.SetActive(false);
+
         }
 
-        if (isUpgradableReqOne && isUpgradableReqTwo)
-        {
-            if (craftUpgradeItemRequirementsData.itemRequirements.Count > 1)
-            {
-                ItemUpgradeRequirement materialTwo = craftUpgradeItemRequirementsData.itemRequirements[1];
-
-                if (InventoryManager.GetItem(materialTwo.so_Item.name).amount >= materialTwo.requiredAmount)
-                {
-                    isUpgradableImage.sprite = upgradeUI.sufficientIcon;
-                   // isUpgradableImage.color = new Color32(0, 255, 0, 225);
-                }
-                else if (InventoryManager.GetItem(materialTwo.so_Item.name).amount < materialTwo.requiredAmount)
-                {
-                    isUpgradableImage.sprite = upgradeUI.insufficientIcon;
-                   // isUpgradableImage.color = new Color32(255, 0, 0, 225);
-                }
-
-            }
-        }
-        else
-        {
-            isUpgradableImage.sprite = upgradeUI.insufficientIcon;
-        }
+        
         
     }
     

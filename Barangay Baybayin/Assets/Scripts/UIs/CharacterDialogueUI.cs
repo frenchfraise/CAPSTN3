@@ -196,6 +196,8 @@ public class CharacterDialogueUI : MonoBehaviour
 
     public void OnOpenCharacterDialogueUI()
     {
+        //PlayerManager.instance.canPressPanel = false;
+        Debug.Log(false);
         PlayerJoystick.onUpdateJoystickEnabledEvent.Invoke(false);
         //PlayerManager.instance.playerMovement.enabled = false;
         //PlayerManager.instance.playerMovement.joystick.gameObject.SetActive(false);
@@ -205,7 +207,7 @@ public class CharacterDialogueUI : MonoBehaviour
         //Debug.Log(id + " EVENT WITH NAME " + currentSO_Dialogues.name + " IS CURRENT DIALOGUE " + " OPENING");
         ResetCharacterDialogueUI();
         //TimeManager.onPauseGameTime.Invoke(false);
-
+ 
         UIManager.onGameplayModeChangedEvent.Invoke(true);
     }
     public void OnCloseCharacterDialogueUI()
@@ -251,11 +253,14 @@ public class CharacterDialogueUI : MonoBehaviour
             }
        
         }
+
+        //PlayerManager.instance.canPressPanel = true;
         PlayerJoystick.onUpdateJoystickEnabledEvent.Invoke(true);
         //PlayerManager.instance.playerMovement.enabled = true;
        // PlayerManager.instance.playerMovement.joystick.gameObject.SetActive(true);
         //Debug.Log(id + " EVENT WITH NAME " + currentSO_Dialogues.name + " IS CURRENT DIALOGUE " + " CLOSING");
         frame.SetActive(false);
+
 
 
 

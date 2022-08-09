@@ -33,7 +33,7 @@ public class DayInfoUI : MonoBehaviour
 
     public void DayEnd(bool p_causedByFainting, int p_dayCount)
     {
-
+        //PlayerManager.instance.canPressPanel = false;
         UIManager.instance.transitionUI.transitionUI.color = new Color32(0, 0, 0, 0);
         trans.sprite = defaultSR;
         conditionsText.color = new Color32(255, 255, 255, 0);
@@ -134,6 +134,9 @@ public class DayInfoUI : MonoBehaviour
                 {
 
                     CharacterDialogueUI.onCharacterSpokenToEvent.Invoke("TE-"+ tdd.currentQuestChainIndex.ToString(), tdd.td[tdd.currentQuestChainIndex].so_Dialogue);
+                    Debug.Log("The quest get song");
+                    AudioManager.instance.PlayOnRoomEnterString("Quest Get");
+
                     TimeManager.onPauseGameTime.Invoke(false);
                 }
             }

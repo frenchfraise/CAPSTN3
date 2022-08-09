@@ -169,12 +169,6 @@ public class HealthOverheadUI : MonoBehaviour
         delayedBar.color = new Color32(250, 255, 255, 255);//reset
         //delayedBar.DOFade(1f, 0.01f); //reset
     }
-    private void Start()
-    {
-
-        
-    }
-
    
     private void RepositionHealthBar()
     {

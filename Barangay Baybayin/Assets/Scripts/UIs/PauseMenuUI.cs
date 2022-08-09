@@ -9,7 +9,7 @@ public class PauseMenuUI : MonoBehaviour
     public GameObject settingsGameObject;
     public TutorialPanelUI tutorialPanelUI;
     public GameObject skipTutorialButton;
-
+    
     private void Awake()
     {
         
@@ -56,12 +56,16 @@ public class PauseMenuUI : MonoBehaviour
 
     public void PauseMenuButton(bool p_bool)
     {
-        //TimeManager.onPauseGameTime.Invoke(!p_bool);
-        //if (p_bool) Debug.Log("Pause Menu open!");
-        //else Debug.Log("Pause Menu closed!");
-        UIManager.onGameplayModeChangedEvent.Invoke(p_bool);
-
-        pauseMenuPanel.SetActive(p_bool);
+        //if (PlayerManager.instance.canPressPanel)
+        //{
+            //TimeManager.onPauseGameTime.Invoke(!p_bool);
+            //if (p_bool) Debug.Log("Pause Menu open!");
+            //else Debug.Log("Pause Menu closed!");
+            UIManager.onGameplayModeChangedEvent.Invoke(p_bool);
+            
+            pauseMenuPanel.SetActive(p_bool);
+        //}
+       
     }
 
     public void QuitButton()

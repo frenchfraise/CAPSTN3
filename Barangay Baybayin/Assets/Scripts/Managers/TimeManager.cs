@@ -110,6 +110,7 @@ public class TimeManager : MonoBehaviour
         {
 
             SceneManager.LoadScene(0);
+         
         }
         else if (p_id == "TE-0")
         {
@@ -124,7 +125,9 @@ public class TimeManager : MonoBehaviour
 
     IEnumerator test()
     {
+
         yield return new WaitForSeconds(5f);
+        //PlayerManager.instance.canPressPanel = true;
         UIManager.instance.characterDialogueUI.SetEndTransitionEnabledEvent(true);
         UIManager.instance.characterDialogueUI.SetStartTransitionEnabledEvent(true);
     }
@@ -210,10 +213,12 @@ public class TimeManager : MonoBehaviour
         if (daysRemaining > 0)
         {
             daysRemaining--;
+            
             StorylineManager.onWorldEventEndedEvent.Invoke("W", 0, dayCount);
         }
         else
         {
+   
             if (StorylineManager.instance.amountQuestComplete >= 8)
             {
                 CharacterDialogueUI.onCharacterSpokenToEvent.Invoke("GOODENDING", StorylineManager.instance.goodso_dialogue);
@@ -232,7 +237,7 @@ public class TimeManager : MonoBehaviour
         {
             if (PlayerManager.instance.currentRoomID != PlayerManager.instance.playerRoom.currentRoomID)
             {
-                Debug.Log("DDDDDDDDD " + p_bool);
+               // Debug.Log("DDDDDDDDD " + p_bool);
                 DoTimer = p_bool;
                 if (coroutineTime != null)
                 {
