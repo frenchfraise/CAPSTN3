@@ -43,6 +43,7 @@ public class TutorialManager : MonoBehaviour
 
     public Panday panday;
     public bool firstTime = true;
+    bool zero = true;
     bool treeSpawn = true;
     bool oreSpawn = true;
     bool infrastructureSpawn = true;
@@ -58,7 +59,7 @@ public class TutorialManager : MonoBehaviour
     public GameObject upgradeIsOpen;
     public GameObject specialButton;
 
-
+    public GameObject Onboarding_GO;
     private void Awake()
     {
         instance = this;
@@ -120,19 +121,66 @@ public class TutorialManager : MonoBehaviour
         UIManager.instance.characterDialogueUI.Skip();
 
      
-        tutorialBlocker.gameObject.SetActive(false);
-
-        InventoryManager.onAddItemEvent.Invoke("Recipe 1", 4); //it happens 3 times
-        InventoryManager.onAddItemEvent.Invoke("Metal 1", 40);
+        tutorialBlocker.gameObject.SetActive(false);        
 
         dayFirstTime = false;
-        Same();
 
+        if (level2tree)
+        {
+            StorylineManager.onWorldEventEndedEvent.RemoveListener(RequirePandayQuestComplete);
+        }
+        else if (allToolsRewardGiven)
+        {
+            ToolManager.onToolCraftLevelUpgradedEvent.RemoveListener(RequireAllToolsCraftLevel1);
+        }
+        else if (oneToolRewardGiven)
+        {
+            ToolManager.onToolCraftLevelUpgradedEvent.RemoveListener(RequireMacheteCraftLevel1);
+            InventoryManager.onAddItemEvent.Invoke("Recipe 1", 3); //it happens 3 times
+            InventoryManager.onAddItemEvent.Invoke("Metal 1", 30);
+        }
+        else if (!allSpawn)
+        {
+            ToolManager.onProficiencyLevelModifiedEvent.RemoveListener(RequireMacheteProfLevel1);
+            InventoryManager.onAddItemEvent.Invoke("Recipe 1", 4); //it happens 3 times
+            InventoryManager.onAddItemEvent.Invoke("Metal 1", 40);
+        }
+        else if (!herbSpawn)
+        {
+            resourceNode.GetComponent<Health>().OnDeathEvent.RemoveListener(TeachAppropriateToolForNode);
+            InventoryManager.onAddItemEvent.Invoke("Recipe 1", 4); //it happens 3 times
+            InventoryManager.onAddItemEvent.Invoke("Metal 1", 40);
+        }
+        else if (!infrastructureSpawn)
+        {
+            infrastructure.GetComponent<Health>().OnDeathEvent.RemoveListener(TeachSix);
+            InventoryManager.onAddItemEvent.Invoke("Recipe 1", 4); //it happens 3 times
+            InventoryManager.onAddItemEvent.Invoke("Metal 1", 40);
+        }
+        else if (!oreSpawn)
+        {
+            resourceNode.GetComponent<Health>().OnDeathEvent.RemoveListener(TeachAppropriateToolForNode);
+            InventoryManager.onAddItemEvent.Invoke("Recipe 1", 4); //it happens 3 times
+            InventoryManager.onAddItemEvent.Invoke("Metal 1", 40);
+        }
+        else if (!treeSpawn)
+        {
+            resourceNode.GetComponent<Health>().OnDeathEvent.RemoveListener(TeachAppropriateToolForNode);
+            InventoryManager.onAddItemEvent.Invoke("Recipe 1", 4); //it happens 3 times
+            InventoryManager.onAddItemEvent.Invoke("Metal 1", 40);
+        }
+        else if (!zero)
+        {
+            ToolCaster.onToolUsedEvent.RemoveListener(TeachUseTool);
+            ToolCaster.onToolSpecialUsedEvent.RemoveListener(TeachSpecialUseTool);
+            InventoryManager.onAddItemEvent.Invoke("Recipe 1", 4); //it happens 3 times
+            InventoryManager.onAddItemEvent.Invoke("Metal 1", 40);
+        }
+        Same();
     }
 
     void Unsetup()
     {
-
         TimeManager.onPauseGameTime.Invoke(true);
         Same();
     }
@@ -170,6 +218,22 @@ public class TutorialManager : MonoBehaviour
         panday.transform.position = pandayNormalPosition.position;
         TimeManager.onDayEndedEvent.Invoke(false, 1);
         PlayerManager.instance.pauseMenuUI.skipTutorialButton.gameObject.SetActive(false);
+
+        if (resourceNode != null)
+        {
+            resourceNode.DeinitializeValues();
+        }
+        if (infrastructure.currentLevel != 1)
+        {
+            infrastructure.Constructed();
+        }
+        if (infrastructureTwo.currentLevel != 1)
+        {
+            infrastructure.Constructed();
+        }
+        infrastructure.gameObject.SetActive(true);
+        infrastructureTwo.gameObject.SetActive(true);
+        Onboarding_GO.SetActive(false);
     }
    
     Vector2 Vector2Abs(Vector2 p_vector2)
@@ -226,10 +290,12 @@ public class TutorialManager : MonoBehaviour
             tutorialUI.overheadUI.SetActive(false);
         }
         else if (p_id == "O-0")
-        {
-            EndStory();
-
-
+        {            
+            if (zero)
+            {
+                zero = false;
+                EndStory();
+            }
         }
         else if (p_id == "O-1")
         {
@@ -249,9 +315,6 @@ public class TutorialManager : MonoBehaviour
                 //SPECFICI
                 EndStory();
             }
-          
-
-
         }
         else if (p_id == "O-2")
         {
@@ -272,8 +335,6 @@ public class TutorialManager : MonoBehaviour
                 //SPECFICI
                 EndStory();
             }
-          
-
         }
         else if (p_id == "O-3") // change hint icon
         {

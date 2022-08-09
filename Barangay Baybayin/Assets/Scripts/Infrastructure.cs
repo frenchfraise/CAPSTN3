@@ -83,7 +83,7 @@ public class Infrastructure : Unit
     {
         canInteract = true;
     }
-    void Constructed()
+    public void Constructed()
     {
         
         if (currentLevel >= so_Infrastructure.sprites.Count-1)

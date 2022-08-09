@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
+using TMPro;
 
 public class UpdateCurrentRoomIDEvent : UnityEvent<int> { }
 
@@ -54,6 +56,8 @@ public class PlayerManager : MonoBehaviour
     public static RoomEnteredEvent onRoomEnteredEvent = new RoomEnteredEvent();
 
     public GameObject trans;
+
+    public GameObject nodeAnnouncer;
 
     public void RewardResource(List<ResourceDrop> resourceDrops)
     {
@@ -150,26 +154,32 @@ public class PlayerManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
        
         InventoryManager.onAddItemEvent?.Invoke(p_SOItem.name, p_amount);
+        floaterStackCount = 0;
+        Debug.Log(p_SOItem.spriteName);
+        StartCoroutine(NodeAnnouncer(p_SOItem.spriteName, p_amount));
+
         //MaterialFloater newFloater = Instantiate(floaterPrefab);
         //PlayerManager.instance.trans.SetActive(true);
         //MaterialFloater newFloater = PlayerManager.instance.trans.GetComponent<MaterialFloater>();
 
         //offset.x = offset.x * -1;
         //isLeft = !isLeft;
-       
+
         ////newFloater.InitializeValues(p_SOItem, p_amount.ToString(), playerTransform.position + offset);
         ////newFloater.InitializeValues(p_SOItem, p_amount.ToString());
         //floaterStackCount = 0;
         //yield return new WaitForSeconds(0.5f);
         //PlayerManager.instance.trans.SetActive(true);
-
-
     }
 
-    IEnumerator NodeAnnouncer()
+    IEnumerator NodeAnnouncer(string p_TMPAsset, int p_amount)
     {
-        
+        nodeAnnouncer.transform.GetChild(0).GetComponent<TMP_Text>().text = p_TMPAsset;
+        //nodeAnnouncer.GetComponentInChildren<Image>().GetComponentInChildren<TMP_Text>().text = $"+{p_amount}";
+        nodeAnnouncer.transform.GetChild(1).transform.GetComponentInChildren<TMP_Text>().text = $"+{p_amount}";
+        nodeAnnouncer.SetActive(true);
         yield return new WaitForSeconds(5f);
+        nodeAnnouncer.SetActive(false);
     }
 
     public void DayChanging()

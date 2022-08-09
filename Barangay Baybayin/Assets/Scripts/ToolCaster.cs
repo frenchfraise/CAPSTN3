@@ -30,8 +30,7 @@ public class ToolCaster : MonoBehaviour
     [SerializeField] private float switchRate;
     private Transform aim;
 
-    public VisualEffect onHitVFX;
-    public VisualEffect critHitVFX;
+    public VisualEffect onHitVFX;   
 
     public Animator animator;
     [SerializeField] private float detectionRadius;
@@ -131,12 +130,10 @@ public class ToolCaster : MonoBehaviour
                         {
                             animator.SetBool("isFacingRight", false);
                         }
-                        critHitVFX.transform.position = targetInfrastructure.transform.position;
-                        critHitVFX.Play();
                         current_Tool.specialChargesCounter--;
                         targetInfrastructure.OnInfrastructureHitEvent.Invoke(
                            current_Tool.craftLevel,
-                           current_Tool.so_Tool.damage[current_Tool.craftLevel],
+                           current_Tool.so_Tool.damage[current_Tool.craftLevel] * critMultiplier,
                            onToolSpecialUsedEvent);
                     }
                 }
@@ -156,15 +153,12 @@ public class ToolCaster : MonoBehaviour
                         {
                             animator.SetBool("isFacingRight", false);
                         }
-                        critHitVFX.transform.position = new Vector2 (targetResourceNode.transform.position.x, targetResourceNode.transform.position.y + 5);
-                        critHitVFX.Play();
                         current_Tool.specialChargesCounter--;
                         targetResourceNode.OnResourceNodeHitEvent.Invoke(current_Tool.so_Tool.useForResourceNode,
                             current_Tool.craftLevel,
                             current_Tool.so_Tool.damage[current_Tool.craftLevel] * critMultiplier,
                             onToolSpecialUsedEvent);
                     }
-                 
                 }
                 //Debug.Log("Use Special call Coroutine!");
                 StartCoroutine(Co_ToolUseCooldown(false));

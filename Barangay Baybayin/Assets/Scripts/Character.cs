@@ -17,11 +17,17 @@ public class Character : InteractibleObject
     [SerializeField]
     List<SO_Dialogues> currenDialogueOptions;
 
+    public GameObject questHint;
     [SerializeField]
     private List<SO_Dialogues> dialogueOptions;
     private void Awake()
     {
         ResetDialogueOptions();
+        StorylineManager.onLastTimeStoryline.AddListener(LastTimeStorylineEvent);        
+    }
+    private void OnDestroy()
+    {
+        StorylineManager.onLastTimeStoryline.RemoveListener(LastTimeStorylineEvent);
     }
     protected override void OnEnable()
     {
@@ -147,5 +153,18 @@ public class Character : InteractibleObject
         }
     }
 
+    public void LastTimeStorylineEvent(int p_int)
+    {
+        int storylineDataIndex = StorylineManager.GetIndexFromID(id);
+        StorylineData storylineData = StorylineManager.GetStorylineDataFromID(id);
 
+        if (StorylineManager.GetIndexFromStorylineData(storylineData) != 4)
+        {
+            if (questHint)
+            {
+                questHint.SetActive(false);
+            }
+        }
+
+    }    
 }

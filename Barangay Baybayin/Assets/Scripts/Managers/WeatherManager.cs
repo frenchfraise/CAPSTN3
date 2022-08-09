@@ -146,7 +146,7 @@ public class WeatherManager : MonoBehaviour
         currentWeatherDialogue.dialogues[0].words = currentText;
         currentWeatherDialogue.dialogues[0].emotion = currentEmotion;
 
-        currentText = "For Day " + (TimeManager.instance.dayCount + 1).ToString() + ", " +
+        currentText = "For May " + (TimeManager.instance.dayCount + 1).ToString() + ", " +
            predictedWeatherFillersDialogue[chosenFirstPredictedWeatherFillerDialogueIndex] + " " +
            currentWeathers[1].name + ".";
 
@@ -154,7 +154,7 @@ public class WeatherManager : MonoBehaviour
         currentWeatherDialogue.dialogues[1].words = currentText;
         currentWeatherDialogue.dialogues[1].emotion = currentEmotion;
 
-        currentText = "For Day " + (TimeManager.instance.dayCount + 2).ToString() + ", " +
+        currentText = "For May " + (TimeManager.instance.dayCount + 2).ToString() + ", " +
           predictedWeatherFillersDialogue[chosenSecondPredictedWeatherFillerDialogueIndex] + " " +
           currentWeathers[2].name + ".";
 
@@ -162,7 +162,7 @@ public class WeatherManager : MonoBehaviour
         currentWeatherDialogue.dialogues[2].words = currentText;
         currentWeatherDialogue.dialogues[2].emotion = currentEmotion;
 
-        currentText = "For Day " + (TimeManager.instance.dayCount + 3).ToString() + ", " +
+        currentText = "For May " + (TimeManager.instance.dayCount + 3).ToString() + ", " +
             predictedWeatherFillersDialogue[chosenThirdPredictedWeatherFillerDialogueIndex] + " " +
             currentWeathers[3].name + ".";
 
