@@ -85,19 +85,18 @@ public class ResourceNode : Unit
     {
         //List<ResourceDrop> res = new List<ResourceDrop>(resourceDrops); //chance
         //PlayerManager.instance.playerNodePosition = transform.position;
-        PlayerManager.instance.playerNodePosition = transform.position;
-        PlayerManager.instance.RewardResource(resourceDrops);
-        //base.Death();
+        
+        PlayerManager.instance.RewardResource(resourceDrops, transform.position);
         base.Death();
-       // StartCoroutine(Test(base.Death));
+        //StartCoroutine(Co_test(base.Death));
     }
 
     //IEnumerator Test(Action p_a)
     //{
-     
+
     //    yield return new WaitForSeconds(5f);
     //    p_a.Invoke();
     //}
 
-   
+
 }

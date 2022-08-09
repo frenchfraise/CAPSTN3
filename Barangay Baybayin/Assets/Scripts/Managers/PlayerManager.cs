@@ -59,26 +59,21 @@ public class PlayerManager : MonoBehaviour
 
     public GameObject nodeAnnouncer;
 
-    public void RewardResource(List<ResourceDrop> resourceDrops)
+    public void RewardResource(List<ResourceDrop> resourceDrops, Vector2 p_vector)
     {
-        //CameraManager.onShakeCameraEvent?.Invoke();
-        ToolManager.onResourceNodeFinishedEvent?.Invoke();
+        CameraManager.onShakeCameraEvent.Invoke();
+        ToolManager.onResourceNodeFinishedEvent.Invoke();
         int chosenIndex = Random.Range(0, resourceDrops.Count);
 
         ResourceDrop chosenResourceDrop = resourceDrops[chosenIndex];
         int rewardAmount = Random.Range(chosenResourceDrop.minAmount, chosenResourceDrop.maxAmount);
-        //for (int i = 0; i < rewardAmount; i++)
-        //{
-        //    DropTest newI = Instantiate(itemDropPrefab, transform);
-        //    StartCoroutine(newI.test(chosenResourceDrop));
-
-        //}
-        //so_Item = chosenResourceDrop.so_Item;
-        PlayerManager.instance.SpawnNewItemFloater(chosenResourceDrop.so_Item,
-           (rewardAmount));
-
+        for (int i = 0; i < rewardAmount; i++)
+        {
+            DropTest newI = Instantiate(itemDropPrefab, transform);
+            StartCoroutine(newI.test(chosenResourceDrop));
+            newI.transform.position = p_vector;
+        }
     }
-
     private void Awake()
     {
         _instance = this;
@@ -98,7 +93,7 @@ public class PlayerManager : MonoBehaviour
 
     public void SpawnNewItemFloater(SO_Item p_SOItem, int p_name)
     {
-        floaterStackCount+= p_name;
+        floaterStackCount += p_name;
         
         if (runningFloaterSpawner != null)
         {
@@ -106,9 +101,7 @@ public class PlayerManager : MonoBehaviour
             runningFloaterSpawner = null;
         }
         runningFloaterSpawner = SpawnQueue(p_SOItem, floaterStackCount);
-        StartCoroutine(runningFloaterSpawner);
-        
-       
+        StartCoroutine(runningFloaterSpawner);       
     }
 
     public void GoodEndingCheat()
@@ -152,30 +145,19 @@ public class PlayerManager : MonoBehaviour
     IEnumerator SpawnQueue(SO_Item p_SOItem, int p_amount)
     {
         yield return new WaitForSeconds(0.5f);
-       
-        InventoryManager.onAddItemEvent?.Invoke(p_SOItem.name, p_amount);
+
+        InventoryManager.onAddItemEvent.Invoke(p_SOItem.name, p_amount);
+        MaterialFloater newFloater = Instantiate(floaterPrefab);
+
+        offset.x = offset.x * -1;
+        isLeft = !isLeft;
+
+        newFloater.InitializeValues(p_SOItem, p_amount.ToString(), playerTransform.position + offset);
         floaterStackCount = 0;
-        Debug.Log(p_SOItem.spriteName);
-        StartCoroutine(NodeAnnouncer(p_SOItem.spriteName, p_amount));
-
-        //MaterialFloater newFloater = Instantiate(floaterPrefab);
-        //PlayerManager.instance.trans.SetActive(true);
-        //MaterialFloater newFloater = PlayerManager.instance.trans.GetComponent<MaterialFloater>();
-
-        //offset.x = offset.x * -1;
-        //isLeft = !isLeft;
-
-        ////newFloater.InitializeValues(p_SOItem, p_amount.ToString(), playerTransform.position + offset);
-        ////newFloater.InitializeValues(p_SOItem, p_amount.ToString());
-        //floaterStackCount = 0;
-        //yield return new WaitForSeconds(0.5f);
-        //PlayerManager.instance.trans.SetActive(true);
     }
-
     IEnumerator NodeAnnouncer(string p_TMPAsset, int p_amount)
     {
         nodeAnnouncer.transform.GetChild(0).GetComponent<TMP_Text>().text = p_TMPAsset;
-        //nodeAnnouncer.GetComponentInChildren<Image>().GetComponentInChildren<TMP_Text>().text = $"+{p_amount}";
         nodeAnnouncer.transform.GetChild(1).transform.GetComponentInChildren<TMP_Text>().text = $"+{p_amount}";
         nodeAnnouncer.SetActive(true);
         yield return new WaitForSeconds(5f);

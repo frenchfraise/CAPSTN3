@@ -193,6 +193,9 @@ public class TutorialManager : MonoBehaviour
 
         ToolsUI.onToolQuestSwitchEvent.Invoke(-1);
 
+        infrastructure.canInteract = false;
+        infrastructureTwo.canInteract = false;
+
         //infrastructure.gameObject.SetActive(false);
         //infrastructureTwo.gameObject.SetActive(false);
 
@@ -229,7 +232,7 @@ public class TutorialManager : MonoBehaviour
         }
         if (infrastructureTwo.currentLevel != 1)
         {
-            infrastructure.Constructed();
+            infrastructureTwo.Constructed();
         }
         infrastructure.gameObject.SetActive(true);
         infrastructureTwo.gameObject.SetActive(true);

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
-using UnityEngine.VFX;
 
 public class ToolUsedEvent : UnityEvent<float> { }
 
@@ -29,8 +28,6 @@ public class ToolCaster : MonoBehaviour
     private Tool requiredTool = null;
     [SerializeField] private float switchRate;
     private Transform aim;
-
-    public VisualEffect onHitVFX;   
 
     public Animator animator;
     [SerializeField] private float detectionRadius;
@@ -203,8 +200,6 @@ public class ToolCaster : MonoBehaviour
                         {
                             animator.SetBool("isFacingRight", false);
                         }
-                        onHitVFX.transform.position = targetInfrastructure.transform.position;
-                        onHitVFX.Play();
                         canHit = true;
                         temprequireCorrectTool = true;
                         targetInfrastructure.OnInfrastructureHitEvent.Invoke(
@@ -238,8 +233,6 @@ public class ToolCaster : MonoBehaviour
                             }
 
                         }
-                        onHitVFX.transform.position = new Vector2(targetResourceNode.transform.position.x, targetResourceNode.transform.position.y + 5);
-                        onHitVFX.Play();
                         targetResourceNode.OnResourceNodeHitEvent.Invoke(current_Tool.so_Tool.useForResourceNode,
                            current_Tool.craftLevel,
                            current_Tool.so_Tool.damage[current_Tool.craftLevel],

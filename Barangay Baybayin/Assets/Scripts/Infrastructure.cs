@@ -112,10 +112,7 @@ public class Infrastructure : Unit
             sr.sprite = so_Infrastructure.sprites[currentLevel];
             canInteract = false;
             InitializeValues();
-        }
-
-
-        
+        }        
     }
     //protected override void OnInteract()
     //{

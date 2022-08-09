@@ -20,12 +20,12 @@ public class MaterialFloater : MonoBehaviour
     //   // transform.position = p_playerPosition;// +offsetPosition;
     //    //targetMovePosition += transform.position;
     //}
-    public void InitializeValues(SO_Item p_SOItem, string p_text)
-    { 
+    public void InitializeValues(SO_Item p_SOItem, string p_text, Vector3 p_playerPosition)
+    {
         image.sprite = p_SOItem.icon;
         textMeshPro.color = p_SOItem.color;
         textMeshPro.text = "+" + p_text;
-        // transform.position = p_playerPosition;// +offsetPosition;
+        transform.position = p_playerPosition;// +offsetPosition;
         //targetMovePosition += transform.position;
     }
     private void OnEnable()
