@@ -166,6 +166,12 @@ public class PlayerManager : MonoBehaviour
 
     }
 
+    IEnumerator NodeAnnouncer()
+    {
+        
+        yield return new WaitForSeconds(5f);
+    }
+
     public void DayChanging()
     {
         playerTransform.position = bed.spawnTransform.position;

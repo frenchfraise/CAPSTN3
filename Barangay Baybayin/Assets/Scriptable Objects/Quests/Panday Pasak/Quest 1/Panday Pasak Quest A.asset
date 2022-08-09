@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4c2f0828a94db54886d05067e7f6838, type: 3}
   m_Name: Panday Pasak Quest A
   m_EditorClassIdentifier: 
-  questImage: {fileID: 21300000, guid: 9dcd2b650208685439e76e0a00695370, type: 3}
+  questImage: {fileID: 21300000, guid: 126859682eaf375448239b1c78c38770, type: 3}
   title: Help on the Way
   description: Teacher An asks Sakoro for help, as the school has been affected by
     the typhoon.

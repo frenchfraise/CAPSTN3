@@ -110,6 +110,7 @@ public class TimeManager : MonoBehaviour
         {
 
             SceneManager.LoadScene(0);
+            //Application.Quit();
          
         }
         else if (p_id == "TE-0")

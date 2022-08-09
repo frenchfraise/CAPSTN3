@@ -3756,7 +3756,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 101662862203666367}
   m_HandleRect: {fileID: 101662862203666364}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -5796,7 +5796,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 00:00 AM
+  m_text: 8:00 AM
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f74993e7ed6f5ee4289833155b2a538b, type: 2}
   m_sharedMaterial: {fileID: 2113804007650697980, guid: f74993e7ed6f5ee4289833155b2a538b, type: 2}

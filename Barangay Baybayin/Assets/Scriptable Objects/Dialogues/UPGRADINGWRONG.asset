@@ -15,5 +15,6 @@ MonoBehaviour:
   dialogues:
   - character: {fileID: 11400000, guid: 64792cf6cb6b2a642becf92ac15202ce, type: 2}
     emotion: 10
-    words: I told you to upgrade the Machete, not the other tools
+    words: I told you to upgrade the Bolo, not the other tools
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 0

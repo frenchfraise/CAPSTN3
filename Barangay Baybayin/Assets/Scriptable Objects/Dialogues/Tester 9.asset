@@ -26,7 +26,7 @@ MonoBehaviour:
     speechTransitionType: 0
   - character: {fileID: 11400000, guid: 64792cf6cb6b2a642becf92ac15202ce, type: 2}
     emotion: 10
-    words: Go ahead and harvest those herbs. Using a certain  tool repeatedly will
+    words: Go ahead and harvest those herbs. Using a certain tool repeatedly will
       improve your skill.
     backgroundSprite: {fileID: 0}
     speechTransitionType: 0

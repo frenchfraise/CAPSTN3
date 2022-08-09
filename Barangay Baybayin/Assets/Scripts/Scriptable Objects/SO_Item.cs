@@ -6,4 +6,5 @@ public class SO_Item : ScriptableObject
 {
     public Sprite icon;
     public Color32 color;
+    public string spriteName;
 }
