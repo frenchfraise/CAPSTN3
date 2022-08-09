@@ -15,7 +15,8 @@ MonoBehaviour:
   dialogues:
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
     emotion: 10
-    words: 'These oughta do: [<b>10 Wood</b> <sprite=7>] and [<b>10 Bamboo</b> <sprite=18>].'
+    words: 'These oughta do: [<b>10 Rare Wood</b> <sprite=7>] and [<b>10 Rare Bamboo</b>
+      <sprite=18>].'
     backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}

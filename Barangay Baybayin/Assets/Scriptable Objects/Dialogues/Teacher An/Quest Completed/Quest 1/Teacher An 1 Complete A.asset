@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogues:
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 10
+    emotion: 6
     words: "Thank you, Sakoro. \r\n\r\n"
     backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 10
+    emotion: 5
     words: Say, would you be able to help some more?
     backgroundSprite: {fileID: 0}
     speechTransitionType: 1

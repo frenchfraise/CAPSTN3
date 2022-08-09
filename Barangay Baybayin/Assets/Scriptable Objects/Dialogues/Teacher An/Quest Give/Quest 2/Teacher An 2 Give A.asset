@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogues:
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 10
+    emotion: 0
     words: Hello, Sakoro. Need your assistance again.
     backgroundSprite: {fileID: 0}
     speechTransitionType: 1
@@ -35,7 +35,7 @@ MonoBehaviour:
     backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 10
+    emotion: 1
     words: "But it\u2019s been so hot, and the kids have a hard time concentrating\u2026"
     backgroundSprite: {fileID: 0}
     speechTransitionType: 1
@@ -45,14 +45,14 @@ MonoBehaviour:
     backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 10
+    emotion: 5
     words: Ah! Back to the task. Could you gather these?
     backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
     emotion: 10
-    words: '[<b>10 Wood</b> <sprite=7>] and [<b>15 Nipa</b> <sprite=8>]. These ought
-      to be sturdier.'
+    words: '[<b>10 Rare Wood</b> <sprite=7>] and [<b>15 Rare Nipa</b> <sprite=8>].
+      These ought to be sturdier.'
     backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
@@ -62,7 +62,7 @@ MonoBehaviour:
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
     emotion: 10
-    words: Oh! Before you go, Kap said you ought to upgrade your tools for the new
-      materials.
+    words: Oh! Before you go, Kapitan said you ought to upgrade your tools for the
+      new materials.
     backgroundSprite: {fileID: 0}
     speechTransitionType: 1

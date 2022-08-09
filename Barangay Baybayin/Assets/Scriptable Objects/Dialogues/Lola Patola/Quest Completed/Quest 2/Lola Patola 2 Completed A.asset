@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogues:
   - character: {fileID: 11400000, guid: d07ffa9457a5d704b91096369ccebe08, type: 2}
-    emotion: 10
+    emotion: 6
     words: 'You''re a lifesaver, child.
 
 '
@@ -33,7 +33,7 @@ MonoBehaviour:
     backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: d07ffa9457a5d704b91096369ccebe08, type: 2}
-    emotion: 10
+    emotion: 7
     words: 'But the difficulties of farm life led him to move into the city.
 
 '
@@ -54,7 +54,7 @@ MonoBehaviour:
     backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: d07ffa9457a5d704b91096369ccebe08, type: 2}
-    emotion: 10
+    emotion: 3
     words: 'But your Lolo and I, we don''t regret staying.
 
 '

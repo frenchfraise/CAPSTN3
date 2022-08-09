@@ -15,8 +15,8 @@ MonoBehaviour:
   dialogues:
   - character: {fileID: 11400000, guid: 88aa14d00365c39438cbfaa3e215ba70, type: 2}
     emotion: 10
-    words: 'Typhoon A* has made landfall, and is currently X kilometers from Purok
-      Buko. '
+    words: 'Typhoon Agila has made landfall, and is currently 10 kilometers from
+      Purok Buko. '
     backgroundSprite: {fileID: 21300000, guid: f111821f25679be468718e8fd489bf1e, type: 3}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 88aa14d00365c39438cbfaa3e215ba70, type: 2}
@@ -37,7 +37,7 @@ MonoBehaviour:
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
     emotion: 10
-    words: 'Our town has braved the brunt of Typhoon A*, no doubt due to our rebuilding
+    words: 'Our town has braved the brunt of Typhoon Agila, no doubt due to our rebuilding
       efforts. '
     backgroundSprite: {fileID: 21300000, guid: a304703f6d8dc2b4ca3b2b78c4eb83bc, type: 3}
     speechTransitionType: 1
@@ -85,7 +85,7 @@ MonoBehaviour:
     backgroundSprite: {fileID: 21300000, guid: a304703f6d8dc2b4ca3b2b78c4eb83bc, type: 3}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: f142546a761c9f447a927727385155d6, type: 2}
-    emotion: 10
+    emotion: 4
     words: We harvested a big coconut when we were farming!
     backgroundSprite: {fileID: 21300000, guid: a304703f6d8dc2b4ca3b2b78c4eb83bc, type: 3}
     speechTransitionType: 1
@@ -95,7 +95,7 @@ MonoBehaviour:
     backgroundSprite: {fileID: 21300000, guid: a304703f6d8dc2b4ca3b2b78c4eb83bc, type: 3}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 965634ccc85d1834987fed7baeab2dc4, type: 2}
-    emotion: 10
+    emotion: 3
     words: "The Kapitan teaches me about the slopes and the dunes! \r"
     backgroundSprite: {fileID: 21300000, guid: a304703f6d8dc2b4ca3b2b78c4eb83bc, type: 3}
     speechTransitionType: 1
@@ -105,7 +105,7 @@ MonoBehaviour:
     backgroundSprite: {fileID: 21300000, guid: a304703f6d8dc2b4ca3b2b78c4eb83bc, type: 3}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: aa786edefb39fa14f89005d22afaa94d, type: 2}
-    emotion: 10
+    emotion: 0
     words: 'The kids are glad to be at school. Even those from the island outskirts
       can come now. '
     backgroundSprite: {fileID: 21300000, guid: a304703f6d8dc2b4ca3b2b78c4eb83bc, type: 3}
@@ -136,7 +136,7 @@ MonoBehaviour:
     backgroundSprite: {fileID: 21300000, guid: a304703f6d8dc2b4ca3b2b78c4eb83bc, type: 3}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
-    emotion: 10
+    emotion: 6
     words: And with that, we heartily welcome the day our Purok Buko is a town anew.
     backgroundSprite: {fileID: 21300000, guid: a304703f6d8dc2b4ca3b2b78c4eb83bc, type: 3}
     speechTransitionType: 1

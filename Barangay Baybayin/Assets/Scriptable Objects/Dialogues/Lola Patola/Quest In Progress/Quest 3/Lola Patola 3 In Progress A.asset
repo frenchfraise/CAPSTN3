@@ -15,7 +15,8 @@ MonoBehaviour:
   dialogues:
   - character: {fileID: 11400000, guid: d07ffa9457a5d704b91096369ccebe08, type: 2}
     emotion: 10
-    words: We need [<b>15 Nipa</b> <sprite=5>] and [<b>15 Bamboo</b> <sprite=17>].
+    words: We need [<b>15 Superb Nipa</b> <sprite=5>] and [<b>15 Superb Bamboo</b>
+      <sprite=17>].
     backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: d07ffa9457a5d704b91096369ccebe08, type: 2}

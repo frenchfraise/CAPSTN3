@@ -13,6 +13,10 @@ public class TitlescreenUI : MonoBehaviour
     public AudioMixer audioMixer;
     public Slider volumeSlider;
     public TMP_Text volumeText;
+    public Button enableButton;
+    public Button disableButton;
+    public Sprite enabledSprite;
+    public Sprite disabledSprite;
 
     [Header("Credits")]
     public GameObject creditsScreen;
@@ -57,18 +61,29 @@ public class TitlescreenUI : MonoBehaviour
     {
         if (p_bool)
         {
+            enableButton.GetComponentInChildren<TMP_Text>().color = Color.white;
+            enableButton.image.sprite = enabledSprite;
+
+            disableButton.GetComponentInChildren<TMP_Text>().color = Color.black;
+            disableButton.image.sprite = disabledSprite;
+
             volumeSlider.value = volumeSlider.maxValue;
             volumeText.text = ((int)volumeSlider.maxValue * 100).ToString();
             audioMixer.SetFloat("MasterVolume", 0);
         }
         else
         {
+            disableButton.GetComponentInChildren<TMP_Text>().color = Color.white;
+            disableButton.image.sprite = enabledSprite;
+
+            enableButton.GetComponentInChildren<TMP_Text>().color = Color.black;
+            enableButton.image.sprite = disabledSprite;
+            
             volumeSlider.value = volumeSlider.minValue;
             volumeText.text = ((int)volumeSlider.minValue * 100).ToString();
             audioMixer.SetFloat("MasterVolume", -80);
         }
     }
-
     #endregion
 
     public void OnCreditsButtonClicked(bool p_bool)

@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogues:
   - character: {fileID: 11400000, guid: d07ffa9457a5d704b91096369ccebe08, type: 2}
-    emotion: 10
+    emotion: 6
     words: Hello, dear.
     backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: d07ffa9457a5d704b91096369ccebe08, type: 2}
-    emotion: 10
+    emotion: 7
     words: 'Our carriage is also broken.
 
 '
@@ -40,7 +40,7 @@ MonoBehaviour:
     backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: d07ffa9457a5d704b91096369ccebe08, type: 2}
-    emotion: 10
+    emotion: 5
     words: 'Do you think you could help?
 
 '
@@ -48,7 +48,8 @@ MonoBehaviour:
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: d07ffa9457a5d704b91096369ccebe08, type: 2}
     emotion: 10
-    words: 'We need [<b>15 Bamboo</b> <sprite=16>] and [<b>10 Bamboo</b> <sprite=18>].
+    words: 'We need [<b>15 Common Bamboo</b> <sprite=16>] and [<b>10 Rare Bamboo</b>
+      <sprite=18>].
 
 '
     backgroundSprite: {fileID: 0}

@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogues:
   - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
-    emotion: 10
+    emotion: 3
     words: 'Hey Sakoro.
 
 '
     backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
-    emotion: 10
+    emotion: 5
     words: 'Have you noticed the town recently?
 
 '
@@ -35,7 +35,7 @@ MonoBehaviour:
     backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
-    emotion: 10
+    emotion: 1
     words: 'I know the town''s strong. But strength isn''t enough.
 
 '
@@ -86,7 +86,7 @@ MonoBehaviour:
     backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
-    emotion: 10
+    emotion: 4
     words: "But the goal is for the town itself to be sturdy, for the people to be
       safe. \r\n"
     backgroundSprite: {fileID: 0}
@@ -107,7 +107,7 @@ MonoBehaviour:
     backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
-    emotion: 10
+    emotion: 0
     words: '... did I talk your ear off?
 
 '
@@ -129,7 +129,8 @@ MonoBehaviour:
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
     emotion: 10
-    words: We need [<b>15 Wood</b> <sprite=6>] and [<b>10 Vetiver grass</b> <sprite=4>].
+    words: We need [<b>15 Superb Wood</b> <sprite=6>] and [<b>10 Vetiver grass</b>
+      <sprite=4>].
     backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}

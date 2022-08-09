@@ -40,7 +40,7 @@ MonoBehaviour:
     backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
-    emotion: 10
+    emotion: 6
     words: "I\u2019m proud of you, Sakoro. And I\u2019m sure Pasak is, too.\r\n"
     backgroundSprite: {fileID: 0}
     speechTransitionType: 1
@@ -50,7 +50,7 @@ MonoBehaviour:
     backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
-    emotion: 10
+    emotion: 0
     words: 'Let us greet tomorrow with a smile.
 
 '

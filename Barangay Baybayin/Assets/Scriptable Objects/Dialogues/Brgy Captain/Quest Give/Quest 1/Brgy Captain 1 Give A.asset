@@ -21,7 +21,7 @@ MonoBehaviour:
     backgroundSprite: {fileID: 0}
     speechTransitionType: 0
   - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
-    emotion: 10
+    emotion: 1
     words: 'So the time has come for I myself to be helped, huh?
 
 '
@@ -42,7 +42,7 @@ MonoBehaviour:
     backgroundSprite: {fileID: 0}
     speechTransitionType: 0
   - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
-    emotion: 10
+    emotion: 7
     words: 'Storm blew the vetiver and logs into disarray.
 
 '
@@ -79,8 +79,8 @@ MonoBehaviour:
     speechTransitionType: 0
   - character: {fileID: 11400000, guid: bb83c9acf48593241b02418acd1c9993, type: 2}
     emotion: 10
-    words: 'Can you help? To begin, we need [<b>10 Wood</b> <sprite=7>] and [<b>7
-      Vetiver grass</b> <sprite=4>].
+    words: 'Can you help? To begin, we need [<b>10 Rare Wood</b> <sprite=7>] and
+      [<b>7 Vetiver grass</b> <sprite=4>].
 
 '
     backgroundSprite: {fileID: 0}

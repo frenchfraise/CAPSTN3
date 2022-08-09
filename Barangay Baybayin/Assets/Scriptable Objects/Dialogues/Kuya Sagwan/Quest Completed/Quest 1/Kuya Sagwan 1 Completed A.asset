@@ -14,14 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogues:
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
-    emotion: 10
+    emotion: 6
     words: With tools fixed and supplies gathered, we're a step forward.
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
-    emotion: 10
+    emotion: 5
     words: "More stuff needs fixing though. You up for it?\r"
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
   - character: {fileID: 11400000, guid: 2aa04ccadeb90c04daff4bc6123fa5f9, type: 2}
     emotion: 10
     words: "Just say the word.\r"
+    backgroundSprite: {fileID: 0}
     speechTransitionType: 1
